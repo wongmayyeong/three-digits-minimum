@@ -1,0 +1,1444 @@
+[
+ {
+  "evidenceId": "MKT-NEAR-MCAP",
+  "label": "NEAR circulating market cap",
+  "value": 4854549185,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.market_cap",
+  "inputs": [],
+  "methodology": "CoinGecko circulating market cap = price x CoinGecko circulating supply. Free-tier data can lag a few minutes.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-NEAR-PRICE",
+  "label": "NEAR price",
+  "value": 3.7,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.current_price",
+  "inputs": [],
+  "methodology": "CoinGecko aggregated spot price.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-NEAR-CIRC",
+  "label": "NEAR circulating supply (CoinGecko)",
+  "value": 1311012186,
+  "unit": "NEAR",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.circulating_supply",
+  "inputs": [],
+  "methodology": "CoinGecko circulating supply figure; definitions differ by provider.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-SOL-MCAP",
+  "label": "Solana circulating market cap",
+  "value": 53045351327,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.market_cap",
+  "inputs": [],
+  "methodology": "CoinGecko circulating market cap = price x CoinGecko circulating supply. Free-tier data can lag a few minutes.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-SUI-MCAP",
+  "label": "Sui circulating market cap",
+  "value": 3602149640,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.market_cap",
+  "inputs": [],
+  "methodology": "CoinGecko circulating market cap = price x CoinGecko circulating supply. Free-tier data can lag a few minutes.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-AVAX-MCAP",
+  "label": "Avalanche circulating market cap",
+  "value": 3708854310,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "coingecko.markets",
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505"
+  },
+  "transform": "coins/markets.market_cap",
+  "inputs": [],
+  "methodology": "CoinGecko circulating market cap = price x CoinGecko circulating supply. Free-tier data can lag a few minutes.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MKT-NEAR-MCAP-1Y",
+  "label": "NEAR market cap change, trailing 365 days",
+  "value": 0.8156892913105116,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2025-11-07",
+  "periodEnd": "2026-11-06",
+  "request": {
+   "key": "coingecko.near.history",
+   "url": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily",
+   "fetchedAt": "2026-11-06T20:52:26.697Z",
+   "sha256": "08fba9f0a2c4f843d91ee0ceee719f7299df6d9d1df80e1ea444aec25a905b70"
+  },
+  "transform": "(last - first) / first",
+  "inputs": [],
+  "methodology": "Percent change between the first and last daily market cap in CoinGecko's 365-day history.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-VOL-90D",
+  "label": "NEAR Intents swap volume, 90 days",
+  "value": 11706137303,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.intents.volume",
+   "url": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",
+   "fetchedAt": "2026-11-06T20:52:24.014Z",
+   "sha256": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "DefiLlama near-intents DEX adapter, daily swap volume in USD.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-VOL-PRIOR-90D",
+  "label": "NEAR Intents swap volume, prior 90 days",
+  "value": 6486393979,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": {
+   "key": "defillama.intents.volume",
+   "url": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",
+   "fetchedAt": "2026-11-06T20:52:24.014Z",
+   "sha256": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-08-06",
+  "inputs": [],
+  "methodology": "Same adapter, the 90 days immediately before the current window.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-FEES-90D",
+  "label": "NEAR Intents gross fees, 90 days",
+  "value": 17838984,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.intents.dailyFees",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:25.348Z",
+   "sha256": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "DefiLlama definition: Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-FEES-PRIOR-90D",
+  "label": "NEAR Intents gross fees, prior 90 days",
+  "value": 8988833,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": {
+   "key": "defillama.intents.dailyFees",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:25.348Z",
+   "sha256": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-08-06",
+  "inputs": [],
+  "methodology": "DefiLlama definition: Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-REV-90D",
+  "label": "NEAR Intents captured revenue, 90 days",
+  "value": 4837528,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.intents.dailyRevenue",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
+   "fetchedAt": "2026-11-06T20:52:26.692Z",
+   "sha256": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "DefiLlama definition: NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-REV-PRIOR-90D",
+  "label": "NEAR Intents captured revenue, prior 90 days",
+  "value": 1706040,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": {
+   "key": "defillama.intents.dailyRevenue",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
+   "fetchedAt": "2026-11-06T20:52:26.692Z",
+   "sha256": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-08-06",
+  "inputs": [],
+  "methodology": "DefiLlama definition: NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-BUYBACK-90D",
+  "label": "Revenue DefiLlama classifies as buybacks, 90 days",
+  "value": 4837528,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.intents.dailyHoldersRevenue",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
+   "fetchedAt": "2026-11-06T20:52:28.008Z",
+   "sha256": "e2d9e325dccba174d3706814be205c7a7cb71baf56b52b6f67db75ae069b9987"
+  },
+  "transform": "sum of daily values over 90 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "DefiLlama definition: Since 2026-02-23, NEAR's captured Intents revenue is used to buy back $NEAR on the open market (not burned), returning value to holders.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-VOL-ANN",
+  "label": "NEAR Intents annualized volume (V)",
+  "value": 47474890173.27778,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-VOL-90D x 365 / 90",
+  "inputs": [
+   "INT-VOL-90D"
+  ],
+  "methodology": "Run rate: trailing 90-day volume scaled to a year. Assumes the recent 90 days persist; it is not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-VOL-GROWTH",
+  "label": "Volume change, last 90 days vs prior 90 days",
+  "value": 0.8047219057151261,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "(INT-VOL-90D - INT-VOL-PRIOR-90D) / INT-VOL-PRIOR-90D",
+  "inputs": [
+   "INT-VOL-PRIOR-90D",
+   "INT-VOL-90D"
+  ],
+  "methodology": "Matched consecutive 90-day windows from the same adapter.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-FEE-RATE",
+  "label": "Effective gross fee rate (f)",
+  "value": 0.0015239001165165131,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-FEES-90D / INT-VOL-90D",
+  "inputs": [
+   "INT-FEES-90D",
+   "INT-VOL-90D"
+  ],
+  "methodology": "Gross fees (protocol + distributor fees) divided by volume over the same 90 days and the same DefiLlama protocol scope.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-FEE-RATE-PRIOR",
+  "label": "Effective gross fee rate, prior 90 days",
+  "value": 0.0013857981844923022,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": null,
+  "transform": "INT-FEES-PRIOR-90D / INT-VOL-PRIOR-90D",
+  "inputs": [
+   "INT-FEES-PRIOR-90D",
+   "INT-VOL-PRIOR-90D"
+  ],
+  "methodology": "Same definition, prior window. Compare with INT-FEE-RATE to see fee compression or expansion.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-CAPTURE",
+  "label": "Protocol capture of gross fees (c)",
+  "value": 0.27117732713925863,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-REV-90D / INT-FEES-90D",
+  "inputs": [
+   "INT-REV-90D",
+   "INT-FEES-90D"
+  ],
+  "methodology": "NEAR-captured revenue (swept to NEAR revenue wallets) divided by gross fees. The remainder goes to solvers and distribution partners.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-CAPTURE-PRIOR",
+  "label": "Protocol capture of gross fees, prior 90 days",
+  "value": 0.1897954940313164,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": null,
+  "transform": "INT-REV-PRIOR-90D / INT-FEES-PRIOR-90D",
+  "inputs": [
+   "INT-REV-PRIOR-90D",
+   "INT-FEES-PRIOR-90D"
+  ],
+  "methodology": "Same definition as INT-CAPTURE, prior window.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-TAKE-RATE",
+  "label": "NEAR-captured revenue per dollar of volume (f x c)",
+  "value": 0.00041324716042415274,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-REV-90D / INT-VOL-90D",
+  "inputs": [
+   "INT-REV-90D",
+   "INT-VOL-90D"
+  ],
+  "methodology": "Captured revenue divided by volume over the same window: how much of each swapped dollar NEAR keeps.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-TAKE-RATE-PRIOR",
+  "label": "NEAR-captured revenue per dollar of volume, prior 90 days",
+  "value": 0.00026301825105341786,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-05-09",
+  "periodEnd": "2026-08-06",
+  "request": null,
+  "transform": "INT-REV-PRIOR-90D / INT-VOL-PRIOR-90D",
+  "inputs": [
+   "INT-REV-PRIOR-90D",
+   "INT-VOL-PRIOR-90D"
+  ],
+  "methodology": "Same definition, prior window. A falling take rate while volume grows means value capture lags activity.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-BUYBACK-SHARE",
+  "label": "Share of captured revenue classified as buybacks (b)",
+  "value": 1,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-BUYBACK-90D / INT-REV-90D",
+  "inputs": [
+   "INT-BUYBACK-90D",
+   "INT-REV-90D"
+  ],
+  "methodology": "DefiLlama holders revenue divided by captured revenue over the same window.",
+  "notes": "Depends on DefiLlama's classification of revenue as holders revenue; not an onchain-verified allocation policy and not guaranteed to continue."
+ },
+ {
+  "evidenceId": "INT-REV-ANN",
+  "label": "NEAR Intents captured revenue, annualized",
+  "value": 19618863.555555556,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "INT-REV-90D x 365 / 90",
+  "inputs": [
+   "INT-REV-90D"
+  ],
+  "methodology": "Run rate of NEAR-captured revenue. Not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-DEFINITIONS",
+  "label": "DefiLlama fee and revenue definitions for NEAR Intents",
+  "value": null,
+  "unit": "text",
+  "type": "REPORTED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "defillama.intents.dailyFees",
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:25.348Z",
+   "sha256": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5"
+  },
+  "transform": "methodology fields",
+  "inputs": [],
+  "methodology": "Adapter methodology text published by DefiLlama, stored verbatim after sanitization. Treated as a third-party claim.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-BUYBACK-WALLET",
+  "label": "NEAR held by buybacks.multisignature.near",
+  "value": 2201595.5391450613,
+  "unit": "NEAR",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "near-rpc.buyback-wallet",
+   "url": "https://free.rpc.fastnear.com",
+   "fetchedAt": "2026-11-06T20:52:24.138Z",
+   "sha256": "10cab2bc245d44510b9542f6dadfff4644ee2a6b5a090e0e3de0fae6076efc03"
+  },
+  "transform": "view_account.amount + wrap.near ft_balance_of, yocto / 1e24",
+  "inputs": [],
+  "methodology": "Native NEAR balance plus wNEAR balance of the buyback multisig, read at final block. Tokens held here are acquired, not burned; total supply is unchanged unless they are burned.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-TOTAL-SUPPLY",
+  "label": "NEAR total supply (protocol)",
+  "value": 1311012179.905081,
+  "unit": "NEAR",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "near-rpc.block",
+   "url": "https://free.rpc.fastnear.com",
+   "fetchedAt": "2026-11-06T20:52:23.674Z",
+   "sha256": "de63d5fa76e1adf3cd47e549c39588f39577b23db7d93190dbe27ace708bbeef"
+  },
+  "transform": "header.total_supply / 1e24",
+  "inputs": [],
+  "methodology": "total_supply from the final block header.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-MAX-INFLATION",
+  "label": "Protocol maximum annual inflation rate",
+  "value": 0.025,
+  "unit": "fraction",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": {
+   "key": "near-rpc.protocol-config",
+   "url": "https://free.rpc.fastnear.com",
+   "fetchedAt": "2026-11-06T20:52:23.908Z",
+   "sha256": "13000352df92448f15f9a26ec326f853a0244604236dd42e93f6e89613ee1067"
+  },
+  "transform": "numerator / denominator",
+  "inputs": [],
+  "methodology": "max_inflation_rate from EXPERIMENTAL_protocol_config. Realized issuance can be lower (it depends on validator uptime).",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-BUYBACK-PCT-SUPPLY",
+  "label": "Buyback wallet holdings as share of total supply",
+  "value": 0.0016793097523353747,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "ONC-BUYBACK-WALLET / ONC-TOTAL-SUPPLY",
+  "inputs": [
+   "ONC-BUYBACK-WALLET",
+   "ONC-TOTAL-SUPPLY"
+  ],
+  "methodology": "Both values read from the same RPC at nearly the same block.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-ISSUANCE-USD",
+  "label": "Maximum annual issuance at current price",
+  "value": 121268626.64122,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "ONC-MAX-INFLATION x ONC-TOTAL-SUPPLY x MKT-NEAR-PRICE",
+  "inputs": [
+   "ONC-MAX-INFLATION",
+   "ONC-TOTAL-SUPPLY",
+   "MKT-NEAR-PRICE"
+  ],
+  "methodology": "Upper bound on new tokens per year valued at today's price, for comparison with buyback demand. Not a measure of sell pressure.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-DAA-30D",
+  "label": "Daily active accounts, 30-day mean",
+  "value": 61646.566666666666,
+  "unit": "count",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "nearblocks.charts",
+   "url": "https://api.nearblocks.io/v1/charts",
+   "fetchedAt": "2026-11-06T20:52:25.444Z",
+   "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a"
+  },
+  "transform": "mean of daily values over 30 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "NearBlocks active_accounts (accounts that signed a transaction that day). Accounts are not people: one person or bot can control many accounts, and relayers can sign for many users.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-DAA-30D-1Y-AGO",
+  "label": "Daily active accounts, 30-day mean one year earlier",
+  "value": 268977.06666666665,
+  "unit": "count",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2025-10-06",
+  "periodEnd": "2025-11-04",
+  "request": {
+   "key": "nearblocks.charts",
+   "url": "https://api.nearblocks.io/v1/charts",
+   "fetchedAt": "2026-11-06T20:52:25.444Z",
+   "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a"
+  },
+  "transform": "mean of daily values over 30 days ending 2025-11-04",
+  "inputs": [],
+  "methodology": "Same definition, window ending 365 days earlier.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-TXN-30D",
+  "label": "Daily transactions, 30-day mean",
+  "value": 684947.6666666666,
+  "unit": "count",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "nearblocks.charts",
+   "url": "https://api.nearblocks.io/v1/charts",
+   "fetchedAt": "2026-11-06T20:52:25.444Z",
+   "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a"
+  },
+  "transform": "mean of daily values over 30 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "NearBlocks txns per day. Transaction counts include automated and relayed activity.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-NEW-30D",
+  "label": "New accounts per day, 30-day mean",
+  "value": 9737.033333333333,
+  "unit": "count",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "nearblocks.charts",
+   "url": "https://api.nearblocks.io/v1/charts",
+   "fetchedAt": "2026-11-06T20:52:25.444Z",
+   "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a"
+  },
+  "transform": "mean of daily values over 30 days ending 2026-11-04",
+  "inputs": [],
+  "methodology": "NearBlocks new_accounts. Accounts are not people: one person or bot can control many accounts, and relayers can sign for many users.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-DAA-YOY",
+  "label": "Daily active accounts, change vs one year earlier",
+  "value": -0.7708110679076482,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "(ACT-DAA-30D - ACT-DAA-30D-1Y-AGO) / ACT-DAA-30D-1Y-AGO",
+  "inputs": [
+   "ACT-DAA-30D-1Y-AGO",
+   "ACT-DAA-30D"
+  ],
+  "methodology": "Matched 30-day windows one year apart, same source and definition.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-GAS-FEES-30D",
+  "label": "Base-layer transaction fees, 30 days (NearBlocks)",
+  "value": 175807.44200783994,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "nearblocks.charts",
+   "url": "https://api.nearblocks.io/v1/charts",
+   "fetchedAt": "2026-11-06T20:52:25.444Z",
+   "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a"
+  },
+  "transform": "sum over 30 days",
+  "inputs": [],
+  "methodology": "NearBlocks txn_fee_usd summed over 30 days. Cross-check for DefiLlama chain fees.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ACT-RETENTION",
+  "label": "Retained signer cohorts (BigQuery)",
+  "value": null,
+  "unit": "fraction",
+  "type": "OBSERVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "identity",
+  "inputs": [],
+  "methodology": "Monthly signer cohorts from bigquery-public-data.crypto_near_mainnet_us.transactions (research/sql/05_new_signer_retention.sql).",
+  "notes": "Not available in live snapshots. Requires Google Cloud credentials and a freshness check, because NEAR Lake (the dataset's upstream) stopped indexing on 2026-03-24."
+ },
+ {
+  "evidenceId": "DEFI-TVL-NEAR",
+  "label": "NEAR chain DeFi TVL",
+  "value": 176336679,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-06",
+  "request": {
+   "key": "defillama.tvl.near",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
+   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "sha256": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0"
+  },
+  "transform": "latest daily value",
+  "inputs": [],
+  "methodology": "DefiLlama chain TVL (excludes double-counted liquid staking and borrowed assets by default).",
+  "notes": null
+ },
+ {
+  "evidenceId": "DEFI-TVL-NEAR-1Y-AGO",
+  "label": "NEAR chain DeFi TVL one year earlier",
+  "value": 147918235,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2025-11-06",
+  "request": {
+   "key": "defillama.tvl.near",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
+   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "sha256": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0"
+  },
+  "transform": "daily value at end - 365d",
+  "inputs": [],
+  "methodology": "Same series, 365 days earlier.",
+  "notes": null
+ },
+ {
+  "evidenceId": "DEFI-TVL-NEAR-YOY",
+  "label": "NEAR TVL change vs one year earlier",
+  "value": 0.19212265478965457,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "(DEFI-TVL-NEAR - DEFI-TVL-NEAR-1Y-AGO) / DEFI-TVL-NEAR-1Y-AGO",
+  "inputs": [
+   "DEFI-TVL-NEAR-1Y-AGO",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "USD TVL moves with token prices as well as deposits; part of any change is price, not usage.",
+  "notes": null
+ },
+ {
+  "evidenceId": "DEFI-RHEA-LEND-TVL",
+  "label": "RHEA Lend TVL on NEAR",
+  "value": 147398207,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-06",
+  "request": {
+   "key": "defillama.protocol.rhea-lend",
+   "url": "https://api.llama.fi/protocol/rhea-lend",
+   "fetchedAt": "2026-11-06T20:52:38.406Z",
+   "sha256": "80e53451528f5b05d0581550c52d7bd983c6792e59fd6a2363cbe4dc09854210"
+  },
+  "transform": "latest daily value",
+  "inputs": [],
+  "methodology": "DefiLlama protocol TVL, NEAR chain only. Incentive programs can inflate deposits.",
+  "notes": null
+ },
+ {
+  "evidenceId": "DEFI-RHEA-DEX-TVL",
+  "label": "RHEA DEX TVL on NEAR",
+  "value": 23084205,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-06",
+  "request": {
+   "key": "defillama.protocol.rhea-dex",
+   "url": "https://api.llama.fi/protocol/rhea-dex",
+   "fetchedAt": "2026-11-06T20:52:39.038Z",
+   "sha256": "eaaacfbb8b6da1a69f56c82516fa69be7072a269250003c5f000046e603b732b"
+  },
+  "transform": "latest daily value",
+  "inputs": [],
+  "methodology": "DefiLlama protocol TVL, NEAR chain only. Incentive programs can inflate deposits.",
+  "notes": null
+ },
+ {
+  "evidenceId": "DEFI-STABLES-NEAR",
+  "label": "Stablecoin supply on NEAR",
+  "value": 129703650.23,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-06",
+  "request": {
+   "key": "defillama.stablecoins.near",
+   "url": "https://stablecoins.llama.fi/stablecoincharts/Near",
+   "fetchedAt": "2026-11-06T20:52:39.450Z",
+   "sha256": "1aa9fc9e30c49b98047e7950c8ca3b08442105dcbe81681db00bc54ec1983a47"
+  },
+  "transform": "latest daily value",
+  "inputs": [],
+  "methodology": "DefiLlama stablecoins: USD-pegged circulating supply on NEAR.",
+  "notes": null
+ },
+ {
+  "evidenceId": "FEES-NEAR-CHAIN-90D",
+  "label": "NEAR base-layer gas fees, 90 days",
+  "value": 363054,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.fees.near",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:29.375Z",
+   "sha256": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0"
+  },
+  "transform": "sum over 90 days (same window as Intents)",
+  "inputs": [],
+  "methodology": "All transaction (gas) fees paid by users on the NEAR blockchain, fetched from Allium.",
+  "notes": null
+ },
+ {
+  "evidenceId": "FEES-NEAR-BURN-90D",
+  "label": "NEAR gas fees burned, 90 days",
+  "value": 254136,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.revenue.near",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue",
+   "fetchedAt": "2026-11-06T20:52:37.911Z",
+   "sha256": "4c93725c40c00c0db60d33ed721fe16c11faeb770ed6dbc78c398ecb436c6bdf"
+  },
+  "transform": "sum over 90 days",
+  "inputs": [],
+  "methodology": "70% of every gas fee is permanently burned, reducing NEAR supply. The other 30% is paid to contract developers, so only 70% is protocol revenue.",
+  "notes": null
+ },
+ {
+  "evidenceId": "VAL-NEAR-VALUE-CAPTURE-ANN",
+  "label": "Token-level value capture, annualized (burn + Intents buybacks)",
+  "value": 20649526.222222224,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "(FEES-NEAR-BURN-90D + INT-BUYBACK-90D) x 365 / 90",
+  "inputs": [
+   "FEES-NEAR-BURN-90D",
+   "INT-BUYBACK-90D"
+  ],
+  "methodology": "Dollars per year that currently flow to burns or buybacks. Burns reduce supply; buybacks acquire tokens that may be held, so the two are not equivalent.",
+  "notes": null
+ },
+ {
+  "evidenceId": "VAL-NEAR-MCAP-TO-CAPTURE",
+  "label": "Market cap / annualized token value capture",
+  "value": 235.09252138558614,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-NEAR-MCAP / VAL-NEAR-VALUE-CAPTURE-ANN",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "VAL-NEAR-VALUE-CAPTURE-ANN"
+  ],
+  "methodology": "A price-to-earnings style multiple on burns plus buybacks. Not comparable with peers that only burn.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-NEAR-FEES-30D",
+  "label": "NEAR chain fees, 30 days",
+  "value": 177998,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.fees.near",
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:29.375Z",
+   "sha256": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama chain fees adapter: All transaction (gas) fees paid by users on the NEAR blockchain, fetched from Allium.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-NEAR-TVL",
+  "label": "NEAR DeFi TVL",
+  "value": 180105702,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.tvl.near",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
+   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "sha256": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0"
+  },
+  "transform": "daily value at peer window end",
+  "inputs": [],
+  "methodology": "DefiLlama chain TVL on the peer window end date.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-NEAR-DEX-30D",
+  "label": "NEAR DEX volume, 30 days",
+  "value": 4447742415.66,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.dexs.near",
+   "url": "https://api.llama.fi/overview/dexs/near?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+   "fetchedAt": "2026-11-06T20:52:30.043Z",
+   "sha256": "abc3ede83caf4ae8e1c31eee2d21458a8a7a2918e7b881d4a90e9934c15bd377"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama DEX volume attributed to NEAR. It includes NEAR Intents swaps settled on NEAR, so it overlaps with Intents volume.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-NEAR-MCAP-TO-FEES",
+  "label": "NEAR market cap / annualized chain fees",
+  "value": 2241.6209317112534,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-NEAR-MCAP / (PEER-NEAR-FEES-30D x 365 / 30)",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "PEER-NEAR-FEES-30D"
+  ],
+  "methodology": "Chain fees only (no app revenue) so all four chains use one definition. Base-layer tokens may carry value that fees do not explain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-NEAR-MCAP-TO-TVL",
+  "label": "NEAR market cap / DeFi TVL",
+  "value": 26.953889472083453,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-NEAR-MCAP / PEER-NEAR-TVL",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "PEER-NEAR-TVL"
+  ],
+  "methodology": "Market cap at fetch time over TVL at the peer window end. TVL definitions vary by chain adapter.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SOL-FEES-30D",
+  "label": "Solana chain fees, 30 days",
+  "value": 19867140,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.fees.solana",
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:30.385Z",
+   "sha256": "edf87f91e30e779913105dbcc9e6466d57fd0942c5ac86927585d2fce23c2c75"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama chain fees adapter: Transaction fees paid by users",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SOL-TVL",
+  "label": "Solana DeFi TVL",
+  "value": 5386730199,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.tvl.solana",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Solana",
+   "fetchedAt": "2026-11-06T20:52:30.759Z",
+   "sha256": "3c2c23d85e31dc0873f91514c4e201fe53a3900eb2abd1e6d24ca2999c7e4582"
+  },
+  "transform": "daily value at peer window end",
+  "inputs": [],
+  "methodology": "DefiLlama chain TVL on the peer window end date.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SOL-DEX-30D",
+  "label": "Solana DEX volume, 30 days",
+  "value": 57429058958.329994,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.dexs.solana",
+   "url": "https://api.llama.fi/overview/dexs/solana?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+   "fetchedAt": "2026-11-06T20:52:31.097Z",
+   "sha256": "fca466f1e479a4dcde5bd50d2de39f5d6550dd45d2ffc246ee0ee56fcf42dc4d"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama DEX volume attributed to the chain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SOL-MCAP-TO-FEES",
+  "label": "Solana market cap / annualized chain fees",
+  "value": 219.45241689998716,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-SOL-MCAP / (PEER-SOL-FEES-30D x 365 / 30)",
+  "inputs": [
+   "MKT-SOL-MCAP",
+   "PEER-SOL-FEES-30D"
+  ],
+  "methodology": "Chain fees only (no app revenue) so all four chains use one definition. Base-layer tokens may carry value that fees do not explain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SOL-MCAP-TO-TVL",
+  "label": "Solana market cap / DeFi TVL",
+  "value": 9.847411948875296,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-SOL-MCAP / PEER-SOL-TVL",
+  "inputs": [
+   "MKT-SOL-MCAP",
+   "PEER-SOL-TVL"
+  ],
+  "methodology": "Market cap at fetch time over TVL at the peer window end. TVL definitions vary by chain adapter.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SUI-FEES-30D",
+  "label": "Sui chain fees, 30 days",
+  "value": 125835,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.fees.sui",
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:32.376Z",
+   "sha256": "5b63492469d2273873f566b3a6559cae0c9e9091d7d5f3b3b2566c198b9b17b8"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama chain fees adapter: Transaction fees paid by users for executing transactions on the Sui network",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SUI-TVL",
+  "label": "Sui DeFi TVL",
+  "value": 455444677,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.tvl.sui",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Sui",
+   "fetchedAt": "2026-11-06T20:52:32.717Z",
+   "sha256": "f97c2365167471df94c24852fc5c05e70ebd7c4136d84085839c0d5996aefc7c"
+  },
+  "transform": "daily value at peer window end",
+  "inputs": [],
+  "methodology": "DefiLlama chain TVL on the peer window end date.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SUI-DEX-30D",
+  "label": "Sui DEX volume, 30 days",
+  "value": 892706241,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.dexs.sui",
+   "url": "https://api.llama.fi/overview/dexs/sui?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+   "fetchedAt": "2026-11-06T20:52:34.024Z",
+   "sha256": "abb8fda40140680b8ec6d383d518647fb75bf43d1e2ef1b482780919b8436561"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama DEX volume attributed to the chain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SUI-MCAP-TO-FEES",
+  "label": "Sui market cap / annualized chain fees",
+  "value": 2352.819912573053,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-SUI-MCAP / (PEER-SUI-FEES-30D x 365 / 30)",
+  "inputs": [
+   "MKT-SUI-MCAP",
+   "PEER-SUI-FEES-30D"
+  ],
+  "methodology": "Chain fees only (no app revenue) so all four chains use one definition. Base-layer tokens may carry value that fees do not explain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-SUI-MCAP-TO-TVL",
+  "label": "Sui market cap / DeFi TVL",
+  "value": 7.909082753425176,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-SUI-MCAP / PEER-SUI-TVL",
+  "inputs": [
+   "MKT-SUI-MCAP",
+   "PEER-SUI-TVL"
+  ],
+  "methodology": "Market cap at fetch time over TVL at the peer window end. TVL definitions vary by chain adapter.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-AVAX-FEES-30D",
+  "label": "Avalanche chain fees, 30 days",
+  "value": 342407,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.fees.avalanche-2",
+   "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyFees",
+   "fetchedAt": "2026-11-06T20:52:34.738Z",
+   "sha256": "3a5ea10a43ca0d0e2530e94835d7b3e4c0f8546f1ec58a8a7e5fe18be0f753a7"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama chain fees adapter: Transaction fees paid by users",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-AVAX-TVL",
+  "label": "Avalanche DeFi TVL",
+  "value": 580982713,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.tvl.avalanche-2",
+   "url": "https://api.llama.fi/v2/historicalChainTvl/Avalanche",
+   "fetchedAt": "2026-11-06T20:52:35.075Z",
+   "sha256": "5e3c257ff4f495626e3d261a0ab4eb8e0d50c6d20d939224bd22fce03a2d65da"
+  },
+  "transform": "daily value at peer window end",
+  "inputs": [],
+  "methodology": "DefiLlama chain TVL on the peer window end date.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-AVAX-DEX-30D",
+  "label": "Avalanche DEX volume, 30 days",
+  "value": 2973668277.08,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-10-06",
+  "periodEnd": "2026-11-04",
+  "request": {
+   "key": "defillama.dexs.avalanche-2",
+   "url": "https://api.llama.fi/overview/dexs/avalanche?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+   "fetchedAt": "2026-11-06T20:52:36.563Z",
+   "sha256": "b0d92be42a58f2564f26b473f3576c5943e627874161dee5b0db567662a6bc0e"
+  },
+  "transform": "sum over the matched 30-day peer window",
+  "inputs": [],
+  "methodology": "DefiLlama DEX volume attributed to the chain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-AVAX-MCAP-TO-FEES",
+  "label": "Avalanche market cap / annualized chain fees",
+  "value": 890.2777704542991,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-AVAX-MCAP / (PEER-AVAX-FEES-30D x 365 / 30)",
+  "inputs": [
+   "MKT-AVAX-MCAP",
+   "PEER-AVAX-FEES-30D"
+  ],
+  "methodology": "Chain fees only (no app revenue) so all four chains use one definition. Base-layer tokens may carry value that fees do not explain.",
+  "notes": null
+ },
+ {
+  "evidenceId": "PEER-AVAX-MCAP-TO-TVL",
+  "label": "Avalanche market cap / DeFi TVL",
+  "value": 6.383760182551249,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "MKT-AVAX-MCAP / PEER-AVAX-TVL",
+  "inputs": [
+   "MKT-AVAX-MCAP",
+   "PEER-AVAX-TVL"
+  ],
+  "methodology": "Market cap at fetch time over TVL at the peer window end. TVL definitions vary by chain adapter.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-EXPLORER-TOP5-SHARE",
+  "label": "Share of sampled 1Click volume from top 5 referrers",
+  "value": null,
+  "unit": "fraction",
+  "type": "OBSERVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "identity",
+  "inputs": [],
+  "methodology": "Recent successful 1Click swaps from the NEAR Intents Explorer API.",
+  "notes": "Requires a partner JWT (INTENTS_EXPLORER_JWT). Integrator concentration and organic-vs-wash volume remain unknown without it."
+ },
+ {
+  "evidenceId": "INT-EXPLORER-MEDIAN-SWAP",
+  "label": "Median sampled 1Click swap size",
+  "value": null,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "identity",
+  "inputs": [],
+  "methodology": "Recent successful 1Click swaps from the NEAR Intents Explorer API.",
+  "notes": "Requires a partner JWT (INTENTS_EXPLORER_JWT). Integrator concentration and organic-vs-wash volume remain unknown without it."
+ },
+ {
+  "evidenceId": "MODEL-BUYBACK-USD",
+  "label": "Annual buyback demand at current run rate",
+  "value": 19618863.55555556,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "V x f x c x b",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Measured run rate times measured fee, capture and buyback shares. Holds all four constant.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MODEL-BUYBACK-TO-MCAP",
+  "label": "Annual buyback demand / market cap",
+  "value": 0.004041335829117892,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "(V x f x c x b) / M",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Buyback demand relative to market cap. A buyback is not a burn and does not mechanically raise price by this amount.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MODEL-BREAKEVEN-VOL-2PCT",
+  "label": "Annual volume needed for buybacks = 2% of market cap",
+  "value": 234946523529.2767,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "(y x M) / (f x c x b), y = 0.02 (assumed)",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Volume at which buyback demand would equal a hypothetical 2% of market cap per year, with fee, capture and buyback shares at measured values.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MODEL-VOL-MULTIPLE-2PCT",
+  "label": "Volume multiple needed for 2% of market cap",
+  "value": 4.948858705554652,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "break-even volume / V",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "How many times today's run rate the volume would need to be.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MODEL-REQ-TAKE-RATE-2PCT",
+  "label": "Required f x c x b at today's volume for 2% of market cap",
+  "value": 0.002045101807410808,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "(y x M) / V, y = 0.02 (assumed)",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Reverse calculation: the share of every dollar of volume that would have to become buybacks. Compare with MODEL-CURRENT-TAKE-RATE.",
+  "notes": null
+ },
+ {
+  "evidenceId": "MODEL-CURRENT-TAKE-RATE",
+  "label": "Current f x c x b (volume converted to buyback demand)",
+  "value": 0.0004132471604241528,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-08-07",
+  "periodEnd": "2026-11-04",
+  "request": null,
+  "transform": "f x c x b",
+  "inputs": [
+   "MKT-NEAR-MCAP",
+   "INT-VOL-ANN",
+   "INT-FEE-RATE",
+   "INT-CAPTURE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Measured share of each volume dollar that becomes buyback demand.",
+  "notes": null
+ }
+]

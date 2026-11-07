@@ -1,0 +1,353 @@
+{
+ "coingecko.markets": {
+  "key": "coingecko.markets",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
+  "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+  "fetchedAt": "2026-11-06T20:52:23.927Z",
+  "file": "coingecko.markets.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:23.928Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.near.history": {
+  "key": "coingecko.near.history",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "08fba9f0a2c4f843d91ee0ceee719f7299df6d9d1df80e1ea444aec25a905b70",
+  "fetchedAt": "2026-11-06T20:52:26.697Z",
+  "file": "coingecko.near.history.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:26.725Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.dexs.avalanche-2": {
+  "key": "defillama.dexs.avalanche-2",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/dexs/avalanche?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+  "sha256": "b0d92be42a58f2564f26b473f3576c5943e627874161dee5b0db567662a6bc0e",
+  "fetchedAt": "2026-11-06T20:52:36.563Z",
+  "file": "defillama.dexs.avalanche-2.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:36.566Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.dexs.near": {
+  "key": "defillama.dexs.near",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/dexs/near?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+  "sha256": "abc3ede83caf4ae8e1c31eee2d21458a8a7a2918e7b881d4a90e9934c15bd377",
+  "fetchedAt": "2026-11-06T20:52:30.043Z",
+  "file": "defillama.dexs.near.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:30.046Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.dexs.solana": {
+  "key": "defillama.dexs.solana",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/dexs/solana?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+  "sha256": "fca466f1e479a4dcde5bd50d2de39f5d6550dd45d2ffc246ee0ee56fcf42dc4d",
+  "fetchedAt": "2026-11-06T20:52:31.097Z",
+  "file": "defillama.dexs.solana.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:31.098Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.dexs.sui": {
+  "key": "defillama.dexs.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/dexs/sui?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+  "sha256": "abb8fda40140680b8ec6d383d518647fb75bf43d1e2ef1b482780919b8436561",
+  "fetchedAt": "2026-11-06T20:52:34.024Z",
+  "file": "defillama.dexs.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:34.027Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.avalanche-2": {
+  "key": "defillama.fees.avalanche-2",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyFees",
+  "sha256": "3a5ea10a43ca0d0e2530e94835d7b3e4c0f8546f1ec58a8a7e5fe18be0f753a7",
+  "fetchedAt": "2026-11-06T20:52:34.738Z",
+  "file": "defillama.fees.avalanche-2.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:34.739Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.near": {
+  "key": "defillama.fees.near",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees",
+  "sha256": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0",
+  "fetchedAt": "2026-11-06T20:52:29.375Z",
+  "file": "defillama.fees.near.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:29.378Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.solana": {
+  "key": "defillama.fees.solana",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees",
+  "sha256": "edf87f91e30e779913105dbcc9e6466d57fd0942c5ac86927585d2fce23c2c75",
+  "fetchedAt": "2026-11-06T20:52:30.385Z",
+  "file": "defillama.fees.solana.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:30.388Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.sui": {
+  "key": "defillama.fees.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees",
+  "sha256": "5b63492469d2273873f566b3a6559cae0c9e9091d7d5f3b3b2566c198b9b17b8",
+  "fetchedAt": "2026-11-06T20:52:32.376Z",
+  "file": "defillama.fees.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:32.378Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.intents.dailyFees": {
+  "key": "defillama.intents.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
+  "sha256": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5",
+  "fetchedAt": "2026-11-06T20:52:25.348Z",
+  "file": "defillama.intents.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:25.351Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.intents.dailyHoldersRevenue": {
+  "key": "defillama.intents.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
+  "sha256": "e2d9e325dccba174d3706814be205c7a7cb71baf56b52b6f67db75ae069b9987",
+  "fetchedAt": "2026-11-06T20:52:28.008Z",
+  "file": "defillama.intents.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:28.011Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.intents.dailyRevenue": {
+  "key": "defillama.intents.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
+  "sha256": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0",
+  "fetchedAt": "2026-11-06T20:52:26.692Z",
+  "file": "defillama.intents.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:26.695Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.intents.volume": {
+  "key": "defillama.intents.volume",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",
+  "sha256": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32",
+  "fetchedAt": "2026-11-06T20:52:24.014Z",
+  "file": "defillama.intents.volume.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:24.016Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.protocol.rhea-dex": {
+  "key": "defillama.protocol.rhea-dex",
+  "source": "defillama",
+  "url": "https://api.llama.fi/protocol/rhea-dex",
+  "sha256": "eaaacfbb8b6da1a69f56c82516fa69be7072a269250003c5f000046e603b732b",
+  "fetchedAt": "2026-11-06T20:52:39.038Z",
+  "file": "defillama.protocol.rhea-dex.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:39.039Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.protocol.rhea-lend": {
+  "key": "defillama.protocol.rhea-lend",
+  "source": "defillama",
+  "url": "https://api.llama.fi/protocol/rhea-lend",
+  "sha256": "80e53451528f5b05d0581550c52d7bd983c6792e59fd6a2363cbe4dc09854210",
+  "fetchedAt": "2026-11-06T20:52:38.406Z",
+  "file": "defillama.protocol.rhea-lend.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:38.409Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.revenue.near": {
+  "key": "defillama.revenue.near",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue",
+  "sha256": "4c93725c40c00c0db60d33ed721fe16c11faeb770ed6dbc78c398ecb436c6bdf",
+  "fetchedAt": "2026-11-06T20:52:37.911Z",
+  "file": "defillama.revenue.near.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:37.916Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablecoins.near": {
+  "key": "defillama.stablecoins.near",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Near",
+  "sha256": "1aa9fc9e30c49b98047e7950c8ca3b08442105dcbe81681db00bc54ec1983a47",
+  "fetchedAt": "2026-11-06T20:52:39.450Z",
+  "file": "defillama.stablecoins.near.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:39.453Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.tvl.avalanche-2": {
+  "key": "defillama.tvl.avalanche-2",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Avalanche",
+  "sha256": "5e3c257ff4f495626e3d261a0ab4eb8e0d50c6d20d939224bd22fce03a2d65da",
+  "fetchedAt": "2026-11-06T20:52:35.075Z",
+  "file": "defillama.tvl.avalanche-2.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:35.078Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.tvl.near": {
+  "key": "defillama.tvl.near",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
+  "sha256": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0",
+  "fetchedAt": "2026-11-06T20:52:29.712Z",
+  "file": "defillama.tvl.near.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:29.716Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.tvl.solana": {
+  "key": "defillama.tvl.solana",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Solana",
+  "sha256": "3c2c23d85e31dc0873f91514c4e201fe53a3900eb2abd1e6d24ca2999c7e4582",
+  "fetchedAt": "2026-11-06T20:52:30.759Z",
+  "file": "defillama.tvl.solana.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:30.764Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.tvl.sui": {
+  "key": "defillama.tvl.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Sui",
+  "sha256": "f97c2365167471df94c24852fc5c05e70ebd7c4136d84085839c0d5996aefc7c",
+  "fetchedAt": "2026-11-06T20:52:32.717Z",
+  "file": "defillama.tvl.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:32.720Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.block": {
+  "key": "near-rpc.block",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "de63d5fa76e1adf3cd47e549c39588f39577b23db7d93190dbe27ace708bbeef",
+  "fetchedAt": "2026-11-06T20:52:23.674Z",
+  "file": "near-rpc.block.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:23.675Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.buyback-wallet": {
+  "key": "near-rpc.buyback-wallet",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "10cab2bc245d44510b9542f6dadfff4644ee2a6b5a090e0e3de0fae6076efc03",
+  "fetchedAt": "2026-11-06T20:52:24.138Z",
+  "file": "near-rpc.buyback-wallet.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:24.140Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.buyback-wnear": {
+  "key": "near-rpc.buyback-wnear",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "f9ab86ff8ecdbf6568fd8cddf17a0e79d22cd573c4383500f47d830ed68f594a",
+  "fetchedAt": "2026-11-06T20:52:24.381Z",
+  "file": "near-rpc.buyback-wnear.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:24.383Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.protocol-config": {
+  "key": "near-rpc.protocol-config",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "13000352df92448f15f9a26ec326f853a0244604236dd42e93f6e89613ee1067",
+  "fetchedAt": "2026-11-06T20:52:23.908Z",
+  "file": "near-rpc.protocol-config.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:23.911Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.charts": {
+  "key": "nearblocks.charts",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/charts",
+  "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+  "fetchedAt": "2026-11-06T20:52:25.444Z",
+  "file": "nearblocks.charts.json",
+  "lastAttempt": {
+   "at": "2026-11-06T20:52:25.446Z",
+   "status": "OK",
+   "error": null
+  }
+ }
+}

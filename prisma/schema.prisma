@@ -1,0 +1,358 @@
+// NEBUBE persistence model.
+// Snapshots, evidence, turns, verdicts and replay events are append-only once written:
+// application code never updates a frozen snapshot or a completed debate's turns.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum FetchStatus {
+  OK
+  FAILED
+  UNCONFIGURED
+  SKIPPED
+}
+
+enum ObservationType {
+  OBSERVED
+  DERIVED
+  REPORTED
+  ASSUMED
+}
+
+enum SnapshotMode {
+  LIVE
+  SYNTHETIC
+}
+
+enum DebateStatus {
+  PENDING
+  FETCHING
+  VALIDATING
+  MODELING
+  BULL_OPEN
+  BEAR_OPEN
+  BULL_REBUTTAL
+  BEAR_REBUTTAL
+  BULL_CLOSE
+  BEAR_CLOSE
+  JUDGING
+  COMPLETE
+  PARTIAL
+  FAILED
+}
+
+enum Actor {
+  bull
+  bear
+  judge
+}
+
+enum AudioStatus {
+  NONE
+  PENDING
+  READY
+  FAILED
+  UNAVAILABLE
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  DONE
+  FAILED
+}
+
+model Topic {
+  slug                 String   @id
+  order                Int
+  title                String
+  shortLabel           String
+  question             String
+  bullHypothesis       String
+  bearHypothesis       String
+  evidenceRequirements Json
+  updatedAt            DateTime @updatedAt
+}
+
+model DataSource {
+  id                 String             @id
+  name               String
+  kind               String
+  baseUrl            String
+  requiresCredential Boolean            @default(false)
+  attempts           DataFetchAttempt[]
+}
+
+model DataFetchAttempt {
+  id             String      @id @default(cuid())
+  sourceId       String
+  source         DataSource  @relation(fields: [sourceId], references: [id])
+  requestKey     String
+  url            String
+  status         FetchStatus
+  httpStatus     Int?
+  cacheHit       Boolean     @default(false)
+  startedAt      DateTime    @default(now())
+  durationMs     Int?
+  error          String?
+  responseSha256 String?
+  bytes          Int?
+  snapshotId     String?
+
+  @@index([requestKey, startedAt])
+  @@index([snapshotId])
+}
+
+/// Content-addressed store of projected provider responses. Immutable.
+model RawResponse {
+  sha256     String   @id
+  requestKey String
+  sourceId   String
+  url        String
+  body       Json
+  fetchedAt  DateTime @default(now())
+
+  @@index([requestKey, fetchedAt])
+}
+
+model EvidenceSnapshot {
+  id                 String           @id @default(cuid())
+  publicId           String           @unique
+  topicSlug          String
+  mode               SnapshotMode     @default(LIVE)
+  createdAt          DateTime         @default(now())
+  cutoffAt           DateTime
+  windowEnd          DateTime?
+  methodologyVersion String
+  contentHash        String
+  sourceStatus       Json
+  items              EvidenceItem[]
+  scenarios          ScenarioResult[]
+  sessions           DebateSession[]
+
+  @@index([topicSlug, createdAt])
+}
+
+model EvidenceItem {
+  id              String           @id @default(cuid())
+  snapshotId      String
+  snapshot        EvidenceSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+  evidenceId      String
+  metricKey       String
+  label           String
+  value           Float?
+  valueText       String?
+  unit            String
+  observationType ObservationType
+  available       Boolean          @default(true)
+  sourceName      String
+  sourceUrl       String
+  observedAt      DateTime?
+  fetchedAt       DateTime?
+  periodStart     DateTime?
+  periodEnd       DateTime?
+  methodology     String
+  transform       String
+  confidence      String
+  rawResponseHash String?
+  validationNotes String?
+  series          Json?
+  order           Int              @default(0)
+
+  @@unique([snapshotId, evidenceId])
+}
+
+model ScenarioResult {
+  id            String           @id @default(cuid())
+  snapshotId    String
+  snapshot      EvidenceSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+  formulaVersion String
+  scenarioKey   String
+  label         String
+  inputs        Json
+  outputs       Json
+
+  @@unique([snapshotId, scenarioKey])
+}
+
+model DebateSession {
+  id              String           @id @default(cuid())
+  publicId        String           @unique
+  topicSlug       String
+  snapshotId      String?
+  snapshot        EvidenceSnapshot? @relation(fields: [snapshotId], references: [id])
+  parentId        String?
+  parent          DebateSession?   @relation("Rematch", fields: [parentId], references: [id])
+  rematches       DebateSession[]  @relation("Rematch")
+  status          DebateStatus     @default(PENDING)
+  failureReason   String?
+  failedAtStatus  DebateStatus?
+  aiProvider      String
+  aiModel         String
+  promptVersion   String
+  voiceProvider   String
+  synthetic       Boolean          @default(false)
+  isPublic        Boolean          @default(true)
+  idempotencyKey  String?          @unique
+  clientKeyHash   String?
+  createdAt       DateTime         @default(now())
+  startedAt       DateTime?
+  completedAt     DateTime?
+  updatedAt       DateTime         @updatedAt
+  turns           DebateTurn[]
+  verdict         JudgeVerdict?
+  replayEvents    ReplayEvent[]
+  jobEvents       JobEvent[]
+  usage           UsageRecord[]
+
+  @@index([status])
+  @@index([topicSlug, createdAt])
+}
+
+model DebateTurn {
+  id             String        @id @default(cuid())
+  sessionId      String
+  session        DebateSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  seq            Int
+  phase          DebateStatus
+  actor          Actor
+  speechText     String
+  beats          Json
+  claims         Json
+  chartCue       Json?
+  modelInputRefs Json
+  audit          Json
+  textHash       String
+  model          String
+  promptVersion  String
+  latencyMs      Int
+  attempts       Int           @default(1)
+  audioStatus    AudioStatus   @default(NONE)
+  audioError     String?
+  audioAssetId   String?
+  audioAsset     AudioAsset?   @relation(fields: [audioAssetId], references: [id])
+  createdAt      DateTime      @default(now())
+
+  @@unique([sessionId, phase])
+  @@unique([sessionId, seq])
+}
+
+model AudioAsset {
+  id             String       @id @default(cuid())
+  cacheKey       String       @unique
+  provider       String
+  model          String
+  voiceId        String
+  role           Actor
+  mimeType       String
+  durationSec    Float
+  alignment      Json
+  alignmentKind  String
+  transcriptHash String
+  storageDriver  String
+  storageKey     String
+  data           Bytes?
+  sizeBytes      Int
+  createdAt      DateTime     @default(now())
+  turns          DebateTurn[]
+}
+
+model JudgeVerdict {
+  id                   String        @id @default(cuid())
+  sessionId            String        @unique
+  session              DebateSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  winner               String
+  llmWinner            String
+  overrideReason       String?
+  scores               Json
+  rawScores            Json
+  penalties            Json
+  decisiveEvidenceIds  Json
+  unsupportedClaims    Json
+  verdictRationale     String
+  inputChallenges      Json
+  whatWouldChangeMyMind Json
+  confidenceLabel      String
+  speechText           String
+  model                String
+  promptVersion        String
+  createdAt            DateTime      @default(now())
+}
+
+/// Ordered, immutable scene timeline used by Replay. Written once at completion.
+model ReplayEvent {
+  id        String        @id @default(cuid())
+  sessionId String
+  session   DebateSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  seq       Int
+  kind      String
+  payload   Json
+
+  @@unique([sessionId, seq])
+}
+
+/// Append-only progress log, tailed by the SSE endpoint.
+model JobEvent {
+  id        BigInt        @id @default(autoincrement())
+  sessionId String
+  session   DebateSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  type      String
+  payload   Json
+  createdAt DateTime      @default(now())
+
+  @@index([sessionId, id])
+}
+
+model Job {
+  id          String    @id @default(cuid())
+  kind        String
+  refId       String
+  status      JobStatus @default(QUEUED)
+  attempts    Int       @default(0)
+  maxAttempts Int       @default(3)
+  runAfter    DateTime  @default(now())
+  lockedBy    String?
+  lockedUntil DateTime?
+  lastError   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([kind, refId])
+  @@index([status, runAfter])
+}
+
+model UsageRecord {
+  id           String         @id @default(cuid())
+  sessionId    String?
+  session      DebateSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  provider     String
+  kind         String
+  model        String
+  inputTokens  Int            @default(0)
+  outputTokens Int            @default(0)
+  characters   Int            @default(0)
+  estimatedUsd Float          @default(0)
+  success      Boolean
+  createdAt    DateTime       @default(now())
+
+  @@index([createdAt])
+}
+
+model RateLimitBucket {
+  key         String   @id
+  count       Int
+  windowStart DateTime
+}
+
+model WorkerHeartbeat {
+  workerId  String   @id
+  startedAt DateTime
+  seenAt    DateTime
+  version   String
+}
