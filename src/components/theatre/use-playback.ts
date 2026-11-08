@@ -22,12 +22,12 @@ export interface Segment {
 
 export const INTRO_SECONDS = 6;
 
-export function usePlayback(segments: Segment[], opts: { waitingForMore: boolean; reducedMotion: boolean }) {
+export function usePlayback(segments: Segment[], opts: { waitingForMore: boolean; reducedMotion: boolean; initialSound?: SoundMode; introSeconds?: number }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(0);
   const [speed, setSpeed] = useState(1);
-  const [sound, setSound] = useState<SoundMode>('off');
+  const [sound, setSound] = useState<SoundMode>(opts.initialSound ?? 'off');
   const [deviceChar, setDeviceChar] = useState<number | null>(null);
   const [audioError, setAudioError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -49,7 +49,7 @@ export function usePlayback(segments: Segment[], opts: { waitingForMore: boolean
 
   const clock: ClockKind = !turn || sound === 'off' ? 'captions' : turn.audio ? 'audio' : hasDeviceVoice ? 'device' : 'captions';
   const alignment = clock === 'audio' && turn?.audio?.alignment?.starts?.length ? turn.audio.alignment : null;
-  const duration = seg?.kind === 'intro' ? INTRO_SECONDS : clock === 'audio' && turn?.audio ? turn.audio.durationSec : estimateDuration(text);
+  const duration = seg?.kind === 'intro' ? (opts.introSeconds ?? INTRO_SECONDS) : clock === 'audio' && turn?.audio ? turn.audio.durationSec : estimateDuration(text);
 
   const derived = useMemo(() => ({ phrases: phrases(text), spans: turn ? beatSpans(turn.beats) : [] }), [text, turn]);
 

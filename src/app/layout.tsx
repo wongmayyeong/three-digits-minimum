@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/mona-sans/standard.css';
 import '@fontsource-variable/jetbrains-mono';
+import '@fontsource/silkscreen/latin-400.css';
+import '@fontsource/silkscreen/latin-700.css';
 import './globals.css';
 import { SiteFooter, SiteHeader } from '@/components/brand';
 import { MotionProvider } from '@/components/motion-provider';

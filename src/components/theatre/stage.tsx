@@ -32,9 +32,9 @@ const SPOT: Record<Role, { x: number; cut: number; w: number }> = {
 const CAMERA_CENTERED: Record<Role, { x: number }> = { bull: { x: 295 }, bear: { x: 1377 }, judge: { x: 837 } };
 const CAMERA: Record<Role | 'wide', { scale: number; x: number; y: number }> = {
   wide: { scale: 1, x: W / 2, y: H / 2 },
-  bull: { scale: 1.75, x: 465, y: 420 },
-  bear: { scale: 1.75, x: 1207, y: 420 },
-  judge: { scale: 1.6, x: 960, y: 385 },
+  bull: { scale: 1.75, x: 465, y: 475 },
+  bear: { scale: 1.75, x: 1207, y: 475 },
+  judge: { scale: 1.45, x: 960, y: 432 },
 };
 
 const mirror = (pts: [number, number][]) => pts.map(([x, y]) => [W - x, y] as [number, number]);
@@ -113,22 +113,70 @@ export function StudioScene({ cast, judgeScene = false, zoom = false, centered =
           <motion.rect x="0" y="0" width={W} height={H} fill="#060a08" clipPath="url(#nb-foreground)" initial={false} animate={{ opacity: judgeScene ? 0.36 : 0.06 }} transition={{ duration: reduce ? 0 : 0.6 }} />
         </svg>
 
-        <PodiumLabel x={295} y={688} text="Building" tone="mint" active={cast.active === 'bull'} />
-        <PodiumLabel x={1377} y={688} text="Hype" tone="coral" active={cast.active === 'bear'} />
-        <PodiumLabel x={837} y={637} text="Judge" tone="fg" active={cast.active === 'judge'} />
+        <PodiumSign x={295} y={652} title="Building" caption="Affirmative" color="#00ec97" dir="up" active={cast.active === 'bull'} />
+        <PodiumSign x={1377} y={652} title="Hype" caption="Negative" color="#ff7966" dir="down" active={cast.active === 'bear'} />
+        <JudgePlaque x={837} y={637} active={cast.active === 'judge'} />
       </motion.div>
       {children}
     </div>
   );
 }
 
-function PodiumLabel({ x, y, text, tone, active }: { x: number; y: number; text: string; tone: 'mint' | 'coral' | 'fg'; active: boolean }) {
-  const color = tone === 'mint' ? '#00ec97' : tone === 'coral' ? '#ff7966' : '#f2f1e9';
+/** Image pixels to container units, so signs scale with the scene and zoom with the camera. */
+const u = (n: number) => `${((n * 100) / W).toFixed(3)}cqw`;
+const chamfer = (c: string) => `polygon(${c} 0, calc(100% - ${c}) 0, 100% ${c}, 100% calc(100% - ${c}), calc(100% - ${c}) 100%, ${c} 100%, 0 calc(100% - ${c}), 0 ${c})`;
+
+/** Pixel arrow (7x7 grid): up for the building case, down for the hype case. */
+function PixelArrow({ dir, color }: { dir: 'up' | 'down'; color: string }) {
   return (
-    <span className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-mono font-[700] uppercase"
-      style={{ left: pct(x, W), top: pct(y, H), color, fontSize: '1.35cqw', letterSpacing: '0.2em', opacity: active ? 1 : 0.78, textShadow: `0 0 0.6cqw ${color}` }}>
-      {text}
-    </span>
+    <svg viewBox="0 0 7 7" style={{ width: u(17), height: u(17), transform: dir === 'down' ? 'rotate(180deg)' : undefined }} shapeRendering="crispEdges" aria-hidden="true">
+      <path fill={color} d="M3 0h1v1h1v1h1v1h1v1H5v3H2V4H0V3h1V2h1V1h1z" />
+    </svg>
+  );
+}
+
+/** Lit sign on a side podium's front panel: the side (Affirmative / Negative) over the case it argues. */
+function PodiumSign({ x, y, title, caption, color, dir, active }: { x: number; y: number; title: string; caption: string; color: string; dir: 'up' | 'down'; active: boolean }) {
+  const reduce = useReducedMotion();
+  const clip = chamfer(u(9));
+  return (
+    <div className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 select-none" style={{ left: pct(x, W), top: pct(y, H), width: u(234), height: u(98) }}>
+      <motion.div aria-hidden="true" className="absolute" style={{ inset: `-${u(22)}`, background: `radial-gradient(closest-side, ${color}66, transparent)` }}
+        initial={false} animate={{ opacity: active ? (reduce ? 1 : [0.6, 1, 0.6]) : 0.28 }}
+        transition={active && !reduce ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.4 }} />
+      <div aria-hidden="true" className="absolute inset-0 transition-opacity duration-300" style={{ clipPath: clip, background: `linear-gradient(180deg, ${color}, ${color}99)`, opacity: active ? 1 : 0.62 }} />
+      <div className="absolute flex flex-col items-center justify-center overflow-hidden" style={{ inset: u(3), clipPath: clip, background: 'linear-gradient(180deg, #111b17 0%, #060a08 100%)', gap: u(5) }}>
+        <span aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(180deg, rgb(255 255 255 / 0.04) 0 1px, transparent 1px 3px)' }} />
+        <span aria-hidden="true" className="absolute inset-x-0 top-0" style={{ height: u(2), background: `${color}55` }} />
+        <span className="relative flex items-center font-mono font-[600] uppercase" style={{ fontSize: u(11), letterSpacing: '0.34em', color: `${color}c0`, gap: u(8) }}>
+          <span aria-hidden="true" style={{ width: u(14), height: u(2), background: `${color}80` }} />
+          {caption}
+          <span aria-hidden="true" style={{ width: u(14), height: u(2), background: `${color}80` }} />
+        </span>
+        <span className="relative flex items-center transition-opacity duration-300" style={{ gap: u(10), opacity: active ? 1 : 0.82 }}>
+          <PixelArrow dir={dir} color={color} />
+          <span className="font-[700] uppercase leading-none" style={{ fontFamily: 'var(--font-pixel)', fontSize: u(30), letterSpacing: '0.06em', color, textShadow: `0 0 ${u(active ? 12 : 6)} ${color}, 0 ${u(3)} 0 #000` }}>{title}</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/** Engraved gold lettering for the plaque on the judge's desk. */
+function JudgePlaque({ x, y, active }: { x: number; y: number; active: boolean }) {
+  const gold = 'linear-gradient(180deg, #fff4c8 0%, #f3d27a 42%, #b8842a 58%, #f0c862 100%)';
+  const diamond = <span aria-hidden="true" style={{ width: u(9), height: u(9), background: gold, transform: 'rotate(45deg)' }} />;
+  return (
+    <div className="pointer-events-none absolute flex -translate-x-1/2 -translate-y-1/2 select-none flex-col items-center" style={{ left: pct(x, W), top: pct(y, H), gap: u(4) }}>
+      <span className="font-mono font-[600] uppercase" style={{ fontSize: u(11), letterSpacing: '0.42em', color: '#d9b45a', opacity: 0.8 }}>The Bench</span>
+      <span className="flex items-center" style={{ gap: u(16) }}>
+        {diamond}
+        <span className="font-[700] uppercase leading-none transition-[filter] duration-300"
+          style={{ fontFamily: 'var(--font-pixel)', fontSize: u(42), letterSpacing: '0.14em', paddingLeft: '0.14em', backgroundImage: gold, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
+            filter: `drop-shadow(0 ${u(3)} 0 #000) drop-shadow(0 0 ${u(active ? 10 : 4)} rgb(243 210 122 / ${active ? 0.7 : 0.3}))` }}>Judge</span>
+        {diamond}
+      </span>
+    </div>
   );
 }
 

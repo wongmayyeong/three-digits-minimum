@@ -12,9 +12,22 @@ import { formatClock } from '@/lib/playback/timeline';
 import { formatValue } from '@/lib/format';
 import { getTopic } from '@/lib/topics/topics';
 import { claimIndex, computeCast, NAME, ROUND } from './cast';
-import { StudioScene } from './stage';
+import { StudioScene, type StageCast } from './stage';
+import type { Role } from '@/components/characters/rigs';
 import { IntroTray, ScoreReveal, TurnTray } from './tray';
 import { usePlayback, type Segment } from './use-playback';
+
+/**
+ * Opening sequence: the camera meets each side in turn (who argues what), then pulls back to the
+ * whole studio for the evidence reveal. Times are seconds into the intro segment.
+ */
+const INTRO_STEPS: { role: Role | null; until: number; caption: string }[] = [
+  { role: 'bull', until: 3.8, caption: 'On the affirmative, Bull argues that NEAR is building the future.' },
+  { role: 'bear', until: 7.6, caption: 'On the negative, Bear argues that NEAR is following the hype.' },
+  { role: 'judge', until: 11.4, caption: 'The Judge scores argument quality and checks every figure against the evidence.' },
+  { role: null, until: 17, caption: 'Both sides receive the same frozen evidence. Neither can fetch anything new during the debate.' },
+];
+const INTRO_TOTAL = INTRO_STEPS[INTRO_STEPS.length - 1]!.until;
 
 export function DebateShow({ view, onClose }: { view: DebateView; onClose: () => void }) {
   const reduce = !!useReducedMotion();
@@ -29,13 +42,21 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
     const turns = [...view.turns].sort((a, b) => a.seq - b.seq);
     return [{ key: 'intro', kind: 'intro', turn: null }, ...turns.map((t) => ({ key: t.id, kind: 'turn' as const, turn: t }))];
   }, [view.snapshot, view.turns]);
-  const pb = usePlayback(segments, { waitingForMore: false, reducedMotion: reduce });
+  const pb = usePlayback(segments, { waitingForMore: false, reducedMotion: reduce, initialSound: 'on', introSeconds: INTRO_TOTAL });
   const allClaims = useMemo(() => claimIndex(view), [view]);
-  const { cast, judgeScene, afterVerdict } = computeCast(view, pb, false, allClaims);
+  const computed = computeCast(view, pb, false, allClaims);
+  const { judgeScene, afterVerdict } = computed;
   const turn = pb.turn;
   const progress = pb.duration ? pb.time / pb.duration : 0;
 
-  // Start playing as soon as the show opens (captions only; sound is opt-in).
+  const inIntro = pb.seg?.kind === 'intro';
+  const stepIdx = inIntro ? Math.max(0, INTRO_STEPS.findIndex((st) => pb.time < st.until)) : -1;
+  const step = inIntro ? INTRO_STEPS[stepIdx === -1 ? INTRO_STEPS.length - 1 : stepIdx]! : null;
+  const stepStart = inIntro && stepIdx > 0 ? INTRO_STEPS[stepIdx - 1]!.until : 0;
+  const stepProgress = step ? Math.min(1, (pb.time - stepStart) / (step.until - stepStart)) : 0;
+  const cast: StageCast = step?.role ? introCast(step.role, pb.time - stepStart) : computed.cast;
+
+  // Start playing as soon as the show opens with sound on (opened by a click, so browsers allow audio).
   const { go } = pb;
   useEffect(() => { go(0, true); }, [go]);
 
@@ -63,7 +84,7 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
   const introIds = (view.replay.find((r) => r.kind === 'intro')?.payload.revealEvidenceIds as string[] | undefined)
     ?? topic.evidenceRequirements.flatMap((r) => r.evidenceIds).filter((id) => view.snapshot?.items.some((i) => i.evidenceId === id && i.available)).slice(0, 6);
   const side: 'left' | 'right' = cast.active === 'bear' ? 'left' : 'right';
-  const caption = turn ? pb.phrase?.text ?? '' : 'Both sides receive the same frozen evidence. Neither can fetch anything new during the debate.';
+  const caption = turn ? pb.phrase?.text ?? '' : step?.caption ?? '';
   const panelKey = pb.seg?.kind === 'intro' ? 'intro' : `${turn?.id}-${side}`;
 
   return (
@@ -78,8 +99,8 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
         <div className="absolute inset-x-0 top-0 flex items-center justify-between gap-3 bg-gradient-to-b from-black/80 to-transparent px-4 pb-8 pt-4 sm:px-6">
           <div className="flex flex-wrap items-center gap-2">
             <AnimatePresence mode="wait" initial={false}>
-              <motion.span key={turn?.phase ?? 'intro'} className="chip border-line-strong bg-black/60 text-fg" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-                {turn ? ROUND[turn.phase] ?? turn.phase : 'Evidence reveal'}
+              <motion.span key={turn?.phase ?? (step?.role ? 'meet' : 'intro')} className="chip border-line-strong bg-black/60 text-fg" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+                {turn ? ROUND[turn.phase] ?? turn.phase : step?.role ? 'Introductions' : 'Evidence reveal'}
               </motion.span>
             </AnimatePresence>
             <span className="chip bg-black/60">AI-generated debate</span>
@@ -92,10 +113,12 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
         </div>
 
         <AnimatePresence mode="wait">
-          {pb.seg?.kind === 'intro' && view.snapshot ? (
+          {step?.role ? (
+            <IntroCard key={`card-${step.role}`} role={step.role} reduce={reduce} />
+          ) : inIntro && view.snapshot ? (
             <motion.aside key="intro-strip" aria-label="Evidence snapshot" className="absolute inset-x-4 bottom-3 z-10 mx-auto max-w-4xl rounded-[var(--radius-lg)] border hairline bg-[rgb(8_13_11/0.88)] p-3 backdrop-blur-md"
               initial={reduce ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: 16 }} transition={{ duration: 0.4 }}>
-              <IntroStrip view={view} ids={introIds} progress={progress} />
+              <IntroStrip view={view} ids={introIds} progress={stepProgress} />
             </motion.aside>
           ) : (
           <motion.aside key={panelKey} aria-label={judgeScene ? 'Judge’s review' : 'Evidence'}
@@ -133,7 +156,7 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
             <ShowButton label="Skip to next turn" onClick={() => pb.go(pb.index + 1, pb.playing)} disabled={pb.index >= segments.length - 1}><path d="M11 2v10M2 2l7 5-7 5z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" /></ShowButton>
             <span className="num mx-1 text-xs text-muted">{formatClock(pb.time)} / {formatClock(pb.duration)}</span>
             <button type="button" className={`chip h-9 px-3 ${pb.sound === 'on' ? 'border-mint text-mint' : ''}`} aria-pressed={pb.sound === 'on'} onClick={() => pb.setSound(pb.sound === 'on' ? 'off' : 'on')}>{pb.sound === 'on' ? 'Sound on' : 'Sound off'}</button>
-            <button type="button" className={`chip h-9 px-3 ${captionsOn ? 'text-fg' : ''}`} aria-pressed={captionsOn} onClick={() => setCaptionsOn(!captionsOn)}>CC</button>
+            <button type="button" className={`chip h-9 px-3 ${captionsOn ? 'border-mint text-mint' : ''}`} aria-pressed={captionsOn} onClick={() => setCaptionsOn(!captionsOn)}>CC</button>
             <label className="sr-only" htmlFor="show-speed">Playback speed</label>
             <select id="show-speed" value={pb.speed} onChange={(e) => pb.setSpeed(Number(e.target.value))} className="chip h-9 bg-transparent px-2">
               {[1, 1.25, 1.5].map((s) => <option key={s} value={s} className="bg-raised">{s}x</option>)}
@@ -198,6 +221,46 @@ function IntroStrip({ view, ids, progress }: { view: DebateView; ids: string[]; 
           <p className="num mt-1 text-base text-fg">{e.valueText ? 'text' : formatValue(e.value, e.unit)}</p>
         </motion.div>
       ))}
+    </div>
+  );
+}
+
+/** Intro pose for the side being introduced: a settled nod after the camera arrives; others look over. */
+function introCast(role: Role, t: number): StageCast {
+  const look: Record<Role, number> = role === 'bull' ? { bull: 0.8, bear: -0.9, judge: -0.7 } : role === 'bear' ? { bull: 0.9, bear: -0.8, judge: 0.7 } : { bull: 0.9, bear: -0.9, judge: 0 };
+  return {
+    active: role,
+    states: { bull: role === 'bull' ? 'idle' : 'listening', bear: role === 'bear' ? 'idle' : 'listening', judge: role === 'judge' ? 'idle' : 'listening' },
+    mouths: { bull: 'closed', bear: 'closed', judge: 'closed' },
+    look,
+    gestures: { [role]: t > 1.3 && t < 2.6 ? 'agree' : null },
+  };
+}
+
+const CARD: Record<Role, { side: string; name: string; lead: string; claim: string; note: string; color: string; place: 'left' | 'right' }> = {
+  bull: { side: 'Affirmative', name: 'Bull', lead: 'Argues NEAR is', claim: 'Building the future', note: 'Must prove lasting products and adoption from the evidence.', color: '#00ec97', place: 'right' },
+  bear: { side: 'Negative', name: 'Bear', lead: 'Argues NEAR is', claim: 'Following the hype', note: 'Must show the pivots faded and value does not reach $NEAR.', color: '#ff7966', place: 'left' },
+  judge: { side: 'The bench', name: 'Judge', lead: 'Scores', claim: 'Argument quality', note: 'Not investment merit. Every figure is checked against the evidence.', color: '#f3d27a', place: 'right' },
+};
+
+/** Big title card for the side being introduced, on the open side of the frame. */
+function IntroCard({ role, reduce }: { role: Role; reduce: boolean }) {
+  const c = CARD[role];
+  const from = c.place === 'left' ? -48 : 48;
+  return (
+    <div className={`pointer-events-none absolute inset-x-4 bottom-3 z-10 md:inset-x-auto md:bottom-auto md:top-1/2 md:w-[min(500px,38vw)] md:-translate-y-1/2 ${c.place === 'left' ? 'md:left-[5%]' : 'md:right-[5%]'}`}>
+      <motion.div className="relative overflow-hidden rounded-[var(--radius-lg)] border bg-[rgb(6_10_8/0.86)] p-5 backdrop-blur-md md:p-7"
+        style={{ borderColor: `${c.color}66`, boxShadow: `0 0 60px -20px ${c.color}` }}
+        initial={reduce ? false : { opacity: 0, x: from }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: from / 2 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+        <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ background: c.color }} />
+        <p className="font-mono text-xs font-[600] uppercase tracking-[0.32em]" style={{ color: c.color }}>{c.side}</p>
+        <p className="mt-2 text-[2.5rem] font-[700] uppercase leading-none md:text-[3.5rem]" style={{ fontFamily: 'var(--font-pixel)', color: c.color, textShadow: `0 0 18px ${c.color}80, 0 3px 0 #000` }}>{c.name}</p>
+        <motion.p className="mt-4 text-lg leading-snug text-fg-2 md:text-2xl" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduce ? 0 : 0.35, duration: 0.4 }}>
+          {c.lead} <span className="font-[680] text-fg">{c.claim}</span>
+        </motion.p>
+        <motion.p className="mt-2 text-sm leading-relaxed text-muted md:text-base" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: reduce ? 0 : 0.7, duration: 0.4 }}>{c.note}</motion.p>
+      </motion.div>
     </div>
   );
 }
