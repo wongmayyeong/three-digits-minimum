@@ -6,7 +6,7 @@
  */
 import { db } from '@/lib/storage/db';
 
-export type JobKind = 'debate' | 'audio';
+export type JobKind = 'debate' | 'audio' | 'refresh';
 
 export interface ClaimedJob {
   id: string;
@@ -34,7 +34,7 @@ export async function claimJob(workerId: string, kinds: JobKind[]): Promise<Clai
         SELECT id FROM "Job"
          WHERE kind = ANY($3::text[])
            AND ((status = 'QUEUED' AND "runAfter" <= now()) OR (status = 'RUNNING' AND "lockedUntil" < now()))
-         ORDER BY CASE WHEN kind = 'debate' THEN 0 ELSE 1 END, "createdAt"
+         ORDER BY CASE kind WHEN 'debate' THEN 0 WHEN 'audio' THEN 1 ELSE 2 END, "createdAt"
          FOR UPDATE SKIP LOCKED
          LIMIT 1)
       RETURNING id, kind, "refId", attempts, "maxAttempts"`,

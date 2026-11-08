@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
+const ADMIN = 'e2e-admin-token-0123456789abcdef';
+
 function trackErrors(page: Page) {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -13,76 +15,65 @@ async function noHorizontalScroll(page: Page) {
   expect(overflow).toBeLessThanOrEqual(1);
 }
 
-test('topic -> research -> full debate -> verdict -> report -> replay', async ({ page }) => {
+test('episode: admin-started debate -> verdict -> report -> replay from stored data', async ({ page, request }) => {
   const errors = trackErrors(page);
-  await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1, name: 'Every claim has an opponent.' })).toBeVisible();
-  await expect(page.locator('#topics ~ ol > li')).toHaveCount(3);
-
-  await page.getByRole('link', { name: /Open the case/ }).first().click();
-  await expect(page).toHaveURL(/\/topics\/intents-bet$/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('NEAR Intents');
-  await expect(page.getByText(/Last refreshed|Checking sources/)).toBeVisible();
-
-  await page.getByRole('button', { name: 'Start debate' }).click();
-  await expect(page).toHaveURL(/\/debates\/d_[A-Za-z0-9_-]+$/, { timeout: 30_000 });
-  const debateUrl = page.url();
+  const denied = await request.post('/api/debates', { data: {} });
+  expect(denied.status()).toBe(403);
+  const res = await request.post('/api/debates', { headers: { authorization: `Bearer ${ADMIN}` }, data: {} });
+  expect(res.status()).toBe(202);
+  const { url } = (await res.json()) as { url: string };
+  await page.goto(url);
   await expect(page.getByText('SYNTHETIC TEST RUN')).toBeVisible();
-  // Real research status from the job event stream, then the verdict once all turns are done.
   await expect(page.getByRole('heading', { name: 'Verdict', exact: true })).toBeVisible({ timeout: 200_000 });
   await expect(page.locator('#tr-h ~ ol > li')).toHaveCount(7);
-  await expect(page.getByText('The argument ends. The evidence remains.').first()).toBeVisible();
 
   await page.getByRole('link', { name: 'Read the thesis report' }).click();
   await expect(page.getByRole('heading', { name: 'Evidence register' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Falsification triggers' })).toBeVisible();
-  const md = await page.request.get(`${debateUrl.replace(/.*\/debates\//, '/api/debates/')}/report?format=md`);
-  expect(md.status()).toBe(200);
-  expect(await md.text()).toContain('## Evidence register');
 
-  // Replay: stored data only, starts on request, keyboard skips scenes.
-  await page.goto(debateUrl);
-  const replayReq: string[] = [];
-  page.on('request', (r) => { if (/\/api\/debates\/[^/]+\/(rematch|retry)|\/api\/topics/.test(r.url())) replayReq.push(r.url()); });
+  await page.goto(url);
+  const sideRequests: string[] = [];
+  page.on('request', (r) => { if (/\/api\/debates(\/[^/]+\/retry)?$|\/api\/topics/.test(new URL(r.url()).pathname) && r.method() === 'POST') sideRequests.push(r.url()); });
   await page.getByRole('button', { name: 'Play replay' }).click();
   const stage = page.getByRole('region', { name: 'Debate stage' });
   await expect(stage.getByText('Evidence reveal')).toBeVisible();
   await page.getByRole('button', { name: 'Skip to next turn' }).click();
   await expect(stage.getByText('Round 1 · Opening')).toBeVisible();
-  await page.getByRole('button', { name: 'Pause' }).click();
-  await expect(page.getByRole('button', { name: 'Play' , exact: true })).toBeVisible();
   for (let i = 0; i < 6; i++) await page.getByRole('button', { name: 'Skip to next turn' }).click();
   await expect(stage.getByText('Verdict', { exact: true })).toBeVisible();
-  expect(replayReq).toEqual([]);
+  expect(sideRequests).toEqual([]);
   expect(errors).toEqual([]);
 });
 
-test('API validation, rate-safe errors and health without secrets', async ({ request }) => {
-  const bad = await request.post('/api/debates', { data: { topic: 'price-2030' } });
-  expect(bad.status()).toBe(400);
-  expect((await bad.json()).error.code).toBe('bad_request');
-  const extra = await request.post('/api/debates', { data: { topic: 'intents-bet', url: 'http://169.254.169.254/' } });
-  expect(extra.status()).toBe(400);
-  expect((await request.get('/api/debates/not-an-id')).status()).toBe(404);
-  const topics = await (await request.get('/api/topics')).json();
-  expect(topics.topics).toHaveLength(3);
-  const health = await request.get('/api/health');
-  const text = await health.text();
-  expect(text).not.toMatch(/sk-|nebube-local|postgresql:\/\//);
-  expect(JSON.parse(text).checks.database).toBe('ok');
+test('thesis page shows the question, three sub-questions and a computed verdict', async ({ page }) => {
+  const errors = trackErrors(page);
+  await page.goto('/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Is NEAR Building the Future or Following the Hype?' })).toBeVisible();
+  for (const id of ['#pivots', '#lasted', '#adoption', '#pays', '#verdict']) await expect(page.locator(id)).toBeAttached();
+  await expect(page.getByRole('heading', { name: /Did it last\?/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Did adoption justify the hype\?/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Does it pay \$NEAR\?/ })).toBeVisible();
+  await expect(page.getByText('What would change this verdict')).toBeVisible();
+  expect(errors).toEqual([]);
 });
 
-test('library filters and empty states @mobile', async ({ page }) => {
+test('API validation and health without secrets', async ({ request }) => {
+  expect((await request.get('/api/debates/not-an-id')).status()).toBe(404);
+  const topics = await (await request.get('/api/topics')).json();
+  expect(topics.topics).toHaveLength(1);
+  const health = await request.get('/api/health');
+  const text = await health.text();
+  expect(text).not.toMatch(/sk-|nebube-local|postgresql:\/\/|e2e-admin-token/);
+  expect(JSON.parse(text).checks.database).toBe('ok');
+  expect((await request.get('/library', { maxRedirects: 0 })).status()).toBeGreaterThanOrEqual(300);
+});
+
+test('layout fits phones and the calculator recomputes @mobile', async ({ page }) => {
   const errors = trackErrors(page);
-  await page.goto('/library?winner=bear&topic=long-game');
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.getByText(/No debates match these filters|Replay/).first()).toBeVisible();
-  await noHorizontalScroll(page);
-  await page.goto('/');
-  await noHorizontalScroll(page);
+  for (const path of ['/', '/methodology', '/research']) {
+    await page.goto(path);
+    await noHorizontalScroll(page);
+  }
   await page.goto('/methodology');
-  await noHorizontalScroll(page);
-  // Calculator: editing an input relabels it ASSUMED and recomputes.
   const v = page.getByLabel('Buyback share (b)');
   await v.fill('50');
   await expect(page.getByLabel('Buyback share (b)')).toHaveValue('50');

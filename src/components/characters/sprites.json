@@ -1,0 +1,38 @@
+{
+  "bull": {
+    "width": 473,
+    "height": 472,
+    "poses": [
+      "idle",
+      "talk",
+      "think",
+      "surprised",
+      "agree",
+      "disagree"
+    ]
+  },
+  "bear": {
+    "width": 464,
+    "height": 471,
+    "poses": [
+      "idle",
+      "talk",
+      "think",
+      "surprised",
+      "agree",
+      "disagree"
+    ]
+  },
+  "judge": {
+    "width": 512,
+    "height": 467,
+    "poses": [
+      "idle",
+      "talk",
+      "think",
+      "surprised",
+      "agree",
+      "disagree"
+    ]
+  }
+}

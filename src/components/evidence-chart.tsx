@@ -16,7 +16,8 @@ export interface ChartSeries {
   points: [string, number][];
 }
 
-const AGG: Record<string, string> = { sum7: 'weekly total', mean7: 'weekly average of daily values', level: 'weekly sample' };
+const AGG: Record<string, string> = { sum7: 'weekly total', mean7: 'weekly average of daily values', level: 'weekly sample', month: 'calendar month total' };
+const periodLabel = (agg: string, d: string) => (agg === 'month' ? new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : `Week ending ${formatDate(d)}`);
 
 function axisTick(v: number, unit: string): string {
   if (unit === 'fraction') return `${(v * 100).toFixed(0)}%`;
@@ -56,7 +57,7 @@ export function EvidenceChart({ series, source, method, tone = 'mint', height = 
                 return (
                   <div className="max-w-[240px] rounded-[var(--radius-sm)] border border-line-strong bg-raised px-3 py-2 text-xs shadow-lg">
                     <p className="num text-sm text-fg">{formatValue(p.v, series.unit)}</p>
-                    <p className="mt-0.5 text-muted">Week ending {formatDate(p.d)} · {AGG[series.aggregation] ?? series.aggregation}</p>
+                    <p className="mt-0.5 text-muted">{periodLabel(series.aggregation, p.d)} · {AGG[series.aggregation] ?? series.aggregation}</p>
                     <p className="mt-1 text-muted">Source: {source}</p>
                     {method && <p className="mt-1 line-clamp-3 text-faint">{method}</p>}
                   </div>
@@ -70,17 +71,17 @@ export function EvidenceChart({ series, source, method, tone = 'mint', height = 
       </div>
       {!compact && (
         <figcaption className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
-          <span>{series.label}, {AGG[series.aggregation] ?? series.aggregation}. Latest {highlightLast && last ? formatValue(last.v, series.unit) : ''} (week ending {formatDate(last?.d)}).</span>
+          <span>{series.label}, {AGG[series.aggregation] ?? series.aggregation}. Latest {highlightLast && last ? formatValue(last.v, series.unit) : ''} ({last ? periodLabel(series.aggregation, last.d) : ''}).</span>
           <button type="button" className="link text-xs" onClick={() => setShowTable((s) => !s)} aria-expanded={showTable}>{showTable ? 'Hide data table' : 'Show data table'}</button>
         </figcaption>
       )}
       {showTable && (
         <div className="mt-2 max-h-56 overflow-auto rounded-[var(--radius-sm)] border hairline">
           <table className="w-full text-left text-xs">
-            <thead className="sticky top-0 bg-raised text-muted"><tr><th className="px-3 py-1.5 font-normal">Week ending</th><th className="px-3 py-1.5 text-right font-normal">{series.unit}</th></tr></thead>
+            <thead className="sticky top-0 bg-raised text-muted"><tr><th className="px-3 py-1.5 font-normal">{series.aggregation === 'month' ? 'Month' : 'Week ending'}</th><th className="px-3 py-1.5 text-right font-normal">{series.unit}</th></tr></thead>
             <tbody>
               {[...data].reverse().map((r) => (
-                <tr key={r.d} className="border-t hairline"><td className="px-3 py-1">{formatDate(r.d)}</td><td className="num px-3 py-1 text-right">{formatValue(r.v, series.unit)}</td></tr>
+                <tr key={r.d} className="border-t hairline"><td className="px-3 py-1">{series.aggregation === 'month' ? r.d.slice(0, 7) : formatDate(r.d)}</td><td className="num px-3 py-1 text-right">{formatValue(r.v, series.unit)}</td></tr>
               ))}
             </tbody>
           </table>

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { StartDebateButton } from '@/components/start-debate';
 import { ExternalLink, Notice } from '@/components/ui';
 import { STATUS_LABEL, STATUS_ORDER, type DebateStatus } from '@/lib/debate/phases';
 import { formatDateTime, formatValue } from '@/lib/format';
@@ -165,7 +164,7 @@ export function DeltaPanel({ debateId }: { debateId: string }) {
   const changed = rows.filter((r) => r.kind !== 'unchanged');
   return (
     <div>
-      <p className="text-sm text-fg-2">Compared with <Link className="link" href={`/debates/${meta.previous.debateId}`}>the original debate</Link> (snapshot {formatDateTime(meta.previous.cutoffAt)} → {formatDateTime(meta.current.cutoffAt)}). {changed.length} of {rows.length} items changed. The original replay is untouched.</p>
+      <p className="text-sm text-fg-2">Compared with <Link className="link" href={`/debates/${meta.previous.debateId}`}>the previous episode</Link> (snapshot {formatDateTime(meta.previous.cutoffAt)} → {formatDateTime(meta.current.cutoffAt)}). {changed.length} of {rows.length} items changed. The previous episode is untouched.</p>
       <div className="mt-3 max-h-[420px] overflow-auto rounded-[var(--radius-md)] border hairline">
         <table className="w-full min-w-[560px] text-left text-xs">
           <thead className="sticky top-0 bg-raised text-muted"><tr><th className="px-3 py-2 font-normal">Evidence</th><th className="px-3 py-2 text-right font-normal">Previous</th><th className="px-3 py-2 text-right font-normal">New</th><th className="px-3 py-2 text-right font-normal">Change</th></tr></thead>
@@ -207,7 +206,6 @@ export function FailurePanel({ view, onRetried }: { view: DebateView; onRetried:
       <p className="mt-1">{view.status === 'PARTIAL' ? 'Completed turns are saved and playable. Retrying continues from the failed step without regenerating them.' : 'No turns were generated.'}</p>
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <button type="button" onClick={retry} className="btn btn-ghost" disabled={busy}>{busy ? 'Retrying…' : 'Retry from the failed step'}</button>
-        <StartDebateButton topic={view.topicSlug} available label="Start a new debate" variant="ghost" />
       </div>
       {msg && <p role="alert" className="mt-2 text-coral">{msg}</p>}
     </Notice>

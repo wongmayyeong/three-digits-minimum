@@ -1,61 +1,105 @@
-<!-- GENERATED FILE. Edit research/THESIS.template.md, then run `npm run research:rebuild`. Figures are filled from artifacts/research/canonical.json. -->
+<!-- GENERATED FILE. Edit research/THESIS.template.md, then run `npm run research:rebuild`. Every figure is filled from artifacts/research/canonical.json. -->
 
-# THESIS: Is NEAR a credible long-term investment over the next 3 to 5 years?
+# Is NEAR Building the Future or Following the Hype?
 
-**Track:** NEAR HACKATHON 2026, Investment Thesis. **Project:** NEBUBE, an evidence-first AI debate arena.
-**Data window:** flow metrics use the 90 days ending Nov 4, 2026; peer comparisons use the 30 days ending Nov 4, 2026.
-**Status of this document:** every number below is inserted by `npm run research:refresh` from stored provider responses. If a source was unavailable, the number reads "unavailable" instead of an estimate.
+*Every pivot, tested against the evidence.*
 
-> Educational research, not financial advice. This document does not predict prices. "Bear wins" is an acceptable outcome.
+**Track:** NEAR HACKATHON 2026, Investment Thesis. **Data:** refreshed from public sources; flow metrics use the 90 days ending Nov 6, 2026. Numbers that could not be computed read "unavailable" instead of an estimate.
+
+> Educational research, not financial advice. No price prediction. A "following the hype" verdict is an acceptable outcome.
+
+**Current verdict: Building, but not yet paying the token** (low confidence)
+
+| Sub-question | Reading | Why |
+|---|---|---|
+| 1. Did it last? | BUILDING | 2 of 3 era products keep at least 25% of their peak monthly activity. |
+| 2. Did adoption justify the hype? | HYPE | Measurable adoption followed 1 of 4 pivots within 90 days. |
+| 3. Does it pay $NEAR? | HYPE | Intents buybacks absorb 16.8% of realized net new supply; the take rate is rising. |
 
 ---
 
-## 1. Research question and hypotheses
+## 1. Claim
 
-**Question.** Is NEAR a credible, attractive long-term investment over the next 3 to 5 years, judged by whether measurable economic activity accrues to the NEAR token?
+NEAR has repositioned itself several times: scalable L1, then Social and the Blockchain Operating System (February 2023), Chain Abstraction and Chain Signatures (March 2024), User-Owned AI (May 2024), and NEAR Intents (November 2024). The investment question is whether those pivots compound into durable usage and token value, or restart each time a new narrative arrives.
 
-**Bull hypothesis.** NEAR Intents is a growing cross-chain settlement layer whose fees partly accrue to NEAR (captured revenue, now used for open-market buybacks). If volume keeps compounding at a stable take rate, token-level value capture becomes material relative to market cap, independent of base-layer user counts.
+**Claim.** $NEAR is an investment in building, not hype, only if (1) each era's product keeps real usage after the narrative moves on, and (2) today's activity returns value to the token at a scale that matters against new supply. Whether adoption followed each announcement (3) raises or lowers confidence. The verdict above applies these rules, published in advance, to the current data.
 
-**Bear hypothesis.** Most Intents fees go to solvers and distributors; what NEAR keeps is small next to its market cap, buybacks are held rather than burned, fee competition will compress the take, and base-layer usage is shrinking. The valuation is not explained by measurable activity.
+Why usage and value capture are tested separately: a network can be busy while its token captures little. The chain of value runs activity → fees → NEAR-captured revenue → buybacks or burns → token holders, and each link can leak.
 
-The arena tests these through three debates: **The Intents Bet** (value accrual from Intents), **Growth or Hype?** (adoption versus valuation) and **The Long Game** (NEAR versus Solana, Sui and Avalanche on matched data).
+## 2. Evidence for (building)
 
-## 2. Why usage and value capture must be separated
+- Chain Abstraction (Chain Signatures): v1.signer still runs at 48.2% of its 2026-05 peak (2026-10). [ERA-SIGNER-RETENTION]
+- Intents: intents.near still runs at 95.6% of its 2024-12 peak (2026-10). [ERA-INTENTS-RETENTION]
+- Adoption followed Chain Signatures launch (27 March 2024): active accounts +52.4% at +90 days, product activity 1.0x two months after launch. [EVT-CHAIN-SIGNATURES-DAA-90D]
+- NEAR keeps 0.042% of Intents volume, up from 0.026% in the prior 90 days. [INT-TAKE-RATE, INT-TAKE-RATE-PRIOR]
 
-A network can be busy while its token captures little. Swap volume measures activity routed through NEAR Intents, not revenue to NEAR holders. The chain of value runs volume → gross fees → NEAR-captured revenue → buybacks or burns → token holders, and each arrow can leak. NEBUBE measures every link separately, with matched windows, and never treats a buyback as a burn or buyback demand as a price change.
+## 3. Evidence against (building)
 
-## 3. Metrics, sources and formulas
+- Social / BOS: social.near has fallen to 1.02% of its 2023-08 peak (2026-10). [ERA-SOCIAL-RETENTION]
+- Adoption did not follow Blockchain Operating System (BOS) (February 2023): active accounts 20.9% at +90 days. [EVT-BOS-DAA-90D]
+- Adoption did not follow User-Owned AI (22 May 2024): active accounts 23.4% at +90 days. [EVT-USER-OWNED-AI-DAA-90D]
+- Adoption did not follow NEAR Intents (beta) (10 November 2024): active accounts 11.3% at +90 days. [EVT-INTENTS-DAA-90D]
+- Intents buybacks absorb 16.8% of realized net new supply. [COV-BUYBACK-REALIZED]
+- F4 triggered: Base-layer user activity contracts sharply year over year. (-78.7% vs a year earlier).
+- F6 triggered: Token-level value capture is under 1% of market cap per year. (0.434% of market cap).
 
-| Link in the chain | Metric | Current value | Type | Source |
+## 4. What would change my mind
+
+Each rule below is evaluated on every rebuild by `src/lib/research/triggers.ts`. TRIGGERED means a condition that weakens the building case currently holds.
+
+| ID | Falsification trigger | Rule | Current reading | Status |
 |---|---|---|---|---|
-| Activity | Intents volume, 90 days (Aug 7, 2026 to Nov 4, 2026) | $11.71B | OBSERVED | DefiLlama |
-| Activity | Prior 90 days | $6.49B | OBSERVED | DefiLlama |
-| Activity | Change, window over window | 80.5% | DERIVED | computed |
-| Fees | Gross fees, 90 days | $17.84M | OBSERVED | DefiLlama |
-| Fees | Effective fee rate f (prior window) | 0.152% (0.139%) | DERIVED | computed |
-| Capture | NEAR-captured revenue, 90 days | $4.84M | OBSERVED | DefiLlama |
-| Capture | Capture of fees c (prior window) | 27.1% (19.0%) | DERIVED | computed |
-| Capture | Take rate f x c (prior window) | 0.041% (0.026%) | DERIVED | computed |
-| Buybacks | Revenue classified as buybacks, 90 days | $4.84M | OBSERVED | DefiLlama |
-| Buybacks | Buyback share b | 100.0% | DERIVED | computed |
-| Buybacks | NEAR held by the buyback wallet | 2.20M NEAR | OBSERVED | NEAR JSON-RPC (FastNEAR) |
-| Token | Circulating market cap M | $4.85B | OBSERVED | CoinGecko |
-| Token | Protocol maximum inflation | 2.50% | OBSERVED | NEAR JSON-RPC (FastNEAR) |
-| Token | Maximum issuance at today's price | $121.27M | DERIVED | computed |
-| Token | Burns + buybacks, annualized | $20.65M | DERIVED | computed |
-| Adoption | Daily active accounts, 30-day mean | 61,647 | OBSERVED | NearBlocks |
-| Adoption | Same, one year earlier | 268,977 | OBSERVED | NearBlocks |
-| DeFi | NEAR chain TVL (one year earlier) | $176.34M ($147.92M) | OBSERVED | DefiLlama |
-| DeFi | RHEA Lend TVL | $147.40M | OBSERVED | DefiLlama |
-| DeFi | Stablecoins on NEAR | $129.70M | OBSERVED | DefiLlama |
-| Peers | Market cap / annualized chain fees: NEAR, SOL, SUI, AVAX | 2,242x, 219x, 2,353x, 890x | DERIVED | DefiLlama, CoinGecko |
-| Peers | 30-day DEX volume: NEAR, SOL, SUI, AVAX | $4.45B, $57.43B, $892.71M, $2.97B | OBSERVED | DefiLlama |
+| F1 | Intents volume grows but NEAR-captured revenue per dollar of volume falls. | `INT-VOL-GROWTH > 0 and INT-TAKE-RATE < 0.8 x INT-TAKE-RATE-PRIOR` | volume 81.4%; take rate 0.026% -> 0.042% | **NOT TRIGGERED** |
+| F2 | Fee compression: the effective fee rate drops by a quarter or more between consecutive 90-day windows. | `INT-FEE-RATE < 0.75 x INT-FEE-RATE-PRIOR` | 0.138% -> 0.153% | **NOT TRIGGERED** |
+| F3 | The break-even volume for buybacks worth 2% of market cap is more than ten times today's run rate. | `MODEL-VOL-MULTIPLE-2PCT > 10` | 4.84x today's run rate | **NOT TRIGGERED** |
+| F4 | Base-layer user activity contracts sharply year over year. | `ACT-DAA-YOY < -25%` | -78.7% vs a year earlier | **TRIGGERED** |
+| F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | -4.85% vs a year earlier | **NOT TRIGGERED** |
+| F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.434% of market cap | **TRIGGERED** |
 
-DefiLlama's own definitions for the NEAR Intents adapter, stored verbatim in each snapshot: Fees: Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators. | Revenue: NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded. | SupplySideRevenue: Gross fees minus NEAR's captured revenue - the affiliate fees kept by solvers and third-party distribution channels (e.g. SwapKit). | HoldersRevenue: Since 2026-02-23, NEAR's captured Intents revenue is used to buy back $NEAR on the open market (not burned), returning value to holders.
+The verdict would move toward **building** if: an era contract that lost most of its activity recovers above 25% of its peak; buybacks reach half of realized net new supply; the take rate rises for two consecutive windows while volume grows; or bought-back tokens are burned rather than held. It would move toward **hype** if: Intents activity falls below 25% of its peak; the take rate compresses by a quarter; or adoption fails to follow the next major pivot.
 
-Every request URL, retrieval time and response SHA-256 is in `artifacts/research/raw/manifest.json` and `artifacts/research/evidence-manifest.json`. The full evidence register is at the end of this document.
+---
 
-### The break-even demand model
+## Sub-question 1: Did it last?
+
+Monthly transactions involving each era's representative contract (NearBlocks), compared with that contract's own peak. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old.
+
+| Era | Contract | Peak month | Latest month | Kept of peak | Lasted? |
+|---|---|---|---|---|---|
+| Social / BOS | `social.near` | 35,764 (2023-08) | 364 (2026-10) | 1.02% | no |
+| Chain Abstraction (Chain Signatures) | `v1.signer` | 970,819 (2026-05) | 467,548 (2026-10) | 48.2% | yes |
+| Intents | `intents.near` | 2.05M (2024-12) | 1.96M (2026-10) | 95.6% | yes |
+
+Limitations: transactions are not people. Relayers, solvers and Chain Signatures MPC node responses are included. A decline can mean migration to a newer product rather than abandonment, so this measures whether usage stayed, not why it left. The AI era has no single contract to measure and is reported as such.
+
+## Sub-question 2: Did adoption justify the hype?
+
+For each pivot, chain-wide daily active accounts in days 60 to 90 after the announcement versus the 30 days before, and the era product's activity two months after its launch month versus the launch month. NEAR's price return minus BTC's is shown as market context only and is not scored, because prices can move ahead of adoption for good reasons.
+
+| Pivot | Date | Active accounts, +90d | Product activity, month 3 vs 1 | Adoption followed? | NEAR minus BTC, +90d (context) |
+|---|---|---|---|---|---|
+| [Blockchain Operating System (BOS)](https://near.org/blog/2023-near-in-review) | February 2023 | -20.9% | 0.66x | no | -47.9% |
+| [Chain Signatures launch](https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account) | 27 March 2024 | +52.4% | 1.00x | yes | -12.8% |
+| [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | -23.4% | no product contract | no | -33.6% |
+| [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | -11.3% | 1.03x | no | -49.0% |
+
+Pivot dates come from NEAR's own announcements (links in the table). BOS is dated to the month (February 2023); its window starts 2023-03-01.
+
+## Sub-question 3: Does it pay $NEAR?
+
+| Measure | Value |
+|---|---|
+| Intents buybacks per year (90-day run rate) | $20.07M |
+| Realized net new supply per year (net of burns) | 2.47% ($119.62M at today's price) |
+| Buybacks as a share of realized net new supply | 16.8% |
+| Burns + buybacks as a share of maximum possible issuance | 17.4% |
+| Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | 0.042% (0.026%) |
+| Tokens held by the buyback wallet | 2.21M NEAR |
+| Circulating market cap | $4.86B |
+
+A buyback is not a burn: bought tokens are held by the buyback wallet, and total supply only falls if they are burned. Buyback demand does not move price one-for-one.
+
+### What would it take? The break-even demand model
 
 ```
 annual_buyback_demand_usd = V x f x c x b
@@ -64,165 +108,142 @@ break_even_annual_volume  = (y x M) / (f x c x b)
 volume_multiple_required  = break_even_annual_volume / V
 ```
 
-V is the 90-day volume run rate, f and c come from the same window and adapter, b is DefiLlama's holders-revenue share (a classification, not a guaranteed policy), and y is always an assumption (2% by default). Missing or non-positive inputs produce N/A; the code never divides by zero. Implementation: `src/lib/research/model.ts`, tests in `tests/unit/model.test.ts`.
-
-## 4. Findings (from observed data only)
-
-- **Activity.** NEAR Intents processed $11.71B in the latest 90 days, 80.5% versus the prior 90 days, an annualized run rate of $47.47B.
-- **What NEAR keeps.** The effective fee rate is 0.152%, and NEAR captures 27.1% of fees, so it keeps 0.041% of volume (prior window: 0.026%).
-- **Buyback demand versus market cap.** At the current run rate, buyback demand is $19.62M a year, 0.404% of market cap. Reaching a hypothetical 2% would need $234.95B of annual volume, 4.95x the current run rate, or a take rate of 0.205% instead of today's 0.041%.
-- **What happens to bought tokens.** The buyback wallet holds 2.20M NEAR (0.168% of total supply). Tokens held there are not burned; supply falls only if they are.
-- **Issuance versus value capture.** Maximum issuance at today's price is $121.27M a year, against $20.65M of burns plus buybacks. Realized issuance can be below the maximum.
-- **Base-layer usage.** Daily active accounts average 61,647, versus 268,977 a year earlier (-77.1%). Accounts are not people, so part of this may be less automation.
-- **DeFi depth.** Chain TVL is $176.34M (19.2% year over year), of which RHEA Lend holds $147.40M.
-- **Peers.** NEAR's market cap is 2,242x its annualized chain fees, versus Solana 219x, Sui 2,353x and Avalanche 890x. Chain fees exclude Intents revenue, which is NEAR's distinctive source; counting burns and buybacks, NEAR trades at 235x annual value capture.
-
-## 5. Strongest disconfirming evidence and data limitations
-
-The decisive comparisons are listed in section 6 with their current status. The Bull case is weakest wherever value capture is small relative to market cap or issuance, where bought tokens sit unburned, and where account activity falls. The Bear case is weakest wherever volume grows between consecutive windows at a stable take rate, because that is the one path by which buyback demand becomes material. Read the trigger table rather than this paragraph for which of these currently holds.
-
-Known limitations:
-
-- **No integrator data.** Without the partner-only NEAR Intents Explorer JWT, the concentration of volume by integrator and the share of wash-like or incentive-driven volume are unknown (unavailable (INT-EXPLORER-TOP5-SHARE)).
-- **Third-party definitions.** f, c and b follow DefiLlama's adapter, which can be revised. Snapshots store the definitions in force.
-- **BigQuery freshness.** NEAR Lake, the upstream of `bigquery-public-data.crypto_near_mainnet_us`, stopped indexing new blocks on 2026-03-24. Retention cohorts (unavailable (ACT-RETENTION)) are therefore not part of live snapshots. SQL is in `research/sql/`.
-- **Accounts are not people; volume is not organic demand.**
-- **Chain comparability.** Fee multiples ignore value that fees do not capture; TVL definitions vary by chain.
-- **Run rates are not forecasts.** Annualizing 90 days assumes the window persists.
-
-## 6. Falsification criteria
-
-Each rule is evaluated by `src/lib/research/triggers.ts` on every rebuild. TRIGGERED means the condition that would weaken the long-term Bull thesis currently holds.
-
-| ID | Falsification trigger | Rule | Current reading | Status |
-|---|---|---|---|---|
-| F1 | Intents volume grows but NEAR-captured revenue per dollar of volume falls. | `INT-VOL-GROWTH > 0 and INT-TAKE-RATE < 0.8 x INT-TAKE-RATE-PRIOR` | volume 80.5%; take rate 0.026% -> 0.041% | **NOT TRIGGERED** |
-| F2 | Fee compression: the effective fee rate drops by a quarter or more between consecutive 90-day windows. | `INT-FEE-RATE < 0.75 x INT-FEE-RATE-PRIOR` | 0.139% -> 0.152% | **NOT TRIGGERED** |
-| F3 | The break-even volume for buybacks worth 2% of market cap is more than ten times today's run rate. | `MODEL-VOL-MULTIPLE-2PCT > 10` | 4.95x today's run rate | **NOT TRIGGERED** |
-| F4 | Base-layer user activity contracts sharply year over year. | `ACT-DAA-YOY < -25%` | -77.1% vs a year earlier | **TRIGGERED** |
-| F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 19.2% vs a year earlier | **NOT TRIGGERED** |
-| F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.425% of market cap | **TRIGGERED** |
-
-What would change this document's reading: a take rate rising for two consecutive windows while volume grows; buybacks burned rather than held; daily active accounts stabilizing year over year; partner data showing volume is spread across many integrators.
-
-## 7. Scenarios (no price prediction)
+V is the 90-day Intents volume run rate ($48.05B), f the fee rate (0.153%), c NEAR's capture of fees (27.3%), b the buyback share (100.0%, a DefiLlama classification, not a guaranteed policy), and y a hypothetical target (2% of market cap per year).
 
 | Scenario | Annual buyback demand | Buyback / market cap | Break-even volume (y = 2%) | Volume multiple | Assumptions |
 |---|---|---|---|---|---|
-| Conservative | $3.68M | 0.076% | $1.25T | 26.4x | Fees compress by half as competitors undercut, NEAR keeps 25% less of fees, half of captured revenue goes to buybacks, and volume does not grow. |
-| Base | $19.62M | 0.404% | $234.95B | 4.95x | Measured fee rate, capture and buyback share held constant, and the trailing 90-day volume run rate held flat. |
-| Optimistic | $39.24M | 0.808% | $234.95B | 2.47x | Measured fee rate and capture held, all captured revenue goes to buybacks, and volume doubles. |
+| Conservative | $3.76M | 0.077% | $1.24T | 25.8x | Fees compress by half as competitors undercut, NEAR keeps 25% less of fees, half of captured revenue goes to buybacks, and volume does not grow. |
+| Base | $20.07M | 0.413% | $232.77B | 4.84x | Measured fee rate, capture and buyback share held constant, and the trailing 90-day volume run rate held flat. |
+| Optimistic | $40.15M | 0.826% | $232.77B | 2.42x | Measured fee rate and capture held, all captured revenue goes to buybacks, and volume doubles. |
 
 Required volume multiple under fee compression (rows) and target buyback share of market cap (columns):
 
 | Fee compression \ target y | 0.500% | 1.00% | 2.00% | 5.00% |
 |---|---|---|---|---|
-| 0.000% | 1.24x | 2.47x | 4.95x | 12.4x |
-| 25.0% | 1.65x | 3.30x | 6.60x | 16.5x |
-| 50.0% | 2.47x | 4.95x | 9.90x | 24.7x |
-| 75.0% | 4.95x | 9.90x | 19.8x | 49.5x |
+| 0.000% | 1.21x | 2.42x | 4.84x | 12.1x |
+| 25.0% | 1.61x | 3.23x | 6.46x | 16.1x |
+| 50.0% | 2.42x | 4.84x | 9.69x | 24.2x |
+| 75.0% | 4.84x | 9.69x | 19.4x | 48.4x |
 
-These are conditional calculations. A buyback is not a burn, buyback demand does not move price one-for-one, and nothing here predicts NEAR's price.
-
-## 8. Re-running the numbers
+## Data sources, queries and reproduction
 
 ```bash
 npm install
-npm run research:refresh     # fetch live data, rebuild canonical.json, charts, dashboard and this file
+npm run research:refresh     # fetch live data (about 15 minutes the first time, for monthly era history), rebuild everything
 npm run research:rebuild     # offline: rebuild from artifacts/research/raw and verify byte-identical output
 ```
 
-Optional BigQuery queries: `npm run research:bigquery` with `GOOGLE_CLOUD_PROJECT` and credentials (dry-run first, capped by `BIGQUERY_MAX_GB`).
+No database or API key is needed for either command. Outputs: `artifacts/research/canonical.json` (every number), `evidence-manifest.json` (request URL, period, transform and response SHA-256 for each metric), `charts/`, and `dashboard.html` (each chart, its query, and one plain sentence).
 
-## 9. References and methodology change log
+| Source | Used for |
+|---|---|
+| NearBlocks API | Monthly transactions per era contract, daily active accounts, total supply |
+| DefiLlama API | NEAR Intents volume, fees, revenue and buybacks; TVL; chain fees; historical prices (coins API) |
+| CoinGecko API | Current market caps and price |
+| NEAR JSON-RPC | Protocol inflation, total supply, buyback wallet balance |
+| NEAR announcements | Pivot dates (linked in Sub-question 2) |
+| BigQuery `crypto_near_mainnet_us` | SQL in `research/sql/`, optional, needs your Google Cloud project. Its upstream (NEAR Lake) stopped indexing on 2026-03-24, so live sections use NearBlocks instead. |
+| NEAR Intents Explorer API | Optional, partner JWT; integrator concentration (unavailable (INT-EXPLORER-TOP5-SHARE)) |
 
-- DefiLlama API: https://api-docs.defillama.com/ (NEAR Intents adapter: https://github.com/DefiLlama/dimension-adapters/tree/master/fees/near-intents)
-- CoinGecko API: https://docs.coingecko.com/
-- NearBlocks API: https://api.nearblocks.io/api-docs
-- NEAR JSON-RPC: https://docs.near.org/api/rpc/introduction
-- NEAR BigQuery dataset: https://docs.near.org/data-infrastructure/big-query
-- NEAR Intents Explorer API: https://docs.near-intents.org/integration/distribution-channels/1click-api/explorer/introduction
-- NEAR tokenomics: https://near.org/blog/evolving-near-tokenomics
-
-Change log:
-- `nebube-evidence-1.0.0`, `nvabe-1.0.0`: initial evidence catalog, 90-day matched windows, break-even model, six falsification triggers. Trigger thresholds were written while building the pipeline after some raw values had been seen; they are not a blind pre-registration.
+Methodology versions: evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, thesis rules `nebube-thesis-1.0.0`. The rule thresholds were fixed while the pipeline was built, after some raw values had been seen; they are not a blind pre-registration. Change them in `src/lib/research/thesis.ts` and rebuild to test their sensitivity.
 
 ## Appendix: evidence register
 
 | ID | Metric | Value | Type | Period | Source |
 |---|---|---|---|---|---|
-| MKT-NEAR-MCAP | NEAR circulating market cap | $4.85B | OBSERVED | point in time | CoinGecko |
-| MKT-NEAR-PRICE | NEAR price | $3.7 | OBSERVED | point in time | CoinGecko |
+| MKT-NEAR-MCAP | NEAR circulating market cap | $4.86B | OBSERVED | point in time | CoinGecko |
+| MKT-NEAR-PRICE | NEAR price | $3.71 | OBSERVED | point in time | CoinGecko |
 | MKT-NEAR-CIRC | NEAR circulating supply (CoinGecko) | 1.31B NEAR | OBSERVED | point in time | CoinGecko |
-| MKT-SOL-MCAP | Solana circulating market cap | $53.05B | OBSERVED | point in time | CoinGecko |
-| MKT-SUI-MCAP | Sui circulating market cap | $3.60B | OBSERVED | point in time | CoinGecko |
-| MKT-AVAX-MCAP | Avalanche circulating market cap | $3.71B | OBSERVED | point in time | CoinGecko |
-| MKT-NEAR-MCAP-1Y | NEAR market cap change, trailing 365 days | 81.6% | DERIVED | Nov 7, 2025 to Nov 6, 2026 | CoinGecko |
-| INT-VOL-90D | NEAR Intents swap volume, 90 days | $11.71B | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| INT-VOL-PRIOR-90D | NEAR Intents swap volume, prior 90 days | $6.49B | OBSERVED | May 9, 2026 to Aug 6, 2026 | DefiLlama |
-| INT-FEES-90D | NEAR Intents gross fees, 90 days | $17.84M | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| INT-FEES-PRIOR-90D | NEAR Intents gross fees, prior 90 days | $8.99M | OBSERVED | May 9, 2026 to Aug 6, 2026 | DefiLlama |
-| INT-REV-90D | NEAR Intents captured revenue, 90 days | $4.84M | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| INT-REV-PRIOR-90D | NEAR Intents captured revenue, prior 90 days | $1.71M | OBSERVED | May 9, 2026 to Aug 6, 2026 | DefiLlama |
-| INT-BUYBACK-90D | Revenue DefiLlama classifies as buybacks, 90 days | $4.84M | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| INT-VOL-ANN | NEAR Intents annualized volume (V) | $47.47B | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-VOL-GROWTH | Volume change, last 90 days vs prior 90 days | 80.5% | DERIVED | May 9, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-FEE-RATE | Effective gross fee rate (f) | 0.152% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-FEE-RATE-PRIOR | Effective gross fee rate, prior 90 days | 0.139% | DERIVED | May 9, 2026 to Aug 6, 2026 | NEBUBE (computed) |
-| INT-CAPTURE | Protocol capture of gross fees (c) | 27.1% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-CAPTURE-PRIOR | Protocol capture of gross fees, prior 90 days | 19.0% | DERIVED | May 9, 2026 to Aug 6, 2026 | NEBUBE (computed) |
-| INT-TAKE-RATE | NEAR-captured revenue per dollar of volume (f x c) | 0.041% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-TAKE-RATE-PRIOR | NEAR-captured revenue per dollar of volume, prior 90 days | 0.026% | DERIVED | May 9, 2026 to Aug 6, 2026 | NEBUBE (computed) |
-| INT-BUYBACK-SHARE | Share of captured revenue classified as buybacks (b) | 100.0% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
-| INT-REV-ANN | NEAR Intents captured revenue, annualized | $19.62M | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE (computed) |
+| MKT-SOL-MCAP | Solana circulating market cap | $52.70B | OBSERVED | point in time | CoinGecko |
+| MKT-SUI-MCAP | Sui circulating market cap | $3.51B | OBSERVED | point in time | CoinGecko |
+| MKT-AVAX-MCAP | Avalanche circulating market cap | $3.64B | OBSERVED | point in time | CoinGecko |
+| MKT-NEAR-MCAP-1Y | NEAR market cap change, trailing 365 days | 29.4% | DERIVED | Nov 9, 2025 to Nov 8, 2026 | CoinGecko |
+| INT-VOL-90D | NEAR Intents swap volume, 90 days | $11.85B | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| INT-VOL-PRIOR-90D | NEAR Intents swap volume, prior 90 days | $6.53B | OBSERVED | May 11, 2026 to Aug 8, 2026 | DefiLlama |
+| INT-FEES-90D | NEAR Intents gross fees, 90 days | $18.14M | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| INT-FEES-PRIOR-90D | NEAR Intents gross fees, prior 90 days | $9.00M | OBSERVED | May 11, 2026 to Aug 8, 2026 | DefiLlama |
+| INT-REV-90D | NEAR Intents captured revenue, 90 days | $4.95M | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| INT-REV-PRIOR-90D | NEAR Intents captured revenue, prior 90 days | $1.73M | OBSERVED | May 11, 2026 to Aug 8, 2026 | DefiLlama |
+| INT-BUYBACK-90D | Revenue DefiLlama classifies as buybacks, 90 days | $4.95M | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| INT-VOL-ANN | NEAR Intents annualized volume (V) | $48.05B | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
+| INT-VOL-GROWTH | Volume change, last 90 days vs prior 90 days | 81.4% | DERIVED | May 11, 2026 to Nov 6, 2026 | Computed here |
+| INT-FEE-RATE | Effective gross fee rate (f) | 0.153% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
+| INT-FEE-RATE-PRIOR | Effective gross fee rate, prior 90 days | 0.138% | DERIVED | May 11, 2026 to Aug 8, 2026 | Computed here |
+| INT-CAPTURE | Protocol capture of gross fees (c) | 27.3% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
+| INT-CAPTURE-PRIOR | Protocol capture of gross fees, prior 90 days | 19.2% | DERIVED | May 11, 2026 to Aug 8, 2026 | Computed here |
+| INT-TAKE-RATE | NEAR-captured revenue per dollar of volume (f x c) | 0.042% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
+| INT-TAKE-RATE-PRIOR | NEAR-captured revenue per dollar of volume, prior 90 days | 0.026% | DERIVED | May 11, 2026 to Aug 8, 2026 | Computed here |
+| INT-BUYBACK-SHARE | Share of captured revenue classified as buybacks (b) | 100.0% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
+| INT-REV-ANN | NEAR Intents captured revenue, annualized | $20.07M | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Computed here |
 | INT-DEFINITIONS | DefiLlama fee and revenue definitions for NEAR Intents | text | REPORTED | point in time | DefiLlama |
-| ONC-BUYBACK-WALLET | NEAR held by buybacks.multisignature.near | 2.20M NEAR | OBSERVED | point in time | NEAR JSON-RPC (FastNEAR) |
+| ONC-BUYBACK-WALLET | NEAR held by buybacks.multisignature.near | 2.21M NEAR | OBSERVED | point in time | NEAR JSON-RPC (FastNEAR) |
 | ONC-TOTAL-SUPPLY | NEAR total supply (protocol) | 1.31B NEAR | OBSERVED | point in time | NEAR JSON-RPC (FastNEAR) |
 | ONC-MAX-INFLATION | Protocol maximum annual inflation rate | 2.50% | OBSERVED | point in time | NEAR JSON-RPC (FastNEAR) |
-| ONC-BUYBACK-PCT-SUPPLY | Buyback wallet holdings as share of total supply | 0.168% | DERIVED | point in time | NEBUBE (computed) |
-| ONC-ISSUANCE-USD | Maximum annual issuance at current price | $121.27M | DERIVED | point in time | NEBUBE (computed) |
-| ACT-DAA-30D | Daily active accounts, 30-day mean | 61,647 | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | NearBlocks |
-| ACT-DAA-30D-1Y-AGO | Daily active accounts, 30-day mean one year earlier | 268,977 | OBSERVED | Oct 6, 2025 to Nov 4, 2025 | NearBlocks |
-| ACT-TXN-30D | Daily transactions, 30-day mean | 684,948 | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | NearBlocks |
-| ACT-NEW-30D | New accounts per day, 30-day mean | 9,737 | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | NearBlocks |
-| ACT-DAA-YOY | Daily active accounts, change vs one year earlier | -77.1% | DERIVED | point in time | NEBUBE (computed) |
-| ACT-GAS-FEES-30D | Base-layer transaction fees, 30 days (NearBlocks) | $175.8K | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | NearBlocks |
+| ONC-BUYBACK-PCT-SUPPLY | Buyback wallet holdings as share of total supply | 0.169% | DERIVED | point in time | Computed here |
+| ONC-ISSUANCE-USD | Maximum annual issuance at current price | $121.61M | DERIVED | point in time | Computed here |
+| ACT-DAA-30D | Daily active accounts, 30-day mean | 56,865 | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | NearBlocks |
+| ACT-DAA-30D-1Y-AGO | Daily active accounts, 30-day mean one year earlier | 266,657 | OBSERVED | Oct 8, 2025 to Nov 6, 2025 | NearBlocks |
+| ACT-TXN-30D | Daily transactions, 30-day mean | 674,463 | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | NearBlocks |
+| ACT-NEW-30D | New accounts per day, 30-day mean | 9,704 | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | NearBlocks |
+| ACT-DAA-YOY | Daily active accounts, change vs one year earlier | -78.7% | DERIVED | point in time | Computed here |
+| ACT-GAS-FEES-30D | Base-layer transaction fees, 30 days (NearBlocks) | $172.5K | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | NearBlocks |
 | ACT-RETENTION | Retained signer cohorts (BigQuery) | unavailable | OBSERVED | point in time | Google BigQuery: crypto_near_mainnet_us |
-| DEFI-TVL-NEAR | NEAR chain DeFi TVL | $176.34M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
-| DEFI-TVL-NEAR-1Y-AGO | NEAR chain DeFi TVL one year earlier | $147.92M | OBSERVED | as of Nov 6, 2025 | DefiLlama |
-| DEFI-TVL-NEAR-YOY | NEAR TVL change vs one year earlier | 19.2% | DERIVED | point in time | NEBUBE (computed) |
-| DEFI-RHEA-LEND-TVL | RHEA Lend TVL on NEAR | $147.40M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
-| DEFI-RHEA-DEX-TVL | RHEA DEX TVL on NEAR | $23.08M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
-| DEFI-STABLES-NEAR | Stablecoin supply on NEAR | $129.70M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
-| FEES-NEAR-CHAIN-90D | NEAR base-layer gas fees, 90 days | $363.1K | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| FEES-NEAR-BURN-90D | NEAR gas fees burned, 90 days | $254.1K | OBSERVED | Aug 7, 2026 to Nov 4, 2026 | DefiLlama |
-| VAL-NEAR-VALUE-CAPTURE-ANN | Token-level value capture, annualized (burn + Intents buybacks) | $20.65M | DERIVED | point in time | NEBUBE (computed) |
-| VAL-NEAR-MCAP-TO-CAPTURE | Market cap / annualized token value capture | 235x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-NEAR-FEES-30D | NEAR chain fees, 30 days | $178.0K | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-NEAR-TVL | NEAR DeFi TVL | $180.11M | OBSERVED | as of Nov 4, 2026 | DefiLlama |
-| PEER-NEAR-DEX-30D | NEAR DEX volume, 30 days | $4.45B | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-NEAR-MCAP-TO-FEES | NEAR market cap / annualized chain fees | 2,242x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-NEAR-MCAP-TO-TVL | NEAR market cap / DeFi TVL | 27.0x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-SOL-FEES-30D | Solana chain fees, 30 days | $19.87M | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-SOL-TVL | Solana DeFi TVL | $5.39B | OBSERVED | as of Nov 4, 2026 | DefiLlama |
-| PEER-SOL-DEX-30D | Solana DEX volume, 30 days | $57.43B | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-SOL-MCAP-TO-FEES | Solana market cap / annualized chain fees | 219x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-SOL-MCAP-TO-TVL | Solana market cap / DeFi TVL | 9.85x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-SUI-FEES-30D | Sui chain fees, 30 days | $125.8K | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-SUI-TVL | Sui DeFi TVL | $455.44M | OBSERVED | as of Nov 4, 2026 | DefiLlama |
-| PEER-SUI-DEX-30D | Sui DEX volume, 30 days | $892.71M | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-SUI-MCAP-TO-FEES | Sui market cap / annualized chain fees | 2,353x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-SUI-MCAP-TO-TVL | Sui market cap / DeFi TVL | 7.91x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-AVAX-FEES-30D | Avalanche chain fees, 30 days | $342.4K | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-AVAX-TVL | Avalanche DeFi TVL | $580.98M | OBSERVED | as of Nov 4, 2026 | DefiLlama |
-| PEER-AVAX-DEX-30D | Avalanche DEX volume, 30 days | $2.97B | OBSERVED | Oct 6, 2026 to Nov 4, 2026 | DefiLlama |
-| PEER-AVAX-MCAP-TO-FEES | Avalanche market cap / annualized chain fees | 890x | DERIVED | point in time | NEBUBE (computed) |
-| PEER-AVAX-MCAP-TO-TVL | Avalanche market cap / DeFi TVL | 6.38x | DERIVED | point in time | NEBUBE (computed) |
+| DEFI-TVL-NEAR | NEAR chain DeFi TVL | $175.32M | OBSERVED | as of Nov 8, 2026 | DefiLlama |
+| DEFI-TVL-NEAR-1Y-AGO | NEAR chain DeFi TVL one year earlier | $184.26M | OBSERVED | as of Nov 8, 2025 | DefiLlama |
+| DEFI-TVL-NEAR-YOY | NEAR TVL change vs one year earlier | -4.85% | DERIVED | point in time | Computed here |
+| DEFI-RHEA-LEND-TVL | RHEA Lend TVL on NEAR | $149.41M | OBSERVED | as of Nov 8, 2026 | DefiLlama |
+| DEFI-RHEA-DEX-TVL | RHEA DEX TVL on NEAR | $23.17M | OBSERVED | as of Nov 8, 2026 | DefiLlama |
+| DEFI-STABLES-NEAR | Stablecoin supply on NEAR | $130.49M | OBSERVED | as of Nov 8, 2026 | DefiLlama |
+| FEES-NEAR-CHAIN-90D | NEAR base-layer gas fees, 90 days | $367.4K | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| FEES-NEAR-BURN-90D | NEAR gas fees burned, 90 days | $257.1K | OBSERVED | Aug 9, 2026 to Nov 6, 2026 | DefiLlama |
+| VAL-NEAR-VALUE-CAPTURE-ANN | Token-level value capture, annualized (burn + Intents buybacks) | $21.12M | DERIVED | point in time | Computed here |
+| VAL-NEAR-MCAP-TO-CAPTURE | Market cap / annualized token value capture | 230x | DERIVED | point in time | Computed here |
+| PEER-NEAR-FEES-30D | NEAR chain fees, 30 days | $174.4K | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-NEAR-TVL | NEAR DeFi TVL | $172.96M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
+| PEER-NEAR-DEX-30D | NEAR DEX volume, 30 days | $4.38B | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-NEAR-MCAP-TO-FEES | NEAR market cap / annualized chain fees | 2,292x | DERIVED | point in time | Computed here |
+| PEER-NEAR-MCAP-TO-TVL | NEAR market cap / DeFi TVL | 28.1x | DERIVED | point in time | Computed here |
+| PEER-SOL-FEES-30D | Solana chain fees, 30 days | $18.81M | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-SOL-TVL | Solana DeFi TVL | $5.26B | OBSERVED | as of Nov 6, 2026 | DefiLlama |
+| PEER-SOL-DEX-30D | Solana DEX volume, 30 days | $56.85B | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-SOL-MCAP-TO-FEES | Solana market cap / annualized chain fees | 230x | DERIVED | point in time | Computed here |
+| PEER-SOL-MCAP-TO-TVL | Solana market cap / DeFi TVL | 10.0x | DERIVED | point in time | Computed here |
+| PEER-SUI-FEES-30D | Sui chain fees, 30 days | unavailable | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-SUI-TVL | Sui DeFi TVL | $438.01M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
+| PEER-SUI-DEX-30D | Sui DEX volume, 30 days | $890.60M | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-SUI-MCAP-TO-FEES | Sui market cap / annualized chain fees | unavailable | DERIVED | point in time | Computed here |
+| PEER-SUI-MCAP-TO-TVL | Sui market cap / DeFi TVL | 8.01x | DERIVED | point in time | Computed here |
+| PEER-AVAX-FEES-30D | Avalanche chain fees, 30 days | $316.0K | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-AVAX-TVL | Avalanche DeFi TVL | $569.79M | OBSERVED | as of Nov 6, 2026 | DefiLlama |
+| PEER-AVAX-DEX-30D | Avalanche DEX volume, 30 days | $2.67B | OBSERVED | Oct 8, 2026 to Nov 6, 2026 | DefiLlama |
+| PEER-AVAX-MCAP-TO-FEES | Avalanche market cap / annualized chain fees | 947x | DERIVED | point in time | Computed here |
+| PEER-AVAX-MCAP-TO-TVL | Avalanche market cap / DeFi TVL | 6.39x | DERIVED | point in time | Computed here |
 | INT-EXPLORER-TOP5-SHARE | Share of sampled 1Click volume from top 5 referrers | unavailable | OBSERVED | point in time | NEAR Intents Explorer API |
 | INT-EXPLORER-MEDIAN-SWAP | Median sampled 1Click swap size | unavailable | OBSERVED | point in time | NEAR Intents Explorer API |
-| MODEL-BUYBACK-USD | Annual buyback demand at current run rate | $19.62M | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
-| MODEL-BUYBACK-TO-MCAP | Annual buyback demand / market cap | 0.404% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
-| MODEL-BREAKEVEN-VOL-2PCT | Annual volume needed for buybacks = 2% of market cap | $234.95B | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
-| MODEL-VOL-MULTIPLE-2PCT | Volume multiple needed for 2% of market cap | 4.95x | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
-| MODEL-REQ-TAKE-RATE-2PCT | Required f x c x b at today's volume for 2% of market cap | 0.205% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
-| MODEL-CURRENT-TAKE-RATE | Current f x c x b (volume converted to buyback demand) | 0.041% | DERIVED | Aug 7, 2026 to Nov 4, 2026 | NEBUBE model nvabe-1.0.0 |
+| MODEL-BUYBACK-USD | Annual buyback demand at current run rate | $20.07M | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-BUYBACK-TO-MCAP | Annual buyback demand / market cap | 0.413% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-BREAKEVEN-VOL-2PCT | Annual volume needed for buybacks = 2% of market cap | $232.77B | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-VOL-MULTIPLE-2PCT | Volume multiple needed for 2% of market cap | 4.84x | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-REQ-TAKE-RATE-2PCT | Required f x c x b at today's volume for 2% of market cap | 0.202% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-CURRENT-TAKE-RATE | Current f x c x b (volume converted to buyback demand) | 0.042% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| ERA-SOCIAL-PEAK | social.near: peak monthly transactions (2023-08) | 35,764 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
+| ERA-SOCIAL-LATEST | social.near: transactions in the latest complete month (2026-10) | 364 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
+| ERA-SOCIAL-RETENTION | social.near: latest month as a share of its peak | 1.02% | DERIVED | point in time | Computed here |
+| ERA-SIGNER-PEAK | v1.signer: peak monthly transactions (2026-05) | 970,819 | OBSERVED | Jul 1, 2024 to Oct 1, 2026 | NearBlocks |
+| ERA-SIGNER-LATEST | v1.signer: transactions in the latest complete month (2026-10) | 467,548 | OBSERVED | Jul 1, 2024 to Oct 1, 2026 | NearBlocks |
+| ERA-SIGNER-RETENTION | v1.signer: latest month as a share of its peak | 48.2% | DERIVED | point in time | Computed here |
+| ERA-INTENTS-PEAK | intents.near: peak monthly transactions (2024-12) | 2.05M | OBSERVED | Nov 1, 2024 to Oct 1, 2026 | NearBlocks |
+| ERA-INTENTS-LATEST | intents.near: transactions in the latest complete month (2026-10) | 1.96M | OBSERVED | Nov 1, 2024 to Oct 1, 2026 | NearBlocks |
+| ERA-INTENTS-RETENTION | intents.near: latest month as a share of its peak | 95.6% | DERIVED | point in time | Computed here |
+| EVT-BOS-REL-90D | Blockchain Operating System (BOS): NEAR minus BTC return, 90 days after February 2023 | -47.9% | DERIVED | Mar 1, 2023 to May 30, 2023 | DefiLlama coins (CoinGecko prices) |
+| EVT-BOS-DAA-90D | Blockchain Operating System (BOS): change in daily active accounts, days 60-90 after vs 30 days before | -20.9% | DERIVED | Jan 30, 2023 to May 30, 2023 | NearBlocks |
+| EVT-CHAIN-SIGNATURES-REL-90D | Chain Signatures launch: NEAR minus BTC return, 90 days after 27 March 2024 | -12.8% | DERIVED | Mar 27, 2024 to Jun 25, 2024 | DefiLlama coins (CoinGecko prices) |
+| EVT-CHAIN-SIGNATURES-DAA-90D | Chain Signatures launch: change in daily active accounts, days 60-90 after vs 30 days before | 52.4% | DERIVED | Feb 26, 2024 to Jun 25, 2024 | NearBlocks |
+| EVT-USER-OWNED-AI-REL-90D | User-Owned AI: NEAR minus BTC return, 90 days after 22 May 2024 | -33.6% | DERIVED | May 22, 2024 to Aug 20, 2024 | DefiLlama coins (CoinGecko prices) |
+| EVT-USER-OWNED-AI-DAA-90D | User-Owned AI: change in daily active accounts, days 60-90 after vs 30 days before | -23.4% | DERIVED | Apr 22, 2024 to Aug 20, 2024 | NearBlocks |
+| EVT-INTENTS-REL-90D | NEAR Intents (beta): NEAR minus BTC return, 90 days after 10 November 2024 | -49.0% | DERIVED | Nov 10, 2024 to Feb 8, 2025 | DefiLlama coins (CoinGecko prices) |
+| EVT-INTENTS-DAA-90D | NEAR Intents (beta): change in daily active accounts, days 60-90 after vs 30 days before | -11.3% | DERIVED | Oct 11, 2024 to Feb 8, 2025 | NearBlocks |
+| SUP-NET-NEW-ANN-PCT | Realized net new NEAR supply, annualized | 2.47% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | NearBlocks |
+| SUP-NET-NEW-ANN-USD | Realized net new supply per year at today's price | $119.62M | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
+| COV-BUYBACK-REALIZED | Buybacks as a share of realized net new supply | 16.8% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
+| COV-CAPTURE-MAX | Burns plus buybacks as a share of maximum issuance | 17.4% | DERIVED | point in time | Computed here |

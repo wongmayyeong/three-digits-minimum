@@ -1,13 +1,13 @@
 export type ObservationType = 'OBSERVED' | 'DERIVED' | 'REPORTED' | 'ASSUMED';
 export type Unit = 'USD' | 'NEAR' | 'count' | 'fraction' | 'ratio' | 'text';
 
-export type EvidenceGroup = 'market' | 'intents' | 'onchain' | 'activity' | 'defi' | 'valuation' | 'peers' | 'model';
+export type EvidenceGroup = 'market' | 'intents' | 'onchain' | 'activity' | 'defi' | 'valuation' | 'peers' | 'model' | 'thesis';
 
 export interface SeriesDef {
   label: string;
   unit: Unit;
   /** 'sum7' = weekly sums, 'mean7' = weekly means, 'level' = sampled level. */
-  aggregation: 'sum7' | 'mean7' | 'level';
+  aggregation: 'sum7' | 'mean7' | 'level' | 'month';
   points: [string, number][];
 }
 

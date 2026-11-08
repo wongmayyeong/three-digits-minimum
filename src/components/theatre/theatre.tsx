@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useReducedMotion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Role, VisualState } from '@/components/characters/rigs';
-import { StartDebateButton } from '@/components/start-debate';
 import { Notice } from '@/components/ui';
 import { STATUS_LABEL, type DebateStatus } from '@/lib/debate/phases';
 import type { ClaimView, DebateView } from '@/lib/debate/view';
@@ -23,7 +22,7 @@ const ROUND: Record<string, string> = {
 const NAME: Record<Role, string> = { bull: 'Bull', bear: 'Bear', judge: 'Judge' };
 const TERMINAL = new Set(['COMPLETE', 'FAILED', 'PARTIAL']);
 
-export function Theatre({ initial, llmAvailable }: { initial: DebateView; llmAvailable: boolean }) {
+export function Theatre({ initial, variant = 'full' }: { initial: DebateView; variant?: 'full' | 'embed' }) {
   const reduce = !!useReducedMotion();
   const { view, fetches, activity, connection, refetch } = useDebateLive(initial);
   const topic = getTopic(view.topicSlug)!;
@@ -158,7 +157,10 @@ export function Theatre({ initial, llmAvailable }: { initial: DebateView; llmAva
 
       {(view.status === 'FAILED' || view.status === 'PARTIAL') && <div className="mt-5"><FailurePanel view={view} onRetried={refetch} /></div>}
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]">
+      {variant === 'embed' && (
+        <p className="mt-3 text-sm"><Link href={`/debates/${view.id}`} className="text-mint">Full transcript, scorecard and cited evidence →</Link></p>
+      )}
+      {variant === 'full' && <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]">
         <section ref={transcriptRef} aria-labelledby="tr-h" className="scroll-mt-20">
           <h2 id="tr-h" className="mb-5 text-lg font-[600]">Transcript</h2>
           {view.turns.length ? <Transcript turns={[...view.turns].sort((a, b) => a.seq - b.seq)} activeIndex={turn?.seq ?? -1} onJump={(seq) => { setStarted(true); pb.go(segments.findIndex((s) => s.turn?.seq === seq), true); }} />
@@ -175,18 +177,18 @@ export function Theatre({ initial, llmAvailable }: { initial: DebateView; llmAva
           )}
           {view.status === 'COMPLETE' && (
             <section aria-labelledby="next-h" className="panel space-y-4 p-5">
-              <h2 id="next-h" className="text-base font-[600]">Take it further</h2>
+              <h2 id="next-h" className="text-base font-[600]">Episode record</h2>
               <div className="flex flex-wrap gap-3">
                 <Link href={`/debates/${view.id}/report`} className="btn btn-ghost">Read the thesis report</Link>
-                <StartDebateButton topic={view.topicSlug} rematchOf={view.id} available={llmAvailable} unavailableReason="Rematches need a configured language model." label="Rematch with new data" variant="ghost" />
+                <Link href="/#verdict" className="btn btn-ghost">See the live verdict</Link>
               </div>
-              <p className="text-xs leading-relaxed text-muted">A rematch fetches a fresh snapshot, shows what changed, and runs a new independent debate. This replay and its snapshot never change.</p>
-              {view.rematchIds.length > 0 && <p className="text-xs text-muted">Rematches: {view.rematchIds.map((r, i) => <Link key={r} href={`/debates/${r}`} className="link mr-2">#{i + 1}</Link>)}</p>}
+              <p className="text-xs leading-relaxed text-muted">This episode and its snapshot never change. A new episode is generated from a fresh snapshot only when the verdict changes.</p>
+              {view.rematchIds.length > 0 && <p className="text-xs text-muted">Later episodes: {view.rematchIds.map((r, i) => <Link key={r} href={`/debates/${r}`} className="link mr-2">#{i + 1}</Link>)}</p>}
             </section>
           )}
           {view.parentId && view.snapshot && (
             <section aria-labelledby="d-h">
-              <h2 id="d-h" className="mb-3 text-lg font-[600]">What changed since the original</h2>
+              <h2 id="d-h" className="mb-3 text-lg font-[600]">What changed since the previous episode</h2>
               <DeltaPanel debateId={view.id} />
             </section>
           )}
@@ -198,7 +200,7 @@ export function Theatre({ initial, llmAvailable }: { initial: DebateView; llmAva
             </section>
           )}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

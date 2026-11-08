@@ -20,7 +20,8 @@ import 'dotenv/config';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fetchAll } from '@/lib/data/fetcher';
-import { buildRequestCatalog, sha256, stableStringify } from '@/lib/data/sources';
+import { buildEraRequests, buildRequestCatalog, sha256, stableStringify } from '@/lib/data/sources';
+import { evidenceForAgainst } from '@/lib/research/thesis';
 import { fileRawStore } from '@/lib/data/stores';
 import { buildDataset } from '@/lib/research/evidence';
 import { evaluateTriggers } from '@/lib/research/triggers';
@@ -39,7 +40,11 @@ const verify = args.has('--verify') || offline;
 async function build(offlineMode: boolean) {
   const store = fileRawStore(RAW);
   const outcomes = await fetchAll(buildRequestCatalog(), store, { offline: offlineMode, forceFresh: !offlineMode });
-  const raws = Object.fromEntries(outcomes.map((o) => [o.key, o.record]));
+  // Closed months never change, so era history is fetched once and then reused (not forced fresh).
+  const era = await fetchAll(buildEraRequests(), store, { offline: offlineMode });
+  const eraFetched = era.filter((o) => o.status === 'OK' && !o.cacheHit).length;
+  console.log(`  era history: ${era.filter((o) => o.record).length}/${era.length} months available (${eraFetched} fetched now)`);
+  const raws = Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record]));
   const ds = buildDataset(raws);
   const triggers = evaluateTriggers(ds.evidence);
   const manifest = store.manifest();
@@ -55,11 +60,31 @@ function canonicalOf(ds: ReturnType<typeof buildDataset>, triggers: ReturnType<t
     evidence: ds.evidence.map(({ series, ...e }) => ({ ...e, hasSeries: !!series })),
     model: { base: ds.modelBase, scenarios: ds.scenarios, feeSensitivity: ds.feeSensitivity, allocationMatrix: ds.allocationMatrix },
     triggers,
+    thesis: ds.thesis,
   };
 }
 
-function renderThesis(template: string, ev: EvidenceDraft[], ds: ReturnType<typeof buildDataset>, triggers: ReturnType<typeof evaluateTriggers>, missing: string[]): string {
+function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<typeof buildDataset>, triggers: ReturnType<typeof evaluateTriggers>, missing: string[]): string {
   const byId = new Map(ev.map((e) => [e.evidenceId, e]));
+  let template = templateIn;
+  const t = ds.thesis;
+  const fa = evidenceForAgainst(t, triggers);
+  const NL = '\n';
+  const bullets = (xs: string[]) => (xs.length ? xs.map((x) => `- ${x}`).join(NL) : '- None under the current data.');
+  const VERDICT_TEXT: Record<string, string> = { BUILDING: 'Building the future', 'FOLLOWING THE HYPE': 'Following the hype', 'BUILDING, NOT YET PAYING': 'Building, but not yet paying the token', 'PAYING, NOT LASTING': 'Paying the token, but products are not lasting', MIXED: 'Mixed evidence', 'INSUFFICIENT EVIDENCE': 'Insufficient evidence' };
+  const fmtPct = (v: number | null, signed = false) => formatValue(v, 'fraction', { signed });
+  const sectionRows = t.sections.map((x) => `| ${x.id}. ${x.title} | ${x.verdict} | ${x.reason} |`);
+  const eraRows = t.eras.map((e) => `| ${e.era} | \`${e.account}\` | ${formatValue(e.peak, 'count')} (${e.peakMonth ?? 'n/a'}) | ${formatValue(e.latest, 'count')} (${e.latestMonth ?? 'n/a'}) | ${fmtPct(e.retention)} | ${e.lasted === null ? 'not judgeable yet' : e.lasted ? 'yes' : 'no'} |`);
+  const eventRows = t.events.map((v) => `| [${v.label}](${v.source}) | ${v.shown} | ${fmtPct(v.daaChange, true)} | ${v.eraGrowth === null ? 'no product contract' : formatValue(v.eraGrowth, 'ratio')} | ${v.adoptionFollowed === null ? 'unknown' : v.adoptionFollowed ? 'yes' : 'no'} | ${fmtPct(v.relativeReturn90, true)} |`);
+  template = template
+    .replace('{{THESIS_VERDICT}}', VERDICT_TEXT[t.verdict] ?? t.verdict)
+    .replace('{{THESIS_CONFIDENCE}}', t.confidence)
+    .replace('{{SECTION_TABLE}}', ['| Sub-question | Reading | Why |', '|---|---|---|', ...sectionRows].join(NL))
+    .replace('{{EVIDENCE_FOR}}', bullets(fa.forBuilding))
+    .replace('{{EVIDENCE_AGAINST}}', bullets(fa.againstBuilding))
+    .replace('{{ERA_TABLE}}', ['| Era | Contract | Peak month | Latest month | Kept of peak | Lasted? |', '|---|---|---|---|---|---|', ...eraRows].join(NL))
+    .replace('{{EVENT_TABLE}}', ['| Pivot | Date | Active accounts, +90d | Product activity, month 3 vs 1 | Adoption followed? | NEAR minus BTC, +90d (context) |', '|---|---|---|---|---|---|', ...eventRows].join(NL))
+    .replace('{{SUP-BUYBACK-ANN}}', formatValue(t.supply.buybackAnnualUsd, 'USD'));
   let out = template.replace(/\{\{([A-Z0-9-]+)(?:\.(period|source|type))?\}\}/g, (_, id: string, field?: string) => {
     const e = byId.get(id);
     if (!e) return `[unknown evidence ${id}]`;
@@ -81,7 +106,7 @@ function renderThesis(template: string, ev: EvidenceDraft[], ds: ReturnType<type
 }
 
 async function main() {
-  console.log(offline ? 'Offline rebuild from artifacts/research/raw' : 'Fetching live sources (this takes about a minute; requests are paced per provider)');
+  console.log(offline ? 'Offline rebuild from artifacts/research/raw' : 'Fetching live sources (about a minute; the first run also collects monthly era history, about 15 minutes at NearBlocks free-tier pacing)');
   const { outcomes, ds, triggers, manifest } = await build(offline);
   for (const o of outcomes) {
     const tag = o.status === 'OK' ? (o.stale ? 'STALE' : o.cacheHit ? 'stored' : 'fetched') : o.status;
@@ -126,6 +151,7 @@ async function main() {
   console.log(`\nWrote canonical.json (${ds.evidence.length} evidence items, ${ds.evidence.filter((e) => e.available).length} available), ${charted.length} chart datasets, dashboard.html and THESIS.md.`);
   console.log(`Window: 90 days ending ${ds.windowEnd}; peer window ends ${ds.peerWindowEnd}.`);
   if (missing.length) console.log(`THESIS.md marks these as unavailable: ${[...new Set(missing)].join(', ')}`);
+  console.log(`Verdict: ${ds.thesis.verdict} (${ds.thesis.confidence} confidence). ${ds.thesis.sections.map((x) => `S${x.id} ${x.verdict}`).join(', ')}`);
   for (const t of triggers) console.log(`  ${t.id} ${t.status.padEnd(14)} ${t.observed}`);
 }
 

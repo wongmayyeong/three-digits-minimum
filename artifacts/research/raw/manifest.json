@@ -3,11 +3,11 @@
   "key": "coingecko.markets",
   "source": "coingecko",
   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-  "sha256": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
-  "fetchedAt": "2026-11-06T20:52:23.927Z",
+  "sha256": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+  "fetchedAt": "2026-11-08T10:10:21.101Z",
   "file": "coingecko.markets.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:23.928Z",
+   "at": "2026-11-08T10:10:21.103Z",
    "status": "OK",
    "error": null
   }
@@ -16,11 +16,115 @@
   "key": "coingecko.near.history",
   "source": "coingecko",
   "url": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily",
-  "sha256": "08fba9f0a2c4f843d91ee0ceee719f7299df6d9d1df80e1ea444aec25a905b70",
-  "fetchedAt": "2026-11-06T20:52:26.697Z",
+  "sha256": "b433117344dce38bc3dd7ce1b6d51fbfc5e79e9f7bdaca6fdca678f34adef187",
+  "fetchedAt": "2026-11-08T10:10:23.843Z",
   "file": "coingecko.near.history.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:26.725Z",
+   "at": "2026-11-08T10:10:23.844Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.bitcoin.2022-09-01": {
+  "key": "defillama.coins.bitcoin.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:bitcoin?start=1661990400&span=400&period=1d",
+  "sha256": "e55e57e19901647ddd059cd52cff61cd48f9a5890bfad49d4ad56c3b700d03af",
+  "fetchedAt": "2026-11-08T10:10:29.190Z",
+  "file": "defillama.coins.bitcoin.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:29.193Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.bitcoin.2023-10-06": {
+  "key": "defillama.coins.bitcoin.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:bitcoin?start=1696550400&span=400&period=1d",
+  "sha256": "d140f9a6f4bf33b51dc2d310810626863f96117db04b2a59ff65a774a19a8efd",
+  "fetchedAt": "2026-11-08T10:10:29.862Z",
+  "file": "defillama.coins.bitcoin.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:29.864Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.bitcoin.2024-11-09": {
+  "key": "defillama.coins.bitcoin.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:bitcoin?start=1731110400&span=400&period=1d",
+  "sha256": "0bf57e9ef3896397963b42114abee544cf75f9db4f6e8843b0d2d2e48cec5001",
+  "fetchedAt": "2026-11-08T10:10:30.547Z",
+  "file": "defillama.coins.bitcoin.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:30.548Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.bitcoin.2025-12-14": {
+  "key": "defillama.coins.bitcoin.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:bitcoin?start=1765670400&span=400&period=1d",
+  "sha256": "81c73f2198c07756b758fc48fcd59b48d5b9ed69b537a2bf6638940788d8d884",
+  "fetchedAt": "2026-11-08T10:10:31.241Z",
+  "file": "defillama.coins.bitcoin.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:31.242Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.near.2022-09-01": {
+  "key": "defillama.coins.near.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:near?start=1661990400&span=400&period=1d",
+  "sha256": "211ae9483c715ac8394e6d6861c8cac2dcad09675a417fa31e6e27d0896dbd1e",
+  "fetchedAt": "2026-11-08T10:10:28.842Z",
+  "file": "defillama.coins.near.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:28.844Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.near.2023-10-06": {
+  "key": "defillama.coins.near.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:near?start=1696550400&span=400&period=1d",
+  "sha256": "30b44cb24c18826b0ea076d6636426d3316524bd301f59cb42eec0f58303ade0",
+  "fetchedAt": "2026-11-08T10:10:29.532Z",
+  "file": "defillama.coins.near.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:29.533Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.near.2024-11-09": {
+  "key": "defillama.coins.near.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:near?start=1731110400&span=400&period=1d",
+  "sha256": "7a21cdaf84e7b02eedca7125fba2b452d97154051662f11deb654f5194e1742f",
+  "fetchedAt": "2026-11-08T10:10:30.193Z",
+  "file": "defillama.coins.near.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:30.194Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.near.2025-12-14": {
+  "key": "defillama.coins.near.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:near?start=1765670400&span=400&period=1d",
+  "sha256": "d277afd17e2bc7ae1cff93803d14e3d5b2fe5c2f53c8c7db6f780cfb2770d614",
+  "fetchedAt": "2026-11-08T10:10:30.898Z",
+  "file": "defillama.coins.near.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-08T10:10:30.901Z",
    "status": "OK",
    "error": null
   }
@@ -29,11 +133,11 @@
   "key": "defillama.dexs.avalanche-2",
   "source": "defillama",
   "url": "https://api.llama.fi/overview/dexs/avalanche?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
-  "sha256": "b0d92be42a58f2564f26b473f3576c5943e627874161dee5b0db567662a6bc0e",
-  "fetchedAt": "2026-11-06T20:52:36.563Z",
+  "sha256": "e4786b76ded140c168f8d4d86b21d6d06ca430703387a1f2ff98b221a430c6fe",
+  "fetchedAt": "2026-11-08T10:10:26.326Z",
   "file": "defillama.dexs.avalanche-2.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:36.566Z",
+   "at": "2026-11-08T10:10:26.330Z",
    "status": "OK",
    "error": null
   }
@@ -42,11 +146,11 @@
   "key": "defillama.dexs.near",
   "source": "defillama",
   "url": "https://api.llama.fi/overview/dexs/near?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
-  "sha256": "abc3ede83caf4ae8e1c31eee2d21458a8a7a2918e7b881d4a90e9934c15bd377",
-  "fetchedAt": "2026-11-06T20:52:30.043Z",
+  "sha256": "0bbe50ebe20c10c73922208c9ab21719e2d6c0353e5a11664783b9face0988c0",
+  "fetchedAt": "2026-11-08T10:10:23.229Z",
   "file": "defillama.dexs.near.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:30.046Z",
+   "at": "2026-11-08T10:10:23.230Z",
    "status": "OK",
    "error": null
   }
@@ -55,11 +159,11 @@
   "key": "defillama.dexs.solana",
   "source": "defillama",
   "url": "https://api.llama.fi/overview/dexs/solana?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
-  "sha256": "fca466f1e479a4dcde5bd50d2de39f5d6550dd45d2ffc246ee0ee56fcf42dc4d",
-  "fetchedAt": "2026-11-06T20:52:31.097Z",
+  "sha256": "fa5f862c35286858625fb0c8457fa7da3d6b6e6f664f2168090938a0b9091158",
+  "fetchedAt": "2026-11-08T10:10:24.257Z",
   "file": "defillama.dexs.solana.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:31.098Z",
+   "at": "2026-11-08T10:10:24.259Z",
    "status": "OK",
    "error": null
   }
@@ -68,11 +172,11 @@
   "key": "defillama.dexs.sui",
   "source": "defillama",
   "url": "https://api.llama.fi/overview/dexs/sui?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
-  "sha256": "abb8fda40140680b8ec6d383d518647fb75bf43d1e2ef1b482780919b8436561",
-  "fetchedAt": "2026-11-06T20:52:34.024Z",
+  "sha256": "c843a8efc8bfd7af7fb262896f662ec04da9052856dc88dc6ac988ee768c35b4",
+  "fetchedAt": "2026-11-08T10:10:25.292Z",
   "file": "defillama.dexs.sui.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:34.027Z",
+   "at": "2026-11-08T10:10:25.295Z",
    "status": "OK",
    "error": null
   }
@@ -81,11 +185,11 @@
   "key": "defillama.fees.avalanche-2",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyFees",
-  "sha256": "3a5ea10a43ca0d0e2530e94835d7b3e4c0f8546f1ec58a8a7e5fe18be0f753a7",
-  "fetchedAt": "2026-11-06T20:52:34.738Z",
+  "sha256": "04dbc15860c15355db9282d5964526d85fd6dbe5cf583a6ba963868c243fa0dc",
+  "fetchedAt": "2026-11-08T10:10:25.637Z",
   "file": "defillama.fees.avalanche-2.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:34.739Z",
+   "at": "2026-11-08T10:10:25.638Z",
    "status": "OK",
    "error": null
   }
@@ -94,11 +198,11 @@
   "key": "defillama.fees.near",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees",
-  "sha256": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0",
-  "fetchedAt": "2026-11-06T20:52:29.375Z",
+  "sha256": "03ac73e33c0f6f8c464727468e0f2d893d673d020f774787b098eb34536bf128",
+  "fetchedAt": "2026-11-08T10:10:22.536Z",
   "file": "defillama.fees.near.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:29.378Z",
+   "at": "2026-11-08T10:10:22.537Z",
    "status": "OK",
    "error": null
   }
@@ -107,11 +211,11 @@
   "key": "defillama.fees.solana",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees",
-  "sha256": "edf87f91e30e779913105dbcc9e6466d57fd0942c5ac86927585d2fce23c2c75",
-  "fetchedAt": "2026-11-06T20:52:30.385Z",
+  "sha256": "83f225e7da07e342ca0025a3a43832fa945624f3d6da7db7301bbb52c3f519eb",
+  "fetchedAt": "2026-11-08T10:10:23.572Z",
   "file": "defillama.fees.solana.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:30.388Z",
+   "at": "2026-11-08T10:10:23.573Z",
    "status": "OK",
    "error": null
   }
@@ -120,11 +224,11 @@
   "key": "defillama.fees.sui",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees",
-  "sha256": "5b63492469d2273873f566b3a6559cae0c9e9091d7d5f3b3b2566c198b9b17b8",
-  "fetchedAt": "2026-11-06T20:52:32.376Z",
+  "sha256": "3c6a19b06ff3f74e9fde12c4bb54d9ded7ff8ca2b63732ee4783bf0bc11d4606",
+  "fetchedAt": "2026-11-08T10:10:24.608Z",
   "file": "defillama.fees.sui.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:32.378Z",
+   "at": "2026-11-08T10:10:24.609Z",
    "status": "OK",
    "error": null
   }
@@ -133,11 +237,11 @@
   "key": "defillama.intents.dailyFees",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
-  "sha256": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5",
-  "fetchedAt": "2026-11-06T20:52:25.348Z",
+  "sha256": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
+  "fetchedAt": "2026-11-08T10:10:21.491Z",
   "file": "defillama.intents.dailyFees.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:25.351Z",
+   "at": "2026-11-08T10:10:21.492Z",
    "status": "OK",
    "error": null
   }
@@ -146,11 +250,11 @@
   "key": "defillama.intents.dailyHoldersRevenue",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
-  "sha256": "e2d9e325dccba174d3706814be205c7a7cb71baf56b52b6f67db75ae069b9987",
-  "fetchedAt": "2026-11-06T20:52:28.008Z",
+  "sha256": "0611f8d5c07fdd05dc309be2bf376efb0079989f59ca14080359d891377b9489",
+  "fetchedAt": "2026-11-08T10:10:22.185Z",
   "file": "defillama.intents.dailyHoldersRevenue.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:28.011Z",
+   "at": "2026-11-08T10:10:22.186Z",
    "status": "OK",
    "error": null
   }
@@ -159,11 +263,11 @@
   "key": "defillama.intents.dailyRevenue",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
-  "sha256": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0",
-  "fetchedAt": "2026-11-06T20:52:26.692Z",
+  "sha256": "e536b7e93127eb79b8024bfef47d7176e4ee54441e11ab895a836f14d07294d1",
+  "fetchedAt": "2026-11-08T10:10:21.844Z",
   "file": "defillama.intents.dailyRevenue.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:26.695Z",
+   "at": "2026-11-08T10:10:21.846Z",
    "status": "OK",
    "error": null
   }
@@ -172,11 +276,11 @@
   "key": "defillama.intents.volume",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",
-  "sha256": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32",
-  "fetchedAt": "2026-11-06T20:52:24.014Z",
+  "sha256": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
+  "fetchedAt": "2026-11-08T10:10:21.145Z",
   "file": "defillama.intents.volume.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:24.016Z",
+   "at": "2026-11-08T10:10:21.150Z",
    "status": "OK",
    "error": null
   }
@@ -185,11 +289,11 @@
   "key": "defillama.protocol.rhea-dex",
   "source": "defillama",
   "url": "https://api.llama.fi/protocol/rhea-dex",
-  "sha256": "eaaacfbb8b6da1a69f56c82516fa69be7072a269250003c5f000046e603b732b",
-  "fetchedAt": "2026-11-06T20:52:39.038Z",
+  "sha256": "e26f462008cf851ff85c52dd27775adb509acace8d637eacd64f50b352975100",
+  "fetchedAt": "2026-11-08T10:10:28.028Z",
   "file": "defillama.protocol.rhea-dex.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:39.039Z",
+   "at": "2026-11-08T10:10:28.032Z",
    "status": "OK",
    "error": null
   }
@@ -198,11 +302,11 @@
   "key": "defillama.protocol.rhea-lend",
   "source": "defillama",
   "url": "https://api.llama.fi/protocol/rhea-lend",
-  "sha256": "80e53451528f5b05d0581550c52d7bd983c6792e59fd6a2363cbe4dc09854210",
-  "fetchedAt": "2026-11-06T20:52:38.406Z",
+  "sha256": "dde1d2b9e314327d47aa151b78f8183732fb071ce0c29981e299d15580344393",
+  "fetchedAt": "2026-11-08T10:10:27.272Z",
   "file": "defillama.protocol.rhea-lend.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:38.409Z",
+   "at": "2026-11-08T10:10:27.274Z",
    "status": "OK",
    "error": null
   }
@@ -211,11 +315,11 @@
   "key": "defillama.revenue.near",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue",
-  "sha256": "4c93725c40c00c0db60d33ed721fe16c11faeb770ed6dbc78c398ecb436c6bdf",
-  "fetchedAt": "2026-11-06T20:52:37.911Z",
+  "sha256": "5724a23dbe4ef907a96c5c9db33988b6b8b2f6bdfa0679ad4e5223de687ee36e",
+  "fetchedAt": "2026-11-08T10:10:26.666Z",
   "file": "defillama.revenue.near.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:37.916Z",
+   "at": "2026-11-08T10:10:26.667Z",
    "status": "OK",
    "error": null
   }
@@ -224,11 +328,11 @@
   "key": "defillama.stablecoins.near",
   "source": "defillama",
   "url": "https://stablecoins.llama.fi/stablecoincharts/Near",
-  "sha256": "1aa9fc9e30c49b98047e7950c8ca3b08442105dcbe81681db00bc54ec1983a47",
-  "fetchedAt": "2026-11-06T20:52:39.450Z",
+  "sha256": "1acb33acd4eafe14a166d3cc75acc38cfab0785d57f3b83b7f59a62521f20abb",
+  "fetchedAt": "2026-11-08T10:10:28.429Z",
   "file": "defillama.stablecoins.near.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:39.453Z",
+   "at": "2026-11-08T10:10:28.432Z",
    "status": "OK",
    "error": null
   }
@@ -237,11 +341,11 @@
   "key": "defillama.tvl.avalanche-2",
   "source": "defillama",
   "url": "https://api.llama.fi/v2/historicalChainTvl/Avalanche",
-  "sha256": "5e3c257ff4f495626e3d261a0ab4eb8e0d50c6d20d939224bd22fce03a2d65da",
-  "fetchedAt": "2026-11-06T20:52:35.075Z",
+  "sha256": "2cf97bfc7299b9f2b0b3455c1419aaab0452983a6933ca311ad79589ec7fbcb5",
+  "fetchedAt": "2026-11-08T10:10:25.978Z",
   "file": "defillama.tvl.avalanche-2.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:35.078Z",
+   "at": "2026-11-08T10:10:25.981Z",
    "status": "OK",
    "error": null
   }
@@ -250,11 +354,11 @@
   "key": "defillama.tvl.near",
   "source": "defillama",
   "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
-  "sha256": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0",
-  "fetchedAt": "2026-11-06T20:52:29.712Z",
+  "sha256": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
+  "fetchedAt": "2026-11-08T10:10:22.882Z",
   "file": "defillama.tvl.near.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:29.716Z",
+   "at": "2026-11-08T10:10:22.884Z",
    "status": "OK",
    "error": null
   }
@@ -263,11 +367,11 @@
   "key": "defillama.tvl.solana",
   "source": "defillama",
   "url": "https://api.llama.fi/v2/historicalChainTvl/Solana",
-  "sha256": "3c2c23d85e31dc0873f91514c4e201fe53a3900eb2abd1e6d24ca2999c7e4582",
-  "fetchedAt": "2026-11-06T20:52:30.759Z",
+  "sha256": "7edc78cf0751c09f6e722370a8b131edd66bceec63044c1701550e6ff8860cef",
+  "fetchedAt": "2026-11-08T10:10:23.905Z",
   "file": "defillama.tvl.solana.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:30.764Z",
+   "at": "2026-11-08T10:10:23.906Z",
    "status": "OK",
    "error": null
   }
@@ -276,11 +380,11 @@
   "key": "defillama.tvl.sui",
   "source": "defillama",
   "url": "https://api.llama.fi/v2/historicalChainTvl/Sui",
-  "sha256": "f97c2365167471df94c24852fc5c05e70ebd7c4136d84085839c0d5996aefc7c",
-  "fetchedAt": "2026-11-06T20:52:32.717Z",
+  "sha256": "293e7c6a9da9d988ce86bb3a401954b68cfb99aec2b3ff6a86803106a10130a8",
+  "fetchedAt": "2026-11-08T10:10:24.947Z",
   "file": "defillama.tvl.sui.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:32.720Z",
+   "at": "2026-11-08T10:10:24.950Z",
    "status": "OK",
    "error": null
   }
@@ -289,11 +393,11 @@
   "key": "near-rpc.block",
   "source": "near-rpc",
   "url": "https://free.rpc.fastnear.com",
-  "sha256": "de63d5fa76e1adf3cd47e549c39588f39577b23db7d93190dbe27ace708bbeef",
-  "fetchedAt": "2026-11-06T20:52:23.674Z",
+  "sha256": "0ae11b93a2982125bcfcfaddac6de638fee9f96c91a9aff80555ae4ddf681afb",
+  "fetchedAt": "2026-11-08T10:10:21.131Z",
   "file": "near-rpc.block.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:23.675Z",
+   "at": "2026-11-08T10:10:21.134Z",
    "status": "OK",
    "error": null
   }
@@ -302,11 +406,11 @@
   "key": "near-rpc.buyback-wallet",
   "source": "near-rpc",
   "url": "https://free.rpc.fastnear.com",
-  "sha256": "10cab2bc245d44510b9542f6dadfff4644ee2a6b5a090e0e3de0fae6076efc03",
-  "fetchedAt": "2026-11-06T20:52:24.138Z",
+  "sha256": "8c325e447b90ea8ddd27721ca3e920af9852a539f6442a77fd9da71b930ac113",
+  "fetchedAt": "2026-11-08T10:10:21.650Z",
   "file": "near-rpc.buyback-wallet.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:24.140Z",
+   "at": "2026-11-08T10:10:21.651Z",
    "status": "OK",
    "error": null
   }
@@ -315,11 +419,11 @@
   "key": "near-rpc.buyback-wnear",
   "source": "near-rpc",
   "url": "https://free.rpc.fastnear.com",
-  "sha256": "f9ab86ff8ecdbf6568fd8cddf17a0e79d22cd573c4383500f47d830ed68f594a",
-  "fetchedAt": "2026-11-06T20:52:24.381Z",
+  "sha256": "7cb131dc379ed4253eb812e6ffc7998e48b45bbf87e39a5ced04f6be20d4ad8d",
+  "fetchedAt": "2026-11-08T10:10:37.000Z",
   "file": "near-rpc.buyback-wnear.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:24.383Z",
+   "at": "2026-11-08T10:10:37.002Z",
    "status": "OK",
    "error": null
   }
@@ -329,10 +433,10 @@
   "source": "near-rpc",
   "url": "https://free.rpc.fastnear.com",
   "sha256": "13000352df92448f15f9a26ec326f853a0244604236dd42e93f6e89613ee1067",
-  "fetchedAt": "2026-11-06T20:52:23.908Z",
+  "fetchedAt": "2026-11-08T10:10:21.395Z",
   "file": "near-rpc.protocol-config.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:23.911Z",
+   "at": "2026-11-08T10:10:21.397Z",
    "status": "OK",
    "error": null
   }
@@ -341,11 +445,1584 @@
   "key": "nearblocks.charts",
   "source": "nearblocks",
   "url": "https://api.nearblocks.io/v1/charts",
-  "sha256": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
-  "fetchedAt": "2026-11-06T20:52:25.444Z",
+  "sha256": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+  "fetchedAt": "2026-11-08T10:10:23.736Z",
   "file": "nearblocks.charts.json",
   "lastAttempt": {
-   "at": "2026-11-06T20:52:25.446Z",
+   "at": "2026-11-08T10:10:23.742Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2024-11": {
+  "key": "nearblocks.era.intents.2024-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2024-11-01&before_date=2024-12-01",
+  "sha256": "d81419e0cc228a0951eabfed6e205e328765773638c3dde7177ccc75759b0527",
+  "fetchedAt": "2026-11-08T09:44:42.076Z",
+  "file": "nearblocks.era.intents.2024-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:44:42.077Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2024-12": {
+  "key": "nearblocks.era.intents.2024-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2024-12-01&before_date=2025-01-01",
+  "sha256": "153fbe9c6529bc8f547a394f0cf7d529c4d629c8dedb46996adeddd3d47930d9",
+  "fetchedAt": "2026-11-08T09:44:49.156Z",
+  "file": "nearblocks.era.intents.2024-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:44:49.158Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-01": {
+  "key": "nearblocks.era.intents.2025-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-01-01&before_date=2025-02-01",
+  "sha256": "89921d92ccc2cda9e8548176cc37a6fc634d41766f83dd25158f22fe24410708",
+  "fetchedAt": "2026-11-08T09:44:56.238Z",
+  "file": "nearblocks.era.intents.2025-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:44:56.239Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-02": {
+  "key": "nearblocks.era.intents.2025-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-02-01&before_date=2025-03-01",
+  "sha256": "36c3d95fa5d415778f6b72c7bf88f09e212f14b1860cec79790a39bbb180b31b",
+  "fetchedAt": "2026-11-08T09:45:02.581Z",
+  "file": "nearblocks.era.intents.2025-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:02.582Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-03": {
+  "key": "nearblocks.era.intents.2025-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-03-01&before_date=2025-04-01",
+  "sha256": "ba108316705479207559210f9ff9d60ca2f8d5233e65be59f399d125c75ea044",
+  "fetchedAt": "2026-11-08T09:45:08.924Z",
+  "file": "nearblocks.era.intents.2025-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:08.926Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-04": {
+  "key": "nearblocks.era.intents.2025-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-04-01&before_date=2025-05-01",
+  "sha256": "3400f6671f24a70dc61942102b5ff074426c9dfb4bb64050971989f0bc9a3e26",
+  "fetchedAt": "2026-11-08T09:45:15.294Z",
+  "file": "nearblocks.era.intents.2025-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:15.295Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-05": {
+  "key": "nearblocks.era.intents.2025-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-05-01&before_date=2025-06-01",
+  "sha256": "194ed6c6e59548e7752874c9f2f1f2acc9291b352400f08641c78898f088bc37",
+  "fetchedAt": "2026-11-08T09:45:21.684Z",
+  "file": "nearblocks.era.intents.2025-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:21.685Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-06": {
+  "key": "nearblocks.era.intents.2025-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-06-01&before_date=2025-07-01",
+  "sha256": "bbe9215bafefa591aa5aef87fbcd7dd2fba3e5b91d3db138e13c268f8c448388",
+  "fetchedAt": "2026-11-08T09:45:28.064Z",
+  "file": "nearblocks.era.intents.2025-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:28.065Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-07": {
+  "key": "nearblocks.era.intents.2025-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-07-01&before_date=2025-08-01",
+  "sha256": "9981a8c171f56eaa257612ae5836e019745a7199654eddfe3ea4833ff8c1eb64",
+  "fetchedAt": "2026-11-08T09:45:35.189Z",
+  "file": "nearblocks.era.intents.2025-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:35.190Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-08": {
+  "key": "nearblocks.era.intents.2025-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-08-01&before_date=2025-09-01",
+  "sha256": "29b5d3a711e107ee2d69d9a94a90d1016c600b2579c601e3fe138eff1f4bf6da",
+  "fetchedAt": "2026-11-08T09:45:41.543Z",
+  "file": "nearblocks.era.intents.2025-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:41.545Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-09": {
+  "key": "nearblocks.era.intents.2025-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-09-01&before_date=2025-10-01",
+  "sha256": "f66f8999852221048ec06b30d86255ac52dfbd54c244d7e0295517dded85443c",
+  "fetchedAt": "2026-11-08T09:45:48.673Z",
+  "file": "nearblocks.era.intents.2025-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:48.678Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-10": {
+  "key": "nearblocks.era.intents.2025-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-10-01&before_date=2025-11-01",
+  "sha256": "ebfd9116a6f5ea02228178ed5120970dd272b34014618db47aa14bf854db1615",
+  "fetchedAt": "2026-11-08T09:45:55.040Z",
+  "file": "nearblocks.era.intents.2025-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:45:55.042Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-11": {
+  "key": "nearblocks.era.intents.2025-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-11-01&before_date=2025-12-01",
+  "sha256": "3a671e5e99afcc61ae27194064703a492de778d0aff8c5dd02c8fe9b9f34a041",
+  "fetchedAt": "2026-11-08T09:46:01.378Z",
+  "file": "nearblocks.era.intents.2025-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:01.380Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2025-12": {
+  "key": "nearblocks.era.intents.2025-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2025-12-01&before_date=2026-01-01",
+  "sha256": "c32c9bc8fa6432520b314714cd5aeb1444474a02102a4286d6d6cf70ae169b9d",
+  "fetchedAt": "2026-11-08T09:46:08.489Z",
+  "file": "nearblocks.era.intents.2025-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:08.490Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-01": {
+  "key": "nearblocks.era.intents.2026-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-01-01&before_date=2026-02-01",
+  "sha256": "c8b2979191f2fd4468f6a74f92f29577fdabe3e75c8c76b91220973c653c75c8",
+  "fetchedAt": "2026-11-08T09:46:14.818Z",
+  "file": "nearblocks.era.intents.2026-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:14.820Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-02": {
+  "key": "nearblocks.era.intents.2026-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-02-01&before_date=2026-03-01",
+  "sha256": "7911e8347872ff2b5cb3be637dd5a03b832544cad696fb35ef77ab1f6c4179f1",
+  "fetchedAt": "2026-11-08T09:46:21.146Z",
+  "file": "nearblocks.era.intents.2026-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:21.149Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-03": {
+  "key": "nearblocks.era.intents.2026-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-03-01&before_date=2026-04-01",
+  "sha256": "b64158fb1e27784c1b96e1ec5d12fffdcd554af896374ed09709c19c2b929c7c",
+  "fetchedAt": "2026-11-08T09:46:27.556Z",
+  "file": "nearblocks.era.intents.2026-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:27.557Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-04": {
+  "key": "nearblocks.era.intents.2026-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-04-01&before_date=2026-05-01",
+  "sha256": "cf6fa6e6a8b94c6a1356a061be3eb5cd314c2c8c9f009ac0b51e966f8bdb440d",
+  "fetchedAt": "2026-11-08T09:46:33.928Z",
+  "file": "nearblocks.era.intents.2026-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:33.930Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-05": {
+  "key": "nearblocks.era.intents.2026-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-05-01&before_date=2026-06-01",
+  "sha256": "afbeed9ed60f7b698abfb4a0b4bd12b37085df23fb70d2801b3215327b842d74",
+  "fetchedAt": "2026-11-08T09:46:40.261Z",
+  "file": "nearblocks.era.intents.2026-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:40.263Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-06": {
+  "key": "nearblocks.era.intents.2026-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-06-01&before_date=2026-07-01",
+  "sha256": "691401ebe0bd1f7323907cfd789503b84172143b5d91e8b4c83a08da1b8bb866",
+  "fetchedAt": "2026-11-08T09:46:46.610Z",
+  "file": "nearblocks.era.intents.2026-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:46.612Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-07": {
+  "key": "nearblocks.era.intents.2026-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-07-01&before_date=2026-08-01",
+  "sha256": "b31d2542c3ebe595d8556ee069159cf478a30dce9fcfab900f57a69ca5a023ae",
+  "fetchedAt": "2026-11-08T09:46:52.985Z",
+  "file": "nearblocks.era.intents.2026-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:52.988Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-08": {
+  "key": "nearblocks.era.intents.2026-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-08-01&before_date=2026-09-01",
+  "sha256": "f3b96f03b4caa1362e25e1e0eadda918018c37537febf20186a22b13c136fad4",
+  "fetchedAt": "2026-11-08T09:46:59.329Z",
+  "file": "nearblocks.era.intents.2026-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:46:59.333Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-09": {
+  "key": "nearblocks.era.intents.2026-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-09-01&before_date=2026-10-01",
+  "sha256": "26a334780ed79528b29e99eb766e309acff1a3359728056ed6404efc901a45eb",
+  "fetchedAt": "2026-11-08T09:47:05.682Z",
+  "file": "nearblocks.era.intents.2026-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:47:05.683Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.intents.2026-10": {
+  "key": "nearblocks.era.intents.2026-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/intents.near/txns-only/count?after_date=2026-10-01&before_date=2026-11-01",
+  "sha256": "da58665b6b6bb9679ae038e1fc745ebd4c6084eb40fe3cde2d5ed60a8dd1ebdc",
+  "fetchedAt": "2026-11-08T09:47:28.033Z",
+  "file": "nearblocks.era.intents.2026-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:47:28.039Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-07": {
+  "key": "nearblocks.era.signer.2024-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-07-01&before_date=2024-08-01",
+  "sha256": "855daa4d1b1176d0181de9efcbfbbd94c64ef8f65973a0b7a61348bec10d32b7",
+  "fetchedAt": "2026-11-08T09:39:58.849Z",
+  "file": "nearblocks.era.signer.2024-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:39:58.853Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-08": {
+  "key": "nearblocks.era.signer.2024-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-08-01&before_date=2024-09-01",
+  "sha256": "af7891a8c9994dd4dd0978ac9498c5bfcac8d556733a61b0fa5a575593ba6461",
+  "fetchedAt": "2026-11-08T09:40:05.181Z",
+  "file": "nearblocks.era.signer.2024-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:05.185Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-09": {
+  "key": "nearblocks.era.signer.2024-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-09-01&before_date=2024-10-01",
+  "sha256": "c2facd990a0f380e01d207b03778f15ed9d0f44180b7e6075a20372ac1e62f76",
+  "fetchedAt": "2026-11-08T09:40:11.518Z",
+  "file": "nearblocks.era.signer.2024-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:11.519Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-10": {
+  "key": "nearblocks.era.signer.2024-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-10-01&before_date=2024-11-01",
+  "sha256": "44b268939381bf13cfb1873eb6fe9dd25f5b2aeb0e5cdaea06bd48c5f14e7312",
+  "fetchedAt": "2026-11-08T09:40:18.578Z",
+  "file": "nearblocks.era.signer.2024-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:18.581Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-11": {
+  "key": "nearblocks.era.signer.2024-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-11-01&before_date=2024-12-01",
+  "sha256": "85f1001615bd21a429f5a8c2542b2f6c8341b9f935cd0b979629538722dbac45",
+  "fetchedAt": "2026-11-08T09:40:24.915Z",
+  "file": "nearblocks.era.signer.2024-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:24.916Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2024-12": {
+  "key": "nearblocks.era.signer.2024-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2024-12-01&before_date=2025-01-01",
+  "sha256": "59cf5824d45eb4d6280033343934b671c04cdd599afb6fd8539667ea92ded761",
+  "fetchedAt": "2026-11-08T09:40:31.415Z",
+  "file": "nearblocks.era.signer.2024-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:31.416Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-01": {
+  "key": "nearblocks.era.signer.2025-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-01-01&before_date=2025-02-01",
+  "sha256": "506d4a5dbfdc8c394ffb136dbb17dd56f46dd2a03149a3b03a145014d604b5d7",
+  "fetchedAt": "2026-11-08T09:40:37.758Z",
+  "file": "nearblocks.era.signer.2025-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:37.759Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-02": {
+  "key": "nearblocks.era.signer.2025-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-02-01&before_date=2025-03-01",
+  "sha256": "686887c1ac53a2030d99f5974adf40e0de10d162f280134981d043e38fb1c15b",
+  "fetchedAt": "2026-11-08T09:40:44.126Z",
+  "file": "nearblocks.era.signer.2025-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:44.127Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-03": {
+  "key": "nearblocks.era.signer.2025-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-03-01&before_date=2025-04-01",
+  "sha256": "bd6f59a284eb63e01390ba0e5016fde043ae80406bf256b3aedd655b02c9d87a",
+  "fetchedAt": "2026-11-08T09:40:50.476Z",
+  "file": "nearblocks.era.signer.2025-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:50.478Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-04": {
+  "key": "nearblocks.era.signer.2025-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-04-01&before_date=2025-05-01",
+  "sha256": "c162a2ddf993507e6d0509308f45958aebec0ee5beb50e8292ccfcfcda02a2f3",
+  "fetchedAt": "2026-11-08T09:40:56.828Z",
+  "file": "nearblocks.era.signer.2025-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:40:56.830Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-05": {
+  "key": "nearblocks.era.signer.2025-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-05-01&before_date=2025-06-01",
+  "sha256": "b493b119aac1ff37ac217234463770028ca019fa23cbe0169b7c845682dff65b",
+  "fetchedAt": "2026-11-08T09:41:03.924Z",
+  "file": "nearblocks.era.signer.2025-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:03.925Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-06": {
+  "key": "nearblocks.era.signer.2025-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-06-01&before_date=2025-07-01",
+  "sha256": "fd4b22153139945fbe3b222ae6d8d60777a9e901259da3b8705c699e42d22e42",
+  "fetchedAt": "2026-11-08T09:41:11.002Z",
+  "file": "nearblocks.era.signer.2025-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:11.004Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-07": {
+  "key": "nearblocks.era.signer.2025-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-07-01&before_date=2025-08-01",
+  "sha256": "8ee16296e2bb43cce889d2d3fd0cb4d975462081bb4860741e838ff191c71333",
+  "fetchedAt": "2026-11-08T09:41:17.437Z",
+  "file": "nearblocks.era.signer.2025-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:17.438Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-08": {
+  "key": "nearblocks.era.signer.2025-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-08-01&before_date=2025-09-01",
+  "sha256": "248d8b5501e80b73bdb80bf708138ece2837ad6d9fbfc84e97200ea68b1f8310",
+  "fetchedAt": "2026-11-08T09:41:23.780Z",
+  "file": "nearblocks.era.signer.2025-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:23.781Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-09": {
+  "key": "nearblocks.era.signer.2025-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-09-01&before_date=2025-10-01",
+  "sha256": "57c60c24d1d34e5232b3bd51e338151a0932ad4e1b476d207ccb271e03dac2f4",
+  "fetchedAt": "2026-11-08T09:41:30.133Z",
+  "file": "nearblocks.era.signer.2025-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:30.139Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-10": {
+  "key": "nearblocks.era.signer.2025-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-10-01&before_date=2025-11-01",
+  "sha256": "7d989bedeaa828ad7a8ef57c61dbbc3b6964985df160e6a4ed5c1119ebf55a12",
+  "fetchedAt": "2026-11-08T09:41:37.242Z",
+  "file": "nearblocks.era.signer.2025-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:37.244Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-11": {
+  "key": "nearblocks.era.signer.2025-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-11-01&before_date=2025-12-01",
+  "sha256": "5d67d7c727ac7ff7bf06f2f684ca924c86cfcc99d89818032f8c549d01348f16",
+  "fetchedAt": "2026-11-08T09:41:43.583Z",
+  "file": "nearblocks.era.signer.2025-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:43.584Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2025-12": {
+  "key": "nearblocks.era.signer.2025-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2025-12-01&before_date=2026-01-01",
+  "sha256": "87d73336a995c9911abd9fb44b72ffe71567ef2e2ed9109fc62936b941efe527",
+  "fetchedAt": "2026-11-08T09:41:50.659Z",
+  "file": "nearblocks.era.signer.2025-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:50.660Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-01": {
+  "key": "nearblocks.era.signer.2026-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-01-01&before_date=2026-02-01",
+  "sha256": "1a7fdffe66058e053e307a777f64cd21984c65d455ca2cddcfe98aa681b414c4",
+  "fetchedAt": "2026-11-08T09:41:57.005Z",
+  "file": "nearblocks.era.signer.2026-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:41:57.006Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-02": {
+  "key": "nearblocks.era.signer.2026-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-02-01&before_date=2026-03-01",
+  "sha256": "5ab790b5124d8104437e3a23f3372f9da51d1634d3639a7900f476e2dc7a31dc",
+  "fetchedAt": "2026-11-08T09:42:04.124Z",
+  "file": "nearblocks.era.signer.2026-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:42:04.127Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-03": {
+  "key": "nearblocks.era.signer.2026-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-03-01&before_date=2026-04-01",
+  "sha256": "67eb7d513c9fea33f5ed9ba93d8832355b84ba068745d6dd7298ce0d06868571",
+  "fetchedAt": "2026-11-08T09:42:11.216Z",
+  "file": "nearblocks.era.signer.2026-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:42:11.218Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-04": {
+  "key": "nearblocks.era.signer.2026-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-04-01&before_date=2026-05-01",
+  "sha256": "6fdd3c1b3f7dc1aae3da53b61719e794d3fee901499194c7dc8731cb375102f4",
+  "fetchedAt": "2026-11-08T09:42:31.550Z",
+  "file": "nearblocks.era.signer.2026-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:42:31.553Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-05": {
+  "key": "nearblocks.era.signer.2026-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-05-01&before_date=2026-06-01",
+  "sha256": "fd3324bcd247fad8eedd4c17338a1547ddb2f7754040da744d02072b5ec4c4cf",
+  "fetchedAt": "2026-11-08T09:42:53.114Z",
+  "file": "nearblocks.era.signer.2026-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:42:53.115Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-06": {
+  "key": "nearblocks.era.signer.2026-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-06-01&before_date=2026-07-01",
+  "sha256": "e7884e1f881e3de94172f70a00767971f8a371a5f63c919b331a0d9b5327490a",
+  "fetchedAt": "2026-11-08T09:43:14.249Z",
+  "file": "nearblocks.era.signer.2026-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:43:14.251Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-07": {
+  "key": "nearblocks.era.signer.2026-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-07-01&before_date=2026-08-01",
+  "sha256": "6540d300de9cc539a1736b6da1496b97e93053b02908867edf3d00da42557202",
+  "fetchedAt": "2026-11-08T09:43:34.204Z",
+  "file": "nearblocks.era.signer.2026-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:43:34.205Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-08": {
+  "key": "nearblocks.era.signer.2026-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-08-01&before_date=2026-09-01",
+  "sha256": "2f5ba8051ce4f3da42b7e3db052d811fff22af11f573970f0819f5f9f72d9ba9",
+  "fetchedAt": "2026-11-08T09:43:53.961Z",
+  "file": "nearblocks.era.signer.2026-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:43:53.962Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-09": {
+  "key": "nearblocks.era.signer.2026-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-09-01&before_date=2026-10-01",
+  "sha256": "64ed225ac22b48034720b589a3bdaa7942214e2346cc0c63fe2060dbd372becd",
+  "fetchedAt": "2026-11-08T09:44:12.432Z",
+  "file": "nearblocks.era.signer.2026-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:44:12.435Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.signer.2026-10": {
+  "key": "nearblocks.era.signer.2026-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/v1.signer/txns-only/count?after_date=2026-10-01&before_date=2026-11-01",
+  "sha256": "04a25c49f9aefca7abaf056cfd0aef31295a76bea684df14f47dc1bd3da70641",
+  "fetchedAt": "2026-11-08T09:44:34.991Z",
+  "file": "nearblocks.era.signer.2026-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:44:34.992Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-02": {
+  "key": "nearblocks.era.social.2021-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-02-01&before_date=2021-03-01",
+  "sha256": "105654a9053bccbf74a50cfa2d525c498a9c3de3f26685db27ff41a840edd0ba",
+  "fetchedAt": "2026-11-08T09:31:16.498Z",
+  "file": "nearblocks.era.social.2021-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:16.499Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-03": {
+  "key": "nearblocks.era.social.2021-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-03-01&before_date=2021-04-01",
+  "sha256": "94b3efeb818d458edf564bbaef66c3ca4e296a9b319974456a1484d2a49696b2",
+  "fetchedAt": "2026-11-08T09:31:22.986Z",
+  "file": "nearblocks.era.social.2021-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:22.987Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-04": {
+  "key": "nearblocks.era.social.2021-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-04-01&before_date=2021-05-01",
+  "sha256": "6b92dae7f9e74c6f0deaf75b3921c91b429d7badaef6ec5c71729f93db501874",
+  "fetchedAt": "2026-11-08T09:31:29.516Z",
+  "file": "nearblocks.era.social.2021-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:29.518Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-05": {
+  "key": "nearblocks.era.social.2021-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-05-01&before_date=2021-06-01",
+  "sha256": "c8bf558a371272aa3fa1a60bee4a6a40a92fcf622107f8d6406df85adaf9b212",
+  "fetchedAt": "2026-11-08T09:31:36.120Z",
+  "file": "nearblocks.era.social.2021-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:36.121Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-06": {
+  "key": "nearblocks.era.social.2021-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-06-01&before_date=2021-07-01",
+  "sha256": "a4fb25aedc23dc2817537692a29b4c37b1245a9eef37d49d10c11161c5496b05",
+  "fetchedAt": "2026-11-08T09:31:42.755Z",
+  "file": "nearblocks.era.social.2021-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:42.756Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-07": {
+  "key": "nearblocks.era.social.2021-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-07-01&before_date=2021-08-01",
+  "sha256": "ebd1384077ecb85a3efd737119cd61200d80f38009e7e8b3d3a793dad0da1710",
+  "fetchedAt": "2026-11-08T09:31:50.185Z",
+  "file": "nearblocks.era.social.2021-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:50.187Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-08": {
+  "key": "nearblocks.era.social.2021-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-08-01&before_date=2021-09-01",
+  "sha256": "c67559ef43f30df8c63f2c70e0e95e8de3b17d9769c4e773fbbea0d167f927f1",
+  "fetchedAt": "2026-11-08T09:31:56.921Z",
+  "file": "nearblocks.era.social.2021-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:31:56.922Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-09": {
+  "key": "nearblocks.era.social.2021-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-09-01&before_date=2021-10-01",
+  "sha256": "d04c1c9e65c46050e19b4c98cd8261ae52d48da324de6060fd8e5ab4c9d5a969",
+  "fetchedAt": "2026-11-08T09:32:03.686Z",
+  "file": "nearblocks.era.social.2021-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:03.688Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-10": {
+  "key": "nearblocks.era.social.2021-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-10-01&before_date=2021-11-01",
+  "sha256": "8a8c78a623fe68976de5749a41547cc11a3c3a0b5d7d4ebce118621e3aae7727",
+  "fetchedAt": "2026-11-08T09:32:10.466Z",
+  "file": "nearblocks.era.social.2021-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:10.469Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-11": {
+  "key": "nearblocks.era.social.2021-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-11-01&before_date=2021-12-01",
+  "sha256": "e6ad09d4e0adf74a9d4d4fd6b8e6624929ab948746e8ce2961c4825bbe2bcdec",
+  "fetchedAt": "2026-11-08T09:32:17.245Z",
+  "file": "nearblocks.era.social.2021-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:17.246Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2021-12": {
+  "key": "nearblocks.era.social.2021-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2021-12-01&before_date=2022-01-01",
+  "sha256": "2cfe63a60478d71358e2de487bb54a50c8c15c4495a2151748916a3e10ef290b",
+  "fetchedAt": "2026-11-08T09:47:34.973Z",
+  "file": "nearblocks.era.social.2021-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:47:34.974Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-01": {
+  "key": "nearblocks.era.social.2022-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-01-01&before_date=2022-02-01",
+  "sha256": "d70e6e70a1d26d7acee568c5a27a19b5db3c891a9db069fde72ebfcff10d0fd4",
+  "fetchedAt": "2026-11-08T09:47:42.045Z",
+  "file": "nearblocks.era.social.2022-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:47:42.047Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-02": {
+  "key": "nearblocks.era.social.2022-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-02-01&before_date=2022-03-01",
+  "sha256": "596a9b4dced489860096eb4ece79debcc4bba28c9ca8006a1e30a68966c1e322",
+  "fetchedAt": "2026-11-08T09:32:38.676Z",
+  "file": "nearblocks.era.social.2022-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:38.677Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-03": {
+  "key": "nearblocks.era.social.2022-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-03-01&before_date=2022-04-01",
+  "sha256": "e3cb7e9ee45467ef75be66891376ee787accef53eff2ed52267ad5d436d2e450",
+  "fetchedAt": "2026-11-08T09:32:45.796Z",
+  "file": "nearblocks.era.social.2022-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:45.798Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-04": {
+  "key": "nearblocks.era.social.2022-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-04-01&before_date=2022-05-01",
+  "sha256": "ddb9ea3d457977ed01a9b8eead93521cfd0da815acb57c784866aa1b434b0ecd",
+  "fetchedAt": "2026-11-08T09:32:52.916Z",
+  "file": "nearblocks.era.social.2022-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:32:52.917Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-05": {
+  "key": "nearblocks.era.social.2022-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-05-01&before_date=2022-06-01",
+  "sha256": "8c37a9370012240db8c4128cf4bed3cefe94029c31523054a01875a58ba90765",
+  "fetchedAt": "2026-11-08T09:33:00.006Z",
+  "file": "nearblocks.era.social.2022-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:00.007Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-06": {
+  "key": "nearblocks.era.social.2022-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-06-01&before_date=2022-07-01",
+  "sha256": "1098cfe6e37a2f701ffa4bd40f1aecffaa93c08c9dc362f52e3430dc3531b487",
+  "fetchedAt": "2026-11-08T09:33:07.636Z",
+  "file": "nearblocks.era.social.2022-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:07.637Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-07": {
+  "key": "nearblocks.era.social.2022-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-07-01&before_date=2022-08-01",
+  "sha256": "9cfe52e4bd955807a8a89cd28992a285d1edd52f81d50185a9fa1fd7db13bc4c",
+  "fetchedAt": "2026-11-08T09:33:15.128Z",
+  "file": "nearblocks.era.social.2022-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:15.131Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-08": {
+  "key": "nearblocks.era.social.2022-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-08-01&before_date=2022-09-01",
+  "sha256": "044fe84ee414818036254f4ed8fad4c2c30d1eb25132272f903126c568ddab5a",
+  "fetchedAt": "2026-11-08T09:33:21.991Z",
+  "file": "nearblocks.era.social.2022-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:21.992Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-09": {
+  "key": "nearblocks.era.social.2022-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-09-01&before_date=2022-10-01",
+  "sha256": "f2282a868e6d7da48402458f8085de3b1b9ef5b2e63afd4d2061bf42c28ecaa2",
+  "fetchedAt": "2026-11-08T09:33:29.611Z",
+  "file": "nearblocks.era.social.2022-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:29.612Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-10": {
+  "key": "nearblocks.era.social.2022-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-10-01&before_date=2022-11-01",
+  "sha256": "a7132e4832a6154b13df66eca200f7e73dee05c32306791a845f818f4abe20fb",
+  "fetchedAt": "2026-11-08T09:33:37.243Z",
+  "file": "nearblocks.era.social.2022-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:37.244Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-11": {
+  "key": "nearblocks.era.social.2022-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-11-01&before_date=2022-12-01",
+  "sha256": "22fcf6b0eec64287399db04d06efac0d0a0ad410061bc58481613033194d73ab",
+  "fetchedAt": "2026-11-08T09:33:44.923Z",
+  "file": "nearblocks.era.social.2022-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:44.925Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2022-12": {
+  "key": "nearblocks.era.social.2022-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2022-12-01&before_date=2023-01-01",
+  "sha256": "2ff7a1492065c530215980b297a92d1e3c83f6590843c763eb775953fac28eca",
+  "fetchedAt": "2026-11-08T09:33:52.637Z",
+  "file": "nearblocks.era.social.2022-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:52.638Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-01": {
+  "key": "nearblocks.era.social.2023-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-01-01&before_date=2023-02-01",
+  "sha256": "39472e7f123f223c71ddd0b3dfab84645f01e35a3534ac0ebc6e8b9c4312b480",
+  "fetchedAt": "2026-11-08T09:33:59.593Z",
+  "file": "nearblocks.era.social.2023-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:33:59.594Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-02": {
+  "key": "nearblocks.era.social.2023-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-02-01&before_date=2023-03-01",
+  "sha256": "f0020f1ae2657996edfdbcb11072a910559056908a7444762ff164050e272031",
+  "fetchedAt": "2026-11-08T09:34:06.485Z",
+  "file": "nearblocks.era.social.2023-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:06.487Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-03": {
+  "key": "nearblocks.era.social.2023-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-03-01&before_date=2023-04-01",
+  "sha256": "93dd510bca35e216e3da9cfbd95529f005878d6b8cb2c6d1d1bee263c8ded22b",
+  "fetchedAt": "2026-11-08T09:34:13.490Z",
+  "file": "nearblocks.era.social.2023-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:13.491Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-04": {
+  "key": "nearblocks.era.social.2023-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-04-01&before_date=2023-05-01",
+  "sha256": "5191be00ce325112f57b8e3f76902371315ad8699a6cb30f5fdd8d67fff47187",
+  "fetchedAt": "2026-11-08T09:34:20.410Z",
+  "file": "nearblocks.era.social.2023-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:20.414Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-05": {
+  "key": "nearblocks.era.social.2023-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-05-01&before_date=2023-06-01",
+  "sha256": "eec68a659b8478cf6bc38cc01028b052d86b254971d2de16de969ffa78f16cff",
+  "fetchedAt": "2026-11-08T09:34:27.317Z",
+  "file": "nearblocks.era.social.2023-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:27.319Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-06": {
+  "key": "nearblocks.era.social.2023-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-06-01&before_date=2023-07-01",
+  "sha256": "aaf1318848f7ba08b838aef5329947eb3556a9231ccb2e23e3b46691bb88db48",
+  "fetchedAt": "2026-11-08T09:34:34.223Z",
+  "file": "nearblocks.era.social.2023-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:34.226Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-07": {
+  "key": "nearblocks.era.social.2023-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-07-01&before_date=2023-08-01",
+  "sha256": "11d1fa9d192223d50d1d06cfab87ea24cef54d0b600d188f09e770d4c1ca9925",
+  "fetchedAt": "2026-11-08T09:34:42.004Z",
+  "file": "nearblocks.era.social.2023-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:42.009Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-08": {
+  "key": "nearblocks.era.social.2023-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-08-01&before_date=2023-09-01",
+  "sha256": "1451fc2006d67c8fd4d3b62cca06dc707a43b968eeac696208f575b3e1223559",
+  "fetchedAt": "2026-11-08T09:34:49.167Z",
+  "file": "nearblocks.era.social.2023-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:49.172Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-09": {
+  "key": "nearblocks.era.social.2023-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-09-01&before_date=2023-10-01",
+  "sha256": "ef1a9724aa0845eb857b90e9c10651458672b4394a0a404aca8483b553f67494",
+  "fetchedAt": "2026-11-08T09:34:55.522Z",
+  "file": "nearblocks.era.social.2023-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:34:55.528Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-10": {
+  "key": "nearblocks.era.social.2023-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-10-01&before_date=2023-11-01",
+  "sha256": "69ed0350c12b1be6dc363ebd3fff72b4dc52a02238733d069b6ff45d64a6f295",
+  "fetchedAt": "2026-11-08T09:35:02.655Z",
+  "file": "nearblocks.era.social.2023-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:02.656Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-11": {
+  "key": "nearblocks.era.social.2023-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-11-01&before_date=2023-12-01",
+  "sha256": "264e6c7d16df0596e35fd478d74cdf8ed883d3c509f6bb768d77a3bd23b6db4e",
+  "fetchedAt": "2026-11-08T09:35:09.730Z",
+  "file": "nearblocks.era.social.2023-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:09.731Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2023-12": {
+  "key": "nearblocks.era.social.2023-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2023-12-01&before_date=2024-01-01",
+  "sha256": "3ddae519d7028775c9379e7478743721715150ae93d33b425a4c289ff43fafbe",
+  "fetchedAt": "2026-11-08T09:35:16.079Z",
+  "file": "nearblocks.era.social.2023-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:16.082Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-01": {
+  "key": "nearblocks.era.social.2024-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-01-01&before_date=2024-02-01",
+  "sha256": "d644561ecf98b8b40d8f73c3de9d7474cbdd83713b18fef450885d74227af3a5",
+  "fetchedAt": "2026-11-08T09:35:23.169Z",
+  "file": "nearblocks.era.social.2024-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:23.170Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-02": {
+  "key": "nearblocks.era.social.2024-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-02-01&before_date=2024-03-01",
+  "sha256": "3064df88a0bb412797ea2d0d31c4432b3160e83d03f029b402e019716083b926",
+  "fetchedAt": "2026-11-08T09:35:29.520Z",
+  "file": "nearblocks.era.social.2024-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:29.522Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-03": {
+  "key": "nearblocks.era.social.2024-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-03-01&before_date=2024-04-01",
+  "sha256": "b72b0dada03aa16364ae37316c1371143621d505bb04f6bfb8f29f3f7d9a18fa",
+  "fetchedAt": "2026-11-08T09:35:36.637Z",
+  "file": "nearblocks.era.social.2024-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:36.638Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-04": {
+  "key": "nearblocks.era.social.2024-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-04-01&before_date=2024-05-01",
+  "sha256": "41a0b68cc143e437672316df3fdc0917fdc7929fcb780c7206089dec011ab337",
+  "fetchedAt": "2026-11-08T09:35:42.996Z",
+  "file": "nearblocks.era.social.2024-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:42.997Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-05": {
+  "key": "nearblocks.era.social.2024-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-05-01&before_date=2024-06-01",
+  "sha256": "da2d2ee7c86bb6a450a2ec5b4159c202f62699fa8327631bd230abe6ac444295",
+  "fetchedAt": "2026-11-08T09:35:49.359Z",
+  "file": "nearblocks.era.social.2024-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:49.360Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-06": {
+  "key": "nearblocks.era.social.2024-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-06-01&before_date=2024-07-01",
+  "sha256": "609428e01d1757cf79efcb084678ddfda2ce17659442828eaf9874d6ef147bf8",
+  "fetchedAt": "2026-11-08T09:35:55.704Z",
+  "file": "nearblocks.era.social.2024-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:35:55.705Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-07": {
+  "key": "nearblocks.era.social.2024-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-07-01&before_date=2024-08-01",
+  "sha256": "bfc7a69100f95cd69f77714f742a287ac3f93757bfb870b0504582af4caacb76",
+  "fetchedAt": "2026-11-08T09:36:02.046Z",
+  "file": "nearblocks.era.social.2024-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:02.047Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-08": {
+  "key": "nearblocks.era.social.2024-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-08-01&before_date=2024-09-01",
+  "sha256": "d0d73bee6da2b2939f6213ab6167a9bea6529092cf147495dee910322f39a962",
+  "fetchedAt": "2026-11-08T09:36:08.365Z",
+  "file": "nearblocks.era.social.2024-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:08.366Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-09": {
+  "key": "nearblocks.era.social.2024-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-09-01&before_date=2024-10-01",
+  "sha256": "4ab6deb4bfaa02b773ed2578389b546756c7bf4c673b3916251b2e56c46c83eb",
+  "fetchedAt": "2026-11-08T09:36:15.456Z",
+  "file": "nearblocks.era.social.2024-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:15.459Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-10": {
+  "key": "nearblocks.era.social.2024-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-10-01&before_date=2024-11-01",
+  "sha256": "416e58125e077e013a462ceab9a90caac55b6a8a06c0489846ad643e074a14d2",
+  "fetchedAt": "2026-11-08T09:36:21.809Z",
+  "file": "nearblocks.era.social.2024-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:21.811Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-11": {
+  "key": "nearblocks.era.social.2024-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-11-01&before_date=2024-12-01",
+  "sha256": "72c521291eb2ac61a0ce33ae954c92911a690e7a8cf775bb0a9226d4bddca562",
+  "fetchedAt": "2026-11-08T09:36:28.881Z",
+  "file": "nearblocks.era.social.2024-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:28.882Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2024-12": {
+  "key": "nearblocks.era.social.2024-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2024-12-01&before_date=2025-01-01",
+  "sha256": "396d7e58d852b665aab9440b29997a5df41fb9b8ea8637a89d143dfec7d80313",
+  "fetchedAt": "2026-11-08T09:36:35.949Z",
+  "file": "nearblocks.era.social.2024-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:35.950Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-01": {
+  "key": "nearblocks.era.social.2025-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-01-01&before_date=2025-02-01",
+  "sha256": "cce2078eba36d72815cf5aa8ec0df8f2e21d23e5ef33f0095dcbec4346d113c9",
+  "fetchedAt": "2026-11-08T09:36:43.047Z",
+  "file": "nearblocks.era.social.2025-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:43.048Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-02": {
+  "key": "nearblocks.era.social.2025-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-02-01&before_date=2025-03-01",
+  "sha256": "0eb3458aa43afd0668b27f0c644160ca91aad161e8cf87df7d7411a674aaa015",
+  "fetchedAt": "2026-11-08T09:36:49.395Z",
+  "file": "nearblocks.era.social.2025-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:49.397Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-03": {
+  "key": "nearblocks.era.social.2025-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-03-01&before_date=2025-04-01",
+  "sha256": "d85b65a5fab63d37c4760e5d195afcb9673cc154c24bbd34fe6890be613b7d38",
+  "fetchedAt": "2026-11-08T09:36:55.752Z",
+  "file": "nearblocks.era.social.2025-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:36:55.753Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-04": {
+  "key": "nearblocks.era.social.2025-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-04-01&before_date=2025-05-01",
+  "sha256": "2bad07310652234889861e7ffdbcd321bc5e5405028c463262a5658b99afb8e6",
+  "fetchedAt": "2026-11-08T09:37:02.882Z",
+  "file": "nearblocks.era.social.2025-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:02.884Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-05": {
+  "key": "nearblocks.era.social.2025-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-05-01&before_date=2025-06-01",
+  "sha256": "c1ba05afafd2f4113188c01a9987a54fd9625f40a74bf48bca7b74162e130549",
+  "fetchedAt": "2026-11-08T09:37:10.131Z",
+  "file": "nearblocks.era.social.2025-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:10.132Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-06": {
+  "key": "nearblocks.era.social.2025-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-06-01&before_date=2025-07-01",
+  "sha256": "431f9542a455a58504110a3483a2ddfa4e5b9e32b3e5bf9eeeb6233365fe3d40",
+  "fetchedAt": "2026-11-08T09:37:16.504Z",
+  "file": "nearblocks.era.social.2025-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:16.505Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-07": {
+  "key": "nearblocks.era.social.2025-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-07-01&before_date=2025-08-01",
+  "sha256": "4d2febd7bcf73aefda5a22b1bf3d56e753ac7eb705e7af85ed71b4bc1ff144ac",
+  "fetchedAt": "2026-11-08T09:37:22.814Z",
+  "file": "nearblocks.era.social.2025-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:22.820Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-08": {
+  "key": "nearblocks.era.social.2025-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-08-01&before_date=2025-09-01",
+  "sha256": "d04e27663fb09994b95fc727a4cb818323e7c4f436bc278718d2b79126786271",
+  "fetchedAt": "2026-11-08T09:37:29.905Z",
+  "file": "nearblocks.era.social.2025-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:29.906Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-09": {
+  "key": "nearblocks.era.social.2025-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-09-01&before_date=2025-10-01",
+  "sha256": "98603c6e101a91b7e83c316532b519c709eee9b15d71b0e7124ce047066d20a7",
+  "fetchedAt": "2026-11-08T09:37:37.040Z",
+  "file": "nearblocks.era.social.2025-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:37.042Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-10": {
+  "key": "nearblocks.era.social.2025-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-10-01&before_date=2025-11-01",
+  "sha256": "b45840310c154b6a3d526e47000955be98854c4a204da02ee7fd91949b839f03",
+  "fetchedAt": "2026-11-08T09:37:43.374Z",
+  "file": "nearblocks.era.social.2025-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:43.375Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-11": {
+  "key": "nearblocks.era.social.2025-11",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-11-01&before_date=2025-12-01",
+  "sha256": "20f6117187c6aa8668336a3d81fa2851208f8636c0bea86c41c76b06e2f2af74",
+  "fetchedAt": "2026-11-08T09:37:50.498Z",
+  "file": "nearblocks.era.social.2025-11.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:50.499Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2025-12": {
+  "key": "nearblocks.era.social.2025-12",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2025-12-01&before_date=2026-01-01",
+  "sha256": "93d437433ed4e195e0070c5f4a244706b7f5f0c5b2bfa09187a1ca16629346aa",
+  "fetchedAt": "2026-11-08T09:37:56.840Z",
+  "file": "nearblocks.era.social.2025-12.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:37:56.842Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-01": {
+  "key": "nearblocks.era.social.2026-01",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-01-01&before_date=2026-02-01",
+  "sha256": "4c5749d5d43e4c9d3b7c94f6cfaefea68391def7e9b8b88c848a8088679a49a3",
+  "fetchedAt": "2026-11-08T09:38:03.196Z",
+  "file": "nearblocks.era.social.2026-01.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:03.198Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-02": {
+  "key": "nearblocks.era.social.2026-02",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-02-01&before_date=2026-03-01",
+  "sha256": "79a99daf14fb77574d31ced95efaf2452be8ff7c4542abff491d6b034b4de7e7",
+  "fetchedAt": "2026-11-08T09:38:09.530Z",
+  "file": "nearblocks.era.social.2026-02.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:09.532Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-03": {
+  "key": "nearblocks.era.social.2026-03",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-03-01&before_date=2026-04-01",
+  "sha256": "5316fa6332c33b3e569428f6afdc69643b9cf81b1f0f03fc791ca6239e7a6d1b",
+  "fetchedAt": "2026-11-08T09:38:16.638Z",
+  "file": "nearblocks.era.social.2026-03.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:16.639Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-04": {
+  "key": "nearblocks.era.social.2026-04",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-04-01&before_date=2026-05-01",
+  "sha256": "1b1329188554e1270fe87991426b77f47a1ef140501fce2feeacdd058113bf79",
+  "fetchedAt": "2026-11-08T09:38:31.095Z",
+  "file": "nearblocks.era.social.2026-04.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:31.097Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-05": {
+  "key": "nearblocks.era.social.2026-05",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-05-01&before_date=2026-06-01",
+  "sha256": "39954ced2825e8957c30d0d9ea289dfa0f6b75982838d820f913f9fb41a24cb3",
+  "fetchedAt": "2026-11-08T09:38:45.930Z",
+  "file": "nearblocks.era.social.2026-05.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:45.932Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-06": {
+  "key": "nearblocks.era.social.2026-06",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-06-01&before_date=2026-07-01",
+  "sha256": "18443c949ca73ed1cdb05463dccaa118884e1e76ab4250ebb0243be223cc1e36",
+  "fetchedAt": "2026-11-08T09:38:59.849Z",
+  "file": "nearblocks.era.social.2026-06.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:38:59.850Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-07": {
+  "key": "nearblocks.era.social.2026-07",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-07-01&before_date=2026-08-01",
+  "sha256": "bfb9d17e14bb021f787e8f8c2b6bcdf3f0638fcc6e788d4c3b7e381434891741",
+  "fetchedAt": "2026-11-08T09:39:13.538Z",
+  "file": "nearblocks.era.social.2026-07.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:39:13.542Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-08": {
+  "key": "nearblocks.era.social.2026-08",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-08-01&before_date=2026-09-01",
+  "sha256": "a9aec0ba4a5a5d0a38be8535a501e699ae0fbc307a3ac21ba1e7f6291e956c2c",
+  "fetchedAt": "2026-11-08T09:39:26.701Z",
+  "file": "nearblocks.era.social.2026-08.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:39:26.703Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-09": {
+  "key": "nearblocks.era.social.2026-09",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-09-01&before_date=2026-10-01",
+  "sha256": "107ddb27222ab7fd3bd67f6465c9942c7788c158051813cb0c20c92c1899ce38",
+  "fetchedAt": "2026-11-08T09:39:40.151Z",
+  "file": "nearblocks.era.social.2026-09.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:39:40.152Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "nearblocks.era.social.2026-10": {
+  "key": "nearblocks.era.social.2026-10",
+  "source": "nearblocks",
+  "url": "https://api.nearblocks.io/v1/account/social.near/txns-only/count?after_date=2026-10-01&before_date=2026-11-01",
+  "sha256": "2cacfcdc8283f25aa2ce7f6a28b176543c75bafdee4722e2cfc1858f494445c2",
+  "fetchedAt": "2026-11-08T09:39:52.494Z",
+  "file": "nearblocks.era.social.2026-10.json",
+  "lastAttempt": {
+   "at": "2026-11-08T09:39:52.495Z",
    "status": "OK",
    "error": null
   }

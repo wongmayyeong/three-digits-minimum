@@ -17,6 +17,8 @@ import { claimJob, completeJob, failJob, renewLease, type ClaimedJob } from '@/l
 import { log } from '@/lib/log';
 import { db } from '@/lib/storage/db';
 import { syncTopics } from '@/lib/topics/sync';
+import { runDailyRefresh } from '@/lib/debate/refresh';
+import { enqueue } from '@/lib/debate/jobs';
 
 const WORKER_ID = `${hostname()}-${process.pid}-${randomBytes(3).toString('hex')}`;
 const CONCURRENCY = Math.max(1, Number(process.env.WORKER_CONCURRENCY ?? 2));
@@ -61,11 +63,31 @@ async function runAudio(job: ClaimedJob) {
   }
 }
 
+async function runRefresh(job: ClaimedJob) {
+  const lease = setInterval(() => { renewLease(job.id, WORKER_ID).catch(() => undefined); }, 20_000);
+  try {
+    const r = await runDailyRefresh();
+    log('info', 'daily_refresh', r);
+    await completeJob(job.id);
+  } catch (e) {
+    log('error', 'daily_refresh_failed', { error: (e as Error).message });
+    await failJob(job, (e as Error).message, true);
+  } finally {
+    clearInterval(lease);
+  }
+}
+
+/** One refresh job per UTC day; the unique (kind, refId) key makes this safe across workers. */
+async function scheduleDaily() {
+  if (process.env.DISABLE_DAILY_REFRESH === '1') return;
+  await enqueue('refresh', new Date().toISOString().slice(0, 10), { maxAttempts: 5 });
+}
+
 async function loop(slot: number) {
   while (!stopping) {
     let job: ClaimedJob | null = null;
     try {
-      job = await claimJob(WORKER_ID, ['debate', 'audio']);
+      job = await claimJob(WORKER_ID, ['debate', 'audio', 'refresh']);
     } catch (e) {
       log('error', 'claim_failed', { slot, error: (e as Error).message });
     }
@@ -75,6 +97,7 @@ async function loop(slot: number) {
     }
     log('info', 'job_claimed', { slot, kind: job.kind, refId: job.refId, attempt: job.attempts });
     if (job.kind === 'debate') await runDebate(job);
+    else if (job.kind === 'refresh') await runRefresh(job);
     else await runAudio(job);
   }
 }
@@ -88,12 +111,15 @@ async function main() {
   await syncTopics();
   await heartbeat();
   const hb = setInterval(() => { heartbeat().catch((e) => log('warn', 'heartbeat_failed', { error: (e as Error).message })); }, 10_000);
+  await scheduleDaily();
+  const daily = setInterval(() => { scheduleDaily().catch(() => undefined); }, 10 * 60_000);
   log('info', 'worker_started', { workerId: WORKER_ID, concurrency: CONCURRENCY });
   const stop = () => { stopping = true; log('info', 'worker_stopping', { workerId: WORKER_ID }); };
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
   await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => loop(i)));
   clearInterval(hb);
+  clearInterval(daily);
   await db().workerHeartbeat.delete({ where: { workerId: WORKER_ID } }).catch(() => undefined);
   await db().$disconnect();
   process.exit(0);

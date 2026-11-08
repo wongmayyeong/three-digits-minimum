@@ -2,14 +2,15 @@ import type { Metadata } from 'next';
 import { Calculator } from '@/components/calculator';
 import { Container, ExternalLink } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
-import { SOURCES } from '@/lib/data/sources';
+import { ERA_CONTRACTS, SOURCES } from '@/lib/data/sources';
+import { RULES, THESIS_VERSION } from '@/lib/research/thesis';
 import { formatDate, formatValue } from '@/lib/format';
 import { allocationSensitivity, FORMULA_VERSION, SCENARIOS, sensitivity, type SensitivityMatrix } from '@/lib/research/model';
 import { METHODOLOGY_VERSION } from '@/lib/research/evidence';
 import { PROMPT_VERSION } from '@/lib/ai/prompts';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Methodology and model', description: 'How NEBUBE builds evidence snapshots, computes the break-even demand model, audits AI arguments and scores debates.' };
+export const metadata: Metadata = { title: 'Methodology and model', description: 'How this thesis builds evidence snapshots, computes the break-even demand model, audits AI arguments and scores debates.' };
 
 function Matrix({ m, title }: { m: SensitivityMatrix; title: string }) {
   return (
@@ -33,7 +34,7 @@ function Matrix({ m, title }: { m: SensitivityMatrix; title: string }) {
 }
 
 export default async function MethodologyPage() {
-  const preview = await previewTopic('intents-bet', { offline: true }).catch(() => null);
+  const preview = await previewTopic('building-or-hype', { offline: true }).catch(() => null);
   const base = preview?.modelBase ?? null;
   const fee = base ? sensitivity(base) : null;
   const alloc = base ? allocationSensitivity(base) : null;
@@ -41,11 +42,11 @@ export default async function MethodologyPage() {
   return (
     <Container className="max-w-[1100px] py-12 md:py-16">
       <p className="eyebrow mb-3">Methodology</p>
-      <h1 className="display-l text-balance">Judged on the evidence, not the conviction.</h1>
-      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">NEBUBE is an educational research experiment. It shows how a bull and a bear case for NEAR hold up against the same measured data. It does not forecast prices, rate NEAR as an investment, or give financial advice.</p>
+      <h1 className="display-l text-balance">How the thesis is tested.</h1>
+      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. It tests whether NEAR is building the future or following the hype against measured, reproducible data, and shows how a bull and a bear case hold up against the same evidence. It does not forecast prices, rate NEAR as an investment, or give financial advice.</p>
 
       <nav aria-label="On this page" className="mt-8 flex flex-wrap gap-2 text-sm">
-        {[['#principles', 'Principles'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
+        {[['#principles', 'Principles'], ['#thesis', 'The verdict rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
       </nav>
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
@@ -60,6 +61,40 @@ export default async function MethodologyPage() {
             ['Code decides what is true.', 'The AI can only cite snapshot IDs. The server validates every citation and every spoken number before a turn is saved, and applies score penalties itself.'],
           ].map(([h, b]) => <li key={h} className="panel p-5"><p className="font-[600]">{h}</p><p className="mt-2 text-sm leading-relaxed text-muted">{b}</p></li>)}
         </ol>
+      </section>
+
+      <section id="thesis" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">How the verdict is decided</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">The thesis asks three sub-questions. Each is answered by a fixed rule applied to stored data, and the verdict combines them by a rule published here. No AI is involved in any of these steps. Thesis rules version <span className="num">{THESIS_VERSION}</span>.</p>
+        <div className="mt-6 grid gap-4 lg:grid-cols-3">
+          <div className="panel p-5 text-sm">
+            <p className="num text-xs text-mint">01 · Did it last?</p>
+            <p className="mt-2 leading-relaxed text-fg-2">For each era&apos;s representative contract ({ERA_CONTRACTS.map((c) => c.account).join(', ')}), NearBlocks transaction counts per calendar month. An era <span className="text-fg">lasted</span> if its latest complete month keeps at least {RULES.eraRetentionLasting * 100}% of its own peak month, judged once the peak is {RULES.eraMinMonthsSincePeak}+ months old.</p>
+            <p className="mt-2 leading-relaxed text-muted">Points to building if at least two thirds of judged eras lasted; to hype if at most one third did; mixed otherwise; insufficient with fewer than two judged eras.</p>
+          </div>
+          <div className="panel p-5 text-sm">
+            <p className="num text-xs text-mint">02 · Did adoption justify the hype?</p>
+            <p className="mt-2 leading-relaxed text-fg-2">For each pivot dated from NEAR&apos;s announcements, adoption <span className="text-fg">followed</span> if chain daily active accounts (mean of days 60 to 90 after) beat the 30 days before, or the era product&apos;s activity grew at least {RULES.eraGrowthMultiple}x from its launch month to two months later.</p>
+            <p className="mt-2 leading-relaxed text-muted">Points to building if adoption followed at least half of the pivots. NEAR&apos;s price return minus BTC&apos;s is shown as context and never scored.</p>
+          </div>
+          <div className="panel p-5 text-sm">
+            <p className="num text-xs text-mint">03 · Does it pay $NEAR?</p>
+            <p className="mt-2 leading-relaxed text-fg-2">Annualized Intents buybacks divided by the dollar value of realized net new supply (90-day change in total supply, net of burns, at today&apos;s price).</p>
+            <p className="mt-2 leading-relaxed text-muted">Points to building at {RULES.coveragePaying * 100}% or more, to hype below {RULES.coverageNotPaying * 100}%, mixed in between.</p>
+          </div>
+        </div>
+        <div className="mt-6 overflow-x-auto rounded-[var(--radius-lg)] border hairline">
+          <table className="w-full min-w-[560px] text-sm">
+            <caption className="px-4 pt-3 text-left text-sm font-[560] text-fg">Combining the sections<span className="block text-xs font-normal text-muted">Sections 1 and 3 decide; Section 2 sets confidence (moderate when it agrees with the verdict&apos;s direction, low otherwise).</span></caption>
+            <thead className="text-xs text-muted"><tr><th className="px-4 py-2 text-left font-normal">Section 1</th><th className="px-4 py-2 text-left font-normal">Section 3</th><th className="px-4 py-2 text-left font-normal">Verdict</th></tr></thead>
+            <tbody>
+              {[['Building', 'Building', 'Building the future'], ['Hype', 'Hype', 'Following the hype'], ['Building', 'Mixed or hype', 'Building, but not yet paying the token'], ['Mixed or hype', 'Building', 'Paying the token, but products are not lasting'], ['Mixed', 'Mixed or hype', 'Mixed evidence'], ['Insufficient (either)', '', 'Insufficient evidence']].map(([a, b, c]) => (
+                <tr key={`${a}-${b}`} className="border-t hairline"><td className="px-4 py-2 text-fg-2">{a}</td><td className="px-4 py-2 text-fg-2">{b}</td><td className="px-4 py-2">{c}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">Disclosure: these thresholds were written while building the pipeline, after some raw values had been seen. They are not a blind pre-registration. They live in <span className="num">src/lib/research/thesis.ts</span>; change them and run <span className="num">npm run research:rebuild</span> to see how sensitive the verdict is.</p>
       </section>
 
       <section id="model" className="scroll-mt-20 mt-16 border-t hairline pt-10">

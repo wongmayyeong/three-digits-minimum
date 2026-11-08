@@ -1,9 +1,10 @@
 /**
- * The three curated debate topics. Server-defined: API input may only select one of these
- * slugs, and each topic selects evidence by ID from the shared research dataset.
+ * The single thesis. The debate engine keeps a topic abstraction so the arena can cite one
+ * question, two hypotheses and a fixed evidence list; there is exactly one topic.
  */
+import { THESIS_SUBTITLE, THESIS_TITLE } from '@/lib/research/thesis';
 
-export type TopicSlug = 'intents-bet' | 'growth-or-hype' | 'long-game';
+export type TopicSlug = 'building-or-hype';
 
 export interface TopicDef {
   slug: TopicSlug;
@@ -14,84 +15,40 @@ export interface TopicDef {
   framing: string;
   bullHypothesis: string;
   bearHypothesis: string;
-  /** What evidence the topic needs, shown on the topic page with availability. */
   evidenceRequirements: { label: string; evidenceIds: string[] }[];
-  /** Evidence IDs included in this topic's snapshot (model items are always included for topic 1 and 3). */
   evidenceIds: string[];
-  /** Whether the break-even model is part of this topic. */
   usesModel: boolean;
 }
 
-const INTENTS_CORE = ['INT-VOL-90D', 'INT-VOL-PRIOR-90D', 'INT-VOL-GROWTH', 'INT-VOL-ANN', 'INT-FEES-90D', 'INT-FEES-PRIOR-90D', 'INT-FEE-RATE', 'INT-FEE-RATE-PRIOR', 'INT-REV-90D', 'INT-REV-PRIOR-90D', 'INT-REV-ANN', 'INT-CAPTURE', 'INT-CAPTURE-PRIOR', 'INT-TAKE-RATE', 'INT-TAKE-RATE-PRIOR', 'INT-BUYBACK-90D', 'INT-BUYBACK-SHARE', 'INT-DEFINITIONS'];
+const ERAS = ['SOCIAL', 'SIGNER', 'INTENTS'].flatMap((c) => [`ERA-${c}-PEAK`, `ERA-${c}-LATEST`, `ERA-${c}-RETENTION`]);
+const EVENTS = ['BOS', 'CHAIN-SIGNATURES', 'USER-OWNED-AI', 'INTENTS'].flatMap((c) => [`EVT-${c}-DAA-90D`, `EVT-${c}-REL-90D`]);
+const PAYS = ['COV-BUYBACK-REALIZED', 'COV-CAPTURE-MAX', 'SUP-NET-NEW-ANN-PCT', 'SUP-NET-NEW-ANN-USD', 'INT-TAKE-RATE', 'INT-TAKE-RATE-PRIOR', 'INT-REV-ANN', 'INT-BUYBACK-90D', 'INT-BUYBACK-SHARE', 'INT-FEE-RATE', 'INT-FEE-RATE-PRIOR', 'INT-CAPTURE', 'ONC-BUYBACK-WALLET', 'ONC-MAX-INFLATION', 'ONC-ISSUANCE-USD', 'VAL-NEAR-VALUE-CAPTURE-ANN', 'VAL-NEAR-MCAP-TO-CAPTURE'];
 const MODEL = ['MODEL-BUYBACK-USD', 'MODEL-BUYBACK-TO-MCAP', 'MODEL-BREAKEVEN-VOL-2PCT', 'MODEL-VOL-MULTIPLE-2PCT', 'MODEL-REQ-TAKE-RATE-2PCT', 'MODEL-CURRENT-TAKE-RATE'];
-const EXPLORER = ['INT-EXPLORER-TOP5-SHARE', 'INT-EXPLORER-MEDIAN-SWAP'];
-const ACTIVITY = ['ACT-DAA-30D', 'ACT-DAA-30D-1Y-AGO', 'ACT-DAA-YOY', 'ACT-TXN-30D', 'ACT-NEW-30D', 'ACT-GAS-FEES-30D', 'ACT-RETENTION'];
-const DEFI = ['DEFI-TVL-NEAR', 'DEFI-TVL-NEAR-1Y-AGO', 'DEFI-TVL-NEAR-YOY', 'DEFI-RHEA-LEND-TVL', 'DEFI-RHEA-DEX-TVL', 'DEFI-STABLES-NEAR'];
-const PEERS = ['NEAR', 'SOL', 'SUI', 'AVAX'].flatMap((c) => [`PEER-${c}-FEES-30D`, `PEER-${c}-TVL`, `PEER-${c}-DEX-30D`, `PEER-${c}-MCAP-TO-FEES`, `PEER-${c}-MCAP-TO-TVL`]);
+const CONTEXT = ['MKT-NEAR-MCAP', 'MKT-NEAR-PRICE', 'MKT-NEAR-MCAP-1Y', 'INT-VOL-90D', 'INT-VOL-PRIOR-90D', 'INT-VOL-GROWTH', 'INT-VOL-ANN', 'ACT-DAA-30D', 'ACT-DAA-30D-1Y-AGO', 'ACT-DAA-YOY', 'ACT-TXN-30D', 'DEFI-TVL-NEAR', 'DEFI-TVL-NEAR-YOY', 'DEFI-STABLES-NEAR', 'INT-DEFINITIONS', 'INT-EXPLORER-TOP5-SHARE', 'ACT-RETENTION'];
+const PEERS = ['NEAR', 'SOL', 'SUI', 'AVAX'].flatMap((c) => [`PEER-${c}-MCAP-TO-FEES`]).concat(['MKT-SOL-MCAP', 'MKT-SUI-MCAP', 'MKT-AVAX-MCAP', 'PEER-NEAR-FEES-30D', 'PEER-SOL-FEES-30D', 'PEER-SUI-FEES-30D', 'PEER-AVAX-FEES-30D']);
 
-export const TOPICS: TopicDef[] = [
-  {
-    slug: 'intents-bet',
-    order: 1,
-    shortLabel: 'The Intents Bet',
-    title: 'Can NEAR Intents generate economically meaningful value for NEAR?',
-    question: 'Can NEAR Intents generate economically meaningful value for NEAR token holders, beyond headline swap volume?',
-    framing: 'Intents volume is real and growing. The open question is how much of each swapped dollar reaches NEAR, and whether that amount matters next to a multi-billion-dollar market cap.',
-    bullHypothesis: 'Intents is compounding volume at a fee rate that holds, NEAR captures a measurable share, and that share already funds open-market buybacks. Moderate growth makes buyback demand material.',
-    bearHypothesis: 'Most fees go to solvers and distributors, buybacks are a small fraction of market cap and are held rather than burned, and fee competition will compress the take before volume can close the gap.',
-    evidenceRequirements: [
-      { label: 'Swap volume over matched windows', evidenceIds: ['INT-VOL-90D', 'INT-VOL-PRIOR-90D'] },
-      { label: 'Gross fees and NEAR-captured revenue', evidenceIds: ['INT-FEES-90D', 'INT-REV-90D'] },
-      { label: 'Revenue classified as buybacks', evidenceIds: ['INT-BUYBACK-90D'] },
-      { label: 'Onchain buyback wallet balance', evidenceIds: ['ONC-BUYBACK-WALLET'] },
-      { label: 'Circulating market cap', evidenceIds: ['MKT-NEAR-MCAP'] },
-      { label: 'Integrator concentration (partner API)', evidenceIds: EXPLORER },
-    ],
-    evidenceIds: ['MKT-NEAR-MCAP', 'MKT-NEAR-PRICE', ...INTENTS_CORE, 'ONC-BUYBACK-WALLET', 'ONC-TOTAL-SUPPLY', 'ONC-BUYBACK-PCT-SUPPLY', 'ONC-MAX-INFLATION', 'ONC-ISSUANCE-USD', 'PEER-NEAR-DEX-30D', ...EXPLORER, ...MODEL],
-    usesModel: true,
-  },
-  {
-    slug: 'growth-or-hype',
-    order: 2,
-    shortLabel: 'Growth or Hype?',
-    title: 'Is NEAR\'s real adoption strong enough to justify its valuation?',
-    question: 'Is NEAR\'s ecosystem adoption and economic activity strong enough to justify its current valuation?',
-    framing: 'Market cap, fees, accounts and DeFi deposits tell different stories. Transactions alone do not prove adoption, and accounts are not people.',
-    bullHypothesis: 'Economic activity (Intents volume, stablecoins, DeFi deposits) is growing regardless of raw account counts, and token-level value capture is now measurable, so the valuation rests on real usage.',
-    bearHypothesis: 'Account activity, base-layer fees and DeFi depth are too small relative to market cap, so the valuation is not explained by measurable usage.',
-    evidenceRequirements: [
-      { label: 'Market cap and price history', evidenceIds: ['MKT-NEAR-MCAP', 'MKT-NEAR-MCAP-1Y'] },
-      { label: 'Active accounts, matched year-over-year', evidenceIds: ['ACT-DAA-30D', 'ACT-DAA-30D-1Y-AGO'] },
-      { label: 'Base-layer fees and burns', evidenceIds: ['FEES-NEAR-CHAIN-90D', 'FEES-NEAR-BURN-90D'] },
-      { label: 'DeFi TVL, RHEA and stablecoins', evidenceIds: ['DEFI-TVL-NEAR', 'DEFI-RHEA-LEND-TVL', 'DEFI-STABLES-NEAR'] },
-      { label: 'Retained signer cohorts (BigQuery)', evidenceIds: ['ACT-RETENTION'] },
-    ],
-    evidenceIds: ['MKT-NEAR-MCAP', 'MKT-NEAR-PRICE', 'MKT-NEAR-MCAP-1Y', ...ACTIVITY, ...DEFI, 'FEES-NEAR-CHAIN-90D', 'FEES-NEAR-BURN-90D', 'INT-VOL-90D', 'INT-VOL-GROWTH', 'INT-REV-ANN', 'INT-BUYBACK-90D', 'VAL-NEAR-VALUE-CAPTURE-ANN', 'VAL-NEAR-MCAP-TO-CAPTURE', 'PEER-NEAR-MCAP-TO-FEES', 'PEER-NEAR-DEX-30D', 'ONC-MAX-INFLATION', 'ONC-ISSUANCE-USD'],
-    usesModel: false,
-  },
-  {
-    slug: 'long-game',
-    order: 3,
-    shortLabel: 'The Long Game',
-    title: 'Can NEAR become a stronger long-term investment than competing L1s?',
-    question: 'Over 3 to 5 years, can NEAR become a stronger long-term investment than Solana, Sui and Avalanche?',
-    framing: 'Compared on one matched 30-day window and one fee definition. Chain abstraction and agent infrastructure are claims to test against measurable milestones, not facts.',
-    bullHypothesis: 'NEAR\'s Intents layer earns revenue from activity on other chains, a source of value capture its peers lack, and its valuation multiples are not out of line once that revenue is counted.',
-    bearHypothesis: 'On matched data NEAR trails peers on fees, DEX depth and TVL, its multiple on base-layer fees is high, and cross-chain revenue is small and contestable.',
-    evidenceRequirements: [
-      { label: 'Peer market caps (matched fetch)', evidenceIds: ['MKT-NEAR-MCAP', 'MKT-SOL-MCAP', 'MKT-SUI-MCAP', 'MKT-AVAX-MCAP'] },
-      { label: 'Chain fees on one 30-day window', evidenceIds: ['PEER-NEAR-FEES-30D', 'PEER-SOL-FEES-30D', 'PEER-SUI-FEES-30D', 'PEER-AVAX-FEES-30D'] },
-      { label: 'DeFi TVL and DEX volume', evidenceIds: ['PEER-NEAR-TVL', 'PEER-SOL-TVL', 'PEER-NEAR-DEX-30D', 'PEER-SOL-DEX-30D'] },
-      { label: 'Cross-chain revenue (Intents)', evidenceIds: ['INT-REV-ANN'] },
-      { label: 'Tokenomics: issuance and buybacks', evidenceIds: ['ONC-MAX-INFLATION', 'ONC-BUYBACK-WALLET'] },
-    ],
-    evidenceIds: ['MKT-NEAR-MCAP', 'MKT-SOL-MCAP', 'MKT-SUI-MCAP', 'MKT-AVAX-MCAP', ...PEERS, 'INT-VOL-ANN', 'INT-VOL-GROWTH', 'INT-REV-ANN', 'INT-CAPTURE', 'VAL-NEAR-VALUE-CAPTURE-ANN', 'VAL-NEAR-MCAP-TO-CAPTURE', 'ACT-DAA-30D', 'ACT-DAA-YOY', 'ONC-MAX-INFLATION', 'ONC-ISSUANCE-USD', 'ONC-BUYBACK-WALLET', 'MODEL-BUYBACK-TO-MCAP', 'MODEL-VOL-MULTIPLE-2PCT'],
-    usesModel: true,
-  },
-];
+export const THESIS_TOPIC: TopicDef = {
+  slug: 'building-or-hype',
+  order: 1,
+  shortLabel: 'Building or Hype?',
+  title: THESIS_TITLE,
+  question: THESIS_TITLE,
+  framing: `${THESIS_SUBTITLE} NEAR has moved from a scalable L1 to Social and BOS, Chain Abstraction, Intents and AI. The test: did each era's product keep real usage, did adoption follow each pivot, and does today's activity pay the token?`,
+  bullHypothesis: 'NEAR is building: each era left products and capabilities that still carry real activity, adoption followed the pivots, and Intents revenue is now flowing back to the token at a rising rate.',
+  bearHypothesis: 'NEAR is following the hype: era products fade once the narrative moves on, adoption did not follow the announcements, and value returned to the token is small next to new supply.',
+  evidenceRequirements: [
+    { label: 'Monthly activity of each era\'s contract (social.near, v1.signer, intents.near)', evidenceIds: ['ERA-SOCIAL-LATEST', 'ERA-SIGNER-LATEST', 'ERA-INTENTS-LATEST'] },
+    { label: 'Adoption 90 days after each pivot', evidenceIds: EVENTS.filter((e) => e.endsWith('DAA-90D')) },
+    { label: 'Buybacks versus realized net new supply', evidenceIds: ['COV-BUYBACK-REALIZED', 'SUP-NET-NEW-ANN-PCT'] },
+    { label: 'Intents volume, fees and take rate', evidenceIds: ['INT-VOL-90D', 'INT-TAKE-RATE'] },
+  ],
+  evidenceIds: [...ERAS, ...EVENTS, ...PAYS, ...MODEL, ...CONTEXT, ...PEERS],
+  usesModel: true,
+};
 
-export const TOPIC_SLUGS = TOPICS.map((t) => t.slug) as [TopicSlug, ...TopicSlug[]];
+export const TOPICS: TopicDef[] = [THESIS_TOPIC];
+export const TOPIC_SLUGS = ['building-or-hype'] as [TopicSlug, ...TopicSlug[]];
 
 export function getTopic(slug: string): TopicDef | null {
-  return TOPICS.find((t) => t.slug === slug) ?? null;
+  return slug === THESIS_TOPIC.slug ? THESIS_TOPIC : null;
 }

@@ -1,174 +1,155 @@
 import Link from 'next/link';
 import { ArenaIdle } from '@/components/arena-idle';
 import { StarField } from '@/components/brand';
-import { AsOf, Container, EmptyState, SectionHead, StatValue } from '@/components/ui';
 import { LibraryRow } from '@/components/library-row';
-import { previewTopic, type TopicPreview } from '@/lib/debate/preview';
-import { listLibrary } from '@/lib/debate/view';
+import { ScenarioTable } from '@/components/scenario-table';
+import { Theatre } from '@/components/theatre/theatre';
+import { AsOfLine, EraCharts, EraTable, EventTable, FinalVerdictLabel, SectionBadge, SectionHeader, SupplyStats, TriggerTable } from '@/components/thesis';
+import { Container, EmptyState, Notice } from '@/components/ui';
+import { previewTopic } from '@/lib/debate/preview';
+import { listLibrary, loadDebateView } from '@/lib/debate/view';
 import { formatDate, formatValue } from '@/lib/format';
-import { TOPICS } from '@/lib/topics/topics';
+import { PIVOTS, RULES, THESIS_SUBTITLE, THESIS_TITLE } from '@/lib/research/thesis';
+import { evaluateTriggers } from '@/lib/research/triggers';
+import { THESIS_TOPIC } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
 
-const HEADLINES: Record<string, { id: string; caption: string }[]> = {
-  'intents-bet': [
-    { id: 'INT-VOL-90D', caption: 'Intents volume, 90 days' },
-    { id: 'MODEL-BUYBACK-TO-MCAP', caption: 'Buyback demand / market cap, per year' },
-  ],
-  'growth-or-hype': [
-    { id: 'MKT-NEAR-MCAP', caption: 'Circulating market cap' },
-    { id: 'ACT-DAA-YOY', caption: 'Daily active accounts vs a year ago' },
-  ],
-  'long-game': [
-    { id: 'PEER-NEAR-MCAP-TO-FEES', caption: 'NEAR market cap / chain fees' },
-    { id: 'PEER-SOL-MCAP-TO-FEES', caption: 'Solana market cap / chain fees' },
-  ],
-};
-
-async function safe<T>(p: Promise<T>): Promise<T | null> {
-  try { return await p; } catch { return null; }
-}
-
-export default async function Home() {
-  const [previews, library] = await Promise.all([
-    Promise.all(TOPICS.map((t) => safe(previewTopic(t.slug, { offline: true })))),
-    safe(listLibrary({ limit: 4 })),
+export default async function ThesisPage() {
+  const [preview, episodes] = await Promise.all([
+    previewTopic(THESIS_TOPIC.slug, { offline: true }).catch(() => null),
+    listLibrary({ limit: 6 }).catch(() => null),
   ]);
-  const byTopic = Object.fromEntries(TOPICS.map((t, i) => [t.slug, previews[i] ?? null])) as Record<string, TopicPreview | null>;
-  const intents = byTopic['intents-bet'];
-  const item = (p: TopicPreview | null, id: string) => p?.items.find((i) => i.evidenceId === id) ?? null;
-  const base = intents?.scenarios?.find((s) => s.key === 'base') ?? null;
+  const latest = episodes?.entries[0] ? await loadDebateView(episodes.entries[0].id).catch(() => null) : null;
+  const t = preview?.thesis ?? null;
+  const triggers = preview ? evaluateTriggers(preview.items) : [];
+  const item = (id: string) => preview?.items.find((i) => i.evidenceId === id) ?? null;
 
   return (
     <>
       <section className="relative overflow-hidden border-b hairline">
-        <StarField count={30} seed={3} className="opacity-70" />
-        <Container className="relative grid gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
-          <div>
-            <p className="eyebrow mb-6">AI debate arena · NEAR investment research</p>
-            <h1 className="display-xl text-balance">Every claim has an opponent.</h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-2 md:text-xl">Three minds. One evidence trail. Your NEAR thesis, on trial.</p>
-            <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-muted">
-              Bull and Bear argue from the same frozen snapshot of live onchain and market data. Every figure they cite is checked by the server, and a neutral Judge scores the evidence, not the conviction.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="#topics" className="btn btn-primary">Enter the Arena</Link>
-              {library?.entries[0] ? (
-                <Link href={`/debates/${library.entries[0].id}`} className="btn btn-ghost">Watch the latest replay</Link>
-              ) : (
-                <Link href="/methodology" className="btn btn-ghost">How it is judged</Link>
-              )}
-            </div>
-          </div>
-          <ArenaIdle />
-        </Container>
-      </section>
-
-      <Container className="py-20" >
-        <SectionHead eyebrow="Three questions" title="Pick the argument you want tested." id="topics">
-          Each debate freezes its own evidence snapshot at the start. Figures below come from the most recent stored source responses; a debate fetches fresh ones.
-        </SectionHead>
-        <ol className="grid gap-4 lg:grid-cols-3">
-          {TOPICS.map((t) => {
-            const p = byTopic[t.slug] ?? null;
-            const avail = p ? p.items.filter((i) => i.available).length : null;
-            return (
-              <li key={t.slug} className="panel group relative flex flex-col p-6 transition-colors hover:border-line-strong">
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="num text-sm text-muted">0{t.order}</span>
-                  {avail !== null && p && <span className="text-xs text-muted"><span className="num">{avail}/{p.items.length}</span> evidence items available</span>}
-                </div>
-                <h3 className="mt-5 text-2xl font-[600] tracking-[-0.02em]">{t.shortLabel}</h3>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-fg-2">{t.title}</p>
-                <dl className="mt-6 grid grid-cols-2 gap-4 border-t hairline pt-5">
-                  {HEADLINES[t.slug]!.map((h) => {
-                    const it = item(p, h.id);
-                    return (
-                      <div key={h.id}>
-                        <dt className="text-xs leading-snug text-muted">{h.caption}</dt>
-                        <dd className="mt-1.5 text-xl"><StatValue value={it?.value ?? null} unit={it?.unit ?? 'USD'} /></dd>
-                      </div>
-                    );
-                  })}
-                </dl>
-                <p className="mt-3 text-xs text-muted">{p?.newestSourceAt ? <>Sources stored <AsOf date={p.newestSourceAt} prefix="on" /></> : 'No stored source data yet; the topic page fetches it.'}</p>
-                <Link href={`/topics/${t.slug}`} className="mt-6 inline-flex items-center gap-2 text-sm font-[560] text-mint after:absolute after:inset-0 after:content-['']">
-                  Open the case <span aria-hidden="true">→</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
-      </Container>
-
-      <section className="border-y hairline bg-surface">
-        <Container className="py-20">
-          <SectionHead eyebrow="How a debate is built" title="Opinions are cheap. Citations are checked.">
-            The AI agents never browse. They argue over one immutable snapshot, and everything they say is held to it.
-          </SectionHead>
-          <ol className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line md:grid-cols-4">
-            {[
-              ['Freeze', 'Live data from DefiLlama, CoinGecko, NearBlocks and NEAR RPC is fetched, hashed and frozen into a snapshot. Missing sources are marked unavailable, never filled in.'],
-              ['Compute', 'The server computes every ratio and the break-even demand model deterministically. The AI cannot invent a number the model did not produce.'],
-              ['Argue', 'Bull and Bear open, rebut and close. Every claim must cite evidence IDs; the server rejects unknown IDs and flags numbers that match nothing.'],
-              ['Judge', 'The Judge scores each side on a fixed rubric and challenges the model inputs. Citation penalties are applied by code, not by the model.'],
-            ].map(([h, b], i) => (
-              <li key={h} className="bg-surface p-6">
-                <span className="num text-xs text-mint">0{i + 1}</span>
-                <p className="mt-3 text-lg font-[600]">{h}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{b}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      <Container className="py-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div>
-            <p className="eyebrow mb-3">The central question</p>
-            <h2 className="display-m text-balance">How much volume would buybacks need?</h2>
-            <p className="mt-4 max-w-xl leading-relaxed text-fg-2">
-              NEBUBE does not predict price. It asks what measurable activity would be required for NEAR Intents revenue to fund buybacks worth a chosen share of market cap, and lets Bull and Bear fight over the inputs.
-            </p>
-            <pre className="num mt-6 overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-4 text-[0.8125rem] leading-6 text-fg-2">{`annual_buyback_demand = V × f × c × b
-buyback_to_mcap       = demand ÷ M
-break_even_volume     = (y × M) ÷ (f × c × b)`}</pre>
-            <Link href="/methodology#model" className="mt-5 inline-flex text-sm font-[560] text-mint">Explore the model and calculator →</Link>
-          </div>
-          <div className="panel p-6">
-            <p className="eyebrow">Base case from stored data</p>
-            {base && intents ? (
-              <>
-                <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
-                  <div><dt className="text-xs text-muted">Annual buyback demand</dt><dd className="mt-1 text-2xl"><StatValue value={base.outputs.annualBuybackDemandUsd} unit="USD" /></dd></div>
-                  <div><dt className="text-xs text-muted">As a share of market cap</dt><dd className="mt-1 text-2xl"><StatValue value={base.outputs.buybackDemandToMcap} unit="fraction" /></dd></div>
-                  <div><dt className="text-xs text-muted">Volume needed for 2% (hypothetical)</dt><dd className="mt-1 text-2xl"><StatValue value={base.outputs.breakEvenAnnualVolumeUsd} unit="USD" /></dd></div>
-                  <div><dt className="text-xs text-muted">Multiple of today&apos;s run rate</dt><dd className="mt-1 text-2xl"><StatValue value={base.outputs.volumeMultipleRequired} unit="ratio" /></dd></div>
-                </dl>
-                <p className="mt-6 border-t hairline pt-4 text-xs leading-relaxed text-muted">
-                  Inputs: V {formatValue(base.inputs.V.value, 'USD')} (90-day run rate), f {formatValue(base.inputs.f.value, 'fraction')}, c {formatValue(base.inputs.c.value, 'fraction')}, b {formatValue(base.inputs.b.value, 'fraction')} (DefiLlama classification), M {formatValue(base.inputs.M.value, 'USD')}. Window ends {formatDate(intents.windowEnd)}. A buyback is not a burn and does not move price one-for-one.
-                </p>
-              </>
-            ) : (
-              <p className="mt-4 text-sm leading-relaxed text-muted">No stored source data yet. Open The Intents Bet to fetch live data and compute the base case.</p>
+        <StarField count={30} seed={3} className="opacity-60" />
+        <Container className="relative py-14 md:py-20">
+          <p className="eyebrow mb-5">NEAR investment thesis · reproducible research</p>
+          <h1 className="display-xl max-w-5xl text-balance">{THESIS_TITLE}</h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fg-2 md:text-xl">{THESIS_SUBTITLE}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            {t && (
+              <p className="text-base">
+                <span className="text-muted">Current verdict: </span>
+                <span className="font-[620]"><FinalVerdictLabel verdict={t.verdict} /></span>
+                <span className="text-muted"> · {t.confidence} confidence</span>
+              </p>
             )}
+            <a href="#verdict" className="text-sm text-mint">Jump to the verdict ↓</a>
           </div>
-        </div>
-      </Container>
+          {preview && <div className="mt-3"><AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} /></div>}
+          <p className="mt-2 max-w-3xl text-xs leading-relaxed text-muted">Educational research, not financial advice. Not affiliated with the NEAR Foundation. Every figure links to its source; the verdict is computed by published rules, not written by AI.</p>
+        </Container>
+      </section>
 
-      <Container className="pb-4">
-        <SectionHead eyebrow="Replay library" title="Recent debates">
-          Every completed debate keeps its evidence snapshot frozen forever. Replays never call the AI or re-fetch data.
-        </SectionHead>
-        {library && library.entries.length ? (
-          <ul className="grid gap-3 md:grid-cols-2">
-            {library.entries.map((e) => <LibraryRow key={e.id} e={e} />)}
-          </ul>
+      <Container className="py-10 md:py-14" >
+        <section aria-labelledby="debate-h">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="eyebrow mb-2">The debate</p>
+              <h2 id="debate-h" className="text-2xl font-[600] tracking-[-0.02em]">Bull and Bear argue it out. The Judge scores the evidence.</h2>
+            </div>
+            <a href="#pivots" className="text-sm text-muted hover:text-fg">Skip to the research ↓</a>
+          </div>
+          {latest && latest.status === 'COMPLETE' ? (
+            <Theatre initial={latest} variant="embed" />
+          ) : (
+            <div className="space-y-3">
+              <ArenaIdle />
+              <p className="text-sm text-muted">The first debate episode appears here once it is generated from a frozen snapshot of the research below. Episodes are regenerated only when the verdict changes.</p>
+            </div>
+          )}
+        </section>
+
+        {!preview || !t ? (
+          <div className="mt-14"><Notice tone="warn" title="Research data is not available yet.">No stored source responses were found. Run the research refresh (npm run refresh:now) or wait for the daily refresh.</Notice></div>
         ) : (
-          <EmptyState title="No public debates yet." action={{ href: '/topics/intents-bet', label: 'Start the first debate' }}>
-            Completed debates appear here with their verdict, scores and frozen snapshot. Nothing is pre-seeded.
-          </EmptyState>
+          <>
+            <section id="pivots" className="mt-16 scroll-mt-20" aria-labelledby="pivots-h">
+              <header className="mb-8 border-t hairline pt-10">
+                <p className="eyebrow mb-3"><span className="text-mint">00</span> · The pivots</p>
+                <h2 id="pivots-h" className="display-m max-w-3xl text-balance">From scalable L1 to Social, Chain Abstraction, Intents and AI.</h2>
+                <p className="mt-3 max-w-3xl text-[0.9375rem] leading-relaxed text-fg-2">Dates are taken from NEAR&apos;s own announcements. Each era&apos;s representative contract is measured onchain below; the AI era has no single contract to measure, which is stated rather than estimated.</p>
+              </header>
+              <ol className="grid gap-3 md:grid-cols-4">
+                {PIVOTS.map((p) => (
+                  <li key={p.id} className="panel p-5">
+                    <p className="num text-xs text-mint">{p.shown}</p>
+                    <p className="mt-2 font-[600]">{p.label}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted">{p.note}</p>
+                    <a href={p.source} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-xs text-fg-2 underline decoration-line-strong underline-offset-2 hover:decoration-mint">Official source</a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section id="lasted" className="mt-16 scroll-mt-20">
+              <SectionHeader n={1} title="Product" question="Did it last? Does each era's product keep real usage after the narrative moves on?" verdict={t.sections[0]!.verdict} reason={t.sections[0]!.reason} howHref="/methodology#thesis" />
+              <EraCharts eras={t.eras} />
+              <div className="mt-4"><EraTable eras={t.eras} /></div>
+              <p className="mt-3 text-xs leading-relaxed text-muted">Rule: an era &quot;lasted&quot; if its latest complete month keeps at least {RULES.eraRetentionLasting * 100}% of its own peak month, judged once the peak is {RULES.eraMinMonthsSincePeak}+ months old. Transactions are not people: relayers, solvers and MPC node responses are included. A decline can also mean migration to a newer product, so this measures whether usage stayed, not why it left.{preview.eraMonthsStored < preview.eraMonthsTotal ? ` ${preview.eraMonthsStored} of ${preview.eraMonthsTotal} monthly counts are stored so far; the rest arrive with the daily refresh.` : ''}</p>
+            </section>
+
+            <section id="adoption" className="mt-16 scroll-mt-20">
+              <SectionHeader n={2} title="Market" question="Did adoption justify the hype? Did real usage follow each pivot within 90 days?" verdict={t.sections[1]!.verdict} reason={t.sections[1]!.reason} howHref="/methodology#thesis" />
+              <EventTable events={t.events} />
+              <p className="mt-3 text-xs leading-relaxed text-muted">Adoption followed a pivot if daily active accounts (mean of days 60 to 90 after) beat the 30 days before, or the era&apos;s product activity at least {RULES.eraGrowthMultiple}x&apos;d from its launch month to two months later. The NEAR-minus-BTC return is shown as market context only and is not scored: prices can move ahead of adoption for good reasons. This section sets confidence; it does not decide the verdict.</p>
+            </section>
+
+            <section id="pays" className="mt-16 scroll-mt-20">
+              <SectionHeader n={3} title="Investment" question="Does it pay $NEAR? Does today's activity return value to the token?" verdict={t.sections[2]!.verdict} reason={t.sections[2]!.reason} howHref="/methodology#model" />
+              <SupplyStats s={t.supply} />
+              <p className="mt-3 text-xs leading-relaxed text-muted">Paying the token if buybacks absorb at least {RULES.coveragePaying * 100}% of realized net new supply; not paying below {RULES.coverageNotPaying * 100}%. For comparison, burns plus buybacks cover {formatValue(t.supply.maxIssuanceCoverage, 'fraction')} of maximum possible issuance. A buyback is not a burn: bought tokens are held in {formatValue(item('ONC-BUYBACK-WALLET')?.value ?? null, 'NEAR')} at the buyback wallet.</p>
+              {preview.scenarios && (
+                <div className="mt-8">
+                  <h3 className="mb-1 text-lg font-[600]">What would it take? The break-even demand model</h3>
+                  <p className="mb-4 max-w-3xl text-sm text-muted">Annual Intents volume needed for buybacks to reach a hypothetical 2% of market cap, under three assumption sets. Today&apos;s run rate is {formatValue(item('INT-VOL-ANN')?.value ?? null, 'USD')}. <Link href="/methodology#calculator" className="text-mint">Try your own assumptions →</Link></p>
+                  <ScenarioTable scenarios={preview.scenarios.map((s) => ({ key: s.key, label: s.label, inputs: { rationale: s.rationale }, outputs: s.outputs as unknown as Record<string, unknown> }))} />
+                </div>
+              )}
+            </section>
+
+            <section id="verdict" className="mt-16 scroll-mt-20" aria-labelledby="verdict-h">
+              <header className="mb-8 border-t hairline pt-10">
+                <p className="eyebrow mb-3"><span className="text-mint">04</span> · The verdict</p>
+                <h2 id="verdict-h" className="display-l text-balance"><FinalVerdictLabel verdict={t.verdict} /></h2>
+                <p className="mt-3 text-sm text-muted">{t.confidence === 'moderate' ? 'Moderate' : 'Low'} confidence · computed from the data as of {formatDate(preview.windowEnd)}</p>
+              </header>
+              <div className="grid gap-4 md:grid-cols-3">
+                {t.sections.map((s) => (
+                  <div key={s.id} className="panel p-5">
+                    <p className="num text-xs text-faint">0{s.id}</p>
+                    <p className="mt-1 font-[600]">{s.title}</p>
+                    <div className="mt-3"><SectionBadge verdict={s.verdict} /></div>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{s.reason}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-fg-2">Sections 1 and 3 decide the verdict: building requires both lasting products and value returning to the token. Section 2 only raises or lowers confidence. If either core section lacks data, the verdict is &quot;insufficient evidence&quot; rather than a guess. The rules and thresholds are published in the methodology. They were written while the pipeline was built, after some data had been seen, so they are not a blind pre-registration; anyone can change them and rebuild.</p>
+              <h3 className="mb-3 mt-10 text-lg font-[600]">What would change this verdict</h3>
+              <TriggerTable triggers={triggers} />
+            </section>
+
+            <section id="episodes" className="mt-16 scroll-mt-20" aria-labelledby="ep-h">
+              <h2 id="ep-h" className="mb-4 border-t hairline pt-10 text-lg font-[600]">Debate episodes</h2>
+              {episodes?.entries.length ? (
+                <ul className="grid gap-3 md:grid-cols-2">{episodes.entries.map((e) => <LibraryRow key={e.id} e={e} />)}</ul>
+              ) : (
+                <EmptyState title="No debate episodes yet.">Each episode is generated from a frozen snapshot and kept permanently, so you can compare how the argument changed as the evidence changed.</EmptyState>
+              )}
+            </section>
+
+            <nav aria-label="Go deeper" className="mt-16 grid gap-3 border-t hairline pt-10 md:grid-cols-2">
+              <Link href="/research" className="panel p-5 transition-colors hover:border-line-strong"><p className="eyebrow">Data &amp; queries</p><p className="mt-2 font-[600]">Every chart, the request behind it, and the raw hashes</p></Link>
+              <Link href="/methodology" className="panel p-5 transition-colors hover:border-line-strong"><p className="eyebrow">Methodology</p><p className="mt-2 font-[600]">Rules, formulas, calculator and known limitations</p></Link>
+            </nav>
+          </>
         )}
       </Container>
     </>

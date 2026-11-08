@@ -34,7 +34,7 @@ export function renderDashboard(ds: ReturnType<typeof buildDataset>, triggers: R
   const trig = triggers.map((t) => `<tr><td>${t.id}</td><td>${esc(t.statement)}</td><td><code>${esc(t.rule)}</code></td><td>${esc(t.observed)}</td><td class="${t.status === 'TRIGGERED' ? 'bad' : t.status === 'UNKNOWN' ? 'unk' : 'ok'}">${t.status}</td></tr>`).join('');
   const base = ds.scenarios.find((s) => s.key === 'base');
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEBUBE research dashboard</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Is NEAR Building the Future or Following the Hype? Research dashboard</title>
 <style>
 :root{color-scheme:dark}body{margin:0;background:#060a08;color:#f2f1e9;font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
 main{max-width:1180px;margin:0 auto;padding:40px 20px}h1{font-size:40px;letter-spacing:-.02em;margin:0 0 8px}h2{font-size:16px;margin:0}
@@ -43,7 +43,7 @@ article{background:#0c1210;border:1px solid #ffffff17;border-radius:10px;padding
 table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}td,th{border-top:1px solid #ffffff17;padding:8px;text-align:left;vertical-align:top}
 .bad{color:#ff7966}.ok{color:#00ec97}.unk{color:#f5c451}code{font-size:12px;color:#c9cdc5}
 </style></head><body><main>
-<h1>NEBUBE research dashboard</h1>
+<h1>Is NEAR Building the Future or Following the Hype?</h1><p class="lead">Research dashboard: every chart, the query behind it, and one plain sentence on what it shows.</p>
 <p class="lead">Every chart below is rebuilt from raw provider responses by <code>npm run research:refresh</code> (live) or <code>npm run research:rebuild</code> (offline, from <code>artifacts/research/raw</code>). Flow metrics use the 90 days ending ${esc(formatDate(ds.windowEnd))}; peer comparisons use the 30 days ending ${esc(formatDate(ds.peerWindowEnd))}. Educational research, not financial advice.</p>
 ${base ? `<p class="lead">Base case of the break-even model: annual buyback demand ${esc(formatValue(base.outputs.annualBuybackDemandUsd, 'USD'))} (${esc(formatValue(base.outputs.buybackDemandToMcap, 'fraction'))} of market cap). Reaching a hypothetical 2% would need ${esc(formatValue(base.outputs.volumeMultipleRequired, 'ratio'))} today's volume run rate.</p>` : ''}
 <div class="grid">${cards}</div>

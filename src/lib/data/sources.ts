@@ -168,8 +168,14 @@ export function buildRequestCatalog(): HttpRequestDef[] {
     project: (j: any) => asArr(j?.charts).map((c: any) => ({
       date: String(c.date).slice(0, 10), txns: Number(c.txns), activeAccounts: Number(c.active_accounts),
       newAccounts: Number(c.new_accounts), feeUsd: Number(c.txn_fee_usd), circulatingYocto: String(c.circulating_supply),
+      totalSupplyYocto: String(c.total_supply), price: Number(c.near_price),
     })),
   });
+
+  // ---- DefiLlama coins: daily price history for NEAR and BTC (market context for pivot windows).
+  // The API returns at most 500 points per request, so history is split into fixed 400-day chunks
+  // per coin. Closed chunks never change and are fetched once; the open chunk refreshes every 6 hours.
+  reqs.push(...buildPriceRequests());
 
   // ---- NEAR RPC: supply, inflation parameters and the buyback wallet.
   reqs.push(rpc('near-rpc.block', 'block', { finality: 'final' }, (r) => ({
@@ -211,4 +217,85 @@ export function stableStringify(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
   const entries = Object.entries(value as Record<string, unknown>).filter(([, v]) => v !== undefined).sort(([a], [b]) => a.localeCompare(b));
   return `{${entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`).join(',')}}`;
+}
+
+// ---------------------------------------------------------------- era activity (Section 1: Did it last?)
+
+/** Daily price history starts 2022-09-01, before the first pivot measured (BOS, Feb 2023). */
+export const PRICE_HISTORY_START_UNIX = Date.UTC(2022, 8, 1) / 1000;
+
+/**
+ * Representative contract per strategic era. First-activity months were read from NearBlocks
+ * (oldest transaction for each account) and are fixed here so request keys stay stable.
+ */
+export const ERA_CONTRACTS = [
+  { id: 'social', account: 'social.near', era: 'Social / BOS', firstMonth: '2021-02', note: 'SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.' },
+  { id: 'signer', account: 'v1.signer', era: 'Chain Abstraction (Chain Signatures)', firstMonth: '2024-07', note: 'Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract\'s first transaction is 2024-07-31.' },
+  { id: 'intents', account: 'intents.near', era: 'Intents', firstMonth: '2024-11', note: 'NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.' },
+] as const;
+
+export type EraId = (typeof ERA_CONTRACTS)[number]['id'];
+
+/** Complete calendar months from `first` up to the month before `now`, as YYYY-MM. */
+export function completeMonths(first: string, now = new Date()): string[] {
+  const out: string[] = [];
+  let [y, m] = first.split('-').map(Number) as [number, number];
+  const endY = now.getUTCFullYear();
+  const endM = now.getUTCMonth() + 1;
+  while (y < endY || (y === endY && m < endM)) {
+    out.push(`${y}-${String(m).padStart(2, '0')}`);
+    m++;
+    if (m > 12) { m = 1; y++; }
+  }
+  return out;
+}
+
+function nextMonth(ym: string): string {
+  const [y, m] = ym.split('-').map(Number) as [number, number];
+  return m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, '0')}`;
+}
+
+/**
+ * One request per contract per complete month. Closed months do not change, so they carry
+ * a long freshness window and are fetched once. These are "background" requests: the
+ * scheduled refresh and the research CLI fetch them; debate snapshots read stored copies.
+ */
+export function buildEraRequests(now = new Date()): HttpRequestDef[] {
+  const reqs: HttpRequestDef[] = [];
+  for (const c of ERA_CONTRACTS) {
+    for (const ym of completeMonths(c.firstMonth, now)) {
+      reqs.push({
+        key: `nearblocks.era.${c.id}.${ym}`, source: 'nearblocks', ttlMs: 180 * 24 * HOUR,
+        url: `${SOURCES.nearblocks.baseUrl}/account/${c.account}/txns-only/count?after_date=${ym}-01&before_date=${nextMonth(ym)}-01`,
+        headers: (): Record<string, string> => (process.env.NEARBLOCKS_API_KEY ? { authorization: `Bearer ${process.env.NEARBLOCKS_API_KEY}` } : {}),
+        project: (j: any) => {
+          const n = Number(asArr(j?.txns)[0]?.count);
+          if (!Number.isFinite(n)) throw new Error('NearBlocks count missing');
+          return { account: c.account, month: ym, txns: n };
+        },
+      });
+    }
+  }
+  return reqs;
+}
+
+export const PRICE_COINS = ['near', 'bitcoin'] as const;
+const PRICE_CHUNK_DAYS = 400;
+
+/** Fixed price-history chunks: start dates are deterministic so request keys stay stable. */
+export function buildPriceRequests(now = new Date()): HttpRequestDef[] {
+  const reqs: HttpRequestDef[] = [];
+  const nowSec = Math.floor(now.getTime() / 1000);
+  for (let start = PRICE_HISTORY_START_UNIX; start < nowSec; start += PRICE_CHUNK_DAYS * 86_400) {
+    const closed = start + PRICE_CHUNK_DAYS * 86_400 < nowSec - 86_400;
+    const day = new Date(start * 1000).toISOString().slice(0, 10);
+    for (const coin of PRICE_COINS) {
+      reqs.push({
+        key: `defillama.coins.${coin}.${day}`, source: 'defillama', ttlMs: closed ? 180 * 24 * HOUR : 6 * HOUR,
+        url: `https://coins.llama.fi/chart/coingecko:${coin}?start=${start}&span=${PRICE_CHUNK_DAYS}&period=1d`,
+        project: (j: any) => ({ coin, prices: asArr(j?.coins?.[`coingecko:${coin}`]?.prices).map((p: any) => [Number(p.timestamp), Number(p.price)]) }),
+      });
+    }
+  }
+  return reqs;
 }

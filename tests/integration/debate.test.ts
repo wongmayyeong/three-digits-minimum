@@ -81,7 +81,7 @@ describe('debate lifecycle', () => {
   let firstId = '';
 
   it('runs topic -> research -> 6 turns -> verdict -> replay, citing only snapshot evidence', async () => {
-    const r = await m.createDebate({ topicSlug: 'intents-bet', clientKey: 'it-client-1', idempotencyKey: 'it-key-0001' });
+    const r = await m.createDebate({ topicSlug: 'building-or-hype', clientKey: 'it-client-1', idempotencyKey: 'it-key-0001' });
     firstId = r.publicId;
     expect(await runToEnd(firstId)).toBe('COMPLETE');
     const v = (await m.loadDebateView(firstId))!;
@@ -97,7 +97,7 @@ describe('debate lifecycle', () => {
   });
 
   it('is idempotent on the client key', async () => {
-    const again = await m.createDebate({ topicSlug: 'intents-bet', clientKey: 'it-client-1', idempotencyKey: 'it-key-0001' });
+    const again = await m.createDebate({ topicSlug: 'building-or-hype', clientKey: 'it-client-1', idempotencyKey: 'it-key-0001' });
     expect(again).toEqual({ publicId: firstId, reused: true });
   });
 
@@ -117,7 +117,7 @@ describe('debate lifecycle', () => {
     globalThis.fetch = vi.fn(async () => { throw new Error('network disabled in tests'); }) as typeof fetch;
     let re: { publicId: string };
     try {
-      re = await m.createDebate({ topicSlug: 'intents-bet', clientKey: 'it-client-2', parentPublicId: firstId });
+      re = await m.createDebate({ topicSlug: 'building-or-hype', clientKey: 'it-client-2', parentPublicId: firstId });
       expect(await runToEnd(re.publicId)).toBe('COMPLETE');
     } finally {
       globalThis.fetch = realFetch;
@@ -187,7 +187,7 @@ describe('partial outage and secrets', () => {
       throw new Error(`unexpected network call to ${String(url)}`);
     }) as typeof fetch;
     try {
-      const { snapshot, items, outcomes } = await m.createSnapshot('intents-bet');
+      const { snapshot, items, outcomes } = await m.createSnapshot('building-or-hype');
       expect(outcomes.find((o) => o.key === 'coingecko.markets')!.status).toBe('FAILED');
       const mcap = items.find((i) => i.evidenceId === 'MKT-NEAR-MCAP')!;
       expect(mcap.available).toBe(false);

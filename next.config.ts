@@ -12,6 +12,12 @@ const config: NextConfig = {
   // Separate build directory for parallel E2E servers; defaults to .next.
   distDir: process.env.NEXT_DIST_DIR || '.next',
   serverExternalPackages: ['@google-cloud/bigquery', 'pg', '@prisma/adapter-pg'],
+  async redirects() {
+    return [
+      { source: '/topics/:slug*', destination: '/', permanent: false },
+      { source: '/library', destination: '/#episodes', permanent: false },
+    ];
+  },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },

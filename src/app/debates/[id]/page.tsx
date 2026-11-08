@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Theatre } from '@/components/theatre/theatre';
 import { Container } from '@/components/ui';
-import { resolveLlm } from '@/lib/ai/provider';
 import { loadDebateView } from '@/lib/debate/view';
 import { formatDateTime } from '@/lib/format';
 import { validPublicId } from '@/lib/security/http';
@@ -25,13 +24,14 @@ export default async function DebatePage({ params }: { params: Promise<{ id: str
   if (!validPublicId(id, 'd')) notFound();
   const view = await loadDebateView(id);
   if (!view) notFound();
-  const topic = getTopic(view.topicSlug)!;
+  const topic = getTopic(view.topicSlug);
+  // Debates from retired topics (local test data before the single-thesis restructure) are not shown.
+  if (!topic) notFound();
   return (
     <Container className="py-8 md:py-10">
       <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted">
-        <Link href="/#topics" className="hover:text-fg">Arena</Link> <span aria-hidden="true">/</span>{' '}
-        <Link href={`/topics/${topic.slug}`} className="hover:text-fg">{topic.shortLabel}</Link> <span aria-hidden="true">/</span>{' '}
-        <span className="text-fg-2">{view.parentId ? 'Rematch' : 'Debate'}</span>
+        <Link href="/" className="hover:text-fg">Thesis</Link> <span aria-hidden="true">/</span>{' '}
+        <span className="text-fg-2">Debate episode</span>
       </nav>
       <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-3xl">
@@ -39,7 +39,7 @@ export default async function DebatePage({ params }: { params: Promise<{ id: str
           <p className="mt-2 text-sm text-muted">Started {formatDateTime(view.createdAt)}{view.completedAt ? ` · completed ${formatDateTime(view.completedAt)}` : ''}</p>
         </div>
       </header>
-      <Theatre initial={view} llmAvailable={resolveLlm().status.configured} />
+      <Theatre initial={view} />
     </Container>
   );
 }

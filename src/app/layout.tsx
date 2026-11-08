@@ -9,16 +9,16 @@ const base = process.env.NEBUBE_PUBLIC_URL || 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(base),
-  title: { default: 'NEBUBE: Judged on the evidence, not the conviction', template: '%s · NEBUBE' },
-  description: 'Watch two AI analysts argue the bull and bear case for NEAR from one frozen, sourced evidence snapshot. A neutral AI judge scores the evidence, not the conviction.',
-  applicationName: 'NEBUBE',
+  title: { default: 'Is NEAR Building the Future or Following the Hype?', template: '%s · Building or Hype?' },
+  description: 'A reproducible NEAR investment thesis. Every pivot, from Social and BOS to Chain Abstraction, Intents and AI, tested against live onchain and market data, opened by an AI Bull vs Bear debate.',
+  applicationName: 'Building or Hype?',
   openGraph: {
     type: 'website',
-    siteName: 'NEBUBE',
-    title: 'NEBUBE: Every claim has an opponent.',
-    description: 'Three minds. One evidence trail. Your NEAR thesis, on trial.',
+    siteName: 'Building or Hype?',
+    title: 'Is NEAR Building the Future or Following the Hype?',
+    description: 'Every pivot, tested against the evidence.',
   },
-  twitter: { card: 'summary_large_image', title: 'NEBUBE: Every claim has an opponent.', description: 'Three minds. One evidence trail. Your NEAR thesis, on trial.' },
+  twitter: { card: 'summary_large_image', title: 'Is NEAR Building the Future or Following the Hype?', description: 'Every pivot, tested against the evidence.' },
 };
 
 export const viewport: Viewport = {

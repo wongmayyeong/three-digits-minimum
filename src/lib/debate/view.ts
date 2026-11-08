@@ -240,7 +240,7 @@ export async function listLibrary(opts: { topic?: string; winner?: string; from?
     isPublic: true,
     synthetic: process.env.NEBUBE_SHOW_SYNTHETIC === '1' && process.env.NODE_ENV !== 'production' ? undefined : false,
     status: 'COMPLETE' as const,
-    ...(opts.topic && getTopic(opts.topic) ? { topicSlug: opts.topic } : {}),
+    topicSlug: { in: TOPICS.map((t) => t.slug) as string[] },
     ...(opts.winner && ['bull', 'bear', 'inconclusive'].includes(opts.winner) ? { verdict: { winner: opts.winner } } : {}),
     ...(opts.from || opts.to ? { completedAt: { ...(opts.from ? { gte: opts.from } : {}), ...(opts.to ? { lte: opts.to } : {}) } } : {}),
   };

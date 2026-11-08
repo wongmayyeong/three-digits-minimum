@@ -24,7 +24,9 @@
     "research:refresh": "tsx research/refresh.ts",
     "research:rebuild": "tsx research/refresh.ts --offline",
     "voices:list": "tsx scripts/list-voices.ts",
-    "research:bigquery": "tsx research/bigquery.ts"
+    "research:bigquery": "tsx research/bigquery.ts",
+    "debate:new": "tsx scripts/new-episode.ts",
+    "refresh:now": "tsx scripts/refresh-now.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1163.0",
@@ -53,6 +55,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.5",
     "prisma": "^7.10.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "~5.9.3",

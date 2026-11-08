@@ -1,23 +1,23 @@
 {
- "methodologyVersion": "nebube-evidence-1.0.0",
+ "methodologyVersion": "nebube-evidence-1.1.0",
  "formulaVersion": "nvabe-1.0.0",
- "windowEnd": "2026-11-04",
- "peerWindowEnd": "2026-11-04",
+ "windowEnd": "2026-11-06",
+ "peerWindowEnd": "2026-11-06",
  "evidence": [
   {
-   "value": 4854549185,
+   "value": 4862469825,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-MCAP",
@@ -29,19 +29,19 @@
    "hasSeries": false
   },
   {
-   "value": 3.7,
+   "value": 3.71,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.current_price",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-PRICE",
@@ -53,19 +53,19 @@
    "hasSeries": false
   },
   {
-   "value": 1311012186,
+   "value": 1311140127,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.circulating_supply",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-CIRC",
@@ -77,19 +77,19 @@
    "hasSeries": false
   },
   {
-   "value": 53045351327,
+   "value": 52702968261,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-SOL-MCAP",
@@ -101,19 +101,19 @@
    "hasSeries": false
   },
   {
-   "value": 3602149640,
+   "value": 3508491423,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-SUI-MCAP",
@@ -125,19 +125,19 @@
    "hasSeries": false
   },
   {
-   "value": 3708854310,
+   "value": 3640962602,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-06T20:51:52.000Z",
-   "fetchedAt": "2026-11-06T20:52:23.927Z",
+   "observedAt": "2026-11-08T10:08:55.000Z",
+   "fetchedAt": "2026-11-08T10:10:21.101Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "bba9b9d6024523418c827273a2f286211b543abfd9039d0b77ad9c089e5fb505",
+   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-AVAX-MCAP",
@@ -149,19 +149,19 @@
    "hasSeries": false
   },
   {
-   "value": 0.8156892913105116,
+   "value": 0.29431867608817186,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily",
    "observedAt": null,
-   "fetchedAt": "2026-11-06T20:52:26.697Z",
-   "periodStart": "2025-11-07",
-   "periodEnd": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.843Z",
+   "periodStart": "2025-11-09",
+   "periodEnd": "2026-11-08",
    "transform": "(last - first) / first",
    "confidence": "high",
-   "rawResponseHash": "08fba9f0a2c4f843d91ee0ceee719f7299df6d9d1df80e1ea444aec25a905b70",
+   "rawResponseHash": "b433117344dce38bc3dd7ce1b6d51fbfc5e79e9f7bdaca6fdca678f34adef187",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-MCAP-1Y",
@@ -173,19 +173,19 @@
    "hasSeries": true
   },
   {
-   "value": 11706137303,
+   "value": 11847917552,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:24.014Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
-   "transform": "sum of daily values over 90 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
+   "transform": "sum of daily values over 90 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32",
+   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-VOL-90D",
@@ -197,19 +197,19 @@
    "hasSeries": true
   },
   {
-   "value": 6486393979,
+   "value": 6529784255,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-06",
-   "fetchedAt": "2026-11-06T20:52:24.014Z",
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
-   "transform": "sum of daily values over 90 days ending 2026-08-06",
+   "observedAt": "2026-08-08",
+   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
+   "transform": "sum of daily values over 90 days ending 2026-08-08",
    "confidence": "high",
-   "rawResponseHash": "96c94fb76a9f32c9b8911f052095b97d3b7ca506105e5b2e9905c561711dda32",
+   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-VOL-PRIOR-90D",
@@ -221,19 +221,19 @@
    "hasSeries": false
   },
   {
-   "value": 17838984,
+   "value": 18140204,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.348Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
-   "transform": "sum of daily values over 90 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:21.491Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
+   "transform": "sum of daily values over 90 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5",
+   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-FEES-90D",
@@ -245,19 +245,19 @@
    "hasSeries": true
   },
   {
-   "value": 8988833,
+   "value": 8998390,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-06",
-   "fetchedAt": "2026-11-06T20:52:25.348Z",
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
-   "transform": "sum of daily values over 90 days ending 2026-08-06",
+   "observedAt": "2026-08-08",
+   "fetchedAt": "2026-11-08T10:10:21.491Z",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
+   "transform": "sum of daily values over 90 days ending 2026-08-08",
    "confidence": "high",
-   "rawResponseHash": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5",
+   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-FEES-PRIOR-90D",
@@ -269,19 +269,19 @@
    "hasSeries": false
   },
   {
-   "value": 4837528,
+   "value": 4949879,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:26.692Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
-   "transform": "sum of daily values over 90 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:21.844Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
+   "transform": "sum of daily values over 90 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0",
+   "rawResponseHash": "e536b7e93127eb79b8024bfef47d7176e4ee54441e11ab895a836f14d07294d1",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-REV-90D",
@@ -293,19 +293,19 @@
    "hasSeries": true
   },
   {
-   "value": 1706040,
+   "value": 1727093,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-06",
-   "fetchedAt": "2026-11-06T20:52:26.692Z",
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
-   "transform": "sum of daily values over 90 days ending 2026-08-06",
+   "observedAt": "2026-08-08",
+   "fetchedAt": "2026-11-08T10:10:21.844Z",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
+   "transform": "sum of daily values over 90 days ending 2026-08-08",
    "confidence": "high",
-   "rawResponseHash": "35bf36eac7283cadd7888659fb2faead89cdc68af3ce8057fbdbfe66ff03ddc0",
+   "rawResponseHash": "e536b7e93127eb79b8024bfef47d7176e4ee54441e11ab895a836f14d07294d1",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-REV-PRIOR-90D",
@@ -317,19 +317,19 @@
    "hasSeries": false
   },
   {
-   "value": 4837528,
+   "value": 4949879,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:28.008Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
-   "transform": "sum of daily values over 90 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:22.185Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
+   "transform": "sum of daily values over 90 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "e2d9e325dccba174d3706814be205c7a7cb71baf56b52b6f67db75ae069b9987",
+   "rawResponseHash": "0611f8d5c07fdd05dc309be2bf376efb0079989f59ca14080359d891377b9489",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-BUYBACK-90D",
@@ -341,16 +341,16 @@
    "hasSeries": false
   },
   {
-   "value": 47474890173.27778,
+   "value": 48049887849.77778,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-VOL-90D x 365 / 90",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -367,16 +367,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.8047219057151261,
+   "value": 0.814442420961732,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-11-06",
    "transform": "(INT-VOL-90D - INT-VOL-PRIOR-90D) / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -394,16 +394,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.0015239001165165131,
+   "value": 0.0015310879671793314,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-FEES-90D / INT-VOL-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -421,16 +421,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.0013857981844923022,
+   "value": 0.001378053186536712,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
    "transform": "INT-FEES-PRIOR-90D / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -448,16 +448,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.27117732713925863,
+   "value": 0.2728678795453458,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-REV-90D / INT-FEES-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -475,16 +475,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.1897954940313164,
+   "value": 0.19193355700297499,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
    "transform": "INT-REV-PRIOR-90D / INT-FEES-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -502,16 +502,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.00041324716042415274,
+   "value": 0.0004177847270016181,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-REV-90D / INT-VOL-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -529,16 +529,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.00026301825105341786,
+   "value": 0.0002644946498312753,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-09",
-   "periodEnd": "2026-08-06",
+   "periodStart": "2026-05-11",
+   "periodEnd": "2026-08-08",
    "transform": "INT-REV-PRIOR-90D / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -560,12 +560,12 @@
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-BUYBACK-90D / INT-REV-90D",
    "confidence": "low",
    "rawResponseHash": null,
@@ -583,16 +583,16 @@
    "hasSeries": false
   },
   {
-   "value": 19618863.555555556,
+   "value": 20074509.277777776,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "INT-REV-90D x 365 / 90",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -616,12 +616,12 @@
    "sourceName": "DefiLlama",
    "sourceUrl": "https://github.com/DefiLlama/dimension-adapters/tree/master/fees/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-06T20:52:25.348Z",
+   "fetchedAt": "2026-11-08T10:10:21.491Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "methodology fields",
    "confidence": "medium",
-   "rawResponseHash": "2dc2ece03b923e948f6f51c09913957940df7363c5edf35569383aeab331afb5",
+   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-DEFINITIONS",
@@ -633,19 +633,19 @@
    "hasSeries": false
   },
   {
-   "value": 2201595.5391450613,
+   "value": 2210686.843036436,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://nearblocks.io/address/buybacks.multisignature.near",
-   "observedAt": "block 223368124",
-   "fetchedAt": "2026-11-06T20:52:24.138Z",
+   "observedAt": "block 223601671",
+   "fetchedAt": "2026-11-08T10:10:21.650Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "view_account.amount + wrap.near ft_balance_of, yocto / 1e24",
    "confidence": "high",
-   "rawResponseHash": "10cab2bc245d44510b9542f6dadfff4644ee2a6b5a090e0e3de0fae6076efc03",
+   "rawResponseHash": "8c325e447b90ea8ddd27721ca3e920af9852a539f6442a77fd9da71b930ac113",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ONC-BUYBACK-WALLET",
@@ -657,19 +657,19 @@
    "hasSeries": false
   },
   {
-   "value": 1311012179.905081,
+   "value": 1311140113.568839,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://nearblocks.io/",
-   "observedAt": "block 223368123",
-   "fetchedAt": "2026-11-06T20:52:23.674Z",
+   "observedAt": "block 223601669",
+   "fetchedAt": "2026-11-08T10:10:21.131Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "header.total_supply / 1e24",
    "confidence": "high",
-   "rawResponseHash": "de63d5fa76e1adf3cd47e549c39588f39577b23db7d93190dbe27ace708bbeef",
+   "rawResponseHash": "0ae11b93a2982125bcfcfaddac6de638fee9f96c91a9aff80555ae4ddf681afb",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ONC-TOTAL-SUPPLY",
@@ -688,7 +688,7 @@
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://docs.near.org/api/rpc/protocol",
    "observedAt": "protocol 88",
-   "fetchedAt": "2026-11-06T20:52:23.908Z",
+   "fetchedAt": "2026-11-08T10:10:21.395Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "numerator / denominator",
@@ -705,11 +705,11 @@
    "hasSeries": false
   },
   {
-   "value": 0.0016793097523353747,
+   "value": 0.0016860797867125647,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -732,11 +732,11 @@
    "hasSeries": false
   },
   {
-   "value": 121268626.64122,
+   "value": 121608245.53350984,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -760,19 +760,19 @@
    "hasSeries": false
   },
   {
-   "value": 61646.566666666666,
+   "value": 56864.933333333334,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.444Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
-   "transform": "mean of daily values over 30 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
+   "transform": "mean of daily values over 30 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-DAA-30D",
@@ -784,19 +784,19 @@
    "hasSeries": true
   },
   {
-   "value": 268977.06666666665,
+   "value": 266657.1666666667,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2025-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.444Z",
-   "periodStart": "2025-10-06",
-   "periodEnd": "2025-11-04",
-   "transform": "mean of daily values over 30 days ending 2025-11-04",
+   "observedAt": "2025-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2025-10-08",
+   "periodEnd": "2025-11-06",
+   "transform": "mean of daily values over 30 days ending 2025-11-06",
    "confidence": "high",
-   "rawResponseHash": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-DAA-30D-1Y-AGO",
@@ -808,19 +808,19 @@
    "hasSeries": false
   },
   {
-   "value": 684947.6666666666,
+   "value": 674462.5,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.444Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
-   "transform": "mean of daily values over 30 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
+   "transform": "mean of daily values over 30 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-TXN-30D",
@@ -832,19 +832,19 @@
    "hasSeries": true
   },
   {
-   "value": 9737.033333333333,
+   "value": 9703.566666666668,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.444Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
-   "transform": "mean of daily values over 30 days ending 2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
+   "transform": "mean of daily values over 30 days ending 2026-11-06",
    "confidence": "high",
-   "rawResponseHash": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-NEW-30D",
@@ -856,11 +856,11 @@
    "hasSeries": false
   },
   {
-   "value": -0.7708110679076482,
+   "value": -0.7867489029296668,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -883,19 +883,19 @@
    "hasSeries": false
   },
   {
-   "value": 175807.44200783994,
+   "value": 172457.15781177997,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:25.444Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over 30 days",
    "confidence": "high",
-   "rawResponseHash": "0bfb0fd11960891a9b99f417b8ae5a7571da26a279b0b321fa648980290c0f0a",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-GAS-FEES-30D",
@@ -932,19 +932,19 @@
    "hasSeries": false
   },
   {
-   "value": 176336679,
+   "value": 175323917,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "observedAt": "2026-11-08",
+   "fetchedAt": "2026-11-08T10:10:22.882Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-08",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0",
+   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-TVL-NEAR",
@@ -956,19 +956,19 @@
    "hasSeries": true
   },
   {
-   "value": 147918235,
+   "value": 184256282,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2025-11-06",
-   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "observedAt": "2025-11-08",
+   "fetchedAt": "2026-11-08T10:10:22.882Z",
    "periodStart": null,
-   "periodEnd": "2025-11-06",
+   "periodEnd": "2025-11-08",
    "transform": "daily value at end - 365d",
    "confidence": "high",
-   "rawResponseHash": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0",
+   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-TVL-NEAR-1Y-AGO",
@@ -980,11 +980,11 @@
    "hasSeries": false
   },
   {
-   "value": 0.19212265478965457,
+   "value": -0.048477940089988354,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1007,19 +1007,19 @@
    "hasSeries": false
   },
   {
-   "value": 147398207,
+   "value": 149414334,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/rhea-lend",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-06T20:52:38.406Z",
+   "observedAt": "2026-11-08",
+   "fetchedAt": "2026-11-08T10:10:27.272Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-08",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "80e53451528f5b05d0581550c52d7bd983c6792e59fd6a2363cbe4dc09854210",
+   "rawResponseHash": "dde1d2b9e314327d47aa151b78f8183732fb071ce0c29981e299d15580344393",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-RHEA-LEND-TVL",
@@ -1031,19 +1031,19 @@
    "hasSeries": false
   },
   {
-   "value": 23084205,
+   "value": 23167709,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/rhea-dex",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-06T20:52:39.038Z",
+   "observedAt": "2026-11-08",
+   "fetchedAt": "2026-11-08T10:10:28.028Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-08",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "eaaacfbb8b6da1a69f56c82516fa69be7072a269250003c5f000046e603b732b",
+   "rawResponseHash": "e26f462008cf851ff85c52dd27775adb509acace8d637eacd64f50b352975100",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-RHEA-DEX-TVL",
@@ -1055,19 +1055,19 @@
    "hasSeries": false
   },
   {
-   "value": 129703650.23,
+   "value": 130486129.8,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/stablecoins/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-06T20:52:39.450Z",
+   "observedAt": "2026-11-08",
+   "fetchedAt": "2026-11-08T10:10:28.429Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-08",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "1aa9fc9e30c49b98047e7950c8ca3b08442105dcbe81681db00bc54ec1983a47",
+   "rawResponseHash": "1acb33acd4eafe14a166d3cc75acc38cfab0785d57f3b83b7f59a62521f20abb",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-STABLES-NEAR",
@@ -1079,19 +1079,19 @@
    "hasSeries": false
   },
   {
-   "value": 363054,
+   "value": 367352,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:29.375Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:22.536Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "sum over 90 days (same window as Intents)",
    "confidence": "high",
-   "rawResponseHash": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0",
+   "rawResponseHash": "03ac73e33c0f6f8c464727468e0f2d893d673d020f774787b098eb34536bf128",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "FEES-NEAR-CHAIN-90D",
@@ -1103,19 +1103,19 @@
    "hasSeries": true
   },
   {
-   "value": 254136,
+   "value": 257144,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:37.911Z",
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:26.666Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "sum over 90 days",
    "confidence": "high",
-   "rawResponseHash": "4c93725c40c00c0db60d33ed721fe16c11faeb770ed6dbc78c398ecb436c6bdf",
+   "rawResponseHash": "5724a23dbe4ef907a96c5c9db33988b6b8b2f6bdfa0679ad4e5223de687ee36e",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "FEES-NEAR-BURN-90D",
@@ -1127,11 +1127,11 @@
    "hasSeries": false
   },
   {
-   "value": 20649526.222222224,
+   "value": 21117371.055555556,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1154,11 +1154,11 @@
    "hasSeries": false
   },
   {
-   "value": 235.09252138558614,
+   "value": 230.25924070793755,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1181,19 +1181,19 @@
    "hasSeries": false
   },
   {
-   "value": 177998,
+   "value": 174374,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:29.375Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:22.536Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "f51c9e39209244bdede563bb522f209f8709c83c9d19fa36887316756b80fda0",
+   "rawResponseHash": "03ac73e33c0f6f8c464727468e0f2d893d673d020f774787b098eb34536bf128",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-FEES-30D",
@@ -1205,19 +1205,19 @@
    "hasSeries": false
   },
   {
-   "value": 180105702,
+   "value": 172956530,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:29.712Z",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:22.882Z",
    "periodStart": null,
-   "periodEnd": "2026-11-04",
+   "periodEnd": "2026-11-06",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "56d7fcf9aadda68aa614c154021743d02aadabfbddcc44942d571067a5dd94c0",
+   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-TVL",
@@ -1229,19 +1229,19 @@
    "hasSeries": false
   },
   {
-   "value": 4447742415.66,
+   "value": 4377081996.35,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/near",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:30.043Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.229Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "abc3ede83caf4ae8e1c31eee2d21458a8a7a2918e7b881d4a90e9934c15bd377",
+   "rawResponseHash": "0bbe50ebe20c10c73922208c9ab21719e2d6c0353e5a11664783b9face0988c0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-DEX-30D",
@@ -1253,11 +1253,11 @@
    "hasSeries": false
   },
   {
-   "value": 2241.6209317112534,
+   "value": 2291.941769470156,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1280,11 +1280,11 @@
    "hasSeries": false
   },
   {
-   "value": 26.953889472083453,
+   "value": 28.113826202456767,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1307,19 +1307,19 @@
    "hasSeries": false
   },
   {
-   "value": 19867140,
+   "value": 18812597,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Solana",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:30.385Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.572Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "edf87f91e30e779913105dbcc9e6466d57fd0942c5ac86927585d2fce23c2c75",
+   "rawResponseHash": "83f225e7da07e342ca0025a3a43832fa945624f3d6da7db7301bbb52c3f519eb",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-FEES-30D",
@@ -1331,19 +1331,19 @@
    "hasSeries": false
   },
   {
-   "value": 5386730199,
+   "value": 5260256983,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Solana",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:30.759Z",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:23.905Z",
    "periodStart": null,
-   "periodEnd": "2026-11-04",
+   "periodEnd": "2026-11-06",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "3c2c23d85e31dc0873f91514c4e201fe53a3900eb2abd1e6d24ca2999c7e4582",
+   "rawResponseHash": "7edc78cf0751c09f6e722370a8b131edd66bceec63044c1701550e6ff8860cef",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-TVL",
@@ -1355,19 +1355,19 @@
    "hasSeries": false
   },
   {
-   "value": 57429058958.329994,
+   "value": 56849033043.91999,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/solana",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:31.097Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:24.257Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "fca466f1e479a4dcde5bd50d2de39f5d6550dd45d2ffc246ee0ee56fcf42dc4d",
+   "rawResponseHash": "fa5f862c35286858625fb0c8457fa7da3d6b6e6f664f2168090938a0b9091158",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-DEX-30D",
@@ -1379,11 +1379,11 @@
    "hasSeries": false
   },
   {
-   "value": 219.45241689998716,
+   "value": 230.25799234271602,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1406,11 +1406,11 @@
    "hasSeries": false
   },
   {
-   "value": 9.847411948875296,
+   "value": 10.019086221704466,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1433,19 +1433,19 @@
    "hasSeries": false
   },
   {
-   "value": 125835,
+   "value": null,
    "valueText": null,
    "observationType": "OBSERVED",
-   "available": true,
+   "available": false,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Sui",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:32.376Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:24.608Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "5b63492469d2273873f566b3a6559cae0c9e9091d7d5f3b3b2566c198b9b17b8",
+   "rawResponseHash": "3c6a19b06ff3f74e9fde12c4bb54d9ded7ff8ca2b63732ee4783bf0bc11d4606",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SUI-FEES-30D",
@@ -1457,19 +1457,19 @@
    "hasSeries": false
   },
   {
-   "value": 455444677,
+   "value": 438008652,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Sui",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:32.717Z",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:24.947Z",
    "periodStart": null,
-   "periodEnd": "2026-11-04",
+   "periodEnd": "2026-11-06",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "f97c2365167471df94c24852fc5c05e70ebd7c4136d84085839c0d5996aefc7c",
+   "rawResponseHash": "293e7c6a9da9d988ce86bb3a401954b68cfb99aec2b3ff6a86803106a10130a8",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SUI-TVL",
@@ -1481,19 +1481,19 @@
    "hasSeries": false
   },
   {
-   "value": 892706241,
+   "value": 890603975,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/sui",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:34.024Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:25.292Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "abb8fda40140680b8ec6d383d518647fb75bf43d1e2ef1b482780919b8436561",
+   "rawResponseHash": "c843a8efc8bfd7af7fb262896f662ec04da9052856dc88dc6ac988ee768c35b4",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SUI-DEX-30D",
@@ -1505,11 +1505,11 @@
    "hasSeries": false
   },
   {
-   "value": 2352.819912573053,
+   "value": null,
    "valueText": null,
    "observationType": "DERIVED",
-   "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "available": false,
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1518,7 +1518,7 @@
    "transform": "MKT-SUI-MCAP / (PEER-SUI-FEES-30D x 365 / 30)",
    "confidence": "medium",
    "rawResponseHash": null,
-   "validationNotes": null,
+   "validationNotes": "Not computed: missing PEER-SUI-FEES-30D.",
    "inputs": [
     "MKT-SUI-MCAP",
     "PEER-SUI-FEES-30D"
@@ -1532,11 +1532,11 @@
    "hasSeries": false
   },
   {
-   "value": 7.909082753425176,
+   "value": 8.010096163579892,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1559,19 +1559,19 @@
    "hasSeries": false
   },
   {
-   "value": 342407,
+   "value": 315991,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Avalanche",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:34.738Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:25.637Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "3a5ea10a43ca0d0e2530e94835d7b3e4c0f8546f1ec58a8a7e5fe18be0f753a7",
+   "rawResponseHash": "04dbc15860c15355db9282d5964526d85fd6dbe5cf583a6ba963868c243fa0dc",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-FEES-30D",
@@ -1583,19 +1583,19 @@
    "hasSeries": false
   },
   {
-   "value": 580982713,
+   "value": 569786595,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Avalanche",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:35.075Z",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:25.978Z",
    "periodStart": null,
-   "periodEnd": "2026-11-04",
+   "periodEnd": "2026-11-06",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "5e3c257ff4f495626e3d261a0ab4eb8e0d50c6d20d939224bd22fce03a2d65da",
+   "rawResponseHash": "2cf97bfc7299b9f2b0b3455c1419aaab0452983a6933ca311ad79589ec7fbcb5",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-TVL",
@@ -1607,19 +1607,19 @@
    "hasSeries": false
   },
   {
-   "value": 2973668277.08,
+   "value": 2674746954.450001,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/avalanche",
-   "observedAt": "2026-11-04",
-   "fetchedAt": "2026-11-06T20:52:36.563Z",
-   "periodStart": "2026-10-06",
-   "periodEnd": "2026-11-04",
+   "observedAt": "2026-11-06",
+   "fetchedAt": "2026-11-08T10:10:26.326Z",
+   "periodStart": "2026-10-08",
+   "periodEnd": "2026-11-06",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "b0d92be42a58f2564f26b473f3576c5943e627874161dee5b0db567662a6bc0e",
+   "rawResponseHash": "e4786b76ded140c168f8d4d86b21d6d06ca430703387a1f2ff98b221a430c6fe",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-DEX-30D",
@@ -1631,11 +1631,11 @@
    "hasSeries": false
   },
   {
-   "value": 890.2777704542991,
+   "value": 947.0434289722922,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1658,11 +1658,11 @@
    "hasSeries": false
   },
   {
-   "value": 6.383760182551249,
+   "value": 6.3900460873425775,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE (computed)",
+   "sourceName": "Computed here",
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
@@ -1735,16 +1735,16 @@
    "hasSeries": false
   },
   {
-   "value": 19618863.55555556,
+   "value": 20074509.27777778,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "V x f x c x b",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1765,16 +1765,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.004041335829117892,
+   "value": 0.004128459404429884,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "(V x f x c x b) / M",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1795,16 +1795,16 @@
    "hasSeries": false
   },
   {
-   "value": 234946523529.2767,
+   "value": 232773938860.67868,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "(y x M) / (f x c x b), y = 0.02 (assumed)",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1825,16 +1825,16 @@
    "hasSeries": false
   },
   {
-   "value": 4.948858705554652,
+   "value": 4.844422105383857,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "break-even volume / V",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1855,16 +1855,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.002045101807410808,
+   "value": 0.002023925566778399,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "(y x M) / V, y = 0.02 (assumed)",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1885,16 +1885,16 @@
    "hasSeries": false
   },
   {
-   "value": 0.0004132471604241528,
+   "value": 0.0004177847270016182,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NEBUBE model nvabe-1.0.0",
+   "sourceName": "Break-even model nvabe-1.0.0",
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-07",
-   "periodEnd": "2026-11-04",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-06",
    "transform": "f x c x b",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1913,19 +1913,540 @@
    "unit": "fraction",
    "methodology": "Measured share of each volume dollar that becomes buyback demand.",
    "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 35764,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/social.near",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:39:52.494Z",
+   "periodStart": "2021-02-01",
+   "periodEnd": "2026-10-01",
+   "transform": "max over complete months",
+   "confidence": "medium",
+   "rawResponseHash": "2cacfcdc8283f25aa2ce7f6a28b176543c75bafdee4722e2cfc1858f494445c2",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-SOCIAL-PEAK",
+   "metricKey": "era.social.peak",
+   "label": "social.near: peak monthly transactions (2023-08)",
+   "unit": "count",
+   "methodology": "NearBlocks transaction count involving social.near, per calendar month. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 364,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/social.near",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:39:52.494Z",
+   "periodStart": "2021-02-01",
+   "periodEnd": "2026-10-01",
+   "transform": "last complete month",
+   "confidence": "medium",
+   "rawResponseHash": "2cacfcdc8283f25aa2ce7f6a28b176543c75bafdee4722e2cfc1858f494445c2",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-SOCIAL-LATEST",
+   "metricKey": "era.social.latest",
+   "label": "social.near: transactions in the latest complete month (2026-10)",
+   "unit": "count",
+   "methodology": "Same count for the most recent complete month. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+   "hasSeries": true
+  },
+  {
+   "group": "thesis",
+   "value": 0.01017783245721955,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": null,
+   "transform": "ERA-SOCIAL-LATEST / ERA-SOCIAL-PEAK",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "ERA-SOCIAL-LATEST",
+    "ERA-SOCIAL-PEAK"
+   ],
+   "evidenceId": "ERA-SOCIAL-RETENTION",
+   "metricKey": "era.social.retention",
+   "label": "social.near: latest month as a share of its peak",
+   "unit": "fraction",
+   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 970819,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/v1.signer",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:44:34.991Z",
+   "periodStart": "2024-07-01",
+   "periodEnd": "2026-10-01",
+   "transform": "max over complete months",
+   "confidence": "medium",
+   "rawResponseHash": "04a25c49f9aefca7abaf056cfd0aef31295a76bea684df14f47dc1bd3da70641",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-SIGNER-PEAK",
+   "metricKey": "era.signer.peak",
+   "label": "v1.signer: peak monthly transactions (2026-05)",
+   "unit": "count",
+   "methodology": "NearBlocks transaction count involving v1.signer, per calendar month. Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 467548,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/v1.signer",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:44:34.991Z",
+   "periodStart": "2024-07-01",
+   "periodEnd": "2026-10-01",
+   "transform": "last complete month",
+   "confidence": "medium",
+   "rawResponseHash": "04a25c49f9aefca7abaf056cfd0aef31295a76bea684df14f47dc1bd3da70641",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-SIGNER-LATEST",
+   "metricKey": "era.signer.latest",
+   "label": "v1.signer: transactions in the latest complete month (2026-10)",
+   "unit": "count",
+   "methodology": "Same count for the most recent complete month. Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+   "hasSeries": true
+  },
+  {
+   "group": "thesis",
+   "value": 0.48160161677923485,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": null,
+   "transform": "ERA-SIGNER-LATEST / ERA-SIGNER-PEAK",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "ERA-SIGNER-LATEST",
+    "ERA-SIGNER-PEAK"
+   ],
+   "evidenceId": "ERA-SIGNER-RETENTION",
+   "metricKey": "era.signer.retention",
+   "label": "v1.signer: latest month as a share of its peak",
+   "unit": "fraction",
+   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 2049339,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/intents.near",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:47:28.033Z",
+   "periodStart": "2024-11-01",
+   "periodEnd": "2026-10-01",
+   "transform": "max over complete months",
+   "confidence": "medium",
+   "rawResponseHash": "da58665b6b6bb9679ae038e1fc745ebd4c6084eb40fe3cde2d5ed60a8dd1ebdc",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-INTENTS-PEAK",
+   "metricKey": "era.intents.peak",
+   "label": "intents.near: peak monthly transactions (2024-12)",
+   "unit": "count",
+   "methodology": "NearBlocks transaction count involving intents.near, per calendar month. NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 1959461,
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/address/intents.near",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T09:47:28.033Z",
+   "periodStart": "2024-11-01",
+   "periodEnd": "2026-10-01",
+   "transform": "last complete month",
+   "confidence": "medium",
+   "rawResponseHash": "da58665b6b6bb9679ae038e1fc745ebd4c6084eb40fe3cde2d5ed60a8dd1ebdc",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "ERA-INTENTS-LATEST",
+   "metricKey": "era.intents.latest",
+   "label": "intents.near: transactions in the latest complete month (2026-10)",
+   "unit": "count",
+   "methodology": "Same count for the most recent complete month. NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+   "hasSeries": true
+  },
+  {
+   "group": "thesis",
+   "value": 0.9561429319404939,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": null,
+   "transform": "ERA-INTENTS-LATEST / ERA-INTENTS-PEAK",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "ERA-INTENTS-LATEST",
+    "ERA-INTENTS-PEAK"
+   ],
+   "evidenceId": "ERA-INTENTS-RETENTION",
+   "metricKey": "era.intents.retention",
+   "label": "intents.near: latest month as a share of its peak",
+   "unit": "fraction",
+   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.47897222347898305,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "DefiLlama coins (CoinGecko prices)",
+   "sourceUrl": "https://near.org/blog/2023-near-in-review",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2023-03-01",
+   "periodEnd": "2023-05-30",
+   "transform": "NEAR return - BTC return",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-BOS-REL-90D",
+   "metricKey": "event.bos.relative_return_90d",
+   "label": "Blockchain Operating System (BOS): NEAR minus BTC return, 90 days after February 2023",
+   "unit": "fraction",
+   "methodology": "Market context only, not scored: price can move ahead of adoption for good reasons. Returns from daily closes at the pivot date and 90 days later.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.20933522656042672,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/charts",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2023-01-30",
+   "periodEnd": "2023-05-30",
+   "transform": "pct change of 30-day means",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-BOS-DAA-90D",
+   "metricKey": "event.bos.daa_change_90d",
+   "label": "Blockchain Operating System (BOS): change in daily active accounts, days 60-90 after vs 30 days before",
+   "unit": "fraction",
+   "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.12752489424628707,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "DefiLlama coins (CoinGecko prices)",
+   "sourceUrl": "https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-03-27",
+   "periodEnd": "2024-06-25",
+   "transform": "NEAR return - BTC return",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-CHAIN-SIGNATURES-REL-90D",
+   "metricKey": "event.chain-signatures.relative_return_90d",
+   "label": "Chain Signatures launch: NEAR minus BTC return, 90 days after 27 March 2024",
+   "unit": "fraction",
+   "methodology": "Market context only, not scored: price can move ahead of adoption for good reasons. Returns from daily closes at the pivot date and 90 days later.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 0.5243800377265574,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/charts",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-02-26",
+   "periodEnd": "2024-06-25",
+   "transform": "pct change of 30-day means",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-CHAIN-SIGNATURES-DAA-90D",
+   "metricKey": "event.chain-signatures.daa_change_90d",
+   "label": "Chain Signatures launch: change in daily active accounts, days 60-90 after vs 30 days before",
+   "unit": "fraction",
+   "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.3363788143157017,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "DefiLlama coins (CoinGecko prices)",
+   "sourceUrl": "https://near.org/blog/user-owned-ai-is-near",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-05-22",
+   "periodEnd": "2024-08-20",
+   "transform": "NEAR return - BTC return",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-USER-OWNED-AI-REL-90D",
+   "metricKey": "event.user-owned-ai.relative_return_90d",
+   "label": "User-Owned AI: NEAR minus BTC return, 90 days after 22 May 2024",
+   "unit": "fraction",
+   "methodology": "Market context only, not scored: price can move ahead of adoption for good reasons. Returns from daily closes at the pivot date and 90 days later.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.2337698857998396,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/charts",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-04-22",
+   "periodEnd": "2024-08-20",
+   "transform": "pct change of 30-day means",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-USER-OWNED-AI-DAA-90D",
+   "metricKey": "event.user-owned-ai.daa_change_90d",
+   "label": "User-Owned AI: change in daily active accounts, days 60-90 after vs 30 days before",
+   "unit": "fraction",
+   "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.49006354004020897,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "DefiLlama coins (CoinGecko prices)",
+   "sourceUrl": "https://near.org/blog/introducing-near-intents.html",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-11-10",
+   "periodEnd": "2025-02-08",
+   "transform": "NEAR return - BTC return",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-INTENTS-REL-90D",
+   "metricKey": "event.intents.relative_return_90d",
+   "label": "NEAR Intents (beta): NEAR minus BTC return, 90 days after 10 November 2024",
+   "unit": "fraction",
+   "methodology": "Market context only, not scored: price can move ahead of adoption for good reasons. Returns from daily closes at the pivot date and 90 days later.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": -0.11291906428386857,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/charts",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2024-10-11",
+   "periodEnd": "2025-02-08",
+   "transform": "pct change of 30-day means",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "EVT-INTENTS-DAA-90D",
+   "metricKey": "event.intents.daa_change_90d",
+   "label": "NEAR Intents (beta): change in daily active accounts, days 60-90 after vs 30 days before",
+   "unit": "fraction",
+   "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 0.02474350672375681,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "NearBlocks",
+   "sourceUrl": "https://nearblocks.io/charts",
+   "observedAt": null,
+   "fetchedAt": "2026-11-08T10:10:23.736Z",
+   "periodStart": "2026-08-08",
+   "periodEnd": "2026-11-06",
+   "transform": "(supply_end - supply_start) x 365/90 / supply_start",
+   "confidence": "medium",
+   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "SUP-NET-NEW-ANN-PCT",
+   "metricKey": "supply.net_new.annual_pct",
+   "label": "Realized net new NEAR supply, annualized",
+   "unit": "fraction",
+   "methodology": "Change in NearBlocks total_supply over 90 days, annualized. Net of burns; bought-back tokens that are held stay in supply.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 119619012.8869728,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2026-08-08",
+   "periodEnd": "2026-11-06",
+   "transform": "net new NEAR x 365/90 x price",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "MKT-NEAR-PRICE"
+   ],
+   "evidenceId": "SUP-NET-NEW-ANN-USD",
+   "metricKey": "supply.net_new.annual_usd",
+   "label": "Realized net new supply per year at today's price",
+   "unit": "USD",
+   "methodology": "Annualized net new tokens valued at the current price.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 0.16782038902750387,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": "2026-08-08",
+   "periodEnd": "2026-11-06",
+   "transform": "(INT-BUYBACK-90D x 365/90) / SUP-NET-NEW-ANN-USD",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-BUYBACK-90D",
+    "SUP-NET-NEW-ANN-USD"
+   ],
+   "evidenceId": "COV-BUYBACK-REALIZED",
+   "metricKey": "coverage.buyback_vs_net_new_supply",
+   "label": "Buybacks as a share of realized net new supply",
+   "unit": "fraction",
+   "methodology": "Annualized Intents buybacks divided by the dollar value of annualized net new supply. Paying the token if at least 50%; not paying below 25%. Buybacks are held, not burned.",
+   "hasSeries": false
+  },
+  {
+   "group": "thesis",
+   "value": 0.17365081588761633,
+   "valueText": null,
+   "observationType": "DERIVED",
+   "available": true,
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#thesis",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": null,
+   "transform": "VAL-NEAR-VALUE-CAPTURE-ANN / ONC-ISSUANCE-USD",
+   "confidence": "low",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "VAL-NEAR-VALUE-CAPTURE-ANN",
+    "ONC-ISSUANCE-USD"
+   ],
+   "evidenceId": "COV-CAPTURE-MAX",
+   "metricKey": "coverage.capture_vs_max_issuance",
+   "label": "Burns plus buybacks as a share of maximum issuance",
+   "unit": "fraction",
+   "methodology": "Upper-bound denominator (protocol maximum inflation), so this understates coverage. Shown next to the realized measure for comparison.",
+   "hasSeries": false
   }
  ],
  "model": {
   "base": {
    "M": {
-    "value": 4854549185,
+    "value": 4862469825,
     "kind": "OBSERVED",
     "evidenceIds": [
      "MKT-NEAR-MCAP"
     ]
    },
    "V": {
-    "value": 47474890173.27778,
+    "value": 48049887849.77778,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-VOL-ANN"
@@ -1933,14 +2454,14 @@
     "note": "90-day run rate"
    },
    "f": {
-    "value": 0.0015239001165165131,
+    "value": 0.0015310879671793314,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-FEE-RATE"
     ]
    },
    "c": {
-    "value": 0.27117732713925863,
+    "value": 0.2728678795453458,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-CAPTURE"
@@ -1975,14 +2496,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4854549185,
+      "value": 4862469825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 47474890173.27778,
+      "value": 48049887849.77778,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -1990,7 +2511,7 @@
       "note": "90-day run rate"
      },
      "f": {
-      "value": 0.0007619500582582566,
+      "value": 0.0007655439835896657,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-FEE-RATE"
@@ -1998,7 +2519,7 @@
       "note": "Measured fee rate x 0.50 (assumed compression)"
      },
      "c": {
-      "value": 0.20338299535444399,
+      "value": 0.20465090965900934,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2019,11 +2540,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 3678536.9166666674,
-     "buybackDemandToMcap": 0.0007577504679596046,
-     "breakEvenAnnualVolumeUsd": 1253048125489.4756,
-     "volumeMultipleRequired": 26.39391309629147,
-     "volumeToBuybackRate": 0.00007748384257952867,
+     "annualBuybackDemandUsd": 3763970.4895833335,
+     "buybackDemandToMcap": 0.0007740861383306032,
+     "breakEvenAnnualVolumeUsd": 1241461007256.953,
+     "volumeMultipleRequired": 25.83691789538057,
+     "volumeToBuybackRate": 0.0000783346363128034,
      "na": {}
     }
    },
@@ -2040,14 +2561,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4854549185,
+      "value": 4862469825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 47474890173.27778,
+      "value": 48049887849.77778,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -2055,14 +2576,14 @@
       "note": "90-day run rate"
      },
      "f": {
-      "value": 0.0015239001165165131,
+      "value": 0.0015310879671793314,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-FEE-RATE"
       ]
      },
      "c": {
-      "value": 0.27117732713925863,
+      "value": 0.2728678795453458,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2084,11 +2605,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 19618863.55555556,
-     "buybackDemandToMcap": 0.004041335829117892,
-     "breakEvenAnnualVolumeUsd": 234946523529.2767,
-     "volumeMultipleRequired": 4.948858705554652,
-     "volumeToBuybackRate": 0.0004132471604241528,
+     "annualBuybackDemandUsd": 20074509.27777778,
+     "buybackDemandToMcap": 0.004128459404429884,
+     "breakEvenAnnualVolumeUsd": 232773938860.67868,
+     "volumeMultipleRequired": 4.844422105383857,
+     "volumeToBuybackRate": 0.0004177847270016182,
      "na": {}
     }
    },
@@ -2105,14 +2626,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4854549185,
+      "value": 4862469825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 94949780346.55556,
+      "value": 96099775699.55556,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -2120,14 +2641,14 @@
       "note": "Measured run rate x 2.00 (assumed growth)"
      },
      "f": {
-      "value": 0.0015239001165165131,
+      "value": 0.0015310879671793314,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-FEE-RATE"
       ]
      },
      "c": {
-      "value": 0.27117732713925863,
+      "value": 0.2728678795453458,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2147,11 +2668,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 39237727.11111112,
-     "buybackDemandToMcap": 0.008082671658235783,
-     "breakEvenAnnualVolumeUsd": 234946523529.2767,
-     "volumeMultipleRequired": 2.474429352777326,
-     "volumeToBuybackRate": 0.0004132471604241528,
+     "annualBuybackDemandUsd": 40149018.55555556,
+     "buybackDemandToMcap": 0.008256918808859768,
+     "breakEvenAnnualVolumeUsd": 232773938860.67868,
+     "volumeMultipleRequired": 2.4222110526919285,
+     "volumeToBuybackRate": 0.0004177847270016182,
      "na": {}
     }
    }
@@ -2173,28 +2694,28 @@
    ],
    "cells": [
     [
-     1.237214676388663,
-     2.474429352777326,
-     4.948858705554652,
-     12.37214676388663
+     1.2111055263459642,
+     2.4222110526919285,
+     4.844422105383857,
+     12.111055263459642
     ],
     [
-     1.6496195685182171,
-     3.2992391370364342,
-     6.5984782740728685,
-     16.496195685182172
+     1.6148073684612856,
+     3.229614736922571,
+     6.459229473845142,
+     16.148073684612857
     ],
     [
-     2.474429352777326,
-     4.948858705554652,
-     9.897717411109303,
-     24.74429352777326
+     2.4222110526919285,
+     4.844422105383857,
+     9.688844210767714,
+     24.222110526919284
     ],
     [
-     4.948858705554652,
-     9.897717411109303,
-     19.795434822218606,
-     49.48858705554652
+     4.844422105383857,
+     9.688844210767714,
+     19.377688421535428,
+     48.44422105383857
     ]
    ]
   },
@@ -2214,24 +2735,24 @@
    ],
    "cells": [
     [
-     19.795434822218606,
-     26.39391309629147,
-     39.59086964443721
+     19.377688421535428,
+     25.83691789538057,
+     38.755376843070856
     ],
     [
-     9.897717411109303,
-     13.196956548145735,
-     19.795434822218606
+     9.688844210767714,
+     12.918458947690285,
+     19.377688421535428
     ],
     [
-     6.5984782740728685,
-     8.797971032097156,
-     13.196956548145737
+     6.459229473845142,
+     8.612305965126856,
+     12.918458947690285
     ],
     [
-     4.948858705554652,
-     6.598478274072868,
-     9.897717411109303
+     4.844422105383857,
+     6.459229473845142,
+     9.688844210767714
     ]
    ]
   }
@@ -2248,7 +2769,7 @@
    ],
    "implication": "Activity is not converting into token-level value at a stable rate.",
    "status": "NOT TRIGGERED",
-   "observed": "volume 80.5%; take rate 0.026% -> 0.041%"
+   "observed": "volume 81.4%; take rate 0.026% -> 0.042%"
   },
   {
    "id": "F2",
@@ -2260,7 +2781,7 @@
    ],
    "implication": "Competition is pricing intents settlement toward zero faster than volume grows.",
    "status": "NOT TRIGGERED",
-   "observed": "0.139% -> 0.152%"
+   "observed": "0.138% -> 0.153%"
   },
   {
    "id": "F3",
@@ -2271,7 +2792,7 @@
    ],
    "implication": "Buybacks cannot be material to valuation on any plausible near-term growth path.",
    "status": "NOT TRIGGERED",
-   "observed": "4.95x today's run rate"
+   "observed": "4.84x today's run rate"
   },
   {
    "id": "F4",
@@ -2282,7 +2803,7 @@
    ],
    "implication": "Direct chain usage is shrinking; the thesis must rest on cross-chain activity rather than NEAR-native users. Accounts are not people, so this may partly reflect less automation.",
    "status": "TRIGGERED",
-   "observed": "-77.1% vs a year earlier"
+   "observed": "-78.7% vs a year earlier"
   },
   {
    "id": "F5",
@@ -2293,7 +2814,7 @@
    ],
    "implication": "Liquidity is leaving as incentives fade; DeFi activity is not self-sustaining.",
    "status": "NOT TRIGGERED",
-   "observed": "19.2% vs a year earlier"
+   "observed": "-4.85% vs a year earlier"
   },
   {
    "id": "F6",
@@ -2305,7 +2826,661 @@
    ],
    "implication": "Burns plus buybacks are too small to be a primary valuation support today; the investment case depends on growth not yet measured.",
    "status": "TRIGGERED",
-   "observed": "0.425% of market cap"
+   "observed": "0.434% of market cap"
   }
- ]
+ ],
+ "thesis": {
+  "version": "nebube-thesis-1.0.0",
+  "eras": [
+   {
+    "id": "social",
+    "account": "social.near",
+    "era": "Social / BOS",
+    "note": "SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+    "months": [
+     [
+      "2021-02",
+      3
+     ],
+     [
+      "2021-03",
+      0
+     ],
+     [
+      "2021-04",
+      0
+     ],
+     [
+      "2021-05",
+      0
+     ],
+     [
+      "2021-06",
+      0
+     ],
+     [
+      "2021-07",
+      0
+     ],
+     [
+      "2021-08",
+      0
+     ],
+     [
+      "2021-09",
+      0
+     ],
+     [
+      "2021-10",
+      0
+     ],
+     [
+      "2021-11",
+      0
+     ],
+     [
+      "2021-12",
+      0
+     ],
+     [
+      "2022-01",
+      0
+     ],
+     [
+      "2022-02",
+      0
+     ],
+     [
+      "2022-03",
+      0
+     ],
+     [
+      "2022-04",
+      0
+     ],
+     [
+      "2022-05",
+      0
+     ],
+     [
+      "2022-06",
+      0
+     ],
+     [
+      "2022-07",
+      0
+     ],
+     [
+      "2022-08",
+      0
+     ],
+     [
+      "2022-09",
+      0
+     ],
+     [
+      "2022-10",
+      1012
+     ],
+     [
+      "2022-11",
+      4484
+     ],
+     [
+      "2022-12",
+      23938
+     ],
+     [
+      "2023-01",
+      10800
+     ],
+     [
+      "2023-02",
+      16416
+     ],
+     [
+      "2023-03",
+      33760
+     ],
+     [
+      "2023-04",
+      18692
+     ],
+     [
+      "2023-05",
+      22258
+     ],
+     [
+      "2023-06",
+      23368
+     ],
+     [
+      "2023-07",
+      33450
+     ],
+     [
+      "2023-08",
+      35764
+     ],
+     [
+      "2023-09",
+      5532
+     ],
+     [
+      "2023-10",
+      5795
+     ],
+     [
+      "2023-11",
+      9234
+     ],
+     [
+      "2023-12",
+      14089
+     ],
+     [
+      "2024-01",
+      11551
+     ],
+     [
+      "2024-02",
+      17666
+     ],
+     [
+      "2024-03",
+      22757
+     ],
+     [
+      "2024-04",
+      29925
+     ],
+     [
+      "2024-05",
+      30637
+     ],
+     [
+      "2024-06",
+      31683
+     ],
+     [
+      "2024-07",
+      28537
+     ],
+     [
+      "2024-08",
+      26246
+     ],
+     [
+      "2024-09",
+      28573
+     ],
+     [
+      "2024-10",
+      28364
+     ],
+     [
+      "2024-11",
+      28184
+     ],
+     [
+      "2024-12",
+      33903
+     ],
+     [
+      "2025-01",
+      28985
+     ],
+     [
+      "2025-02",
+      25243
+     ],
+     [
+      "2025-03",
+      26805
+     ],
+     [
+      "2025-04",
+      25036
+     ],
+     [
+      "2025-05",
+      21488
+     ],
+     [
+      "2025-06",
+      19273
+     ],
+     [
+      "2025-07",
+      19451
+     ],
+     [
+      "2025-08",
+      20381
+     ],
+     [
+      "2025-09",
+      18409
+     ],
+     [
+      "2025-10",
+      18500
+     ],
+     [
+      "2025-11",
+      16937
+     ],
+     [
+      "2025-12",
+      15604
+     ],
+     [
+      "2026-01",
+      14316
+     ],
+     [
+      "2026-02",
+      12916
+     ],
+     [
+      "2026-03",
+      14434
+     ],
+     [
+      "2026-04",
+      283
+     ],
+     [
+      "2026-05",
+      274
+     ],
+     [
+      "2026-06",
+      183
+     ],
+     [
+      "2026-07",
+      20
+     ],
+     [
+      "2026-08",
+      46
+     ],
+     [
+      "2026-09",
+      157
+     ],
+     [
+      "2026-10",
+      364
+     ]
+    ],
+    "missingMonths": [],
+    "firstMonth": "2021-02",
+    "peakMonth": "2023-08",
+    "peak": 35764,
+    "latestMonth": "2026-10",
+    "latest": 364,
+    "retention": 0.01017783245721955,
+    "monthsSincePeak": 38,
+    "month1": 3,
+    "month3": 0,
+    "month6": 0,
+    "lasted": false
+   },
+   {
+    "id": "signer",
+    "account": "v1.signer",
+    "era": "Chain Abstraction (Chain Signatures)",
+    "note": "Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+    "months": [
+     [
+      "2024-07",
+      268795
+     ],
+     [
+      "2024-08",
+      247212
+     ],
+     [
+      "2024-09",
+      269135
+     ],
+     [
+      "2024-10",
+      267168
+     ],
+     [
+      "2024-11",
+      265473
+     ],
+     [
+      "2024-12",
+      319340
+     ],
+     [
+      "2025-01",
+      273018
+     ],
+     [
+      "2025-02",
+      237765
+     ],
+     [
+      "2025-03",
+      252476
+     ],
+     [
+      "2025-04",
+      235814
+     ],
+     [
+      "2025-05",
+      202397
+     ],
+     [
+      "2025-06",
+      181536
+     ],
+     [
+      "2025-07",
+      183215
+     ],
+     [
+      "2025-08",
+      191975
+     ],
+     [
+      "2025-09",
+      173397
+     ],
+     [
+      "2025-10",
+      174251
+     ],
+     [
+      "2025-11",
+      159530
+     ],
+     [
+      "2025-12",
+      146977
+     ],
+     [
+      "2026-01",
+      134846
+     ],
+     [
+      "2026-02",
+      121661
+     ],
+     [
+      "2026-03",
+      135953
+     ],
+     [
+      "2026-04",
+      811509
+     ],
+     [
+      "2026-05",
+      970819
+     ],
+     [
+      "2026-06",
+      856215
+     ],
+     [
+      "2026-07",
+      871484
+     ],
+     [
+      "2026-08",
+      873194
+     ],
+     [
+      "2026-09",
+      702181
+     ],
+     [
+      "2026-10",
+      467548
+     ]
+    ],
+    "missingMonths": [],
+    "firstMonth": "2024-07",
+    "peakMonth": "2026-05",
+    "peak": 970819,
+    "latestMonth": "2026-10",
+    "latest": 467548,
+    "retention": 0.48160161677923485,
+    "monthsSincePeak": 5,
+    "month1": 268795,
+    "month3": 269135,
+    "month6": 319340,
+    "lasted": true
+   },
+   {
+    "id": "intents",
+    "account": "intents.near",
+    "era": "Intents",
+    "note": "NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+    "months": [
+     [
+      "2024-11",
+      1703656
+     ],
+     [
+      "2024-12",
+      2049339
+     ],
+     [
+      "2025-01",
+      1752070
+     ],
+     [
+      "2025-02",
+      1525841
+     ],
+     [
+      "2025-03",
+      1620248
+     ],
+     [
+      "2025-04",
+      1513320
+     ],
+     [
+      "2025-05",
+      1298869
+     ],
+     [
+      "2025-06",
+      1164995
+     ],
+     [
+      "2025-07",
+      1175766
+     ],
+     [
+      "2025-08",
+      1231982
+     ],
+     [
+      "2025-09",
+      1112764
+     ],
+     [
+      "2025-10",
+      1118245
+     ],
+     [
+      "2025-11",
+      1023770
+     ],
+     [
+      "2025-12",
+      943212
+     ],
+     [
+      "2026-01",
+      865362
+     ],
+     [
+      "2026-02",
+      780748
+     ],
+     [
+      "2026-03",
+      872466
+     ],
+     [
+      "2026-04",
+      208867
+     ],
+     [
+      "2026-05",
+      195441
+     ],
+     [
+      "2026-06",
+      194780
+     ],
+     [
+      "2026-07",
+      185468
+     ],
+     [
+      "2026-08",
+      170357
+     ],
+     [
+      "2026-09",
+      81399
+     ],
+     [
+      "2026-10",
+      1959461
+     ]
+    ],
+    "missingMonths": [],
+    "firstMonth": "2024-11",
+    "peakMonth": "2024-12",
+    "peak": 2049339,
+    "latestMonth": "2026-10",
+    "latest": 1959461,
+    "retention": 0.9561429319404939,
+    "monthsSincePeak": 22,
+    "month1": 1703656,
+    "month3": 1752070,
+    "month6": 1513320,
+    "lasted": true
+   }
+  ],
+  "events": [
+   {
+    "id": "bos",
+    "label": "Blockchain Operating System (BOS)",
+    "date": "2023-03-01",
+    "shown": "February 2023",
+    "source": "https://near.org/blog/2023-near-in-review",
+    "note": "NEAR's 2023 review says BOS launched in February 2023 and debuted at ETHDenver. Month-level date; event window anchored on 2023-03-01.",
+    "nearReturn30": -0.14224137931034478,
+    "nearReturn90": -0.3060344827586207,
+    "btcReturn90": 0.1729377407203623,
+    "relativeReturn90": -0.47897222347898305,
+    "daaBefore": 66241.03333333334,
+    "daaAfter": 52374.45161290323,
+    "daaChange": -0.20933522656042672,
+    "eraGrowth": 0.6593009478672985,
+    "adoptionFollowed": false
+   },
+   {
+    "id": "chain-signatures",
+    "label": "Chain Signatures launch",
+    "date": "2024-03-27",
+    "shown": "27 March 2024",
+    "source": "https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account",
+    "note": "Announced at BUIDL Asia, Seoul.",
+    "nearReturn30": -0.019283746556473785,
+    "nearReturn90": -0.26044618591386426,
+    "btcReturn90": -0.13292129166757718,
+    "relativeReturn90": -0.12752489424628707,
+    "daaBefore": 1299935.9333333333,
+    "daaAfter": 1981596.3870967743,
+    "daaChange": 0.5243800377265574,
+    "eraGrowth": 1.0012649044811102,
+    "adoptionFollowed": true
+   },
+   {
+    "id": "user-owned-ai",
+    "label": "User-Owned AI",
+    "date": "2024-05-22",
+    "shown": "22 May 2024",
+    "source": "https://near.org/blog/user-owned-ai-is-near",
+    "note": "NEAR positions itself as the home for User-Owned AI. No onchain product contract is measured for this era.",
+    "nearReturn30": -0.340153452685422,
+    "nearReturn90": -0.4884910485933504,
+    "btcReturn90": -0.15211223427764867,
+    "relativeReturn90": -0.3363788143157017,
+    "daaBefore": 1838961.0333333334,
+    "daaAfter": 1409067.322580645,
+    "daaChange": -0.2337698857998396,
+    "eraGrowth": null,
+    "adoptionFollowed": false
+   },
+   {
+    "id": "intents",
+    "label": "NEAR Intents (beta)",
+    "date": "2024-11-10",
+    "shown": "10 November 2024",
+    "source": "https://near.org/blog/introducing-near-intents.html",
+    "note": "Beta launch on near.org/intents; full launch announced for Q1 2025.",
+    "nearReturn30": 0.3857758620689655,
+    "nearReturn90": -0.2909482758620689,
+    "btcReturn90": 0.19911526417814007,
+    "relativeReturn90": -0.49006354004020897,
+    "daaBefore": 974725.7666666667,
+    "daaAfter": 864660.6451612903,
+    "daaChange": -0.11291906428386857,
+    "eraGrowth": 1.028417708739323,
+    "adoptionFollowed": false
+   }
+  ],
+  "supply": {
+   "start": "2026-08-08",
+   "end": "2026-11-06",
+   "netNewNear90d": 7950161.473860025,
+   "netNewAnnualPct": 0.02474350672375681,
+   "netNewAnnualUsd": 119619012.8869728,
+   "buybackAnnualUsd": 20074509.277777776,
+   "buybackCoverage": 0.16782038902750387,
+   "maxIssuanceCoverage": 0.17365081588761633,
+   "takeRate": 0.0004177847270016181,
+   "takeRatePrior": 0.0002644946498312753
+  },
+  "sections": [
+   {
+    "id": 1,
+    "title": "Did it last?",
+    "verdict": "BUILDING",
+    "reason": "2 of 3 era products keep at least 25% of their peak monthly activity."
+   },
+   {
+    "id": 2,
+    "title": "Did adoption justify the hype?",
+    "verdict": "HYPE",
+    "reason": "Measurable adoption followed 1 of 4 pivots within 90 days."
+   },
+   {
+    "id": 3,
+    "title": "Does it pay $NEAR?",
+    "verdict": "HYPE",
+    "reason": "Intents buybacks absorb 16.8% of realized net new supply; the take rate is rising."
+   }
+  ],
+  "verdict": "BUILDING, NOT YET PAYING",
+  "confidence": "low",
+  "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 2 of 3 era products keep at least 25% of their peak monthly activity. Intents buybacks absorb 16.8% of realized net new supply; the take rate is rising. Measurable adoption followed 1 of 4 pivots within 90 days."
+ }
 }

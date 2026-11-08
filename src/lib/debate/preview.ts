@@ -4,7 +4,7 @@
  * responses older than their TTL are refreshed (still paced and cached).
  */
 import { fetchAll } from '@/lib/data/fetcher';
-import { buildRequestCatalog } from '@/lib/data/sources';
+import { buildEraRequests, buildRequestCatalog } from '@/lib/data/sources';
 import { dbRawStore } from '@/lib/data/stores';
 import { buildDataset } from '@/lib/research/evidence';
 import type { EvidenceDraft, SourceStatusEntry } from '@/lib/research/types';
@@ -22,13 +22,18 @@ export interface TopicPreview {
   sources: SourceStatusEntry[];
   scenarios: ReturnType<typeof buildDataset>['scenarios'] | null;
   modelBase: ReturnType<typeof buildDataset>['modelBase'] | null;
+  thesis: ReturnType<typeof buildDataset>['thesis'];
+  feeSensitivity: ReturnType<typeof buildDataset>['feeSensitivity'];
+  eraMonthsStored: number;
+  eraMonthsTotal: number;
 }
 
 export async function previewTopic(slug: string, opts: { offline: boolean }): Promise<TopicPreview | null> {
   const topic = getTopic(slug);
   if (!topic) return null;
   const outcomes = await fetchAll(buildRequestCatalog(), { ...dbRawStore(), recordAttempt: opts.offline ? undefined : dbRawStore().recordAttempt }, { offline: opts.offline });
-  const ds = buildDataset(Object.fromEntries(outcomes.map((o) => [o.key, o.record])));
+  const era = await fetchAll(buildEraRequests(), { ...dbRawStore(), recordAttempt: undefined }, { offline: true });
+  const ds = buildDataset(Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record])));
   const items = topicEvidence(ds, topic);
   const times = outcomes.map((o) => o.record?.fetchedAt).filter((t): t is string => !!t).sort();
   return {
@@ -42,5 +47,9 @@ export async function previewTopic(slug: string, opts: { offline: boolean }): Pr
     sources: sourceStatusFrom(outcomes),
     scenarios: topic.usesModel ? ds.scenarios : null,
     modelBase: topic.usesModel ? ds.modelBase : null,
+    thesis: ds.thesis,
+    feeSensitivity: ds.feeSensitivity,
+    eraMonthsStored: era.filter((o) => o.record).length,
+    eraMonthsTotal: era.length,
   };
 }

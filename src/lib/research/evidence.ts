@@ -14,8 +14,9 @@ import { BUYBACK_WALLET, PEER_CHAINS, SOURCES, type SourceId } from '@/lib/data/
 import { computeModel, FORMULA_VERSION, requiredTakeRate, runScenarios, sensitivity, allocationSensitivity, type ModelInputs, type ScenarioRun, type SensitivityMatrix } from './model';
 import { addDays, commonEnd, fromUnixPairs, isoDay, lastDay, pctChange, safeDiv, valueOn, weeklyMeans, weeklySums, windowAggregate, type DailyPoint } from './series';
 import type { EvidenceDraft, EvidenceGroup, SeriesDef, Unit } from './types';
+import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
 
-export const METHODOLOGY_VERSION = 'nebube-evidence-1.0.0';
+export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
 export type RawMap = Record<string, RawRecord | null | undefined>;
 
@@ -29,6 +30,7 @@ export interface ResearchDataset {
   scenarios: ScenarioRun[];
   feeSensitivity: SensitivityMatrix;
   allocationMatrix: SensitivityMatrix;
+  thesis: ThesisResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -67,7 +69,7 @@ class Builder {
       valueText: null,
       observationType: 'OBSERVED',
       available: false,
-      sourceName: d.sourceName ?? (r ? SOURCES[r.source].name : 'NEBUBE (computed)'),
+      sourceName: d.sourceName ?? (r ? SOURCES[r.source].name : 'Computed here'),
       sourceUrl: d.sourceUrl ?? (r ? r.url : '/methodology'),
       observedAt: d.observedAt ?? null,
       fetchedAt: d.fetchedAt ?? r?.fetchedAt ?? null,
@@ -109,7 +111,7 @@ class Builder {
     const ok = value !== null && Number.isFinite(value);
     return this.add({
       evidenceId: d.evidenceId, metricKey: d.metricKey, group: d.group, label: d.label, unit: d.unit, methodology: d.methodology,
-      transform: d.transform, inputs: d.inputs, value: ok ? value : null, observationType: 'DERIVED', sourceName: 'NEBUBE (computed)',
+      transform: d.transform, inputs: d.inputs, value: ok ? value : null, observationType: 'DERIVED', sourceName: 'Computed here',
       sourceUrl: '/methodology', periodStart: d.periodStart ?? null, periodEnd: d.periodEnd ?? null, confidence: d.confidence ?? 'medium',
       validationNotes: ok ? d.validationNotes ?? null : `Not computed: ${missing.length ? `missing ${missing.join(', ')}` : 'non-finite or division by zero'}.`,
       fetchedAt: null, rawResponseHash: null,
@@ -410,7 +412,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const scenarios = runScenarios(modelBase);
   const modelInputsIds = ['MKT-NEAR-MCAP', 'INT-VOL-ANN', 'INT-FEE-RATE', 'INT-CAPTURE', 'INT-BUYBACK-SHARE'];
   const modelItem = (id: string, key: string, label: string, unit: Unit, value: number | null, transform: string, methodology: string) =>
-    B.add({ evidenceId: id, metricKey: key, group: 'model', label, unit, value, observationType: 'DERIVED', sourceName: `NEBUBE model ${FORMULA_VERSION}`, sourceUrl: '/methodology#model',
+    B.add({ evidenceId: id, metricKey: key, group: 'model', label, unit, value, observationType: 'DERIVED', sourceName: `Break-even model ${FORMULA_VERSION}`, sourceUrl: '/methodology#model',
       inputs: modelInputsIds, transform, methodology, periodStart: winStart, periodEnd: END, confidence: 'medium', fetchedAt: null, rawResponseHash: null,
       validationNotes: value === null ? 'N/A: one or more model inputs missing or non-positive.' : null });
   modelItem('MODEL-BUYBACK-USD', 'model.annual_buyback_demand_usd', 'Annual buyback demand at current run rate', 'USD', base.annualBuybackDemandUsd, 'V x f x c x b',
@@ -425,6 +427,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     '(y x M) / V, y = 0.02 (assumed)', 'Reverse calculation: the share of every dollar of volume that would have to become buybacks. Compare with MODEL-CURRENT-TAKE-RATE.');
   modelItem('MODEL-CURRENT-TAKE-RATE', 'model.current_take_rate', 'Current f x c x b (volume converted to buyback demand)', 'fraction', base.volumeToBuybackRate, 'f x c x b', 'Measured share of each volume dollar that becomes buyback demand.');
 
+  // ------------------------------------------------------------ thesis sections (eras, pivots, realized supply)
+  const thesis = analyzeThesis(raws, (id) => B.val(id));
+  B.items.push(...thesisEvidence(thesis, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null, url: r?.url ?? '' }; }));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -435,6 +441,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     scenarios,
     feeSensitivity: sensitivity(modelBase),
     allocationMatrix: allocationSensitivity(modelBase),
+    thesis,
   };
 }
 

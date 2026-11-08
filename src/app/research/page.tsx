@@ -9,7 +9,7 @@ import { formatDate, formatDateTime, formatValue, pct } from '@/lib/format';
 import { TOPICS } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Research dashboard', description: 'Every NEBUBE chart with the exact query behind it, refreshed from public NEAR data sources.' };
+export const metadata: Metadata = { title: 'Research dashboard', description: 'Every chart in the thesis with the exact query behind it, refreshed from public NEAR data sources.' };
 
 function sentence(label: string, unit: string, points: [string, number][]): string {
   const first = points[0]!;

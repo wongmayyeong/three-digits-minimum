@@ -1,6 +1,6 @@
-# NEBUBE
+# Is NEAR Building the Future or Following the Hype?
 
-**Judged on the evidence, not the conviction.** An evidence-first AI debate arena for NEAR investment theses (NEAR HACKATHON 2026, Investment Thesis track). Bull and Bear argue from one frozen, hashed snapshot of live data. A neutral Judge scores the evidence. Every citation and spoken number is checked by deterministic server code.
+*Every pivot, tested against the evidence.* A reproducible NEAR investment thesis for the NEAR HACKATHON 2026 Investment Thesis track. **The thesis is the deliverable:** read [THESIS.md](THESIS.md), open `artifacts/research/dashboard.html`, or rebuild every number with `npm run research:rebuild` (no database or API keys needed). The web app presents the same research live, opened by an AI Bull vs Bear debate whose every citation and spoken number is checked against a frozen evidence snapshot.
 
 Educational research, not financial advice. Not affiliated with the NEAR Foundation.
 
@@ -56,3 +56,10 @@ DefiLlama (NEAR Intents volume, fees, revenue, holders revenue; chain fees, TVL,
 | ElevenLabs voices | **not run: no key**; adapter tested with a mocked provider |
 
 See `.env.example` for every variable. License: MIT.
+
+## Credits and AI disclosure
+
+- Character sprites (Bull, Bear, owl Judge), the debate studio background and the logo mark were generated with ChatGPT image generation from the prompts in [design/prompts.md](design/prompts.md), then sliced and processed by `scripts/slice-sprites.ts` and `scripts/process-assets.ts`. Source images are in `design/source/`.
+- Code was written with AI assistance (Claude Code).
+- Libraries: Next.js, React, Prisma, PostgreSQL, Zod, Motion, Recharts, Tailwind CSS, sharp, Vitest, Playwright and the packages listed in package.json.
+- Data: DefiLlama, CoinGecko, NearBlocks, NEAR JSON-RPC (FastNEAR), NEAR announcements. NEAR is a trademark of its owners; this project is independent and not affiliated with the NEAR Foundation.

@@ -5,7 +5,7 @@
 import { randomBytes } from 'node:crypto';
 import { dbRawStore } from '@/lib/data/stores';
 import { fetchAll, type FetchOutcome } from '@/lib/data/fetcher';
-import { buildRequestCatalog, sha256, stableStringify, SOURCES } from '@/lib/data/sources';
+import { buildEraRequests, buildRequestCatalog, sha256, stableStringify, SOURCES } from '@/lib/data/sources';
 import { buildDataset, type ResearchDataset } from '@/lib/research/evidence';
 import type { EvidenceDraft, SourceStatusEntry } from '@/lib/research/types';
 import { db } from '@/lib/storage/db';
@@ -42,12 +42,17 @@ export async function createSnapshot(topicSlug: string, opts: CreateSnapshotOpti
   // The id is chosen before fetching so every fetch attempt is linked to this snapshot.
   const snapshotId = `snp${randomBytes(12).toString('hex')}`;
   const ref = { current: snapshotId as string | null };
-  const outcomes = await fetchAll(buildRequestCatalog(), dbRawStore(ref), { forceFresh: opts.forceFresh }, opts.onFetch);
-  const raws = Object.fromEntries(outcomes.map((o) => [o.key, o.record]));
+  const live = await fetchAll(buildRequestCatalog(), dbRawStore(ref), { forceFresh: opts.forceFresh }, opts.onFetch);
+  // Monthly era history is collected by the scheduled refresh; snapshots read the stored months.
+  const eraStore = { ...dbRawStore(ref), recordAttempt: undefined };
+  const era = await fetchAll(buildEraRequests(), eraStore, { offline: true });
+  const outcomes = live;
+  const raws = Object.fromEntries([...live, ...era].map((o) => [o.key, o.record]));
   const ds = buildDataset(raws);
   const items = topicEvidence(ds, topic);
   const scenarios = topic.usesModel ? ds.scenarios : [];
-  const status = sourceStatusFrom(outcomes);
+  const stored = era.filter((o) => o.record).length;
+  const status = [...sourceStatusFrom(outcomes), { key: 'nearblocks.era.*', source: 'nearblocks', sourceName: SOURCES.nearblocks.name, status: stored ? 'OK' as const : 'SKIPPED' as const, stale: false, cacheHit: true, fetchedAt: null, error: stored === era.length ? null : `${stored} of ${era.length} monthly era counts stored; the rest are collected by the scheduled refresh.`, sha256: null, url: 'https://api.nearblocks.io/v1/account/{contract}/txns-only/count' }];
   const contentHash = snapshotContentHash(items, scenarios);
   const anyFresh = outcomes.some((o) => o.status === 'OK');
 
@@ -64,7 +69,7 @@ export async function createSnapshot(topicSlug: string, opts: CreateSnapshotOpti
         contentHash,
         sourceStatus: { entries: status, anyFresh, peerWindowEnd: ds.peerWindowEnd, formulaVersion: ds.formulaVersion,
           feeSensitivity: topic.usesModel ? ds.feeSensitivity : null, allocationMatrix: topic.usesModel ? ds.allocationMatrix : null,
-          modelBase: topic.usesModel ? ds.modelBase : null } as object,
+          modelBase: topic.usesModel ? ds.modelBase : null, thesis: ds.thesis } as object,
       },
     });
     await tx.evidenceItem.createMany({

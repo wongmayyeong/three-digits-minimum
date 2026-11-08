@@ -34,7 +34,7 @@ export interface RawStore {
   recordAttempt?(outcome: FetchOutcome): Promise<void>;
 }
 
-const UA = 'NEBUBE-research/0.1 (evidence-first NEAR research)';
+const UA = 'near-thesis-research/0.1 (evidence-first NEAR research)';
 const MAX_BYTES = 25 * 1024 * 1024;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
