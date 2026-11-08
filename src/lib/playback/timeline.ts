@@ -124,3 +124,21 @@ export function formatClock(sec: number): string {
   const s = Math.max(0, Math.floor(sec));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
+
+/** Index of the beat containing character `idx` (beats are the speaker's sentence groups). */
+export function beatIndexAt(spans: BeatSpan[], idx: number): number {
+  for (let i = 0; i < spans.length; i++) if (idx <= spans[i]!.end) return i;
+  return Math.max(0, spans.length - 1);
+}
+
+export const GESTURE_SECONDS = 1.6;
+
+/**
+ * Gesture for the speaker: each beat opens with a hand gesture for GESTURE_SECONDS, then the
+ * character returns to plain talking. Rebuttal beats point; others alternate explain / point.
+ */
+export function gestureFor(beatIdx: number, secondsIntoBeat: number, isRebuttal: boolean): 'explain' | 'point' | null {
+  if (secondsIntoBeat < 0 || secondsIntoBeat > GESTURE_SECONDS) return null;
+  if (isRebuttal) return 'point';
+  return beatIdx % 2 === 0 ? 'explain' : 'point';
+}

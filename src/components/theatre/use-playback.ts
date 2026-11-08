@@ -9,7 +9,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { TurnView } from '@/lib/debate/view';
 import { VOICES } from '@/lib/audio/voices';
-import { beatSpans, charAt, claimAt, estimateDuration, mouthFor, phraseAt, phrases, timeAtChar, type MouthShape } from '@/lib/playback/timeline';
+import { beatIndexAt, beatSpans, charAt, claimAt, estimateDuration, mouthFor, phraseAt, phrases, timeAtChar, type MouthShape } from '@/lib/playback/timeline';
 
 export type SoundMode = 'off' | 'on';
 export type ClockKind = 'audio' | 'device' | 'captions';
@@ -56,6 +56,8 @@ export function usePlayback(segments: Segment[], opts: { waitingForMore: boolean
   const charIdx = clock === 'device' && deviceChar !== null ? deviceChar : charAt(time, duration, text.length, alignment);
   const phrase = phraseAt(derived.phrases, charIdx);
   const claimId = claimAt(derived.spans, charIdx);
+  const beatIdx = beatIndexAt(derived.spans, charIdx);
+  const beatStart = derived.spans[beatIdx] ? timeAtChar(derived.spans[beatIdx]!.start, duration, text.length, alignment) : 0;
   const ended = time >= duration - 0.05;
   const speaking = playing && !!turn && !ended;
   const mouth: MouthShape = speaking ? mouthFor(text[charIdx]) : 'closed';
@@ -189,7 +191,7 @@ export function usePlayback(segments: Segment[], opts: { waitingForMore: boolean
   }, [stopDevice]);
 
   return {
-    index, seg, turn, playing, time, duration, speed, sound, clock, charIdx, phrase, claimId, mouth, speaking, ended, audioError,
+    index, seg, turn, playing, time, duration, speed, sound, clock, charIdx, phrase, claimId, beatIdx, secondsIntoBeat: time - beatStart, mouth, speaking, ended, audioError,
     go, seek, toggle, setSpeed, setSound: setSoundMode, setPlaying, alignmentKind: turn?.audio?.alignmentKind ?? null,
   };
 }

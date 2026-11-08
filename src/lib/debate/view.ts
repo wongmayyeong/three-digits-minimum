@@ -237,8 +237,8 @@ export interface LibraryEntry {
 export async function listLibrary(opts: { topic?: string; winner?: string; from?: Date; to?: Date; cursor?: string; limit?: number }) {
   const limit = Math.min(50, Math.max(1, opts.limit ?? 20));
   const where = {
-    isPublic: true,
-    synthetic: process.env.NEBUBE_SHOW_SYNTHETIC === '1' && process.env.NODE_ENV !== 'production' ? undefined : false,
+    // Local development can opt in to listing synthetic test episodes (never in production).
+    ...(process.env.NEBUBE_SHOW_SYNTHETIC === '1' && process.env.NODE_ENV !== 'production' ? {} : { isPublic: true, synthetic: false }),
     status: 'COMPLETE' as const,
     topicSlug: { in: TOPICS.map((t) => t.slug) as string[] },
     ...(opts.winner && ['bull', 'bear', 'inconclusive'].includes(opts.winner) ? { verdict: { winner: opts.winner } } : {}),

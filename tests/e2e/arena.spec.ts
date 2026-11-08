@@ -80,11 +80,18 @@ test('layout fits phones and the calculator recomputes @mobile', async ({ page }
   expect(errors).toEqual([]);
 });
 
-test('reduced motion disables ambient animation @mobile', async ({ browser }) => {
+test('reduced motion opens the debate without the camera transition, and Esc closes it @mobile', async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce' });
   const page = await ctx.newPage();
   await page.goto('/');
-  const anim = await page.locator('.nb-star').first().evaluate((el) => getComputedStyle(el).animationName);
-  expect(anim).toBe('none');
+  const watch = page.getByRole('button', { name: 'Watch the debate' });
+  if (await watch.count()) {
+    await watch.click();
+    await expect(page.getByRole('dialog', { name: 'Debate' })).toBeVisible({ timeout: 1500 });
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog', { name: 'Debate' })).toHaveCount(0);
+  } else {
+    await expect(page.getByRole('link', { name: 'Read the verdict' })).toBeVisible();
+  }
   await ctx.close();
 });

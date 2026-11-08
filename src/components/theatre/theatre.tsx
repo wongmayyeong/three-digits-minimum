@@ -3,23 +3,19 @@
 import Link from 'next/link';
 import { useReducedMotion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Role, VisualState } from '@/components/characters/rigs';
+import type { Role } from '@/components/characters/rigs';
 import { Notice } from '@/components/ui';
 import { STATUS_LABEL, type DebateStatus } from '@/lib/debate/phases';
-import type { ClaimView, DebateView } from '@/lib/debate/view';
+import type { DebateView } from '@/lib/debate/view';
+import { claimIndex, computeCast, NAME, ROUND } from './cast';
 import { formatClock } from '@/lib/playback/timeline';
 import { getTopic } from '@/lib/topics/topics';
 import { DeltaPanel, FailurePanel, ResearchProgress, SnapshotPanel, Transcript, VerdictDetails } from './panels';
-import { Stage, type StageCast } from './stage';
+import { Stage } from './stage';
 import { IntroTray, ScoreReveal, TurnTray } from './tray';
 import { useDebateLive } from './use-debate-live';
 import { usePlayback, type Segment } from './use-playback';
 
-const ROUND: Record<string, string> = {
-  BULL_OPEN: 'Round 1 · Opening', BEAR_OPEN: 'Round 1 · Opening', BULL_REBUTTAL: 'Round 2 · Rebuttal', BEAR_REBUTTAL: 'Round 2 · Rebuttal',
-  BULL_CLOSE: 'Round 3 · Closing', BEAR_CLOSE: 'Round 3 · Closing', JUDGING: 'Verdict',
-};
-const NAME: Record<Role, string> = { bull: 'Bull', bear: 'Bear', judge: 'Judge' };
 const TERMINAL = new Set(['COMPLETE', 'FAILED', 'PARTIAL']);
 
 export function Theatre({ initial, variant = 'full' }: { initial: DebateView; variant?: 'full' | 'embed' }) {
@@ -48,46 +44,11 @@ export function Theatre({ initial, variant = 'full' }: { initial: DebateView; va
     if (!autoplayed.current && initial.status !== 'COMPLETE' && view.turns.length > 0) { autoplayed.current = true; go(1, true); }
   }, [view.turns.length, initial.status, go]);
 
-  const allClaims = useMemo(() => {
-    const m = new Map<string, ClaimView & { actor: string }>();
-    for (const t of view.turns) for (const c of t.claims) m.set(c.id, { ...c, actor: t.actor });
-    return m;
-  }, [view.turns]);
-
+  const allClaims = useMemo(() => claimIndex(view), [view]);
   const turn = pb.turn;
   const activeRole: Role | null = turn ? turn.actor : null;
-  const judgeScene = activeRole === 'judge';
   const progress = pb.duration ? pb.time / pb.duration : 0;
-  const afterVerdict = !!view.verdict && judgeScene && (progress > 0.9 || pb.ended);
-
-  const activeClaim = turn?.claims.find((c) => c.id === pb.claimId) ?? null;
-  const cast: StageCast = (() => {
-    const states: Record<Role, VisualState> = { bull: 'idle', bear: 'idle', judge: 'idle' };
-    const mouths = { bull: 'closed', bear: 'closed', judge: 'closed' } as StageCast['mouths'];
-    const look: Record<Role, number> = { bull: 0.8, bear: -0.8, judge: 0 };
-    if (!turn) {
-      if (generating) { states.bull = 'thinking'; states.bear = 'thinking'; states.judge = 'listening'; }
-      return { active: null, states, mouths, look };
-    }
-    const a = turn.actor;
-    const speakingState: VisualState = a === 'judge' ? 'judging' : activeClaim?.rebuttedClaimId ? 'rebutting' : 'speaking';
-    states[a] = pb.speaking ? speakingState : pb.playing ? 'idle' : 'listening';
-    mouths[a] = pb.mouth;
-    for (const r of ['bull', 'bear', 'judge'] as Role[]) {
-      if (r === a) continue;
-      states[r] = activeClaim?.rebuttedClaimId && allClaims.get(activeClaim.rebuttedClaimId)?.actor === r ? 'reacting' : 'listening';
-      look[r] = a === 'bull' ? -0.9 : a === 'bear' ? 0.9 : r === 'bull' ? 0.9 : -0.9;
-    }
-    if (a === 'judge') look.judge = 0;
-    else look.judge = a === 'bull' ? -0.7 : 0.7;
-    if (afterVerdict && view.verdict) {
-      const w = view.verdict.winner;
-      states.bull = w === 'bull' ? 'verdict-winning' : w === 'bear' ? 'verdict-losing' : 'thinking';
-      states.bear = w === 'bear' ? 'verdict-winning' : w === 'bull' ? 'verdict-losing' : 'thinking';
-      if (w !== 'inconclusive') { mouths.bull = w === 'bull' ? 'smile' : 'frown'; mouths.bear = w === 'bear' ? 'smile' : 'frown'; }
-    }
-    return { active: a, states, mouths, look };
-  })();
+  const { cast, judgeScene, afterVerdict } = computeCast(view, pb, generating, allClaims);
 
   // Keyboard: Space/K play-pause, arrows seek 5s, Shift+arrows change turn.
   const onKey = (e: React.KeyboardEvent) => {
@@ -205,7 +166,7 @@ export function Theatre({ initial, variant = 'full' }: { initial: DebateView; va
   );
 }
 
-function Transport({ pb, segments, captionsOn, setCaptionsOn, onFirstPlay, generating, onTranscript }: {
+export function Transport({ pb, segments, captionsOn, setCaptionsOn, onFirstPlay, generating, onTranscript }: {
   pb: ReturnType<typeof usePlayback>; segments: Segment[]; captionsOn: boolean; setCaptionsOn: (b: boolean) => void; onFirstPlay: () => void; generating: boolean; onTranscript: () => void;
 }) {
   const disabled = segments.length === 0;

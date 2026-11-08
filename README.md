@@ -59,7 +59,7 @@ See `.env.example` for every variable. License: MIT.
 
 ## Credits and AI disclosure
 
-- Character sprites (Bull, Bear, owl Judge), the debate studio background and the logo mark were generated with ChatGPT image generation from the prompts in [design/prompts.md](design/prompts.md), then sliced and processed by `scripts/slice-sprites.ts` and `scripts/process-assets.ts`. Source images are in `design/source/`.
+- Character sprites (Bull, Bear, owl Judge) and the debate studio background were generated with ChatGPT image generation from the prompts in [design/prompts.md](design/prompts.md), then sliced and processed by `scripts/slice-sprites.ts` and `scripts/process-assets.ts`. The logo mark was supplied by the author and processed by `scripts/process-logo.ts`. Source images are in `design/source/`.
 - Code was written with AI assistance (Claude Code).
 - Libraries: Next.js, React, Prisma, PostgreSQL, Zod, Motion, Recharts, Tailwind CSS, sharp, Vitest, Playwright and the packages listed in package.json.
 - Data: DefiLlama, CoinGecko, NearBlocks, NEAR JSON-RPC (FastNEAR), NEAR announcements. NEAR is a trademark of its owners; this project is independent and not affiliated with the NEAR Foundation.

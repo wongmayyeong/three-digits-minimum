@@ -5,13 +5,16 @@
  *
  *   npx tsx scripts/slice-sprites.ts <sheet.png> <bull|bear|judge> [--cols 3 --rows 2]
  *
- * Frame order (row by row): idle, talk, think, surprised, agree, disagree.
+ * Frame order (row by row): 3x2 sheets: idle, talk, think, surprised, agree, disagree.
+ * 4x2 sheets: idle, talk, explain, point, think, surprised, agree, disagree.
  */
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const POSES = ['idle', 'talk', 'think', 'surprised', 'agree', 'disagree'] as const;
+/** 4x2 sheets add two speaking gestures. */
+export const POSES8 = ['idle', 'talk', 'explain', 'point', 'think', 'surprised', 'agree', 'disagree'] as const;
 
 async function main() {
   const [sheet, role] = process.argv.slice(2);
@@ -57,9 +60,10 @@ async function main() {
   const keyed = sharp(data, { raw: { width: W, height: H, channels: C as 4 } });
   const outDir = join(process.cwd(), 'public', 'characters', role!);
   mkdirSync(outDir, { recursive: true });
+  const poses: readonly string[] = cols * rows === 8 ? POSES8 : POSES;
   let n = 0;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-    const pose = POSES[n++];
+    const pose = poses[n++];
     if (!pose) break;
     await keyed.clone().extract({ left: c * cw + minX, top: r * ch + minY, width: maxX - minX + 1, height: maxY - minY + 1 })
       .png({ compressionLevel: 9 }).toFile(join(outDir, `${pose}.png`));
@@ -68,7 +72,7 @@ async function main() {
   // Record which roles have sprites, so the app switches from the SVG fallback automatically.
   const manifestPath = join(process.cwd(), 'src', 'components', 'characters', 'sprites.json');
   const manifest: Record<string, { width: number; height: number; poses: string[] }> = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : {};
-  manifest[role!] = { width: maxX - minX + 1, height: maxY - minY + 1, poses: [...POSES] };
+  manifest[role!] = { width: maxX - minX + 1, height: maxY - minY + 1, poses: [...poses] };
   writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 }
 

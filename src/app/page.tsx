@@ -1,19 +1,29 @@
 import Link from 'next/link';
-import { ArenaIdle } from '@/components/arena-idle';
-import { StarField } from '@/components/brand';
+import { HeroDebate } from '@/components/hero-debate';
 import { LibraryRow } from '@/components/library-row';
 import { ScenarioTable } from '@/components/scenario-table';
-import { Theatre } from '@/components/theatre/theatre';
 import { AsOfLine, EraCharts, EraTable, EventTable, FinalVerdictLabel, SectionBadge, SectionHeader, SupplyStats, TriggerTable } from '@/components/thesis';
 import { Container, EmptyState, Notice } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { listLibrary, loadDebateView } from '@/lib/debate/view';
 import { formatDate, formatValue } from '@/lib/format';
-import { PIVOTS, RULES, THESIS_SUBTITLE, THESIS_TITLE } from '@/lib/research/thesis';
+import { PIVOTS, RULES, THESIS_SUBTITLE, THESIS_TITLE, type FinalVerdict } from '@/lib/research/thesis';
 import { evaluateTriggers } from '@/lib/research/triggers';
 import { THESIS_TOPIC } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
+
+const VERDICT_TEXT: Record<FinalVerdict, string> = {
+  BUILDING: 'Building the future',
+  'FOLLOWING THE HYPE': 'Following the hype',
+  'BUILDING, NOT YET PAYING': 'Building, but not yet paying the token',
+  'PAYING, NOT LASTING': 'Paying the token, but products are not lasting',
+  MIXED: 'Mixed evidence',
+  'INSUFFICIENT EVIDENCE': 'Insufficient evidence',
+};
+const VERDICT_TONE: Record<FinalVerdict, 'mint' | 'coral' | 'amber' | 'muted'> = {
+  BUILDING: 'mint', 'FOLLOWING THE HYPE': 'coral', 'BUILDING, NOT YET PAYING': 'amber', 'PAYING, NOT LASTING': 'amber', MIXED: 'amber', 'INSUFFICIENT EVIDENCE': 'muted',
+};
 
 export default async function ThesisPage() {
   const [preview, episodes] = await Promise.all([
@@ -27,51 +37,24 @@ export default async function ThesisPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b hairline">
-        <StarField count={30} seed={3} className="opacity-60" />
-        <Container className="relative py-14 md:py-20">
-          <p className="eyebrow mb-5">NEAR investment thesis · reproducible research</p>
-          <h1 className="display-xl max-w-5xl text-balance">{THESIS_TITLE}</h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fg-2 md:text-xl">{THESIS_SUBTITLE}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            {t && (
-              <p className="text-base">
-                <span className="text-muted">Current verdict: </span>
-                <span className="font-[620]"><FinalVerdictLabel verdict={t.verdict} /></span>
-                <span className="text-muted"> · {t.confidence} confidence</span>
-              </p>
-            )}
-            <a href="#verdict" className="text-sm text-mint">Jump to the verdict ↓</a>
-          </div>
-          {preview && <div className="mt-3"><AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} /></div>}
-          <p className="mt-2 max-w-3xl text-xs leading-relaxed text-muted">Educational research, not financial advice. Not affiliated with the NEAR Foundation. Every figure links to its source; the verdict is computed by published rules, not written by AI.</p>
-        </Container>
-      </section>
+      <HeroDebate
+        episode={latest && latest.status === 'COMPLETE' ? latest : null}
+        title={THESIS_TITLE}
+        subtitle={THESIS_SUBTITLE}
+        verdict={t ? VERDICT_TEXT[t.verdict] : null}
+        verdictTone={t ? VERDICT_TONE[t.verdict] : 'muted'}
+        confidence={t?.confidence ?? null}
+        asOf={preview?.windowEnd ? formatDate(preview.windowEnd) : null}
+      />
 
       <Container className="py-10 md:py-14" >
-        <section aria-labelledby="debate-h">
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <p className="eyebrow mb-2">The debate</p>
-              <h2 id="debate-h" className="text-2xl font-[600] tracking-[-0.02em]">Bull and Bear argue it out. The Judge scores the evidence.</h2>
-            </div>
-            <a href="#pivots" className="text-sm text-muted hover:text-fg">Skip to the research ↓</a>
-          </div>
-          {latest && latest.status === 'COMPLETE' ? (
-            <Theatre initial={latest} variant="embed" />
-          ) : (
-            <div className="space-y-3">
-              <ArenaIdle />
-              <p className="text-sm text-muted">The first debate episode appears here once it is generated from a frozen snapshot of the research below. Episodes are regenerated only when the verdict changes.</p>
-            </div>
-          )}
-        </section>
+        {preview && <AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} />}
 
         {!preview || !t ? (
           <div className="mt-14"><Notice tone="warn" title="Research data is not available yet.">No stored source responses were found. Run the research refresh (npm run refresh:now) or wait for the daily refresh.</Notice></div>
         ) : (
           <>
-            <section id="pivots" className="mt-16 scroll-mt-20" aria-labelledby="pivots-h">
+            <section id="pivots" className="mt-10 scroll-mt-20" aria-labelledby="pivots-h">
               <header className="mb-8 border-t hairline pt-10">
                 <p className="eyebrow mb-3"><span className="text-mint">00</span> · The pivots</p>
                 <h2 id="pivots-h" className="display-m max-w-3xl text-balance">From scalable L1 to Social, Chain Abstraction, Intents and AI.</h2>
