@@ -8,13 +8,13 @@
 
 > Educational research, not financial advice. No price prediction. A "following the hype" verdict is an acceptable outcome.
 
-**Current verdict: Building, but not yet paying the token** (low confidence)
+**Current verdict: Technology is building; the investment case is unproven** (low confidence)
 
 | Sub-question | Reading | Why |
 |---|---|---|
 | 1. Did it last? | BUILDING | 2 of 3 era products keep at least 25% of their peak monthly activity. |
-| 2. Did adoption justify the hype? | HYPE | Measurable adoption followed 1 of 4 pivots within 90 days. |
-| 3. Does it pay $NEAR? | HYPE | Intents buybacks absorb 16.8% of realized net new supply; the take rate is rising. |
+| 2. Did adoption justify the hype? | HYPE | Product adoption followed 0 of 3 measurable pivots within two months of mainnet launch. Not measurable, so not counted: User-Owned AI. |
+| 3. Does it pay $NEAR? | HYPE | Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising. |
 
 ---
 
@@ -30,16 +30,15 @@ Why usage and value capture are tested separately: a network can be busy while i
 
 - Chain Abstraction (Chain Signatures): v1.signer still runs at 48.2% of its 2026-05 peak (2026-10). [ERA-SIGNER-RETENTION]
 - Intents: intents.near still runs at 95.6% of its 2024-12 peak (2026-10). [ERA-INTENTS-RETENTION]
-- Adoption followed Chain Signatures launch (27 March 2024): active accounts +52.4% at +90 days, product activity 1.0x two months after launch. [EVT-CHAIN-SIGNATURES-DAA-90D]
 - NEAR keeps 0.042% of Intents volume, up from 0.026% in the prior 90 days. [INT-TAKE-RATE, INT-TAKE-RATE-PRIOR]
 
 ## 3. Evidence against (building)
 
 - Social / BOS: social.near has fallen to 1.02% of its 2023-08 peak (2026-10). [ERA-SOCIAL-RETENTION]
-- Adoption did not follow Blockchain Operating System (BOS) (February 2023): active accounts -20.9% at +90 days. [EVT-BOS-DAA-90D]
-- Adoption did not follow User-Owned AI (22 May 2024): active accounts -23.4% at +90 days. [EVT-USER-OWNED-AI-DAA-90D]
-- Adoption did not follow NEAR Intents (beta) (10 November 2024): active accounts -11.3% at +90 days. [EVT-INTENTS-DAA-90D]
-- Intents buybacks absorb 16.8% of realized net new supply. [COV-BUYBACK-REALIZED]
+- Product adoption did not follow Blockchain Operating System (BOS): social.near activity was 0.66x its launch-month level two months after mainnet launch (February 2023 (BOS live; SocialDB already on mainnet)); the rule needs 2x. [EVT-BOS-PRODUCT-2M]
+- Product adoption did not follow Chain Signatures: v1.signer activity was 1.08x its launch-month level two months after mainnet launch (8 August 2024, mainnet); the rule needs 2x. [EVT-CHAIN-SIGNATURES-PRODUCT-2M]
+- Product adoption did not follow NEAR Intents (beta): intents.near activity was 1.03x its launch-month level two months after mainnet launch (10 November 2024, beta on mainnet); the rule needs 2x. [EVT-INTENTS-PRODUCT-2M]
+- Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; parity would need 5.96x today's Intents volume. [COV-BUYBACK-REALIZED, SUP-PARITY-MULTIPLE]
 - F4 triggered: Base-layer user activity contracts sharply year over year. (-78.7% vs a year earlier).
 - F6 triggered: Token-level value capture is under 1% of market cap per year. (0.434% of market cap).
 
@@ -51,7 +50,7 @@ Each rule below is evaluated on every rebuild by `src/lib/research/triggers.ts`.
 |---|---|---|---|---|
 | F1 | Intents volume grows but NEAR-captured revenue per dollar of volume falls. | `INT-VOL-GROWTH > 0 and INT-TAKE-RATE < 0.8 x INT-TAKE-RATE-PRIOR` | volume 81.4%; take rate 0.026% -> 0.042% | **NOT TRIGGERED** |
 | F2 | Fee compression: the effective fee rate drops by a quarter or more between consecutive 90-day windows. | `INT-FEE-RATE < 0.75 x INT-FEE-RATE-PRIOR` | 0.138% -> 0.153% | **NOT TRIGGERED** |
-| F3 | The break-even volume for buybacks worth 2% of market cap is more than ten times today's run rate. | `MODEL-VOL-MULTIPLE-2PCT > 10` | 4.84x today's run rate | **NOT TRIGGERED** |
+| F3 | The volume needed for buyback revenue worth 2% of market cap is more than ten times today's run rate. | `MODEL-VOL-MULTIPLE-2PCT > 10` | 4.84x today's run rate | **NOT TRIGGERED** |
 | F4 | Base-layer user activity contracts sharply year over year. | `ACT-DAA-YOY < -25%` | -78.7% vs a year earlier | **TRIGGERED** |
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | -4.85% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.434% of market cap | **TRIGGERED** |
@@ -74,14 +73,14 @@ Limitations: transactions are not people. Relayers, solvers and Chain Signatures
 
 ## Sub-question 2: Did adoption justify the hype?
 
-For each pivot, chain-wide daily active accounts in days 60 to 90 after the announcement versus the 30 days before, and the era product's activity two months after its launch month versus the launch month. NEAR's price return minus BTC's is shown as market context only and is not scored, because prices can move ahead of adoption for good reasons.
+Adoption is scored on the product, from the date it went live on mainnet, not from the announcement: the product contract's monthly transactions two months after its launch month must reach at least 2x the launch month. Chain Signatures is measured from its mainnet release (8 August 2024), not the March 2024 announcement, when it was on testnet. User-Owned AI has no single product contract, so it is N/A and left out of the count instead of being scored as a failure. Chain-wide active accounts and NEAR's price return minus BTC's are context only: neither can be attributed to one product, and prices can move ahead of adoption.
 
-| Pivot | Date | Active accounts, +90d | Product activity, month 3 vs 1 | Adoption followed? | NEAR minus BTC, +90d (context) |
-|---|---|---|---|---|---|
-| [Blockchain Operating System (BOS)](https://near.org/blog/2023-near-in-review) | February 2023 | -20.9% | 0.66x | no | -47.9% |
-| [Chain Signatures launch](https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account) | 27 March 2024 | +52.4% | 1.00x | yes | -12.8% |
-| [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | -23.4% | no product contract | no | -33.6% |
-| [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | -11.3% | 1.03x | no | -49.0% |
+| Pivot | Announced | Product and mainnet launch | Product activity, launch +2 months (scored) | Adoption followed? | Chain active accounts, +90d (context) | NEAR minus BTC, +90d (context) |
+|---|---|---|---|---|---|---|
+| [Blockchain Operating System (BOS)](https://near.org/blog/2023-near-in-review) | February 2023 | `social.near` from February 2023 (BOS live; SocialDB already on mainnet) | 0.66x | no | -20.9% | -47.9% |
+| [Chain Signatures](https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account) | 27 March 2024 (announced; mainnet 8 August 2024) | `v1.signer` from 8 August 2024, mainnet | 1.08x | no | +52.4% | -12.8% |
+| [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | no single product contract | n/a | N/A, not counted | -23.4% | -33.6% |
+| [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near` from 10 November 2024, beta on mainnet | 1.03x | no | -11.3% | -49.0% |
 
 Pivot dates come from NEAR's own announcements (links in the table). BOS is dated to the month (February 2023); its window starts 2023-03-01.
 
@@ -89,9 +88,10 @@ Pivot dates come from NEAR's own announcements (links in the table). BOS is date
 
 | Measure | Value |
 |---|---|
-| Intents buybacks per year (90-day run rate) | $20.07M |
+| Buyback-designated Intents revenue per year (90-day run rate, DefiLlama classification) | $20.07M |
 | Realized net new supply per year (net of burns) | 2.47% ($119.62M at today's price) |
-| Buybacks as a share of realized net new supply | 16.8% |
+| Buyback-designated revenue as a share of realized net new supply | 16.8% |
+| Supply parity: volume needed for buyback revenue to match net new supply | $286.32B (5.96x today) |
 | Burns + buybacks as a share of maximum possible issuance | 17.4% |
 | Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | 0.042% (0.026%) |
 | Tokens held by the buyback wallet | 2.21M NEAR |
@@ -99,22 +99,30 @@ Pivot dates come from NEAR's own announcements (links in the table). BOS is date
 
 A buyback is not a burn: bought tokens are held by the buyback wallet, and total supply only falls if they are burned. Buyback demand does not move price one-for-one.
 
-### What would it take? The break-even demand model
+### What would it take? The buyback demand target model
+
+How much Intents volume would buyback-designated revenue need to reach a chosen share of market cap (y, 2% by default)? This is a demand target, not a supply break-even; supply parity is shown after the scenarios.
 
 ```
 annual_buyback_demand_usd = V x f x c x b
 buyback_demand_to_mcap    = annual_buyback_demand_usd / M
-break_even_annual_volume  = (y x M) / (f x c x b)
-volume_multiple_required  = break_even_annual_volume / V
+required_annual_volume    = (y x M) / (f x c x b)
+volume_multiple_required  = required_annual_volume / V
 ```
 
 V is the 90-day Intents volume run rate ($48.05B), f the fee rate (0.153%), c NEAR's capture of fees (27.3%), b the buyback share (100.0%, a DefiLlama classification, not a guaranteed policy), and y a hypothetical target (2% of market cap per year).
 
-| Scenario | Annual buyback demand | Buyback / market cap | Break-even volume (y = 2%) | Volume multiple | Assumptions |
-|---|---|---|---|---|---|
-| Conservative | $3.76M | 0.077% | $1.24T | 25.8x | Fees compress by half as competitors undercut, NEAR keeps 25% less of fees, half of captured revenue goes to buybacks, and volume does not grow. |
-| Base | $20.07M | 0.413% | $232.77B | 4.84x | Measured fee rate, capture and buyback share held constant, and the trailing 90-day volume run rate held flat. |
-| Optimistic | $40.15M | 0.826% | $232.77B | 2.42x | Measured fee rate and capture held, all captured revenue goes to buybacks, and volume doubles. |
+| Scenario | Annual buyback demand | Buyback / market cap | Volume for 2% of market cap | x today's volume | x scenario's volume | Assumptions |
+|---|---|---|---|---|---|---|
+| Conservative | $3.76M | 0.077% | $1.24T | 25.8x | 25.8x | Fees compress by half as competitors undercut, NEAR keeps 25% less of fees, half of captured revenue goes to buybacks, and volume does not grow. |
+| Base | $20.07M | 0.413% | $232.77B | 4.84x | 4.84x | Measured fee rate, capture and buyback share held constant, and the trailing 90-day volume run rate held flat. |
+| Optimistic | $40.15M | 0.826% | $232.77B | 4.84x | 2.42x | Measured fee rate and capture held, all captured revenue goes to buybacks, and volume doubles. |
+
+The optimistic scenario already assumes volume doubles, so its multiple of its own volume is half its multiple of today's volume; both are shown.
+
+**Supply parity, for comparison.** For buyback-designated revenue to equal the dollar value of realized net new supply, Intents would need $286.32B of annual volume, 5.96x today's run rate. Even then total supply keeps growing, because bought tokens are held, not burned.
+
+**Designated versus executed buybacks.** DefiLlama classifies Intents revenue as buybacks ($7.86M designated so far). That is a classification, not verified trades. As an onchain cross-check, the buyback wallet holds 2.21M NEAR, worth 104.3% of the designated amount at today's price.
 
 Required volume multiple under fee compression (rows) and target buyback share of market cap (columns):
 
@@ -124,6 +132,12 @@ Required volume multiple under fee compression (rows) and target buyback share o
 | 25.0% | 1.61x | 3.23x | 6.46x | 16.1x |
 | 50.0% | 2.42x | 4.84x | 9.69x | 24.2x |
 | 75.0% | 4.84x | 9.69x | 19.4x | 48.4x |
+
+## Risks this study does not score
+
+**Base-layer active accounts: -78.7% year over year** (56,865 daily active accounts over the last 30 days, against 266,657 a year earlier). This study does not yet separate the causes: activity a year ago that was incentive- or bot-driven, workloads moving into Intents or to other chains through Chain Signatures, or users leaving. Until it does, it weakens the building case (trigger F4).
+
+**NEAR Intents exploit, 1 October 2026.** NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched and the team pledged full compensation. Recovery of the funds has not been independently confirmed. It is a reliability and trust risk for the product this thesis depends on most, not evidence that the strategy failed. Sources: [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404), [recovery status](https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps).
 
 ## Data sources, queries and reproduction
 
@@ -220,12 +234,12 @@ Methodology versions: evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, the
 | PEER-AVAX-MCAP-TO-TVL | Avalanche market cap / DeFi TVL | 6.39x | DERIVED | point in time | Computed here |
 | INT-EXPLORER-TOP5-SHARE | Share of sampled 1Click volume from top 5 referrers | unavailable | OBSERVED | point in time | NEAR Intents Explorer API |
 | INT-EXPLORER-MEDIAN-SWAP | Median sampled 1Click swap size | unavailable | OBSERVED | point in time | NEAR Intents Explorer API |
-| MODEL-BUYBACK-USD | Annual buyback demand at current run rate | $20.07M | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
-| MODEL-BUYBACK-TO-MCAP | Annual buyback demand / market cap | 0.413% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
-| MODEL-BREAKEVEN-VOL-2PCT | Annual volume needed for buybacks = 2% of market cap | $232.77B | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
-| MODEL-VOL-MULTIPLE-2PCT | Volume multiple needed for 2% of market cap | 4.84x | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
-| MODEL-REQ-TAKE-RATE-2PCT | Required f x c x b at today's volume for 2% of market cap | 0.202% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
-| MODEL-CURRENT-TAKE-RATE | Current f x c x b (volume converted to buyback demand) | 0.042% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Break-even model nvabe-1.0.0 |
+| MODEL-BUYBACK-USD | Annual buyback demand at current run rate | $20.07M | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
+| MODEL-BUYBACK-TO-MCAP | Annual buyback demand / market cap | 0.413% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
+| MODEL-BREAKEVEN-VOL-2PCT | Annual volume needed for buybacks = 2% of market cap | $232.77B | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
+| MODEL-VOL-MULTIPLE-2PCT | Volume multiple needed for 2% of market cap | 4.84x | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
+| MODEL-REQ-TAKE-RATE-2PCT | Required f x c x b at today's volume for 2% of market cap | 0.202% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
+| MODEL-CURRENT-TAKE-RATE | Current f x c x b (volume converted to buyback demand) | 0.042% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
 | ERA-SOCIAL-PEAK | social.near: peak monthly transactions (2023-08) | 35,764 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
 | ERA-SOCIAL-LATEST | social.near: transactions in the latest complete month (2026-10) | 364 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
 | ERA-SOCIAL-RETENTION | social.near: latest month as a share of its peak | 1.02% | DERIVED | point in time | Computed here |
@@ -237,13 +251,20 @@ Methodology versions: evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, the
 | ERA-INTENTS-RETENTION | intents.near: latest month as a share of its peak | 95.6% | DERIVED | point in time | Computed here |
 | EVT-BOS-REL-90D | Blockchain Operating System (BOS): NEAR minus BTC return, 90 days after February 2023 | -47.9% | DERIVED | Mar 1, 2023 to May 30, 2023 | DefiLlama coins (CoinGecko prices) |
 | EVT-BOS-DAA-90D | Blockchain Operating System (BOS): change in daily active accounts, days 60-90 after vs 30 days before | -20.9% | DERIVED | Jan 30, 2023 to May 30, 2023 | NearBlocks |
-| EVT-CHAIN-SIGNATURES-REL-90D | Chain Signatures launch: NEAR minus BTC return, 90 days after 27 March 2024 | -12.8% | DERIVED | Mar 27, 2024 to Jun 25, 2024 | DefiLlama coins (CoinGecko prices) |
-| EVT-CHAIN-SIGNATURES-DAA-90D | Chain Signatures launch: change in daily active accounts, days 60-90 after vs 30 days before | 52.4% | DERIVED | Feb 26, 2024 to Jun 25, 2024 | NearBlocks |
+| EVT-BOS-PRODUCT-2M | Blockchain Operating System (BOS): social.near activity two months after its mainnet launch month vs the launch month | 0.66x | DERIVED | Mar 1, 2023 to May 1, 2023 | NearBlocks |
+| EVT-CHAIN-SIGNATURES-REL-90D | Chain Signatures: NEAR minus BTC return, 90 days after 27 March 2024 (announced; mainnet 8 August 2024) | -12.8% | DERIVED | Mar 27, 2024 to Jun 25, 2024 | DefiLlama coins (CoinGecko prices) |
+| EVT-CHAIN-SIGNATURES-DAA-90D | Chain Signatures: change in daily active accounts, days 60-90 after vs 30 days before | 52.4% | DERIVED | Feb 26, 2024 to Jun 25, 2024 | NearBlocks |
+| EVT-CHAIN-SIGNATURES-PRODUCT-2M | Chain Signatures: v1.signer activity two months after its mainnet launch month vs the launch month | 1.08x | DERIVED | Aug 1, 2024 to Oct 1, 2024 | NearBlocks |
 | EVT-USER-OWNED-AI-REL-90D | User-Owned AI: NEAR minus BTC return, 90 days after 22 May 2024 | -33.6% | DERIVED | May 22, 2024 to Aug 20, 2024 | DefiLlama coins (CoinGecko prices) |
 | EVT-USER-OWNED-AI-DAA-90D | User-Owned AI: change in daily active accounts, days 60-90 after vs 30 days before | -23.4% | DERIVED | Apr 22, 2024 to Aug 20, 2024 | NearBlocks |
 | EVT-INTENTS-REL-90D | NEAR Intents (beta): NEAR minus BTC return, 90 days after 10 November 2024 | -49.0% | DERIVED | Nov 10, 2024 to Feb 8, 2025 | DefiLlama coins (CoinGecko prices) |
 | EVT-INTENTS-DAA-90D | NEAR Intents (beta): change in daily active accounts, days 60-90 after vs 30 days before | -11.3% | DERIVED | Oct 11, 2024 to Feb 8, 2025 | NearBlocks |
+| EVT-INTENTS-PRODUCT-2M | NEAR Intents (beta): intents.near activity two months after its mainnet launch month vs the launch month | 1.03x | DERIVED | Nov 1, 2024 to Jan 1, 2025 | NearBlocks |
 | SUP-NET-NEW-ANN-PCT | Realized net new NEAR supply, annualized | 2.47% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | NearBlocks |
 | SUP-NET-NEW-ANN-USD | Realized net new supply per year at today's price | $119.62M | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
-| COV-BUYBACK-REALIZED | Buybacks as a share of realized net new supply | 16.8% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
+| SUP-PARITY-VOL | Annual Intents volume at which buyback-designated revenue equals the value of realized net new supply | $286.32B | DERIVED | point in time | Computed here |
+| SUP-PARITY-MULTIPLE | Parity volume as a multiple of today's Intents volume run rate | 5.96x | DERIVED | point in time | Computed here |
+| INT-BUYBACK-DESIGNATED-CUM | Buyback-designated Intents revenue since DefiLlama began classifying it (2026-02-23) | $7.86M | DERIVED | Feb 23, 2026 to Nov 6, 2026 | DefiLlama |
+| ONC-BUYBACK-WALLET-VS-DESIGNATED | Buyback wallet holdings at today's price vs cumulative buyback-designated revenue | 104.3% | DERIVED | point in time | Computed here |
+| COV-BUYBACK-REALIZED | Buyback-designated revenue as a share of realized net new supply | 16.8% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
 | COV-CAPTURE-MAX | Burns plus buybacks as a share of maximum issuance | 17.4% | DERIVED | point in time | Computed here |

@@ -21,7 +21,7 @@ export interface TopicDef {
 }
 
 const ERAS = ['SOCIAL', 'SIGNER', 'INTENTS'].flatMap((c) => [`ERA-${c}-PEAK`, `ERA-${c}-LATEST`, `ERA-${c}-RETENTION`]);
-const EVENTS = ['BOS', 'CHAIN-SIGNATURES', 'USER-OWNED-AI', 'INTENTS'].flatMap((c) => [`EVT-${c}-DAA-90D`, `EVT-${c}-REL-90D`]);
+const EVENTS = ['BOS', 'CHAIN-SIGNATURES', 'INTENTS'].map((c) => `EVT-${c}-PRODUCT-2M`).concat(['BOS', 'CHAIN-SIGNATURES', 'USER-OWNED-AI', 'INTENTS'].flatMap((c) => [`EVT-${c}-DAA-90D`, `EVT-${c}-REL-90D`]));
 const PAYS = ['COV-BUYBACK-REALIZED', 'COV-CAPTURE-MAX', 'SUP-NET-NEW-ANN-PCT', 'SUP-NET-NEW-ANN-USD', 'INT-TAKE-RATE', 'INT-TAKE-RATE-PRIOR', 'INT-REV-ANN', 'INT-BUYBACK-90D', 'INT-BUYBACK-SHARE', 'INT-FEE-RATE', 'INT-FEE-RATE-PRIOR', 'INT-CAPTURE', 'ONC-BUYBACK-WALLET', 'ONC-MAX-INFLATION', 'ONC-ISSUANCE-USD', 'VAL-NEAR-VALUE-CAPTURE-ANN', 'VAL-NEAR-MCAP-TO-CAPTURE'];
 const MODEL = ['MODEL-BUYBACK-USD', 'MODEL-BUYBACK-TO-MCAP', 'MODEL-BREAKEVEN-VOL-2PCT', 'MODEL-VOL-MULTIPLE-2PCT', 'MODEL-REQ-TAKE-RATE-2PCT', 'MODEL-CURRENT-TAKE-RATE'];
 const CONTEXT = ['MKT-NEAR-MCAP', 'MKT-NEAR-PRICE', 'MKT-NEAR-MCAP-1Y', 'INT-VOL-90D', 'INT-VOL-PRIOR-90D', 'INT-VOL-GROWTH', 'INT-VOL-ANN', 'ACT-DAA-30D', 'ACT-DAA-30D-1Y-AGO', 'ACT-DAA-YOY', 'ACT-TXN-30D', 'DEFI-TVL-NEAR', 'DEFI-TVL-NEAR-YOY', 'DEFI-STABLES-NEAR', 'INT-DEFINITIONS', 'INT-EXPLORER-TOP5-SHARE', 'ACT-RETENTION'];
@@ -38,7 +38,7 @@ export const THESIS_TOPIC: TopicDef = {
   bearHypothesis: 'NEAR is following the hype: era products fade once the narrative moves on, adoption did not follow the announcements, and value returned to the token is small next to new supply.',
   evidenceRequirements: [
     { label: 'Monthly activity of each era\'s contract (social.near, v1.signer, intents.near)', evidenceIds: ['ERA-SOCIAL-LATEST', 'ERA-SIGNER-LATEST', 'ERA-INTENTS-LATEST'] },
-    { label: 'Adoption 90 days after each pivot', evidenceIds: EVENTS.filter((e) => e.endsWith('DAA-90D')) },
+    { label: 'Product adoption after each mainnet launch', evidenceIds: EVENTS.filter((e) => e.endsWith('PRODUCT-2M')) },
     { label: 'Buybacks versus realized net new supply', evidenceIds: ['COV-BUYBACK-REALIZED', 'SUP-NET-NEW-ANN-PCT'] },
     { label: 'Intents volume, fees and take rate', evidenceIds: ['INT-VOL-90D', 'INT-TAKE-RATE'] },
   ],

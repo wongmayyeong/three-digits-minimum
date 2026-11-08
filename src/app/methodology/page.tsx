@@ -10,7 +10,7 @@ import { METHODOLOGY_VERSION } from '@/lib/research/evidence';
 import { PROMPT_VERSION } from '@/lib/ai/prompts';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Methodology and model', description: 'How this thesis builds evidence snapshots, computes the break-even demand model, audits AI arguments and scores debates.' };
+export const metadata: Metadata = { title: 'Methodology and model', description: 'How this thesis builds evidence snapshots, computes the buyback demand target model, audits AI arguments and scores debates.' };
 
 function Matrix({ m, title }: { m: SensitivityMatrix; title: string }) {
   return (
@@ -74,7 +74,7 @@ export default async function MethodologyPage() {
           </div>
           <div className="panel p-5 text-sm">
             <p className="num text-xs text-mint">02 · Did adoption justify the hype?</p>
-            <p className="mt-2 leading-relaxed text-fg-2">For each pivot dated from NEAR&apos;s announcements, adoption <span className="text-fg">followed</span> if chain daily active accounts (mean of days 60 to 90 after) beat the 30 days before, or the era product&apos;s activity grew at least {RULES.eraGrowthMultiple}x from its launch month to two months later.</p>
+            <p className="mt-2 leading-relaxed text-fg-2">Each pivot has an announcement date and, where a product contract exists, a mainnet launch date (Chain Signatures: announced 27 March 2024, mainnet 8 August 2024). Adoption <span className="text-fg">followed</span> if the product contract&apos;s monthly transactions two months after the mainnet launch month reached at least {RULES.eraGrowthMultiple}x the launch month. Pivots without a single product contract (User-Owned AI) are N/A and excluded from the count, not scored as failures. Chain-wide daily active accounts around the announcement are context only, because they cannot be attributed to one product.</p>
             <p className="mt-2 leading-relaxed text-muted">Points to building if adoption followed at least half of the pivots. NEAR&apos;s price return minus BTC&apos;s is shown as context and never scored.</p>
           </div>
           <div className="panel p-5 text-sm">
@@ -88,7 +88,7 @@ export default async function MethodologyPage() {
             <caption className="px-4 pt-3 text-left text-sm font-[560] text-fg">Combining the sections<span className="block text-xs font-normal text-muted">Sections 1 and 3 decide; Section 2 sets confidence (moderate when it agrees with the verdict&apos;s direction, low otherwise).</span></caption>
             <thead className="text-xs text-muted"><tr><th className="px-4 py-2 text-left font-normal">Section 1</th><th className="px-4 py-2 text-left font-normal">Section 3</th><th className="px-4 py-2 text-left font-normal">Verdict</th></tr></thead>
             <tbody>
-              {[['Building', 'Building', 'Building the future'], ['Hype', 'Hype', 'Following the hype'], ['Building', 'Mixed or hype', 'Building, but not yet paying the token'], ['Mixed or hype', 'Building', 'Paying the token, but products are not lasting'], ['Mixed', 'Mixed or hype', 'Mixed evidence'], ['Insufficient (either)', '', 'Insufficient evidence']].map(([a, b, c]) => (
+              {[['Building', 'Building', 'Building the future'], ['Hype', 'Hype', 'Following the hype'], ['Building', 'Mixed or hype', 'Technology is building; the investment case is unproven'], ['Mixed or hype', 'Building', 'The token is paid, but products are not lasting'], ['Mixed', 'Mixed or hype', 'Mixed evidence'], ['Insufficient (either)', '', 'Insufficient evidence']].map(([a, b, c]) => (
                 <tr key={`${a}-${b}`} className="border-t hairline"><td className="px-4 py-2 text-fg-2">{a}</td><td className="px-4 py-2 text-fg-2">{b}</td><td className="px-4 py-2">{c}</td></tr>
               ))}
             </tbody>
@@ -98,7 +98,7 @@ export default async function MethodologyPage() {
       </section>
 
       <section id="model" className="scroll-mt-20 mt-16 border-t hairline pt-10">
-        <h2 className="display-m">The break-even demand model</h2>
+        <h2 className="display-m">The buyback demand target model</h2>
         <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">The model asks how much measurable NEAR Intents activity would be needed for the revenue it generates to fund token buybacks equal to a chosen share of market capitalization each year. It is a scenario calculation, not an econometric forecast. Formula version <span className="num">{FORMULA_VERSION}</span>.</p>
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
           <pre className="num overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-5 text-[0.8125rem] leading-7 text-fg-2">{`annual_buyback_demand_usd = V × f × c × b

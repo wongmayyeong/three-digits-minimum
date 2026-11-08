@@ -49,7 +49,7 @@ export function HeroDebate({ episode, title, subtitle, verdict, verdictTone, con
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg to-transparent" />
         <div className="relative mx-auto flex min-h-[min(88dvh,820px)] max-w-[1320px] flex-col justify-center px-4 py-16 sm:px-6">
           <p className="eyebrow mb-5">NEAR investment thesis · reproducible research</p>
-          <h1 className="display-xl max-w-4xl text-balance">{title}</h1>
+          <h1 className="display-xl max-w-3xl text-balance [font-size:clamp(2.4rem,5vw,4.25rem)]">{title}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fg-2 md:text-xl">{subtitle}</p>
           {verdict && (
             <p className="mt-6 text-base">

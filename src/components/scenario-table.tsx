@@ -9,18 +9,19 @@ interface Row {
 
 const n = (x: unknown) => (typeof x === 'number' && Number.isFinite(x) ? x : null);
 
-export function ScenarioTable({ scenarios }: { scenarios: Row[] }) {
+export function ScenarioTable({ scenarios, todayVolume = null }: { scenarios: Row[]; todayVolume?: number | null }) {
   return (
     <div className="overflow-x-auto rounded-[var(--radius-lg)] border hairline">
       <table className="w-full min-w-[640px] text-left text-sm">
-        <caption className="sr-only">Scenario results of the break-even demand model</caption>
+        <caption className="sr-only">Scenario results of the buyback demand target model</caption>
         <thead className="bg-raised text-xs text-muted">
           <tr>
             <th scope="col" className="px-4 py-2.5 font-normal">Scenario</th>
             <th scope="col" className="px-4 py-2.5 text-right font-normal">Annual buyback demand</th>
             <th scope="col" className="px-4 py-2.5 text-right font-normal">Buyback / market cap</th>
-            <th scope="col" className="px-4 py-2.5 text-right font-normal">Break-even volume (2%)</th>
-            <th scope="col" className="px-4 py-2.5 text-right font-normal">Volume multiple</th>
+            <th scope="col" className="px-4 py-2.5 text-right font-normal">Volume for 2% of market cap</th>
+            <th scope="col" className="px-4 py-2.5 text-right font-normal">× today&apos;s volume</th>
+            <th scope="col" className="px-4 py-2.5 text-right font-normal">× scenario&apos;s volume</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +34,8 @@ export function ScenarioTable({ scenarios }: { scenarios: Row[] }) {
               <td className="num px-4 py-3 text-right">{formatValue(n(s.outputs.annualBuybackDemandUsd), 'USD')}</td>
               <td className="num px-4 py-3 text-right">{formatValue(n(s.outputs.buybackDemandToMcap), 'fraction')}</td>
               <td className="num px-4 py-3 text-right">{formatValue(n(s.outputs.breakEvenAnnualVolumeUsd), 'USD')}</td>
-              <td className="num px-4 py-3 text-right">{formatValue(n(s.outputs.volumeMultipleRequired), 'ratio')}</td>
+              <td className="num px-4 py-3 text-right">{formatValue(todayVolume && n(s.outputs.breakEvenAnnualVolumeUsd) !== null ? (n(s.outputs.breakEvenAnnualVolumeUsd) as number) / todayVolume : null, 'ratio')}</td>
+              <td className="num px-4 py-3 text-right text-fg-2">{formatValue(n(s.outputs.volumeMultipleRequired), 'ratio')}</td>
             </tr>
           ))}
         </tbody>

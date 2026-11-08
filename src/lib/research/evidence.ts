@@ -291,7 +291,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   }
   B.unavailable({ evidenceId: 'ACT-RETENTION', metricKey: 'activity.signer_retention', group: 'activity', label: 'Retained signer cohorts (BigQuery)', unit: 'fraction',
     sourceName: SOURCES.bigquery.name, sourceUrl: SOURCES.bigquery.docsUrl, observationType: 'OBSERVED',
-    methodology: 'Monthly signer cohorts from bigquery-public-data.crypto_near_mainnet_us.transactions (research/sql/05_new_signer_retention.sql).',
+    methodology: 'Monthly cohorts of new signers from bigquery-public-data.crypto_near_mainnet_us.transactions (research/sql/05_new_signer_retention.sql). New means no transaction in a lookback period before the window (365 days by default, or full history), and cohorts are followed only for fully observed months.',
     reason: 'Not available in live snapshots. Requires Google Cloud credentials and a freshness check, because NEAR Lake (the dataset\'s upstream) stopped indexing on 2026-03-24.' });
 
   // ------------------------------------------------------------ DeFi on NEAR (DefiLlama)
@@ -412,7 +412,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const scenarios = runScenarios(modelBase);
   const modelInputsIds = ['MKT-NEAR-MCAP', 'INT-VOL-ANN', 'INT-FEE-RATE', 'INT-CAPTURE', 'INT-BUYBACK-SHARE'];
   const modelItem = (id: string, key: string, label: string, unit: Unit, value: number | null, transform: string, methodology: string) =>
-    B.add({ evidenceId: id, metricKey: key, group: 'model', label, unit, value, observationType: 'DERIVED', sourceName: `Break-even model ${FORMULA_VERSION}`, sourceUrl: '/methodology#model',
+    B.add({ evidenceId: id, metricKey: key, group: 'model', label, unit, value, observationType: 'DERIVED', sourceName: `Buyback target model ${FORMULA_VERSION}`, sourceUrl: '/methodology#model',
       inputs: modelInputsIds, transform, methodology, periodStart: winStart, periodEnd: END, confidence: 'medium', fetchedAt: null, rawResponseHash: null,
       validationNotes: value === null ? 'N/A: one or more model inputs missing or non-positive.' : null });
   modelItem('MODEL-BUYBACK-USD', 'model.annual_buyback_demand_usd', 'Annual buyback demand at current run rate', 'USD', base.annualBuybackDemandUsd, 'V x f x c x b',
@@ -421,7 +421,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     'Buyback demand relative to market cap. A buyback is not a burn and does not mechanically raise price by this amount.');
   modelItem('MODEL-BREAKEVEN-VOL-2PCT', 'model.break_even_volume.y2', 'Annual volume needed for buybacks = 2% of market cap', 'USD', base.breakEvenAnnualVolumeUsd, '(y x M) / (f x c x b), y = 0.02 (assumed)',
     'Volume at which buyback demand would equal a hypothetical 2% of market cap per year, with fee, capture and buyback shares at measured values.');
-  modelItem('MODEL-VOL-MULTIPLE-2PCT', 'model.volume_multiple.y2', 'Volume multiple needed for 2% of market cap', 'ratio', base.volumeMultipleRequired, 'break-even volume / V',
+  modelItem('MODEL-VOL-MULTIPLE-2PCT', 'model.volume_multiple.y2', 'Volume multiple needed for 2% of market cap', 'ratio', base.volumeMultipleRequired, 'required volume / V',
     'How many times today\'s run rate the volume would need to be.');
   modelItem('MODEL-REQ-TAKE-RATE-2PCT', 'model.required_take_rate.y2', 'Required f x c x b at today\'s volume for 2% of market cap', 'fraction', requiredTakeRate(modelBase.V.value, modelBase.M.value, 0.02),
     '(y x M) / V, y = 0.02 (assumed)', 'Reverse calculation: the share of every dollar of volume that would have to become buybacks. Compare with MODEL-CURRENT-TAKE-RATE.');

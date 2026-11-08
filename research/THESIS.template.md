@@ -50,7 +50,7 @@ Limitations: transactions are not people. Relayers, solvers and Chain Signatures
 
 ## Sub-question 2: Did adoption justify the hype?
 
-For each pivot, chain-wide daily active accounts in days 60 to 90 after the announcement versus the 30 days before, and the era product's activity two months after its launch month versus the launch month. NEAR's price return minus BTC's is shown as market context only and is not scored, because prices can move ahead of adoption for good reasons.
+Adoption is scored on the product, from the date it went live on mainnet, not from the announcement: the product contract's monthly transactions two months after its launch month must reach at least 2x the launch month. Chain Signatures is measured from its mainnet release (8 August 2024), not the March 2024 announcement, when it was on testnet. User-Owned AI has no single product contract, so it is N/A and left out of the count instead of being scored as a failure. Chain-wide active accounts and NEAR's price return minus BTC's are context only: neither can be attributed to one product, and prices can move ahead of adoption.
 
 {{EVENT_TABLE}}
 
@@ -60,9 +60,10 @@ Pivot dates come from NEAR's own announcements (links in the table). BOS is date
 
 | Measure | Value |
 |---|---|
-| Intents buybacks per year (90-day run rate) | {{SUP-BUYBACK-ANN}} |
+| Buyback-designated Intents revenue per year (90-day run rate, DefiLlama classification) | {{SUP-BUYBACK-ANN}} |
 | Realized net new supply per year (net of burns) | {{SUP-NET-NEW-ANN-PCT}} ({{SUP-NET-NEW-ANN-USD}} at today's price) |
-| Buybacks as a share of realized net new supply | {{COV-BUYBACK-REALIZED}} |
+| Buyback-designated revenue as a share of realized net new supply | {{COV-BUYBACK-REALIZED}} |
+| Supply parity: volume needed for buyback revenue to match net new supply | {{SUP-PARITY-VOL}} ({{SUP-PARITY-MULTIPLE}} today) |
 | Burns + buybacks as a share of maximum possible issuance | {{COV-CAPTURE-MAX}} |
 | Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | {{INT-TAKE-RATE}} ({{INT-TAKE-RATE-PRIOR}}) |
 | Tokens held by the buyback wallet | {{ONC-BUYBACK-WALLET}} |
@@ -70,22 +71,36 @@ Pivot dates come from NEAR's own announcements (links in the table). BOS is date
 
 A buyback is not a burn: bought tokens are held by the buyback wallet, and total supply only falls if they are burned. Buyback demand does not move price one-for-one.
 
-### What would it take? The break-even demand model
+### What would it take? The buyback demand target model
+
+How much Intents volume would buyback-designated revenue need to reach a chosen share of market cap (y, 2% by default)? This is a demand target, not a supply break-even; supply parity is shown after the scenarios.
 
 ```
 annual_buyback_demand_usd = V x f x c x b
 buyback_demand_to_mcap    = annual_buyback_demand_usd / M
-break_even_annual_volume  = (y x M) / (f x c x b)
-volume_multiple_required  = break_even_annual_volume / V
+required_annual_volume    = (y x M) / (f x c x b)
+volume_multiple_required  = required_annual_volume / V
 ```
 
 V is the 90-day Intents volume run rate ({{INT-VOL-ANN}}), f the fee rate ({{INT-FEE-RATE}}), c NEAR's capture of fees ({{INT-CAPTURE}}), b the buyback share ({{INT-BUYBACK-SHARE}}, a DefiLlama classification, not a guaranteed policy), and y a hypothetical target (2% of market cap per year).
 
 {{SCENARIO_TABLE}}
 
+The optimistic scenario already assumes volume doubles, so its multiple of its own volume is half its multiple of today's volume; both are shown.
+
+**Supply parity, for comparison.** For buyback-designated revenue to equal the dollar value of realized net new supply, Intents would need {{SUP-PARITY-VOL}} of annual volume, {{SUP-PARITY-MULTIPLE}} today's run rate. Even then total supply keeps growing, because bought tokens are held, not burned.
+
+**Designated versus executed buybacks.** DefiLlama classifies Intents revenue as buybacks ({{INT-BUYBACK-DESIGNATED-CUM}} designated so far). That is a classification, not verified trades. As an onchain cross-check, the buyback wallet holds {{ONC-BUYBACK-WALLET}}, worth {{ONC-BUYBACK-WALLET-VS-DESIGNATED}} of the designated amount at today's price.
+
 Required volume multiple under fee compression (rows) and target buyback share of market cap (columns):
 
 {{SENSITIVITY_TABLE}}
+
+## Risks this study does not score
+
+**Base-layer active accounts: {{ACT-DAA-YOY}} year over year** ({{ACT-DAA-30D}} daily active accounts over the last 30 days, against {{ACT-DAA-30D-1Y-AGO}} a year earlier). This study does not yet separate the causes: activity a year ago that was incentive- or bot-driven, workloads moving into Intents or to other chains through Chain Signatures, or users leaving. Until it does, it weakens the building case (trigger F4).
+
+**NEAR Intents exploit, 1 October 2026.** NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched and the team pledged full compensation. Recovery of the funds has not been independently confirmed. It is a reliability and trust risk for the product this thesis depends on most, not evidence that the strategy failed. Sources: [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404), [recovery status](https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps).
 
 ## Data sources, queries and reproduction
 

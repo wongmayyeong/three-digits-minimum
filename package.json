@@ -23,6 +23,7 @@
     "test:e2e": "playwright test",
     "research:refresh": "tsx research/refresh.ts",
     "research:rebuild": "tsx research/refresh.ts --offline",
+    "research:accept": "tsx research/refresh.ts --offline --accept",
     "voices:list": "tsx scripts/list-voices.ts",
     "research:bigquery": "tsx research/bigquery.ts",
     "debate:new": "tsx scripts/new-episode.ts",

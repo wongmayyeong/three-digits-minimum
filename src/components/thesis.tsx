@@ -22,8 +22,8 @@ export function FinalVerdictLabel({ verdict }: { verdict: FinalVerdict }) {
   const text: Record<FinalVerdict, string> = {
     BUILDING: 'Building the future',
     'FOLLOWING THE HYPE': 'Following the hype',
-    'BUILDING, NOT YET PAYING': 'Building, but not yet paying the token',
-    'PAYING, NOT LASTING': 'Paying the token, but products are not lasting',
+    'BUILDING, NOT YET PAYING': 'Technology is building; the investment case is unproven',
+    'PAYING, NOT LASTING': 'The token is paid, but products are not lasting',
     MIXED: 'Mixed evidence',
     'INSUFFICIENT EVIDENCE': 'Insufficient evidence',
   };
@@ -102,13 +102,14 @@ export function EventTable({ events }: { events: EventResult[] }) {
   return (
     <div className="overflow-x-auto rounded-[var(--radius-lg)] border hairline">
       <table className="w-full min-w-[820px] text-left text-sm">
-        <caption className="sr-only">Adoption and market context in the 90 days after each pivot</caption>
+        <caption className="sr-only">Product adoption after each pivot’s mainnet launch, with chain-wide and market context</caption>
         <thead className="bg-raised text-xs text-muted">
           <tr>
             <th scope="col" className="px-4 py-2.5 font-normal">Pivot</th>
-            <th scope="col" className="px-4 py-2.5 text-right font-normal">Active accounts, +90d</th>
-            <th scope="col" className="px-4 py-2.5 text-right font-normal">Product activity, launch +2 months</th>
+            <th scope="col" className="px-4 py-2.5 font-normal">Product and mainnet launch</th>
+            <th scope="col" className="px-4 py-2.5 text-right font-normal">Product activity, launch +2 months <span className="text-fg-2">(scored)</span></th>
             <th scope="col" className="px-4 py-2.5 font-normal">Adoption followed?</th>
+            <th scope="col" className="px-4 py-2.5 text-right font-normal">Chain active accounts, +90d <span className="text-faint">(context)</span></th>
             <th scope="col" className="px-4 py-2.5 text-right font-normal">NEAR vs BTC, +90d <span className="text-faint">(context)</span></th>
           </tr>
         </thead>
@@ -119,9 +120,10 @@ export function EventTable({ events }: { events: EventResult[] }) {
                 <p className="font-[560] text-fg">{v.label}</p>
                 <p className="text-xs text-muted">{v.shown} · <ExternalLink href={v.source} className="text-xs">source</ExternalLink></p>
               </th>
-              <td className="num px-4 py-3 text-right">{formatValue(v.daaChange, 'fraction', { signed: true })}</td>
-              <td className="num px-4 py-3 text-right">{v.eraGrowth === null ? <span className="text-muted">no product contract</span> : formatValue(v.eraGrowth, 'ratio')}</td>
-              <td className="px-4 py-3">{v.adoptionFollowed === null ? <span className="text-muted">Unknown</span> : v.adoptionFollowed ? <span className="text-mint">Yes</span> : <span className="text-coral">No</span>}</td>
+              <td className="px-4 py-3 text-xs">{v.productAccount ? <><span className="font-mono text-fg-2">{v.productAccount}</span><br /><span className="text-muted">{v.productLaunchShown}</span>{v.productLaunchSource && v.productLaunchSource !== v.source ? <> · <ExternalLink href={v.productLaunchSource} className="text-xs">source</ExternalLink></> : null}</> : <span className="text-muted">No single product contract</span>}</td>
+              <td className="num px-4 py-3 text-right">{v.eraGrowth === null ? <span className="text-muted">n/a</span> : formatValue(v.eraGrowth, 'ratio')}</td>
+              <td className="px-4 py-3">{v.adoptionFollowed === null ? <span className="text-muted">N/A, not counted</span> : v.adoptionFollowed ? <span className="text-mint">Yes</span> : <span className="text-coral">No</span>}</td>
+              <td className="num px-4 py-3 text-right text-fg-2">{formatValue(v.daaChange, 'fraction', { signed: true })}</td>
               <td className="num px-4 py-3 text-right text-fg-2">{formatValue(v.relativeReturn90, 'fraction', { signed: true })}</td>
             </tr>
           ))}
@@ -133,9 +135,9 @@ export function EventTable({ events }: { events: EventResult[] }) {
 
 export function SupplyStats({ s }: { s: SupplyResult }) {
   const stats: [string, string, string][] = [
-    ['Buybacks vs realized net new supply', formatValue(s.buybackCoverage, 'fraction'), 'Annualized Intents buybacks ÷ value of net new tokens'],
+    ['Buyback revenue vs net new supply', formatValue(s.buybackCoverage, 'fraction'), 'Annualized buyback-designated revenue ÷ value of net new tokens'],
     ['Net new supply per year', formatValue(s.netNewAnnualPct, 'fraction'), `${formatValue(s.netNewAnnualUsd, 'USD')} at today's price, net of burns`],
-    ['Buybacks per year (run rate)', formatValue(s.buybackAnnualUsd, 'USD'), 'Tokens bought are held, not burned'],
+    ['Buyback-designated revenue per year', formatValue(s.buybackAnnualUsd, 'USD'), 'DefiLlama classification; bought tokens are held, not burned'],
     ['Take rate (NEAR revenue ÷ volume)', formatValue(s.takeRate, 'fraction'), `Prior 90 days: ${formatValue(s.takeRatePrior, 'fraction')}`],
   ];
   return (

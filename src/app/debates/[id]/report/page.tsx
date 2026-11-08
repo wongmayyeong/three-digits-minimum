@@ -85,7 +85,7 @@ export default async function ReportPage({ params }: { params: Promise<{ id: str
               <tbody>{r.assumptions.map((a) => <tr key={a.input} className="border-t hairline"><td className="py-2">{a.input}</td><td className="num py-2 text-right">{a.value}</td><td className="py-2 pl-4 text-xs">{a.kind}</td><td className="py-2 pl-4 text-xs text-muted">{a.note}</td></tr>)}</tbody>
             </table>
           </div>
-          <div className="mt-6"><ScenarioTable scenarios={r.scenarios} /></div>
+          <div className="mt-6"><ScenarioTable scenarios={r.scenarios} todayVolume={typeof r.scenarios.find((s) => s.key === 'base')?.inputs.V === 'number' ? (r.scenarios.find((s) => s.key === 'base')!.inputs.V as number) : null} /></div>
           {v.inputChallenges.length > 0 && (
             <div className="mt-6">
               <p className="eyebrow">Judge challenges to the inputs</p>

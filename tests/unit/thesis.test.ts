@@ -7,8 +7,8 @@ const era = (id: 'social' | 'signer' | 'intents', retention: number | null, last
   id, account: id, era: id, note: '', months: [], missingMonths: [], firstMonth: '2024-01', peakMonth: '2024-06', peak: 100, latestMonth: '2026-10', latest: retention === null ? null : retention * 100,
   retention, monthsSincePeak: 28, month1: 10, month3: 30, month6: 60, lasted,
 });
-const event = (followed: boolean | null): EventResult => ({ id: 'x', label: 'x', date: '2024-01-01', shown: 'x', source: 'https://near.org', note: '', nearReturn30: null, nearReturn90: null, btcReturn90: null, relativeReturn90: null, daaBefore: null, daaAfter: null, daaChange: followed === null ? null : followed ? 0.1 : -0.1, eraGrowth: null, adoptionFollowed: followed });
-const supply = (coverage: number | null, takeRate = 0.0004, prior = 0.0003): SupplyResult => ({ start: null, end: null, netNewNear90d: null, netNewAnnualPct: null, netNewAnnualUsd: null, buybackAnnualUsd: null, buybackCoverage: coverage, maxIssuanceCoverage: null, takeRate, takeRatePrior: prior });
+const event = (followed: boolean | null): EventResult => ({ id: 'x', label: 'x', date: '2024-01-01', shown: 'x', source: 'https://near.org', note: '', nearReturn30: null, nearReturn90: null, btcReturn90: null, relativeReturn90: null, daaBefore: null, daaAfter: null, daaChange: null, productAccount: 'x.near', productLaunch: '2024-01-01', productLaunchShown: 'x', productLaunchSource: null, productMonth0: '2024-01', productMonth2: '2024-03', eraGrowth: followed === null ? null : followed ? 2.5 : 0.8, adoptionFollowed: followed });
+const supply = (coverage: number | null, takeRate = 0.0004, prior = 0.0003): SupplyResult => ({ start: null, end: null, netNewNear90d: null, netNewAnnualPct: null, netNewAnnualUsd: null, buybackAnnualUsd: null, buybackCoverage: coverage, maxIssuanceCoverage: null, takeRate, takeRatePrior: prior, parityVolumeUsd: null, parityMultiple: null, designatedStart: null, designatedSinceStartUsd: null, walletNear: null, walletUsd: null, walletVsDesignated: null });
 
 describe('verdict rules', () => {
   it('requires both lasting products and value to the token for "building"', () => {

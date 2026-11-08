@@ -5,18 +5,12 @@ import { EvidenceChart } from '@/components/evidence-chart';
 import { EvidenceTable } from '@/components/evidence-list';
 import { Container, ExternalLink, Notice } from '@/components/ui';
 import { previewTopic, type TopicPreview } from '@/lib/debate/preview';
-import { formatDate, formatDateTime, formatValue, pct } from '@/lib/format';
+import { formatDateTime } from '@/lib/format';
+import { chartSentence } from '@/lib/research/caption';
 import { TOPICS } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Research dashboard', description: 'Every chart in the thesis with the exact query behind it, refreshed from public NEAR data sources.' };
-
-function sentence(label: string, unit: string, points: [string, number][]): string {
-  const first = points[0]!;
-  const last = points[points.length - 1]!;
-  const change = first[1] !== 0 ? (last[1] - first[1]) / Math.abs(first[1]) : null;
-  return `${label} was ${formatValue(last[1], unit)} in the week ending ${formatDate(last[0])}, ${change === null ? 'with no comparable starting value' : `${change >= 0 ? 'up' : 'down'} ${pct(Math.abs(change), 0)} from ${formatValue(first[1], unit)} in the week ending ${formatDate(first[0])}`}.`;
-}
 
 function sqlFiles(): { name: string; sql: string }[] {
   try {
@@ -54,7 +48,7 @@ export default async function ResearchPage() {
                 <h2 className="text-base font-[600]">{c.series!.label}</h2>
                 <p className="num mb-3 text-[0.6875rem] text-faint">{c.evidenceId} · {c.sourceName}</p>
                 <EvidenceChart series={c.series!} source={c.sourceName} />
-                <p className="mt-3 text-sm leading-relaxed text-fg-2">{sentence(c.series!.label, c.series!.unit, c.series!.points)}</p>
+                <p className="mt-3 text-sm leading-relaxed text-fg-2">{chartSentence(c.series!)}</p>
                 <p className="mt-3 break-all text-xs text-muted">Query: <span className="num text-faint">{q ? `GET ${q}` : 'see source link'}</span></p>
                 <p className="mt-1 text-xs"><ExternalLink href={c.sourceUrl}>{c.sourceName}</ExternalLink></p>
               </article>

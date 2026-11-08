@@ -704,7 +704,7 @@
   "request": null,
   "transform": "identity",
   "inputs": [],
-  "methodology": "Monthly signer cohorts from bigquery-public-data.crypto_near_mainnet_us.transactions (research/sql/05_new_signer_retention.sql).",
+  "methodology": "Monthly cohorts of new signers from bigquery-public-data.crypto_near_mainnet_us.transactions (research/sql/05_new_signer_retention.sql). New means no transaction in a lookback period before the window (365 days by default, or full history), and cohorts are followed only for fully observed months.",
   "notes": "Not available in live snapshots. Requires Google Cloud credentials and a freshness check, because NEAR Lake (the dataset's upstream) stopped indexing on 2026-03-24."
  },
  {
@@ -1388,7 +1388,7 @@
   "periodStart": "2026-08-09",
   "periodEnd": "2026-11-06",
   "request": null,
-  "transform": "break-even volume / V",
+  "transform": "required volume / V",
   "inputs": [
    "MKT-NEAR-MCAP",
    "INT-VOL-ANN",
@@ -1642,12 +1642,29 @@
   "request": null,
   "transform": "pct change of 30-day means",
   "inputs": [],
-  "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+  "methodology": "Context only, not scored: chain-wide activity cannot be attributed to one product. Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the announcement. Accounts are not people.",
+  "notes": null
+ },
+ {
+  "evidenceId": "EVT-BOS-PRODUCT-2M",
+  "label": "Blockchain Operating System (BOS): social.near activity two months after its mainnet launch month vs the launch month",
+  "value": 0.6593009478672985,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2023-03-01",
+  "periodEnd": "2023-05-01",
+  "request": null,
+  "transform": "month[launch + 2] / month[launch]",
+  "inputs": [
+   "ERA-SOCIAL-LATEST"
+  ],
+  "methodology": "Scored. NearBlocks monthly transactions involving social.near: the month two months after the mainnet launch (February 2023 (BOS live; SocialDB already on mainnet)) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
   "notes": null
  },
  {
   "evidenceId": "EVT-CHAIN-SIGNATURES-REL-90D",
-  "label": "Chain Signatures launch: NEAR minus BTC return, 90 days after 27 March 2024",
+  "label": "Chain Signatures: NEAR minus BTC return, 90 days after 27 March 2024 (announced; mainnet 8 August 2024)",
   "value": -0.12752489424628707,
   "unit": "fraction",
   "type": "DERIVED",
@@ -1662,7 +1679,7 @@
  },
  {
   "evidenceId": "EVT-CHAIN-SIGNATURES-DAA-90D",
-  "label": "Chain Signatures launch: change in daily active accounts, days 60-90 after vs 30 days before",
+  "label": "Chain Signatures: change in daily active accounts, days 60-90 after vs 30 days before",
   "value": 0.5243800377265574,
   "unit": "fraction",
   "type": "DERIVED",
@@ -1672,7 +1689,24 @@
   "request": null,
   "transform": "pct change of 30-day means",
   "inputs": [],
-  "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+  "methodology": "Context only, not scored: chain-wide activity cannot be attributed to one product. Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the announcement. Accounts are not people.",
+  "notes": null
+ },
+ {
+  "evidenceId": "EVT-CHAIN-SIGNATURES-PRODUCT-2M",
+  "label": "Chain Signatures: v1.signer activity two months after its mainnet launch month vs the launch month",
+  "value": 1.0807242366875394,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2024-08-01",
+  "periodEnd": "2024-10-01",
+  "request": null,
+  "transform": "month[launch + 2] / month[launch]",
+  "inputs": [
+   "ERA-SIGNER-LATEST"
+  ],
+  "methodology": "Scored. NearBlocks monthly transactions involving v1.signer: the month two months after the mainnet launch (8 August 2024, mainnet) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
   "notes": null
  },
  {
@@ -1702,7 +1736,7 @@
   "request": null,
   "transform": "pct change of 30-day means",
   "inputs": [],
-  "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+  "methodology": "Context only, not scored: chain-wide activity cannot be attributed to one product. Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the announcement. Accounts are not people.",
   "notes": null
  },
  {
@@ -1732,7 +1766,24 @@
   "request": null,
   "transform": "pct change of 30-day means",
   "inputs": [],
-  "methodology": "Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the pivot. Accounts are not people.",
+  "methodology": "Context only, not scored: chain-wide activity cannot be attributed to one product. Mean NearBlocks active_accounts over days +60..+90 against the 30 days before the announcement. Accounts are not people.",
+  "notes": null
+ },
+ {
+  "evidenceId": "EVT-INTENTS-PRODUCT-2M",
+  "label": "NEAR Intents (beta): intents.near activity two months after its mainnet launch month vs the launch month",
+  "value": 1.028417708739323,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2024-11-01",
+  "periodEnd": "2025-01-01",
+  "request": null,
+  "transform": "month[launch + 2] / month[launch]",
+  "inputs": [
+   "ERA-INTENTS-LATEST"
+  ],
+  "methodology": "Scored. NearBlocks monthly transactions involving intents.near: the month two months after the mainnet launch (10 November 2024, beta on mainnet) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
   "notes": null
  },
  {
@@ -1773,8 +1824,79 @@
   "notes": null
  },
  {
+  "evidenceId": "SUP-PARITY-VOL",
+  "label": "Annual Intents volume at which buyback-designated revenue equals the value of realized net new supply",
+  "value": 286317342774.7384,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "SUP-NET-NEW-ANN-USD / (INT-TAKE-RATE x INT-BUYBACK-SHARE)",
+  "inputs": [
+   "SUP-NET-NEW-ANN-USD",
+   "INT-TAKE-RATE",
+   "INT-BUYBACK-SHARE"
+  ],
+  "methodology": "Supply parity in dollars, not tokens: bought-back NEAR is held, not burned, so even at this volume total supply keeps growing. Assumes the current fee rate, capture and buyback share.",
+  "notes": null
+ },
+ {
+  "evidenceId": "SUP-PARITY-MULTIPLE",
+  "label": "Parity volume as a multiple of today's Intents volume run rate",
+  "value": 5.958751530698163,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "SUP-PARITY-VOL / INT-VOL-ANN",
+  "inputs": [
+   "SUP-PARITY-VOL",
+   "INT-VOL-ANN"
+  ],
+  "methodology": "How far today's volume is from dollar parity with realized net new supply.",
+  "notes": null
+ },
+ {
+  "evidenceId": "INT-BUYBACK-DESIGNATED-CUM",
+  "label": "Buyback-designated Intents revenue since DefiLlama began classifying it (2026-02-23)",
+  "value": 7860338.05,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": "2026-02-23",
+  "periodEnd": "2026-11-06",
+  "request": null,
+  "transform": "sum(daily holders revenue)",
+  "inputs": [],
+  "methodology": "Sum of DefiLlama dailyHoldersRevenue for NEAR Intents from its first non-zero day. This is revenue designated for buybacks by DefiLlama's classification, not verified executed purchases.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ONC-BUYBACK-WALLET-VS-DESIGNATED",
+  "label": "Buyback wallet holdings at today's price vs cumulative buyback-designated revenue",
+  "value": 1.043421814112076,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "(ONC-BUYBACK-WALLET x MKT-NEAR-PRICE) / INT-BUYBACK-DESIGNATED-CUM",
+  "inputs": [
+   "ONC-BUYBACK-WALLET",
+   "MKT-NEAR-PRICE",
+   "INT-BUYBACK-DESIGNATED-CUM"
+  ],
+  "methodology": "Onchain cross-check of executed buybacks. The wallet balance (buybacks.multisignature.near) is what has actually been bought and is still held. Valued at today's price, not purchase prices, and it can include transfers, so it is a sanity check, not a reconciliation of individual trades.",
+  "notes": null
+ },
+ {
   "evidenceId": "COV-BUYBACK-REALIZED",
-  "label": "Buybacks as a share of realized net new supply",
+  "label": "Buyback-designated revenue as a share of realized net new supply",
   "value": 0.16782038902750387,
   "unit": "fraction",
   "type": "DERIVED",

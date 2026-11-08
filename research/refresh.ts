@@ -35,7 +35,8 @@ const NECESSARY = ['coingecko.markets', 'defillama.intents.volume', 'defillama.i
 
 const args = new Set(process.argv.slice(2));
 const offline = args.has('--offline');
-const verify = args.has('--verify') || offline;
+// --accept rewrites the committed outputs after an intentional methodology change (skips the byte-identical check).
+const verify = (args.has('--verify') || offline) && !args.has('--accept');
 
 async function build(offlineMode: boolean) {
   const store = fileRawStore(RAW);
@@ -71,11 +72,11 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const fa = evidenceForAgainst(t, triggers);
   const NL = '\n';
   const bullets = (xs: string[]) => (xs.length ? xs.map((x) => `- ${x}`).join(NL) : '- None under the current data.');
-  const VERDICT_TEXT: Record<string, string> = { BUILDING: 'Building the future', 'FOLLOWING THE HYPE': 'Following the hype', 'BUILDING, NOT YET PAYING': 'Building, but not yet paying the token', 'PAYING, NOT LASTING': 'Paying the token, but products are not lasting', MIXED: 'Mixed evidence', 'INSUFFICIENT EVIDENCE': 'Insufficient evidence' };
+  const VERDICT_TEXT: Record<string, string> = { BUILDING: 'Building the future', 'FOLLOWING THE HYPE': 'Following the hype', 'BUILDING, NOT YET PAYING': 'Technology is building; the investment case is unproven', 'PAYING, NOT LASTING': 'The token is paid, but products are not lasting', MIXED: 'Mixed evidence', 'INSUFFICIENT EVIDENCE': 'Insufficient evidence' };
   const fmtPct = (v: number | null, signed = false) => formatValue(v, 'fraction', { signed });
   const sectionRows = t.sections.map((x) => `| ${x.id}. ${x.title} | ${x.verdict} | ${x.reason} |`);
   const eraRows = t.eras.map((e) => `| ${e.era} | \`${e.account}\` | ${formatValue(e.peak, 'count')} (${e.peakMonth ?? 'n/a'}) | ${formatValue(e.latest, 'count')} (${e.latestMonth ?? 'n/a'}) | ${fmtPct(e.retention)} | ${e.lasted === null ? 'not judgeable yet' : e.lasted ? 'yes' : 'no'} |`);
-  const eventRows = t.events.map((v) => `| [${v.label}](${v.source}) | ${v.shown} | ${fmtPct(v.daaChange, true)} | ${v.eraGrowth === null ? 'no product contract' : formatValue(v.eraGrowth, 'ratio')} | ${v.adoptionFollowed === null ? 'unknown' : v.adoptionFollowed ? 'yes' : 'no'} | ${fmtPct(v.relativeReturn90, true)} |`);
+  const eventRows = t.events.map((v) => `| [${v.label}](${v.source}) | ${v.shown} | ${v.productAccount ? '`' + v.productAccount + '` from ' + v.productLaunchShown : 'no single product contract'} | ${v.eraGrowth === null ? 'n/a' : formatValue(v.eraGrowth, 'ratio')} | ${v.adoptionFollowed === null ? 'N/A, not counted' : v.adoptionFollowed ? 'yes' : 'no'} | ${fmtPct(v.daaChange, true)} | ${fmtPct(v.relativeReturn90, true)} |`);
   template = template
     .replace('{{THESIS_VERDICT}}', VERDICT_TEXT[t.verdict] ?? t.verdict)
     .replace('{{THESIS_CONFIDENCE}}', t.confidence)
@@ -83,7 +84,7 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
     .replace('{{EVIDENCE_FOR}}', bullets(fa.forBuilding))
     .replace('{{EVIDENCE_AGAINST}}', bullets(fa.againstBuilding))
     .replace('{{ERA_TABLE}}', ['| Era | Contract | Peak month | Latest month | Kept of peak | Lasted? |', '|---|---|---|---|---|---|', ...eraRows].join(NL))
-    .replace('{{EVENT_TABLE}}', ['| Pivot | Date | Active accounts, +90d | Product activity, month 3 vs 1 | Adoption followed? | NEAR minus BTC, +90d (context) |', '|---|---|---|---|---|---|', ...eventRows].join(NL))
+    .replace('{{EVENT_TABLE}}', ['| Pivot | Announced | Product and mainnet launch | Product activity, launch +2 months (scored) | Adoption followed? | Chain active accounts, +90d (context) | NEAR minus BTC, +90d (context) |', '|---|---|---|---|---|---|---|', ...eventRows].join(NL))
     .replace('{{SUP-BUYBACK-ANN}}', formatValue(t.supply.buybackAnnualUsd, 'USD'));
   let out = template.replace(/\{\{([A-Z0-9-]+)(?:\.(period|source|type))?\}\}/g, (_, id: string, field?: string) => {
     const e = byId.get(id);
@@ -94,8 +95,9 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
     if (!e.available) { missing.push(id); return `unavailable (${id})`; }
     return e.valueText ? e.valueText : formatValue(e.value, e.unit);
   });
-  const scen = ds.scenarios.map((s) => `| ${s.label} | ${formatValue(s.outputs.annualBuybackDemandUsd, 'USD')} | ${formatValue(s.outputs.buybackDemandToMcap, 'fraction')} | ${formatValue(s.outputs.breakEvenAnnualVolumeUsd, 'USD')} | ${formatValue(s.outputs.volumeMultipleRequired, 'ratio')} | ${s.rationale} |`).join('\n');
-  out = out.replace('{{SCENARIO_TABLE}}', `| Scenario | Annual buyback demand | Buyback / market cap | Break-even volume (y = 2%) | Volume multiple | Assumptions |\n|---|---|---|---|---|---|\n${scen}`);
+  const vToday = ds.evidence.find((e) => e.evidenceId === 'INT-VOL-ANN')?.value ?? null;
+  const scen = ds.scenarios.map((s) => `| ${s.label} | ${formatValue(s.outputs.annualBuybackDemandUsd, 'USD')} | ${formatValue(s.outputs.buybackDemandToMcap, 'fraction')} | ${formatValue(s.outputs.breakEvenAnnualVolumeUsd, 'USD')} | ${formatValue(vToday && s.outputs.breakEvenAnnualVolumeUsd !== null ? s.outputs.breakEvenAnnualVolumeUsd / vToday : null, 'ratio')} | ${formatValue(s.outputs.volumeMultipleRequired, 'ratio')} | ${s.rationale} |`).join('\n');
+  out = out.replace('{{SCENARIO_TABLE}}', `| Scenario | Annual buyback demand | Buyback / market cap | Volume for 2% of market cap | x today's volume | x scenario's volume | Assumptions |\n|---|---|---|---|---|---|---|\n${scen}`);
   const fee = ds.feeSensitivity;
   out = out.replace('{{SENSITIVITY_TABLE}}', `| Fee compression \\ target y | ${fee.cols.map((c) => formatValue(c, 'fraction')).join(' | ')} |\n|---|${fee.cols.map(() => '---').join('|')}|\n${fee.rows.map((r, i) => `| ${formatValue(r, 'fraction')} | ${fee.cells[i]!.map((v) => formatValue(v, 'ratio')).join(' | ')} |`).join('\n')}`);
   out = out.replace('{{TRIGGER_TABLE}}', `| ID | Falsification trigger | Rule | Current reading | Status |\n|---|---|---|---|---|\n${triggers.map((t) => `| ${t.id} | ${t.statement} | \`${t.rule}\` | ${t.observed} | **${t.status}** |`).join('\n')}`);

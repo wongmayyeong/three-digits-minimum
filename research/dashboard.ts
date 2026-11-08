@@ -4,7 +4,8 @@
  */
 import type { buildDataset } from '@/lib/research/evidence';
 import type { evaluateTriggers } from '@/lib/research/triggers';
-import { formatDate, formatValue, pct } from '@/lib/format';
+import { formatDate, formatValue } from '@/lib/format';
+import { chartSentence } from '@/lib/research/caption';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 
@@ -25,10 +26,8 @@ export function renderDashboard(ds: ReturnType<typeof buildDataset>, triggers: R
   const charted = ds.evidence.filter((e) => e.series && e.available && e.series.points.length > 4);
   const cards = charted.map((e) => {
     const s = e.series!;
-    const first = s.points[0]!, last = s.points[s.points.length - 1]!;
-    const change = first[1] ? (last[1] - first[1]) / Math.abs(first[1]) : null;
     const req = Object.values(manifest).find((m) => m.sha256 === e.rawResponseHash);
-    const sentence = `${s.label} was ${formatValue(last[1], s.unit)} in the week ending ${formatDate(last[0])}${change === null ? '' : `, ${change >= 0 ? 'up' : 'down'} ${pct(Math.abs(change), 0)} from ${formatValue(first[1], s.unit)} in the week ending ${formatDate(first[0])}`}.`;
+    const sentence = chartSentence(s);
     return `<article><h2>${esc(s.label)}</h2><p class="id">${esc(e.evidenceId)} · ${esc(e.sourceName)}</p>${svgLine(s.points, s.unit)}<p>${esc(sentence)}</p><p class="q">Query: GET ${esc(req?.url ?? e.sourceUrl)}<br>Response SHA-256: ${esc(req?.sha256 ?? 'n/a')} · fetched ${esc(req?.fetchedAt ?? 'n/a')}</p><p class="q">Method: ${esc(e.methodology)}</p></article>`;
   }).join('\n');
   const trig = triggers.map((t) => `<tr><td>${t.id}</td><td>${esc(t.statement)}</td><td><code>${esc(t.rule)}</code></td><td>${esc(t.observed)}</td><td class="${t.status === 'TRIGGERED' ? 'bad' : t.status === 'UNKNOWN' ? 'unk' : 'ok'}">${t.status}</td></tr>`).join('');

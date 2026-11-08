@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Interactive break-even calculator. Uses the same pure functions as the server. Any input
+ * Interactive buyback demand target calculator. Uses the same pure functions as the server. Any input
  * the user edits is relabelled ASSUMED, because it no longer matches the evidence.
  */
 import { useMemo, useState } from 'react';
@@ -76,8 +76,8 @@ export function Calculator({ base, asOf }: { base: ModelInputs | null; asOf: str
             {[
               ['Annual buyback demand', 'V × f × c × b', out.annualBuybackDemandUsd, 'USD', 'annualBuybackDemandUsd'],
               ['Buyback demand / market cap', '(V × f × c × b) ÷ M', out.buybackDemandToMcap, 'fraction', 'buybackDemandToMcap'],
-              ['Break-even annual volume', '(y × M) ÷ (f × c × b)', out.breakEvenAnnualVolumeUsd, 'USD', 'breakEvenAnnualVolumeUsd'],
-              ['Volume multiple required', 'break-even ÷ V', out.volumeMultipleRequired, 'ratio', 'volumeMultipleRequired'],
+              ['Annual volume needed for target y', '(y × M) ÷ (f × c × b)', out.breakEvenAnnualVolumeUsd, 'USD', 'breakEvenAnnualVolumeUsd'],
+              ['Volume multiple required', 'required volume ÷ V', out.volumeMultipleRequired, 'ratio', 'volumeMultipleRequired'],
             ].map(([label, formula, value, unit, key]) => (
               <div key={label as string} className="flex items-baseline justify-between gap-4 border-b hairline pb-3">
                 <dt><p className="text-sm text-fg-2">{label as string}</p><p className="num text-[0.6875rem] text-faint">{formula as string}</p></dt>

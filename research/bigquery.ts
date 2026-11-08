@@ -37,8 +37,12 @@ async function main() {
   for (const file of readdirSync(dir).filter((f) => f.endsWith('.sql')).sort()) {
     const query = readFileSync(join(dir, file), 'utf8');
     const usesParams = query.includes('@start_date');
-    const params = usesParams ? { start_date: iso(start), end_date: iso(end) } : undefined;
-    const types = usesParams ? { start_date: 'DATE', end_date: 'DATE' } : undefined;
+    const usesLookback = query.includes('@lookback_start');
+    // New-signer cohorts exclude accounts seen in this lookback before the window (default: 365 days; set BIGQUERY_LOOKBACK_START=2020-04-22 for full history).
+    const lookback = process.env.BIGQUERY_LOOKBACK_START ?? iso(new Date(start.getTime() - 365 * 86_400_000));
+    const params = usesParams ? { start_date: iso(start), end_date: iso(end), ...(usesLookback ? { lookback_start: lookback } : {}) } : undefined;
+    const types = usesParams ? { start_date: 'DATE', end_date: 'DATE', ...(usesLookback ? { lookback_start: 'DATE' } : {}) } : undefined;
+    if (usesLookback) console.log(`  ${file}: "new" = no transactions since ${lookback}`);
     const [dry] = await bq.createQueryJob({ query, params, types, dryRun: true, location: 'US' } as never);
     const bytes = Number((dry.metadata as { statistics: { totalBytesProcessed: string } }).statistics.totalBytesProcessed);
     const gb = bytes / 1e9;

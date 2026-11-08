@@ -1,5 +1,5 @@
 /**
- * NEAR Value Accrual / Break-Even Demand Model.
+ * NEAR Value Accrual / Buyback Demand Target Model (named "break-even" in code identifiers for compatibility).
  *
  * Pure, deterministic functions. No I/O. Shared by the worker, the API, the browser
  * calculator and `npm run research:refresh`, so every surface computes the same numbers.

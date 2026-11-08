@@ -103,7 +103,7 @@ function modelBlock(m: PromptModel | null): string {
   if (!m) return 'MODEL: not used for this topic.';
   const inputs = Object.entries(m.inputs).map(([k, v]) => `${k} = ${v.value === null ? 'N/A' : k === 'M' || k === 'V' ? formatValue(v.value, 'USD') : formatValue(v.value, 'fraction')} [${v.kind}${v.evidenceIds.length ? `; ${v.evidenceIds.join(', ')}` : ''}${v.note ? `; ${v.note}` : ''}]`);
   const sc = m.scenarios.map((s) => `- ${s.label}: annual buyback demand ${formatValue(s.annualBuybackUsd, 'USD')}, buyback/mcap ${formatValue(s.buybackToMcap, 'fraction')}, volume multiple needed for 2% ${formatValue(s.volumeMultiple, 'ratio')}. (${s.rationale})`);
-  return `BREAK-EVEN DEMAND MODEL (${m.formulaVersion}), computed deterministically by the server:
+  return `BUYBACK DEMAND TARGET MODEL (${m.formulaVersion}), computed deterministically by the server:
 annual_buyback_demand = V x f x c x b; buyback_to_mcap = demand / M; break_even_volume = (y x M) / (f x c x b); volume_multiple = break_even_volume / V.
 Inputs:\n${inputs.join('\n')}
 Scenarios (all adjustments are ASSUMPTIONS):\n${sc.join('\n')}`;

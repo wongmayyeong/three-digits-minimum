@@ -59,7 +59,7 @@ export const TRIGGERS: TriggerDef[] = [
     implication: 'Competition is pricing intents settlement toward zero faster than volume grows.',
   },
   {
-    id: 'F3', statement: 'The break-even volume for buybacks worth 2% of market cap is more than ten times today\'s run rate.',
+    id: 'F3', statement: 'The volume needed for buyback revenue worth 2% of market cap is more than ten times today\'s run rate.',
     rule: 'MODEL-VOL-MULTIPLE-2PCT > 10',
     evidenceIds: ['MODEL-VOL-MULTIPLE-2PCT'],
     evaluate: (g) => {
