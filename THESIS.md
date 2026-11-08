@@ -36,9 +36,9 @@ Why usage and value capture are tested separately: a network can be busy while i
 ## 3. Evidence against (building)
 
 - Social / BOS: social.near has fallen to 1.02% of its 2023-08 peak (2026-10). [ERA-SOCIAL-RETENTION]
-- Adoption did not follow Blockchain Operating System (BOS) (February 2023): active accounts 20.9% at +90 days. [EVT-BOS-DAA-90D]
-- Adoption did not follow User-Owned AI (22 May 2024): active accounts 23.4% at +90 days. [EVT-USER-OWNED-AI-DAA-90D]
-- Adoption did not follow NEAR Intents (beta) (10 November 2024): active accounts 11.3% at +90 days. [EVT-INTENTS-DAA-90D]
+- Adoption did not follow Blockchain Operating System (BOS) (February 2023): active accounts -20.9% at +90 days. [EVT-BOS-DAA-90D]
+- Adoption did not follow User-Owned AI (22 May 2024): active accounts -23.4% at +90 days. [EVT-USER-OWNED-AI-DAA-90D]
+- Adoption did not follow NEAR Intents (beta) (10 November 2024): active accounts -11.3% at +90 days. [EVT-INTENTS-DAA-90D]
 - Intents buybacks absorb 16.8% of realized net new supply. [COV-BUYBACK-REALIZED]
 - F4 triggered: Base-layer user activity contracts sharply year over year. (-78.7% vs a year earlier).
 - F6 triggered: Token-level value capture is under 1% of market cap per year. (0.434% of market cap).

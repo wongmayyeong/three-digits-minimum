@@ -12,3 +12,6 @@ playwright-report/
 test-results/
 artifacts/research/runs/
 /.next-demo/
+
+.vercel
+.env*

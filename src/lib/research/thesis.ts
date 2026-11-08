@@ -329,6 +329,8 @@ export const _test = { monthsBetween, DAY_MS };
  */
 export function evidenceForAgainst(t: ThesisResult, triggers: { id: string; statement: string; status: string; observed: string }[]): { forBuilding: string[]; againstBuilding: string[] } {
   const pct = (v: number | null) => (v === null ? 'n/a' : formatValue(Math.abs(v), 'fraction'));
+  // Changes keep their direction: +52.4% or -20.9%.
+  const signed = (v: number | null) => (v === null ? 'n/a' : `${v >= 0 ? '+' : '-'}${pct(v)}`);
   const forB: string[] = [];
   const against: string[] = [];
   for (const e of t.eras) {
@@ -336,8 +338,8 @@ export function evidenceForAgainst(t: ThesisResult, triggers: { id: string; stat
     if (e.lasted === false) against.push(`${e.era}: ${e.account} has fallen to ${pct(e.retention)} of its ${e.peakMonth} peak (${e.latestMonth}). [ERA-${e.id.toUpperCase()}-RETENTION]`);
   }
   for (const v of t.events) {
-    if (v.adoptionFollowed === true) forB.push(`Adoption followed ${v.label} (${v.shown}): active accounts ${v.daaChange === null ? 'n/a' : `${v.daaChange >= 0 ? '+' : ''}${pct(v.daaChange)}`} at +90 days${v.eraGrowth !== null ? `, product activity ${v.eraGrowth.toFixed(1)}x two months after launch` : ''}. [EVT-${v.id.toUpperCase()}-DAA-90D]`);
-    if (v.adoptionFollowed === false) against.push(`Adoption did not follow ${v.label} (${v.shown}): active accounts ${v.daaChange === null ? 'n/a' : `${v.daaChange >= 0 ? '+' : ''}${pct(v.daaChange)}`} at +90 days. [EVT-${v.id.toUpperCase()}-DAA-90D]`);
+    if (v.adoptionFollowed === true) forB.push(`Adoption followed ${v.label} (${v.shown}): active accounts ${signed(v.daaChange)} at +90 days${v.eraGrowth !== null ? `, product activity ${v.eraGrowth.toFixed(1)}x two months after launch` : ''}. [EVT-${v.id.toUpperCase()}-DAA-90D]`);
+    if (v.adoptionFollowed === false) against.push(`Adoption did not follow ${v.label} (${v.shown}): active accounts ${signed(v.daaChange)} at +90 days. [EVT-${v.id.toUpperCase()}-DAA-90D]`);
   }
   const s = t.supply;
   if (s.takeRate !== null && s.takeRatePrior !== null) {
