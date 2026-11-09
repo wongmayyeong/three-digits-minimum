@@ -1923,19 +1923,19 @@
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/address/social.near",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:39:52.494Z",
+   "fetchedAt": "2026-11-08T20:00:56.549Z",
    "periodStart": "2021-02-01",
    "periodEnd": "2026-10-01",
-   "transform": "max over complete months",
+   "transform": "max over complete exact months",
    "confidence": "medium",
-   "rawResponseHash": "2cacfcdc8283f25aa2ce7f6a28b176543c75bafdee4722e2cfc1858f494445c2",
+   "rawResponseHash": "5358ec93a1473998ff4c9c32ba36d6c7edb5407b1b08a128dfbe241574b9f397",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-SOCIAL-PEAK",
    "metricKey": "era.social.peak",
-   "label": "social.near: peak monthly transactions (2023-08)",
+   "label": "social.near: peak transactions per month (2023-08)",
    "unit": "count",
-   "methodology": "NearBlocks transaction count involving social.near, per calendar month. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+   "methodology": "NearBlocks transactions per month for social.near, per calendar month, exact months only. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included. 31 months (2023-09 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": false
   },
   {
@@ -1947,19 +1947,19 @@
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/address/social.near",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:39:52.494Z",
+   "fetchedAt": "2026-11-08T20:00:56.549Z",
    "periodStart": "2021-02-01",
    "periodEnd": "2026-10-01",
    "transform": "last complete month",
    "confidence": "medium",
-   "rawResponseHash": "2cacfcdc8283f25aa2ce7f6a28b176543c75bafdee4722e2cfc1858f494445c2",
+   "rawResponseHash": "5358ec93a1473998ff4c9c32ba36d6c7edb5407b1b08a128dfbe241574b9f397",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-SOCIAL-LATEST",
    "metricKey": "era.social.latest",
-   "label": "social.near: transactions in the latest complete month (2026-10)",
+   "label": "social.near: transactions per month, latest complete month (2026-10)",
    "unit": "count",
-   "methodology": "Same count for the most recent complete month. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+   "methodology": "Same measure for the most recent complete month. SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included. 31 months (2023-09 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": true
   },
   {
@@ -1986,7 +1986,7 @@
    "metricKey": "era.social.retention",
    "label": "social.near: latest month as a share of its peak",
    "unit": "fraction",
-   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "methodology": "Retention against the era's own peak over exact months. \"Lasted\" if at least 25% and the peak is 3+ months old; a more recent peak is not judgeable yet. Transactions are not people; relayers and node traffic are included. 31 months (2023-09 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": false
   },
   {
@@ -1998,19 +1998,19 @@
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/address/v1.signer",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:44:34.991Z",
-   "periodStart": "2024-07-01",
+   "fetchedAt": "2026-11-08T20:05:17.438Z",
+   "periodStart": "2026-04-01",
    "periodEnd": "2026-10-01",
-   "transform": "max over complete months",
+   "transform": "max over complete exact months",
    "confidence": "medium",
-   "rawResponseHash": "04a25c49f9aefca7abaf056cfd0aef31295a76bea684df14f47dc1bd3da70641",
+   "rawResponseHash": "aebd059ebe75d55fa38952abed8b86b3eb1b24d3a4a5e8f7bb937520bf0ab2d2",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-SIGNER-PEAK",
    "metricKey": "era.signer.peak",
-   "label": "v1.signer: peak monthly transactions (2026-05)",
+   "label": "v1.signer: peak transactions per month (2026-05)",
    "unit": "count",
-   "methodology": "NearBlocks transaction count involving v1.signer, per calendar month. Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+   "methodology": "NearBlocks transactions per month for v1.signer, per calendar month, exact months only. Chain Signatures MPC contract (created 2024-07-31, mainnet 2024-08-08). Counts include MPC node response transactions, not only user sign requests. 21 months (2024-07 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": false
   },
   {
@@ -2022,19 +2022,19 @@
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/address/v1.signer",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:44:34.991Z",
-   "periodStart": "2024-07-01",
+   "fetchedAt": "2026-11-08T20:05:17.438Z",
+   "periodStart": "2026-04-01",
    "periodEnd": "2026-10-01",
    "transform": "last complete month",
    "confidence": "medium",
-   "rawResponseHash": "04a25c49f9aefca7abaf056cfd0aef31295a76bea684df14f47dc1bd3da70641",
+   "rawResponseHash": "aebd059ebe75d55fa38952abed8b86b3eb1b24d3a4a5e8f7bb937520bf0ab2d2",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-SIGNER-LATEST",
    "metricKey": "era.signer.latest",
-   "label": "v1.signer: transactions in the latest complete month (2026-10)",
+   "label": "v1.signer: transactions per month, latest complete month (2026-10)",
    "unit": "count",
-   "methodology": "Same count for the most recent complete month. Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+   "methodology": "Same measure for the most recent complete month. Chain Signatures MPC contract (created 2024-07-31, mainnet 2024-08-08). Counts include MPC node response transactions, not only user sign requests. 21 months (2024-07 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": true
   },
   {
@@ -2061,60 +2061,60 @@
    "metricKey": "era.signer.retention",
    "label": "v1.signer: latest month as a share of its peak",
    "unit": "fraction",
-   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "methodology": "Retention against the era's own peak over exact months. \"Lasted\" if at least 25% and the peak is 3+ months old; a more recent peak is not judgeable yet. Transactions are not people; relayers and node traffic are included. 21 months (2024-07 to 2026-03) were NearBlocks estimates, not counts, and are excluded.",
    "hasSeries": false
   },
   {
    "group": "thesis",
-   "value": 2049339,
+   "value": 4803094377,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
-   "sourceName": "NearBlocks",
-   "sourceUrl": "https://nearblocks.io/address/intents.near",
+   "sourceName": "DefiLlama",
+   "sourceUrl": "https://defillama.com/protocol/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:47:28.033Z",
-   "periodStart": "2024-11-01",
+   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "periodStart": "2024-12-01",
    "periodEnd": "2026-10-01",
-   "transform": "max over complete months",
+   "transform": "max over complete exact months",
    "confidence": "medium",
-   "rawResponseHash": "da58665b6b6bb9679ae038e1fc745ebd4c6084eb40fe3cde2d5ed60a8dd1ebdc",
+   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-INTENTS-PEAK",
    "metricKey": "era.intents.peak",
-   "label": "intents.near: peak monthly transactions (2024-12)",
-   "unit": "count",
-   "methodology": "NearBlocks transaction count involving intents.near, per calendar month. NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+   "label": "intents.near: peak swap volume per month (USD) (2026-09)",
+   "unit": "USD",
+   "methodology": "DefiLlama swap volume per month (USD) for intents.near, per calendar month, exact months only. NEAR Intents swap volume from DefiLlama, whose coverage starts on 2024-12-10, a month after the beta launch. Volume is used instead of intents.near transaction counts, which mix relayer and solver batching with use and are NearBlocks estimates before April 2026.",
    "hasSeries": false
   },
   {
    "group": "thesis",
-   "value": 1959461,
+   "value": 3985641601,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
-   "sourceName": "NearBlocks",
-   "sourceUrl": "https://nearblocks.io/address/intents.near",
+   "sourceName": "DefiLlama",
+   "sourceUrl": "https://defillama.com/protocol/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T09:47:28.033Z",
-   "periodStart": "2024-11-01",
+   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "periodStart": "2024-12-01",
    "periodEnd": "2026-10-01",
    "transform": "last complete month",
    "confidence": "medium",
-   "rawResponseHash": "da58665b6b6bb9679ae038e1fc745ebd4c6084eb40fe3cde2d5ed60a8dd1ebdc",
+   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-INTENTS-LATEST",
    "metricKey": "era.intents.latest",
-   "label": "intents.near: transactions in the latest complete month (2026-10)",
-   "unit": "count",
-   "methodology": "Same count for the most recent complete month. NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+   "label": "intents.near: swap volume per month (USD), latest complete month (2026-10)",
+   "unit": "USD",
+   "methodology": "Same measure for the most recent complete month. NEAR Intents swap volume from DefiLlama, whose coverage starts on 2024-12-10, a month after the beta launch. Volume is used instead of intents.near transaction counts, which mix relayer and solver batching with use and are NearBlocks estimates before April 2026.",
    "hasSeries": true
   },
   {
    "group": "thesis",
-   "value": 0.9561429319404939,
+   "value": 0.8298070552362166,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2136,7 +2136,7 @@
    "metricKey": "era.intents.retention",
    "label": "intents.near: latest month as a share of its peak",
    "unit": "fraction",
-   "methodology": "Retention against the era's own peak. \"Lasted\" if at least 25% and the peak is 3+ months old. Transactions are not people; relayers and node traffic are included.",
+   "methodology": "Retention against the era's own peak over exact months. \"Lasted\" if at least 25% and the peak is 3+ months old; a more recent peak is not judgeable yet. Transactions are not people; relayers and node traffic are included.",
    "hasSeries": false
   },
   {
@@ -2210,7 +2210,7 @@
    "metricKey": "event.bos.product_growth_2m",
    "label": "Blockchain Operating System (BOS): social.near activity two months after its mainnet launch month vs the launch month",
    "unit": "ratio",
-   "methodology": "Scored. NearBlocks monthly transactions involving social.near: the month two months after the mainnet launch (February 2023 (BOS live; SocialDB already on mainnet)) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
+   "methodology": "Scored. Monthly social.near from exact data: the month two months after the launch month divided by the launch month (or the first exact month, if exact data starts within one month of launch). Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder. N/A when the launch months are only available as estimates.",
    "hasSeries": false
   },
   {
@@ -2263,20 +2263,20 @@
   },
   {
    "group": "thesis",
-   "value": 1.0807242366875394,
+   "value": null,
    "valueText": null,
    "observationType": "DERIVED",
-   "available": true,
+   "available": false,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://near.org/blog/chain-signatures-mainnet-launches",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2024-08-01",
-   "periodEnd": "2024-10-01",
+   "periodStart": null,
+   "periodEnd": null,
    "transform": "month[launch + 2] / month[launch]",
    "confidence": "medium",
    "rawResponseHash": null,
-   "validationNotes": null,
+   "validationNotes": "Exact data for the launch month or two months later is not available (estimates only).",
    "inputs": [
     "ERA-SIGNER-LATEST"
    ],
@@ -2284,7 +2284,7 @@
    "metricKey": "event.chain-signatures.product_growth_2m",
    "label": "Chain Signatures: v1.signer activity two months after its mainnet launch month vs the launch month",
    "unit": "ratio",
-   "methodology": "Scored. NearBlocks monthly transactions involving v1.signer: the month two months after the mainnet launch (8 August 2024, mainnet) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
+   "methodology": "Scored. Monthly v1.signer from exact data: the month two months after the launch month divided by the launch month (or the first exact month, if exact data starts within one month of launch). Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder. N/A when the launch months are only available as estimates.",
    "hasSeries": false
   },
   {
@@ -2385,16 +2385,16 @@
   },
   {
    "group": "thesis",
-   "value": 1.028417708739323,
+   "value": 4.441088027163991,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
-   "sourceName": "NearBlocks",
+   "sourceName": "DefiLlama",
    "sourceUrl": "https://near.org/blog/introducing-near-intents.html",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2024-11-01",
-   "periodEnd": "2025-01-01",
+   "periodStart": "2024-12-01",
+   "periodEnd": "2025-02-01",
    "transform": "month[launch + 2] / month[launch]",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -2404,9 +2404,9 @@
    ],
    "evidenceId": "EVT-INTENTS-PRODUCT-2M",
    "metricKey": "event.intents.product_growth_2m",
-   "label": "NEAR Intents (beta): intents.near activity two months after its mainnet launch month vs the launch month",
+   "label": "NEAR Intents (beta): intents.near volume activity two months after its mainnet launch month vs the launch month",
    "unit": "ratio",
-   "methodology": "Scored. NearBlocks monthly transactions involving intents.near: the month two months after the mainnet launch (10 November 2024, beta on mainnet) divided by the launch month. Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder.",
+   "methodology": "Scored. Monthly intents.near volume from exact data: the month two months after the launch month divided by the launch month (or the first exact month, if exact data starts within one month of launch). Adoption followed if at least 2x. A launch month that starts mid-month makes the test easier to pass, not harder. N/A when the launch months are only available as estimates.",
    "hasSeries": false
   },
   {
@@ -3022,6 +3022,11 @@
     "account": "social.near",
     "era": "Social / BOS",
     "note": "SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.",
+    "source": "nearblocks",
+    "metric": "transactions per month",
+    "unit": "count",
+    "sourceName": "NearBlocks",
+    "sourceUrl": "https://nearblocks.io/address/social.near",
     "months": [
      [
       "2021-02",
@@ -3148,130 +3153,6 @@
       35764
      ],
      [
-      "2023-09",
-      5532
-     ],
-     [
-      "2023-10",
-      5795
-     ],
-     [
-      "2023-11",
-      9234
-     ],
-     [
-      "2023-12",
-      14089
-     ],
-     [
-      "2024-01",
-      11551
-     ],
-     [
-      "2024-02",
-      17666
-     ],
-     [
-      "2024-03",
-      22757
-     ],
-     [
-      "2024-04",
-      29925
-     ],
-     [
-      "2024-05",
-      30637
-     ],
-     [
-      "2024-06",
-      31683
-     ],
-     [
-      "2024-07",
-      28537
-     ],
-     [
-      "2024-08",
-      26246
-     ],
-     [
-      "2024-09",
-      28573
-     ],
-     [
-      "2024-10",
-      28364
-     ],
-     [
-      "2024-11",
-      28184
-     ],
-     [
-      "2024-12",
-      33903
-     ],
-     [
-      "2025-01",
-      28985
-     ],
-     [
-      "2025-02",
-      25243
-     ],
-     [
-      "2025-03",
-      26805
-     ],
-     [
-      "2025-04",
-      25036
-     ],
-     [
-      "2025-05",
-      21488
-     ],
-     [
-      "2025-06",
-      19273
-     ],
-     [
-      "2025-07",
-      19451
-     ],
-     [
-      "2025-08",
-      20381
-     ],
-     [
-      "2025-09",
-      18409
-     ],
-     [
-      "2025-10",
-      18500
-     ],
-     [
-      "2025-11",
-      16937
-     ],
-     [
-      "2025-12",
-      15604
-     ],
-     [
-      "2026-01",
-      14316
-     ],
-     [
-      "2026-02",
-      12916
-     ],
-     [
-      "2026-03",
-      14434
-     ],
-     [
       "2026-04",
       283
      ],
@@ -3300,6 +3181,40 @@
       364
      ]
     ],
+    "estimatedMonths": [
+     "2023-09",
+     "2023-10",
+     "2023-11",
+     "2023-12",
+     "2024-01",
+     "2024-02",
+     "2024-03",
+     "2024-04",
+     "2024-05",
+     "2024-06",
+     "2024-07",
+     "2024-08",
+     "2024-09",
+     "2024-10",
+     "2024-11",
+     "2024-12",
+     "2025-01",
+     "2025-02",
+     "2025-03",
+     "2025-04",
+     "2025-05",
+     "2025-06",
+     "2025-07",
+     "2025-08",
+     "2025-09",
+     "2025-10",
+     "2025-11",
+     "2025-12",
+     "2026-01",
+     "2026-02",
+     "2026-03"
+    ],
+    "exactFrom": "2021-02",
     "missingMonths": [],
     "firstMonth": "2021-02",
     "peakMonth": "2023-08",
@@ -3317,92 +3232,13 @@
     "id": "signer",
     "account": "v1.signer",
     "era": "Chain Abstraction (Chain Signatures)",
-    "note": "Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract's first transaction is 2024-07-31.",
+    "note": "Chain Signatures MPC contract (created 2024-07-31, mainnet 2024-08-08). Counts include MPC node response transactions, not only user sign requests.",
+    "source": "nearblocks",
+    "metric": "transactions per month",
+    "unit": "count",
+    "sourceName": "NearBlocks",
+    "sourceUrl": "https://nearblocks.io/address/v1.signer",
     "months": [
-     [
-      "2024-07",
-      268795
-     ],
-     [
-      "2024-08",
-      247212
-     ],
-     [
-      "2024-09",
-      269135
-     ],
-     [
-      "2024-10",
-      267168
-     ],
-     [
-      "2024-11",
-      265473
-     ],
-     [
-      "2024-12",
-      319340
-     ],
-     [
-      "2025-01",
-      273018
-     ],
-     [
-      "2025-02",
-      237765
-     ],
-     [
-      "2025-03",
-      252476
-     ],
-     [
-      "2025-04",
-      235814
-     ],
-     [
-      "2025-05",
-      202397
-     ],
-     [
-      "2025-06",
-      181536
-     ],
-     [
-      "2025-07",
-      183215
-     ],
-     [
-      "2025-08",
-      191975
-     ],
-     [
-      "2025-09",
-      173397
-     ],
-     [
-      "2025-10",
-      174251
-     ],
-     [
-      "2025-11",
-      159530
-     ],
-     [
-      "2025-12",
-      146977
-     ],
-     [
-      "2026-01",
-      134846
-     ],
-     [
-      "2026-02",
-      121661
-     ],
-     [
-      "2026-03",
-      135953
-     ],
      [
       "2026-04",
       811509
@@ -3432,6 +3268,30 @@
       467548
      ]
     ],
+    "estimatedMonths": [
+     "2024-07",
+     "2024-08",
+     "2024-09",
+     "2024-10",
+     "2024-11",
+     "2024-12",
+     "2025-01",
+     "2025-02",
+     "2025-03",
+     "2025-04",
+     "2025-05",
+     "2025-06",
+     "2025-07",
+     "2025-08",
+     "2025-09",
+     "2025-10",
+     "2025-11",
+     "2025-12",
+     "2026-01",
+     "2026-02",
+     "2026-03"
+    ],
+    "exactFrom": "2026-04",
     "missingMonths": [],
     "firstMonth": "2024-07",
     "peakMonth": "2026-05",
@@ -3440,126 +3300,129 @@
     "latest": 467548,
     "retention": 0.48160161677923485,
     "monthsSincePeak": 5,
-    "month1": 268795,
-    "month3": 269135,
-    "month6": 319340,
+    "month1": 811509,
+    "month3": 856215,
+    "month6": 702181,
     "lasted": true
    },
    {
     "id": "intents",
     "account": "intents.near",
     "era": "Intents",
-    "note": "NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.",
+    "note": "NEAR Intents swap volume from DefiLlama, whose coverage starts on 2024-12-10, a month after the beta launch. Volume is used instead of intents.near transaction counts, which mix relayer and solver batching with use and are NearBlocks estimates before April 2026.",
+    "source": "defillama-volume",
+    "metric": "swap volume per month (USD)",
+    "unit": "USD",
+    "sourceName": "DefiLlama",
+    "sourceUrl": "https://defillama.com/protocol/near-intents",
     "months": [
      [
-      "2024-11",
-      1703656
-     ],
-     [
       "2024-12",
-      2049339
+      2970992
      ],
      [
       "2025-01",
-      1752070
+      6405486
      ],
      [
       "2025-02",
-      1525841
+      13194437
      ],
      [
       "2025-03",
-      1620248
+      23456822
      ],
      [
       "2025-04",
-      1513320
+      45321918
      ],
      [
       "2025-05",
-      1298869
+      90736625
      ],
      [
       "2025-06",
-      1164995
+      184121616
      ],
      [
       "2025-07",
-      1175766
+      235933309
      ],
      [
       "2025-08",
-      1231982
+      331560249
      ],
      [
       "2025-09",
-      1112764
+      483791180
      ],
      [
       "2025-10",
-      1118245
+      1723102048
      ],
      [
       "2025-11",
-      1023770
+      3661054797
      ],
      [
       "2025-12",
-      943212
+      2009785103
      ],
      [
       "2026-01",
-      865362
+      2724468717
      ],
      [
       "2026-02",
-      780748
+      2378261095
      ],
      [
       "2026-03",
-      872466
+      2079695033
      ],
      [
       "2026-04",
-      208867
+      1895540502
      ],
      [
       "2026-05",
-      195441
+      1995687999
      ],
      [
       "2026-06",
-      194780
+      2354692014
      ],
      [
       "2026-07",
-      185468
+      2205579711
      ],
      [
       "2026-08",
-      170357
+      2777327253
      ],
      [
       "2026-09",
-      81399
+      4803094377
      ],
      [
       "2026-10",
-      1959461
+      3985641601
      ]
     ],
+    "estimatedMonths": [],
+    "exactFrom": "2024-12",
     "missingMonths": [],
-    "firstMonth": "2024-11",
-    "peakMonth": "2024-12",
-    "peak": 2049339,
+    "firstMonth": "2024-12",
+    "peakMonth": "2026-09",
+    "peak": 4803094377,
     "latestMonth": "2026-10",
-    "latest": 1959461,
-    "retention": 0.9561429319404939,
-    "monthsSincePeak": 22,
-    "month1": 1703656,
-    "month3": 1752070,
-    "month6": 1513320,
-    "lasted": true
+    "latest": 3985641601,
+    "retention": 0.8298070552362166,
+    "monthsSincePeak": 1,
+    "month1": 2970992,
+    "month3": 13194437,
+    "month6": 90736625,
+    "lasted": null
    }
   ],
   "events": [
@@ -3604,10 +3467,10 @@
     "productLaunch": "2024-08-08",
     "productLaunchShown": "8 August 2024, mainnet",
     "productLaunchSource": "https://near.org/blog/chain-signatures-mainnet-launches",
-    "productMonth0": "2024-08",
-    "productMonth2": "2024-10",
-    "eraGrowth": 1.0807242366875394,
-    "adoptionFollowed": false
+    "productMonth0": null,
+    "productMonth2": null,
+    "eraGrowth": null,
+    "adoptionFollowed": null
    },
    {
     "id": "user-owned-ai",
@@ -3646,14 +3509,14 @@
     "daaBefore": 974725.7666666667,
     "daaAfter": 864660.6451612903,
     "daaChange": -0.11291906428386857,
-    "productAccount": "intents.near",
+    "productAccount": "intents.near volume",
     "productLaunch": "2024-11-10",
     "productLaunchShown": "10 November 2024, beta on mainnet",
     "productLaunchSource": "https://near.org/blog/introducing-near-intents.html",
-    "productMonth0": "2024-11",
-    "productMonth2": "2025-01",
-    "eraGrowth": 1.028417708739323,
-    "adoptionFollowed": false
+    "productMonth0": "2024-12",
+    "productMonth2": "2025-02",
+    "eraGrowth": 4.441088027163991,
+    "adoptionFollowed": true
    }
   ],
   "supply": {
@@ -3679,14 +3542,14 @@
    {
     "id": 1,
     "title": "Did it last?",
-    "verdict": "BUILDING",
-    "reason": "2 of 3 era products keep at least 25% of their peak monthly activity."
+    "verdict": "MIXED",
+    "reason": "1 of 2 era products keep at least 25% of their peak monthly activity."
    },
    {
     "id": 2,
     "title": "Did adoption justify the hype?",
-    "verdict": "HYPE",
-    "reason": "Product adoption followed 0 of 3 measurable pivots within two months of mainnet launch. Not measurable, so not counted: User-Owned AI."
+    "verdict": "BUILDING",
+    "reason": "Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI."
    },
    {
     "id": 3,
@@ -3695,8 +3558,8 @@
     "reason": "Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising."
    }
   ],
-  "verdict": "BUILDING, NOT YET PAYING",
+  "verdict": "MIXED",
   "confidence": "low",
-  "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 2 of 3 era products keep at least 25% of their peak monthly activity. Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising. Product adoption followed 0 of 3 measurable pivots within two months of mainnet launch. Not measurable, so not counted: User-Owned AI."
+  "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 1 of 2 era products keep at least 25% of their peak monthly activity. Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising. Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI."
  }
 }

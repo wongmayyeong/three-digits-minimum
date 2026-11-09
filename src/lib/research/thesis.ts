@@ -67,7 +67,16 @@ export interface EraResult {
   account: string;
   era: string;
   note: string;
+  source: 'nearblocks' | 'defillama-volume';
+  metric: string;
+  unit: 'count' | 'USD';
+  sourceName: string;
+  sourceUrl: string;
+  /** Exact months only (estimates removed); used for scoring and charts. */
   months: [string, number][];
+  /** Months where the source returned an estimate rather than a count; excluded from scoring and charts. */
+  estimatedMonths: string[];
+  exactFrom: string | null;
   missingMonths: string[];
   firstMonth: string;
   peakMonth: string | null;
@@ -149,19 +158,40 @@ const monthsBetween = (a: string, b: string) => {
   return (by - ay) * 12 + (bm - am);
 };
 
+function volumeMonths(raws: Record<string, RawRecord | null | undefined>, key: string, firstMonth: string): [string, number][] {
+  const pts = fromUnixPairs((raws[key]?.body as any)?.chart).sort((a, b) => a[0].localeCompare(b[0]));
+  if (!pts.length) return [];
+  const lastDay = pts[pts.length - 1]![0];
+  const lastIsMonthEnd = addDays(lastDay, 1).slice(8, 10) === '01';
+  const partial = lastIsMonthEnd ? null : lastDay.slice(0, 7);
+  const byMonth = new Map<string, number>();
+  for (const [d, v] of pts) byMonth.set(d.slice(0, 7), (byMonth.get(d.slice(0, 7)) ?? 0) + v);
+  return [...byMonth.entries()].filter(([m, v]) => m >= firstMonth && m !== partial && v > 0).sort((a, b) => a[0].localeCompare(b[0]));
+}
+
 export function eraResults(raws: Record<string, RawRecord | null | undefined>, now = new Date()): EraResult[] {
   return ERA_CONTRACTS.map((c) => {
-    const keys = Object.keys(raws).filter((k) => k.startsWith(`nearblocks.era.${c.id}.`)).sort();
-    const months: [string, number][] = [];
+    let all: [string, number][] = [];
     const missing: string[] = [];
-    for (const k of keys) {
-      const r = raws[k];
-      const ym = k.slice(`nearblocks.era.${c.id}.`.length);
-      const n = (r?.body as any)?.txns;
-      if (typeof n === 'number' && Number.isFinite(n)) months.push([ym, n]);
-      else missing.push(ym);
+    const estimatedMonths: string[] = [];
+    if (c.source === 'defillama-volume') {
+      all = volumeMonths(raws, 'defillama.intents.volume', c.firstMonth);
+    } else {
+      const keys = Object.keys(raws).filter((k) => k.startsWith(`nearblocks.era.${c.id}.`)).sort();
+      for (const k of keys) {
+        const body = raws[k]?.body as any;
+        const ym = k.slice(`nearblocks.era.${c.id}.`.length);
+        const n = body?.txns;
+        if (typeof n !== 'number' || !Number.isFinite(n)) { missing.push(ym); continue; }
+        all.push([ym, n]);
+        // Records stored before the estimate flag existed are treated as estimates until re-fetched.
+        if (body?.estimated !== false) estimatedMonths.push(ym);
+      }
     }
-    const enough = months.length >= 3 && missing.length <= Math.max(1, Math.floor(months.length * 0.1));
+    const latestAll = all[all.length - 1] ?? null;
+    const months = all.filter(([m]) => !estimatedMonths.includes(m));
+    const latestIsExact = latestAll !== null && !estimatedMonths.includes(latestAll[0]);
+    const enough = latestIsExact && months.length >= 3 && missing.length <= Math.max(1, Math.floor(all.length * 0.1));
     let peakMonth: string | null = null;
     let peak: number | null = null;
     for (const [m, v] of months) if (peak === null || v > peak) { peak = v; peakMonth = m; }
@@ -172,7 +202,8 @@ export function eraResults(raws: Record<string, RawRecord | null | undefined>, n
     const judged = retention !== null && monthsSincePeak !== null && monthsSincePeak >= RULES.eraMinMonthsSincePeak;
     void now;
     return {
-      id: c.id, account: c.account, era: c.era, note: c.note, months, missingMonths: missing, firstMonth: c.firstMonth,
+      id: c.id, account: c.account, era: c.era, note: c.note, source: c.source, metric: c.metric, unit: c.unit, sourceName: c.sourceName, sourceUrl: c.sourceUrl,
+      months, estimatedMonths, exactFrom: months[0]?.[0] ?? null, missingMonths: missing, firstMonth: c.firstMonth,
       peakMonth: enough ? peakMonth : null, peak: enough ? peak : null, latestMonth: enough ? last?.[0] ?? null : null, latest: enough ? last?.[1] ?? null : null,
       retention, monthsSincePeak: enough ? monthsSincePeak : null, month1: at(0), month3: at(2), month6: at(5),
       lasted: judged ? (retention as number) >= RULES.eraRetentionLasting : null,
@@ -212,17 +243,23 @@ export function eventResults(raws: Record<string, RawRecord | null | undefined>,
     // Chain-wide active accounts (above) are context only, since they cannot be attributed to one product.
     const era = p.product && p.era ? eras.find((e) => e.id === p.era) : null;
     const launchMonth = p.product ? p.product.launch.slice(0, 7) : null;
-    const i0 = era && launchMonth ? era.months.findIndex(([m]) => m === launchMonth) : -1;
+    let i0 = era && launchMonth ? era.months.findIndex(([m]) => m === launchMonth) : -1;
+    if (era && launchMonth && i0 < 0) {
+      const j = era.months.findIndex(([m]) => m >= launchMonth);
+      if (j >= 0 && monthsBetween(launchMonth, era.months[j]![0]) <= 1) i0 = j;
+    }
     const m0 = i0 >= 0 ? era!.months[i0]![1] : null;
-    const m2 = i0 >= 0 ? era!.months[i0 + 2]?.[1] ?? null : null;
+    // Two calendar months after the base month (exact months can have gaps where estimates were removed).
+    const month2Key = i0 >= 0 ? (() => { const [y, m] = era!.months[i0]![0].split('-').map(Number) as [number, number]; const t = y * 12 + (m - 1) + 2; return `${Math.floor(t / 12)}-${String((t % 12) + 1).padStart(2, '0')}`; })() : null;
+    const m2 = month2Key ? era!.months.find(([mm]) => mm === month2Key)?.[1] ?? null : null;
     const eraGrowth = m0 && m2 !== null ? safeDiv(m2, m0) : null;
     return {
       id: p.id, label: p.label, date: p.date, shown: p.shown, source: p.source, note: p.note,
       nearReturn30: ret(near, 30), nearReturn90, btcReturn90,
       relativeReturn90: nearReturn90 !== null && btcReturn90 !== null ? nearReturn90 - btcReturn90 : null,
       daaBefore: before, daaAfter: after, daaChange,
-      productAccount: era?.account ?? null, productLaunch: p.product?.launch ?? null, productLaunchShown: p.product?.shown ?? null, productLaunchSource: p.product?.source ?? null,
-      productMonth0: i0 >= 0 ? era!.months[i0]![0] : null, productMonth2: i0 >= 0 ? era!.months[i0 + 2]?.[0] ?? null : null,
+      productAccount: era ? (era.source === 'defillama-volume' ? `${era.account} volume` : era.account) : null, productLaunch: p.product?.launch ?? null, productLaunchShown: p.product?.shown ?? null, productLaunchSource: p.product?.source ?? null,
+      productMonth0: i0 >= 0 ? era!.months[i0]![0] : null, productMonth2: m2 !== null ? month2Key : null,
       eraGrowth,
       adoptionFollowed: eraGrowth === null ? null : eraGrowth >= RULES.eraGrowthMultiple,
     };
@@ -328,17 +365,18 @@ export function thesisEvidence(t: Omit<ThesisResult, 'version'>, fetchedAt: (key
   };
   for (const e of t.eras) {
     const code = e.id.toUpperCase();
-    const meta = fetchedAt(`nearblocks.era.${e.id}.${e.latestMonth ?? ''}`);
-    const common = { sourceName: SOURCES.nearblocks.name, sourceUrl: `https://nearblocks.io/address/${e.account}`, periodStart: e.months[0] ? `${e.months[0][0]}-01` : null, periodEnd: e.latestMonth ? `${e.latestMonth}-01` : null, observationType: 'OBSERVED' as const, fetchedAt: meta.at, rawResponseHash: meta.hash };
+    const meta = fetchedAt(e.source === 'nearblocks' ? `nearblocks.era.${e.id}.${e.latestMonth ?? ''}` : 'defillama.intents.volume');
+    const estNote = e.estimatedMonths.length ? ` ${e.estimatedMonths.length} months (${e.estimatedMonths[0]} to ${e.estimatedMonths[e.estimatedMonths.length - 1]}) were NearBlocks estimates, not counts, and are excluded.` : '';
+    const common = { sourceName: e.sourceName, sourceUrl: e.sourceUrl, periodStart: e.months[0] ? `${e.months[0][0]}-01` : null, periodEnd: e.latestMonth ? `${e.latestMonth}-01` : null, observationType: 'OBSERVED' as const, fetchedAt: meta.at, rawResponseHash: meta.hash };
     const why = e.months.length < 3 ? 'Monthly history not collected yet (run the scheduled refresh or npm run research:refresh).' : e.missingMonths.length ? `Missing months: ${e.missingMonths.join(', ')}.` : null;
-    out.push(base({ ...common, evidenceId: `ERA-${code}-PEAK`, metricKey: `era.${e.id}.peak`, label: `${e.account}: peak monthly transactions (${e.peakMonth ?? 'n/a'})`, unit: 'count', value: e.peak,
-      methodology: `NearBlocks transaction count involving ${e.account}, per calendar month. ${e.note}`, transform: 'max over complete months', validationNotes: why }));
-    out.push(base({ ...common, evidenceId: `ERA-${code}-LATEST`, metricKey: `era.${e.id}.latest`, label: `${e.account}: transactions in the latest complete month (${e.latestMonth ?? 'n/a'})`, unit: 'count', value: e.latest,
-      methodology: `Same count for the most recent complete month. ${e.note}`, transform: 'last complete month', validationNotes: why,
-      series: e.months.length >= 3 ? { label: `${e.account} monthly transactions`, unit: 'count', aggregation: 'month', points: e.months.map(([m, v]) => [`${m}-01`, v]) } as unknown as EvidenceDraft['series'] : null }));
+    out.push(base({ ...common, evidenceId: `ERA-${code}-PEAK`, metricKey: `era.${e.id}.peak`, label: `${e.account}: peak ${e.metric} (${e.peakMonth ?? 'n/a'})`, unit: e.unit, value: e.peak,
+      methodology: `${e.sourceName} ${e.metric} for ${e.account}, per calendar month, exact months only. ${e.note}${estNote}`, transform: 'max over complete exact months', validationNotes: why }));
+    out.push(base({ ...common, evidenceId: `ERA-${code}-LATEST`, metricKey: `era.${e.id}.latest`, label: `${e.account}: ${e.metric}, latest complete month (${e.latestMonth ?? 'n/a'})`, unit: e.unit, value: e.latest,
+      methodology: `Same measure for the most recent complete month. ${e.note}${estNote}`, transform: 'last complete month', validationNotes: why,
+      series: e.months.length >= 3 ? { label: `${e.account} ${e.metric}`, unit: e.unit, aggregation: 'month', points: e.months.map(([m, v]) => [`${m}-01`, v]) } as unknown as EvidenceDraft['series'] : null }));
     out.push(base({ evidenceId: `ERA-${code}-RETENTION`, metricKey: `era.${e.id}.retention`, label: `${e.account}: latest month as a share of its peak`, unit: 'fraction', value: e.retention,
       inputs: [`ERA-${code}-LATEST`, `ERA-${code}-PEAK`], transform: `ERA-${code}-LATEST / ERA-${code}-PEAK`,
-      methodology: `Retention against the era's own peak. "Lasted" if at least ${RULES.eraRetentionLasting * 100}% and the peak is ${RULES.eraMinMonthsSincePeak}+ months old. Transactions are not people; relayers and node traffic are included.`, validationNotes: why }));
+      methodology: `Retention against the era's own peak over exact months. "Lasted" if at least ${RULES.eraRetentionLasting * 100}% and the peak is ${RULES.eraMinMonthsSincePeak}+ months old; a more recent peak is not judgeable yet. Transactions are not people; relayers and node traffic are included.${estNote}`, validationNotes: why }));
   }
   for (const v of t.events) {
     const code = v.id.toUpperCase();
@@ -351,10 +389,10 @@ export function thesisEvidence(t: Omit<ThesisResult, 'version'>, fetchedAt: (key
     if (v.productLaunch) {
       const eraCode = (PIVOTS.find((x) => x.id === v.id)?.era ?? '').toUpperCase();
       out.push(base({ evidenceId: `EVT-${code}-PRODUCT-2M`, metricKey: `event.${v.id}.product_growth_2m`, label: `${v.label}: ${v.productAccount ?? 'product'} activity two months after its mainnet launch month vs the launch month`, unit: 'ratio', value: v.eraGrowth,
-        periodStart: v.productMonth0 ? `${v.productMonth0}-01` : null, periodEnd: v.productMonth2 ? `${v.productMonth2}-01` : null, sourceName: SOURCES.nearblocks.name, sourceUrl: v.productLaunchSource ?? v.source,
+        periodStart: v.productMonth0 ? `${v.productMonth0}-01` : null, periodEnd: v.productMonth2 ? `${v.productMonth2}-01` : null, sourceName: v.productAccount?.endsWith(' volume') ? 'DefiLlama' : SOURCES.nearblocks.name, sourceUrl: v.productLaunchSource ?? v.source,
         inputs: eraCode ? [`ERA-${eraCode}-LATEST`] : [],
-        methodology: `Scored. NearBlocks monthly transactions involving ${v.productAccount}: the month two months after the mainnet launch (${v.productLaunchShown}) divided by the launch month. Adoption followed if at least ${RULES.eraGrowthMultiple}x. A launch month that starts mid-month makes the test easier to pass, not harder.`,
-        transform: 'month[launch + 2] / month[launch]', validationNotes: v.eraGrowth === null ? 'The launch month or the month two months later is not in the collected history.' : null }));
+        methodology: `Scored. Monthly ${v.productAccount} from exact data: the month two months after the launch month divided by the launch month (or the first exact month, if exact data starts within one month of launch). Adoption followed if at least ${RULES.eraGrowthMultiple}x. A launch month that starts mid-month makes the test easier to pass, not harder. N/A when the launch months are only available as estimates.`,
+        transform: 'month[launch + 2] / month[launch]', validationNotes: v.eraGrowth === null ? 'Exact data for the launch month or two months later is not available (estimates only).' : null }));
     }
   }
   const s = t.supply;

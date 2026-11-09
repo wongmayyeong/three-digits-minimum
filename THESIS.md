@@ -8,12 +8,12 @@
 
 > Educational research, not financial advice. No price prediction. A "following the hype" verdict is an acceptable outcome.
 
-**Current verdict: Technology is building; the investment case is unproven** (low confidence)
+**Current verdict: Mixed evidence** (low confidence)
 
 | Sub-question | Reading | Why |
 |---|---|---|
-| 1. Did it last? | BUILDING | 2 of 3 era products keep at least 25% of their peak monthly activity. |
-| 2. Did adoption justify the hype? | HYPE | Product adoption followed 0 of 3 measurable pivots within two months of mainnet launch. Not measurable, so not counted: User-Owned AI. |
+| 1. Did it last? | MIXED | 1 of 2 era products keep at least 25% of their peak monthly activity. |
+| 2. Did adoption justify the hype? | BUILDING | Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI. |
 | 3. Does it pay $NEAR? | HYPE | Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising. |
 
 ---
@@ -29,15 +29,13 @@ Why usage and value capture are tested separately: a network can be busy while i
 ## 2. Evidence for (building)
 
 - Chain Abstraction (Chain Signatures): v1.signer still runs at 48.2% of its 2026-05 peak (2026-10). [ERA-SIGNER-RETENTION]
-- Intents: intents.near still runs at 95.6% of its 2024-12 peak (2026-10). [ERA-INTENTS-RETENTION]
+- Product adoption followed NEAR Intents (beta): intents.near volume activity reached 4.44x its launch-month level two months after mainnet launch (10 November 2024, beta on mainnet). [EVT-INTENTS-PRODUCT-2M]
 - NEAR keeps 0.042% of Intents volume, up from 0.026% in the prior 90 days. [INT-TAKE-RATE, INT-TAKE-RATE-PRIOR]
 
 ## 3. Evidence against (building)
 
 - Social / BOS: social.near has fallen to 1.02% of its 2023-08 peak (2026-10). [ERA-SOCIAL-RETENTION]
 - Product adoption did not follow Blockchain Operating System (BOS): social.near activity was 0.66x its launch-month level two months after mainnet launch (February 2023 (BOS live; SocialDB already on mainnet)); the rule needs 2x. [EVT-BOS-PRODUCT-2M]
-- Product adoption did not follow Chain Signatures: v1.signer activity was 1.08x its launch-month level two months after mainnet launch (8 August 2024, mainnet); the rule needs 2x. [EVT-CHAIN-SIGNATURES-PRODUCT-2M]
-- Product adoption did not follow NEAR Intents (beta): intents.near activity was 1.03x its launch-month level two months after mainnet launch (10 November 2024, beta on mainnet); the rule needs 2x. [EVT-INTENTS-PRODUCT-2M]
 - Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; parity would need 5.96x today's Intents volume. [COV-BUYBACK-REALIZED, SUP-PARITY-MULTIPLE]
 - F4 triggered: Base-layer user activity contracts sharply year over year. (-78.7% vs a year earlier).
 - F6 triggered: Token-level value capture is under 1% of market cap per year. (0.434% of market cap).
@@ -61,13 +59,13 @@ The verdict would move toward **building** if: an era contract that lost most of
 
 ## Sub-question 1: Did it last?
 
-Monthly transactions involving each era's representative contract (NearBlocks), compared with that contract's own peak. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old.
+Each era's representative product, compared with its own peak: monthly transactions for social.near and v1.signer (NearBlocks), and monthly swap volume for Intents (DefiLlama). Only exact data is used. For busy contracts, NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are flagged and excluded, which is why v1.signer starts in April 2026, and why Intents is measured by volume. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old; a more recent peak is not judgeable yet.
 
-| Era | Contract | Peak month | Latest month | Kept of peak | Lasted? |
-|---|---|---|---|---|---|
-| Social / BOS | `social.near` | 35,764 (2023-08) | 364 (2026-10) | 1.02% | no |
-| Chain Abstraction (Chain Signatures) | `v1.signer` | 970,819 (2026-05) | 467,548 (2026-10) | 48.2% | yes |
-| Intents | `intents.near` | 2.05M (2024-12) | 1.96M (2026-10) | 95.6% | yes |
+| Era | Product and measure | Exact data | Peak month | Latest month | Kept of peak | Lasted? |
+|---|---|---|---|---|---|---|
+| Social / BOS | `social.near`, transactions per month (NearBlocks) | 2021-02 (31 months were estimates, excluded) | 35,764 (2023-08) | 364 (2026-10) | 1.02% | no |
+| Chain Abstraction (Chain Signatures) | `v1.signer`, transactions per month (NearBlocks) | 2026-04 (21 months were estimates, excluded) | 970,819 (2026-05) | 467,548 (2026-10) | 48.2% | yes |
+| Intents | `intents.near`, swap volume per month (USD) (DefiLlama) | 2024-12 | $4.80B (2026-09) | $3.99B (2026-10) | 83.0% | not judgeable yet |
 
 Limitations: transactions are not people. Relayers, solvers and Chain Signatures MPC node responses are included. A decline can mean migration to a newer product rather than abandonment, so this measures whether usage stayed, not why it left. The AI era has no single contract to measure and is reported as such.
 
@@ -78,9 +76,9 @@ Adoption is scored on the product, from the date it went live on mainnet, not fr
 | Pivot | Announced | Product and mainnet launch | Product activity, launch +2 months (scored) | Adoption followed? | Chain active accounts, +90d (context) | NEAR minus BTC, +90d (context) |
 |---|---|---|---|---|---|---|
 | [Blockchain Operating System (BOS)](https://near.org/blog/2023-near-in-review) | February 2023 | `social.near` from February 2023 (BOS live; SocialDB already on mainnet) | 0.66x | no | -20.9% | -47.9% |
-| [Chain Signatures](https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account) | 27 March 2024 (announced; mainnet 8 August 2024) | `v1.signer` from 8 August 2024, mainnet | 1.08x | no | +52.4% | -12.8% |
+| [Chain Signatures](https://near.org/blog/chain-signatures-launch-to-enable-transactions-on-any-blockchain-from-a-near-account) | 27 March 2024 (announced; mainnet 8 August 2024) | `v1.signer` from 8 August 2024, mainnet | n/a | N/A, not counted | +52.4% | -12.8% |
 | [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | no single product contract | n/a | N/A, not counted | -23.4% | -33.6% |
-| [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near` from 10 November 2024, beta on mainnet | 1.03x | no | -11.3% | -49.0% |
+| [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near volume` from 10 November 2024, beta on mainnet | 4.44x | yes | -11.3% | -49.0% |
 
 Pivot dates come from NEAR's own announcements (links in the table). BOS is dated to the month (February 2023); its window starts 2023-03-01.
 
@@ -240,26 +238,26 @@ Methodology versions: evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, the
 | MODEL-VOL-MULTIPLE-2PCT | Volume multiple needed for 2% of market cap | 4.84x | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
 | MODEL-REQ-TAKE-RATE-2PCT | Required f x c x b at today's volume for 2% of market cap | 0.202% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
 | MODEL-CURRENT-TAKE-RATE | Current f x c x b (volume converted to buyback demand) | 0.042% | DERIVED | Aug 9, 2026 to Nov 6, 2026 | Buyback target model nvabe-1.0.0 |
-| ERA-SOCIAL-PEAK | social.near: peak monthly transactions (2023-08) | 35,764 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
-| ERA-SOCIAL-LATEST | social.near: transactions in the latest complete month (2026-10) | 364 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
+| ERA-SOCIAL-PEAK | social.near: peak transactions per month (2023-08) | 35,764 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
+| ERA-SOCIAL-LATEST | social.near: transactions per month, latest complete month (2026-10) | 364 | OBSERVED | Feb 1, 2021 to Oct 1, 2026 | NearBlocks |
 | ERA-SOCIAL-RETENTION | social.near: latest month as a share of its peak | 1.02% | DERIVED | point in time | Computed here |
-| ERA-SIGNER-PEAK | v1.signer: peak monthly transactions (2026-05) | 970,819 | OBSERVED | Jul 1, 2024 to Oct 1, 2026 | NearBlocks |
-| ERA-SIGNER-LATEST | v1.signer: transactions in the latest complete month (2026-10) | 467,548 | OBSERVED | Jul 1, 2024 to Oct 1, 2026 | NearBlocks |
+| ERA-SIGNER-PEAK | v1.signer: peak transactions per month (2026-05) | 970,819 | OBSERVED | Apr 1, 2026 to Oct 1, 2026 | NearBlocks |
+| ERA-SIGNER-LATEST | v1.signer: transactions per month, latest complete month (2026-10) | 467,548 | OBSERVED | Apr 1, 2026 to Oct 1, 2026 | NearBlocks |
 | ERA-SIGNER-RETENTION | v1.signer: latest month as a share of its peak | 48.2% | DERIVED | point in time | Computed here |
-| ERA-INTENTS-PEAK | intents.near: peak monthly transactions (2024-12) | 2.05M | OBSERVED | Nov 1, 2024 to Oct 1, 2026 | NearBlocks |
-| ERA-INTENTS-LATEST | intents.near: transactions in the latest complete month (2026-10) | 1.96M | OBSERVED | Nov 1, 2024 to Oct 1, 2026 | NearBlocks |
-| ERA-INTENTS-RETENTION | intents.near: latest month as a share of its peak | 95.6% | DERIVED | point in time | Computed here |
+| ERA-INTENTS-PEAK | intents.near: peak swap volume per month (USD) (2026-09) | $4.80B | OBSERVED | Dec 1, 2024 to Oct 1, 2026 | DefiLlama |
+| ERA-INTENTS-LATEST | intents.near: swap volume per month (USD), latest complete month (2026-10) | $3.99B | OBSERVED | Dec 1, 2024 to Oct 1, 2026 | DefiLlama |
+| ERA-INTENTS-RETENTION | intents.near: latest month as a share of its peak | 83.0% | DERIVED | point in time | Computed here |
 | EVT-BOS-REL-90D | Blockchain Operating System (BOS): NEAR minus BTC return, 90 days after February 2023 | -47.9% | DERIVED | Mar 1, 2023 to May 30, 2023 | DefiLlama coins (CoinGecko prices) |
 | EVT-BOS-DAA-90D | Blockchain Operating System (BOS): change in daily active accounts, days 60-90 after vs 30 days before | -20.9% | DERIVED | Jan 30, 2023 to May 30, 2023 | NearBlocks |
 | EVT-BOS-PRODUCT-2M | Blockchain Operating System (BOS): social.near activity two months after its mainnet launch month vs the launch month | 0.66x | DERIVED | Mar 1, 2023 to May 1, 2023 | NearBlocks |
 | EVT-CHAIN-SIGNATURES-REL-90D | Chain Signatures: NEAR minus BTC return, 90 days after 27 March 2024 (announced; mainnet 8 August 2024) | -12.8% | DERIVED | Mar 27, 2024 to Jun 25, 2024 | DefiLlama coins (CoinGecko prices) |
 | EVT-CHAIN-SIGNATURES-DAA-90D | Chain Signatures: change in daily active accounts, days 60-90 after vs 30 days before | 52.4% | DERIVED | Feb 26, 2024 to Jun 25, 2024 | NearBlocks |
-| EVT-CHAIN-SIGNATURES-PRODUCT-2M | Chain Signatures: v1.signer activity two months after its mainnet launch month vs the launch month | 1.08x | DERIVED | Aug 1, 2024 to Oct 1, 2024 | NearBlocks |
+| EVT-CHAIN-SIGNATURES-PRODUCT-2M | Chain Signatures: v1.signer activity two months after its mainnet launch month vs the launch month | unavailable | DERIVED | point in time | NearBlocks |
 | EVT-USER-OWNED-AI-REL-90D | User-Owned AI: NEAR minus BTC return, 90 days after 22 May 2024 | -33.6% | DERIVED | May 22, 2024 to Aug 20, 2024 | DefiLlama coins (CoinGecko prices) |
 | EVT-USER-OWNED-AI-DAA-90D | User-Owned AI: change in daily active accounts, days 60-90 after vs 30 days before | -23.4% | DERIVED | Apr 22, 2024 to Aug 20, 2024 | NearBlocks |
 | EVT-INTENTS-REL-90D | NEAR Intents (beta): NEAR minus BTC return, 90 days after 10 November 2024 | -49.0% | DERIVED | Nov 10, 2024 to Feb 8, 2025 | DefiLlama coins (CoinGecko prices) |
 | EVT-INTENTS-DAA-90D | NEAR Intents (beta): change in daily active accounts, days 60-90 after vs 30 days before | -11.3% | DERIVED | Oct 11, 2024 to Feb 8, 2025 | NearBlocks |
-| EVT-INTENTS-PRODUCT-2M | NEAR Intents (beta): intents.near activity two months after its mainnet launch month vs the launch month | 1.03x | DERIVED | Nov 1, 2024 to Jan 1, 2025 | NearBlocks |
+| EVT-INTENTS-PRODUCT-2M | NEAR Intents (beta): intents.near volume activity two months after its mainnet launch month vs the launch month | 4.44x | DERIVED | Dec 1, 2024 to Feb 1, 2025 | DefiLlama |
 | SUP-NET-NEW-ANN-PCT | Realized net new NEAR supply, annualized | 2.47% | DERIVED | Aug 8, 2026 to Nov 6, 2026 | NearBlocks |
 | SUP-NET-NEW-ANN-USD | Realized net new supply per year at today's price | $119.62M | DERIVED | Aug 8, 2026 to Nov 6, 2026 | Computed here |
 | SUP-PARITY-VOL | Annual Intents volume at which buyback-designated revenue equals the value of realized net new supply | $286.32B | DERIVED | point in time | Computed here |

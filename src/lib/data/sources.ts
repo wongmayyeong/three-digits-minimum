@@ -228,10 +228,22 @@ export const PRICE_HISTORY_START_UNIX = Date.UTC(2022, 8, 1) / 1000;
  * Representative contract per strategic era. First-activity months were read from NearBlocks
  * (oldest transaction for each account) and are fixed here so request keys stay stable.
  */
+/**
+ * One representative product per era. NearBlocks eras count monthly transactions involving the contract;
+ * NearBlocks returns a query-planner estimate (marked by a `cost` field) instead of a count for busy
+ * contracts in older months, so those months are flagged and never scored. Intents is measured by
+ * DefiLlama swap volume, which is exact daily data from its first day of coverage and a better measure of use.
+ */
 export const ERA_CONTRACTS = [
-  { id: 'social', account: 'social.near', era: 'Social / BOS', firstMonth: '2021-02', note: 'SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.' },
-  { id: 'signer', account: 'v1.signer', era: 'Chain Abstraction (Chain Signatures)', firstMonth: '2024-07', note: 'Chain Signatures MPC contract. Counts include MPC node response transactions, not only user sign requests. Chain Signatures was announced on 2024-03-27; this contract\'s first transaction is 2024-07-31.' },
-  { id: 'intents', account: 'intents.near', era: 'Intents', firstMonth: '2024-11', note: 'NEAR Intents verifier contract. Transactions are often submitted by relayers or solvers on behalf of users, so counts reflect settlement batching as well as usage: they fell about 75% from March to April 2026 while v1.signer rose about 6x, then returned to about 1M per half-month in October 2026. Intents dollar volume (Section 3) is the better measure of economic use.' },
+  { id: 'social', account: 'social.near', era: 'Social / BOS', firstMonth: '2021-02', source: 'nearblocks', metric: 'transactions per month', unit: 'count',
+    sourceName: 'NearBlocks', sourceUrl: 'https://nearblocks.io/address/social.near',
+    note: 'SocialDB contract behind NEAR Social and BOS components. Newer near.social storage paths are not included.' },
+  { id: 'signer', account: 'v1.signer', era: 'Chain Abstraction (Chain Signatures)', firstMonth: '2024-07', source: 'nearblocks', metric: 'transactions per month', unit: 'count',
+    sourceName: 'NearBlocks', sourceUrl: 'https://nearblocks.io/address/v1.signer',
+    note: 'Chain Signatures MPC contract (created 2024-07-31, mainnet 2024-08-08). Counts include MPC node response transactions, not only user sign requests.' },
+  { id: 'intents', account: 'intents.near', era: 'Intents', firstMonth: '2024-12', source: 'defillama-volume', metric: 'swap volume per month (USD)', unit: 'USD',
+    sourceName: 'DefiLlama', sourceUrl: 'https://defillama.com/protocol/near-intents',
+    note: 'NEAR Intents swap volume from DefiLlama, whose coverage starts on 2024-12-10, a month after the beta launch. Volume is used instead of intents.near transaction counts, which mix relayer and solver batching with use and are NearBlocks estimates before April 2026.' },
 ] as const;
 
 export type EraId = (typeof ERA_CONTRACTS)[number]['id'];
@@ -263,15 +275,18 @@ function nextMonth(ym: string): string {
 export function buildEraRequests(now = new Date()): HttpRequestDef[] {
   const reqs: HttpRequestDef[] = [];
   for (const c of ERA_CONTRACTS) {
+    if (c.source !== 'nearblocks') continue;
     for (const ym of completeMonths(c.firstMonth, now)) {
       reqs.push({
         key: `nearblocks.era.${c.id}.${ym}`, source: 'nearblocks', ttlMs: 180 * 24 * HOUR,
         url: `${SOURCES.nearblocks.baseUrl}/account/${c.account}/txns-only/count?after_date=${ym}-01&before_date=${nextMonth(ym)}-01`,
         headers: (): Record<string, string> => (process.env.NEARBLOCKS_API_KEY ? { authorization: `Bearer ${process.env.NEARBLOCKS_API_KEY}` } : {}),
         project: (j: any) => {
-          const n = Number(asArr(j?.txns)[0]?.count);
+          const row = asArr(j?.txns)[0];
+          const n = Number(row?.count);
           if (!Number.isFinite(n)) throw new Error('NearBlocks count missing');
-          return { account: c.account, month: ym, txns: n };
+          // NearBlocks adds a `cost` field when it returns a query-planner estimate instead of an exact count.
+          return { account: c.account, month: ym, txns: n, estimated: row != null && typeof row === 'object' && 'cost' in row };
         },
       });
     }

@@ -65,10 +65,11 @@ export function EraTable({ eras }: { eras: EraResult[] }) {
             <tr key={e.id} className="border-t hairline align-top">
               <th scope="row" className="px-4 py-3 font-normal">
                 <p className="font-[560] text-fg">{e.era}</p>
-                <p className="num text-xs text-faint">{e.account} · since {e.firstMonth}</p>
+                <p className="num text-xs text-faint">{e.account} · {e.metric} · {e.sourceName}</p>
+                <p className="num text-xs text-faint">exact data from {e.exactFrom ?? 'n/a'}{e.estimatedMonths.length ? ` (${e.estimatedMonths.length} months were estimates, excluded)` : ''}</p>
               </th>
-              <td className="num px-4 py-3 text-right">{formatValue(e.peak, 'count')}<p className="text-xs text-muted">{e.peakMonth ?? 'n/a'}</p></td>
-              <td className="num px-4 py-3 text-right">{formatValue(e.latest, 'count')}<p className="text-xs text-muted">{e.latestMonth ?? 'n/a'}</p></td>
+              <td className="num px-4 py-3 text-right">{formatValue(e.peak, e.unit)}<p className="text-xs text-muted">{e.peakMonth ?? 'n/a'}</p></td>
+              <td className="num px-4 py-3 text-right">{formatValue(e.latest, e.unit)}<p className="text-xs text-muted">{e.latestMonth ?? 'n/a'}</p></td>
               <td className="num px-4 py-3 text-right">{formatValue(e.retention, 'fraction')}</td>
               <td className="px-4 py-3">{e.lasted === null ? <span className="text-muted">Not yet judgeable</span> : e.lasted ? <span className="text-mint">Yes</span> : <span className="text-coral">No</span>}</td>
             </tr>
@@ -85,13 +86,13 @@ export function EraCharts({ eras }: { eras: EraResult[] }) {
       {eras.map((e) => (
         <figure key={e.id} className="panel p-5">
           <p className="text-sm font-[600]">{e.era}</p>
-          <p className="num mb-3 text-[0.6875rem] text-faint">{e.account} · transactions per month</p>
+          <p className="num mb-3 text-[0.6875rem] text-faint">{e.account} · {e.metric}</p>
           {e.months.length >= 3 ? (
-            <EvidenceChart series={{ label: `${e.account} monthly transactions`, unit: 'count', aggregation: 'month', points: e.months.map(([m, v]) => [`${m}-01`, v]) }} source="NearBlocks" method={e.note} tone={e.lasted === false ? 'coral' : 'mint'} height={150} compact />
+            <EvidenceChart series={{ label: `${e.account} ${e.metric}`, unit: e.unit, aggregation: 'month', points: e.months.map(([m, v]) => [`${m}-01`, v]) }} source={e.sourceName} method={e.note} tone={e.lasted === false ? 'coral' : 'mint'} height={150} compact />
           ) : (
-            <p className="py-10 text-center text-sm text-muted">Monthly history is still being collected.</p>
+            <p className="py-10 text-center text-sm text-muted">Fewer than three months of exact data.</p>
           )}
-          <figcaption className="mt-3 text-xs leading-relaxed text-muted">{e.note}</figcaption>
+          <figcaption className="mt-3 text-xs leading-relaxed text-muted">{e.note}{e.estimatedMonths.length ? ` ${e.estimatedMonths.length} months (${e.estimatedMonths[0]} to ${e.estimatedMonths[e.estimatedMonths.length - 1]}) came back from NearBlocks as estimates rather than counts, so they are not shown or scored.` : ''}</figcaption>
         </figure>
       ))}
     </div>

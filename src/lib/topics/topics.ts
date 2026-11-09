@@ -37,7 +37,7 @@ export const THESIS_TOPIC: TopicDef = {
   bullHypothesis: 'NEAR is building: each era left products and capabilities that still carry real activity, adoption followed the pivots, and Intents revenue is now flowing back to the token at a rising rate.',
   bearHypothesis: 'NEAR is following the hype: era products fade once the narrative moves on, adoption did not follow the announcements, and value returned to the token is small next to new supply.',
   evidenceRequirements: [
-    { label: 'Monthly activity of each era\'s contract (social.near, v1.signer, intents.near)', evidenceIds: ['ERA-SOCIAL-LATEST', 'ERA-SIGNER-LATEST', 'ERA-INTENTS-LATEST'] },
+    { label: 'Monthly activity of each era\'s product (social.near and v1.signer transactions, Intents swap volume; exact data only)', evidenceIds: ['ERA-SOCIAL-LATEST', 'ERA-SIGNER-LATEST', 'ERA-INTENTS-LATEST'] },
     { label: 'Product adoption after each mainnet launch', evidenceIds: EVENTS.filter((e) => e.endsWith('PRODUCT-2M')) },
     { label: 'Buybacks versus realized net new supply', evidenceIds: ['COV-BUYBACK-REALIZED', 'SUP-NET-NEW-ANN-PCT'] },
     { label: 'Intents volume, fees and take rate', evidenceIds: ['INT-VOL-90D', 'INT-TAKE-RATE'] },

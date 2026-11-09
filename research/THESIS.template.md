@@ -42,7 +42,7 @@ The verdict would move toward **building** if: an era contract that lost most of
 
 ## Sub-question 1: Did it last?
 
-Monthly transactions involving each era's representative contract (NearBlocks), compared with that contract's own peak. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old.
+Each era's representative product, compared with its own peak: monthly transactions for social.near and v1.signer (NearBlocks), and monthly swap volume for Intents (DefiLlama). Only exact data is used. For busy contracts, NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are flagged and excluded, which is why v1.signer starts in April 2026, and why Intents is measured by volume. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old; a more recent peak is not judgeable yet.
 
 {{ERA_TABLE}}
 

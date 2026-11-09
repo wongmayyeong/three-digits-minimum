@@ -4,7 +4,7 @@ import type { RawRecord } from '@/lib/data/fetcher';
 import { decide, eraResults, evidenceForAgainst, RULES, type EraResult, type EventResult, type SupplyResult } from '@/lib/research/thesis';
 
 const era = (id: 'social' | 'signer' | 'intents', retention: number | null, lasted: boolean | null): EraResult => ({
-  id, account: id, era: id, note: '', months: [], missingMonths: [], firstMonth: '2024-01', peakMonth: '2024-06', peak: 100, latestMonth: '2026-10', latest: retention === null ? null : retention * 100,
+  id, account: id, era: id, note: '', source: 'nearblocks', metric: 'transactions per month', unit: 'count', sourceName: 'NearBlocks', sourceUrl: 'https://nearblocks.io', months: [], estimatedMonths: [], exactFrom: null, missingMonths: [], firstMonth: '2024-01', peakMonth: '2024-06', peak: 100, latestMonth: '2026-10', latest: retention === null ? null : retention * 100,
   retention, monthsSincePeak: 28, month1: 10, month3: 30, month6: 60, lasted,
 });
 const event = (followed: boolean | null): EventResult => ({ id: 'x', label: 'x', date: '2024-01-01', shown: 'x', source: 'https://near.org', note: '', nearReturn30: null, nearReturn90: null, btcReturn90: null, relativeReturn90: null, daaBefore: null, daaAfter: null, daaChange: null, productAccount: 'x.near', productLaunch: '2024-01-01', productLaunchShown: 'x', productLaunchSource: null, productMonth0: '2024-01', productMonth2: '2024-03', eraGrowth: followed === null ? null : followed ? 2.5 : 0.8, adoptionFollowed: followed });
@@ -45,7 +45,20 @@ describe('verdict rules', () => {
 });
 
 describe('era history', () => {
-  const rec = (key: string, txns: number | null): RawRecord => ({ key, source: 'nearblocks', url: 'u', sha256: key, fetchedAt: '2026-11-01T00:00:00Z', body: txns === null ? {} : { txns } });
+  const rec = (key: string, txns: number | null, estimated = false): RawRecord => ({ key, source: 'nearblocks', url: 'u', sha256: key, fetchedAt: '2026-11-01T00:00:00Z', body: txns === null ? {} : { txns, estimated } });
+
+  it('excludes NearBlocks estimates from scoring, and treats unflagged records as estimates', () => {
+    const raws: Record<string, RawRecord> = {};
+    // An estimated month with a huge value must not become the peak.
+    const series: [number, boolean][] = [[10, false], [999, true], [200, false], [120, false], [80, false], [40, false]];
+    series.forEach(([v, est], i) => { const k = `nearblocks.era.social.2025-0${i + 1}`; raws[k] = rec(k, v, est); });
+    const r = eraResults(raws).find((e) => e.id === 'social')!;
+    expect(r.estimatedMonths).toEqual(['2025-02']);
+    expect(r.peak).toBe(200);
+    expect(r.months.map(([m]) => m)).not.toContain('2025-02');
+    const legacy: Record<string, RawRecord> = { 'nearblocks.era.social.2025-01': { ...rec('nearblocks.era.social.2025-01', 5), body: { txns: 5 } } };
+    expect(eraResults(legacy).find((e) => e.id === 'social')!.estimatedMonths).toEqual(['2025-01']);
+  });
 
   it('measures retention against the era\'s own peak and judges only after the peak ages', () => {
     const raws: Record<string, RawRecord> = {};

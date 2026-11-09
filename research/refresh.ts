@@ -75,7 +75,7 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const VERDICT_TEXT: Record<string, string> = { BUILDING: 'Building the future', 'FOLLOWING THE HYPE': 'Following the hype', 'BUILDING, NOT YET PAYING': 'Technology is building; the investment case is unproven', 'PAYING, NOT LASTING': 'The token is paid, but products are not lasting', MIXED: 'Mixed evidence', 'INSUFFICIENT EVIDENCE': 'Insufficient evidence' };
   const fmtPct = (v: number | null, signed = false) => formatValue(v, 'fraction', { signed });
   const sectionRows = t.sections.map((x) => `| ${x.id}. ${x.title} | ${x.verdict} | ${x.reason} |`);
-  const eraRows = t.eras.map((e) => `| ${e.era} | \`${e.account}\` | ${formatValue(e.peak, 'count')} (${e.peakMonth ?? 'n/a'}) | ${formatValue(e.latest, 'count')} (${e.latestMonth ?? 'n/a'}) | ${fmtPct(e.retention)} | ${e.lasted === null ? 'not judgeable yet' : e.lasted ? 'yes' : 'no'} |`);
+  const eraRows = t.eras.map((e) => `| ${e.era} | \`${e.account}\`, ${e.metric} (${e.sourceName}) | ${e.exactFrom ?? 'n/a'}${e.estimatedMonths.length ? ` (${e.estimatedMonths.length} months were estimates, excluded)` : ''} | ${formatValue(e.peak, e.unit)} (${e.peakMonth ?? 'n/a'}) | ${formatValue(e.latest, e.unit)} (${e.latestMonth ?? 'n/a'}) | ${fmtPct(e.retention)} | ${e.lasted === null ? 'not judgeable yet' : e.lasted ? 'yes' : 'no'} |`);
   const eventRows = t.events.map((v) => `| [${v.label}](${v.source}) | ${v.shown} | ${v.productAccount ? '`' + v.productAccount + '` from ' + v.productLaunchShown : 'no single product contract'} | ${v.eraGrowth === null ? 'n/a' : formatValue(v.eraGrowth, 'ratio')} | ${v.adoptionFollowed === null ? 'N/A, not counted' : v.adoptionFollowed ? 'yes' : 'no'} | ${fmtPct(v.daaChange, true)} | ${fmtPct(v.relativeReturn90, true)} |`);
   template = template
     .replace('{{THESIS_VERDICT}}', VERDICT_TEXT[t.verdict] ?? t.verdict)
@@ -83,7 +83,7 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
     .replace('{{SECTION_TABLE}}', ['| Sub-question | Reading | Why |', '|---|---|---|', ...sectionRows].join(NL))
     .replace('{{EVIDENCE_FOR}}', bullets(fa.forBuilding))
     .replace('{{EVIDENCE_AGAINST}}', bullets(fa.againstBuilding))
-    .replace('{{ERA_TABLE}}', ['| Era | Contract | Peak month | Latest month | Kept of peak | Lasted? |', '|---|---|---|---|---|---|', ...eraRows].join(NL))
+    .replace('{{ERA_TABLE}}', ['| Era | Product and measure | Exact data | Peak month | Latest month | Kept of peak | Lasted? |', '|---|---|---|---|---|---|---|', ...eraRows].join(NL))
     .replace('{{EVENT_TABLE}}', ['| Pivot | Announced | Product and mainnet launch | Product activity, launch +2 months (scored) | Adoption followed? | Chain active accounts, +90d (context) | NEAR minus BTC, +90d (context) |', '|---|---|---|---|---|---|---|', ...eventRows].join(NL))
     .replace('{{SUP-BUYBACK-ANN}}', formatValue(t.supply.buybackAnnualUsd, 'USD'));
   let out = template.replace(/\{\{([A-Z0-9-]+)(?:\.(period|source|type))?\}\}/g, (_, id: string, field?: string) => {
