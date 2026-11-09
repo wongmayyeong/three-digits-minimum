@@ -4,13 +4,14 @@ import { Container, ExternalLink } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { ERA_CONTRACTS, SOURCES } from '@/lib/data/sources';
 import { RULES, THESIS_VERSION } from '@/lib/research/thesis';
+import { DEX_GROWTH, GROWTH_SCENARIOS, HORIZON_YEARS, LADDER_VERSION, RUNGS, SHARE_BANDS, SUPPLY_RULES } from '@/lib/research/ladder';
 import { formatDate, formatValue } from '@/lib/format';
 import { allocationSensitivity, FORMULA_VERSION, SCENARIOS, sensitivity, type SensitivityMatrix } from '@/lib/research/model';
 import { METHODOLOGY_VERSION } from '@/lib/research/evidence';
 import { PROMPT_VERSION } from '@/lib/ai/prompts';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Methodology and model', description: 'How this thesis builds evidence snapshots, computes the buyback demand target model, audits AI arguments and scores debates.' };
+export const metadata: Metadata = { title: 'Methodology and model', description: 'How the price ladder is built, how evidence snapshots are frozen, how the buyback model works, and how AI arguments are audited and scored.' };
 
 function Matrix({ m, title }: { m: SensitivityMatrix; title: string }) {
   return (
@@ -38,15 +39,16 @@ export default async function MethodologyPage() {
   const base = preview?.modelBase ?? null;
   const fee = base ? sensitivity(base) : null;
   const alloc = base ? allocationSensitivity(base) : null;
+  const l = preview?.ladder ?? null;
 
   return (
     <Container className="max-w-[1100px] py-12 md:py-16">
       <p className="eyebrow mb-3">Methodology</p>
       <h1 className="display-l text-balance">How the thesis is tested.</h1>
-      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. It tests whether NEAR is building the future or following the hype against measured, reproducible data, and shows how a bull and a bear case hold up against the same evidence. It does not forecast prices, rate NEAR as an investment, or give financial advice.</p>
+      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. &quot;Three digits, minimum&quot; is used as a hook: instead of forecasting a price, the price ladder computes what NEAR would have to achieve for $10, $25, $50 and $100 in ten years and labels every condition as observed, assumed or unproven. Bull and Bear argue over the same frozen evidence. Nothing here forecasts prices, rates NEAR as an investment, or gives financial advice.</p>
 
       <nav aria-label="On this page" className="mt-8 flex flex-wrap gap-2 text-sm">
-        {[['#principles', 'Principles'], ['#thesis', 'The verdict rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
+        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
       </nav>
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
@@ -63,9 +65,50 @@ export default async function MethodologyPage() {
         </ol>
       </section>
 
+      <section id="ladder" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">The price ladder</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Rungs: {RUNGS.map((r) => "$" + r).join(', ')}, {HORIZON_YEARS} years from the data date. Every number is computed by deterministic code from stored responses; no AI writes any number, status or verdict. Ladder version <span className="num">{LADDER_VERSION}</span>.</p>
+
+        <h3 className="mt-8 text-lg font-[600]">Layer A: what each rung takes</h3>
+        <pre className="num mt-3 overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-5 text-[0.8125rem] leading-7 text-fg-2">{`supply_2036          = circulating supply grown at the issuance rule, monthly, for ${HORIZON_YEARS} years
+market_cap           = rung price × supply_2036
+revenue_needed       = market_cap ÷ valuation multiple          (revenue reaching holders per year)
+intents_volume       = revenue_needed ÷ (take rate × buyback share)
+growth_needed        = (intents_volume ÷ today's run rate)^(1/${HORIZON_YEARS}) − 1
+dex_share_2036       = intents_volume ÷ (DEX volume last 365 days × (1 + ${DEX_GROWTH.base * 100}%)^${HORIZON_YEARS})
+share_multiple       = dex_share_2036 ÷ Intents' share of DEX volume today`}</pre>
+        <dl className="mt-6 grid gap-3 text-sm md:grid-cols-2">
+          {[
+            ['Valuation multiples', `Market cap divided by revenue reaching holders over the last 365 days (DefiLlama holders revenue), read live for each peer: ${l ? l.multiples.map((m) => `${m.label} ${formatValue(m.value, 'ratio')}`).join('; ') : 'unavailable'}. NEAR's own multiple uses annualized burns plus Intents buybacks (90-day run rate). Applied to NEAR in ten years as assumptions, never forecasts.`],
+            ['Supply', `${SUPPLY_RULES.cap25.label} is the base case. ${SUPPLY_RULES.hsp029.label} is shown alongside: ${SUPPLY_RULES.hsp029.note}`],
+            ['Take rate and buyback share', 'NEAR-captured revenue per dollar of Intents volume (INT-TAKE-RATE) and the share DefiLlama classifies as buybacks (INT-BUYBACK-SHARE), both over the same 90 days. Held constant: fee competition is the largest single risk, since halving the take rate doubles every volume requirement.'],
+            ['DEX market', `All DEX volume over the last 365 days (DefiLlama, includes some prediction-market venues it lists as DEXs), grown ${DEX_GROWTH.base * 100}% a year in the base case (${DEX_GROWTH.low * 100}% shown as a low case). For reference it grew ${l ? formatValue(l.inputs.dexCagr2021to2025, 'fraction') : 'n/a'} a year from 2021 to 2025.`],
+            ['Rank', 'The rung market cap against today\'s largest 40 crypto assets (CoinGecko), excluding stablecoins and wrapped or tokenized assets. It compares a future value with today\'s market, so it is a sense of scale, not a forecast rank.'],
+            ['Platform premium', 'Large platforms are valued relative to the economy on the chain. For the Solana-style column, the page also shows the stablecoins and DeFi TVL NEAR would need at Ethereum, BNB Chain, Solana and Tron ratios of market cap to stablecoins and to TVL (DefiLlama).'],
+          ].map(([k, d]) => <div key={k} className="panel p-4"><dt className="font-[600]">{k}</dt><dd className="mt-1 leading-relaxed text-fg-2">{d}</dd></div>)}
+        </dl>
+
+        <h3 className="mt-8 text-lg font-[600]">Bands: how hard each rung is</h3>
+        <p className="mt-1 text-sm text-muted">Each rung and valuation is placed in a band by how many times today&apos;s share of DEX volume Intents would need in ten years.</p>
+        <ul className="mt-3 grid gap-2 text-sm md:grid-cols-4">
+          {SHARE_BANDS.map((b) => <li key={b.key} className="panel p-3"><span className="num text-xs text-faint">{Number.isFinite(b.max) ? `≤ ${b.max}x` : '> 10x'}</span><p className="mt-1 text-fg-2">{b.label}</p></li>)}
+        </ul>
+
+        <h3 className="mt-8 text-lg font-[600]">Layer B: what we can prove</h3>
+        <div className="mt-3 grid gap-3 text-sm md:grid-cols-3">
+          <div className="panel border-mint/40 p-4"><p className="font-[600] text-mint">Observed</p><p className="mt-1 leading-relaxed text-fg-2">In today&apos;s data, with a source and a response hash: for example, the revenue Intents already returns to $NEAR and its year-over-year growth.</p></div>
+          <div className="panel border-amber/40 p-4"><p className="font-[600] text-amber">Assumed</p><p className="mt-1 leading-relaxed text-fg-2">A modelling choice we make and publish: the valuation multiple in ten years, the DEX market&apos;s growth, the take rate and the supply rule.</p></div>
+          <div className="panel border-coral/40 p-4"><p className="font-[600] text-coral">Unproven</p><p className="mt-1 leading-relaxed text-fg-2">Would have to happen and has no evidence yet: the revenue, volume, growth and market share each rung requires, and a platform-sized economy on NEAR.</p></div>
+        </div>
+
+        <h3 className="mt-8 text-lg font-[600]">Reverse view and checkpoints</h3>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-fg-2">Implied price in ten years = today&apos;s Intents run rate × (1 + growth)^{HORIZON_YEARS} × take rate × buyback share × valuation multiple ÷ supply in ten years, for {GROWTH_SCENARIOS.map((g) => `${g.label.toLowerCase()} growth (${g.cagr * 100}% a year)`).join(', ')}. These are scenarios, so results can fall below today&apos;s price. Checkpoints are the yearly volumes on each rung&apos;s required growth path at today&apos;s valuation premium, so the thesis can be checked every year. The swing factor compares the spread of implied prices across growth scenarios with the spread across cash-flow and today&apos;s multiples.</p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">The headline sentence on the home page is generated from these numbers by code. The bands and growth scenarios are our judgment, set while building the pipeline and published so anyone can change them in <span className="num">src/lib/research/ladder.ts</span> and rebuild.</p>
+      </section>
+
       <section id="thesis" className="scroll-mt-20 mt-16 border-t hairline pt-10">
-        <h2 className="display-m">How the verdict is decided</h2>
-        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">The thesis asks three sub-questions. Each is answered by a fixed rule applied to stored data, and the verdict combines them by a rule published here. No AI is involved in any of these steps. Thesis rules version <span className="num">{THESIS_VERSION}</span>.</p>
+        <h2 className="display-m">Evidence rules behind the ladder</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Supporting evidence from NEAR&apos;s track record and token economics, shown in the evidence section of the thesis. Each sub-question is answered by a fixed rule applied to stored data; no AI is involved. Rules version <span className="num">{THESIS_VERSION}</span>.</p>
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           <div className="panel p-5 text-sm">
             <p className="num text-xs text-mint">01 · Did it last?</p>
@@ -103,8 +146,8 @@ export default async function MethodologyPage() {
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
           <pre className="num overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-5 text-[0.8125rem] leading-7 text-fg-2">{`annual_buyback_demand_usd = V × f × c × b
 buyback_demand_to_mcap    = annual_buyback_demand_usd ÷ M
-break_even_annual_volume  = (y × M) ÷ (f × c × b)
-volume_multiple_required  = break_even_annual_volume ÷ V
+required_annual_volume    = (y × M) ÷ (f × c × b)
+volume_multiple_required  = required_annual_volume ÷ V
 required_take_rate        = (y × M) ÷ V      (reverse)`}</pre>
           <dl className="grid gap-3 text-sm">
             {[
@@ -150,7 +193,7 @@ required_take_rate        = (y × M) ÷ V      (reverse)`}</pre>
           <li><span className="num mr-3 text-mint">6</span>The Judge receives both transcripts, the evidence, the model output and the audit, and must challenge the model inputs.</li>
           <li><span className="num mr-3 text-mint">7</span>Every turn stores its text hash, model, prompt version ({PROMPT_VERSION}), latency, audit and audio reference. Voices read the stored text exactly; they never generate content.</li>
         </ol>
-        <p className="mt-4 text-sm text-muted">Provider text (labels, adapter methodology) is passed as inert data and sanitized. Users cannot supply URLs or free text to the server: debates accept only one of three topic slugs.</p>
+        <p className="mt-4 text-sm text-muted">Provider text (labels, adapter methodology) is passed as inert data and sanitized. Users cannot supply URLs or free text to the server: debates accept only the one thesis topic.</p>
       </section>
 
       <section id="scoring" className="scroll-mt-20 mt-16 border-t hairline pt-10">
@@ -188,7 +231,10 @@ required_take_rate        = (y × M) ÷ V      (reverse)`}</pre>
           <li><span className="text-fg">Accounts are not people.</span> Active-account counts include bots, relayers and multiple accounts per person, and falling counts can mean less automation as well as fewer users.</li>
           <li><span className="text-fg">Volume is not organic demand.</span> Without the partner-only Intents Explorer API, integrator concentration and wash-like activity cannot be measured.</li>
           <li><span className="text-fg">Third-party definitions.</span> Fee, revenue and buyback figures follow DefiLlama adapter definitions, which can change. Definitions are stored in each snapshot.</li>
-          <li><span className="text-fg">BigQuery freshness.</span> NEAR Lake, the upstream of the public BigQuery dataset, stopped indexing new blocks on 2026-03-24. Retention cohorts are not in live snapshots.</li>
+          <li><span className="text-fg">Valuation multiples move with sentiment.</span> Today&apos;s multiples are applied to NEAR in ten years as scenarios. The same rung can look easy or extreme depending on the multiple, which is why every column is shown.</li>
+          <li><span className="text-fg">One measured value channel.</span> The ladder counts value reaching holders through Intents buybacks and gas burns. Other possible sources (staking demand, AI agents, NEAR as money) are not quantified because no reliable data supports a number yet; they are listed as unproven, not added.</li>
+          <li><span className="text-fg">Exact data only.</span> NearBlocks returns query-planner estimates instead of counts for busy contracts in older months; those months are flagged and excluded, so some history is shorter than the contract&apos;s life.</li>
+          <li><span className="text-fg">BigQuery is optional.</span> Retention cohorts need your own Google Cloud project (research/sql/), so they are not part of the live snapshot.</li>
           <li><span className="text-fg">Cross-chain comparability.</span> Chain-fee multiples ignore value that fees do not capture, and TVL definitions vary by adapter.</li>
           <li><span className="text-fg">Subjective scores.</span> Most rubric points are an AI judgement. They are shown with the deterministic audit so readers can disagree.</li>
         </ul>
