@@ -24,6 +24,7 @@ import { buildEraRequests, buildRequestCatalog, sha256, stableStringify } from '
 import { evidenceForAgainst } from '@/lib/research/thesis';
 import { fileRawStore } from '@/lib/data/stores';
 import { buildDataset } from '@/lib/research/evidence';
+import { GROWTH_SCENARIOS } from '@/lib/research/ladder';
 import { evaluateTriggers } from '@/lib/research/triggers';
 import type { EvidenceDraft } from '@/lib/research/types';
 import { formatDate, formatPeriod, formatValue } from '@/lib/format';
@@ -62,6 +63,7 @@ function canonicalOf(ds: ReturnType<typeof buildDataset>, triggers: ReturnType<t
     model: { base: ds.modelBase, scenarios: ds.scenarios, feeSensitivity: ds.feeSensitivity, allocationMatrix: ds.allocationMatrix },
     triggers,
     thesis: ds.thesis,
+    ladder: ds.ladder,
   };
 }
 
@@ -101,6 +103,37 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const fee = ds.feeSensitivity;
   out = out.replace('{{SENSITIVITY_TABLE}}', `| Fee compression \\ target y | ${fee.cols.map((c) => formatValue(c, 'fraction')).join(' | ')} |\n|---|${fee.cols.map(() => '---').join('|')}|\n${fee.rows.map((r, i) => `| ${formatValue(r, 'fraction')} | ${fee.cells[i]!.map((v) => formatValue(v, 'ratio')).join(' | ')} |`).join('\n')}`);
   out = out.replace('{{TRIGGER_TABLE}}', `| ID | Falsification trigger | Rule | Current reading | Status |\n|---|---|---|---|---|\n${triggers.map((t) => `| ${t.id} | ${t.statement} | \`${t.rule}\` | ${t.observed} | **${t.status}** |`).join('\n')}`);
+
+  // ---- three-digit ladder
+  const l = ds.ladder;
+  const BAND: Record<string, string> = { holds: 'keeps share', gains: 'up to 5x share', dominant: '5x to 10x share', beyond: '10x+ share' };
+  const r100 = l.rungs.find((r) => r.price === 100);
+  const cap = (label: string) => l.peers.find((p) => p.label === label)?.marketCap ?? null;
+  const ratio = (a: number | null | undefined, b: number | null | undefined) => (a != null && b ? a / b : null);
+  out = out.replace(/\{\{LADDER_HEADLINE\}\}/g, l.headline);
+  out = out.replace('{{DREAM_TABLE}}', ['| | Today | At $100 in ten years |', '|---|---|---|',
+    `| Price | ${formatValue(l.inputs.price, 'USD')} | $100 (${formatValue(r100?.priceMultiple ?? null, 'ratio')}) |`,
+    `| Market cap (2.5% issuance) | ${formatValue(l.inputs.marketCap, 'USD')} | ${formatValue(r100?.marketCap ?? null, 'USD')} |`,
+    `| Market cap if HSP-029 takes effect | | ${formatValue(r100?.marketCapHsp029 ?? null, 'USD')} |`,
+    `| Rank among crypto assets (stablecoins excluded) | | #${r100?.rankToday ?? 'n/a'} against today's market |`,
+    `| Share of all crypto (${formatValue(l.inputs.totalCryptoCap, 'USD')} today) | ${formatValue(ratio(l.inputs.marketCap, l.inputs.totalCryptoCap), 'fraction')} | ${formatValue(r100?.shareOfCryptoToday ?? null, 'fraction')} |`,
+    `| Versus Solana / Ethereum today | | ${formatValue(ratio(r100?.marketCap, cap('Solana')), 'ratio')} / ${formatValue(ratio(r100?.marketCap, cap('Ethereum')), 'ratio')} |`].join(NL));
+  out = out.replace('{{REGIMES_TABLE}}', ['| Token | How it is valued | Market cap | Revenue to holders, 1 year | Market cap / revenue |', '|---|---|---|---|---|',
+    ...l.peers.map((p) => `| ${p.label} | ${p.regime === 'platform' ? 'Platform premium' : 'Cash flow'} | ${formatValue(p.marketCap, 'USD')} | ${formatValue(p.holdersRevenue365, 'USD')} | ${formatValue(p.multiple, 'ratio')} |`),
+    `| **NEAR** (burn + Intents buybacks, 90-day run rate) | In between | ${formatValue(l.inputs.marketCap, 'USD')} | ${formatValue(l.inputs.captureToday, 'USD')} | ${formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')} |`].join(NL));
+  out = out.replace('{{LADDER_TABLE}}', [`| Rung (ten years) | ${l.multiples.map((m) => `${m.label} (${formatValue(m.value, 'ratio')})`).join(' | ')} |`, `|---|${l.multiples.map(() => '---').join('|')}|`,
+    ...[...l.rungs].reverse().map((r) => `| **$${r.price}** (${formatValue(r.priceMultiple, 'ratio')}, ${formatValue(r.marketCap, 'USD')}, #${r.rankToday}) | ${r.byMultiple.map((b) => `${formatValue(b.dexShare2036, 'fraction')} (${b.band ? BAND[b.band] : 'n/a'})`).join(' | ')} |`)].join(NL));
+  out = out.replace('{{CONDITIONS_TABLE}}', ['| Rung | Revenue to holders needed | Intents volume needed | Growth needed, 10 years | Valuation premium persists | Fee rate holds |', '|---|---|---|---|---|---|',
+    ...l.rungs.map((r) => { const b = r.byMultiple.find((x) => x.multipleKey === 'today')!; return `| $${r.price} | ${formatValue(b.requiredCapture, 'USD')}/yr, ${formatValue(b.captureMultiple, 'ratio')} today (unproven) | ${formatValue(b.requiredVolume, 'USD')}/yr (unproven) | ${formatValue(b.requiredCagr, 'fraction')} a year (unproven; today ${formatValue(l.inputs.intentsYoY, 'fraction')} YoY, observed) | assumed | assumed |`; })].join(NL));
+  out = out.replace('{{IMPLIED_TABLE}}', [`| Intents growth to 2036 | ${l.multiples.map((m) => m.label).join(' | ')} |`, `|---|${l.multiples.map(() => '---').join('|')}|`,
+    ...l.implied.map((g) => { const s = GROWTH_SCENARIOS.find((x) => x.key === g.growthKey)!; return `| ${s.label}, ${formatValue(s.cagr, 'fraction')} a year | ${g.byMultiple.map((b) => `${formatValue(b.price, 'USD')} (${formatValue(b.multipleOfToday, 'ratio')})`).join(' | ')} |`; })].join(NL));
+  out = out.replace('{{SWING_SENTENCE}}', l.swing.dominant ? `${l.swing.dominant === 'growth' ? 'Growth moves the outcome more than valuation does' : 'Valuation moves the outcome more than growth does'}: prices spread ${formatValue(l.swing.acrossGrowth, 'ratio')} across growth scenarios at today's premium, and ${formatValue(l.swing.acrossMultiples, 'ratio')} across cash-flow and today's multiples at base growth.` : '');
+  const cps = l.checkpoints.filter((c) => c.years.length);
+  const yrs = cps[0]?.years.map((y) => y.year) ?? [];
+  out = out.replace('{{CHECKPOINT_TABLE}}', [`| Rung | ${yrs.join(' | ')} |`, `|---|${yrs.map(() => '---').join('|')}|`,
+    ...[...cps].reverse().map((c) => `| $${c.price} | ${c.years.map((y) => formatValue(y.volume, 'USD')).join(' | ')} |`)].join(NL));
+  out = out.replace('{{PLATFORM_TABLE}}', ['| Valued like | Stablecoins on NEAR needed | vs today | DeFi TVL needed | vs today |', '|---|---|---|---|---|',
+    ...l.platformRequirement.map((p) => `| ${p.benchmark === 'BSC' ? 'BNB Chain' : p.benchmark} | ${formatValue(p.stablecoins, 'USD')} | ${formatValue(p.stablecoinsMultiple, 'ratio')} | ${formatValue(p.tvl, 'USD')} | ${formatValue(p.tvlMultiple, 'ratio')} |`)].join(NL));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

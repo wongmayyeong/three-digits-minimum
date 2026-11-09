@@ -15,6 +15,7 @@ import { computeModel, FORMULA_VERSION, requiredTakeRate, runScenarios, sensitiv
 import { addDays, commonEnd, fromUnixPairs, isoDay, lastDay, pctChange, safeDiv, valueOn, weeklyMeans, weeklySums, windowAggregate, type DailyPoint } from './series';
 import type { EvidenceDraft, EvidenceGroup, SeriesDef, Unit } from './types';
 import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
+import { analyzeLadder, ladderEvidence, type LadderResult } from './ladder';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -31,6 +32,7 @@ export interface ResearchDataset {
   feeSensitivity: SensitivityMatrix;
   allocationMatrix: SensitivityMatrix;
   thesis: ThesisResult;
+  ladder: LadderResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -431,6 +433,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const thesis = analyzeThesis(raws, (id) => B.val(id));
   B.items.push(...thesisEvidence(thesis, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null, url: r?.url ?? '' }; }));
 
+  // ------------------------------------------------------------ three-digit price ladder
+  const ladder = analyzeLadder(raws, (id) => B.val(id));
+  B.items.push(...ladderEvidence(ladder, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null, url: r?.url ?? '' }; }));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -442,6 +448,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     feeSensitivity: sensitivity(modelBase),
     allocationMatrix: allocationSensitivity(modelBase),
     thesis,
+    ladder,
   };
 }
 

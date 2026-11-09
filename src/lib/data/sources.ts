@@ -91,6 +91,19 @@ export const PEER_CHAINS = [
 
 export const BUYBACK_WALLET = 'buybacks.multisignature.near';
 
+/**
+ * Tokens used to show how the market values crypto assets relative to the revenue that reaches holders.
+ * Large platforms (platform premium) and cash-flow tokens (priced on what they pay holders).
+ */
+export const VALUATION_PEERS = [
+  { label: 'Ethereum', coin: 'ethereum', llama: 'ethereum', chain: 'Ethereum', regime: 'platform' },
+  { label: 'BNB', coin: 'binancecoin', llama: 'bsc', chain: 'BSC', regime: 'platform' },
+  { label: 'Solana', coin: 'solana', llama: 'solana', chain: 'Solana', regime: 'platform' },
+  { label: 'Tron', coin: 'tron', llama: 'tron', chain: 'Tron', regime: 'cash-flow' },
+  { label: 'Hyperliquid', coin: 'hyperliquid', llama: 'hyperliquid', chain: 'Hyperliquid L1', regime: 'cash-flow' },
+] as const;
+export const PLATFORM_CHAINS: string[] = ['Ethereum', 'BSC', 'Solana', 'Tron', 'Near'];
+
 const b64 = (o: unknown) => Buffer.from(JSON.stringify(o)).toString('base64');
 
 function rpc(key: string, method: string, params: unknown, project: (r: any) => unknown): HttpRequestDef {
@@ -159,6 +172,33 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   reqs.push({
     key: 'defillama.stablecoins.near', source: 'defillama', ttlMs: HOUR, url: 'https://stablecoins.llama.fi/stablecoincharts/Near',
     project: (a) => asArr(a).map((d: any) => [Number(d.date), Number(d?.totalCirculatingUSD?.peggedUSD ?? NaN)]),
+  });
+
+  // ---- Three-digit ladder: where NEAR would rank, how the market values other tokens, and the size of the DEX market.
+  reqs.push({
+    key: 'coingecko.top', source: 'coingecko', ttlMs: HOUR, headers: cgHeaders,
+    get url() { return `${cgBase()}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=40&page=1`; },
+    project: (a) => asArr(a).map((c: any) => ({ id: String(c.id), symbol: String(c.symbol), name: String(c.name), marketCap: Number(c.market_cap), price: Number(c.current_price) })),
+  });
+  reqs.push({
+    key: 'coingecko.global', source: 'coingecko', ttlMs: HOUR, headers: cgHeaders,
+    get url() { return `${cgBase()}/global`; },
+    project: (j: any) => ({ totalMarketCapUsd: Number(j?.data?.total_market_cap?.usd), btcDominancePct: Number(j?.data?.market_cap_percentage?.btc) }),
+  });
+  for (const slug of VALUATION_PEERS.map((p) => p.llama)) {
+    reqs.push({ key: `defillama.holders.${slug}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/fees/${slug}?dataType=dailyHoldersRevenue`, project: llamaSummary });
+  }
+  reqs.push({
+    key: 'defillama.dexs.total', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/dexs?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true`,
+    project: (j: any) => ({ chart: asArr(j?.totalDataChart).map((x: any) => [Number(x[0]), Number(x[1])]) }),
+  });
+  reqs.push({
+    key: 'defillama.chains', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/v2/chains`,
+    project: (a) => asArr(a).filter((c: any) => PLATFORM_CHAINS.includes(c?.name)).map((c: any) => ({ name: String(c.name), tvl: Number(c.tvl) })),
+  });
+  reqs.push({
+    key: 'defillama.stablecoinchains', source: 'defillama', ttlMs: 6 * HOUR, url: 'https://stablecoins.llama.fi/stablecoinchains',
+    project: (a) => asArr(a).filter((c: any) => PLATFORM_CHAINS.includes(c?.name)).map((c: any) => ({ name: String(c.name), stablecoinsUsd: Number(c?.totalCirculatingUSD?.peggedUSD ?? NaN) })),
   });
 
   // ---- NearBlocks: daily chain activity.

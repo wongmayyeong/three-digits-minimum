@@ -1,0 +1,74 @@
+{
+ "ethereum": {
+  "dailyFees": 177072436,
+  "name": "Ethereum",
+  "dailyRevenue": 48177519,
+  "dailyHoldersRevenue": 48177519
+ },
+ "solana": {
+  "dailyFees": 232743448,
+  "name": "Solana",
+  "dailyRevenue": 25618704,
+  "dailyHoldersRevenue": 25618704
+ },
+ "tron": {
+  "dailyFees": 334302910,
+  "name": "Tron",
+  "dailyRevenue": 334302910,
+  "dailyHoldersRevenue": 334302910
+ },
+ "bsc": {
+  "dailyFees": 160381041,
+  "name": "BSC",
+  "dailyRevenue": 16038103,
+  "dailyHoldersRevenue": 16038103
+ },
+ "hyperliquid": {
+  "dailyFees": 897045063.6899998,
+  "name": "Hyperliquid",
+  "dailyRevenue": 682238685,
+  "dailyHoldersRevenue": 682238685
+ },
+ "near": {
+  "dailyFees": 1186644,
+  "name": "Near",
+  "dailyRevenue": 831246,
+  "dailyHoldersRevenue": 829263
+ },
+ "near-intents": {
+  "dailyFees": 53788238,
+  "name": "NEAR Intents",
+  "dailyRevenue": 9239200.05,
+  "dailyHoldersRevenue": 7892180.05
+ },
+ "avalanche": {
+  "dailyFees": 2673936,
+  "name": "Avalanche",
+  "dailyRevenue": 2673936,
+  "dailyHoldersRevenue": 2673936
+ },
+ "sui": {
+  "dailyFees": 2625760,
+  "name": "Sui",
+  "dailyRevenue": 643548.1200000001,
+  "dailyHoldersRevenue": 643548.1200000001
+ },
+ "aptos": {
+  "dailyFees": 1221102,
+  "name": "Aptos",
+  "dailyRevenue": null,
+  "dailyHoldersRevenue": null
+ },
+ "ton": {
+  "dailyFees": 1803440,
+  "name": "TON",
+  "dailyRevenue": 901721,
+  "dailyHoldersRevenue": 901721
+ },
+ "base": {
+  "dailyFees": 47987318,
+  "name": "Base",
+  "dailyRevenue": 47650992,
+  "dailyHoldersRevenue": null
+ }
+}

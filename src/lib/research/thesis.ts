@@ -1,5 +1,5 @@
 /**
- * "Is NEAR Building the Future or Following the Hype?"
+ * Evidence sections behind "Three Digits, Minimum?": era durability, product adoption and token value capture.
  *
  * Deterministic analysis for the thesis' three sub-questions and the verdict. Every rule and
  * threshold below is fixed in code and published on the Methodology page; the verdict is
@@ -17,8 +17,10 @@ import { formatValue } from '@/lib/format';
 
 export const THESIS_VERSION = 'nebube-thesis-1.1.0';
 
-export const THESIS_TITLE = 'Is NEAR Building the Future or Following the Hype?';
-export const THESIS_SUBTITLE = 'Every pivot, tested against the evidence.';
+export const THESIS_TITLE = 'Three Digits, Minimum?';
+export const THESIS_SUBTITLE = 'How far can NEAR really go?';
+export const THESIS_ATTRIBUTION = '"Three digits, minimum." A line attributed to NEAR co-founder Illia Polosukhin and repeated across the NEAR community. We tested it against the data.';
+export const THESIS_LEDE = 'Can NEAR become one of crypto\'s next big investments? We price out $10, $25, $50 and $100 in ten years, and check what each step would take against real adoption, token economics and valuation data. Not hype, not a price prediction.';
 
 /**
  * Strategic pivots with dates verified on near.org (see source). Month-level dates anchor on the 1st of the next month.

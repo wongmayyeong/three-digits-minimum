@@ -16,7 +16,7 @@ export function Wordmark({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <Emblem size={30} />
-      <span className="text-[0.9375rem] font-[600] tracking-[-0.01em]">Building or Hype?</span>
+      <span className="text-[0.9375rem] font-[600] tracking-[-0.01em]">Three Digits, Minimum?</span>
     </span>
   );
 }
@@ -31,7 +31,7 @@ export function SiteHeader() {
   return (
     <header className="no-print sticky top-0 z-40 border-b hairline bg-[color-mix(in_srgb,var(--color-bg)_86%,transparent)] backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-[1320px] items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" aria-label="Is NEAR Building the Future or Following the Hype? Home" className="shrink-0 rounded-sm">
+        <Link href="/" aria-label="Three Digits, Minimum? Home" className="shrink-0 rounded-sm">
           <Wordmark />
         </Link>
         <nav aria-label="Primary" className="-mr-2 flex items-center overflow-x-auto">

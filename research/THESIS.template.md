@@ -1,62 +1,66 @@
 <!-- GENERATED FILE. Edit research/THESIS.template.md, then run `npm run research:rebuild`. Every figure is filled from artifacts/research/canonical.json. -->
 
-# Is NEAR Building the Future or Following the Hype?
+# Three Digits, Minimum?
 
-*Every pivot, tested against the evidence.*
+*How far can NEAR really go? An evidence-based NEAR price ladder.*
 
 **Track:** NEAR HACKATHON 2026, Investment Thesis. **Data:** refreshed from public sources; flow metrics use the 90 days ending {{WINDOW_END}}. Numbers that could not be computed read "unavailable" instead of an estimate.
 
-> Educational research, not financial advice. No price prediction. A "following the hype" verdict is an acceptable outcome.
+> Educational research, not financial advice. Not a price prediction. "Three digits, minimum." is a line attributed to NEAR co-founder Illia Polosukhin and repeated across the NEAR community; we use it as a hook and test it against data.
 
-**Current verdict: {{THESIS_VERDICT}}** ({{THESIS_CONFIDENCE}} confidence)
-
-{{SECTION_TABLE}}
+**The short answer.** {{LADDER_HEADLINE}}
 
 ---
 
-## 1. Claim
+## 1. The claim, and how we test it
 
-NEAR has repositioned itself several times: scalable L1, then Social and the Blockchain Operating System (February 2023), Chain Abstraction and Chain Signatures (March 2024), User-Owned AI (May 2024), and NEAR Intents (November 2024). The investment question is whether those pivots compound into durable usage and token value, or restart each time a new narrative arrives.
+"Three digits, minimum" means a NEAR price of $100 or more. We do not try to predict whether it happens. We build a **price ladder** for ten years from now: $10, $25, $50 and $100. For each rung we compute what NEAR would have to achieve (Layer A) and label every condition as **observed** in today's data, **assumed** by the model, or **unproven** (Layer B). Then we turn it around: under low, base and high growth and several valuation multiples seen in the market today, where does the price land?
 
-**Claim.** $NEAR is an investment in building, not hype, only if (1) each era's product keeps real usage after the narrative moves on, and (2) today's activity returns value to the token at a scale that matters against new supply. Whether adoption followed each announcement (3) raises or lowers confidence. The verdict above applies these rules, published in advance, to the current data.
+NEAR's economic engine today is NEAR Intents, a cross-chain swap service. Part of every swap fee is captured by NEAR and, since February 2026, used to buy back $NEAR. The chain of value runs: Intents volume → fees → NEAR-captured revenue → buybacks (and gas burns) → token holders.
 
-Why usage and value capture are tested separately: a network can be busy while its token captures little. The chain of value runs activity → fees → NEAR-captured revenue → buybacks or burns → token holders, and each link can leak.
+## 2. The dream: what $100 would mean
 
-## 2. Evidence for (building)
+{{DREAM_TABLE}}
 
-{{EVIDENCE_FOR}}
+$100 is not a bigger pump; it is a different rank in crypto. Supply keeps growing, so $100 in ten years means a larger market cap than $100 today. HSP-029, approved by House of Stake on 2 November 2026, would cut maximum issuance from 2.5% to 1.6% over 24 months after a ~90-day buffer; it needs validator adoption and can be vetoed until 16 November, so the ladder uses today's 2.5% rule and shows HSP-029 alongside.
 
-## 3. Evidence against (building)
+## 3. How the market values crypto assets
 
-{{EVIDENCE_AGAINST}}
+{{REGIMES_TABLE}}
 
-## 4. What would change my mind
+There are two regimes. The largest platforms (Ethereum, BNB, Solana) are not priced on the revenue that reaches holders at all; they carry a **platform premium** for being where money lives. **Cash-flow tokens** (Hyperliquid, Tron) are priced on what they pay holders. A three-digit NEAR has to come from one of the two. The ladder applies each of these multiples to NEAR in ten years. They are assumptions, not forecasts.
 
-Each rule below is evaluated on every rebuild by `src/lib/research/triggers.ts`. TRIGGERED means a condition that weakens the building case currently holds.
+## 4. The ladder: what each rung takes
 
-{{TRIGGER_TABLE}}
+Share of the 2036 DEX market NEAR Intents would need, by rung and valuation. The DEX market is today's {{LAD-DEX-VOL-365D}} a year grown 20% a year (an assumption; it grew {{LAD-DEX-CAGR-2021-2025}} a year from 2021 to 2025). Intents handles {{LAD-INTENTS-DEX-SHARE}} today, at a take rate of {{INT-TAKE-RATE}} of volume.
 
-The verdict would move toward **building** if: an era contract that lost most of its activity recovers above 25% of its peak; buybacks reach half of realized net new supply; the take rate rises for two consecutive windows while volume grows; or bought-back tokens are burned rather than held. It would move toward **hype** if: Intents activity falls below 25% of its peak; the take rate compresses by a quarter; or adoption fails to follow the next major pivot.
+{{LADDER_TABLE}}
 
----
+Bands: **keeps share** (at most 1.5x today's share), **up to 5x share**, **5x to 10x share**, **10x+ share**. The Solana column shows how little revenue matters if NEAR earned a platform premium; section 6 shows what that premium would require.
 
-## Sub-question 1: Did it last?
+What would have to be true at each rung (today's valuation premium):
 
-Each era's representative product, compared with its own peak: monthly transactions for social.near and v1.signer (NearBlocks), and monthly swap volume for Intents (DefiLlama). Only exact data is used. For busy contracts, NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are flagged and excluded, which is why v1.signer starts in April 2026, and why Intents is measured by volume. An era "lasted" if its latest complete month keeps at least 25% of its peak and the peak is at least 3 months old; a more recent peak is not judgeable yet.
+{{CONDITIONS_TABLE}}
 
-{{ERA_TABLE}}
+## 5. Where scenarios land
 
-Limitations: transactions are not people. Relayers, solvers and Chain Signatures MPC node responses are included. A decline can mean migration to a newer product rather than abandonment, so this measures whether usage stayed, not why it left. The AI era has no single contract to measure and is reported as such.
+Implied price in ten years = Intents volume grown from today's {{INT-VOL-ANN}} run rate x take rate x valuation multiple / supply in 2036. Growth rates are scenarios; nothing here is a forecast.
 
-## Sub-question 2: Did adoption justify the hype?
+{{IMPLIED_TABLE}}
 
-Adoption is scored on the product, from the date it went live on mainnet, not from the announcement: the product contract's monthly transactions two months after its launch month must reach at least 2x the launch month. Chain Signatures is measured from its mainnet release (8 August 2024), not the March 2024 announcement, when it was on testnet. User-Owned AI has no single product contract, so it is N/A and left out of the count instead of being scored as a failure. Chain-wide active accounts and NEAR's price return minus BTC's are context only: neither can be attributed to one product, and prices can move ahead of adoption.
+{{SWING_SENTENCE}}
 
-{{EVENT_TABLE}}
+## 6. The evidence
 
-Pivot dates come from NEAR's own announcements (links in the table). BOS is dated to the month (February 2023); its window starts 2023-03-01.
+**Is NEAR Intents on the path?** Annual volume {{INT-VOL-ANN}} (90-day run rate); {{LAD-INTENTS-YOY}} year over year (latest 30 days); {{LAD-INTENTS-DEX-SHARE}} of all DEX volume. The volume Intents would need each year, at today's valuation premium, for each rung:
 
-## Sub-question 3: Does it pay $NEAR?
+{{CHECKPOINT_TABLE}}
+
+**Could NEAR earn a platform premium instead?** Platforms are valued relative to the money that lives on them. For a $100 NEAR to look like these chains:
+
+{{PLATFORM_TABLE}}
+
+**Does the token capture value today?**
 
 | Measure | Value |
 |---|---|
@@ -64,65 +68,67 @@ Pivot dates come from NEAR's own announcements (links in the table). BOS is date
 | Realized net new supply per year (net of burns) | {{SUP-NET-NEW-ANN-PCT}} ({{SUP-NET-NEW-ANN-USD}} at today's price) |
 | Buyback-designated revenue as a share of realized net new supply | {{COV-BUYBACK-REALIZED}} |
 | Supply parity: volume needed for buyback revenue to match net new supply | {{SUP-PARITY-VOL}} ({{SUP-PARITY-MULTIPLE}} today) |
-| Burns + buybacks as a share of maximum possible issuance | {{COV-CAPTURE-MAX}} |
 | Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | {{INT-TAKE-RATE}} ({{INT-TAKE-RATE-PRIOR}}) |
 | Tokens held by the buyback wallet | {{ONC-BUYBACK-WALLET}} |
 | Circulating market cap | {{MKT-NEAR-MCAP}} |
 
-A buyback is not a burn: bought tokens are held by the buyback wallet, and total supply only falls if they are burned. Buyback demand does not move price one-for-one.
+A buyback is not a burn: bought tokens are held, and total supply only falls if they are burned. DefiLlama's buyback designation is a classification ({{INT-BUYBACK-DESIGNATED-CUM}} so far); as an onchain cross-check, the buyback wallet holds {{ONC-BUYBACK-WALLET}}, worth {{ONC-BUYBACK-WALLET-VS-DESIGNATED}} of the designated amount at today's price.
 
-### What would it take? The buyback demand target model
+**Track record: did NEAR's earlier pivots last?** Each era's representative product against its own peak, exact data only. For busy contracts NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are excluded, which is why v1.signer starts in April 2026 and Intents is measured by DefiLlama volume.
 
-How much Intents volume would buyback-designated revenue need to reach a chosen share of market cap (y, 2% by default)? This is a demand target, not a supply break-even; supply parity is shown after the scenarios.
+{{ERA_TABLE}}
 
-```
-annual_buyback_demand_usd = V x f x c x b
-buyback_demand_to_mcap    = annual_buyback_demand_usd / M
-required_annual_volume    = (y x M) / (f x c x b)
-volume_multiple_required  = required_annual_volume / V
-```
+Product adoption after each mainnet launch (activity two months after launch, 2x needed; chain-wide accounts and price are context only):
 
-V is the 90-day Intents volume run rate ({{INT-VOL-ANN}}), f the fee rate ({{INT-FEE-RATE}}), c NEAR's capture of fees ({{INT-CAPTURE}}), b the buyback share ({{INT-BUYBACK-SHARE}}, a DefiLlama classification, not a guaranteed policy), and y a hypothetical target (2% of market cap per year).
+{{EVENT_TABLE}}
 
-{{SCENARIO_TABLE}}
+## 7. What could break it
 
-The optimistic scenario already assumes volume doubles, so its multiple of its own volume is half its multiple of today's volume; both are shown.
+| Risk | Effect on the ladder |
+|---|---|
+| Intents growth slows | Every rung depends on compounding volume for ten years |
+| Fee competition | Halving the take rate doubles every volume requirement |
+| The market prices NEAR on cash flow | At Tron's multiple every rung is about 2.4x harder |
+| Supply keeps growing at 2.5% | $100 means a larger market cap |
+| Value keeps leaving the NEAR chain | Rules out the platform-premium route (active accounts {{ACT-DAA-YOY}} year over year) |
 
-**Supply parity, for comparison.** For buyback-designated revenue to equal the dollar value of realized net new supply, Intents would need {{SUP-PARITY-VOL}} of annual volume, {{SUP-PARITY-MULTIPLE}} today's run rate. Even then total supply keeps growing, because bought tokens are held, not burned.
+**NEAR Intents exploit, 1 October 2026.** NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched and the team pledged full compensation. Recovery has not been independently confirmed. Sources: [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404), [recovery status](https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps).
 
-**Designated versus executed buybacks.** DefiLlama classifies Intents revenue as buybacks ({{INT-BUYBACK-DESIGNATED-CUM}} designated so far). That is a classification, not verified trades. As an onchain cross-check, the buyback wallet holds {{ONC-BUYBACK-WALLET}}, worth {{ONC-BUYBACK-WALLET-VS-DESIGNATED}} of the designated amount at today's price.
+Falsification triggers from the underlying research, evaluated on every rebuild:
 
-Required volume multiple under fee compression (rows) and target buyback share of market cap (columns):
+{{TRIGGER_TABLE}}
 
-{{SENSITIVITY_TABLE}}
+## 8. Verdict: dream, possibility, or evidence?
 
-## Risks this study does not score
+{{LADDER_HEADLINE}}
 
-**Base-layer active accounts: {{ACT-DAA-YOY}} year over year** ({{ACT-DAA-30D}} daily active accounts over the last 30 days, against {{ACT-DAA-30D-1Y-AGO}} a year earlier). This study does not yet separate the causes: activity a year ago that was incentive- or bot-driven, workloads moving into Intents or to other chains through Chain Signatures, or users leaving. Until it does, it weakens the building case (trigger F4).
+- **What we know:** NEAR Intents is real, growing ({{LAD-INTENTS-YOY}} year over year) and already returns {{VAL-NEAR-VALUE-CAPTURE-ANN}} a year to $NEAR; NEAR is valued at {{LAD-MULT-TODAY}} that revenue.
+- **What we assume:** how the market will value NEAR in ten years, how fast the DEX market grows, and that the take rate and supply rules hold.
+- **What would change the view:** Intents falling behind its checkpoints, fee compression, a re-rating toward cash-flow multiples; or, upward, money and users settling on NEAR itself, which would open the platform-premium route.
 
-**NEAR Intents exploit, 1 October 2026.** NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched and the team pledged full compensation. Recovery of the funds has not been independently confirmed. It is a reliability and trust risk for the product this thesis depends on most, not evidence that the strategy failed. Sources: [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404), [recovery status](https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps).
+No AI writes this verdict. The bands and assumptions are ours, published so anyone can change them in `src/lib/research/ladder.ts` and rebuild.
 
 ## Data sources, queries and reproduction
 
 ```bash
 npm install
-npm run research:refresh     # fetch live data (about 15 minutes the first time, for monthly era history), rebuild everything
+npm run research:refresh     # fetch live data, rebuild everything
 npm run research:rebuild     # offline: rebuild from artifacts/research/raw and verify byte-identical output
 ```
 
-No database or API key is needed for either command. Outputs: `artifacts/research/canonical.json` (every number), `evidence-manifest.json` (request URL, period, transform and response SHA-256 for each metric), `charts/`, and `dashboard.html` (each chart, its query, and one plain sentence).
+No database or API key is needed for either command. Outputs: `artifacts/research/canonical.json` (every number, including the ladder), `evidence-manifest.json` (request URL, period, transform and response SHA-256 for each metric), `charts/`, and `dashboard.html`.
 
 | Source | Used for |
 |---|---|
-| NearBlocks API | Monthly transactions per era contract, daily active accounts, total supply |
-| DefiLlama API | NEAR Intents volume, fees, revenue and buybacks; TVL; chain fees; historical prices (coins API) |
-| CoinGecko API | Current market caps and price |
+| CoinGecko API | Prices, market caps, rankings, total crypto market cap |
+| DefiLlama API | NEAR Intents volume, fees, revenue and buybacks; holder revenue for peer tokens; all-DEX volume; TVL and stablecoins by chain; historical prices |
+| NearBlocks API | Monthly era transactions (exact months only), daily active accounts, total supply |
 | NEAR JSON-RPC | Protocol inflation, total supply, buyback wallet balance |
-| NEAR announcements | Pivot dates (linked in Sub-question 2) |
-| BigQuery `crypto_near_mainnet_us` | SQL in `research/sql/`, optional, needs your Google Cloud project. Its upstream (NEAR Lake) stopped indexing on 2026-03-24, so live sections use NearBlocks instead. |
+| NEAR announcements and governance | Pivot dates, HSP-029 |
+| BigQuery `crypto_near_mainnet_us` | SQL in `research/sql/`, optional, needs your Google Cloud project |
 | NEAR Intents Explorer API | Optional, partner JWT; integrator concentration ({{INT-EXPLORER-TOP5-SHARE}}) |
 
-Methodology versions: evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, thesis rules `nebube-thesis-1.0.0`. The rule thresholds were fixed while the pipeline was built, after some raw values had been seen; they are not a blind pre-registration. Change them in `src/lib/research/thesis.ts` and rebuild to test their sensitivity.
+Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, evidence rules `nebube-thesis-1.1.0`.
 
 ## Appendix: evidence register
 

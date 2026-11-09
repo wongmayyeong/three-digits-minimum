@@ -12,8 +12,8 @@ import { DebateShow } from './theatre/debate-show';
 import { StudioScene } from './theatre/stage';
 import type { DebateView } from '@/lib/debate/view';
 
-export function HeroDebate({ episode, title, subtitle, verdict, verdictTone, confidence, asOf }: {
-  episode: DebateView | null; title: string; subtitle: string; verdict: string | null; verdictTone: 'mint' | 'coral' | 'amber' | 'muted'; confidence: string | null; asOf: string | null;
+export function HeroDebate({ episode, title, subtitle, attribution, lede, asOf }: {
+  episode: DebateView | null; title: string; subtitle: string; attribution: string; lede: string; asOf: string | null;
 }) {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState<'idle' | 'entering' | 'show'>('idle');
@@ -33,7 +33,6 @@ export function HeroDebate({ episode, title, subtitle, verdict, verdictTone, con
 
   const states: Record<Role, VisualState> = { bull: beat === 1 ? 'thinking' : 'idle', bear: beat === 3 ? 'thinking' : 'idle', judge: beat === 5 ? 'thinking' : 'idle' };
   const mouths: Record<Role, MouthShape> = { bull: 'closed', bear: 'closed', judge: 'closed' };
-  const tone = { mint: 'text-mint', coral: 'text-coral', amber: 'text-amber', muted: 'text-fg-2' }[verdictTone];
 
   return (
     <section aria-label="Thesis" className="relative overflow-hidden border-b hairline bg-black">
@@ -48,16 +47,11 @@ export function HeroDebate({ episode, title, subtitle, verdict, verdictTone, con
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgb(4_7_6/0.94)_0%,rgb(4_7_6/0.82)_45%,rgb(4_7_6/0.35)_100%)]" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg to-transparent" />
         <div className="relative mx-auto flex min-h-[min(88dvh,820px)] max-w-[1320px] flex-col justify-center px-4 py-16 sm:px-6">
-          <p className="eyebrow mb-5">NEAR investment thesis · reproducible research</p>
-          <h1 className="display-xl max-w-3xl text-balance [font-size:clamp(2.4rem,5vw,4.25rem)]">{title}</h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fg-2 md:text-xl">{subtitle}</p>
-          {verdict && (
-            <p className="mt-6 text-base">
-              <span className="text-muted">Current verdict: </span>
-              <span className={`font-[620] ${tone}`}>{verdict}</span>
-              {confidence && <span className="text-muted"> · {confidence} confidence</span>}
-            </p>
-          )}
+          <p className="eyebrow mb-5">An evidence-based NEAR investment thesis</p>
+          <h1 className="display-xl max-w-3xl text-balance [font-size:clamp(2.6rem,6vw,5rem)]">{title}</h1>
+          <p className="mt-4 max-w-2xl text-xl leading-snug text-fg md:text-2xl">{subtitle}</p>
+          <p className="mt-3 max-w-2xl text-sm italic text-muted">{attribution}</p>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-2 md:text-lg">{lede}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             {episode ? (
               <button type="button" className="btn btn-primary h-12 px-6 text-base" onClick={() => setPhase(reduce ? 'show' : 'entering')} disabled={phase !== 'idle'}>
@@ -68,7 +62,7 @@ export function HeroDebate({ episode, title, subtitle, verdict, verdictTone, con
             <a href="#verdict" className={`btn h-12 px-6 text-base ${episode ? 'btn-ghost bg-black/30' : 'btn-primary'}`}>Read the verdict</a>
           </div>
           <p className="mt-5 max-w-xl text-xs leading-relaxed text-muted">
-            {episode ? 'Bull argues the building case, Bear the hype case, from one frozen snapshot of the research below. Every figure they cite is checked by code.' : 'The first debate episode appears here once it is generated from a frozen snapshot of the research below.'}
+            {episode ? 'Bull argues for three digits; Bear argues how far the evidence really goes. Both work from one frozen snapshot of the research below, and every figure they cite is checked by code.' : 'The first debate episode appears here once it is generated from a frozen snapshot of the research below.'}
             {asOf ? ` Data refreshed daily; 90-day window ends ${asOf}.` : ''} Not financial advice. Not affiliated with the NEAR Foundation.
           </p>
         </div>

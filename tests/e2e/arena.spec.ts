@@ -44,15 +44,20 @@ test('episode: admin-started debate -> verdict -> report -> replay from stored d
   expect(errors).toEqual([]);
 });
 
-test('thesis page shows the question, three sub-questions and a computed verdict', async ({ page }) => {
+test('thesis page shows the hook, the price ladder and a computed verdict', async ({ page }) => {
   const errors = trackErrors(page);
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1, name: 'Is NEAR Building the Future or Following the Hype?' })).toBeVisible();
-  for (const id of ['#pivots', '#lasted', '#adoption', '#pays', '#verdict']) await expect(page.locator(id)).toBeAttached();
-  await expect(page.getByRole('heading', { name: /Did it last\?/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Did adoption justify the hype\?/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Does it pay \$NEAR\?/ })).toBeVisible();
-  await expect(page.getByText('What would change this verdict')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'Three Digits, Minimum?' })).toBeVisible();
+  for (const id of ['#dream', '#ladder', '#scenarios', '#evidence', '#risks', '#verdict']) await expect(page.locator(id)).toBeAttached();
+  await expect(page.getByRole('heading', { name: /What would \$100 actually mean\?/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /How far can NEAR go/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Dream, possibility, or evidence\?/ })).toBeVisible();
+  // The ladder explorer recomputes when a rung and a valuation are chosen.
+  const ladder = page.locator('#ladder');
+  await ladder.getByRole('radio', { name: /\$25/ }).click();
+  await ladder.getByRole('radio', { name: /Priced like Tron/ }).click();
+  await expect(ladder.getByText('Observed').first()).toBeVisible();
+  await expect(ladder.getByText('Unproven').first()).toBeVisible();
   expect(errors).toEqual([]);
 });
 

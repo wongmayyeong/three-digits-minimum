@@ -23,6 +23,7 @@ export interface TopicPreview {
   scenarios: ReturnType<typeof buildDataset>['scenarios'] | null;
   modelBase: ReturnType<typeof buildDataset>['modelBase'] | null;
   thesis: ReturnType<typeof buildDataset>['thesis'];
+  ladder: ReturnType<typeof buildDataset>['ladder'];
   feeSensitivity: ReturnType<typeof buildDataset>['feeSensitivity'];
   eraMonthsStored: number;
   eraMonthsTotal: number;
@@ -48,6 +49,7 @@ export async function previewTopic(slug: string, opts: { offline: boolean }): Pr
     scenarios: topic.usesModel ? ds.scenarios : null,
     modelBase: topic.usesModel ? ds.modelBase : null,
     thesis: ds.thesis,
+    ladder: ds.ladder,
     feeSensitivity: ds.feeSensitivity,
     eraMonthsStored: era.filter((o) => o.record).length,
     eraMonthsTotal: era.length,

@@ -1,23 +1,23 @@
 {
  "methodologyVersion": "nebube-evidence-1.1.0",
  "formulaVersion": "nvabe-1.0.0",
- "windowEnd": "2026-11-06",
- "peerWindowEnd": "2026-11-06",
+ "windowEnd": "2026-11-07",
+ "peerWindowEnd": "2026-11-07",
  "evidence": [
   {
-   "value": 4862469825,
+   "value": 4671195825,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-MCAP",
@@ -29,19 +29,19 @@
    "hasSeries": false
   },
   {
-   "value": 3.71,
+   "value": 3.56,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.current_price",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-PRICE",
@@ -53,19 +53,19 @@
    "hasSeries": false
   },
   {
-   "value": 1311140127,
+   "value": 1311241581,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.circulating_supply",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-CIRC",
@@ -77,19 +77,19 @@
    "hasSeries": false
   },
   {
-   "value": 52702968261,
+   "value": 51237155091,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-SOL-MCAP",
@@ -101,19 +101,19 @@
    "hasSeries": false
   },
   {
-   "value": 3508491423,
+   "value": 3496256567,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-SUI-MCAP",
@@ -125,19 +125,19 @@
    "hasSeries": false
   },
   {
-   "value": 3640962602,
+   "value": 3775545819,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=near,solana,sui,avalanche-2",
-   "observedAt": "2026-11-08T10:08:55.000Z",
-   "fetchedAt": "2026-11-08T10:10:21.101Z",
+   "observedAt": "2026-11-09T13:02:55.000Z",
+   "fetchedAt": "2026-11-09T13:03:37.024Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "coins/markets.market_cap",
    "confidence": "high",
-   "rawResponseHash": "7f9c2409820b04a5e97122389acc1509ed4f01441e066b870280cbb99fb7b62b",
+   "rawResponseHash": "39ab56160db5e4bf85ca8b0f00804fbc11026d2b1dc8d7691e99bf54893207f0",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-AVAX-MCAP",
@@ -149,19 +149,19 @@
    "hasSeries": false
   },
   {
-   "value": 0.29431867608817186,
+   "value": 0.19574882707296698,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
    "sourceName": "CoinGecko",
    "sourceUrl": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T10:10:23.843Z",
-   "periodStart": "2025-11-09",
-   "periodEnd": "2026-11-08",
+   "fetchedAt": "2026-11-09T13:03:39.790Z",
+   "periodStart": "2025-11-10",
+   "periodEnd": "2026-11-09",
    "transform": "(last - first) / first",
    "confidence": "high",
-   "rawResponseHash": "b433117344dce38bc3dd7ce1b6d51fbfc5e79e9f7bdaca6fdca678f34adef187",
+   "rawResponseHash": "2a670965e265f31a2b8ab408bae3614d8ebec1b83d59dd3caf35061dc15deda8",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "MKT-NEAR-MCAP-1Y",
@@ -173,19 +173,19 @@
    "hasSeries": true
   },
   {
-   "value": 11847917552,
+   "value": 11922214003,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:21.145Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
-   "transform": "sum of daily values over 90 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:37.646Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
+   "transform": "sum of daily values over 90 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
+   "rawResponseHash": "aa95f142ddf9ddf5738a55c44596f09d199efd1d15e86d21c2725895defa8f9d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-VOL-90D",
@@ -197,19 +197,19 @@
    "hasSeries": true
   },
   {
-   "value": 6529784255,
+   "value": 6513540901,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-08",
-   "fetchedAt": "2026-11-08T10:10:21.145Z",
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
-   "transform": "sum of daily values over 90 days ending 2026-08-08",
+   "observedAt": "2026-08-09",
+   "fetchedAt": "2026-11-09T13:03:37.646Z",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
+   "transform": "sum of daily values over 90 days ending 2026-08-09",
    "confidence": "high",
-   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
+   "rawResponseHash": "aa95f142ddf9ddf5738a55c44596f09d199efd1d15e86d21c2725895defa8f9d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-VOL-PRIOR-90D",
@@ -221,19 +221,19 @@
    "hasSeries": false
   },
   {
-   "value": 18140204,
+   "value": 18281929,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:21.491Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
-   "transform": "sum of daily values over 90 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.051Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
+   "transform": "sum of daily values over 90 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
+   "rawResponseHash": "89fad6105225dff79940545f7dd68f46814e136dfd1f284a483329b33c96d224",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-FEES-90D",
@@ -245,19 +245,19 @@
    "hasSeries": true
   },
   {
-   "value": 8998390,
+   "value": 8931561,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-08",
-   "fetchedAt": "2026-11-08T10:10:21.491Z",
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
-   "transform": "sum of daily values over 90 days ending 2026-08-08",
+   "observedAt": "2026-08-09",
+   "fetchedAt": "2026-11-09T13:03:38.051Z",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
+   "transform": "sum of daily values over 90 days ending 2026-08-09",
    "confidence": "high",
-   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
+   "rawResponseHash": "89fad6105225dff79940545f7dd68f46814e136dfd1f284a483329b33c96d224",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-FEES-PRIOR-90D",
@@ -269,19 +269,19 @@
    "hasSeries": false
   },
   {
-   "value": 4949879,
+   "value": 4976669,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:21.844Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
-   "transform": "sum of daily values over 90 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.428Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
+   "transform": "sum of daily values over 90 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "e536b7e93127eb79b8024bfef47d7176e4ee54441e11ab895a836f14d07294d1",
+   "rawResponseHash": "6465a9d68c030e7c3d16fb8fb2deebf9cba52ebf2e47244e26e121606b93778e",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-REV-90D",
@@ -293,19 +293,19 @@
    "hasSeries": true
   },
   {
-   "value": 1727093,
+   "value": 1729335,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-08-08",
-   "fetchedAt": "2026-11-08T10:10:21.844Z",
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
-   "transform": "sum of daily values over 90 days ending 2026-08-08",
+   "observedAt": "2026-08-09",
+   "fetchedAt": "2026-11-09T13:03:38.428Z",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
+   "transform": "sum of daily values over 90 days ending 2026-08-09",
    "confidence": "high",
-   "rawResponseHash": "e536b7e93127eb79b8024bfef47d7176e4ee54441e11ab895a836f14d07294d1",
+   "rawResponseHash": "6465a9d68c030e7c3d16fb8fb2deebf9cba52ebf2e47244e26e121606b93778e",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-REV-PRIOR-90D",
@@ -317,19 +317,19 @@
    "hasSeries": false
   },
   {
-   "value": 4949879,
+   "value": 4976669,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:22.185Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
-   "transform": "sum of daily values over 90 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.819Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
+   "transform": "sum of daily values over 90 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "0611f8d5c07fdd05dc309be2bf376efb0079989f59ca14080359d891377b9489",
+   "rawResponseHash": "fc758816f0b089ea3501f6cae6bdcc533b44e233c20944e6095a527dac64d6a8",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-BUYBACK-90D",
@@ -341,7 +341,7 @@
    "hasSeries": false
   },
   {
-   "value": 48049887849.77778,
+   "value": 48351201234.388885,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -349,8 +349,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-VOL-90D x 365 / 90",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -367,7 +367,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.814442420961732,
+   "value": 0.8303737067452246,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -375,8 +375,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-11-07",
    "transform": "(INT-VOL-90D - INT-VOL-PRIOR-90D) / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -394,7 +394,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.0015310879671793314,
+   "value": 0.0015334340580868367,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -402,8 +402,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-FEES-90D / INT-VOL-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -421,7 +421,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.001378053186536712,
+   "value": 0.0013712297405899102,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -429,8 +429,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
    "transform": "INT-FEES-PRIOR-90D / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -448,7 +448,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.2728678795453458,
+   "value": 0.27221793717719833,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -456,8 +456,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-REV-90D / INT-FEES-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -475,7 +475,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.19193355700297499,
+   "value": 0.19362068959726078,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -483,8 +483,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
    "transform": "INT-REV-PRIOR-90D / INT-FEES-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -502,7 +502,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.0004177847270016181,
+   "value": 0.00041742825608965877,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -510,8 +510,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-REV-90D / INT-VOL-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -529,7 +529,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.0002644946498312753,
+   "value": 0.0002654984479692914,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -537,8 +537,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-05-11",
-   "periodEnd": "2026-08-08",
+   "periodStart": "2026-05-12",
+   "periodEnd": "2026-08-09",
    "transform": "INT-REV-PRIOR-90D / INT-VOL-PRIOR-90D",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -564,8 +564,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-BUYBACK-90D / INT-REV-90D",
    "confidence": "low",
    "rawResponseHash": null,
@@ -583,7 +583,7 @@
    "hasSeries": false
   },
   {
-   "value": 20074509.277777776,
+   "value": 20183157.611111112,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -591,8 +591,8 @@
    "sourceUrl": "/methodology",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "INT-REV-90D x 365 / 90",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -616,12 +616,12 @@
    "sourceName": "DefiLlama",
    "sourceUrl": "https://github.com/DefiLlama/dimension-adapters/tree/master/fees/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T10:10:21.491Z",
+   "fetchedAt": "2026-11-09T13:03:38.051Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "methodology fields",
    "confidence": "medium",
-   "rawResponseHash": "2aee1c341994c5d82f44a2475e61d1fd30955f0bbf9e0791a63e040f6ff67002",
+   "rawResponseHash": "89fad6105225dff79940545f7dd68f46814e136dfd1f284a483329b33c96d224",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "INT-DEFINITIONS",
@@ -633,19 +633,19 @@
    "hasSeries": false
   },
   {
-   "value": 2210686.843036436,
+   "value": 2224086.0513282325,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://nearblocks.io/address/buybacks.multisignature.near",
-   "observedAt": "block 223601671",
-   "fetchedAt": "2026-11-08T10:10:21.650Z",
+   "observedAt": "block 223770677",
+   "fetchedAt": "2026-11-09T13:03:37.227Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "view_account.amount + wrap.near ft_balance_of, yocto / 1e24",
    "confidence": "high",
-   "rawResponseHash": "8c325e447b90ea8ddd27721ca3e920af9852a539f6442a77fd9da71b930ac113",
+   "rawResponseHash": "5c649595d99dccf6509ada60f1e5ee6b7fe82d73771fe294c5226d31afdedd78",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ONC-BUYBACK-WALLET",
@@ -657,19 +657,19 @@
    "hasSeries": false
   },
   {
-   "value": 1311140113.568839,
+   "value": 1311241551.0677993,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://nearblocks.io/",
-   "observedAt": "block 223601669",
-   "fetchedAt": "2026-11-08T10:10:21.131Z",
+   "observedAt": "block 223770676",
+   "fetchedAt": "2026-11-09T13:03:36.676Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "header.total_supply / 1e24",
    "confidence": "high",
-   "rawResponseHash": "0ae11b93a2982125bcfcfaddac6de638fee9f96c91a9aff80555ae4ddf681afb",
+   "rawResponseHash": "b648f7b89e48da45468a5de06631249e7ab3821cabd07af86a81266ed45ef3f3",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ONC-TOTAL-SUPPLY",
@@ -688,7 +688,7 @@
    "sourceName": "NEAR JSON-RPC (FastNEAR)",
    "sourceUrl": "https://docs.near.org/api/rpc/protocol",
    "observedAt": "protocol 88",
-   "fetchedAt": "2026-11-08T10:10:21.395Z",
+   "fetchedAt": "2026-11-09T13:03:36.951Z",
    "periodStart": null,
    "periodEnd": null,
    "transform": "numerator / denominator",
@@ -705,7 +705,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.0016860797867125647,
+   "value": 0.0016961680702667372,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -732,7 +732,7 @@
    "hasSeries": false
   },
   {
-   "value": 121608245.53350984,
+   "value": 116700498.04503414,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -760,19 +760,19 @@
    "hasSeries": false
   },
   {
-   "value": 56864.933333333334,
+   "value": 56685.9,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
-   "transform": "mean of daily values over 30 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
+   "transform": "mean of daily values over 30 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-DAA-30D",
@@ -784,19 +784,19 @@
    "hasSeries": true
   },
   {
-   "value": 266657.1666666667,
+   "value": 265568.56666666665,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2025-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2025-10-08",
-   "periodEnd": "2025-11-06",
-   "transform": "mean of daily values over 30 days ending 2025-11-06",
+   "observedAt": "2025-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2025-10-09",
+   "periodEnd": "2025-11-07",
+   "transform": "mean of daily values over 30 days ending 2025-11-07",
    "confidence": "high",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-DAA-30D-1Y-AGO",
@@ -808,19 +808,19 @@
    "hasSeries": false
   },
   {
-   "value": 674462.5,
+   "value": 663381.9,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
-   "transform": "mean of daily values over 30 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
+   "transform": "mean of daily values over 30 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-TXN-30D",
@@ -832,19 +832,19 @@
    "hasSeries": true
   },
   {
-   "value": 9703.566666666668,
+   "value": 9507,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
-   "transform": "mean of daily values over 30 days ending 2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
+   "transform": "mean of daily values over 30 days ending 2026-11-07",
    "confidence": "high",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-NEW-30D",
@@ -856,7 +856,7 @@
    "hasSeries": false
   },
   {
-   "value": -0.7867489029296668,
+   "value": -0.7865489100931499,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -883,19 +883,19 @@
    "hasSeries": false
   },
   {
-   "value": 172457.15781177997,
+   "value": 167225.0120622,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over 30 days",
    "confidence": "high",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ACT-GAS-FEES-30D",
@@ -932,19 +932,19 @@
    "hasSeries": false
   },
   {
-   "value": 175323917,
+   "value": 166195493,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-08",
-   "fetchedAt": "2026-11-08T10:10:22.882Z",
+   "observedAt": "2026-11-09",
+   "fetchedAt": "2026-11-09T13:03:39.617Z",
    "periodStart": null,
-   "periodEnd": "2026-11-08",
+   "periodEnd": "2026-11-09",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
+   "rawResponseHash": "8cb5537a935fd761f5b264be4896daec3de9a10be1fef849b88b24371f4ae6f6",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-TVL-NEAR",
@@ -956,19 +956,19 @@
    "hasSeries": true
   },
   {
-   "value": 184256282,
+   "value": 129458575,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2025-11-08",
-   "fetchedAt": "2026-11-08T10:10:22.882Z",
+   "observedAt": "2025-11-09",
+   "fetchedAt": "2026-11-09T13:03:39.617Z",
    "periodStart": null,
-   "periodEnd": "2025-11-08",
+   "periodEnd": "2025-11-09",
    "transform": "daily value at end - 365d",
    "confidence": "high",
-   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
+   "rawResponseHash": "8cb5537a935fd761f5b264be4896daec3de9a10be1fef849b88b24371f4ae6f6",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-TVL-NEAR-1Y-AGO",
@@ -980,7 +980,7 @@
    "hasSeries": false
   },
   {
-   "value": -0.048477940089988354,
+   "value": 0.28377353914176795,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1007,19 +1007,19 @@
    "hasSeries": false
   },
   {
-   "value": 149414334,
+   "value": 144399582,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/rhea-lend",
-   "observedAt": "2026-11-08",
-   "fetchedAt": "2026-11-08T10:10:27.272Z",
+   "observedAt": "2026-11-09",
+   "fetchedAt": "2026-11-09T13:03:47.246Z",
    "periodStart": null,
-   "periodEnd": "2026-11-08",
+   "periodEnd": "2026-11-09",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "dde1d2b9e314327d47aa151b78f8183732fb071ce0c29981e299d15580344393",
+   "rawResponseHash": "106a9d3a36cce4e189df9567701ae3a3654146c421a22b0ff033f6b3124cb007",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-RHEA-LEND-TVL",
@@ -1031,19 +1031,19 @@
    "hasSeries": false
   },
   {
-   "value": 23167709,
+   "value": 22696345,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/rhea-dex",
-   "observedAt": "2026-11-08",
-   "fetchedAt": "2026-11-08T10:10:28.028Z",
+   "observedAt": "2026-11-09",
+   "fetchedAt": "2026-11-09T13:03:48.124Z",
    "periodStart": null,
-   "periodEnd": "2026-11-08",
+   "periodEnd": "2026-11-09",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "e26f462008cf851ff85c52dd27775adb509acace8d637eacd64f50b352975100",
+   "rawResponseHash": "3b19064bde768797af6cafc2659ee1bea5284b943b79fbb685c1d89ada427c56",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-RHEA-DEX-TVL",
@@ -1055,19 +1055,19 @@
    "hasSeries": false
   },
   {
-   "value": 130486129.8,
+   "value": 130419385.11,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/stablecoins/Near",
-   "observedAt": "2026-11-08",
-   "fetchedAt": "2026-11-08T10:10:28.429Z",
+   "observedAt": "2026-11-09",
+   "fetchedAt": "2026-11-09T13:03:48.946Z",
    "periodStart": null,
-   "periodEnd": "2026-11-08",
+   "periodEnd": "2026-11-09",
    "transform": "latest daily value",
    "confidence": "high",
-   "rawResponseHash": "1acb33acd4eafe14a166d3cc75acc38cfab0785d57f3b83b7f59a62521f20abb",
+   "rawResponseHash": "d47ddbc4072ba05d1f5abc1c530a1c78438434e307f28bf59e620a07489e557d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "DEFI-STABLES-NEAR",
@@ -1079,19 +1079,19 @@
    "hasSeries": false
   },
   {
-   "value": 367352,
+   "value": 368841,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:22.536Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:39.234Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "sum over 90 days (same window as Intents)",
    "confidence": "high",
-   "rawResponseHash": "03ac73e33c0f6f8c464727468e0f2d893d673d020f774787b098eb34536bf128",
+   "rawResponseHash": "313e2760ed10bddc7b4ea3cb71a94686cbd8085a03a0ffd72e416c7838bb2ed2",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "FEES-NEAR-CHAIN-90D",
@@ -1103,19 +1103,19 @@
    "hasSeries": true
   },
   {
-   "value": 257144,
+   "value": 258186,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:26.666Z",
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:46.296Z",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "sum over 90 days",
    "confidence": "high",
-   "rawResponseHash": "5724a23dbe4ef907a96c5c9db33988b6b8b2f6bdfa0679ad4e5223de687ee36e",
+   "rawResponseHash": "95934af72dd048acdbc836b8110bb0e280d403709d1d046fccd2cc3264a2f9ac",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "FEES-NEAR-BURN-90D",
@@ -1127,7 +1127,7 @@
    "hasSeries": false
   },
   {
-   "value": 21117371.055555556,
+   "value": 21230245.277777776,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1154,7 +1154,7 @@
    "hasSeries": false
   },
   {
-   "value": 230.25924070793755,
+   "value": 220.02552320436243,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1181,19 +1181,19 @@
    "hasSeries": false
   },
   {
-   "value": 174374,
+   "value": 170376,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:22.536Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:39.234Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "03ac73e33c0f6f8c464727468e0f2d893d673d020f774787b098eb34536bf128",
+   "rawResponseHash": "313e2760ed10bddc7b4ea3cb71a94686cbd8085a03a0ffd72e416c7838bb2ed2",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-FEES-30D",
@@ -1205,19 +1205,19 @@
    "hasSeries": false
   },
   {
-   "value": 172956530,
+   "value": 176426962,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:22.882Z",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:39.617Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-07",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "7784bfcd2fbbc1c29a256ebca6a09fc7b21aa916e18682919ce9d457a142cc83",
+   "rawResponseHash": "8cb5537a935fd761f5b264be4896daec3de9a10be1fef849b88b24371f4ae6f6",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-TVL",
@@ -1229,19 +1229,19 @@
    "hasSeries": false
   },
   {
-   "value": 4377081996.35,
+   "value": 4192531881.4200006,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/near",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.229Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:40.063Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "0bbe50ebe20c10c73922208c9ab21719e2d6c0353e5a11664783b9face0988c0",
+   "rawResponseHash": "65488a68385d16a710956eaa105eea6e5f35cfe909597c53e7d3371e8bd0281c",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-NEAR-DEX-30D",
@@ -1253,7 +1253,7 @@
    "hasSeries": false
   },
   {
-   "value": 2291.941769470156,
+   "value": 2253.4506234719533,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1280,7 +1280,7 @@
    "hasSeries": false
   },
   {
-   "value": 28.113826202456767,
+   "value": 26.4766551101186,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1307,19 +1307,19 @@
    "hasSeries": false
   },
   {
-   "value": 18812597,
+   "value": 18264979,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Solana",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.572Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:40.448Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "83f225e7da07e342ca0025a3a43832fa945624f3d6da7db7301bbb52c3f519eb",
+   "rawResponseHash": "5d574e11f020bd3f4d4d356c91f571476b513903f75444c3a656c1cace64df2c",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-FEES-30D",
@@ -1331,19 +1331,19 @@
    "hasSeries": false
   },
   {
-   "value": 5260256983,
+   "value": 5225773566,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Solana",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:23.905Z",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:41.781Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-07",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "7edc78cf0751c09f6e722370a8b131edd66bceec63044c1701550e6ff8860cef",
+   "rawResponseHash": "108a60026eb0757ac59589b37c0143f603f8fb26d89df8ecff8399997bb7160f",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-TVL",
@@ -1355,19 +1355,19 @@
    "hasSeries": false
   },
   {
-   "value": 56849033043.91999,
+   "value": 55121464376.189995,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/solana",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:24.257Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:42.211Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "fa5f862c35286858625fb0c8457fa7da3d6b6e6f664f2168090938a0b9091158",
+   "rawResponseHash": "cc4fbbb71324c219477be26b78d9d3918d5d0f809d0b3ead29996a27310da97c",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SOL-DEX-30D",
@@ -1379,7 +1379,7 @@
    "hasSeries": false
   },
   {
-   "value": 230.25799234271602,
+   "value": 230.56544555447243,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1406,7 +1406,7 @@
    "hasSeries": false
   },
   {
-   "value": 10.019086221704466,
+   "value": 9.80470248928501,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1439,10 +1439,10 @@
    "available": false,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Sui",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:24.608Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:43.562Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
    "rawResponseHash": "3c6a19b06ff3f74e9fde12c4bb54d9ded7ff8ca2b63732ee4783bf0bc11d4606",
@@ -1457,19 +1457,19 @@
    "hasSeries": false
   },
   {
-   "value": 438008652,
+   "value": 440978818,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Sui",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:24.947Z",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:43.928Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-07",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "293e7c6a9da9d988ce86bb3a401954b68cfb99aec2b3ff6a86803106a10130a8",
+   "rawResponseHash": "87a9c3478c76da070b731e8e489114970173b78ff3a3cf8726dae51385ad72ff",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SUI-TVL",
@@ -1481,19 +1481,19 @@
    "hasSeries": false
   },
   {
-   "value": 890603975,
+   "value": 830189522,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/sui",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:25.292Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:44.316Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "c843a8efc8bfd7af7fb262896f662ec04da9052856dc88dc6ac988ee768c35b4",
+   "rawResponseHash": "9c9bd8de41a368481411d34e45b4da4247d22888b09be01efb9e05dad5ffb92b",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-SUI-DEX-30D",
@@ -1532,7 +1532,7 @@
    "hasSeries": false
   },
   {
-   "value": 8.010096163579892,
+   "value": 7.928400241210679,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1559,19 +1559,19 @@
    "hasSeries": false
   },
   {
-   "value": 315991,
+   "value": 301516,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Avalanche",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:25.637Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:45.112Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "04dbc15860c15355db9282d5964526d85fd6dbe5cf583a6ba963868c243fa0dc",
+   "rawResponseHash": "5e0f90aadc43cdf7ca2b4113885474634eda458a50bf144d173d2980f936df84",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-FEES-30D",
@@ -1583,19 +1583,19 @@
    "hasSeries": false
   },
   {
-   "value": 569786595,
+   "value": 612061833,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/chain/Avalanche",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:25.978Z",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:45.541Z",
    "periodStart": null,
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-07",
    "transform": "daily value at peer window end",
    "confidence": "high",
-   "rawResponseHash": "2cf97bfc7299b9f2b0b3455c1419aaab0452983a6933ca311ad79589ec7fbcb5",
+   "rawResponseHash": "ded3f51b00274278d8c80648585005fab3e15c5b109540b1fb712560cb41e01e",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-TVL",
@@ -1607,19 +1607,19 @@
    "hasSeries": false
   },
   {
-   "value": 2674746954.450001,
+   "value": 2556272217.9500003,
    "valueText": null,
    "observationType": "OBSERVED",
    "available": true,
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/dexs/chain/avalanche",
-   "observedAt": "2026-11-06",
-   "fetchedAt": "2026-11-08T10:10:26.326Z",
-   "periodStart": "2026-10-08",
-   "periodEnd": "2026-11-06",
+   "observedAt": "2026-11-07",
+   "fetchedAt": "2026-11-09T13:03:45.907Z",
+   "periodStart": "2026-10-09",
+   "periodEnd": "2026-11-07",
    "transform": "sum over the matched 30-day peer window",
    "confidence": "high",
-   "rawResponseHash": "e4786b76ded140c168f8d4d86b21d6d06ca430703387a1f2ff98b221a430c6fe",
+   "rawResponseHash": "cbce302dcef4409f164bdc1e65bf41b61a3742921f941b8949cc5c9d80d76500",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "PEER-AVAX-DEX-30D",
@@ -1631,7 +1631,7 @@
    "hasSeries": false
   },
   {
-   "value": 947.0434289722922,
+   "value": 1029.1952481405835,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1658,7 +1658,7 @@
    "hasSeries": false
   },
   {
-   "value": 6.3900460873425775,
+   "value": 6.168569277542257,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1735,7 +1735,7 @@
    "hasSeries": false
   },
   {
-   "value": 20074509.27777778,
+   "value": 20183157.611111112,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1743,8 +1743,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "V x f x c x b",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1765,7 +1765,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.004128459404429884,
+   "value": 0.004320768892430476,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1773,8 +1773,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "(V x f x c x b) / M",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1795,7 +1795,7 @@
    "hasSeries": false
   },
   {
-   "value": 232773938860.67868,
+   "value": 223808319482.65048,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1803,8 +1803,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "(y x M) / (f x c x b), y = 0.02 (assumed)",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1825,7 +1825,7 @@
    "hasSeries": false
   },
   {
-   "value": 4.844422105383857,
+   "value": 4.628805774601335,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1833,8 +1833,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "required volume / V",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1855,7 +1855,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.002023925566778399,
+   "value": 0.0019321943222695777,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1863,8 +1863,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "(y x M) / V, y = 0.02 (assumed)",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -1885,7 +1885,7 @@
    "hasSeries": false
   },
   {
-   "value": 0.0004177847270016182,
+   "value": 0.0004174282560896588,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -1893,8 +1893,8 @@
    "sourceUrl": "/methodology#model",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-09",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-10",
+   "periodEnd": "2026-11-07",
    "transform": "f x c x b",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -2073,12 +2073,12 @@
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "fetchedAt": "2026-11-09T13:03:37.646Z",
    "periodStart": "2024-12-01",
    "periodEnd": "2026-10-01",
    "transform": "max over complete exact months",
    "confidence": "medium",
-   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
+   "rawResponseHash": "aa95f142ddf9ddf5738a55c44596f09d199efd1d15e86d21c2725895defa8f9d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-INTENTS-PEAK",
@@ -2097,12 +2097,12 @@
    "sourceName": "DefiLlama",
    "sourceUrl": "https://defillama.com/protocol/near-intents",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T10:10:21.145Z",
+   "fetchedAt": "2026-11-09T13:03:37.646Z",
    "periodStart": "2024-12-01",
    "periodEnd": "2026-10-01",
    "transform": "last complete month",
    "confidence": "medium",
-   "rawResponseHash": "721c6aa3be2cc1ed83162c48a239fbff9d2d8809ca2011c1809215dc0f00ae3d",
+   "rawResponseHash": "aa95f142ddf9ddf5738a55c44596f09d199efd1d15e86d21c2725895defa8f9d",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "ERA-INTENTS-LATEST",
@@ -2411,19 +2411,19 @@
   },
   {
    "group": "thesis",
-   "value": 0.02474350672375681,
+   "value": 0.024726374915339817,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
    "sourceName": "NearBlocks",
    "sourceUrl": "https://nearblocks.io/charts",
    "observedAt": null,
-   "fetchedAt": "2026-11-08T10:10:23.736Z",
-   "periodStart": "2026-08-08",
-   "periodEnd": "2026-11-06",
+   "fetchedAt": "2026-11-09T13:03:38.497Z",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-07",
    "transform": "(supply_end - supply_start) x 365/90 / supply_start",
    "confidence": "medium",
-   "rawResponseHash": "c0a451c3f1e036dda5515bdcad7f29bd00a99a8ff7e1d248e4a98242996d0728",
+   "rawResponseHash": "81248adc1b06819a4655430689968c1b7d501ffb3fee9f8823024e54daa062fd",
    "validationNotes": null,
    "inputs": [],
    "evidenceId": "SUP-NET-NEW-ANN-PCT",
@@ -2435,7 +2435,7 @@
   },
   {
    "group": "thesis",
-   "value": 119619012.8869728,
+   "value": 114712661.51812989,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2443,8 +2443,8 @@
    "sourceUrl": "/methodology#thesis",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-08",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-07",
    "transform": "net new NEAR x 365/90 x price",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -2461,7 +2461,7 @@
   },
   {
    "group": "thesis",
-   "value": 286317342774.7384,
+   "value": 274808089401.33398,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2489,7 +2489,7 @@
   },
   {
    "group": "thesis",
-   "value": 5.958751530698163,
+   "value": 5.683583497112413,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2516,7 +2516,7 @@
   },
   {
    "group": "thesis",
-   "value": 7860338.05,
+   "value": 7892180.05,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2525,7 +2525,7 @@
    "observedAt": null,
    "fetchedAt": null,
    "periodStart": "2026-02-23",
-   "periodEnd": "2026-11-06",
+   "periodEnd": "2026-11-07",
    "transform": "sum(daily holders revenue)",
    "confidence": "low",
    "rawResponseHash": null,
@@ -2540,7 +2540,7 @@
   },
   {
    "group": "thesis",
-   "value": 1.043421814112076,
+   "value": 1.0032394462070728,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2568,7 +2568,7 @@
   },
   {
    "group": "thesis",
-   "value": 0.16782038902750387,
+   "value": 0.1759453345777462,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2576,8 +2576,8 @@
    "sourceUrl": "/methodology#thesis",
    "observedAt": null,
    "fetchedAt": null,
-   "periodStart": "2026-08-08",
-   "periodEnd": "2026-11-06",
+   "periodStart": "2026-08-09",
+   "periodEnd": "2026-11-07",
    "transform": "(INT-BUYBACK-90D x 365/90) / SUP-NET-NEW-ANN-USD",
    "confidence": "medium",
    "rawResponseHash": null,
@@ -2595,7 +2595,7 @@
   },
   {
    "group": "thesis",
-   "value": 0.17365081588761633,
+   "value": 0.18192077697547726,
    "valueText": null,
    "observationType": "DERIVED",
    "available": true,
@@ -2619,19 +2619,2151 @@
    "unit": "fraction",
    "methodology": "Upper-bound denominator (protocol maximum inflation), so this understates coverage. Shown next to the realized measure for comparison.",
    "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "OBSERVED",
+   "sourceName": "DefiLlama",
+   "sourceUrl": "https://defillama.com/dexs",
+   "observedAt": null,
+   "fetchedAt": "2026-11-09T13:03:55.132Z",
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": "5035b04b2d2fd605b8c58a1970cac2a947b59937b56135a9971fcb9a1a6f6a6b",
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-DEX-VOL-365D",
+   "metricKey": "ladder.dex_volume_365d",
+   "label": "All DEX volume, last 365 days (DefiLlama)",
+   "unit": "USD",
+   "value": 3241717699694.5684,
+   "methodology": "Sum of DefiLlama's total DEX volume over the last 365 complete days. Includes some prediction-market venues DefiLlama lists as DEXs.",
+   "transform": "sum(daily volume)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-INTENTS-DEX-SHARE",
+   "metricKey": "ladder.intents_dex_share",
+   "label": "NEAR Intents share of all DEX volume, last 365 days",
+   "unit": "fraction",
+   "value": 0.010125568067846459,
+   "methodology": "NEAR Intents volume over the same 365 days divided by all DEX volume.",
+   "transform": "Intents 365d volume / LAD-DEX-VOL-365D",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "DefiLlama",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-INTENTS-YOY",
+   "metricKey": "ladder.intents_yoy",
+   "label": "NEAR Intents volume, latest 30 days vs the same 30 days a year earlier",
+   "unit": "fraction",
+   "value": 0.7276824641950359,
+   "methodology": "Momentum today. It is observed; it is not assumed to continue.",
+   "transform": "last 30d / same 30d a year earlier - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-DEX-CAGR-2021-2025",
+   "metricKey": "ladder.dex_cagr_2021_2025",
+   "label": "All DEX volume, compound annual growth 2021 to 2025",
+   "unit": "fraction",
+   "value": 0.27537555452833296,
+   "methodology": "Calendar-year DEX volume, 2025 versus 2021, annualized over four years.",
+   "transform": "(2025 / 2021)^(1/4) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "MKT-NEAR-CIRC"
+   ],
+   "evidenceId": "LAD-SUPPLY-2036",
+   "metricKey": "ladder.supply_2036",
+   "label": "NEAR supply in ten years at the current 2.5% maximum issuance",
+   "unit": "NEAR",
+   "value": 1678500081.5456738,
+   "methodology": "Protocol maximum inflation today; realized issuance has been close to the cap.",
+   "transform": "circulating x 1.025^10, monthly compounding",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "MKT-NEAR-CIRC"
+   ],
+   "evidenceId": "LAD-SUPPLY-2036-HSP029",
+   "metricKey": "ladder.supply_2036_hsp029",
+   "label": "NEAR supply in ten years if HSP-029 takes effect",
+   "unit": "NEAR",
+   "value": 1553293479.8237784,
+   "methodology": "Approved by House of Stake on 2026-11-02; linear cut over 24 months after a ~90-day buffer; needs validator adoption and can be vetoed until 2026-11-16.",
+   "transform": "2.5% for ~3 months, linear to 1.6% over 24 months, then 1.6%",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko and DefiLlama",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-MULT-HYPERLIQUID",
+   "metricKey": "ladder.multiple.hyperliquid",
+   "label": "Valuation multiple: Priced like Hyperliquid (market cap / holder revenue)",
+   "unit": "ratio",
+   "value": 25.98251989066665,
+   "methodology": "Hyperliquid market cap / holders revenue, last 365 days. Used as an assumption for 2036, not a forecast.",
+   "transform": "market cap / annual holder revenue",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko and DefiLlama",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-MULT-TRON",
+   "metricKey": "ladder.multiple.tron",
+   "label": "Valuation multiple: Priced like Tron (market cap / holder revenue)",
+   "unit": "ratio",
+   "value": 90.37229133290951,
+   "methodology": "Tron market cap / holders revenue, last 365 days. Used as an assumption for 2036, not a forecast.",
+   "transform": "market cap / annual holder revenue",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-MULT-TODAY",
+   "metricKey": "ladder.multiple.today",
+   "label": "Valuation multiple: Today's NEAR premium (market cap / holder revenue)",
+   "unit": "ratio",
+   "value": 220.02552320436243,
+   "methodology": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate). Used as an assumption for 2036, not a forecast.",
+   "transform": "market cap / annual holder revenue",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko and DefiLlama",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [],
+   "evidenceId": "LAD-MULT-SOLANA",
+   "metricKey": "ladder.multiple.solana",
+   "label": "Valuation multiple: Platform premium (Solana) (market cap / holder revenue)",
+   "unit": "ratio",
+   "value": 2002.0602786066106,
+   "methodology": "Solana market cap / holders revenue, last 365 days. Used as an assumption for 2036, not a forecast.",
+   "transform": "market cap / annual holder revenue",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-SUPPLY-2036"
+   ],
+   "evidenceId": "LAD-10-MCAP",
+   "metricKey": "ladder.10.market_cap",
+   "label": "Market cap at $10 in ten years (2.5% issuance)",
+   "unit": "USD",
+   "value": 16785000815.456738,
+   "methodology": "Price x projected supply.",
+   "transform": "LAD-SUPPLY-2036 x 10",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-MCAP"
+   ],
+   "evidenceId": "LAD-10-RANK",
+   "metricKey": "ladder.10.rank",
+   "label": "$10: rank among today's crypto assets at that market cap (stablecoins excluded)",
+   "unit": "count",
+   "value": 9,
+   "methodology": "Position against today's largest 40 assets by market cap; stablecoins and wrapped or tokenized assets excluded.",
+   "transform": "count of larger assets + 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-MCAP",
+    "LAD-MULT-HYPERLIQUID",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-10-HYPERLIQUID-VOLUME",
+   "metricKey": "ladder.10.hyperliquid.volume",
+   "label": "$10: Intents annual volume needed (Priced like Hyperliquid)",
+   "unit": "USD",
+   "value": 1547598338355.6323,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-HYPERLIQUID-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-10-HYPERLIQUID-DEX-SHARE",
+   "metricKey": "ladder.10.hyperliquid.dex_share",
+   "label": "$10: share of the 2036 DEX market Intents would need (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.07710288028443466,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-HYPERLIQUID-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-10-HYPERLIQUID-CAGR",
+   "metricKey": "ladder.10.hyperliquid.cagr",
+   "label": "$10: Intents growth needed every year for ten years (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.41424645456094367,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-MCAP",
+    "LAD-MULT-TRON",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-10-TRON-VOLUME",
+   "metricKey": "ladder.10.tron.volume",
+   "label": "$10: Intents annual volume needed (Priced like Tron)",
+   "unit": "USD",
+   "value": 444942847149.48926,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-TRON-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-10-TRON-DEX-SHARE",
+   "metricKey": "ladder.10.tron.dex_share",
+   "label": "$10: share of the 2036 DEX market Intents would need (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.022167492835146158,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-TRON-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-10-TRON-CAGR",
+   "metricKey": "ladder.10.tron.cagr",
+   "label": "$10: Intents growth needed every year for ten years (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.24850330441185053,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-MCAP",
+    "LAD-MULT-TODAY",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-10-TODAY-VOLUME",
+   "metricKey": "ladder.10.today.volume",
+   "label": "$10: Intents annual volume needed (Today's NEAR premium)",
+   "unit": "USD",
+   "value": 182753818845.5521,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-TODAY-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-10-TODAY-DEX-SHARE",
+   "metricKey": "ladder.10.today.dex_share",
+   "label": "$10: share of the 2036 DEX market Intents would need (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.009104976056606387,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-TODAY-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-10-TODAY-CAGR",
+   "metricKey": "ladder.10.today.cagr",
+   "label": "$10: Intents growth needed every year for ten years (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.14220989792913952,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-MCAP",
+    "LAD-MULT-SOLANA",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-10-SOLANA-VOLUME",
+   "metricKey": "ladder.10.solana.volume",
+   "label": "$10: Intents annual volume needed (Platform premium (Solana))",
+   "unit": "USD",
+   "value": 20084562407.41837,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-SOLANA-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-10-SOLANA-DEX-SHARE",
+   "metricKey": "ladder.10.solana.dex_share",
+   "label": "$10: share of the 2036 DEX market Intents would need (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.0010006327691653143,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-10-SOLANA-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-10-SOLANA-CAGR",
+   "metricKey": "ladder.10.solana.cagr",
+   "label": "$10: Intents growth needed every year for ten years (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": -0.08410537447418498,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-SUPPLY-2036"
+   ],
+   "evidenceId": "LAD-25-MCAP",
+   "metricKey": "ladder.25.market_cap",
+   "label": "Market cap at $25 in ten years (2.5% issuance)",
+   "unit": "USD",
+   "value": 41962502038.641846,
+   "methodology": "Price x projected supply.",
+   "transform": "LAD-SUPPLY-2036 x 25",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-MCAP"
+   ],
+   "evidenceId": "LAD-25-RANK",
+   "metricKey": "ladder.25.rank",
+   "label": "$25: rank among today's crypto assets at that market cap (stablecoins excluded)",
+   "unit": "count",
+   "value": 6,
+   "methodology": "Position against today's largest 40 assets by market cap; stablecoins and wrapped or tokenized assets excluded.",
+   "transform": "count of larger assets + 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-MCAP",
+    "LAD-MULT-HYPERLIQUID",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-25-HYPERLIQUID-VOLUME",
+   "metricKey": "ladder.25.hyperliquid.volume",
+   "label": "$25: Intents annual volume needed (Priced like Hyperliquid)",
+   "unit": "USD",
+   "value": 3868995845889.0806,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-HYPERLIQUID-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-25-HYPERLIQUID-DEX-SHARE",
+   "metricKey": "ladder.25.hyperliquid.dex_share",
+   "label": "$25: share of the 2036 DEX market Intents would need (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.19275720071108662,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-HYPERLIQUID-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-25-HYPERLIQUID-CAGR",
+   "metricKey": "ladder.25.hyperliquid.cagr",
+   "label": "$25: Intents growth needed every year for ten years (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.5499550360121936,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-MCAP",
+    "LAD-MULT-TRON",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-25-TRON-VOLUME",
+   "metricKey": "ladder.25.tron.volume",
+   "label": "$25: Intents annual volume needed (Priced like Tron)",
+   "unit": "USD",
+   "value": 1112357117873.7234,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-TRON-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-25-TRON-DEX-SHARE",
+   "metricKey": "ladder.25.tron.dex_share",
+   "label": "$25: share of the 2036 DEX market Intents would need (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.05541873208786541,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-TRON-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-25-TRON-CAGR",
+   "metricKey": "ladder.25.tron.cagr",
+   "label": "$25: Intents growth needed every year for ten years (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.36830746713929474,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-MCAP",
+    "LAD-MULT-TODAY",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-25-TODAY-VOLUME",
+   "metricKey": "ladder.25.today.volume",
+   "label": "$25: Intents annual volume needed (Today's NEAR premium)",
+   "unit": "USD",
+   "value": 456884547113.8803,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-TODAY-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-25-TODAY-DEX-SHARE",
+   "metricKey": "ladder.25.today.dex_share",
+   "label": "$25: share of the 2036 DEX market Intents would need (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.02276244014151597,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-TODAY-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-25-TODAY-CAGR",
+   "metricKey": "ladder.25.today.cagr",
+   "label": "$25: Intents growth needed every year for ten years (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.25181433389405994,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-MCAP",
+    "LAD-MULT-SOLANA",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-25-SOLANA-VOLUME",
+   "metricKey": "ladder.25.solana.volume",
+   "label": "$25: Intents annual volume needed (Platform premium (Solana))",
+   "unit": "USD",
+   "value": 50211406018.54592,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-SOLANA-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-25-SOLANA-DEX-SHARE",
+   "metricKey": "ladder.25.solana.dex_share",
+   "label": "$25: share of the 2036 DEX market Intents would need (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.0025015819229132854,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-25-SOLANA-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-25-SOLANA-CAGR",
+   "metricKey": "ladder.25.solana.cagr",
+   "label": "$25: Intents growth needed every year for ten years (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.0037822493470249796,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-SUPPLY-2036"
+   ],
+   "evidenceId": "LAD-50-MCAP",
+   "metricKey": "ladder.50.market_cap",
+   "label": "Market cap at $50 in ten years (2.5% issuance)",
+   "unit": "USD",
+   "value": 83925004077.28369,
+   "methodology": "Price x projected supply.",
+   "transform": "LAD-SUPPLY-2036 x 50",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-MCAP"
+   ],
+   "evidenceId": "LAD-50-RANK",
+   "metricKey": "ladder.50.rank",
+   "label": "$50: rank among today's crypto assets at that market cap (stablecoins excluded)",
+   "unit": "count",
+   "value": 4,
+   "methodology": "Position against today's largest 40 assets by market cap; stablecoins and wrapped or tokenized assets excluded.",
+   "transform": "count of larger assets + 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-MCAP",
+    "LAD-MULT-HYPERLIQUID",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-50-HYPERLIQUID-VOLUME",
+   "metricKey": "ladder.50.hyperliquid.volume",
+   "label": "$50: Intents annual volume needed (Priced like Hyperliquid)",
+   "unit": "USD",
+   "value": 7737991691778.161,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-HYPERLIQUID-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-50-HYPERLIQUID-DEX-SHARE",
+   "metricKey": "ladder.50.hyperliquid.dex_share",
+   "label": "$50: share of the 2036 DEX market Intents would need (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.38551440142217325,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-HYPERLIQUID-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-50-HYPERLIQUID-CAGR",
+   "metricKey": "ladder.50.hyperliquid.cagr",
+   "label": "$50: Intents growth needed every year for ten years (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.6612006757223539,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-MCAP",
+    "LAD-MULT-TRON",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-50-TRON-VOLUME",
+   "metricKey": "ladder.50.tron.volume",
+   "label": "$50: Intents annual volume needed (Priced like Tron)",
+   "unit": "USD",
+   "value": 2224714235747.447,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-TRON-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-50-TRON-DEX-SHARE",
+   "metricKey": "ladder.50.tron.dex_share",
+   "label": "$50: share of the 2036 DEX market Intents would need (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.11083746417573082,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-TRON-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-50-TRON-CAGR",
+   "metricKey": "ladder.50.tron.cagr",
+   "label": "$50: Intents growth needed every year for ten years (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.4665156318701471,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-MCAP",
+    "LAD-MULT-TODAY",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-50-TODAY-VOLUME",
+   "metricKey": "ladder.50.today.volume",
+   "label": "$50: Intents annual volume needed (Today's NEAR premium)",
+   "unit": "USD",
+   "value": 913769094227.7606,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-TODAY-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-50-TODAY-DEX-SHARE",
+   "metricKey": "ladder.50.today.dex_share",
+   "label": "$50: share of the 2036 DEX market Intents would need (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.04552488028303194,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-TODAY-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-50-TODAY-CAGR",
+   "metricKey": "ladder.50.today.cagr",
+   "label": "$50: Intents growth needed every year for ten years (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.3416613830902,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-MCAP",
+    "LAD-MULT-SOLANA",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-50-SOLANA-VOLUME",
+   "metricKey": "ladder.50.solana.volume",
+   "label": "$50: Intents annual volume needed (Platform premium (Solana))",
+   "unit": "USD",
+   "value": 100422812037.09184,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-SOLANA-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-50-SOLANA-DEX-SHARE",
+   "metricKey": "ladder.50.solana.dex_share",
+   "label": "$50: share of the 2036 DEX market Intents would need (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.005003163845826571,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-50-SOLANA-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-50-SOLANA-CAGR",
+   "metricKey": "ladder.50.solana.cagr",
+   "label": "$50: Intents growth needed every year for ten years (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.07582717701512975,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-SUPPLY-2036"
+   ],
+   "evidenceId": "LAD-100-MCAP",
+   "metricKey": "ladder.100.market_cap",
+   "label": "Market cap at $100 in ten years (2.5% issuance)",
+   "unit": "USD",
+   "value": 167850008154.56738,
+   "methodology": "Price x projected supply.",
+   "transform": "LAD-SUPPLY-2036 x 100",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "CoinGecko",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-MCAP"
+   ],
+   "evidenceId": "LAD-100-RANK",
+   "metricKey": "ladder.100.rank",
+   "label": "$100: rank among today's crypto assets at that market cap (stablecoins excluded)",
+   "unit": "count",
+   "value": 3,
+   "methodology": "Position against today's largest 40 assets by market cap; stablecoins and wrapped or tokenized assets excluded.",
+   "transform": "count of larger assets + 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-MCAP",
+    "LAD-MULT-HYPERLIQUID",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-100-HYPERLIQUID-VOLUME",
+   "metricKey": "ladder.100.hyperliquid.volume",
+   "label": "$100: Intents annual volume needed (Priced like Hyperliquid)",
+   "unit": "USD",
+   "value": 15475983383556.322,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-HYPERLIQUID-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-100-HYPERLIQUID-DEX-SHARE",
+   "metricKey": "ladder.100.hyperliquid.dex_share",
+   "label": "$100: share of the 2036 DEX market Intents would need (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.7710288028443465,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-HYPERLIQUID-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-100-HYPERLIQUID-CAGR",
+   "metricKey": "ladder.100.hyperliquid.cagr",
+   "label": "$100: Intents growth needed every year for ten years (Priced like Hyperliquid)",
+   "unit": "fraction",
+   "value": 0.7804308001865772,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-MCAP",
+    "LAD-MULT-TRON",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-100-TRON-VOLUME",
+   "metricKey": "ladder.100.tron.volume",
+   "label": "$100: Intents annual volume needed (Priced like Tron)",
+   "unit": "USD",
+   "value": 4449428471494.894,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-TRON-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-100-TRON-DEX-SHARE",
+   "metricKey": "ladder.100.tron.dex_share",
+   "label": "$100: share of the 2036 DEX market Intents would need (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.22167492835146163,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-TRON-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-100-TRON-CAGR",
+   "metricKey": "ladder.100.tron.cagr",
+   "label": "$100: Intents growth needed every year for ten years (Priced like Tron)",
+   "unit": "fraction",
+   "value": 0.5717725366330675,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-MCAP",
+    "LAD-MULT-TODAY",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-100-TODAY-VOLUME",
+   "metricKey": "ladder.100.today.volume",
+   "label": "$100: Intents annual volume needed (Today's NEAR premium)",
+   "unit": "USD",
+   "value": 1827538188455.5212,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-TODAY-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-100-TODAY-DEX-SHARE",
+   "metricKey": "ladder.100.today.dex_share",
+   "label": "$100: share of the 2036 DEX market Intents would need (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.09104976056606388,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-TODAY-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-100-TODAY-CAGR",
+   "metricKey": "ladder.100.today.cagr",
+   "label": "$100: Intents growth needed every year for ten years (Today's NEAR premium)",
+   "unit": "fraction",
+   "value": 0.43795706610581586,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-MCAP",
+    "LAD-MULT-SOLANA",
+    "INT-TAKE-RATE",
+    "INT-BUYBACK-SHARE"
+   ],
+   "evidenceId": "LAD-100-SOLANA-VOLUME",
+   "metricKey": "ladder.100.solana.volume",
+   "label": "$100: Intents annual volume needed (Platform premium (Solana))",
+   "unit": "USD",
+   "value": 200845624074.1837,
+   "methodology": "Market cap / multiple = holder revenue needed; divided by today's take rate and buyback share.",
+   "transform": "MCAP / multiple / (take rate x buyback share)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-SOLANA-VOLUME",
+    "LAD-DEX-VOL-365D"
+   ],
+   "evidenceId": "LAD-100-SOLANA-DEX-SHARE",
+   "metricKey": "ladder.100.solana.dex_share",
+   "label": "$100: share of the 2036 DEX market Intents would need (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.010006327691653142,
+   "methodology": "Required volume / DEX market grown 20% a year for ten years (assumption).",
+   "transform": "volume / (LAD-DEX-VOL-365D x 1.2^10)",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "LAD-100-SOLANA-VOLUME",
+    "INT-VOL-ANN"
+   ],
+   "evidenceId": "LAD-100-SOLANA-CAGR",
+   "metricKey": "ladder.100.solana.cagr",
+   "label": "$100: Intents growth needed every year for ten years (Platform premium (Solana))",
+   "unit": "fraction",
+   "value": 0.15304301860015124,
+   "methodology": "Required volume / today's run rate, annualized over ten years.",
+   "transform": "(volume / INT-VOL-ANN)^(1/10) - 1",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-HYPERLIQUID"
+   ],
+   "evidenceId": "LAD-IMPLIED-LOW-HYPERLIQUID",
+   "metricKey": "ladder.implied.low.hyperliquid",
+   "label": "Implied 2036 price: low growth, Priced like Hyperliquid",
+   "unit": "USD",
+   "value": 0.8103560241071751,
+   "methodology": "Intents grows 10% a year and loses share of a growing DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TRON"
+   ],
+   "evidenceId": "LAD-IMPLIED-LOW-TRON",
+   "metricKey": "ladder.implied.low.tron",
+   "label": "Implied 2036 price: low growth, Priced like Tron",
+   "unit": "USD",
+   "value": 2.8185769125610727,
+   "methodology": "Intents grows 10% a year and loses share of a growing DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TODAY"
+   ],
+   "evidenceId": "LAD-IMPLIED-LOW-TODAY",
+   "metricKey": "ladder.implied.low.today",
+   "label": "Implied 2036 price: low growth, Today's NEAR premium",
+   "unit": "USD",
+   "value": 6.862267745248068,
+   "methodology": "Intents grows 10% a year and loses share of a growing DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-SOLANA"
+   ],
+   "evidenceId": "LAD-IMPLIED-LOW-SOLANA",
+   "metricKey": "ladder.implied.low.solana",
+   "label": "Implied 2036 price: low growth, Platform premium (Solana)",
+   "unit": "USD",
+   "value": 62.4412726025601,
+   "methodology": "Intents grows 10% a year and loses share of a growing DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-HYPERLIQUID"
+   ],
+   "evidenceId": "LAD-IMPLIED-BASE-HYPERLIQUID",
+   "metricKey": "ladder.implied.base.hyperliquid",
+   "label": "Implied 2036 price: base growth, Priced like Hyperliquid",
+   "unit": "USD",
+   "value": 1.934467660826355,
+   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TRON"
+   ],
+   "evidenceId": "LAD-IMPLIED-BASE-TRON",
+   "metricKey": "ladder.implied.base.tron",
+   "label": "Implied 2036 price: base growth, Priced like Tron",
+   "unit": "USD",
+   "value": 6.728457276428002,
+   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TODAY"
+   ],
+   "evidenceId": "LAD-IMPLIED-BASE-TODAY",
+   "metricKey": "ladder.implied.base.today",
+   "label": "Implied 2036 price: base growth, Today's NEAR premium",
+   "unit": "USD",
+   "value": 16.381484974755352,
+   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-SOLANA"
+   ],
+   "evidenceId": "LAD-IMPLIED-BASE-SOLANA",
+   "metricKey": "ladder.implied.base.solana",
+   "label": "Implied 2036 price: base growth, Platform premium (Solana)",
+   "unit": "USD",
+   "value": 149.05870871211022,
+   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-HYPERLIQUID"
+   ],
+   "evidenceId": "LAD-IMPLIED-HIGH-HYPERLIQUID",
+   "metricKey": "ladder.implied.high.hyperliquid",
+   "label": "Implied 2036 price: high growth, Priced like Hyperliquid",
+   "unit": "USD",
+   "value": 9.037105871791397,
+   "methodology": "Intents grows 40% a year and keeps winning share for ten years. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TRON"
+   ],
+   "evidenceId": "LAD-IMPLIED-HIGH-TRON",
+   "metricKey": "ladder.implied.high.tron",
+   "label": "Implied 2036 price: high growth, Priced like Tron",
+   "unit": "USD",
+   "value": 31.432823609431846,
+   "methodology": "Intents grows 40% a year and keeps winning share for ten years. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-TODAY"
+   ],
+   "evidenceId": "LAD-IMPLIED-HIGH-TODAY",
+   "metricKey": "ladder.implied.high.today",
+   "label": "Implied 2036 price: high growth, Today's NEAR premium",
+   "unit": "USD",
+   "value": 76.52814107566147,
+   "methodology": "Intents grows 40% a year and keeps winning share for ten years. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
+  },
+  {
+   "group": "valuation",
+   "valueText": null,
+   "observationType": "DERIVED",
+   "sourceName": "Computed here",
+   "sourceUrl": "/methodology#ladder",
+   "observedAt": null,
+   "fetchedAt": null,
+   "periodStart": null,
+   "periodEnd": "2026-11-07",
+   "confidence": "medium",
+   "rawResponseHash": null,
+   "validationNotes": null,
+   "inputs": [
+    "INT-VOL-ANN",
+    "INT-TAKE-RATE",
+    "LAD-SUPPLY-2036",
+    "LAD-MULT-SOLANA"
+   ],
+   "evidenceId": "LAD-IMPLIED-HIGH-SOLANA",
+   "metricKey": "ladder.implied.high.solana",
+   "label": "Implied 2036 price: high growth, Platform premium (Solana)",
+   "unit": "USD",
+   "value": 696.3462657051737,
+   "methodology": "Intents grows 40% a year and keeps winning share for ten years. Scenario, not a forecast.",
+   "transform": "run rate x (1+g)^10 x take rate x multiple / supply 2036",
+   "available": true,
+   "hasSeries": false
   }
  ],
  "model": {
   "base": {
    "M": {
-    "value": 4862469825,
+    "value": 4671195825,
     "kind": "OBSERVED",
     "evidenceIds": [
      "MKT-NEAR-MCAP"
     ]
    },
    "V": {
-    "value": 48049887849.77778,
+    "value": 48351201234.388885,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-VOL-ANN"
@@ -2639,14 +4771,14 @@
     "note": "90-day run rate"
    },
    "f": {
-    "value": 0.0015310879671793314,
+    "value": 0.0015334340580868367,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-FEE-RATE"
     ]
    },
    "c": {
-    "value": 0.2728678795453458,
+    "value": 0.27221793717719833,
     "kind": "DERIVED",
     "evidenceIds": [
      "INT-CAPTURE"
@@ -2681,14 +4813,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4862469825,
+      "value": 4671195825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 48049887849.77778,
+      "value": 48351201234.388885,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -2696,7 +4828,7 @@
       "note": "90-day run rate"
      },
      "f": {
-      "value": 0.0007655439835896657,
+      "value": 0.0007667170290434184,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-FEE-RATE"
@@ -2704,7 +4836,7 @@
       "note": "Measured fee rate x 0.50 (assumed compression)"
      },
      "c": {
-      "value": 0.20465090965900934,
+      "value": 0.20416345288289875,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2725,11 +4857,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 3763970.4895833335,
-     "buybackDemandToMcap": 0.0007740861383306032,
-     "breakEvenAnnualVolumeUsd": 1241461007256.953,
-     "volumeMultipleRequired": 25.83691789538057,
-     "volumeToBuybackRate": 0.0000783346363128034,
+     "annualBuybackDemandUsd": 3784342.0520833335,
+     "buybackDemandToMcap": 0.0008101441673307142,
+     "breakEvenAnnualVolumeUsd": 1193644370574.136,
+     "volumeMultipleRequired": 24.686964131207123,
+     "volumeToBuybackRate": 0.00007826779801681103,
      "na": {}
     }
    },
@@ -2746,14 +4878,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4862469825,
+      "value": 4671195825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 48049887849.77778,
+      "value": 48351201234.388885,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -2761,14 +4893,14 @@
       "note": "90-day run rate"
      },
      "f": {
-      "value": 0.0015310879671793314,
+      "value": 0.0015334340580868367,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-FEE-RATE"
       ]
      },
      "c": {
-      "value": 0.2728678795453458,
+      "value": 0.27221793717719833,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2790,11 +4922,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 20074509.27777778,
-     "buybackDemandToMcap": 0.004128459404429884,
-     "breakEvenAnnualVolumeUsd": 232773938860.67868,
-     "volumeMultipleRequired": 4.844422105383857,
-     "volumeToBuybackRate": 0.0004177847270016182,
+     "annualBuybackDemandUsd": 20183157.611111112,
+     "buybackDemandToMcap": 0.004320768892430476,
+     "breakEvenAnnualVolumeUsd": 223808319482.65048,
+     "volumeMultipleRequired": 4.628805774601335,
+     "volumeToBuybackRate": 0.0004174282560896588,
      "na": {}
     }
    },
@@ -2811,14 +4943,14 @@
     },
     "inputs": {
      "M": {
-      "value": 4862469825,
+      "value": 4671195825,
       "kind": "OBSERVED",
       "evidenceIds": [
        "MKT-NEAR-MCAP"
       ]
      },
      "V": {
-      "value": 96099775699.55556,
+      "value": 96702402468.77777,
       "kind": "ASSUMED",
       "evidenceIds": [
        "INT-VOL-ANN"
@@ -2826,14 +4958,14 @@
       "note": "Measured run rate x 2.00 (assumed growth)"
      },
      "f": {
-      "value": 0.0015310879671793314,
+      "value": 0.0015334340580868367,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-FEE-RATE"
       ]
      },
      "c": {
-      "value": 0.2728678795453458,
+      "value": 0.27221793717719833,
       "kind": "DERIVED",
       "evidenceIds": [
        "INT-CAPTURE"
@@ -2853,11 +4985,11 @@
      }
     },
     "outputs": {
-     "annualBuybackDemandUsd": 40149018.55555556,
-     "buybackDemandToMcap": 0.008256918808859768,
-     "breakEvenAnnualVolumeUsd": 232773938860.67868,
-     "volumeMultipleRequired": 2.4222110526919285,
-     "volumeToBuybackRate": 0.0004177847270016182,
+     "annualBuybackDemandUsd": 40366315.222222224,
+     "buybackDemandToMcap": 0.008641537784860952,
+     "breakEvenAnnualVolumeUsd": 223808319482.65048,
+     "volumeMultipleRequired": 2.3144028873006675,
+     "volumeToBuybackRate": 0.0004174282560896588,
      "na": {}
     }
    }
@@ -2879,28 +5011,28 @@
    ],
    "cells": [
     [
-     1.2111055263459642,
-     2.4222110526919285,
-     4.844422105383857,
-     12.111055263459642
+     1.1572014436503337,
+     2.3144028873006675,
+     4.628805774601335,
+     11.572014436503338
     ],
     [
-     1.6148073684612856,
-     3.229614736922571,
-     6.459229473845142,
-     16.148073684612857
+     1.5429352582004452,
+     3.0858705164008904,
+     6.171741032801781,
+     15.429352582004451
     ],
     [
-     2.4222110526919285,
-     4.844422105383857,
-     9.688844210767714,
-     24.222110526919284
+     2.3144028873006675,
+     4.628805774601335,
+     9.25761154920267,
+     23.144028873006675
     ],
     [
-     4.844422105383857,
-     9.688844210767714,
-     19.377688421535428,
-     48.44422105383857
+     4.628805774601335,
+     9.25761154920267,
+     18.51522309840534,
+     46.28805774601335
     ]
    ]
   },
@@ -2920,24 +5052,24 @@
    ],
    "cells": [
     [
-     19.377688421535428,
-     25.83691789538057,
-     38.755376843070856
+     18.51522309840534,
+     24.686964131207123,
+     37.03044619681068
     ],
     [
-     9.688844210767714,
-     12.918458947690285,
-     19.377688421535428
+     9.25761154920267,
+     12.343482065603562,
+     18.51522309840534
     ],
     [
-     6.459229473845142,
-     8.612305965126856,
-     12.918458947690285
+     6.171741032801781,
+     8.228988043735708,
+     12.343482065603562
     ],
     [
-     4.844422105383857,
-     6.459229473845142,
-     9.688844210767714
+     4.628805774601335,
+     6.171741032801781,
+     9.25761154920267
     ]
    ]
   }
@@ -2954,7 +5086,7 @@
    ],
    "implication": "Activity is not converting into token-level value at a stable rate.",
    "status": "NOT TRIGGERED",
-   "observed": "volume 81.4%; take rate 0.026% -> 0.042%"
+   "observed": "volume 83.0%; take rate 0.027% -> 0.042%"
   },
   {
    "id": "F2",
@@ -2966,7 +5098,7 @@
    ],
    "implication": "Competition is pricing intents settlement toward zero faster than volume grows.",
    "status": "NOT TRIGGERED",
-   "observed": "0.138% -> 0.153%"
+   "observed": "0.137% -> 0.153%"
   },
   {
    "id": "F3",
@@ -2977,7 +5109,7 @@
    ],
    "implication": "Buybacks cannot be material to valuation on any plausible near-term growth path.",
    "status": "NOT TRIGGERED",
-   "observed": "4.84x today's run rate"
+   "observed": "4.63x today's run rate"
   },
   {
    "id": "F4",
@@ -2999,7 +5131,7 @@
    ],
    "implication": "Liquidity is leaving as incentives fade; DeFi activity is not self-sustaining.",
    "status": "NOT TRIGGERED",
-   "observed": "-4.85% vs a year earlier"
+   "observed": "28.4% vs a year earlier"
   },
   {
    "id": "F6",
@@ -3011,7 +5143,7 @@
    ],
    "implication": "Burns plus buybacks are too small to be a primary valuation support today; the investment case depends on growth not yet measured.",
    "status": "TRIGGERED",
-   "observed": "0.434% of market cap"
+   "observed": "0.454% of market cap"
   }
  ],
  "thesis": {
@@ -3520,23 +5652,23 @@
    }
   ],
   "supply": {
-   "start": "2026-08-08",
-   "end": "2026-11-06",
-   "netNewNear90d": 7950161.473860025,
-   "netNewAnnualPct": 0.02474350672375681,
-   "netNewAnnualUsd": 119619012.8869728,
-   "buybackAnnualUsd": 20074509.277777776,
-   "buybackCoverage": 0.16782038902750387,
-   "maxIssuanceCoverage": 0.17365081588761633,
-   "takeRate": 0.0004177847270016181,
-   "takeRatePrior": 0.0002644946498312753,
-   "parityVolumeUsd": 286317342774.7384,
-   "parityMultiple": 5.958751530698163,
+   "start": "2026-08-09",
+   "end": "2026-11-07",
+   "netNewNear90d": 7945312.864885092,
+   "netNewAnnualPct": 0.024726374915339817,
+   "netNewAnnualUsd": 114712661.51812989,
+   "buybackAnnualUsd": 20183157.611111112,
+   "buybackCoverage": 0.1759453345777462,
+   "maxIssuanceCoverage": 0.18192077697547726,
+   "takeRate": 0.00041742825608965877,
+   "takeRatePrior": 0.0002654984479692914,
+   "parityVolumeUsd": 274808089401.33398,
+   "parityMultiple": 5.683583497112413,
    "designatedStart": "2026-02-23",
-   "designatedSinceStartUsd": 7860338.05,
-   "walletNear": 2210686.843036436,
-   "walletUsd": 8201648.1876651775,
-   "walletVsDesignated": 1.043421814112076
+   "designatedSinceStartUsd": 7892180.05,
+   "walletNear": 2224086.0513282325,
+   "walletUsd": 7917746.342728508,
+   "walletVsDesignated": 1.0032394462070728
   },
   "sections": [
    {
@@ -3555,11 +5687,1207 @@
     "id": 3,
     "title": "Does it pay $NEAR?",
     "verdict": "HYPE",
-    "reason": "Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising."
+    "reason": "Buyback-designated Intents revenue equals 17.6% of the value of realized net new supply; the take rate is rising."
    }
   ],
   "verdict": "MIXED",
   "confidence": "low",
-  "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 1 of 2 era products keep at least 25% of their peak monthly activity. Buyback-designated Intents revenue equals 16.8% of the value of realized net new supply; the take rate is rising. Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI."
+  "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 1 of 2 era products keep at least 25% of their peak monthly activity. Buyback-designated Intents revenue equals 17.6% of the value of realized net new supply; the take rate is rising. Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI."
+ },
+ "ladder": {
+  "version": "three-digits-1.0.0",
+  "asOf": "2026-11-07",
+  "inputs": {
+   "price": 3.56,
+   "marketCap": 4671195825,
+   "circulating": 1311241581,
+   "supply2036": 1678500081.5456738,
+   "supply2036Hsp029": 1553293479.8237784,
+   "captureToday": 21230245.277777776,
+   "takeRate": 0.00041742825608965877,
+   "buybackShare": 1,
+   "intentsRunRate": 48351201234.388885,
+   "intents365": 32824233225,
+   "intentsYoY": 0.7276824641950359,
+   "dex365": 3241717699694.5684,
+   "dexShareToday": 0.010125568067846459,
+   "dex2036Base": 20071861552337.594,
+   "dexCagr2021to2025": 0.27537555452833296,
+   "totalCryptoCap": 2495027642347.8193
+  },
+  "multiples": [
+   {
+    "key": "hyperliquid",
+    "label": "Priced like Hyperliquid",
+    "regime": "cash-flow",
+    "value": 25.98251989066665,
+    "source": "Hyperliquid market cap / holders revenue, last 365 days"
+   },
+   {
+    "key": "tron",
+    "label": "Priced like Tron",
+    "regime": "cash-flow",
+    "value": 90.37229133290951,
+    "source": "Tron market cap / holders revenue, last 365 days"
+   },
+   {
+    "key": "today",
+    "label": "Today's NEAR premium",
+    "regime": "today",
+    "value": 220.02552320436243,
+    "source": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate)"
+   },
+   {
+    "key": "solana",
+    "label": "Platform premium (Solana)",
+    "regime": "platform",
+    "value": 2002.0602786066106,
+    "source": "Solana market cap / holders revenue, last 365 days"
+   }
+  ],
+  "peers": [
+   {
+    "label": "Ethereum",
+    "regime": "platform",
+    "marketCap": 259502367293,
+    "holdersRevenue365": 48100221,
+    "multiple": 5395.034823083245
+   },
+   {
+    "label": "BNB",
+    "regime": "platform",
+    "marketCap": 90272436047,
+    "holdersRevenue365": 15997126,
+    "multiple": 5643.040884156317
+   },
+   {
+    "label": "Solana",
+    "regime": "platform",
+    "marketCap": 51237155091,
+    "holdersRevenue365": 25592214,
+    "multiple": 2002.0602786066106
+   },
+   {
+    "label": "Tron",
+    "regime": "cash-flow",
+    "marketCap": 30161472259,
+    "holdersRevenue365": 333746902,
+    "multiple": 90.37229133290951
+   },
+   {
+    "label": "Hyperliquid",
+    "regime": "cash-flow",
+    "marketCap": 17677135488,
+    "holdersRevenue365": 680347232,
+    "multiple": 25.98251989066665
+   }
+  ],
+  "platform": [
+   {
+    "chain": "Ethereum",
+    "marketCap": 259502367293,
+    "stablecoins": 134466060945.24486,
+    "tvl": 41585831491.94311,
+    "capToStablecoins": 1.9298726047955732,
+    "capToTvl": 6.2401630070394605
+   },
+   {
+    "chain": "BSC",
+    "marketCap": 90272436047,
+    "stablecoins": 13724304033.287477,
+    "tvl": 5058929914.525676,
+    "capToStablecoins": 6.577560204732394,
+    "capToTvl": 17.844176055454195
+   },
+   {
+    "chain": "Solana",
+    "marketCap": 51237155091,
+    "stablecoins": 14764589394.99442,
+    "tvl": 5065406950.84808,
+    "capToStablecoins": 3.4702729429353947,
+    "capToTvl": 10.115111300666886
+   },
+   {
+    "chain": "Tron",
+    "marketCap": 30161472259,
+    "stablecoins": 93600746680.25998,
+    "tvl": 4951031105.265747,
+    "capToStablecoins": 0.3222353808995942,
+    "capToTvl": 6.091957739251788
+   },
+   {
+    "chain": "Near",
+    "marketCap": 4671195825,
+    "stablecoins": 130475219.0208096,
+    "tvl": 166184310.74280345,
+    "capToStablecoins": 35.801402442980276,
+    "capToTvl": 28.108524830779096
+   }
+  ],
+  "platformRequirement": [
+   {
+    "benchmark": "Ethereum",
+    "stablecoins": 86974657154.81636,
+    "stablecoinsMultiple": 666.5990508201002,
+    "tvl": 26898337105.171387,
+    "tvlMultiple": 161.85846296165
+   },
+   {
+    "benchmark": "BSC",
+    "stablecoins": 25518581803.904037,
+    "stablecoinsMultiple": 195.5818276866357,
+    "tvl": 9406430850.768415,
+    "tvlMultiple": 56.60240012263466
+   },
+   {
+    "benchmark": "Solana",
+    "stablecoins": 48367955752.952484,
+    "stablecoinsMultiple": 370.70607059290114,
+    "tvl": 16593985292.43085,
+    "tvlMultiple": 99.8528995803501
+   },
+   {
+    "benchmark": "Tron",
+    "stablecoins": 520892546578.76324,
+    "stablecoinsMultiple": 3992.271869615989,
+    "tvl": 27552720379.702217,
+    "tvlMultiple": 165.79615883441858
+   }
+  ],
+  "rungs": [
+   {
+    "price": 10,
+    "priceMultiple": 2.8089887640449436,
+    "marketCap": 16785000815.456738,
+    "marketCapHsp029": 15532934798.237783,
+    "rankToday": 9,
+    "shareOfCryptoToday": 0.00672738070335047,
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "requiredCapture": 646011275.5070453,
+      "captureMultiple": 30.428818275747446,
+      "requiredVolume": 1547598338355.6323,
+      "volumeMultiple": 32.00744343151773,
+      "requiredCagr": 0.41424645456094367,
+      "dexShare2036": 0.07710288028443466,
+      "dexShare2036Low": 0.18405864093024657,
+      "shareMultiple": 7.6146720626246465,
+      "band": "dominant",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 26x in 2036 (Priced like Hyperliquid)",
+        "status": "ASSUMED",
+        "detail": "Hyperliquid market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $646M a year (30x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $1.55T a year, 41% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 7.7% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "tron",
+      "requiredCapture": 185731716.7451789,
+      "captureMultiple": 8.748448937591357,
+      "requiredVolume": 444942847149.48926,
+      "volumeMultiple": 9.20231216164764,
+      "requiredCagr": 0.24850330441185053,
+      "dexShare2036": 0.022167492835146158,
+      "dexShare2036Low": 0.05291784935940538,
+      "shareMultiple": 2.1892591790023705,
+      "band": "gains",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 90x in 2036 (Priced like Tron)",
+        "status": "ASSUMED",
+        "detail": "Tron market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $186M a year (8.7x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $444.9B a year, 25% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 2.2% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "today",
+      "requiredCapture": 76286607.89442423,
+      "captureMultiple": 3.593298470944908,
+      "requiredVolume": 182753818845.5521,
+      "volumeMultiple": 3.7797162051802733,
+      "requiredCagr": 0.14220989792913952,
+      "dexShare2036": 0.009104976056606387,
+      "dexShare2036Low": 0.02173523884580125,
+      "shareMultiple": 0.8992064440827827,
+      "band": "holds",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 220x in 2036 (Today's NEAR premium)",
+        "status": "ASSUMED",
+        "detail": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate). Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+       },
+       {
+        "text": "Revenue to holders grows to $76M a year (3.6x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $182.8B a year, 14% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 0.9% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "solana",
+      "requiredCapture": 8383863.860052568,
+      "captureMultiple": 0.394901884097786,
+      "requiredVolume": 20084562407.41837,
+      "volumeMultiple": 0.41538910915689103,
+      "requiredCagr": -0.08410537447418498,
+      "dexShare2036": 0.0010006327691653143,
+      "dexShare2036Low": 0.0023886929630048816,
+      "shareMultiple": 0.09882238334289647,
+      "band": "holds",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 2002x in 2036 (Platform premium (Solana))",
+        "status": "ASSUMED",
+        "detail": "Solana market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $8M a year (0.4x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $20.1B a year, -8% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 0.1% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       },
+       {
+        "text": "NEAR becomes a top platform: about $4.8B of stablecoins and $1.7B of TVL on NEAR",
+        "status": "UNPROVEN",
+        "detail": "Platform premiums follow the economy on the chain; NEAR today: $130M stablecoins, $166M TVL."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "price": 25,
+    "priceMultiple": 7.022471910112359,
+    "marketCap": 41962502038.641846,
+    "marketCapHsp029": 38832336995.59446,
+    "rankToday": 6,
+    "shareOfCryptoToday": 0.016818451758376176,
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "requiredCapture": 1615028188.7676132,
+      "captureMultiple": 76.07204568936861,
+      "requiredVolume": 3868995845889.0806,
+      "volumeMultiple": 80.01860857879431,
+      "requiredCagr": 0.5499550360121936,
+      "dexShare2036": 0.19275720071108662,
+      "dexShare2036Low": 0.46014660232561644,
+      "shareMultiple": 19.036680156561616,
+      "band": "beyond",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 26x in 2036 (Priced like Hyperliquid)",
+        "status": "ASSUMED",
+        "detail": "Hyperliquid market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $1.6B a year (76x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $3.87T a year, 55% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 19.3% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "tron",
+      "requiredCapture": 464329291.86294734,
+      "captureMultiple": 21.871122343978396,
+      "requiredVolume": 1112357117873.7234,
+      "volumeMultiple": 23.005780404119108,
+      "requiredCagr": 0.36830746713929474,
+      "dexShare2036": 0.05541873208786541,
+      "dexShare2036Low": 0.13229462339851347,
+      "shareMultiple": 5.473147947505928,
+      "band": "dominant",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 90x in 2036 (Priced like Tron)",
+        "status": "ASSUMED",
+        "detail": "Tron market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $464M a year (22x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $1.11T a year, 37% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 5.5% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "today",
+      "requiredCapture": 190716519.7360606,
+      "captureMultiple": 8.98324617736227,
+      "requiredVolume": 456884547113.8803,
+      "volumeMultiple": 9.449290512950684,
+      "requiredCagr": 0.25181433389405994,
+      "dexShare2036": 0.02276244014151597,
+      "dexShare2036Low": 0.05433809711450313,
+      "shareMultiple": 2.248016110206957,
+      "band": "gains",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 220x in 2036 (Today's NEAR premium)",
+        "status": "ASSUMED",
+        "detail": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate). Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+       },
+       {
+        "text": "Revenue to holders grows to $191M a year (9.0x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $456.9B a year, 25% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 2.3% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "solana",
+      "requiredCapture": 20959659.65013142,
+      "captureMultiple": 0.987254710244465,
+      "requiredVolume": 50211406018.54592,
+      "volumeMultiple": 1.0384727728922276,
+      "requiredCagr": 0.0037822493470249796,
+      "dexShare2036": 0.0025015819229132854,
+      "dexShare2036Low": 0.005971732407512203,
+      "shareMultiple": 0.24705595835724115,
+      "band": "holds",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 2002x in 2036 (Platform premium (Solana))",
+        "status": "ASSUMED",
+        "detail": "Solana market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $21M a year (1.0x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $50.2B a year, 0% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 0.3% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       },
+       {
+        "text": "NEAR becomes a top platform: about $12.1B of stablecoins and $4.1B of TVL on NEAR",
+        "status": "UNPROVEN",
+        "detail": "Platform premiums follow the economy on the chain; NEAR today: $130M stablecoins, $166M TVL."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "price": 50,
+    "priceMultiple": 14.044943820224718,
+    "marketCap": 83925004077.28369,
+    "marketCapHsp029": 77664673991.18892,
+    "rankToday": 4,
+    "shareOfCryptoToday": 0.03363690351675235,
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "requiredCapture": 3230056377.5352263,
+      "captureMultiple": 152.14409137873722,
+      "requiredVolume": 7737991691778.161,
+      "volumeMultiple": 160.03721715758863,
+      "requiredCagr": 0.6612006757223539,
+      "dexShare2036": 0.38551440142217325,
+      "dexShare2036Low": 0.9202932046512329,
+      "shareMultiple": 38.07336031312323,
+      "band": "beyond",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 26x in 2036 (Priced like Hyperliquid)",
+        "status": "ASSUMED",
+        "detail": "Hyperliquid market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $3.2B a year (152x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $7.74T a year, 66% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 38.6% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "tron",
+      "requiredCapture": 928658583.7258947,
+      "captureMultiple": 43.74224468795679,
+      "requiredVolume": 2224714235747.447,
+      "volumeMultiple": 46.011560808238215,
+      "requiredCagr": 0.4665156318701471,
+      "dexShare2036": 0.11083746417573082,
+      "dexShare2036Low": 0.26458924679702694,
+      "shareMultiple": 10.946295895011856,
+      "band": "beyond",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 90x in 2036 (Priced like Tron)",
+        "status": "ASSUMED",
+        "detail": "Tron market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $929M a year (44x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $2.22T a year, 47% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 11.1% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "today",
+      "requiredCapture": 381433039.4721212,
+      "captureMultiple": 17.96649235472454,
+      "requiredVolume": 913769094227.7606,
+      "volumeMultiple": 18.89858102590137,
+      "requiredCagr": 0.3416613830902,
+      "dexShare2036": 0.04552488028303194,
+      "dexShare2036Low": 0.10867619422900626,
+      "shareMultiple": 4.496032220413914,
+      "band": "gains",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 220x in 2036 (Today's NEAR premium)",
+        "status": "ASSUMED",
+        "detail": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate). Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+       },
+       {
+        "text": "Revenue to holders grows to $381M a year (18x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $913.8B a year, 34% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 4.6% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "solana",
+      "requiredCapture": 41919319.30026284,
+      "captureMultiple": 1.97450942048893,
+      "requiredVolume": 100422812037.09184,
+      "volumeMultiple": 2.0769455457844552,
+      "requiredCagr": 0.07582717701512975,
+      "dexShare2036": 0.005003163845826571,
+      "dexShare2036Low": 0.011943464815024406,
+      "shareMultiple": 0.4941119167144823,
+      "band": "holds",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 2002x in 2036 (Platform premium (Solana))",
+        "status": "ASSUMED",
+        "detail": "Solana market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $42M a year (2.0x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $100.4B a year, 8% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 0.5% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       },
+       {
+        "text": "NEAR becomes a top platform: about $24.2B of stablecoins and $8.3B of TVL on NEAR",
+        "status": "UNPROVEN",
+        "detail": "Platform premiums follow the economy on the chain; NEAR today: $130M stablecoins, $166M TVL."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "price": 100,
+    "priceMultiple": 28.089887640449437,
+    "marketCap": 167850008154.56738,
+    "marketCapHsp029": 155329347982.37784,
+    "rankToday": 3,
+    "shareOfCryptoToday": 0.0672738070335047,
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "requiredCapture": 6460112755.070453,
+      "captureMultiple": 304.28818275747443,
+      "requiredVolume": 15475983383556.322,
+      "volumeMultiple": 320.07443431517726,
+      "requiredCagr": 0.7804308001865772,
+      "dexShare2036": 0.7710288028443465,
+      "dexShare2036Low": 1.8405864093024658,
+      "shareMultiple": 76.14672062624646,
+      "band": "beyond",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 26x in 2036 (Priced like Hyperliquid)",
+        "status": "ASSUMED",
+        "detail": "Hyperliquid market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $6.5B a year (304x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $15.48T a year, 78% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 77.1% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "tron",
+      "requiredCapture": 1857317167.4517894,
+      "captureMultiple": 87.48448937591358,
+      "requiredVolume": 4449428471494.894,
+      "volumeMultiple": 92.02312161647643,
+      "requiredCagr": 0.5717725366330675,
+      "dexShare2036": 0.22167492835146163,
+      "dexShare2036Low": 0.5291784935940539,
+      "shareMultiple": 21.89259179002371,
+      "band": "beyond",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 90x in 2036 (Priced like Tron)",
+        "status": "ASSUMED",
+        "detail": "Tron market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $1.9B a year (87x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $4.45T a year, 57% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 22.2% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "today",
+      "requiredCapture": 762866078.9442424,
+      "captureMultiple": 35.93298470944908,
+      "requiredVolume": 1827538188455.5212,
+      "volumeMultiple": 37.79716205180274,
+      "requiredCagr": 0.43795706610581586,
+      "dexShare2036": 0.09104976056606388,
+      "dexShare2036Low": 0.21735238845801252,
+      "shareMultiple": 8.992064440827829,
+      "band": "dominant",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 220x in 2036 (Today's NEAR premium)",
+        "status": "ASSUMED",
+        "detail": "NEAR market cap / annualized burn + Intents buybacks (90-day run rate). Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+       },
+       {
+        "text": "Revenue to holders grows to $763M a year (36x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $1.83T a year, 44% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 9.1% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       }
+      ]
+     },
+     {
+      "multipleKey": "solana",
+      "requiredCapture": 83838638.60052568,
+      "captureMultiple": 3.94901884097786,
+      "requiredVolume": 200845624074.1837,
+      "volumeMultiple": 4.1538910915689105,
+      "requiredCagr": 0.15304301860015124,
+      "dexShare2036": 0.010006327691653142,
+      "dexShare2036Low": 0.023886929630048813,
+      "shareMultiple": 0.9882238334289646,
+      "band": "holds",
+      "conditions": [
+       {
+        "text": "NEAR Intents already returns $21M a year to $NEAR (burns plus buybacks)",
+        "status": "OBSERVED",
+        "detail": "VAL-NEAR-VALUE-CAPTURE-ANN, 90-day run rate."
+       },
+       {
+        "text": "The market values that revenue at 2002x in 2036 (Platform premium (Solana))",
+        "status": "ASSUMED",
+        "detail": "Solana market cap / holders revenue, last 365 days. Multiples move with sentiment; this is another token's multiple today, applied to NEAR."
+       },
+       {
+        "text": "Revenue to holders grows to $84M a year (3.9x today)",
+        "status": "UNPROVEN",
+        "detail": "Requires the volume and fee conditions below."
+       },
+       {
+        "text": "Intents volume reaches $200.8B a year, 15% growth a year for ten years",
+        "status": "UNPROVEN",
+        "detail": "Today: $48.4B run rate; 73% year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not."
+       },
+       {
+        "text": "Intents handles 1.0% of all DEX volume in 2036 (today 1.01%)",
+        "status": "UNPROVEN",
+        "detail": "Assumes the DEX market grows 20% a year to $20.07T (2021 to 2025: 28% a year)."
+       },
+       {
+        "text": "NEAR keeps 0.042% of every dollar of volume",
+        "status": "ASSUMED",
+        "detail": "INT-TAKE-RATE, 90 days. Fee competition halving it doubles every volume requirement."
+       },
+       {
+        "text": "NEAR becomes a top platform: about $48.4B of stablecoins and $16.6B of TVL on NEAR",
+        "status": "UNPROVEN",
+        "detail": "Platform premiums follow the economy on the chain; NEAR today: $130M stablecoins, $166M TVL."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "implied": [
+   {
+    "growthKey": "low",
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "price": 0.8103560241071751,
+      "multipleOfToday": 0.22762809665931885
+     },
+     {
+      "multipleKey": "tron",
+      "price": 2.8185769125610727,
+      "multipleOfToday": 0.7917350877980541
+     },
+     {
+      "multipleKey": "today",
+      "price": 6.862267745248068,
+      "multipleOfToday": 1.9276032992269854
+     },
+     {
+      "multipleKey": "solana",
+      "price": 62.4412726025601,
+      "multipleOfToday": 17.53968331532587
+     }
+    ]
+   },
+   {
+    "growthKey": "base",
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "price": 1.934467660826355,
+      "multipleOfToday": 0.5433897923669536
+     },
+     {
+      "multipleKey": "tron",
+      "price": 6.728457276428002,
+      "multipleOfToday": 1.89001608888427
+     },
+     {
+      "multipleKey": "today",
+      "price": 16.381484974755352,
+      "multipleOfToday": 4.601540723245885
+     },
+     {
+      "multipleKey": "solana",
+      "price": 149.05870871211022,
+      "multipleOfToday": 41.870423795536574
+     }
+    ]
+   },
+   {
+    "growthKey": "high",
+    "byMultiple": [
+     {
+      "multipleKey": "hyperliquid",
+      "price": 9.037105871791397,
+      "multipleOfToday": 2.538512885334662
+     },
+     {
+      "multipleKey": "tron",
+      "price": 31.432823609431846,
+      "multipleOfToday": 8.829444834110069
+     },
+     {
+      "multipleKey": "today",
+      "price": 76.52814107566147,
+      "multipleOfToday": 21.49666884147794
+     },
+     {
+      "multipleKey": "solana",
+      "price": 696.3462657051737,
+      "multipleOfToday": 195.60288362504878
+     }
+    ]
+   }
+  ],
+  "checkpoints": [
+   {
+    "price": 10,
+    "multipleKey": "today",
+    "years": [
+     {
+      "year": 2027,
+      "volume": 55227220626.68262
+     },
+     {
+      "year": 2028,
+      "volume": 63081078034.913216
+     },
+     {
+      "year": 2029,
+      "volume": 72051831703.51831
+     },
+     {
+      "year": 2030,
+      "volume": 82298315335.68318
+     },
+     {
+      "year": 2031,
+      "volume": 94001950359.31084
+     },
+     {
+      "year": 2032,
+      "volume": 107369958125.04846
+     },
+     {
+      "year": 2033,
+      "volume": 122639028910.66759
+     },
+     {
+      "year": 2034,
+      "volume": 140079512694.18243
+     },
+     {
+      "year": 2035,
+      "volume": 160000205896.38568
+     },
+     {
+      "year": 2036,
+      "volume": 182753818845.55203
+     }
+    ]
+   },
+   {
+    "price": 25,
+    "multipleKey": "today",
+    "years": [
+     {
+      "year": 2027,
+      "volume": 60526726766.20417
+     },
+     {
+      "year": 2028,
+      "volume": 75768224149.62364
+     },
+     {
+      "year": 2029,
+      "volume": 94847749044.19695
+     },
+     {
+      "year": 2030,
+      "volume": 118731771791.11237
+     },
+     {
+      "year": 2031,
+      "volume": 148630133816.75287
+     },
+     {
+      "year": 2032,
+      "volume": 186057331960.40347
+     },
+     {
+      "year": 2033,
+      "volume": 232909235074.11847
+     },
+     {
+      "year": 2034,
+      "volume": 291559118962.08264
+     },
+     {
+      "year": 2035,
+      "volume": 364977884294.2585
+     },
+     {
+      "year": 2036,
+      "volume": 456884547113.8804
+     }
+    ]
+   },
+   {
+    "price": 50,
+    "multipleKey": "today",
+    "years": [
+     {
+      "year": 2027,
+      "volume": 64870939522.202774
+     },
+     {
+      "year": 2028,
+      "volume": 87034834441.7193
+     },
+     {
+      "year": 2029,
+      "volume": 116771276354.10368
+     },
+     {
+      "year": 2030,
+      "volume": 156667512138.4547
+     },
+     {
+      "year": 2031,
+      "volume": 210194751020.97983
+     },
+     {
+      "year": 2032,
+      "volume": 282010180373.10803
+     },
+     {
+      "year": 2033,
+      "volume": 378362168644.90094
+     },
+     {
+      "year": 2034,
+      "volume": 507633910493.1253
+     },
+     {
+      "year": 2035,
+      "volume": 681072814455.6934
+     },
+     {
+      "year": 2036,
+      "volume": 913769094227.7606
+     }
+    ]
+   },
+   {
+    "price": 100,
+    "multipleKey": "today",
+    "years": [
+     {
+      "year": 2027,
+      "volume": 69526951469.69374
+     },
+     {
+      "year": 2028,
+      "volume": 99976771150.64226
+     },
+     {
+      "year": 2029,
+      "volume": 143762304522.51013
+     },
+     {
+      "year": 2030,
+      "volume": 206724021627.7995
+     },
+     {
+      "year": 2031,
+      "volume": 297260267633.5058
+     },
+     {
+      "year": 2032,
+      "volume": 427447502316.10565
+     },
+     {
+      "year": 2033,
+      "volume": 614651156344.7262
+     },
+     {
+      "year": 2034,
+      "volume": 883841973456.0095
+     },
+     {
+      "year": 2035,
+      "volume": 1270926811051.9778
+     },
+     {
+      "year": 2036,
+      "volume": 1827538188455.5227
+     }
+    ]
+   }
+  ],
+  "swing": {
+   "acrossMultiples": 8.468213403866159,
+   "acrossGrowth": 11.152019116225114,
+   "dominant": "growth"
+  },
+  "headline": "At today's valuation premium, $25 in ten years needs NEAR Intents to win up to 5x today's share of DEX volume; $100 needs 9.1% of all DEX volume (9.0x today's share). If NEAR is priced like a cash-flow token instead, $100 needs 22.2%. How fast Intents grows moves the answer more than how the market values NEAR."
  }
 }
