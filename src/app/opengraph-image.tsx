@@ -17,7 +17,7 @@ export default function OG() {
         <div style={{ position: 'absolute', inset: 0, display: 'flex', background: 'linear-gradient(90deg, rgba(6,10,8,0.95) 0%, rgba(6,10,8,0.75) 55%, rgba(6,10,8,0.2) 100%)' }} />
         <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '64px 72px', width: '100%' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={mark} width={166} height={84} alt="" />
+          <img src={mark} width={132} height={132} alt="" />
           <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 860 }}>
             <span style={{ fontSize: 76, lineHeight: 1.02, letterSpacing: -2.5, fontWeight: 600 }}>Three Digits, Minimum?</span>
             <span style={{ marginTop: 24, fontSize: 32, color: '#c9cdc5' }}>How far can NEAR really go? An evidence-based NEAR price ladder.</span>

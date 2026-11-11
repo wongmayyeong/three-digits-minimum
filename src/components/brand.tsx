@@ -9,13 +9,13 @@ export function starPath(cx: number, cy: number, r: number, pinch = 0.18): strin
 /** Logo mark: Bull and Bear facing off (generated art, see design/prompts.md). */
 export function Emblem({ size = 28, className = '' }: { size?: number; className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/logo-mark.png" width={Math.round(size * 1.97)} height={size} alt="" aria-hidden="true" className={`object-contain ${className}`} />;
+  return <img src="/logo-mark.png" width={size} height={size} alt="" aria-hidden="true" className={`object-contain ${className}`} />;
 }
 
 export function Wordmark({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <Emblem size={30} />
+      <Emblem size={36} />
       <span className="text-[0.9375rem] font-[600] tracking-[-0.01em]">Three Digits, Minimum?</span>
     </span>
   );
