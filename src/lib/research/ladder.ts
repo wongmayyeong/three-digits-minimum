@@ -428,3 +428,64 @@ export function ladderEvidence(l: LadderResult, fetched: (key: string) => { at: 
   }
   return out;
 }
+
+/**
+ * Revenue-basis scenarios (audit item 4). The ladder's main tables use DefiLlama's designated buybacks. This repeats
+ * the key results on the executed basis (NEAR actually delivered to the buyback wallet), with the multiple, the take
+ * rate and the projected flow all on the same basis and the same dates. The two bases are never mixed.
+ */
+export interface BasisScenario {
+  basis: 'designated' | 'executed';
+  intentsHolderRunRate: number | null; captureToday: number | null; multipleToday: number | null; holderTakeRate: number | null;
+  rungs: { price: number; byMultiple: { multipleKey: string; multiple: number | null; requiredVolume: number | null; dexShare2036: number | null; requiredCagr: number | null }[] }[];
+  impliedBase: { multipleKey: string; multiple: number | null; price: number | null }[];
+}
+export function basisScenarios(l: LadderResult, executedDaily: [string, number][]): BasisScenario[] {
+  const I = l.inputs;
+  const END = l.basis.windowEnd;
+  const execSum = END && executedDaily.length ? windowAggregate(executedDaily, END, RUN_RATE_DAYS).sum : null;
+  const execRunRate = execSum === null ? null : (execSum * 365) / RUN_RATE_DAYS;
+  const build = (basis: BasisScenario['basis'], holderRunRate: number | null): BasisScenario => {
+    const captureToday = holderRunRate !== null && I.burnRunRate !== null ? holderRunRate + I.burnRunRate : null;
+    const multipleToday = safeDiv(I.marketCap, captureToday);
+    const holderTakeRate = safeDiv(holderRunRate, I.intentsRunRate);
+    // Peer multiples are basis-free (market cap / their own holders revenue); NEAR's own multiple follows the basis.
+    const mults = l.multiples.map((m) => ({ key: m.key, value: m.key === 'today' ? multipleToday : m.value }));
+    const dexBase = I.spotDexRunRate !== null ? I.spotDexRunRate * Math.pow(1 + DEX_GROWTH.base, HORIZON_YEARS) : null;
+    const rungs = RUNGS.map((p) => {
+      const cap = I.supply2036 !== null ? I.supply2036 * p : null;
+      return { price: p, byMultiple: mults.map((m) => {
+        const req = cap !== null && m.value ? cap / m.value : null;
+        const vol = req !== null && I.burnRunRate !== null && holderTakeRate ? Math.max(0, req - I.burnRunRate) / holderTakeRate : null;
+        const vm = safeDiv(vol, I.intentsRunRate);
+        return { multipleKey: m.key, multiple: m.value, requiredVolume: vol, dexShare2036: safeDiv(vol, dexBase), requiredCagr: vm !== null && vm > 0 ? Math.pow(vm, 1 / HORIZON_YEARS) - 1 : null };
+      }) };
+    });
+    const v2036 = I.intentsRunRate !== null ? I.intentsRunRate * Math.pow(1.2, HORIZON_YEARS) : null;
+    const impliedBase = mults.map((m) => ({ multipleKey: m.key, multiple: m.value,
+      price: v2036 !== null && holderTakeRate !== null && I.burnRunRate !== null && m.value && I.supply2036 ? ((v2036 * holderTakeRate + I.burnRunRate) * m.value) / I.supply2036 : null }));
+    return { basis, intentsHolderRunRate: holderRunRate, captureToday, multipleToday, holderTakeRate, rungs, impliedBase };
+  };
+  return [build('designated', I.intentsHolderRunRate), build('executed', execRunRate)];
+}
+
+export function basisEvidence(sc: BasisScenario[], periodEnd: string | null): EvidenceDraft[] {
+  const out: EvidenceDraft[] = [];
+  const push = (id: string, label: string, unit: 'USD' | 'ratio' | 'fraction', value: number | null, methodology: string, transform: string, inputs: string[] = []) => out.push({
+    evidenceId: id, metricKey: id.toLowerCase(), group: 'valuation', label, value: value !== null && Number.isFinite(value) ? value : null, valueText: null, unit, observationType: 'DERIVED',
+    available: value !== null && Number.isFinite(value), sourceName: 'Computed here', sourceUrl: '/methodology#ladder', observedAt: null, fetchedAt: null, periodStart: null, periodEnd,
+    methodology, transform, confidence: 'medium', rawResponseHash: null, validationNotes: null, series: null, inputs,
+  });
+  for (const s of sc) {
+    const B = s.basis.toUpperCase();
+    const def = s.basis === 'designated' ? 'DefiLlama designated buybacks (all captured revenue since 23 February 2026)' : 'NEAR delivered to the buyback wallet by 1Click swaps (onchain, FastNEAR)';
+    push(`LAD-BASIS-${B}-MULT`, `NEAR's own multiple, ${s.basis} basis (market cap / (burns + ${s.basis} buybacks), 90-day run rate)`, 'ratio', s.multipleToday, `${def}; same 90 days as every other ladder input.`, 'market cap / (burns + buybacks)', s.basis === 'executed' ? ['TOK-EXECUTED-RUNRATE'] : ['LAD-INTENTS-HOLDER-RUNRATE']);
+    push(`LAD-BASIS-${B}-TAKE`, `Buyback revenue per dollar of Intents volume, ${s.basis} basis`, 'fraction', s.holderTakeRate, `${def} / Intents volume, same 90 days.`, 'buybacks / volume');
+    for (const r of s.rungs) for (const b of r.byMultiple) {
+      push(`LAD-BASIS-${B}-${r.price}-${b.multipleKey.toUpperCase()}-SHARE`, `$${r.price}, ${s.basis} basis, ${b.multipleKey === 'today' ? 'NEAR\'s own multiple' : `priced like ${b.multipleKey}`}: Intents volume relative to 2036 spot DEX volume`, 'fraction', b.dexShare2036,
+        `Multiple and take rate both on the ${s.basis} basis.`, '(MCAP / multiple - burns) / take rate / 2036 spot DEX', [`LAD-BASIS-${B}-TAKE`]);
+    }
+    for (const i of s.impliedBase) push(`LAD-BASIS-${B}-IMPLIED-${i.multipleKey.toUpperCase()}`, `Implied 2036 price at 20% growth, ${s.basis} basis, ${i.multipleKey === 'today' ? 'NEAR\'s own multiple' : `priced like ${i.multipleKey}`}`, 'USD', i.price, 'Scenario, not a forecast.', '(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036');
+  }
+  return out;
+}

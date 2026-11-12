@@ -13,6 +13,8 @@ import type { EvidenceDraft } from './types';
 
 export const CROSSCHAIN_VERSION = 'w2-1.0.0';
 const RUN = 90;
+/** Tokens below this market cap are small and thinly traded; the median is also shown without them. */
+export const MIN_PEER_CAP = 25e6;
 
 export interface ProtocolRow {
   name: string; role: string; token: string | null;
@@ -25,6 +27,9 @@ export interface CrossChainResult {
   rows: ProtocolRow[];
   swapVenueShare: number | null; swapVenues: string[];
   peerMedianCapToRevenue: number | null; peerMedianCapToHolders: number | null; peerSet: string[]; nearCapToIntentsRevenue: number | null;
+  /** Reliability check: the median without tokens under MIN_PEER_CAP, and the range of the two. */
+  peerMedianLiquid: number | null; peerSetLiquid: string[]; peerRange: [number, number] | null;
+  nearImpliedCapRange: [number, number] | null;
   nearImpliedCapAtPeerMultiple: number | null; nearImpliedPriceAtPeerMultiple: number | null;
   findings: string[];
 }
@@ -83,19 +88,24 @@ export function analyzeCrossChain(raws: Record<string, RawRecord | null | undefi
   const peerMedianCapToRevenue = median(peers.map((r) => r.capToRevenue!));
   const peerMedianCapToHolders = median(peers.filter((r) => r.capToHolders !== null && r.holdersRunRate! > 0).map((r) => r.capToHolders!));
   const messaging = rows.filter((r) => r.role === 'messaging' && r.capToRevenue !== null);
+  const liquid = peers.filter((r) => r.marketCap !== null && r.marketCap >= MIN_PEER_CAP);
+  const peerMedianLiquid = median(liquid.map((r) => r.capToRevenue!));
+  const peerRange: [number, number] | null = peerMedianCapToRevenue !== null && peerMedianLiquid !== null ? [Math.min(peerMedianCapToRevenue, peerMedianLiquid), Math.max(peerMedianCapToRevenue, peerMedianLiquid)] : null;
   const nearCapToIntentsRevenue = intents?.capToRevenue ?? null;
   const nearImpliedCapAtPeerMultiple = peerMedianCapToRevenue !== null && intents?.revenueRunRate ? peerMedianCapToRevenue * intents.revenueRunRate : null;
   const circ = ev('MKT-NEAR-CIRC');
   const nearImpliedPriceAtPeerMultiple = nearImpliedCapAtPeerMultiple !== null && circ ? nearImpliedCapAtPeerMultiple / circ : null;
+  const nearImpliedCapRange: [number, number] | null = peerRange && intents?.revenueRunRate ? [peerRange[0] * intents.revenueRunRate, peerRange[1] * intents.revenueRunRate] : null;
 
   const byRev = [...rows].filter((r) => r.revenueRunRate !== null).sort((a, b) => b.revenueRunRate! - a.revenueRunRate!);
   const findings = [
-    `Among cross-chain swap venues with public volume (${venues.map((v) => v.name).join(', ')}), NEAR Intents handles ${fmtPct(swapVenueShare)} of volume (run rate). Aggregators and bridges without a volume adapter (Relay, deBridge, Across, Mayan, Stargate) are not in this denominator, so it overstates Intents' share of all cross-chain execution.`,
-    `By revenue, the largest cross-chain protocols are ${byRev.slice(0, 4).map((r) => `${r.name} ${fmtUsd(r.revenueRunRate)}`).join(', ')} a year (run rate).`,
-    `Cross-chain execution tokens trade at a median ${fmtX(peerMedianCapToRevenue)} their protocol revenue (${peers.map((r) => `${r.token} ${fmtX(r.capToRevenue)}`).join(', ')}). NEAR trades at ${fmtX(nearCapToIntentsRevenue)} Intents revenue. At the peer median, Intents revenue would support ${fmtUsd(nearImpliedCapAtPeerMultiple)} of market cap, about $${nearImpliedPriceAtPeerMultiple?.toFixed(2) ?? 'n/a'} a token, against ${fmtUsd(nearCap)} today: the rest of NEAR's valuation rests on the L1, its other products, or a premium the cross-chain market does not pay its own leaders.`,
-    `On revenue that reaches token holders the gap is smaller: the peer median is ${fmtX(peerMedianCapToHolders)} (${peers.filter((r) => r.capToHolders !== null).map((r) => `${r.token} ${fmtX(r.capToHolders)}`).join(', ')}), because some protocols, THORChain above all, pass little revenue to their token; NEAR designates all of Intents' captured revenue for buybacks (about 60% executed onchain so far, section 6). Messaging layers are valued differently again (${messaging.map((r) => `${r.token} ${fmtX(r.capToRevenue)}`).join(', ')}).`,
+    `Coverage first: only ${venues.length} cross-chain swap venues have public volume data (${venues.map((v) => v.name).join(', ')}); among them NEAR Intents handles ${fmtPct(swapVenueShare)} of volume (run rate). Relay, deBridge, Mayan, Across and Stargate have no free volume data, so this is a share of measured venues, not of cross-chain execution.`,
+    `By protocol revenue as each DefiLlama adapter defines it (definitions differ: some count only protocol take, others include integrator fees), the largest are ${byRev.slice(0, 4).map((r) => `${r.name} ${fmtUsd(r.revenueRunRate)}`).join(', ')} a year (run rate).`,
+    `Cross-chain execution tokens trade at a median ${fmtX(peerMedianCapToRevenue)} their protocol revenue (${peers.map((r) => `${r.token} ${fmtX(r.capToRevenue)}`).join(', ')}); without tokens under $${MIN_PEER_CAP / 1e6}M market cap the median is ${fmtX(peerMedianLiquid)} (${liquid.map((r) => r.token).join(', ')}). The peer set is small and thinly traded, so it is a range, not a benchmark. NEAR trades at ${fmtX(nearCapToIntentsRevenue)} Intents revenue.`,
+    `Conditional, not a fair value: if NEAR were valued only on Intents revenue at the peer range, Intents would account for ${nearImpliedCapRange ? `${fmtUsd(nearImpliedCapRange[0])} to ${fmtUsd(nearImpliedCapRange[1])}` : 'n/a'} of market cap against ${fmtUsd(nearCap)} today. NEAR's market cap also prices the L1, staking, Chain Signatures and other products; this comparison does not value them.`,
+    `On revenue that reaches token holders the gap is smaller: the peer median is ${fmtX(peerMedianCapToHolders)} (${peers.filter((r) => r.capToHolders !== null).map((r) => `${r.token} ${fmtX(r.capToHolders)}`).join(', ')}), because some protocols, THORChain above all, pass little revenue to their token. Messaging layers are valued differently again (${messaging.map((r) => `${r.token} ${fmtX(r.capToRevenue)}`).join(', ')}).`,
   ];
-  return { version: CROSSCHAIN_VERSION, windowEnd: END, rows, swapVenueShare, swapVenues: venues.map((v) => v.name), peerMedianCapToRevenue, peerMedianCapToHolders, peerSet: peers.map((r) => r.name), nearCapToIntentsRevenue, nearImpliedCapAtPeerMultiple, nearImpliedPriceAtPeerMultiple, findings };
+  return { version: CROSSCHAIN_VERSION, windowEnd: END, rows, swapVenueShare, swapVenues: venues.map((v) => v.name), peerMedianCapToRevenue, peerMedianCapToHolders, peerSet: peers.map((r) => r.name), peerMedianLiquid, peerSetLiquid: liquid.map((r) => r.name), peerRange, nearImpliedCapRange, nearCapToIntentsRevenue, nearImpliedCapAtPeerMultiple, nearImpliedPriceAtPeerMultiple, findings };
 }
 
 export function crossChainEvidence(c: CrossChainResult): EvidenceDraft[] {
@@ -111,10 +121,12 @@ export function crossChainEvidence(c: CrossChainResult): EvidenceDraft[] {
   item({ evidenceId: 'CC-INTENTS-VENUE-SHARE', metricKey: 'crosschain.intents_venue_share', label: 'NEAR Intents share of volume among cross-chain swap venues with public volume', unit: 'fraction', value: c.swapVenueShare, confidence: 'low',
     validationNotes: `Venues: ${c.swapVenues.join(', ')}.`, methodology: 'Run-rate volume, same window. Aggregators excluded (they route through these venues); protocols without a volume adapter are missing, so this overstates the share.', transform: 'Intents / sum(venues)' });
   item({ evidenceId: 'CC-PEER-MEDIAN-CAP-REV', metricKey: 'crosschain.peer_median_cap_to_revenue', label: 'Median market cap / protocol revenue, cross-chain execution tokens', unit: 'ratio', value: c.peerMedianCapToRevenue, validationNotes: `Peers: ${c.peerSet.join(', ')}.`, methodology: 'CoinGecko market cap / DefiLlama revenue (90-day run rate) for swap venues, bridges and solvers with a token. Messaging layers excluded.', transform: 'median(cap / revenue)' });
+  item({ evidenceId: 'CC-PEER-MEDIAN-CAP-REV-LIQUID', metricKey: 'crosschain.peer_median_cap_to_revenue_liquid', label: `Median market cap / protocol revenue, cross-chain execution tokens of at least $${MIN_PEER_CAP / 1e6}M`, unit: 'ratio', value: c.peerMedianLiquid,
+    validationNotes: `Peers: ${c.peerSetLiquid.join(', ')}.`, methodology: 'Reliability check of the peer median: small, thinly traded tokens removed.', transform: 'median(cap / revenue)' });
   item({ evidenceId: 'CC-PEER-MEDIAN-CAP-HOLDERS', metricKey: 'crosschain.peer_median_cap_to_holders', label: 'Median market cap / holders revenue, cross-chain execution tokens', unit: 'ratio', value: c.peerMedianCapToHolders, methodology: 'Same peers, on revenue that reaches token holders.', transform: 'median(cap / holders revenue)' });
   item({ evidenceId: 'CC-NEAR-CAP-INTENTS-REV', metricKey: 'crosschain.near_cap_to_intents_revenue', label: 'NEAR market cap / Intents protocol revenue', unit: 'ratio', value: c.nearCapToIntentsRevenue, methodology: 'Same definition as the peers.', transform: 'NEAR cap / Intents revenue run rate' });
-  item({ evidenceId: 'CC-NEAR-IMPLIED-CAP', metricKey: 'crosschain.near_implied_cap', label: 'Market cap Intents revenue would support at the cross-chain peer median multiple', unit: 'USD', value: c.nearImpliedCapAtPeerMultiple, inputs: ['CC-PEER-MEDIAN-CAP-REV'], methodology: 'What the cross-chain market pays for revenue like Intents\'. Not a target: it leaves out everything else NEAR is.', transform: 'median multiple x Intents revenue' });
-  item({ evidenceId: 'CC-NEAR-IMPLIED-PRICE', metricKey: 'crosschain.near_implied_price', label: 'NEAR price at the cross-chain peer median multiple on Intents revenue', unit: 'USD', value: c.nearImpliedPriceAtPeerMultiple, inputs: ['CC-NEAR-IMPLIED-CAP', 'MKT-NEAR-CIRC'], methodology: 'Implied market cap / circulating supply.', transform: 'cap / circulating' });
+  item({ evidenceId: 'CC-NEAR-IMPLIED-CAP', metricKey: 'crosschain.near_implied_cap', label: 'Conditional: market cap attributable to Intents revenue alone at the cross-chain peer median multiple', unit: 'USD', value: c.nearImpliedCapAtPeerMultiple, inputs: ['CC-PEER-MEDIAN-CAP-REV'], validationNotes: c.nearImpliedCapRange ? `Range across peer medians: $${(c.nearImpliedCapRange[0] / 1e6).toFixed(0)}M to $${(c.nearImpliedCapRange[1] / 1e6).toFixed(0)}M.` : null, methodology: 'Conditional on valuing NEAR only on Intents revenue. Not a fair value of the NEAR network: it leaves out the L1, staking and every other product.', transform: 'median multiple x Intents revenue' });
+  item({ evidenceId: 'CC-NEAR-IMPLIED-PRICE', metricKey: 'crosschain.near_implied_price', label: 'Conditional: per-token value of Intents revenue alone at the peer median multiple (not a fair value of NEAR)', unit: 'USD', value: c.nearImpliedPriceAtPeerMultiple, inputs: ['CC-NEAR-IMPLIED-CAP', 'MKT-NEAR-CIRC'], methodology: 'Implied market cap / circulating supply.', transform: 'cap / circulating' });
   for (const r of c.rows) {
     const k = r.name.toUpperCase().replace(/[^A-Z]+/g, '-').replace(/^-|-$/g, '');
     item({ evidenceId: `CC-${k}-REVENUE`, metricKey: `crosschain.${k.toLowerCase()}.revenue`, label: `${r.name}: protocol revenue, 90-day run rate`, unit: 'USD', value: r.revenueRunRate, methodology: 'DefiLlama revenue definition for the protocol.', transform: 'sum 90d x 365/90', validationNotes: r.notes.join(' ') || null });

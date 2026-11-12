@@ -47,6 +47,11 @@ describe('evidence builder', () => {
     'coingecko.markets': rec('coingecko.markets', 'coingecko', [{ id: 'near', marketCap: 5e9, price: 4, circulating: 1.25e9, lastUpdated: '2026-07-20T00:00:00Z' }]),
   };
 
+  it('gives every evidence item a unique ID', () => {
+    const ids = buildDataset(raws).evidence.map((e) => e.evidenceId);
+    expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);
+  });
+
   it('derives f, c, b and the model from matched windows', () => {
     const ds = buildDataset(raws);
     const v = (id: string) => ds.evidence.find((e) => e.evidenceId === id)!;

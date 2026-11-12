@@ -42,9 +42,9 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
   if (nearTop !== null) feeConcentration.push({ chain: 'NEAR', top: 'NEAR Intents', share: nearTop });
   feeConcentration.sort((p, q) => q.share - p.share);
   const peerMed = median(feeConcentration.filter((f) => f.chain !== 'NEAR').map((f) => f.share));
-  out.push({ id: 'H1', claim: 'NEAR\'s value capture is far more concentrated in one product than peers\'',
-    rule: 'SUPPORTED if the largest product\'s share of NEAR\'s fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED.',
-    reading: `Intents: ${pct(nearTop)} of NEAR's fees and ${pct(d.eco.captureFromIntents)} of its verified capture; peer median largest-protocol share ${pct(peerMed)} (${feeConcentration.map((f) => `${f.chain} ${pct(f.share)}`).join(', ')}).`,
+  out.push({ id: 'H1', claim: 'NEAR\'s fee base is far more concentrated in one product than peers\' (restated from "value capture": comparable value-capture data by product does not exist for peers)',
+    rule: 'Protocol fees on each chain (DefiLlama, 30 days). SUPPORTED if the largest protocol\'s share of NEAR\'s fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED.',
+    reading: `Intents: ${pct(nearTop)} of fees paid on NEAR; peer median largest-protocol share ${pct(peerMed)} (${feeConcentration.map((f) => `${f.chain} ${pct(f.share)}`).join(', ')}). Separately, and not compared with peers: ${pct(d.eco.captureFromIntents)} of NEAR's verified value capture comes from Intents.`,
     outcome: nearTop === null || peerMed === null ? 'UNTESTED' : nearTop >= 0.5 && nearTop >= 1.5 * peerMed ? 'SUPPORTED' : nearTop <= peerMed ? 'NOT SUPPORTED' : 'MIXED', value: nearTop, needs: null });
 
   // H2: priced closer to a platform than its on-chain economy justifies.
@@ -54,7 +54,7 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
   const maxSt = Math.max(...bench.map((p) => p.capToStablecoins ?? -1)), maxTv = Math.max(...bench.map((p) => p.capToTvl ?? -1));
   const medSt = median(bench.map((p) => p.capToStablecoins).filter((v): v is number => v !== null)), medTv = median(bench.map((p) => p.capToTvl).filter((v): v is number => v !== null));
   const nSt = near?.capToStablecoins ?? null, nTv = near?.capToTvl ?? null;
-  out.push({ id: 'H2', claim: 'NEAR is priced closer to a platform than its on-chain economy justifies',
+  out.push({ id: 'H2', claim: 'NEAR\'s market cap is high relative to its on-chain economy compared with platforms (an observed valuation gap, not a judgement that it is unjustified)',
     rule: 'SUPPORTED if NEAR\'s market cap to stablecoins and to DeFi TVL both exceed every platform benchmark; NOT SUPPORTED if both are at or below the benchmark median; otherwise MIXED.',
     reading: `NEAR market cap is ${x(nSt)} its stablecoins and ${x(nTv)} its DeFi TVL; benchmarks: ${bench.map((p) => `${p.chain === 'BSC' ? 'BNB Chain' : p.chain} ${x(p.capToStablecoins)} / ${x(p.capToTvl)}`).join(', ')}.`,
     outcome: nSt === null || nTv === null ? 'UNTESTED' : nSt > maxSt && nTv > maxTv ? 'SUPPORTED' : medSt !== null && medTv !== null && nSt <= medSt && nTv <= medTv ? 'NOT SUPPORTED' : 'MIXED', value: nSt, needs: null });
@@ -70,19 +70,25 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
 
   // H4: value moving off the NEAR chain into cross-chain flows.
   const l1 = d.eco.l1, iy = d.eco.intentsVolumeYoY;
-  out.push({ id: 'H4', claim: 'Value is moving off the NEAR chain into cross-chain flows the token only partly captures',
-    rule: 'SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED.',
-    reading: `Intents volume ${pct(iy)}; L1 transactions ${pct(l1.txnsYoY)}, active accounts ${pct(l1.activeYoY)}, gas fees ${pct(l1.gasFeesYoY)}; ${pct(d.tok.buybacks.executedToDesignated)} of designated buybacks executed. Part of the L1 decline may be automated activity ending (H7).`,
+  out.push({ id: 'H4', claim: 'Cross-chain activity and NEAR L1 activity are moving in opposite directions (diverging trends; migration of value is not proven)',
+    rule: 'SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. Divergence does not show that value moved from one to the other.',
+    reading: `Intents volume ${pct(iy)}; L1 transactions ${pct(l1.txnsYoY)}, active accounts ${pct(l1.activeYoY)}, gas fees ${pct(l1.gasFeesYoY)}. Part of the L1 decline may be automated activity ending (H7), and the two trends may have separate causes.`,
     outcome: iy === null || l1.txnsYoY === null || l1.activeYoY === null ? 'UNTESTED' : iy > 0 && l1.txnsYoY < 0 && l1.activeYoY < 0 ? 'SUPPORTED' : (l1.txnsYoY > iy && l1.activeYoY > iy) ? 'NOT SUPPORTED' : 'MIXED', value: iy, needs: null });
 
   // H5: NEAR's dilution is a higher hurdle than peers'.
   const dil = d.tok.assets.filter((a) => a.dilutionNetOfCapture !== null);
   const nd = dil.find((a) => a.label === 'NEAR')?.dilutionNetOfCapture ?? null;
   const md = median(dil.filter((a) => a.label !== 'NEAR').map((a) => a.dilutionNetOfCapture!));
+  // Raw view (audit item 10): circulating supply growth as reported, one-day events included, nothing subtracted.
+  const raw = d.tok.assets.filter((a) => a.circGrowth1y !== null);
+  const nr0 = raw.find((a) => a.label === 'NEAR')?.circGrowth1y ?? null;
+  const mr0 = median(raw.filter((a) => a.label !== 'NEAR').map((a) => a.circGrowth1y!));
+  const verdict5 = (n: number | null, m: number | null): Outcome => (n === null || m === null ? 'UNTESTED' : n - m > 0.005 ? 'SUPPORTED' : m - n > 0.005 ? 'NOT SUPPORTED' : 'MIXED');
+  const o5a = verdict5(nd, md), o5b = verdict5(nr0, mr0);
   out.push({ id: 'H5', claim: 'NEAR\'s dilution is a higher return hurdle than peers\'',
-    rule: 'SUPPORTED if NEAR\'s dilution net of capture is more than 0.5 percentage points above the peer median; NOT SUPPORTED if more than 0.5 points below; otherwise MIXED.',
-    reading: `NEAR ${pct(nd, 1)} a year; peer median ${pct(md, 1)} (${dil.filter((a) => a.label !== 'NEAR').map((a) => `${a.label} ${pct(a.dilutionNetOfCapture, 1)}`).join(', ')}). ${(() => { const big = [...dil].filter((a) => a.label !== 'NEAR' && a.marketCap !== null).sort((p, q) => q.marketCap! - p.marketCap!).slice(0, 4); const above = big.filter((a) => nd !== null && nd > a.dilutionNetOfCapture!).length; return big.length ? ` The median is pulled up by small, high-dilution chains: against the four largest alternatives (${big.map((a) => a.label).join(', ')}) NEAR's dilution is higher than ${above} of ${big.length}.` : ''; })()} HSP-029 would lower NEAR's issuance if adopted.`,
-    outcome: nd === null || md === null ? 'UNTESTED' : nd - md > 0.005 ? 'SUPPORTED' : md - nd > 0.005 ? 'NOT SUPPORTED' : 'MIXED', value: nd, needs: null });
+    rule: 'Tested twice: on dilution net of capture (one-day events excluded, held buybacks subtracted) and on raw circulating supply growth. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED.',
+    reading: `Raw: NEAR ${pct(nr0, 1)} vs peer median ${pct(mr0, 1)} (${o5b}). Adjusted: NEAR ${pct(nd, 1)} a year; peer median ${pct(md, 1)} (${dil.filter((a) => a.label !== 'NEAR').map((a) => `${a.label} ${pct(a.dilutionNetOfCapture, 1)}`).join(', ')}). ${(() => { const big = [...dil].filter((a) => a.label !== 'NEAR' && a.marketCap !== null).sort((p, q) => q.marketCap! - p.marketCap!).slice(0, 4); const above = big.filter((a) => nd !== null && nd > a.dilutionNetOfCapture!).length; return big.length ? ` The median is pulled up by small, high-dilution chains: against the four largest alternatives (${big.map((a) => a.label).join(', ')}) NEAR's dilution is higher than ${above} of ${big.length}.` : ''; })()} HSP-029 would lower NEAR's issuance if adopted.`,
+    outcome: o5a === o5b ? o5a : o5a === 'UNTESTED' ? o5b : o5b === 'UNTESTED' ? o5a : 'MIXED', value: nd, needs: null });
 
   // H6: NEAR needs more growth than alternatives for the same multiple.
   const req = d.val.opportunity.map((o) => ({ label: o.label, r: o.targets.find((t) => t.k === 7)?.requiredCagr ?? null })).filter((o) => o.r !== null);

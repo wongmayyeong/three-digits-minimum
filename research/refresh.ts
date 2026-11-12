@@ -48,7 +48,7 @@ async function build(offlineMode: boolean) {
   const eraFetched = era.filter((o) => o.status === 'OK' && !o.cacheHit).length;
   console.log(`  era history: ${era.filter((o) => o.record).length}/${era.length} months available (${eraFetched} fetched now)`);
   const buybacks = await fetchBuybackTransfers(store, { offline: offlineMode });
-  console.log(`  buyback transfers: ${buybacks ? (buybacks.body as { transfers: unknown[] }).transfers.length : 'unavailable'}`);
+  console.log(`  revenue-wallet flows: ${buybacks ? (buybacks.body as { flows: unknown[] }).flows.length : 'unavailable'}`);
   const raws = { ...Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record])), [BUYBACK_KEY]: buybacks };
   const ds = buildDataset(raws);
   const triggers = evaluateTriggers(ds.evidence);
@@ -149,12 +149,23 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const tk = ds.tokenomics;
   const CLS: Record<string, string> = { source: 'Source of value, not captured', label: 'Label, not a transaction', capture: '**Value capture**', redistribution: 'Redistribution (new tokens)', dilution: '**Dilution** (subtracted)', excluded: 'Not $NEAR value' };
   out = out.replace('{{TOK_TAXONOMY_TABLE}}', ['| Flow | What it is | Per year | Classification |', '|---|---|---|---|',
-    ...tk.taxonomy.map((r) => `| ${r.flow} | ${r.what} | ${r.usdPerYear === null ? 'not summed' : formatValue(r.usdPerYear, 'USD')} | ${CLS[r.cls]} |`),
-    `| **Verified capture minus net issuance** | | **${formatValue(tk.netValueToHoldersUsd, 'USD')}** | Net value to holders |`].join(NL));
+    ...tk.taxonomy.map((r) => `| ${r.flow} | ${r.what} | ${r.key === 'frontend' ? formatValue(tk.buybacks.frontendUsd, 'USD') + ' since ' + tk.buybacks.windowStart : r.usdPerYear === null ? 'not summed' : formatValue(r.usdPerYear, 'USD')} | ${CLS[r.cls]} |`)].join(NL));
+  out = out.replace('{{TOK_SUPPLY_TABLE}}', ['| Effect on supply, per year | Share of total supply | What it does |', '|---|---|---|',
+    `| Gross issuance (staking emissions) | ${formatValue(tk.supply.grossIssuance, 'fraction')} | New tokens to stakers |`,
+    `| Burns | ${formatValue(tk.supply.burns, 'fraction')} | Removed permanently; already inside net issuance |`,
+    `| **Net issuance** | **${formatValue(tk.supply.netIssuance, 'fraction')}** | Realized change in total supply |`,
+    `| NEAR delivered to the buyback wallet | ${formatValue(tk.supply.buybackAbsorption, 'fraction')} | Held, not burned: absorbed from the market, still in supply |`].join(NL));
   out = out.replace('{{TOK_FINDINGS}}', tk.findings.map((f) => `- ${f}`).join(NL));
   out = out.replace('{{TOK_FIRST_RECEIPT}}', tk.buybacks.firstReceipt ?? 'n/a');
-  out = out.replace('{{TOK_BUYBACK_TABLE}}', ['| Month | NEAR bought | Executed (USD) | Designated (USD) | Executed / designated |', '|---|---|---|---|---|',
-    ...tk.buybacks.monthly.map((m) => `| ${m.month} | ${formatValue(m.executedNear, 'NEAR')} | ${formatValue(m.executedUsd, 'USD')} | ${formatValue(m.designatedUsd, 'USD')} | ${formatValue(m.executedUsd !== null && m.designatedUsd ? m.executedUsd / m.designatedUsd : null, 'fraction')} |`)].join(NL));
+  out = out.replace('{{TOK_BUYBACK_TABLE}}', ['| Month | Designated by DefiLlama | Into the buyback wallet (1Click swaps) | Into the 1Click fund | Into the front-end fund | From accounts other than intents.near | Memo: moved 1Click fund to buyback wallet |', '|---|---|---|---|---|---|---|',
+    ...tk.buybacks.monthly.map((m) => `| ${m.month} | ${formatValue(m.designatedUsd, 'USD')} | ${formatValue(m.executedUsd, 'USD')} (${formatValue(m.executedNear, 'NEAR')}) | ${formatValue(m.oneClickInUsd, 'USD')} | ${formatValue(m.frontendUsd, 'USD')} | ${formatValue(m.nonIntentsUsd, 'USD')} | ${formatValue(m.viaOneClickUsd, 'USD')} |`),
+    `| **Total** | **${formatValue(tk.buybacks.designatedUsd, 'USD')}** | **${formatValue(tk.buybacks.executedUsd, 'USD')}** | **${formatValue(tk.buybacks.oneClickInUsd, 'USD')}** | **${formatValue(tk.buybacks.frontendUsd, 'USD')}** | **${formatValue(tk.buybacks.nonIntentsUsd, 'USD')}** | ${formatValue(tk.buybacks.affiliatedUsd, 'USD')} |`].join(NL));
+  out = out.replace('{{TOK_RECON_SENTENCE}}', `Reproduced captured revenue ${formatValue(tk.buybacks.capturedUsd, 'USD')} vs DefiLlama revenue ${formatValue(tk.buybacks.llamaRevenueUsd, 'USD')} over ${tk.buybacks.windowStart} to ${tk.buybacks.lastDay ?? 'n/a'} (${formatValue(tk.buybacks.reproductionRatio, 'fraction')}). The first five columns after the designation add up to the captured revenue (each inflow counted once, when it first reached a revenue wallet). The memo column is a later move of already-captured NEAR from the 1Click fund to the buyback wallet, valued at the price on the day it moved.`);
+  // ---- Revenue-basis scenarios (designated vs executed)
+  const bs = ds.basis;
+  const bLabel = (k: string) => (k === 'today' ? "NEAR's own multiple" : `Priced like ${k === 'tron' ? 'Tron' : 'Hyperliquid'}`);
+  out = out.replace('{{BASIS_TABLE}}', ['| Basis | NEAR multiple today | Buyback revenue per $ of volume | ' + (bs[0]?.impliedBase.map((i) => `Implied 2036 price, ${bLabel(i.multipleKey)}`).join(' | ') ?? '') + ' | $25 (NEAR\'s own multiple) | $100 (NEAR\'s own multiple) | $100 (priced like Tron) |', '|---|---|---|' + (bs[0]?.impliedBase.map(() => '---').join('|') ?? '') + '|---|---|---|',
+    ...bs.map((b) => { const at = (p: number, k: string) => b.rungs.find((r) => r.price === p)?.byMultiple.find((x) => x.multipleKey === k)?.dexShare2036 ?? null; return `| ${b.basis === 'designated' ? 'Designated (DefiLlama)' : 'Executed (delivered onchain)'} | ${formatValue(b.multipleToday, 'ratio')} | ${formatValue(b.holderTakeRate, 'fraction')} | ${b.impliedBase.map((i) => formatValue(i.price, 'USD')).join(' | ')} | ${formatValue(at(25, 'today'), 'fraction')} of spot DEX | ${formatValue(at(100, 'today'), 'fraction')} | ${formatValue(at(100, 'tron'), 'fraction')} |`; })].join(NL));
   out = out.replace('{{TOK_ASSETS_TABLE}}', ['| Asset | Valued as | Market cap | Supply still to unlock (FDV / cap) | Circulating supply growth, 1 year (as reported) | Excluding one-day events | Held buybacks subtracted | **Dilution net of capture** | Holder yield (context) |', '|---|---|---|---|---|---|---|---|---|',
     ...[...tk.assets].sort((a, b) => (a.dilutionNetOfCapture ?? 9) - (b.dilutionNetOfCapture ?? 9)).map((a) => `| ${a.label === 'NEAR' ? '**NEAR**' : a.label} | ${a.type} | ${formatValue(a.marketCap, 'USD')} | ${formatValue(a.fdvToMcap, 'ratio')} | ${formatValue(a.circGrowth1y, 'fraction', { signed: true })}${a.jumps.length ? ` (${a.jumps.length} event${a.jumps.length > 1 ? 's' : ''}: ${a.jumps.map((j) => `${j.day} ${formatValue(j.change, 'fraction', { signed: true })}`).join(', ')})` : ''} | ${formatValue(a.circGrowthExEvents, 'fraction', { signed: true })} | ${a.heldBuybackRate ? formatValue(a.heldBuybackRate, 'fraction') : '0'} | **${formatValue(a.dilutionNetOfCapture, 'fraction', { signed: true })}** | ${a.holderYield === null ? (a.type === 'monetary' ? 'none' : 'n/a') : formatValue(a.holderYield, 'fraction')} |`)].join(NL));
   // ---- W5 valuation and W6 opportunity cost
@@ -201,30 +212,34 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const revRank = [...cc.rows].filter((x) => x.revenueRunRate !== null).sort((p, q) => q.revenueRunRate! - p.revenueRunRate!).findIndex((x) => x.name === 'NEAR Intents') + 1;
   const hyp = (id: string) => hy.results.find((h) => h.id === id);
   const leads = [
-    cc.swapVenueShare !== null && cc.swapVenueShare > 0.5 ? `Largest cross-chain swap venue with public volume (${formatValue(cc.swapVenueShare, 'fraction')} of their volume).` : null,
-    revRank === 1 ? 'Highest protocol revenue among the cross-chain protocols compared.' : null,
+    cc.swapVenueShare !== null && cc.swapVenueShare > 0.5 ? `Largest of the ${cc.swapVenues.length} cross-chain swap venues with public volume data (${formatValue(cc.swapVenueShare, 'fraction')} of their volume; several competitors have no public volume).` : null,
+    revRank === 1 ? 'Highest protocol revenue among the cross-chain protocols compared, on DefiLlama\'s adapter definitions, which are not identical across protocols.' : null,
     nearTok?.fdvToMcap !== null && nearTok?.fdvToMcap !== undefined && nearTok.fdvToMcap <= 1.05 ? 'No supply left to unlock (fully diluted value equals market cap).' : null,
     hyp('H5')?.outcome === 'NOT SUPPORTED' ? `Dilution net of capture below the median of the alternatives (${formatValue(nearTok?.dilutionNetOfCapture ?? null, 'fraction')} a year).` : null,
-    liqRank === 1 ? `Most traded relative to its size (${formatValue(nearOpp?.risk.liquidity ?? null, 'fraction')} of market cap in a day).` : null,
-    hyp('H10')?.outcome === 'NOT SUPPORTED' ? 'Less tied to BTC than ETH or SOL (daily correlation), so not only a market beta.' : null,
+  ].filter(Boolean) as string[];
+  // Characteristics that are neither advantages nor disadvantages by themselves (audit item 9).
+  const traits = [
+    liqRank === 1 ? `Highest daily trading volume relative to market cap (${formatValue(nearOpp?.risk.liquidity ?? null, 'fraction')}): deep liquidity, or speculative turnover.` : null,
+    hyp('H10') && hyp('H10')!.value !== null ? `Daily returns are less correlated with BTC than ETH's or SOL's (R-squared ${formatValue(hyp('H10')!.value, 'fraction')}): diversification, or idiosyncratic risk.` : null,
   ].filter(Boolean) as string[];
   const trails = [
-    hyp('H2')?.outcome === 'SUPPORTED' ? 'Valued far above its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.' : null,
-    cc.nearCapToIntentsRevenue !== null && cc.peerMedianCapToRevenue !== null && cc.nearCapToIntentsRevenue > 5 * cc.peerMedianCapToRevenue ? `Priced at ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} Intents revenue against ${formatValue(cc.peerMedianCapToRevenue, 'ratio')} for cross-chain peers.` : null,
+    hyp('H2')?.outcome === 'SUPPORTED' ? 'Observed valuation gap to its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.' : null,
+    cc.nearCapToIntentsRevenue !== null && cc.peerRange !== null && cc.nearCapToIntentsRevenue > 5 * cc.peerRange[1] ? `Market cap is ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} Intents revenue, against ${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')} for small cross-chain peer tokens (NEAR\'s market cap also prices products those peers do not have).` : null,
     ds.economy.l1.txnsYoY !== null && ds.economy.l1.txnsYoY < 0 ? `NEAR L1 activity is falling (transactions ${formatValue(ds.economy.l1.txnsYoY, 'fraction', { signed: true })} year over year).` : null,
     volTop ? `Most volatile asset in the comparison (${formatValue(nearOpp?.risk.vol1y ?? null, 'fraction')} annualized over the last year).` : null,
-    tk.netValueToHoldersUsd !== null && tk.netValueToHoldersUsd < 0 ? `Diluted by more than it captures: net value to holders ${formatValue(tk.netValueToHoldersUsd, 'USD')} a year.` : null,
-    tk.buybacks.executedToDesignated !== null && tk.buybacks.executedToDesignated < 0.9 ? `Only ${formatValue(tk.buybacks.executedToDesignated, 'fraction')} of designated buybacks executed through the documented route.` : null,
-    hyp('H1')?.outcome === 'SUPPORTED' ? 'Value capture concentrated in one product, more than almost every peer chain.' : null,
+    tk.supply.netIssuance !== null && tk.supply.buybackAbsorption !== null && tk.supply.buybackAbsorption < tk.supply.netIssuance ? `Net issuance (${formatValue(tk.supply.netIssuance, 'fraction')} of supply a year) is larger than what buybacks absorb into a held wallet (${formatValue(tk.supply.buybackAbsorption, 'fraction')}).` : null,
+    tk.buybacks.executedBroadToDesignated !== null && tk.buybacks.executedBroadToDesignated < 0.9 ? `Of the revenue DefiLlama designates as buybacks, ${formatValue(tk.buybacks.executedBroadToDesignated, 'fraction')} reached the buyback wallet; the rest sits in the front-end fund or came from accounts other than Intents.` : null,
+    hyp('H1')?.outcome === 'SUPPORTED' ? 'Fee base concentrated in one product, more than almost every peer chain.' : null,
   ].filter(Boolean) as string[];
   const conc = hyp('H1')?.outcome === 'SUPPORTED', h6 = hyp('H6')?.outcome;
+  out = out.replace('{{VERDICT_TRAITS}}', traits.length ? ['Neither lead nor trail by itself:', '', ...traits.map((l) => `- ${l}`)].join(NL) : '');
   out = out.replace('{{VERDICT_SUMMARY}}', [
     conc && volTop ? 'On these rules NEAR is a concentrated, high-volatility bet on one cross-chain product.' : conc ? 'On these rules NEAR is a concentrated bet on one cross-chain product.' : '',
     h6 === 'SUPPORTED' ? 'For the same multiple it needs more growth than the alternatives.' : h6 === 'NOT SUPPORTED' ? 'For the same multiple it needs no more growth than the median alternative; section 12 compares it with the largest ones.' : 'For the same multiple it needs about as much growth as the alternatives.',
   ].filter(Boolean).join(' '));
   out = out.replace('{{SHORT_ANSWER}}', [l.headline,
-    cc.nearCapToIntentsRevenue !== null && cc.peerMedianCapToRevenue !== null ? `NEAR trades at ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} the revenue of its main product, NEAR Intents, against ${formatValue(cc.peerMedianCapToRevenue, 'ratio')} for cross-chain competitors.` : '',
-    tk.netValueToHoldersUsd !== null && tk.netValueToHoldersUsd < 0 ? `Holders are diluted by ${formatValue(-tk.netValueToHoldersUsd, 'USD')} a year more than the token verifiably captures.` : '',
+    cc.nearCapToIntentsRevenue !== null && cc.peerRange !== null ? `NEAR's market cap is ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} the revenue of its main product, NEAR Intents; small cross-chain peer tokens trade at ${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')} their revenue, though NEAR's market cap also prices the L1 and its other products.` : '',
+    tk.buybacks.executedBroadToDesignated !== null ? `${formatValue(tk.buybacks.executedBroadToDesignated, 'fraction')} of the revenue designated as buybacks has reached the buyback wallet, and net issuance (${formatValue(tk.supply.netIssuance, 'fraction')} of supply a year) is larger than what buybacks absorb (${formatValue(tk.supply.buybackAbsorption, 'fraction')}).` : '',
   ].filter(Boolean).join(' '));
   out = out.replace('{{VERDICT_LEADS}}', ['Leads:', '', ...leads.map((l) => `- ${l}`)].join(NL));
   out = out.replace('{{VERDICT_TRAILS}}', ['Trails:', '', ...trails.map((l) => `- ${l}`)].join(NL));

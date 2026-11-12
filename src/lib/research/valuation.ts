@@ -20,7 +20,7 @@ import type { RawRecord } from '@/lib/data/fetcher';
 import { CHAIN_ECONOMY, INVESTABLE } from '@/lib/data/sources';
 import { commonEnd, fromUnixPairs, safeDiv, windowAggregate, type DailyPoint } from './series';
 import { HORIZON_YEARS, RUNGS, GROWTH_SCENARIOS, type LadderResult } from './ladder';
-import type { TokenomicsResult } from './tokenomics';
+import { BUYBACKS_START, type TokenomicsResult } from './tokenomics';
 import type { EvidenceDraft } from './types';
 
 export const VALUATION_VERSION = 'w5w6-1.0.0';
@@ -121,15 +121,19 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   const mo = (label: string, coin: string, basis: 'designated' | 'executed', title: string) => {
     const caps = new Map(mcapSeries(coin));
     const h = holders(label, basis);
+    // NEAR: a month counts only when its whole 90-day window follows the start of the flow being valued (audit item 6):
+    // earlier windows value a different revenue definition (pre-buyback treasury revenue, or no deliveries yet).
+    const flowStart = label !== 'NEAR' ? null : basis === 'designated' ? BUYBACKS_START : tok.buybacks.firstReceipt;
     return { label, basis: title, points: monthEnds.map((d) => {
+      if (label === 'NEAR' && (flowStart === null || addDays(d, -(RUN - 1)) < flowStart)) return { month: d.slice(0, 7), value: null };
       const s = windowAggregate(h, d, RUN).sum;
       const cap = caps.get(d) ?? null;
       return { month: d.slice(0, 7), value: s ? safeDiv(cap, (s * 365) / RUN) : null };
     }) };
   };
   const multiplesOverTime = [
-    mo('NEAR', 'near', 'designated', 'Burns + Intents buybacks designated (DefiLlama)'),
-    mo('NEAR', 'near', 'executed', 'Burns + executed buybacks (onchain)'),
+    mo('NEAR', 'near', 'designated', 'Burns + designated buybacks (DefiLlama), windows after 23 February 2026 only'),
+    mo('NEAR', 'near', 'executed', 'Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only'),
     ...INVESTABLE.filter((a) => a.llama).map((a) => mo(a.label, a.coin, 'designated', 'DefiLlama holders revenue')),
   ];
 
@@ -233,7 +237,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   const mn100 = multipleNeeded.find((m) => m.price === 100);
   const nearDes = multiplesOverTime[0]!.points.filter((p) => p.value !== null), nearExe = multiplesOverTime[1]!.points.filter((p) => p.value !== null);
   const findings = [
-    `NEAR's own cash-flow multiple: ${fmtX(nearDes.at(-1)?.value ?? null)} on designated buybacks and ${fmtX(nearExe.at(-1)?.value ?? null)} on executed buybacks (latest month-end); ${nearDes.length ? `it was ${fmtX(nearDes[0]!.value)} in ${nearDes[0]!.month}` : ''}.`,
+    `NEAR's own cash-flow multiple: ${fmtX(nearDes.at(-1)?.value ?? null)} on designated buybacks and ${fmtX(nearExe.at(-1)?.value ?? null)} on executed buybacks (latest month-end). Only windows that fall entirely after each flow began are shown; earlier months valued pre-buyback treasury revenue and are not comparable.`,
     sens ? `The input that moves NEAR's implied 2036 price most is ${sens.input} (${sens.lowLabel}: $${sens.low?.toFixed(2)}; ${sens.highLabel}: $${sens.high?.toFixed(2)}; base $${base?.toFixed(2)}).` : '',
     mn100 ? `At base growth, $100 would need a cash-flow multiple of ${fmtX(mn100.byGrowth.find((g) => g.growthKey === 'base')?.multiple ?? null)}; at high growth ${fmtX(mn100.byGrowth.find((g) => g.growthKey === 'high')?.multiple ?? null)}. Today: NEAR ${fmtX(mToday)}, Tron ${fmtX(ladder.multiples.find((m) => m.key === 'tron')?.value ?? null)}, Hyperliquid ${fmtX(ladder.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null)}.` : '',
     near && at7(near)?.requiredCagr !== null ? `For 7x in ten years NEAR's driver must grow ${fmtPct(at7(near)!.requiredCagr ?? null, 1)} a year (its own dilution included); Intents volume grew ${fmtPct(near.observedGrowth)} over the last year. Required vs observed, by asset (7x): ${gaps.map((o) => `${o.label} ${fmtPct(at7(o)!.requiredCagr ?? null, 0)} vs ${fmtPct(o.observedGrowth)}`).join('; ')}. One year of observed growth is dominated by the market cycle, and NEAR's driver is a young product growing from a small base while the platforms' drivers are mature chain economies, so the comparison flatters NEAR.` : '',
@@ -262,7 +266,7 @@ export function valuationEvidence(v: ValuationResult): EvidenceDraft[] {
   for (const m of v.multiplesOverTime) {
     const last = [...m.points].reverse().find((p) => p.value !== null) ?? null;
     const first = m.points.find((p) => p.value !== null) ?? null;
-    const id = `VAL-MULT-HIST-${m.label}${m.basis.startsWith('Burns + executed') ? '-EXEC' : ''}`;
+    const id = `VAL-MULT-HIST-${m.label}${m.basis.includes('delivered to the buyback wallet') ? '-EXEC' : ''}`;
     item({ evidenceId: id, metricKey: `valuation.multiple_history.${id.toLowerCase()}`, label: `${m.label}: market cap / value to holders, latest month-end (${m.basis})`, unit: 'ratio', value: last?.value ?? null,
       periodStart: first?.month ?? null, periodEnd: last?.month ?? null, validationNotes: first && last ? `First available month ${first.month}: ${first.value?.toFixed(0)}x.` : null,
       series: { label: `${m.label} multiple`, unit: 'ratio', aggregation: 'month', points: m.points.filter((p) => p.value !== null).map((p) => [p.month, p.value!]) },

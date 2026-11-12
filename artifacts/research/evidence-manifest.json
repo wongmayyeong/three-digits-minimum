@@ -4495,23 +4495,105 @@
   "notes": null
  },
  {
+  "evidenceId": "TOK-CAPTURED-REPRODUCED",
+  "label": "Captured revenue reproduced onchain since 2026-02-23 (inflows to the three revenue wallets)",
+  "value": 7987827.373054007,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": "2026-02-23",
+  "periodEnd": "2026-11-11",
+  "request": {
+   "key": "fastnear.revenue-wallets",
+   "url": "https://tx.main.fastnear.com/v0/account",
+   "fetchedAt": "2026-11-12T12:58:53.937Z",
+   "sha256": "3ad9a7f03a5623e2c0a2c4042a2e93a7d69a3d66ffc8dc6d2976ea7d6614a44d"
+  },
+  "transform": "sum(inflow_d x price_d)",
+  "inputs": [],
+  "methodology": "NEAR and wNEAR moved into fefundsadmin.sputnik-dao.near, 1csfundsadmin.sputnik-dao.near or buybacks.multisignature.near from any account outside those three (DefiLlama's own definition), valued at each day's price.",
+  "notes": null
+ },
+ {
+  "evidenceId": "TOK-REPRODUCTION-RATIO",
+  "label": "Reproduced captured revenue / DefiLlama revenue, same dates",
+  "value": 0.9911106229550892,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-11",
+  "request": null,
+  "transform": "reproduced / DefiLlama revenue",
+  "inputs": [
+   "TOK-CAPTURED-REPRODUCED"
+  ],
+  "methodology": "Independent check of DefiLlama's adapter (Dune) with FastNEAR transaction data; close to 100% means the adapter measures what it says.",
+  "notes": null
+ },
+ {
+  "evidenceId": "TOK-NON-INTENTS-INFLOWS",
+  "label": "Captured \"revenue\" from accounts other than intents.near since buybacks began",
+  "value": 439982.7694251792,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-11",
+  "request": {
+   "key": "fastnear.revenue-wallets",
+   "url": "https://tx.main.fastnear.com/v0/account",
+   "fetchedAt": "2026-11-12T12:58:53.937Z",
+   "sha256": "3ad9a7f03a5623e2c0a2c4042a2e93a7d69a3d66ffc8dc6d2976ea7d6614a44d"
+  },
+  "transform": "sum",
+  "inputs": [],
+  "methodology": "Counted as revenue (and as buybacks) by DefiLlama's method, but not shown to come from Intents.",
+  "notes": "auroraliqsupport.near $420K, clingy.near $9K, 52435fe912307fb3a088b8b8f3882781762fc1f0a404e8579c7fb1a964362c8d $6K, 5c33c6218d47e00ef229f60da78d0897e1ee9665312550b8afd5f9c7bc6957d2 $2K, 9c484fa5d2d069569ba063fc555c34e621ccd88fdbb0295fc79bad232621c5c1 $1K, enleap.near $1K, 35c78973c032aeb46eec96b9a7cd9bfbc01e53a3606dee0d08fe07344eaf9539 $1K, nf-payments.near $0K, ccb91e1db61e8d7e1d4ae3e043001140132959a86ee35a548b6563a46284a6ea $0K, nearlegion.tipbot.intear.near $0K, multisignature.near $0K, 745def2beee571628e35743e564687bb11ae1cf312efd3c1e079d679e46e011b $0K, 7284730c055ee99285ebbf3d29c6d3e04c9904af57236f7794937cf693d98729 $0K, f7e23b5d988c35bd9a598671dcdb231e9763b47ac5105eb5d0c9e1427040d6c6 $0K, sponsor.trezu.near $0K"
+ },
+ {
+  "evidenceId": "TOK-FRONTEND-RETAINED",
+  "label": "Intents revenue swept to the front-end fund since buybacks began (not moved to the buyback wallet)",
+  "value": 2142388.8097279165,
+  "unit": "USD",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-11",
+  "request": {
+   "key": "fastnear.revenue-wallets",
+   "url": "https://tx.main.fastnear.com/v0/account",
+   "fetchedAt": "2026-11-12T12:58:53.937Z",
+   "sha256": "3ad9a7f03a5623e2c0a2c4042a2e93a7d69a3d66ffc8dc6d2976ea7d6614a44d"
+  },
+  "transform": "sum(inflow_d x price_d)",
+  "inputs": [],
+  "methodology": "Inflows to fefundsadmin.sputnik-dao.near from intents.near. DefiLlama counts these as buybacks; they are held in a DAO fund, not in the buyback wallet.",
+  "notes": "Front-end fund NEAR from all reconstructed flows: 2003854."
+ },
+ {
   "evidenceId": "TOK-EXECUTED-NEAR",
-  "label": "NEAR bought back and received by buybacks.multisignature.near since 2026-04-23",
+  "label": "NEAR delivered to buybacks.multisignature.near by 1Click swaps since 2026-04-23",
   "value": 1743002.280077005,
   "unit": "NEAR",
   "type": "OBSERVED",
   "available": true,
   "periodStart": "2026-04-23",
   "periodEnd": "2026-11-11",
-  "request": null,
-  "transform": "sum(transfer deposits)",
+  "request": {
+   "key": "fastnear.revenue-wallets",
+   "url": "https://tx.main.fastnear.com/v0/account",
+   "fetchedAt": "2026-11-12T12:58:53.937Z",
+   "sha256": "3ad9a7f03a5623e2c0a2c4042a2e93a7d69a3d66ffc8dc6d2976ea7d6614a44d"
+  },
+  "transform": "sum(transfers)",
   "inputs": [],
-  "methodology": "Sum of successful NEAR transfers into the buyback wallet from intents.near (the buyback swaps execute inside NEAR Intents and the NEAR is withdrawn to the wallet). One request per day; 203 of 3344 days stored, 0 truncated.",
+  "methodology": "NEAR withdrawn from intents.near to the buyback wallet: the output of 1Click swaps routed to the wallet through one-time intermediate accounts. Delivery is verified onchain; the swap inputs and prices are not visible without the Intents Explorer API.",
   "notes": null
  },
  {
   "evidenceId": "TOK-EXECUTED-USD",
-  "label": "Executed buybacks valued at each day's NEAR price",
+  "label": "NEAR delivered to the buyback wallet, valued at each day's price",
   "value": 4855575.715518844,
   "unit": "USD",
   "type": "DERIVED",
@@ -4523,17 +4605,17 @@
   "inputs": [
    "TOK-EXECUTED-NEAR"
   ],
-  "methodology": "Each day's NEAR received times that day's DefiLlama NEAR price. Unavailable unless every day is stored, none is truncated and every day has a price.",
+  "methodology": "Each day's NEAR times that day's price (CoinGecko daily, DefiLlama fallback). Unavailable if any day lacks a price.",
   "notes": null
  },
  {
   "evidenceId": "TOK-DESIGNATED-SINCE",
-  "label": "Revenue DefiLlama designates for buybacks, over the same days",
+  "label": "Revenue DefiLlama designates as buybacks, 2026-02-23 to 2026-11-11",
   "value": 8059471.05,
   "unit": "USD",
   "type": "OBSERVED",
   "available": true,
-  "periodStart": null,
+  "periodStart": "2026-02-23",
   "periodEnd": "2026-11-11",
   "request": {
    "key": "defillama.intents.dailyHoldersRevenue",
@@ -4543,17 +4625,17 @@
   },
   "transform": "sum(daily holders revenue)",
   "inputs": [],
-  "methodology": "Sum of NEAR Intents holders revenue from its first non-zero day to the last stored buyback day.",
+  "methodology": "Sum of NEAR Intents holders revenue over exactly the same dates as the onchain measures.",
   "notes": null
  },
  {
   "evidenceId": "TOK-EXECUTED-VS-DESIGNATED",
-  "label": "Executed buybacks as a share of designated buybacks",
+  "label": "Delivered directly to the buyback wallet, as a share of designated buybacks (same dates)",
   "value": 0.6024682867393443,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
-  "periodStart": null,
+  "periodStart": "2026-02-23",
   "periodEnd": "2026-11-11",
   "request": null,
   "transform": "TOK-EXECUTED-USD / TOK-DESIGNATED-SINCE",
@@ -4561,12 +4643,12 @@
    "TOK-EXECUTED-USD",
    "TOK-DESIGNATED-SINCE"
   ],
-  "methodology": "Independent check of the DefiLlama designation (Dune lineage) against onchain receipts (NearBlocks). Below 100% can mean lagged execution, retained revenue or a different definition.",
+  "methodology": "The rest of the designation is NEAR moved later from the 1Click fund, NEAR kept in the front-end fund, and inflows from other accounts (see the reconciliation table).",
   "notes": null
  },
  {
   "evidenceId": "TOK-AFFILIATED-USD",
-  "label": "NEAR sent to the wallet by 1csfundsadmin.sputnik-dao.near, valued at each day's price",
+  "label": "NEAR moved to the buyback wallet from 1csfundsadmin.sputnik-dao.near, valued at each day's price",
   "value": 1180646.1867159107,
   "unit": "USD",
   "type": "DERIVED",
@@ -4576,26 +4658,26 @@
   "request": null,
   "transform": "sum(NEAR_d x price_d)",
   "inputs": [],
-  "methodology": "Not the documented buyback route. The sender's name points to NEAR Intents' 1Click service, so these may be buybacks executed elsewhere; reported separately and never used in the headline. 510068 NEAR.",
+  "methodology": "Captured revenue swept to the 1Click fund (from intents.near) and later moved to the buyback wallet. DefiLlama counts it once, when it reached the fund. 510068 NEAR.",
   "notes": null
  },
  {
   "evidenceId": "TOK-EXECUTED-BROAD-VS-DESIGNATED",
-  "label": "Executed buybacks including the 1Click funds DAO, as a share of designated",
-  "value": 0.7489600576497828,
+  "label": "All NEAR that reached the buyback wallet (direct and via the 1Click fund), as a share of designated",
+  "value": 0.6706960990821995,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
   "periodEnd": "2026-11-11",
   "request": null,
-  "transform": "(executed + affiliated) / designated",
+  "transform": "(direct + 1Click fund inflows x share moved) / designated",
   "inputs": [
    "TOK-EXECUTED-USD",
    "TOK-AFFILIATED-USD",
    "TOK-DESIGNATED-SINCE"
   ],
-  "methodology": "Upper bound of the executed share, if the DAO transfers are buybacks.",
+  "methodology": "Designated revenue that ended up in the buyback wallet, same dates, each part valued when it was captured: direct deliveries plus the share of the 1Click fund's captured NEAR later moved to the wallet.",
   "notes": null
  },
  {
@@ -4633,7 +4715,7 @@
  {
   "evidenceId": "TOK-WALLET-RECONCILE",
   "label": "Buyback wallet balance / NEAR received",
-  "value": 0.9957893746704746,
+  "value": 0.9957895189064685,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
@@ -4779,7 +4861,7 @@
  },
  {
   "evidenceId": "TOK-VERIFIED-CAPTURE",
-  "label": "Verified value capture per year (executed buybacks + burns)",
+  "label": "Verified value capture per year (NEAR delivered to the buyback wallet + burns)",
   "value": 14989478.302025124,
   "unit": "USD",
   "type": "DERIVED",
@@ -4787,30 +4869,30 @@
   "periodStart": null,
   "periodEnd": "2026-11-11",
   "request": null,
-  "transform": "executed + burns",
+  "transform": "delivered + burns",
   "inputs": [
    "TOK-EXECUTED-RUNRATE",
    "LAD-NEAR-BURN-RUNRATE"
   ],
-  "methodology": "Only the flows the taxonomy counts as economic value capture.",
+  "methodology": "A gross measure of what reaches $NEAR. It is not netted against issuance: burns are already inside net issuance, and held buybacks absorb rather than remove supply.",
   "notes": null
  },
  {
-  "evidenceId": "TOK-NET-TO-HOLDERS",
-  "label": "Verified value capture minus net issuance, per year",
-  "value": -98267019.03265564,
-  "unit": "USD",
+  "evidenceId": "TOK-BUYBACK-ABSORPTION",
+  "label": "NEAR delivered to the buyback wallet per year, as a share of total supply",
+  "value": 0.0030253528397518195,
+  "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
   "periodEnd": "2026-11-11",
   "request": null,
-  "transform": "TOK-VERIFIED-CAPTURE - SUP-NET-NEW-ANN-USD",
+  "transform": "run rate / price / total supply",
   "inputs": [
-   "TOK-VERIFIED-CAPTURE",
-   "SUP-NET-NEW-ANN-USD"
+   "TOK-EXECUTED-RUNRATE",
+   "ONC-TOTAL-SUPPLY"
   ],
-  "methodology": "Negative means holders are diluted by more than the token captures.",
+  "methodology": "Held, not burned: it absorbs supply from the market without removing it. Compare with net issuance (SUP-NET-NEW-ANN-PCT), which already includes burns; the two are not netted.",
   "notes": null
  },
  {
@@ -5525,34 +5607,596 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-BASIS-DESIGNATED-MULT",
+  "label": "NEAR's own multiple, designated basis (market cap / (burns + designated buybacks), 90-day run rate)",
+  "value": 212.40302690140334,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "market cap / (burns + buybacks)",
+  "inputs": [
+   "LAD-INTENTS-HOLDER-RUNRATE"
+  ],
+  "methodology": "DefiLlama designated buybacks (all captured revenue since 23 February 2026); same 90 days as every other ladder input.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-TAKE",
+  "label": "Buyback revenue per dollar of Intents volume, designated basis",
+  "value": 0.00041959678040758057,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "buybacks / volume",
+  "inputs": [],
+  "methodology": "DefiLlama designated buybacks (all captured revenue since 23 February 2026) / Intents volume, same 90 days.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-10-HYPERLIQUID-SHARE",
+  "label": "$10, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.1150052934572321,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-10-TRON-SHARE",
+  "label": "$10, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.02177268862725924,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-10-TODAY-SHARE",
+  "label": "$10, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.010430366902160551,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-25-HYPERLIQUID-SHARE",
+  "label": "$25, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.28772645888475756,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-25-TRON-SHARE",
+  "label": "$25, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.05464494680982539,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-25-TODAY-SHARE",
+  "label": "$25, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.026289142497078657,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-50-HYPERLIQUID-SHARE",
+  "label": "$50, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.5755950679306333,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-50-TRON-SHARE",
+  "label": "$50, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.10943204378076896,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-50-TODAY-SHARE",
+  "label": "$50, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.052720435155275504,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-100-HYPERLIQUID-SHARE",
+  "label": "$100, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 1.1513322860223847,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-100-TRON-SHARE",
+  "label": "$100, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.21900623772265612,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-100-TODAY-SHARE",
+  "label": "$100, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.10558302047166922,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-DESIGNATED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the designated basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-IMPLIED-HYPERLIQUID",
+  "label": "Implied 2036 price at 20% growth, designated basis, priced like hyperliquid",
+  "value": 1.4935282713483256,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-IMPLIED-TRON",
+  "label": "Implied 2036 price at 20% growth, designated basis, priced like tron",
+  "value": 7.847466462253934,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-DESIGNATED-IMPLIED-TODAY",
+  "label": "Implied 2036 price at 20% growth, designated basis, NEAR's own multiple",
+  "value": 16.26632157585381,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-MULT",
+  "label": "NEAR's own multiple, executed basis (market cap / (burns + executed buybacks), 90-day run rate)",
+  "value": 309.1303986205259,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "market cap / (burns + buybacks)",
+  "inputs": [
+   "TOK-EXECUTED-RUNRATE"
+  ],
+  "methodology": "NEAR delivered to the buyback wallet by 1Click swaps (onchain, FastNEAR); same 90 days as every other ladder input.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-TAKE",
+  "label": "Buyback revenue per dollar of Intents volume, executed basis",
+  "value": 0.0002815288846868553,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "buybacks / volume",
+  "inputs": [],
+  "methodology": "NEAR delivered to the buyback wallet by 1Click swaps (onchain, FastNEAR) / Intents volume, same 90 days.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-10-HYPERLIQUID-SHARE",
+  "label": "$10, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.17140639376367572,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-10-TRON-SHARE",
+  "label": "$10, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.03245048925965952,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-10-TODAY-SHARE",
+  "label": "$10, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.010615097235895276,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-25-HYPERLIQUID-SHARE",
+  "label": "$25, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.42883377995265176,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-25-TRON-SHARE",
+  "label": "$25, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.08144401869261118,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-25-TODAY-SHARE",
+  "label": "$25, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.02685553863320056,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-50-HYPERLIQUID-SHARE",
+  "label": "$50, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.8578794236009449,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-50-TRON-SHARE",
+  "label": "$50, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.16309990108086397,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-50-TODAY-SHARE",
+  "label": "$50, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.053922940962042705,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-100-HYPERLIQUID-SHARE",
+  "label": "$100, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "value": 1.7159707108975315,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-100-TRON-SHARE",
+  "label": "$100, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.3264116658573695,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-100-TODAY-SHARE",
+  "label": "$100, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "value": 0.108057745619727,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
+  "inputs": [
+   "LAD-BASIS-EXECUTED-TAKE"
+  ],
+  "methodology": "Multiple and take rate both on the executed basis.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-HYPERLIQUID",
+  "label": "Implied 2036 price at 20% growth, executed basis, priced like hyperliquid",
+  "value": 1.0061464340625892,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-TRON",
+  "label": "Implied 2036 price at 20% growth, executed basis, priced like tron",
+  "value": 5.286609265383699,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-TODAY",
+  "label": "Implied 2036 price at 20% growth, executed basis, NEAR's own multiple",
+  "value": 15.948436394534674,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(run rate x 1.2^10 x take rate + burns) x multiple / supply 2036",
+  "inputs": [],
+  "methodology": "Scenario, not a forecast.",
+  "notes": null
+ },
+ {
   "evidenceId": "VAL-MULT-HIST-NEAR",
-  "label": "NEAR: market cap / value to holders, latest month-end (Burns + Intents buybacks designated (DefiLlama))",
+  "label": "NEAR: market cap / value to holders, latest month-end (Burns + designated buybacks (DefiLlama), windows after 23 February 2026 only)",
   "value": 219.44167258393955,
   "unit": "ratio",
   "type": "DERIVED",
   "available": true,
-  "periodStart": "2025-12",
+  "periodStart": "2026-05",
   "periodEnd": "2026-11",
   "request": null,
   "transform": "cap_d / (sum 90d x 365/90)",
   "inputs": [],
   "methodology": "CoinGecko market cap on each month-end / holders revenue over the 90 days ending that day, annualized.",
-  "notes": "First available month 2025-12: 1159x."
+  "notes": "First available month 2026-05: 468x."
  },
  {
   "evidenceId": "VAL-MULT-HIST-NEAR-EXEC",
-  "label": "NEAR: market cap / value to holders, latest month-end (Burns + executed buybacks (onchain))",
+  "label": "NEAR: market cap / value to holders, latest month-end (Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only)",
   "value": 319.37441151117594,
   "unit": "ratio",
   "type": "DERIVED",
   "available": true,
-  "periodStart": "2025-12",
+  "periodStart": "2026-07",
   "periodEnd": "2026-11",
   "request": null,
   "transform": "cap_d / (sum 90d x 365/90)",
   "inputs": [],
   "methodology": "CoinGecko market cap on each month-end / holders revenue over the 90 days ending that day, annualized.",
-  "notes": "First available month 2025-12: 1159x."
+  "notes": "First available month 2026-07: 402x."
  },
  {
   "evidenceId": "VAL-MULT-HIST-ETH",
@@ -7726,6 +8370,21 @@
   "notes": "Peers: THORChain, Chainflip, deBridge (DLN), Stargate, Symbiosis."
  },
  {
+  "evidenceId": "CC-PEER-MEDIAN-CAP-REV-LIQUID",
+  "label": "Median market cap / protocol revenue, cross-chain execution tokens of at least $25M",
+  "value": 13.467364384201147,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "median(cap / revenue)",
+  "inputs": [],
+  "methodology": "Reliability check of the peer median: small, thinly traded tokens removed.",
+  "notes": "Peers: THORChain, Chainflip, deBridge (DLN)."
+ },
+ {
   "evidenceId": "CC-PEER-MEDIAN-CAP-HOLDERS",
   "label": "Median market cap / holders revenue, cross-chain execution tokens",
   "value": 16.9734814262138,
@@ -7757,7 +8416,7 @@
  },
  {
   "evidenceId": "CC-NEAR-IMPLIED-CAP",
-  "label": "Market cap Intents revenue would support at the cross-chain peer median multiple",
+  "label": "Conditional: market cap attributable to Intents revenue alone at the cross-chain peer median multiple",
   "value": 155453116.31579068,
   "unit": "USD",
   "type": "DERIVED",
@@ -7769,12 +8428,12 @@
   "inputs": [
    "CC-PEER-MEDIAN-CAP-REV"
   ],
-  "methodology": "What the cross-chain market pays for revenue like Intents'. Not a target: it leaves out everything else NEAR is.",
-  "notes": null
+  "methodology": "Conditional on valuing NEAR only on Intents revenue. Not a fair value of the NEAR network: it leaves out the L1, staking and every other product.",
+  "notes": "Range across peer medians: $155M to $277M."
  },
  {
   "evidenceId": "CC-NEAR-IMPLIED-PRICE",
-  "label": "NEAR price at the cross-chain peer median multiple on Intents revenue",
+  "label": "Conditional: per-token value of Intents revenue alone at the peer median multiple (not a fair value of NEAR)",
   "value": 0.11853319820778246,
   "unit": "USD",
   "type": "DERIVED",
@@ -8392,7 +9051,7 @@
  },
  {
   "evidenceId": "HYP-H1",
-  "label": "H1: NEAR's value capture is far more concentrated in one product than peers'",
+  "label": "H1: NEAR's fee base is far more concentrated in one product than peers' (restated from \"value capture\": comparable value-capture data by product does not exist for peers)",
   "value": 0.8624976510819797,
   "unit": "text",
   "type": "DERIVED",
@@ -8402,12 +9061,12 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "SUPPORTED if the largest product's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents: 86% of NEAR's fees and 93% of its verified capture; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%).",
+  "methodology": "Protocol fees on each chain (DefiLlama, 30 days). SUPPORTED if the largest protocol's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents: 86% of fees paid on NEAR; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). Separately, and not compared with peers: 93% of NEAR's verified value capture comes from Intents.",
   "notes": null
  },
  {
   "evidenceId": "HYP-H2",
-  "label": "H2: NEAR is priced closer to a platform than its on-chain economy justifies",
+  "label": "H2: NEAR's market cap is high relative to its on-chain economy compared with platforms (an observed valuation gap, not a judgement that it is unjustified)",
   "value": 35.15192726548803,
   "unit": "text",
   "type": "DERIVED",
@@ -8437,7 +9096,7 @@
  },
  {
   "evidenceId": "HYP-H4",
-  "label": "H4: Value is moving off the NEAR chain into cross-chain flows the token only partly captures",
+  "label": "H4: Cross-chain activity and NEAR L1 activity are moving in opposite directions (diverging trends; migration of value is not proven)",
   "value": 2.3014016869885845,
   "unit": "text",
   "type": "DERIVED",
@@ -8447,7 +9106,7 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. Reading: Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%; 60% of designated buybacks executed. Part of the L1 decline may be automated activity ending (H7).",
+  "methodology": "SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. Divergence does not show that value moved from one to the other. Reading: Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%. Part of the L1 decline may be automated activity ending (H7), and the two trends may have separate causes.",
   "notes": null
  },
  {
@@ -8462,7 +9121,7 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "SUPPORTED if NEAR's dilution net of capture is more than 0.5 percentage points above the peer median; NOT SUPPORTED if more than 0.5 points below; otherwise MIXED. Reading: NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted.",
+  "methodology": "Tested twice: on dilution net of capture (one-day events excluded, held buybacks subtracted) and on raw circulating supply growth. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED. Reading: Raw: NEAR 2.5% vs peer median 5.6% (NOT SUPPORTED). Adjusted: NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted.",
   "notes": null
  },
  {

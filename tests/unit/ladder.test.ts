@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { RawRecord } from '@/lib/data/fetcher';
-import { analyzeLadder, HORIZON_YEARS, RUN_RATE_DAYS, supplyPath } from '@/lib/research/ladder';
+import { analyzeLadder, basisScenarios, HORIZON_YEARS, RUN_RATE_DAYS, supplyPath } from '@/lib/research/ladder';
 
 const rec = (key: string, body: unknown): RawRecord => ({ key, source: 'defillama', url: 'u', sha256: key, fetchedAt: '2026-11-09T00:00:00Z', body });
 const DAY = 86_400;
@@ -112,5 +112,32 @@ describe('three-digit price ladder', () => {
     }
     expect(l.swing.sentence.length).toBeGreaterThan(20);
     expect(l.headline.length).toBeGreaterThan(40);
+  });
+});
+
+describe('revenue-basis scenarios (designated vs executed)', () => {
+  const daily = (usdPerDay: number) => days(usdPerDay, 400, 9).map(([t, v]) => [new Date(Number(t) * 1000).toISOString().slice(0, 10), Number(v)] as [string, number]);
+  const designatedPerDay = (4e10 * 0.0004) / 365;
+
+  it('reduces to the designated basis when executed equals designated', () => {
+    const [d, e] = basisScenarios(l, daily(designatedPerDay));
+    expect(e!.multipleToday).toBeCloseTo(d!.multipleToday!, 6);
+    expect(e!.holderTakeRate).toBeCloseTo(d!.holderTakeRate!, 12);
+    expect(e!.rungs[3]!.byMultiple[2]!.requiredVolume).toBeCloseTo(d!.rungs[3]!.byMultiple[2]!.requiredVolume!, 0);
+  });
+
+  it('keeps the multiple, the take rate and the flow on one basis', () => {
+    const [d, e] = basisScenarios(l, daily(designatedPerDay / 2));
+    // Each basis: market cap = its own multiple x its own capture.
+    for (const s of [d!, e!]) expect(s.multipleToday! * s.captureToday!).toBeCloseTo(5e9, 0);
+    expect(e!.holderTakeRate).toBeCloseTo(d!.holderTakeRate! / 2, 12);
+    expect(e!.multipleToday!).toBeGreaterThan(d!.multipleToday!);
+    // The designated basis is exactly the main ladder; the executed basis never borrows its take rate.
+    expect(d!.holderTakeRate).toBeCloseTo(l.inputs.holderTakeRate!, 12);
+    expect(d!.multipleToday).toBeCloseTo(l.multiples.find((m) => m.key === 'today')!.value!, 9);
+    // At a basis-free peer multiple, half the buyback revenue per dollar needs about twice the volume.
+    const peerD = d!.rungs[3]!.byMultiple.find((b) => b.multipleKey === 'tron')!, peerE = e!.rungs[3]!.byMultiple.find((b) => b.multipleKey === 'tron')!;
+    expect(peerE.multiple).toBe(peerD.multiple);
+    expect(peerE.requiredVolume! / peerD.requiredVolume!).toBeGreaterThan(1.99);
   });
 });

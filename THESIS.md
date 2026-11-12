@@ -8,7 +8,7 @@
 
 > Educational research, not financial advice. Not a price prediction. "Three digits, minimum." is a line attributed to NEAR co-founder Illia Polosukhin and repeated across the NEAR community; we use it as a hook and test it against data.
 
-**The short answer.** At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally. NEAR trades at 223x the revenue of its main product, NEAR Intents, against 7.55x for cross-chain competitors. Holders are diluted by $98.27M a year more than the token verifiably captures.
+**The short answer.** At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally. NEAR's market cap is 223x the revenue of its main product, NEAR Intents; small cross-chain peer tokens trade at 7.55x to 13.5x their revenue, though NEAR's market cap also prices the L1 and its other products. 67.1% of the revenue designated as buybacks has reached the buyback wallet, and net issuance (2.48% of supply a year) is larger than what buybacks absorb (0.303%).
 
 ---
 
@@ -107,39 +107,53 @@ How fast Intents grows and how the market values NEAR matter about equally: pric
 
 **Does the token capture value? (token economics)**
 
-Every flow is classified before anything is added up. Only executed buybacks and burns count as value captured by $NEAR; revenue *designated* for buybacks is a label until the purchase happens onchain, staking rewards are paid in new tokens (redistribution from non-stakers), and net issuance is dilution.
+Every flow is classified before anything is added up, and flows with different economic effects are never netted into one dollar figure. Four things are kept apart: **captured revenue** (NEAR swept into NEAR's revenue wallets), **designated buybacks** (DefiLlama's label for that revenue from 23 February 2026), **NEAR delivered to the buyback wallet** (verified onchain), and **supply effects** (issuance, burns, held buybacks). Staking rewards are new tokens, a redistribution from non-stakers.
 
 | Flow | What it is | Per year | Classification |
 |---|---|---|---|
 | NEAR Intents fees | Gross fees paid by Intents users (protocol and distributor fees) | $76.07M | Source of value, not captured |
 | NEAR gas fees | All transaction fees paid on the NEAR chain | $1.52M | Source of value, not captured |
-| Intents revenue designated for buybacks | DefiLlama's classification of captured revenue as buybacks | $20.75M | Label, not a transaction |
-| Executed buyback purchases | NEAR received by buybacks.multisignature.near from intents.near, valued at each day's price | $13.93M | **Value capture** |
+| Revenue DefiLlama designates as buybacks | All NEAR captured into the three revenue wallets since 23 February 2026, relabelled as buybacks | $20.75M | Label, not a transaction |
+| NEAR delivered to the buyback wallet | 1Click swap output withdrawn from intents.near to buybacks.multisignature.near, valued at each day's price (swap inputs not visible onchain) | $13.93M | **Value capture** |
+| Captured revenue kept in the front-end fund | NEAR swept to fefundsadmin.sputnik-dao.near; not moved to the buyback wallet | $2.14M since 2026-02-23 | Label, not a transaction |
 | Gas burned | 70% of every gas fee, permanently removed | $1.06M | **Value capture** |
 | Staking emissions | New NEAR minted for validators and delegators | $114.93M | Redistribution (new tokens) |
-| Net issuance | Emissions minus burns: the dilution every holder faces | $113.26M | **Dilution** (subtracted) |
+| Net issuance | Emissions minus burns: the dilution every holder faces (burns are already inside this figure) | $113.26M | **Dilution** (subtracted) |
 | Ecosystem app revenue (for example RHEA) | Revenue accruing to applications, not to $NEAR | not summed | Not $NEAR value |
-| **Verified capture minus net issuance** | | **-$98.27M** | Net value to holders |
 
-- Executed buybacks: $13.9M a year (90-day run rate) against $20.8M designated. Since designation began, 60.2% of the designated amount arrived through the documented route (intents.near); counting 1csfundsadmin.sputnik-dao.near as well, 74.9%.
-- Verified value capture (executed buybacks + burns) is $15.0M a year; net issuance is $113.3M. Net, holders are diluted by $98.3M a year.
+Effects on supply, each as a share of total supply per year. Burns are already inside net issuance, and bought NEAR is held rather than burned, so these are shown side by side, not subtracted from each other:
+
+| Effect on supply, per year | Share of total supply | What it does |
+|---|---|---|
+| Gross issuance (staking emissions) | 2.50% | New tokens to stakers |
+| Burns | 0.023% | Removed permanently; already inside net issuance |
+| **Net issuance** | **2.48%** | Realized change in total supply |
+| NEAR delivered to the buyback wallet | 0.303% | Held, not burned: absorbed from the market, still in supply |
+
+- Captured revenue reproduced onchain from the three revenue wallets matches DefiLlama to 99.1% over the same dates (FastNEAR vs Dune, independent paths). DefiLlama labels all of it as buybacks from 2026-02-23.
+- Of the $8.1M designated since then, $4.9M (60.2%) reached the buyback wallet directly from 1Click swaps and $1.2M more was moved there from the 1Click fund (counting the moved NEAR at its value when captured, 67.1% of the designation reached the buyback wallet). $2.1M of Intents revenue stayed in the front-end fund, and $0.4M came from accounts other than intents.near (auroraliqsupport.near, clingy.near).
+- Run rate on identical dates: $13.9M a year delivered to the buyback wallet against $20.8M designated. The swap inputs are not visible onchain without the Intents Explorer API, so delivery is verified, not the purchase price.
+- Supply view, per year as a share of total supply: gross issuance 2.50%, burns 0.023% (inside net issuance), net issuance 2.48%; buybacks absorb 0.30% into a held wallet without removing it. These are different effects and are not netted into one dollar figure.
 - Staking: 44% of supply is staked; nominal yield 5.6%, 3.1% after dilution for stakers and -2.4% for non-stakers.
-- Dilution net of capture over the last year (circulating supply growth excluding one-day events, minus held buybacks): NEAR 2.2%, 5 lowest of 9; HYPE 0.2%, ETH 0.8%, BTC 0.9%, SOL 1.5%, NEAR 2.2%, AVAX 4.4%, SUI 12.5%, TON 14.8%, APT 22.6%.
+- Dilution net of capture over the last year (circulating supply growth excluding one-day events, minus held buybacks): NEAR 2.2%, 5 lowest of 9; HYPE 0.2%, ETH 0.8%, BTC 0.9%, SOL 1.5%, NEAR 2.2%, AVAX 4.4%, SUI 12.5%, TON 14.8%, APT 22.6%. As-reported supply changes, including one-day events, are shown alongside.
 
-**Executed versus designated buybacks.** The buyback swaps execute inside NEAR Intents, and the NEAR is withdrawn to `buybacks.multisignature.near`. Reading every transfer into that wallet (FastNEAR transaction API, exact yoctoNEAR; NearBlocks' free tier could not page the history) and valuing each day's NEAR at that day's price gives an independent check of DefiLlama's designation, which shares its Dune lineage with NEAR's own revenue dashboard. Since the first purchase on 2026-04-23: 1.74M NEAR bought ($4.86M, average price $2.79) against $8.06M designated, so 60.2% has arrived through the documented route. A second sender, the DAO `1csfundsadmin.sputnik-dao.near`, whose name points to NEAR Intents' 1Click service, sent $1.18M of NEAR, mostly in one transfer in September; it is not documented as a buyback route, so it is shown separately: counting it, 74.9% has been executed. Either way, executed purchases trail the designation, and no executions appear before April although designation began in February. The wallet still holds 99.6% of everything it received: bought NEAR is held, not burned, so total supply does not fall.
+**Where the designated buybacks went.** DefiLlama's NEAR Intents adapter (dimension-adapters, fees/near-intents) measures captured revenue as NEAR and wNEAR swept into three wallets from any outside account: the front-end fund (`fefundsadmin.sputnik-dao.near`), the 1Click fund (`1csfundsadmin.sputnik-dao.near`) and the buyback wallet (`buybacks.multisignature.near`), and from 23 February 2026 labels all of it as holders revenue. Every NEAR and wNEAR flow into and out of those three wallets was read independently from FastNEAR and valued at each day's price. Reproduced captured revenue $7.99M vs DefiLlama revenue $8.06M over 2026-02-23 to 2026-11-11 (99.1%). The first five columns after the designation add up to the captured revenue (each inflow counted once, when it first reached a revenue wallet). The memo column is a later move of already-captured NEAR from the 1Click fund to the buyback wallet, valued at the price on the day it moved.
 
-| Month | NEAR bought | Executed (USD) | Designated (USD) | Executed / designated |
-|---|---|---|---|---|
-| 2026-02 | 0 NEAR | $0 | $196.8K | 0.000% |
-| 2026-03 | 0 NEAR | $0 | $563.5K | 0.000% |
-| 2026-04 | 34.6K NEAR | $47.5K | $258.7K | 18.4% |
-| 2026-05 | 227.9K NEAR | $415.2K | $619.6K | 67.0% |
-| 2026-06 | 223.9K NEAR | $491.7K | $619.5K | 79.4% |
-| 2026-07 | 180.5K NEAR | $341.4K | $504.9K | 67.6% |
-| 2026-08 | 277.7K NEAR | $488.9K | $723.3K | 67.6% |
-| 2026-09 | 396.8K NEAR | $1.23M | $1.84M | 66.6% |
-| 2026-10 | 297.3K NEAR | $1.45M | $2.19M | 66.2% |
-| 2026-11 | 104.4K NEAR | $396.8K | $544.2K | 72.9% |
+The transaction path into the buyback wallet: a 1Click swap delivers wNEAR to a one-time account inside NEAR Intents, which withdraws it as NEAR to the buyback wallet. Delivery and amounts are verified onchain; what was sold and at what price is not visible without the Intents Explorer API, so these are verified deliveries of NEAR acquired through Intents, not fully audited open-market purchases. The buyback wallet still holds 99.6% of everything it received: bought NEAR is held, not burned.
+
+| Month | Designated by DefiLlama | Into the buyback wallet (1Click swaps) | Into the 1Click fund | Into the front-end fund | From accounts other than intents.near | Memo: moved 1Click fund to buyback wallet |
+|---|---|---|---|---|---|---|
+| 2026-02 | $196.8K | $0 (0 NEAR) | $64.4K | $0 | $137.2K | $0 |
+| 2026-03 | $563.5K | $0 (0 NEAR) | $284.9K | $0 | $283.1K | $0 |
+| 2026-04 | $258.7K | $47.5K (34.6K NEAR) | $199.5K | $11.1K | $0.05 | $0 |
+| 2026-05 | $619.6K | $415.2K (227.9K NEAR) | $0 | $189.3K | $0 | $0 |
+| 2026-06 | $619.5K | $491.7K (223.9K NEAR) | $0 | $152.1K | $29 | $0 |
+| 2026-07 | $504.9K | $341.4K (180.5K NEAR) | $0 | $150.2K | $877 | $14.0K |
+| 2026-08 | $723.3K | $488.9K (277.7K NEAR) | $0 | $222.4K | $908 | $1.93 |
+| 2026-09 | $1.84M | $1.23M (396.8K NEAR) | $990 | $509.8K | $15.9K | $1.17M |
+| 2026-10 | $2.19M | $1.45M (297.3K NEAR) | $0 | $756.8K | $0 | $0 |
+| 2026-11 | $544.2K | $396.8K (104.4K NEAR) | $0 | $150.6K | $1,924 | $0 |
+| **Total** | **$8.06M** | **$4.86M** | **$549.9K** | **$2.14M** | **$440.0K** | $1.18M |
 
 **Staking.** 44.4% of supply is staked. Realized gross issuance is 2.50% a year and all of it goes to stakers (the protocol treasury share is zero), so the nominal staking yield is 5.62% before validator commission. After dilution a staker's share of supply grows 3.07% a year, while a non-staker's share changes by -2.42%. Staking protects a holder from dilution; it does not create value.
 
@@ -247,21 +261,22 @@ If NEAR's value is mostly one cross-chain business, the relevant comparison is t
 | Wormhole | messaging | not tracked | n/a | $201.4K | $0 | n/a | not tracked | W | $67.48M | N/A | N/A |
 | Axelar | messaging | not tracked | n/a | $55.0K | $0 | n/a | $0 | AXL | $44.30M | N/A | N/A |
 
-- Among cross-chain swap venues with public volume (NEAR Intents, THORChain, Chainflip, Maya Protocol), NEAR Intents handles 58% of volume (run rate). Aggregators and bridges without a volume adapter (Relay, deBridge, Across, Mayan, Stargate) are not in this denominator, so it overstates Intents' share of all cross-chain execution.
-- By revenue, the largest cross-chain protocols are NEAR Intents $20.6M, Relay $17.6M, THORChain $8.9M, Mayan $7.8M a year (run rate).
-- Cross-chain execution tokens trade at a median 7.5x their protocol revenue (RUNE 22x, FLIP 7.5x, DBR 13x, STG 3.0x, SIS 1.3x). NEAR trades at 223x Intents revenue. At the peer median, Intents revenue would support $155.5M of market cap, about $0.12 a token, against $4.6B today: the rest of NEAR's valuation rests on the L1, its other products, or a premium the cross-chain market does not pay its own leaders.
-- On revenue that reaches token holders the gap is smaller: the peer median is 17x (RUNE 431x, FLIP 7.5x, DBR 17x), because some protocols, THORChain above all, pass little revenue to their token; NEAR designates all of Intents' captured revenue for buybacks (about 60% executed onchain so far, section 6). Messaging layers are valued differently again (ZRO 796x).
+- Coverage first: only 4 cross-chain swap venues have public volume data (NEAR Intents, THORChain, Chainflip, Maya Protocol); among them NEAR Intents handles 58% of volume (run rate). Relay, deBridge, Mayan, Across and Stargate have no free volume data, so this is a share of measured venues, not of cross-chain execution.
+- By protocol revenue as each DefiLlama adapter defines it (definitions differ: some count only protocol take, others include integrator fees), the largest are NEAR Intents $20.6M, Relay $17.6M, THORChain $8.9M, Mayan $7.8M a year (run rate).
+- Cross-chain execution tokens trade at a median 7.5x their protocol revenue (RUNE 22x, FLIP 7.5x, DBR 13x, STG 3.0x, SIS 1.3x); without tokens under $25M market cap the median is 13x (RUNE, FLIP, DBR). The peer set is small and thinly traded, so it is a range, not a benchmark. NEAR trades at 223x Intents revenue.
+- Conditional, not a fair value: if NEAR were valued only on Intents revenue at the peer range, Intents would account for $155.5M to $277.3M of market cap against $4.6B today. NEAR's market cap also prices the L1, staking, Chain Signatures and other products; this comparison does not value them.
+- On revenue that reaches token holders the gap is smaller: the peer median is 17x (RUNE 431x, FLIP 7.5x, DBR 17x), because some protocols, THORChain above all, pass little revenue to their token. Messaging layers are valued differently again (ZRO 796x).
 
 Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
 
 ## 10. Valuation: how NEAR is priced, and what moves it
 
-**NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
+**NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and NEAR delivered to the buyback wallet (section 6). For NEAR, only months whose 90-day window falls entirely after the flow began are shown: earlier windows value pre-buyback treasury revenue, a different definition.
 
 | Asset (basis) | 2026-01 | 2026-03 | 2026-05 | 2026-07 | 2026-09 | 2026-11 |
 |---|---|---|---|---|---|---|
-| **NEAR** (Burns + Intents buybacks designated (DefiLlama)) | 1,274x | 379x | 468x | 294x | 495x | 219x |
-| **NEAR** (Burns + executed buybacks (onchain)) | 1,274x | 1,708x | 1,229x | 402x | 724x | 319x |
+| **NEAR** (Burns + designated buybacks (DefiLlama), windows after 23 February 2026 only) | N/A | N/A | 468x | 294x | 495x | 219x |
+| **NEAR** (Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only) | N/A | N/A | N/A | 402x | 724x | 319x |
 | ETH (DefiLlama holders revenue) | 6,402x | 7,537x | 3,859x | 5,775x | 8,744x | 4,168x |
 | SOL (DefiLlama holders revenue) | 1,994x | 1,810x | 2,260x | 2,219x | 2,622x | 1,702x |
 | SUI (DefiLlama holders revenue) | 4,599x | 4,140x | 6,189x | N/A | N/A | N/A |
@@ -279,6 +294,13 @@ Two readings follow, and the data cannot choose between them. Either the market 
 | Buyback revenue per dollar of volume | 0.5x today's | $8.2 | 1.5x today's | $24 | 2.97x |
 | Supply rule | 2.5% issuance (base) | $16 | HSP-029 | $18 | 1.08x |
 | Gas burns | 0x today's | $16 | 5x today's | $17 | 1.04x |
+
+**Designated versus executed basis.** The ladder's main tables use DefiLlama's designated buybacks. The same results on the executed basis (NEAR actually delivered to the buyback wallet), with the multiple, the take rate and the projected flow all on that basis and the same 90 days. NEAR's own multiple changes with the basis; peer multiples do not.
+
+| Basis | NEAR multiple today | Buyback revenue per $ of volume | Implied 2036 price, Priced like Hyperliquid | Implied 2036 price, Priced like Tron | Implied 2036 price, NEAR's own multiple | $25 (NEAR's own multiple) | $100 (NEAR's own multiple) | $100 (priced like Tron) |
+|---|---|---|---|---|---|---|---|---|
+| Designated (DefiLlama) | 212x | 0.042% | $1.49 | $7.85 | $16 | 2.63% of spot DEX | 10.6% | 21.9% |
+| Executed (delivered onchain) | 309x | 0.028% | $1.01 | $5.29 | $16 | 2.69% of spot DEX | 10.8% | 32.6% |
 
 **How much of each rung rests on the multiple alone.** The cash-flow multiple each rung would need under each growth scenario. Compare with NEAR's 212x today, Tron's 102x and Hyperliquid's 19.5x (cash-flow tokens), and the platforms' thousands (section 3). Where the multiple needed is in platform territory, the rung depends on NEAR being re-rated as a platform, not on its cash flow.
 
@@ -305,7 +327,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 | HYPE | holders revenue | 0.242% | 11.1% / 21.8% / 30.5% / 39.9% | -24.5% | Stablecoins +32.8%, DeFi TVL +11.1% |
 | **NEAR** | Intents volume (cash flow); stablecoins and TVL (platform) | 2.16% | 13.2% / 24.1% / 33.0% / 42.6% | +230.1% | Platform route: stablecoins -23%, DeFi TVL +27% over the last year. |
 
-- NEAR's own cash-flow multiple: 219x on designated buybacks and 319x on executed buybacks (latest month-end); it was 1159x in 2025-12.
+- NEAR's own cash-flow multiple: 219x on designated buybacks and 319x on executed buybacks (latest month-end). Only windows that fall entirely after each flow began are shown; earlier months valued pre-buyback treasury revenue and are not comparable.
 - The input that moves NEAR's implied 2036 price most is Intents growth, 10 years (10% a year: $6.89; 30% a year: $36.05; base $16.27).
 - At base growth, $100 would need a cash-flow multiple of 1306x; at high growth 281x. Today: NEAR 212x, Tron 102x, Hyperliquid 20x.
 - For 7x in ten years NEAR's driver must grow 24.1% a year (its own dilution included); Intents volume grew 230% over the last year. Required vs observed, by asset (7x): NEAR 24% vs 230%; HYPE 22% vs -24%; SOL 23% vs -24%; ETH 22% vs -31%; SUI 37% vs -44%; AVAX 27% vs -54%; TON 39% vs -46%; APT 49% vs -47%. One year of observed growth is dominated by the market cycle, and NEAR's driver is a young product growing from a small base while the platforms' drivers are mature chain economies, so the comparison flatters NEAR.
@@ -332,11 +354,11 @@ Each hypothesis was written before the data was read (research/three-digits/SCOP
 
 | | Hypothesis | Rule | Reading | Outcome |
 |---|---|---|---|---|
-| H1 | NEAR's value capture is far more concentrated in one product than peers' | SUPPORTED if the largest product's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. | Intents: 86% of NEAR's fees and 93% of its verified capture; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). | **SUPPORTED** |
-| H2 | NEAR is priced closer to a platform than its on-chain economy justifies | SUPPORTED if NEAR's market cap to stablecoins and to DeFi TVL both exceed every platform benchmark; NOT SUPPORTED if both are at or below the benchmark median; otherwise MIXED. | NEAR market cap is 35x its stablecoins and 28x its DeFi TVL; benchmarks: Ethereum 1.9x / 6.1x, BNB Chain 6.6x / 18x, Solana 3.5x / 9.7x, Tron 0.3x / 6.1x. | **SUPPORTED** |
+| H1 | NEAR's fee base is far more concentrated in one product than peers' (restated from "value capture": comparable value-capture data by product does not exist for peers) | Protocol fees on each chain (DefiLlama, 30 days). SUPPORTED if the largest protocol's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. | Intents: 86% of fees paid on NEAR; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). Separately, and not compared with peers: 93% of NEAR's verified value capture comes from Intents. | **SUPPORTED** |
+| H2 | NEAR's market cap is high relative to its on-chain economy compared with platforms (an observed valuation gap, not a judgement that it is unjustified) | SUPPORTED if NEAR's market cap to stablecoins and to DeFi TVL both exceed every platform benchmark; NOT SUPPORTED if both are at or below the benchmark median; otherwise MIXED. | NEAR market cap is 35x its stablecoins and 28x its DeFi TVL; benchmarks: Ethereum 1.9x / 6.1x, BNB Chain 6.6x / 18x, Solana 3.5x / 9.7x, Tron 0.3x / 6.1x. | **SUPPORTED** |
 | H3 | Intents' take rate is above cross-chain peers, so fee pressure matters more than volume | SUPPORTED if Intents' protocol revenue per dollar of volume is above every peer with public volume; NOT SUPPORTED if at or below the peer median; otherwise MIXED. | Intents 4.20 bp; peers THORChain 3.52 bp, Chainflip 5.76 bp, Maya Protocol 1.26 bp, Unit 2.54 bp, LI.FI 1.86 bp (median 2.54 bp). | **MIXED** |
-| H4 | Value is moving off the NEAR chain into cross-chain flows the token only partly captures | SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. | Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%; 60% of designated buybacks executed. Part of the L1 decline may be automated activity ending (H7). | **SUPPORTED** |
-| H5 | NEAR's dilution is a higher return hurdle than peers' | SUPPORTED if NEAR's dilution net of capture is more than 0.5 percentage points above the peer median; NOT SUPPORTED if more than 0.5 points below; otherwise MIXED. | NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted. | **NOT SUPPORTED** |
+| H4 | Cross-chain activity and NEAR L1 activity are moving in opposite directions (diverging trends; migration of value is not proven) | SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. Divergence does not show that value moved from one to the other. | Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%. Part of the L1 decline may be automated activity ending (H7), and the two trends may have separate causes. | **SUPPORTED** |
+| H5 | NEAR's dilution is a higher return hurdle than peers' | Tested twice: on dilution net of capture (one-day events excluded, held buybacks subtracted) and on raw circulating supply growth. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED. | Raw: NEAR 2.5% vs peer median 5.6% (NOT SUPPORTED). Adjusted: NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted. | **NOT SUPPORTED** |
 | H6 | NEAR needs more growth than some alternatives to deliver the same multiple | Required driver growth for 7x in ten years (own dilution included). SUPPORTED if NEAR's is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED. | NEAR 24.1% a year; peer median 26.8% (ETH 22.5%, SOL 23.3%, SUI 36.6%, AVAX 26.8%, TON 39.5%, APT 49.0%, HYPE 21.8%).  Against the largest alternatives with a growth driver (ETH, SOL, HYPE, AVAX) NEAR needs more growth than 3 of 4. Observed growth is compared in section 11. | **NOT SUPPORTED** |
 | H7 | Most of NEAR's reported activity is automated rather than organic | Signer classification over the last year. | Not tested: needs receipt-level signer data (BigQuery crypto_near_mainnet_us, research/sql/). L1 transactions fell 84% in a year, which is consistent with automated activity ending but does not prove it. | **UNTESTED** |
 | H8 | Intents revenue depends on a few integrators or solvers | Share of volume from the top five integrators and solvers. | Not tested: needs Intents Explorer API (partner JWT) or intents.near event logs (BigQuery). | **UNTESTED** |
@@ -350,9 +372,9 @@ Each hypothesis was written before the data was read (research/three-digits/SCOP
 | Intents growth slows | Every rung depends on compounding volume for ten years | 57.8% year over year (latest 30 days); $25 at NEAR's own multiple needs 25.3% a year |
 | Fee competition | Halving buyback revenue per dollar of volume doubles every volume requirement | Intents 0.042% of volume as protocol revenue; Maya and LI.FI earn far less per dollar |
 | The market re-rates NEAR toward its peers | At Tron's multiple every rung needs 2.07x the value to holders; at the cross-chain peer median, Intents revenue supports $155.45M of market cap | NEAR 212x; cross-chain peers 7.55x |
-| Buybacks fall short of the designation | Every capture figure built on DefiLlama's designation overstates what reaches holders | 60.2% executed through the documented route |
-| Supply keeps growing at 2.5% | $100 means a larger market cap; holders are diluted by more than the token captures | Net value to holders -$98.27M a year; HSP-029 approved, pending validator adoption |
-| Value keeps leaving the NEAR chain | Rules out the platform route | L1 transactions -84.0%, active accounts -75.3% year over year |
+| Buybacks fall short of the designation | Every capture figure built on DefiLlama's designation overstates what reaches the buyback wallet | 67.1% of designated revenue reached the buyback wallet; the front-end fund kept $2.14M |
+| Supply keeps growing at 2.5% | $100 means a larger market cap | Net issuance 2.48% of supply a year; buybacks absorb 0.303% into a held wallet; HSP-029 approved, pending validator adoption |
+| NEAR L1 activity keeps falling | Weakens the platform route | L1 transactions -84.0%, active accounts -75.3% year over year |
 | Validator concentration | A third of stake can halt finality | 9 validators hold a third of stake |
 | Chain Signatures operators | Signing depends on a small operator set | 16 MPC participants (threshold in the evidence register) |
 | Integrator and solver concentration | A few partners could carry most of Intents' volume | Not measured (H8) |
@@ -379,11 +401,11 @@ Before any conclusion, each finding was checked against the ways it could be wro
 |---|---|---|
 | Comparability | Same metric definition, coverage, window and method for every compared series | All multiples now use one metric (DefiLlama holders revenue), one 90-day run rate and one end date; the original thesis mixed a 90-day NEAR figure with one-year peer figures (corrected: NEAR 212x on the run rate, 521x on the trailing year) |
 | Denominators | Shares stated with their denominator | DefiLlama's DEX overview counts prediction markets, launchpads and bridges (including Intents); shares use the spot category only, and Intents' ratio to it is a scale reference, not a market share |
-| Lineage independence | Cross-checks must not share an upstream | DefiLlama's Intents figures and NEAR's revenue dashboard share Dune queries; the executed-buyback check uses FastNEAR transaction data, an independent path, and found 60.2% of the designation executed |
+| Lineage independence | Cross-checks must not share an upstream | DefiLlama's Intents figures and NEAR's revenue dashboard share Dune queries; the buyback check reads FastNEAR transaction data, an independent path: it reproduces DefiLlama's captured revenue to 99.1% and shows 67.1% of the designation reaching the buyback wallet |
 | Double counting | No flow counted twice | A first dilution comparison subtracted supply growth and added burns again; replaced by dilution net of capture. Volumes from different categories are never added |
 | Sampling and survivorship | Peer sets fixed before results | The comparison universe was fixed in SCOPE.md; cross-chain peers are every protocol in the discovery inventory with data; messaging layers are kept out of the execution median, which makes the comparison stricter for NEAR, not easier |
 | Misleading proxies | Each proxy's limits stated | TVL is in dollars and falls with prices; one year of observed growth is dominated by the market cycle; NEAR's cash-flow driver is a young product growing from a small base |
-| Alternative explanations | Other causes for each finding | The L1 activity decline may be automated or incentive-driven activity ending (H7 untested); the gap between designated and executed buybacks may be lag, retained revenue or execution through the 1Click funds DAO (74.9% counting it) |
+| Alternative explanations | Other causes for each finding | The L1 activity decline may be automated or incentive-driven activity ending (H7 untested); the gap between designated buybacks and the buyback wallet is explained by revenue kept in the front-end fund and inflows from accounts other than Intents, both counted by DefiLlama's method; the front-end fund's NEAR may still be used for buybacks later |
 | Threshold sensitivity | Would a verdict flip with a different threshold? | H5 and H6 depend on including small, high-dilution chains in the peer median; against the largest alternatives NEAR's dilution and required growth are higher. The ladder's bands are our judgment and published |
 | Coverage gaps | What could not be measured | Relay, deBridge, Mayan, Across and Stargate volume (paid API); integrator and solver concentration (H8); automated activity (H7); Chain Signatures' role in withdrawals (H9); NEAR AI usage; foundation holdings |
 
@@ -395,28 +417,31 @@ At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to g
 
 Leads:
 
-- Largest cross-chain swap venue with public volume (58.1% of their volume).
-- Highest protocol revenue among the cross-chain protocols compared.
+- Largest of the 4 cross-chain swap venues with public volume data (58.1% of their volume; several competitors have no public volume).
+- Highest protocol revenue among the cross-chain protocols compared, on DefiLlama's adapter definitions, which are not identical across protocols.
 - No supply left to unlock (fully diluted value equals market cap).
 - Dilution net of capture below the median of the alternatives (2.16% a year).
-- Most traded relative to its size (10.6% of market cap in a day).
-- Less tied to BTC than ETH or SOL (daily correlation), so not only a market beta.
 
 Trails:
 
-- Valued far above its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.
-- Priced at 223x Intents revenue against 7.55x for cross-chain peers.
+- Observed valuation gap to its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.
+- Market cap is 223x Intents revenue, against 7.55x to 13.5x for small cross-chain peer tokens (NEAR's market cap also prices products those peers do not have).
 - NEAR L1 activity is falling (transactions -84.0% year over year).
 - Most volatile asset in the comparison (115.7% annualized over the last year).
-- Diluted by more than it captures: net value to holders -$98.27M a year.
-- Only 60.2% of designated buybacks executed through the documented route.
-- Value capture concentrated in one product, more than almost every peer chain.
+- Net issuance (2.48% of supply a year) is larger than what buybacks absorb into a held wallet (0.303%).
+- Of the revenue DefiLlama designates as buybacks, 67.1% reached the buyback wallet; the rest sits in the front-end fund or came from accounts other than Intents.
+- Fee base concentrated in one product, more than almost every peer chain.
+
+Neither lead nor trail by itself:
+
+- Highest daily trading volume relative to market cap (10.6%): deep liquidity, or speculative turnover.
+- Daily returns are less correlated with BTC than ETH's or SOL's (R-squared 20.5%): diversification, or idiosyncratic risk.
 
 **NEAR's economy.** Almost all of it is one product: NEAR Intents is 86.2% of the fees paid on NEAR and 92.9% of the value verifiably captured by $NEAR ($14.99M a year: executed buybacks plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
 
-**How far NEAR can go.** In the cash-flow framework, $100 in ten years needs a 1,306x multiple at 20% a year Intents growth, or 281x at 40%; cash-flow tokens trade at 19.5x to 102x and cross-chain peers at 7.55x revenue. In the platform framework, $100 needs $47.36B of stablecoins on NEAR at Solana's ratio, 362x today's. The frameworks are never added together. Three digits rests on either decade-long hypergrowth of one product at a multiple the market pays no cash-flow peer today, or on NEAR becoming a platform whose economy does not exist yet.
+**How far NEAR can go.** In the cash-flow framework, $100 in ten years needs a 1,306x multiple at 20% a year Intents growth, or 281x at 40%; cash-flow tokens trade at 19.5x to 102x and small cross-chain peer tokens at 7.55x to 13.5x revenue (NEAR's market cap also prices products those peers do not have). In the platform framework, $100 needs $47.36B of stablecoins on NEAR at Solana's ratio, 362x today's. The frameworks are never added together. Three digits rests on either decade-long hypergrowth of one product at a multiple the market pays no cash-flow peer today, or on NEAR becoming a platform whose economy does not exist yet.
 
-**Why an investor might choose NEAR, or not.** To prefer NEAR over the alternatives an investor has to believe, in order of how much each moves the outcome: that Intents keeps compounding for a decade (the sensitivity analysis ranks growth first); that the market keeps paying NEAR's own multiple (212x) rather than a cash-flow (102x) or cross-chain (7.55x) one; that revenue per dollar of volume survives competition; and that designated buybacks are executed in full. In NEAR's favour and against it: the lead and trail lines above. On these rules NEAR is a concentrated, high-volatility bet on one cross-chain product. For the same multiple it needs no more growth than the median alternative; section 12 compares it with the largest ones.
+**Why an investor might choose NEAR, or not.** To prefer NEAR over the alternatives an investor has to believe, in order of how much each moves the outcome: that Intents keeps compounding for a decade (the sensitivity analysis ranks growth first); that the market keeps paying NEAR's own multiple (212x) rather than a cash-flow (102x) one; that revenue per dollar of volume survives competition; and that captured revenue keeps reaching the buyback wallet (on the executed basis NEAR's own multiple is 309x, not 212x). In NEAR's favour and against it: the lead and trail lines above. On these rules NEAR is a concentrated, high-volatility bet on one cross-chain product. For the same multiple it needs no more growth than the median alternative; section 12 compares it with the largest ones.
 
 **What would prove this wrong.** Upward: Intents sustaining growth above each rung's checkpoint, executed buybacks reaching the designated amount, buyback revenue per dollar of volume holding as volume grows, or stablecoins and DeFi settling on NEAR itself. Downward: Intents growth falling below the $10 path, fee compression, a re-rating toward cross-chain or cash-flow multiples, or a second security incident. The checkpoints (section 6) and triggers (section 13) are re-evaluated on every rebuild.
 
@@ -694,12 +719,16 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-IMPLIED-HIGH-HYPERLIQUID | Implied 2036 price: high growth, Priced like Hyperliquid | $6.93 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-HIGH-TRON | Implied 2036 price: high growth, Priced like Tron | $36 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-HIGH-TODAY | Implied 2036 price: high growth, NEAR's multiple today | $75 | DERIVED | as of Nov 10, 2026 | Computed here |
-| TOK-EXECUTED-NEAR | NEAR bought back and received by buybacks.multisignature.near since 2026-04-23 | 1.74M NEAR | OBSERVED | Apr 23, 2026 to Nov 11, 2026 | NearBlocks |
-| TOK-EXECUTED-USD | Executed buybacks valued at each day's NEAR price | $4.86M | DERIVED | Apr 23, 2026 to Nov 11, 2026 | Computed here |
-| TOK-DESIGNATED-SINCE | Revenue DefiLlama designates for buybacks, over the same days | $8.06M | OBSERVED | as of Nov 11, 2026 | DefiLlama |
-| TOK-EXECUTED-VS-DESIGNATED | Executed buybacks as a share of designated buybacks | 60.2% | DERIVED | as of Nov 11, 2026 | Computed here |
-| TOK-AFFILIATED-USD | NEAR sent to the wallet by 1csfundsadmin.sputnik-dao.near, valued at each day's price | $1.18M | DERIVED | as of Nov 11, 2026 | Computed here |
-| TOK-EXECUTED-BROAD-VS-DESIGNATED | Executed buybacks including the 1Click funds DAO, as a share of designated | 74.9% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-CAPTURED-REPRODUCED | Captured revenue reproduced onchain since 2026-02-23 (inflows to the three revenue wallets) | $7.99M | OBSERVED | Feb 23, 2026 to Nov 11, 2026 | FastNEAR transactions API |
+| TOK-REPRODUCTION-RATIO | Reproduced captured revenue / DefiLlama revenue, same dates | 99.1% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NON-INTENTS-INFLOWS | Captured "revenue" from accounts other than intents.near since buybacks began | $440.0K | OBSERVED | as of Nov 11, 2026 | FastNEAR transactions API |
+| TOK-FRONTEND-RETAINED | Intents revenue swept to the front-end fund since buybacks began (not moved to the buyback wallet) | $2.14M | OBSERVED | as of Nov 11, 2026 | FastNEAR transactions API |
+| TOK-EXECUTED-NEAR | NEAR delivered to buybacks.multisignature.near by 1Click swaps since 2026-04-23 | 1.74M NEAR | OBSERVED | Apr 23, 2026 to Nov 11, 2026 | FastNEAR transactions API |
+| TOK-EXECUTED-USD | NEAR delivered to the buyback wallet, valued at each day's price | $4.86M | DERIVED | Apr 23, 2026 to Nov 11, 2026 | Computed here |
+| TOK-DESIGNATED-SINCE | Revenue DefiLlama designates as buybacks, 2026-02-23 to 2026-11-11 | $8.06M | OBSERVED | Feb 23, 2026 to Nov 11, 2026 | DefiLlama |
+| TOK-EXECUTED-VS-DESIGNATED | Delivered directly to the buyback wallet, as a share of designated buybacks (same dates) | 60.2% | DERIVED | Feb 23, 2026 to Nov 11, 2026 | Computed here |
+| TOK-AFFILIATED-USD | NEAR moved to the buyback wallet from 1csfundsadmin.sputnik-dao.near, valued at each day's price | $1.18M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-EXECUTED-BROAD-VS-DESIGNATED | All NEAR that reached the buyback wallet (direct and via the 1Click fund), as a share of designated | 67.1% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-EXECUTED-RUNRATE | Executed buybacks, 90-day run rate | $13.93M | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-DESIGNATED-RUNRATE | Designated buybacks, 90-day run rate (same days) | $20.75M | DERIVED | as of Nov 11, 2026 | DefiLlama |
 | TOK-WALLET-RECONCILE | Buyback wallet balance / NEAR received | 99.6% | DERIVED | as of Nov 11, 2026 | Computed here |
@@ -710,8 +739,8 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | TOK-STAKING-NOMINAL | Nominal staking yield (before validator commission) | 5.62% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-STAKING-REAL | Real staking yield after dilution | 3.07% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-NONSTAKER-REAL | Change in a non-staker's share of supply per year | -2.42% | DERIVED | as of Nov 11, 2026 | Computed here |
-| TOK-VERIFIED-CAPTURE | Verified value capture per year (executed buybacks + burns) | $14.99M | DERIVED | as of Nov 11, 2026 | Computed here |
-| TOK-NET-TO-HOLDERS | Verified value capture minus net issuance, per year | -$98.27M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-VERIFIED-CAPTURE | Verified value capture per year (NEAR delivered to the buyback wallet + burns) | $14.99M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-BUYBACK-ABSORPTION | NEAR delivered to the buyback wallet per year, as a share of total supply | 0.303% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-BTC-CIRC-GROWTH | BTC: circulating supply growth, trailing year | 0.924% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
 | TOK-BTC-FDV-MCAP | BTC: fully diluted value / market cap (supply still to unlock) | 1.00x | DERIVED | as of Nov 11, 2026 | CoinGecko |
 | TOK-BTC-HOLDER-YIELD | BTC: value reaching holders as a share of market cap, 90-day run rate | unavailable | DERIVED | as of Nov 11, 2026 | Computed here |
@@ -757,8 +786,42 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | TOK-NEAR-HOLDER-YIELD | NEAR: value reaching holders as a share of market cap, 90-day run rate | 0.474% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-NEAR-CIRC-GROWTH-EX | NEAR: circulating supply growth excluding one-day events | 2.47% | DERIVED | as of Nov 11, 2026 | CoinGecko |
 | TOK-NEAR-DILUTION-NET | NEAR: dilution net of capture, per year | 2.16% | DERIVED | as of Nov 11, 2026 | Computed here |
-| VAL-MULT-HIST-NEAR | NEAR: market cap / value to holders, latest month-end (Burns + Intents buybacks designated (DefiLlama)) | 219x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
-| VAL-MULT-HIST-NEAR-EXEC | NEAR: market cap / value to holders, latest month-end (Burns + executed buybacks (onchain)) | 319x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-MULT | NEAR's own multiple, designated basis (market cap / (burns + designated buybacks), 90-day run rate) | 212x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-TAKE | Buyback revenue per dollar of Intents volume, designated basis | 0.042% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-10-HYPERLIQUID-SHARE | $10, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 11.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-10-TRON-SHARE | $10, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 2.18% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-10-TODAY-SHARE | $10, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 1.04% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-25-HYPERLIQUID-SHARE | $25, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 28.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-25-TRON-SHARE | $25, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 5.46% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-25-TODAY-SHARE | $25, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 2.63% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-50-HYPERLIQUID-SHARE | $50, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 57.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-50-TRON-SHARE | $50, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 10.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-50-TODAY-SHARE | $50, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 5.27% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-100-HYPERLIQUID-SHARE | $100, designated basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 115.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-100-TRON-SHARE | $100, designated basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 21.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-100-TODAY-SHARE | $100, designated basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 10.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-IMPLIED-HYPERLIQUID | Implied 2036 price at 20% growth, designated basis, priced like hyperliquid | $1.49 | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-IMPLIED-TRON | Implied 2036 price at 20% growth, designated basis, priced like tron | $7.85 | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-DESIGNATED-IMPLIED-TODAY | Implied 2036 price at 20% growth, designated basis, NEAR's own multiple | $16 | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-MULT | NEAR's own multiple, executed basis (market cap / (burns + executed buybacks), 90-day run rate) | 309x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-TAKE | Buyback revenue per dollar of Intents volume, executed basis | 0.028% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-10-HYPERLIQUID-SHARE | $10, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 17.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-10-TRON-SHARE | $10, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 3.25% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-10-TODAY-SHARE | $10, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 1.06% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-25-HYPERLIQUID-SHARE | $25, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 42.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-25-TRON-SHARE | $25, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 8.14% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-25-TODAY-SHARE | $25, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 2.69% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-50-HYPERLIQUID-SHARE | $50, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 85.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-50-TRON-SHARE | $50, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 16.3% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-50-TODAY-SHARE | $50, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 5.39% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-100-HYPERLIQUID-SHARE | $100, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume | 171.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-100-TRON-SHARE | $100, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume | 32.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-100-TODAY-SHARE | $100, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume | 10.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-IMPLIED-HYPERLIQUID | Implied 2036 price at 20% growth, executed basis, priced like hyperliquid | $1.01 | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-IMPLIED-TRON | Implied 2036 price at 20% growth, executed basis, priced like tron | $5.29 | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-BASIS-EXECUTED-IMPLIED-TODAY | Implied 2036 price at 20% growth, executed basis, NEAR's own multiple | $16 | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-HIST-NEAR | NEAR: market cap / value to holders, latest month-end (Burns + designated buybacks (DefiLlama), windows after 23 February 2026 only) | 219x | DERIVED | May 1, 2026 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-NEAR-EXEC | NEAR: market cap / value to holders, latest month-end (Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only) | 319x | DERIVED | Jul 1, 2026 to Nov 1, 2026 | Computed here |
 | VAL-MULT-HIST-ETH | ETH: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 4,168x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
 | VAL-MULT-HIST-SOL | SOL: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 1,702x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
 | VAL-MULT-HIST-SUI | SUI: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 7,378x | DERIVED | Dec 1, 2025 to Oct 1, 2026 | Computed here |
@@ -893,10 +956,11 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | RISK-VALIDATOR-NAKAMOTO | Validators needed to control a third of NEAR stake | 9 | DERIVED | as of Nov 10, 2026 | NEAR RPC |
 | CC-INTENTS-VENUE-SHARE | NEAR Intents share of volume among cross-chain swap venues with public volume | 58.1% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-PEER-MEDIAN-CAP-REV | Median market cap / protocol revenue, cross-chain execution tokens | 7.55x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-PEER-MEDIAN-CAP-REV-LIQUID | Median market cap / protocol revenue, cross-chain execution tokens of at least $25M | 13.5x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-PEER-MEDIAN-CAP-HOLDERS | Median market cap / holders revenue, cross-chain execution tokens | 17.0x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-NEAR-CAP-INTENTS-REV | NEAR market cap / Intents protocol revenue | 223x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
-| CC-NEAR-IMPLIED-CAP | Market cap Intents revenue would support at the cross-chain peer median multiple | $155.45M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
-| CC-NEAR-IMPLIED-PRICE | NEAR price at the cross-chain peer median multiple on Intents revenue | $0.12 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-IMPLIED-CAP | Conditional: market cap attributable to Intents revenue alone at the cross-chain peer median multiple | $155.45M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-IMPLIED-PRICE | Conditional: per-token value of Intents revenue alone at the peer median multiple (not a fair value of NEAR) | $0.12 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-NEAR-INTENTS-REVENUE | NEAR Intents: protocol revenue, 90-day run rate | $20.59M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-NEAR-INTENTS-VOLUME | NEAR Intents: volume, 90-day run rate | $49.08B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-NEAR-INTENTS-TAKE-RATE | NEAR Intents: protocol revenue per dollar of volume | 0.042% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
@@ -937,10 +1001,10 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | MKT-X402-TRAILING | AI-agent payments (x402), last 365 days | $43.58M | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | MKT-X402-CAGR | AI-agent payments (x402), compound annual growth n/a to 2025 | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | MKT-SPOT-TOP5 | Share of spot DEX volume handled by the five largest protocol families, last year | 52.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |
-| HYP-H1 | H1: NEAR's value capture is far more concentrated in one product than peers' | text | DERIVED | point in time | Computed here |
-| HYP-H2 | H2: NEAR is priced closer to a platform than its on-chain economy justifies | text | DERIVED | point in time | Computed here |
+| HYP-H1 | H1: NEAR's fee base is far more concentrated in one product than peers' (restated from "value capture": comparable value-capture data by product does not exist for peers) | text | DERIVED | point in time | Computed here |
+| HYP-H2 | H2: NEAR's market cap is high relative to its on-chain economy compared with platforms (an observed valuation gap, not a judgement that it is unjustified) | text | DERIVED | point in time | Computed here |
 | HYP-H3 | H3: Intents' take rate is above cross-chain peers, so fee pressure matters more than volume | text | DERIVED | point in time | Computed here |
-| HYP-H4 | H4: Value is moving off the NEAR chain into cross-chain flows the token only partly captures | text | DERIVED | point in time | Computed here |
+| HYP-H4 | H4: Cross-chain activity and NEAR L1 activity are moving in opposite directions (diverging trends; migration of value is not proven) | text | DERIVED | point in time | Computed here |
 | HYP-H5 | H5: NEAR's dilution is a higher return hurdle than peers' | text | DERIVED | point in time | Computed here |
 | HYP-H6 | H6: NEAR needs more growth than some alternatives to deliver the same multiple | text | DERIVED | point in time | Computed here |
 | HYP-H7 | H7: Most of NEAR's reported activity is automated rather than organic | text | DERIVED | point in time | Computed here |

@@ -15,7 +15,7 @@ import { computeModel, FORMULA_VERSION, requiredTakeRate, runScenarios, sensitiv
 import { addDays, commonEnd, fromUnixPairs, isoDay, lastDay, pctChange, safeDiv, valueOn, weeklyMeans, weeklySums, windowAggregate, type DailyPoint } from './series';
 import type { EvidenceDraft, EvidenceGroup, SeriesDef, Unit } from './types';
 import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
-import { analyzeLadder, ladderEvidence, type LadderResult } from './ladder';
+import { analyzeLadder, basisEvidence, basisScenarios, ladderEvidence, type BasisScenario, type LadderResult } from './ladder';
 import { analyzeTokenomics, tokenomicsEvidence, type TokenomicsResult } from './tokenomics';
 import { analyzeValuation, valuationEvidence, type ValuationResult } from './valuation';
 import { analyzeEconomy, economyEvidence, type EconomyResult } from './economy';
@@ -40,6 +40,7 @@ export interface ResearchDataset {
   thesis: ThesisResult;
   ladder: LadderResult;
   tokenomics: TokenomicsResult;
+  basis: BasisScenario[];
   valuation: ValuationResult;
   economy: EconomyResult;
   crossChain: CrossChainResult;
@@ -452,6 +453,8 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   // ------------------------------------------------------------ W4 token economics
   const tokenomics = analyzeTokenomics(raws, (id) => B.val(id));
   B.items.push(...tokenomicsEvidence(tokenomics, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null }; }));
+  const basis = basisScenarios(ladder, tokenomics.buybacks.executedDaily);
+  B.items.push(...basisEvidence(basis, ladder.basis.windowEnd));
 
   // ------------------------------------------------------------ W5 valuation, W6 opportunity cost
   const valuation = analyzeValuation(raws, (id) => B.val(id), ladder, tokenomics);
@@ -486,6 +489,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     thesis,
     ladder,
     tokenomics,
+    basis,
     valuation,
     economy,
     crossChain,

@@ -2014,13 +2014,13 @@
    "error": null
   }
  },
- "fastnear.buybacks": {
-  "key": "fastnear.buybacks",
+ "fastnear.revenue-wallets": {
+  "key": "fastnear.revenue-wallets",
   "source": "fastnear",
   "url": "https://tx.main.fastnear.com/v0/account",
-  "sha256": "21da76b0ad2a4e010e540b6623236c78e9075d19cfa227d1dbf8bb2551eff35e",
-  "fetchedAt": "2026-11-12T10:51:57.787Z",
-  "file": "fastnear.buybacks.json"
+  "sha256": "3ad9a7f03a5623e2c0a2c4042a2e93a7d69a3d66ffc8dc6d2976ea7d6614a44d",
+  "fetchedAt": "2026-11-12T12:58:53.937Z",
+  "file": "fastnear.revenue-wallets.json"
  },
  "near-rpc.block": {
   "key": "near-rpc.block",
