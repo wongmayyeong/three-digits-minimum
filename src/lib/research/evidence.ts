@@ -20,6 +20,7 @@ import { analyzeTokenomics, tokenomicsEvidence, type TokenomicsResult } from './
 import { analyzeValuation, valuationEvidence, type ValuationResult } from './valuation';
 import { analyzeEconomy, economyEvidence, type EconomyResult } from './economy';
 import { analyzeCrossChain, crossChainEvidence, type CrossChainResult } from './crosschain';
+import { analyzeMarket, marketEvidence, type MarketResult } from './market';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -41,6 +42,7 @@ export interface ResearchDataset {
   valuation: ValuationResult;
   economy: EconomyResult;
   crossChain: CrossChainResult;
+  market: MarketResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -461,6 +463,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const crossChain = analyzeCrossChain(raws, (id) => B.val(id));
   B.items.push(...crossChainEvidence(crossChain));
 
+  // ------------------------------------------------------------ W1 market opportunity
+  const market = analyzeMarket(raws);
+  B.items.push(...marketEvidence(market));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -477,6 +483,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     valuation,
     economy,
     crossChain,
+    market,
   };
 }
 

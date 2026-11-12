@@ -174,7 +174,24 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 | [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | no single product contract | n/a | N/A, not counted | -23.4% | -33.6% |
 | [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near volume` from 10 November 2024, beta on mainnet | 4.44x | yes | -11.3% | -49.0% |
 
-## 7. NEAR's economy, product by product
+## 7. The markets NEAR sells into
+
+Each market is shown on its own definition and never added to another (the same funds can pass through a DEX, a bridge and an aggregator). Calendar years count only with at least 360 days of data; growth is reported from 2021, only across at least two years, and only when the first year is at least 5% of the last, because early coverage is thin.
+
+| Market | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | Last 12 months | Growth a year | Note |
+|---|---|---|---|---|---|---|---|---|---|
+| Spot DEX volume (DefiLlama "Dexs" category) | $72.17B | $1.84T | $1.38T | $892.57B | $2.51T | $4.70T | $2.90T | 26.3% (2021 to 2025) | NEAR Intents' scale reference; includes cross-chain swap networks filed as DEXs (THORChain, Chainflip). |
+| Cross-chain swap volume (DefiLlama bridge categories in its DEX overview) | $0 | $0 | $0 | $4.06M | $1.19B | $10.49B | $42.28B | n/a | NEAR Intents' own category; coverage is thin before 2025 and misses protocols without a volume adapter. |
+| Bridge-aggregator volume | N/A | N/A | N/A | N/A | $1.28B | $20.02B | $31.91B | n/a | Routes through bridges and swap venues (including Intents); overlaps the rows above, never added to them. |
+| Stablecoin supply, year end (USD-pegged) | $27.02B | $162.21B | $137.77B | $130.29B | $204.24B | $304.04B | $289.90B | 17.0% (2021 to 2025) | The money on chain that cross-chain execution moves. |
+| AI-agent payments (x402) | N/A | N/A | N/A | N/A | N/A | N/A | $43.58M | n/a | The one public AI-agent payment series; starts in 2025. |
+
+- Spot DEX volume: $2.90T over the last year, -38% against calendar 2025; 26% a year from 2021 to 2025, with a worst year -52% below the previous peak: large and cyclical.
+- Cross-chain swap volume in DefiLlama's bridge categories: $42B over the last year, of which NEAR Intents is 78%; bridge aggregators routed $32B (overlapping, not added).
+- Stablecoin supply $290B (17% a year since 2021); AI-agent payments via x402 $44M over the last year, a market too small and too new to size NEAR AI's opportunity.
+- The five largest spot DEX protocol families handle 52% of spot volume (uniswap 23%, pancakeswap 13%, pump 7%, aero-protocol 5%, HumidiFi 3%).
+
+## 8. NEAR's economy, product by product
 
 Every product is investigated on its own and placed in one column: **observed** activity, **verified** value capture for $NEAR (executed buybacks or burns), or **speculative** opportunity (no measurable evidence yet, so no dollar value is assigned).
 
@@ -207,7 +224,7 @@ Fees paid on the NEAR chain by protocol, last 30 days (DefiLlama):
 
 This is the central fact for valuing NEAR (priority finding P2): almost all of NEAR's economic activity and almost all of its value capture is one cross-chain product. The NEAR chain itself carries little paid activity. NEAR therefore behaves less like a traditional L1, valued on the economy that lives on it, and more like the token of a cross-chain execution business, valued on what that business returns to holders.
 
-## 8. Competition: NEAR Intents against cross-chain rivals
+## 9. Competition: NEAR Intents against cross-chain rivals
 
 If NEAR's value is mostly one cross-chain business, the relevant comparison is that business against its competitors, on the same DefiLlama definitions and the same 90 days. Volume is only available where DefiLlama has a volume adapter; Relay, deBridge, Mayan, Across and Stargate are compared on revenue (their volume would need a paid API, so it is left out rather than estimated). Categories are not added together: only swap venues enter the volume share, and aggregators, which route through those venues and through Intents itself, are listed separately.
 
@@ -237,7 +254,7 @@ If NEAR's value is mostly one cross-chain business, the relevant comparison is t
 
 Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
 
-## 9. Valuation: how NEAR is priced, and what moves it
+## 10. Valuation: how NEAR is priced, and what moves it
 
 **NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
 
@@ -272,7 +289,7 @@ Two readings follow, and the data cannot choose between them. Either the market 
 | $50 | 1,541x | 653x | 141x |
 | $100 | 3,082x | 1,306x | 281x |
 
-## 10. NEAR against the alternatives (opportunity cost)
+## 11. NEAR against the alternatives (opportunity cost)
 
 Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
 
@@ -309,7 +326,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
 
-## 11. What could break it
+## 12. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -332,7 +349,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 41.4% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.471% of market cap | **TRIGGERED** |
 
-## 12. Verdict: dream, possibility, or evidence?
+## 13. Verdict: dream, possibility, or evidence?
 
 At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
 
@@ -813,3 +830,14 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | CC-LAYERZERO-REVENUE | LayerZero: protocol revenue, 90-day run rate | $775.0K | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-WORMHOLE-REVENUE | Wormhole: protocol revenue, 90-day run rate | $0 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-AXELAR-REVENUE | Axelar: protocol revenue, 90-day run rate | $0 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| MKT-SPOT-TRAILING | Spot DEX volume (DefiLlama "Dexs" category), last 365 days | $2.90T | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-SPOT-CAGR | Spot DEX volume (DefiLlama "Dexs" category), compound annual growth 2021 to 2025 | 26.3% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-CROSSCHAIN-TRAILING | Cross-chain swap volume (DefiLlama bridge categories in its DEX overview), last 365 days | $42.28B | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-CROSSCHAIN-CAGR | Cross-chain swap volume (DefiLlama bridge categories in its DEX overview), compound annual growth n/a to 2025 | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-AGGREGATORS-TRAILING | Bridge-aggregator volume, last 365 days | $31.91B | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-AGGREGATORS-CAGR | Bridge-aggregator volume, compound annual growth n/a to 2025 | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-STABLECOINS-TRAILING | Stablecoin supply, year end (USD-pegged), latest | $289.90B | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-STABLECOINS-CAGR | Stablecoin supply, year end (USD-pegged), compound annual growth 2021 to 2025 | 17.0% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-X402-TRAILING | AI-agent payments (x402), last 365 days | $43.58M | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-X402-CAGR | AI-agent payments (x402), compound annual growth n/a to 2025 | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| MKT-SPOT-TOP5 | Share of spot DEX volume handled by the five largest protocol families, last year | 52.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |

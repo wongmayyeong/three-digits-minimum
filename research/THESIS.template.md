@@ -88,7 +88,15 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 
 {{EVENT_TABLE}}
 
-## 7. NEAR's economy, product by product
+## 7. The markets NEAR sells into
+
+Each market is shown on its own definition and never added to another (the same funds can pass through a DEX, a bridge and an aggregator). Calendar years count only with at least 360 days of data; growth is reported from 2021, only across at least two years, and only when the first year is at least 5% of the last, because early coverage is thin.
+
+{{MKT_TABLE}}
+
+{{MKT_FINDINGS}}
+
+## 8. NEAR's economy, product by product
 
 Every product is investigated on its own and placed in one column: **observed** activity, **verified** value capture for $NEAR (executed buybacks or burns), or **speculative** opportunity (no measurable evidence yet, so no dollar value is assigned).
 
@@ -102,7 +110,7 @@ Fees paid on the NEAR chain by protocol, last 30 days (DefiLlama):
 
 This is the central fact for valuing NEAR (priority finding P2): almost all of NEAR's economic activity and almost all of its value capture is one cross-chain product. The NEAR chain itself carries little paid activity. NEAR therefore behaves less like a traditional L1, valued on the economy that lives on it, and more like the token of a cross-chain execution business, valued on what that business returns to holders.
 
-## 8. Competition: NEAR Intents against cross-chain rivals
+## 9. Competition: NEAR Intents against cross-chain rivals
 
 If NEAR's value is mostly one cross-chain business, the relevant comparison is that business against its competitors, on the same DefiLlama definitions and the same 90 days. Volume is only available where DefiLlama has a volume adapter; Relay, deBridge, Mayan, Across and Stargate are compared on revenue (their volume would need a paid API, so it is left out rather than estimated). Categories are not added together: only swap venues enter the volume share, and aggregators, which route through those venues and through Intents itself, are listed separately.
 
@@ -112,7 +120,7 @@ If NEAR's value is mostly one cross-chain business, the relevant comparison is t
 
 Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
 
-## 9. Valuation: how NEAR is priced, and what moves it
+## 10. Valuation: how NEAR is priced, and what moves it
 
 **NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
 
@@ -126,7 +134,7 @@ Two readings follow, and the data cannot choose between them. Either the market 
 
 {{VAL_NEEDED_TABLE}}
 
-## 10. NEAR against the alternatives (opportunity cost)
+## 11. NEAR against the alternatives (opportunity cost)
 
 Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
 
@@ -140,7 +148,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
 
-## 11. What could break it
+## 12. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -156,7 +164,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 
 {{TRIGGER_TABLE}}
 
-## 12. Verdict: dream, possibility, or evidence?
+## 13. Verdict: dream, possibility, or evidence?
 
 {{LADDER_HEADLINE}}
 

@@ -181,6 +181,19 @@
    "error": null
   }
  },
+ "defillama.bridgeaggs.total": {
+  "key": "defillama.bridgeaggs.total",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/bridge-aggregators?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true",
+  "sha256": "731ee8c42d5eac53589022a95692152529df46f57e7b0d17492e2b3dfb0973da",
+  "fetchedAt": "2026-11-12T11:43:34.643Z",
+  "file": "defillama.bridgeaggs.total.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:43:34.645Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.ccfees.across.dailyFees": {
   "key": "defillama.ccfees.across.dailyFees",
   "source": "defillama",
@@ -1368,11 +1381,11 @@
   "key": "defillama.dexs.categories",
   "source": "defillama",
   "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false",
-  "sha256": "df1e9af82dcbd8f4252903ae0a9ac70254455d58a03ca5336e3dbe4fcb1c121c",
-  "fetchedAt": "2026-11-12T08:07:12.067Z",
+  "sha256": "8efb1a9253c4f265f18ffdfc8bc38d5f0dc80407bdc65cdbbbc2bcac815e4aaf",
+  "fetchedAt": "2026-11-12T11:43:36.798Z",
   "file": "defillama.dexs.categories.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:12.074Z",
+   "at": "2026-11-12T11:43:36.810Z",
    "status": "OK",
    "error": null
   }
@@ -1819,6 +1832,19 @@
    "error": null
   }
  },
+ "defillama.stablecoins.all": {
+  "key": "defillama.stablecoins.all",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/all",
+  "sha256": "805829ffe44ec6f092a300a6ff07d5573d72663022aea50e5b1df58cc6204e68",
+  "fetchedAt": "2026-11-12T11:43:34.245Z",
+  "file": "defillama.stablecoins.all.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:43:34.261Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.stablecoins.near": {
   "key": "defillama.stablecoins.near",
   "source": "defillama",
@@ -1880,6 +1906,19 @@
   "file": "defillama.tvl.sui.json",
   "lastAttempt": {
    "at": "2026-11-12T08:06:55.500Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.x402.volume": {
+  "key": "defillama.x402.volume",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/x402?dataType=dailyVolume",
+  "sha256": "1787239f51564d567dadcae65856e1c413bbc862c468073279fb10bd7c9a29cf",
+  "fetchedAt": "2026-11-12T11:43:34.994Z",
+  "file": "defillama.x402.volume.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:43:34.997Z",
    "status": "OK",
    "error": null
   }

@@ -1942,8 +1942,8 @@
   "request": {
    "key": "defillama.dexs.categories",
    "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false",
-   "fetchedAt": "2026-11-12T08:07:12.067Z",
-   "sha256": "df1e9af82dcbd8f4252903ae0a9ac70254455d58a03ca5336e3dbe4fcb1c121c"
+   "fetchedAt": "2026-11-12T11:43:36.798Z",
+   "sha256": "8efb1a9253c4f265f18ffdfc8bc38d5f0dc80407bdc65cdbbbc2bcac815e4aaf"
   },
   "transform": "sum(daily spot volume, 90 days) x 365 / 90",
   "inputs": [],
@@ -1962,8 +1962,8 @@
   "request": {
    "key": "defillama.dexs.categories",
    "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false",
-   "fetchedAt": "2026-11-12T08:07:12.067Z",
-   "sha256": "df1e9af82dcbd8f4252903ae0a9ac70254455d58a03ca5336e3dbe4fcb1c121c"
+   "fetchedAt": "2026-11-12T11:43:36.798Z",
+   "sha256": "8efb1a9253c4f265f18ffdfc8bc38d5f0dc80407bdc65cdbbbc2bcac815e4aaf"
   },
   "transform": "sum(daily spot volume, 365 days)",
   "inputs": [],
@@ -1982,8 +1982,8 @@
   "request": {
    "key": "defillama.dexs.categories",
    "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false",
-   "fetchedAt": "2026-11-12T08:07:12.067Z",
-   "sha256": "df1e9af82dcbd8f4252903ae0a9ac70254455d58a03ca5336e3dbe4fcb1c121c"
+   "fetchedAt": "2026-11-12T11:43:36.798Z",
+   "sha256": "8efb1a9253c4f265f18ffdfc8bc38d5f0dc80407bdc65cdbbbc2bcac815e4aaf"
   },
   "transform": "sum(all categories, 90 days) x 365 / 90",
   "inputs": [],
@@ -2037,8 +2037,8 @@
   "request": {
    "key": "defillama.dexs.categories",
    "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false",
-   "fetchedAt": "2026-11-12T08:07:12.067Z",
-   "sha256": "df1e9af82dcbd8f4252903ae0a9ac70254455d58a03ca5336e3dbe4fcb1c121c"
+   "fetchedAt": "2026-11-12T11:43:36.798Z",
+   "sha256": "8efb1a9253c4f265f18ffdfc8bc38d5f0dc80407bdc65cdbbbc2bcac815e4aaf"
   },
   "transform": "Intents run rate / cross-chain category run rate",
   "inputs": [
@@ -7633,5 +7633,170 @@
   "inputs": [],
   "methodology": "DefiLlama revenue definition for the protocol.",
   "notes": "No volume adapter on DefiLlama; compared on revenue only."
+ },
+ {
+  "evidenceId": "MKT-SPOT-TRAILING",
+  "label": "Spot DEX volume (DefiLlama \"Dexs\" category), last 365 days",
+  "value": 2895085876536,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum 365d",
+  "inputs": [],
+  "methodology": "Sum of the last 365 complete days (unavailable if days are missing).",
+  "notes": "NEAR Intents' scale reference; includes cross-chain swap networks filed as DEXs (THORChain, Chainflip)."
+ },
+ {
+  "evidenceId": "MKT-SPOT-CAGR",
+  "label": "Spot DEX volume (DefiLlama \"Dexs\" category), compound annual growth 2021 to 2025",
+  "value": 0.26328805142021294,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(end / start)^(1/years) - 1",
+  "inputs": [],
+  "methodology": "Full calendar years only (at least 360 days of data).",
+  "notes": "NEAR Intents' scale reference; includes cross-chain swap networks filed as DEXs (THORChain, Chainflip)."
+ },
+ {
+  "evidenceId": "MKT-CROSSCHAIN-TRAILING",
+  "label": "Cross-chain swap volume (DefiLlama bridge categories in its DEX overview), last 365 days",
+  "value": 42284370262,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum 365d",
+  "inputs": [],
+  "methodology": "Sum of the last 365 complete days (unavailable if days are missing).",
+  "notes": "NEAR Intents' own category; coverage is thin before 2025 and misses protocols without a volume adapter."
+ },
+ {
+  "evidenceId": "MKT-CROSSCHAIN-CAGR",
+  "label": "Cross-chain swap volume (DefiLlama bridge categories in its DEX overview), compound annual growth n/a to 2025",
+  "value": null,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(end / start)^(1/years) - 1",
+  "inputs": [],
+  "methodology": "Full calendar years only (at least 360 days of data).",
+  "notes": "NEAR Intents' own category; coverage is thin before 2025 and misses protocols without a volume adapter."
+ },
+ {
+  "evidenceId": "MKT-AGGREGATORS-TRAILING",
+  "label": "Bridge-aggregator volume, last 365 days",
+  "value": 31908069575.750015,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum 365d",
+  "inputs": [],
+  "methodology": "Sum of the last 365 complete days (unavailable if days are missing).",
+  "notes": "Routes through bridges and swap venues (including Intents); overlaps the rows above, never added to them."
+ },
+ {
+  "evidenceId": "MKT-AGGREGATORS-CAGR",
+  "label": "Bridge-aggregator volume, compound annual growth n/a to 2025",
+  "value": null,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(end / start)^(1/years) - 1",
+  "inputs": [],
+  "methodology": "Full calendar years only (at least 360 days of data).",
+  "notes": "Routes through bridges and swap venues (including Intents); overlaps the rows above, never added to them."
+ },
+ {
+  "evidenceId": "MKT-STABLECOINS-TRAILING",
+  "label": "Stablecoin supply, year end (USD-pegged), latest",
+  "value": 289895578608,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "level",
+  "inputs": [],
+  "methodology": "Latest level.",
+  "notes": "The money on chain that cross-chain execution moves."
+ },
+ {
+  "evidenceId": "MKT-STABLECOINS-CAGR",
+  "label": "Stablecoin supply, year end (USD-pegged), compound annual growth 2021 to 2025",
+  "value": 0.17008090320165659,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(end / start)^(1/years) - 1",
+  "inputs": [],
+  "methodology": "Full calendar years only (at least 360 days of data).",
+  "notes": "The money on chain that cross-chain execution moves."
+ },
+ {
+  "evidenceId": "MKT-X402-TRAILING",
+  "label": "AI-agent payments (x402), last 365 days",
+  "value": 43584007,
+  "unit": "USD",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum 365d",
+  "inputs": [],
+  "methodology": "Sum of the last 365 complete days (unavailable if days are missing).",
+  "notes": "The one public AI-agent payment series; starts in 2025."
+ },
+ {
+  "evidenceId": "MKT-X402-CAGR",
+  "label": "AI-agent payments (x402), compound annual growth n/a to 2025",
+  "value": null,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": false,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "(end / start)^(1/years) - 1",
+  "inputs": [],
+  "methodology": "Full calendar years only (at least 360 days of data).",
+  "notes": "The one public AI-agent payment series; starts in 2025."
+ },
+ {
+  "evidenceId": "MKT-SPOT-TOP5",
+  "label": "Share of spot DEX volume handled by the five largest protocol families, last year",
+  "value": 0.5206711260056789,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "top 5 / total",
+  "inputs": [],
+  "methodology": "DefiLlama trailing-year volume by protocol, grouped by parent protocol.",
+  "notes": "uniswap 23.3%, pancakeswap 13.1%, pump 7.0%, aero-protocol 5.2%, HumidiFi 3.5%"
  }
 ]

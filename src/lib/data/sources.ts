@@ -257,6 +257,14 @@ export function buildRequestCatalog(): HttpRequestDef[] {
       volume24h: Number(c.total_volume),
     })),
   });
+  // W1: market size history: all stablecoins, bridge aggregators, AI-agent payments (x402).
+  reqs.push({
+    key: 'defillama.stablecoins.all', source: 'defillama', ttlMs: 6 * HOUR, url: 'https://stablecoins.llama.fi/stablecoincharts/all',
+    project: (a) => asArr(a).map((d: any) => [Number(d.date), Number(d?.totalCirculating?.peggedUSD ?? NaN)]),
+  });
+  reqs.push({ key: 'defillama.bridgeaggs.total', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/bridge-aggregators?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true`,
+    project: (j: any) => ({ chart: asArr(j?.totalDataChart).map((x: any) => [Number(x[0]), Number(x[1])]) }) });
+  reqs.push({ key: 'defillama.x402.volume', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/dexs/x402?dataType=dailyVolume`, project: llamaSummary });
   // W3: fees by protocol on the NEAR chain.
   reqs.push({
     key: 'defillama.fees.onnear', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,
@@ -311,7 +319,10 @@ export function buildRequestCatalog(): HttpRequestDef[] {
         for (const k of Object.keys(sums)) sums[k] = Math.round(sums[k]!);
         return [Number(row?.[0]), sums];
       });
-      return { crossChainMembers: crossChain, chart };
+      // Concentration (W1): trailing-year volume of the largest spot DEX protocols, and the category total.
+      const spot = asArr(j?.protocols).filter((p: any) => p?.category === DEX_SPOT_CATEGORY && Number.isFinite(Number(p?.total1y)));
+      const spotTop = spot.map((p: any) => ({ name: String(p.name), parent: p.parentProtocol ? String(p.parentProtocol) : null, total1y: Number(p.total1y) })).sort((a: any, b: any) => b.total1y - a.total1y).slice(0, 25);
+      return { crossChainMembers: crossChain, chart, spotTop, spotTotal1y: spot.reduce((a: number, p: any) => a + Number(p.total1y), 0) };
     },
   });
   reqs.push({
