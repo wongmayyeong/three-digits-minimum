@@ -18,6 +18,7 @@ import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
 import { analyzeLadder, ladderEvidence, type LadderResult } from './ladder';
 import { analyzeTokenomics, tokenomicsEvidence, type TokenomicsResult } from './tokenomics';
 import { analyzeValuation, valuationEvidence, type ValuationResult } from './valuation';
+import { analyzeEconomy, economyEvidence, type EconomyResult } from './economy';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -37,6 +38,7 @@ export interface ResearchDataset {
   ladder: LadderResult;
   tokenomics: TokenomicsResult;
   valuation: ValuationResult;
+  economy: EconomyResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -449,6 +451,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const valuation = analyzeValuation(raws, (id) => B.val(id), ladder, tokenomics);
   B.items.push(...valuationEvidence(valuation));
 
+  // ------------------------------------------------------------ W3 economy map
+  const economy = analyzeEconomy(raws, (id) => B.val(id), tokenomics, thesis);
+  B.items.push(...economyEvidence(economy, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null }; }));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -463,6 +469,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     ladder,
     tokenomics,
     valuation,
+    economy,
   };
 }
 

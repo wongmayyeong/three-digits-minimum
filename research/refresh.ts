@@ -172,6 +172,14 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   out = out.replace('{{VAL_FINDINGS}}', va.findings.map((f) => `- ${f}`).join(NL));
   out = out.replace('{{RISK_TABLE}}', ['| Asset | Volatility, 1 year | Volatility, 3 years | Max drawdown, 3 years | Price vs 3-year peak | Correlation with BTC, 1 year | Volume / market cap, 24h | Supply still to unlock |', '|---|---|---|---|---|---|---|---|',
     ...va.opportunity.map((o) => `| ${o.label === 'NEAR' ? '**NEAR**' : o.label} | ${formatValue(o.risk.vol1y, 'fraction')} | ${formatValue(o.risk.vol3y, 'fraction')} | ${formatValue(o.risk.maxDrawdown3y, 'fraction')} | ${formatValue(o.risk.fromPeak3y, 'fraction')} | ${o.risk.corrBtc1y === null ? 'n/a' : o.risk.corrBtc1y.toFixed(2)} | ${formatValue(o.risk.liquidity, 'fraction')} | ${formatValue(o.risk.fdvToMcap, 'ratio')} |`)].join(NL));
+  // ---- W3 economy map
+  const ec = ds.economy;
+  const COL: Record<string, string> = { OBSERVED: 'Observed', VERIFIED: '**Verified capture**', SPECULATIVE: '*Speculative*' };
+  out = out.replace('{{ECO_PRODUCT_TABLE}}', ['| Product | Activity (observed) | Value capture for $NEAR | Column | Possible upside (not valued) | Sources |', '|---|---|---|---|---|---|',
+    ...ec.products.map((p) => `| ${p.product} | ${p.activity} | ${p.capture} | ${COL[p.column]} | ${p.speculative} | ${p.sources} |`)].join(NL));
+  out = out.replace('{{ECO_FEES_TABLE}}', ['| Protocol | Category | Fees, 30 days | Share |', '|---|---|---|---|',
+    ...ec.feesOnNear.slice(0, 8).map((p) => `| ${p.name} | ${p.category} | ${formatValue(p.fees30d, 'USD')} | ${formatValue(p.share, 'fraction')} |`)].join(NL));
+  out = out.replace('{{ECO_FINDINGS}}', ec.findings.map((f) => `- ${f}`).join(NL));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

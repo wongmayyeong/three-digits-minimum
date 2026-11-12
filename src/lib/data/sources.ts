@@ -234,6 +234,11 @@ export function buildRequestCatalog(): HttpRequestDef[] {
       volume24h: Number(c.total_volume),
     })),
   });
+  // W3: fees by protocol on the NEAR chain.
+  reqs.push({
+    key: 'defillama.fees.onnear', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,
+    project: (j: any) => asArr(j?.protocols).map((p: any) => ({ name: String(p.name), category: String(p.category ?? ''), fees30d: Number(p.total30d ?? 0), fees1y: p.total1y === undefined || p.total1y === null ? null : Number(p.total1y) })),
+  });
   // Platform economy history (W6): stablecoins and DeFi TVL on each investable chain.
   for (const c of CHAIN_ECONOMY) {
     reqs.push({
@@ -304,6 +309,12 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   reqs.push(rpc('near-rpc.protocol-config', 'EXPERIMENTAL_protocol_config', { finality: 'final' }, (r) => ({
     protocolVersion: r.protocol_version, maxInflationRate: r.max_inflation_rate, protocolRewardRate: r.protocol_reward_rate,
   })));
+  // W3: Chain Signatures MPC network (participants, threshold, domains).
+  reqs.push(rpc('near-rpc.signer-state', 'query', { request_type: 'call_function', finality: 'final', account_id: 'v1.signer', method_name: 'state', args_base64: b64({}) }, (r) => {
+    const st = JSON.parse(Buffer.from(r.result).toString())?.Running ?? {};
+    const doms = asArr(st?.domains?.domains);
+    return { participants: asArr(st?.parameters?.participants?.participants).length, threshold: Number(st?.parameters?.threshold ?? doms[0]?.reconstruction_threshold ?? NaN), domains: doms.length, blockHeight: Number(r.block_height) };
+  }));
   reqs.push(rpc('near-rpc.validators', 'validators', [null], (r) => ({
     epochHeight: Number(r.epoch_height), epochStartHeight: Number(r.epoch_start_height),
     currentStakeYocto: asArr(r.current_validators).map((v: any) => String(v.stake)),

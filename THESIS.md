@@ -174,7 +174,40 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 | [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | no single product contract | n/a | N/A, not counted | -23.4% | -33.6% |
 | [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near volume` from 10 November 2024, beta on mainnet | 4.44x | yes | -11.3% | -49.0% |
 
-## 7. Valuation: how NEAR is priced, and what moves it
+## 7. NEAR's economy, product by product
+
+Every product is investigated on its own and placed in one column: **observed** activity, **verified** value capture for $NEAR (executed buybacks or burns), or **speculative** opportunity (no measurable evidence yet, so no dollar value is assigned).
+
+| Product | Activity (observed) | Value capture for $NEAR | Column | Possible upside (not valued) | Sources |
+|---|---|---|---|---|---|
+| NEAR Intents and near.com | $49.1B volume a year (run rate), +230% year over year; $76.1M fees, $20.6M captured by NEAR; 86% of all fees on the NEAR chain | Executed buybacks $13.9M a year (onchain), held in the buyback wallet | **Verified capture** | Confidential swaps, new chains and distribution partners; integrator and solver concentration is untested without the Intents Explorer API or BigQuery | DefiLlama (Dune lineage), FastNEAR |
+| NEAR L1 (gas, accounts, transactions) | 741,872 transactions and 71,745 active accounts a day (90-day mean); transactions -84%, active accounts -75%, gas fees -52% year over year | Burns $1.1M a year (70% of gas) | **Verified capture** | Share of automated versus organic activity is untested without BigQuery (H7) | NearBlocks, DefiLlama (Allium) |
+| Staking and validators | 44% of supply staked across 354 validators; nominal yield 5.6% | None: rewards are new tokens (redistribution from non-stakers) | Observed | HSP-029 would cut issuance from 2.5% to 1.6% if adopted | NEAR RPC |
+| Chain Signatures (MPC signing) | MPC network of 16 participants, 11-of-n threshold, 8 signature domains; v1.signer 467,548 transactions in 2026-10 (exact months only) | None verified: no burn or buyback is linked to signing fees, and the contract exposes no fee schedule | Observed | Signing for other chains and apps as a paid service; its share of Intents withdrawals (H9) needs receipt-level data | NEAR RPC (v1.signer state), NearBlocks |
+| Ecosystem applications (RHEA and others) | $165.0M DeFi TVL (+41% year over year), $131.2M stablecoins; RHEA $787K fees in 30 days | None: app revenue accrues to the applications, not to $NEAR (gas from their use is in L1 burns) | Observed | A larger on-chain economy is the route to a platform valuation (section 3) | DefiLlama |
+| NEAR AI | No public usage, revenue or onchain settlement dataset found | None | *Speculative* | AI agents that pay with or settle on NEAR; no measurable evidence yet, so no dollar value is assigned | Announcements only (REPORTED) |
+| Treasury and foundation | Holdings and spending are disclosed in foundation reports, not reconciled onchain here | None (a cost centre; sales would add supply to the market) | Observed | Not quantified: no verified onchain disclosure in this pipeline | Foundation reports (REPORTED) |
+
+Fees paid on the NEAR chain by protocol, last 30 days (DefiLlama):
+
+| Protocol | Category | Fees, 30 days | Share |
+|---|---|---|---|
+| NEAR Intents | Bridge | $5.78M | 86.2% |
+| Rhea Dex | Dexs | $504.8K | 7.53% |
+| Rhea Lend | Lending | $268.8K | 4.01% |
+| Near | Chain | $134.2K | 2.00% |
+| RHEA LST | Liquid Staking | $12.6K | 0.188% |
+| RHEA Cross Chain | Cross Chain Bridge | $981 | 0.015% |
+| KAIO | RWA | $442 | 0.007% |
+| Veax CLMM | Dexs | $6.46 | 0.000% |
+
+- NEAR Intents is 86% of all fees paid on the NEAR chain over the last 30 days; the largest native app family, RHEA, is 12%, and NEAR's own gas 2%.
+- 93% of NEAR's verified value capture comes from one product (Intents buybacks); the rest is gas burns.
+- Intents volume +230% year over year while NEAR L1 transactions changed -84%, active accounts -75% and gas fees -52% (DeFi TVL on NEAR +41%): paid growth is in cross-chain execution, not in activity on the NEAR chain. Part of the L1 decline may be automated or incentive-driven activity ending; classifying it needs BigQuery (H7).
+
+This is the central fact for valuing NEAR (priority finding P2): almost all of NEAR's economic activity and almost all of its value capture is one cross-chain product. The NEAR chain itself carries little paid activity. NEAR therefore behaves less like a traditional L1, valued on the economy that lives on it, and more like the token of a cross-chain execution business, valued on what that business returns to holders.
+
+## 8. Valuation: how NEAR is priced, and what moves it
 
 **NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
 
@@ -209,7 +242,7 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 | $50 | 1,541x | 653x | 141x |
 | $100 | 3,082x | 1,306x | 281x |
 
-## 8. NEAR against the alternatives (opportunity cost)
+## 9. NEAR against the alternatives (opportunity cost)
 
 Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
 
@@ -246,7 +279,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
 
-## 9. What could break it
+## 10. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -269,7 +302,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 41.4% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.471% of market cap | **TRIGGERED** |
 
-## 10. Verdict: dream, possibility, or evidence?
+## 11. Verdict: dream, possibility, or evidence?
 
 At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
 
@@ -708,3 +741,10 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | OPP-NEAR-FROM-PEAK | NEAR: price today vs its three-year peak | -59.5% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
 | OPP-NEAR-CORR-BTC | NEAR: correlation of daily returns with BTC, last year | 0.45x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
 | OPP-NEAR-LIQUIDITY | NEAR: 24-hour trading volume / market cap | 10.6% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| ECO-INTENTS-FEE-SHARE | NEAR Intents share of all fees on the NEAR chain, last 30 days | 86.2% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| ECO-CAPTURE-FROM-INTENTS | Share of verified value capture from Intents buybacks (H1) | 92.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| ECO-L1-TXNS-YOY | NEAR L1 transactions, 90 days vs a year earlier | -84.0% | DERIVED | as of Nov 10, 2026 | NearBlocks |
+| ECO-L1-ACTIVE-YOY | NEAR L1 daily active accounts, 90 days vs a year earlier | -75.3% | DERIVED | as of Nov 10, 2026 | NearBlocks |
+| ECO-L1-GAS-YOY | NEAR L1 gas fees, 90 days vs a year earlier | -52.0% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| ECO-INTENTS-VOL-YOY | NEAR Intents volume, 90 days vs a year earlier | 230.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| ECO-SIGNER-PARTICIPANTS | Chain Signatures MPC participants (v1.signer) | 16 | OBSERVED | as of Nov 10, 2026 | NEAR RPC |

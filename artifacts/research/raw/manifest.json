@@ -857,6 +857,19 @@
    "error": null
   }
  },
+ "defillama.fees.onnear": {
+  "key": "defillama.fees.onnear",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "34d19860882c472ab18a05dcdea717bec158ef88a392441fa38c931404af0384",
+  "fetchedAt": "2026-11-12T11:34:37.183Z",
+  "file": "defillama.fees.onnear.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:34:37.185Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.fees.solana": {
   "key": "defillama.fees.solana",
   "source": "defillama",
@@ -1329,6 +1342,19 @@
   "file": "near-rpc.protocol-config.json",
   "lastAttempt": {
    "at": "2026-11-12T08:06:48.662Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.signer-state": {
+  "key": "near-rpc.signer-state",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "0f955eef6a286140e0b05821cac188dfa1a6dad3efbdf68bf75f7acb3eb9369c",
+  "fetchedAt": "2026-11-12T11:34:34.747Z",
+  "file": "near-rpc.signer-state.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:34:34.749Z",
    "status": "OK",
    "error": null
   }

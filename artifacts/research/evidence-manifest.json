@@ -6985,5 +6985,123 @@
   "inputs": [],
   "methodology": "One-day snapshot; a rough liquidity measure.",
   "notes": null
+ },
+ {
+  "evidenceId": "ECO-INTENTS-FEE-SHARE",
+  "label": "NEAR Intents share of all fees on the NEAR chain, last 30 days",
+  "value": 0.8624976510819797,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": {
+   "key": "defillama.fees.onnear",
+   "url": "https://api.llama.fi/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+   "fetchedAt": "2026-11-12T11:34:37.183Z",
+   "sha256": "34d19860882c472ab18a05dcdea717bec158ef88a392441fa38c931404af0384"
+  },
+  "transform": "Intents fees / all fees",
+  "inputs": [],
+  "methodology": "DefiLlama fees overview filtered to the NEAR chain (9 protocols with fees).",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-CAPTURE-FROM-INTENTS",
+  "label": "Share of verified value capture from Intents buybacks (H1)",
+  "value": 0.9291043112057266,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "executed / (executed + burns)",
+  "inputs": [
+   "TOK-EXECUTED-RUNRATE",
+   "LAD-NEAR-BURN-RUNRATE"
+  ],
+  "methodology": "Executed buybacks / (executed buybacks + burns), run rates.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-L1-TXNS-YOY",
+  "label": "NEAR L1 transactions, 90 days vs a year earlier",
+  "value": -0.8402474537124363,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum90 / sum90 a year earlier - 1",
+  "inputs": [],
+  "methodology": "Daily transactions summed over matched 90-day windows.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-L1-ACTIVE-YOY",
+  "label": "NEAR L1 daily active accounts, 90 days vs a year earlier",
+  "value": -0.7534785886239066,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum90 / sum90 a year earlier - 1",
+  "inputs": [],
+  "methodology": "Daily active accounts summed over matched 90-day windows.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-L1-GAS-YOY",
+  "label": "NEAR L1 gas fees, 90 days vs a year earlier",
+  "value": -0.5196700255218245,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum90 / sum90 a year earlier - 1",
+  "inputs": [],
+  "methodology": "Matched 90-day windows.",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-INTENTS-VOL-YOY",
+  "label": "NEAR Intents volume, 90 days vs a year earlier",
+  "value": 2.3014016869885845,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "sum90 / sum90 a year earlier - 1",
+  "inputs": [],
+  "methodology": "Matched 90-day windows, same end date as the L1 measures (H4).",
+  "notes": null
+ },
+ {
+  "evidenceId": "ECO-SIGNER-PARTICIPANTS",
+  "label": "Chain Signatures MPC participants (v1.signer)",
+  "value": 16,
+  "unit": "count",
+  "type": "OBSERVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": {
+   "key": "near-rpc.signer-state",
+   "url": "https://free.rpc.fastnear.com",
+   "fetchedAt": "2026-11-12T11:34:34.747Z",
+   "sha256": "0f955eef6a286140e0b05821cac188dfa1a6dad3efbdf68bf75f7acb3eb9369c"
+  },
+  "transform": "count(participants)",
+  "inputs": [],
+  "methodology": "v1.signer state(): participants in the running MPC network.",
+  "notes": "Signing threshold 11."
  }
 ]
