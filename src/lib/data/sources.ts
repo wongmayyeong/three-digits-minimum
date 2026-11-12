@@ -122,6 +122,11 @@ export const INVESTABLE = [
   { label: 'HYPE', coin: 'hyperliquid', llama: 'hyperliquid', type: 'cash-flow' },
   { label: 'NEAR', coin: 'near', llama: null, type: 'both' },
 ] as const;
+/** DefiLlama chain names for the platform economy of each investable alternative (BTC has no DeFi economy to value). */
+export const CHAIN_ECONOMY = [
+  { label: 'ETH', chain: 'Ethereum' }, { label: 'SOL', chain: 'Solana' }, { label: 'SUI', chain: 'Sui' }, { label: 'AVAX', chain: 'Avalanche' },
+  { label: 'TON', chain: 'TON' }, { label: 'APT', chain: 'Aptos' }, { label: 'HYPE', chain: 'Hyperliquid L1' }, { label: 'NEAR', chain: 'Near' },
+] as const;
 /** DefiLlama categories inside its DEX overview. Spot = AMMs and order books; cross-chain = where NEAR Intents is listed. */
 export const DEX_SPOT_CATEGORY = 'Dexs';
 export const DEX_CROSS_CHAIN_CATEGORIES: string[] = ['Bridge', 'Cross Chain Bridge'];
@@ -226,8 +231,20 @@ export function buildRequestCatalog(): HttpRequestDef[] {
       id: String(c.id), marketCap: Number(c.market_cap), price: Number(c.current_price), circulating: Number(c.circulating_supply),
       totalSupply: c.total_supply === null ? null : Number(c.total_supply), maxSupply: c.max_supply === null ? null : Number(c.max_supply),
       fdv: c.fully_diluted_valuation === null ? null : Number(c.fully_diluted_valuation),
+      volume24h: Number(c.total_volume),
     })),
   });
+  // Platform economy history (W6): stablecoins and DeFi TVL on each investable chain.
+  for (const c of CHAIN_ECONOMY) {
+    reqs.push({
+      key: `defillama.chaintvl.${c.label.toLowerCase()}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/v2/historicalChainTvl/${encodeURIComponent(c.chain)}`,
+      project: (a) => asArr(a).map((d: any) => [Number(d.date), Number(d.tvl)]),
+    });
+    reqs.push({
+      key: `defillama.stablechart.${c.label.toLowerCase()}`, source: 'defillama', ttlMs: 6 * HOUR, url: `https://stablecoins.llama.fi/stablecoincharts/${encodeURIComponent(c.chain)}`,
+      project: (a) => asArr(a).map((d: any) => [Number(d.date), Number(d?.totalCirculatingUSD?.peggedUSD ?? NaN)]),
+    });
+  }
   const peerSlugs = new Set<string>(VALUATION_PEERS.map((p) => p.llama));
   for (const a of INVESTABLE) if (a.llama && !peerSlugs.has(a.llama)) peerSlugs.add(a.llama);
   for (const slug of peerSlugs) {
@@ -410,7 +427,8 @@ export function buildBackgroundRequests(now = new Date()): HttpRequestDef[] {
   return buildEraRequests(now);
 }
 
-export const PRICE_COINS = ['near', 'bitcoin'] as const;
+/** Daily price history for every investable alternative (W6 risk metrics: volatility, drawdown, correlation). */
+export const PRICE_COINS = ['near', 'bitcoin', 'ethereum', 'solana', 'sui', 'avalanche-2', 'the-open-network', 'aptos', 'hyperliquid'] as const;
 const PRICE_CHUNK_DAYS = 400;
 
 /** Fixed price-history chunks: start dates are deterministic so request keys stay stable. */

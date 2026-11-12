@@ -54,6 +54,8 @@ export interface TokenomicsResult {
     executedRunRateUsd: number | null; designatedRunRateUsd: number | null;
     monthly: { month: string; executedNear: number; executedUsd: number | null; designatedUsd: number | null }[];
     avgPurchasePrice: number | null; pctOfSupplyPerYear: number | null;
+    /** Executed purchases in USD per day (documented route), for valuation over time. */
+    executedDaily: [string, number][];
   };
   staking: { stakedNear: number | null; totalSupply: number | null; stakingRatio: number | null; grossIssuance: number | null; validatorShare: number | null; nominalYield: number | null; realYieldStaker: number | null; realYieldNonStaker: number | null; validators: number | null };
   taxonomy: FlowRow[];
@@ -237,6 +239,7 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
       executedBroadToDesignated: complete && Math.abs(affPriced - affNear) < 1e-6 ? safeDiv(executedUsd + affUsd, designatedUsd) : null,
       executedRunRateUsd, designatedRunRateUsd, monthly, avgPurchasePrice: complete ? safeDiv(executedUsd, executedNear) : null,
       pctOfSupplyPerYear: executedRunRateUsd !== null && price && totalSupply ? executedRunRateUsd / price / totalSupply : null,
+      executedDaily: complete ? execSeries.map(([d, v]) => [d, Math.round(v * 100) / 100] as [string, number]) : [],
     },
     staking: { stakedNear, totalSupply, stakingRatio, grossIssuance, validatorShare, nominalYield, realYieldStaker, realYieldNonStaker, validators: Number.isFinite(v?.currentCount) ? v.currentCount : null },
     taxonomy, verifiedCaptureUsd, netIssuanceUsd, netValueToHoldersUsd, assets, findings,

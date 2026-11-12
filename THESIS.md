@@ -147,15 +147,15 @@ Every flow is classified before anything is added up. Only executed buybacks and
 
 | Asset | Valued as | Market cap | Supply still to unlock (FDV / cap) | Circulating supply growth, 1 year (as reported) | Excluding one-day events | Held buybacks subtracted | **Dilution net of capture** | Holder yield (context) |
 |---|---|---|---|---|---|---|---|---|
-| HYPE | cash-flow | $17.16B | 3.97x | -11.6% (3 events: 2025-12-24 -12.2%, 2026-05-27 -6.69%, 2026-10-29 +7.62%) | +0.242% | 0 | **+0.242%** | 5.11% |
-| ETH | platform | $250.05B | 1.00x | +0.817% | +0.817% | 0 | **+0.817%** | 0.025% |
-| BTC | monetary | $1.48T | 1.00x | +0.924% | +0.924% | 0 | **+0.924%** | none |
-| SOL | platform | $49.14B | 1.08x | +6.74% (1 event: 2026-03-12 +5.18%) | +1.49% | 0 | **+1.49%** | 0.061% |
-| **NEAR** | both | $4.58B | 1.00x | +2.47% | +2.47% | 0.304% | **+2.16%** | 0.472% |
-| AVAX | platform | $3.81B | 1.06x | +4.38% | +4.38% | 0 | **+4.38%** | 0.096% |
-| SUI | platform | $3.37B | 2.42x | +12.5% | +12.5% | 0 | **+12.5%** | n/a |
-| TON | platform | $3.56B | 1.85x | +14.8% | +14.8% | 0 | **+14.8%** | 0.013% |
-| APT | platform | $490.48M | 1.37x | +22.6% | +22.6% | 0 | **+22.6%** | 0.286% |
+| HYPE | cash-flow | $17.13B | 3.97x | -11.6% (3 events: 2025-12-24 -12.2%, 2026-05-27 -6.69%, 2026-10-29 +7.62%) | +0.242% | 0 | **+0.242%** | 5.12% |
+| ETH | platform | $249.35B | 1.00x | +0.817% | +0.817% | 0 | **+0.817%** | 0.025% |
+| BTC | monetary | $1.47T | 1.00x | +0.924% | +0.924% | 0 | **+0.924%** | none |
+| SOL | platform | $48.96B | 1.08x | +6.74% (1 event: 2026-03-12 +5.18%) | +1.49% | 0 | **+1.49%** | 0.061% |
+| **NEAR** | both | $4.57B | 1.00x | +2.47% | +2.47% | 0.305% | **+2.16%** | 0.474% |
+| AVAX | platform | $3.79B | 1.06x | +4.38% | +4.38% | 0 | **+4.38%** | 0.096% |
+| SUI | platform | $3.36B | 2.42x | +12.5% | +12.5% | 0 | **+12.5%** | n/a |
+| TON | platform | $3.52B | 1.85x | +14.8% | +14.8% | 0 | **+14.8%** | 0.013% |
+| APT | platform | $489.31M | 1.37x | +22.6% | +22.6% | 0 | **+22.6%** | 0.287% |
 
 **Track record: did NEAR's earlier pivots last?** Each era's representative product against its own peak, exact data only. For busy contracts NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are excluded, which is why v1.signer starts in April 2026 and Intents is measured by DefiLlama volume.
 
@@ -174,7 +174,79 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 | [User-Owned AI](https://near.org/blog/user-owned-ai-is-near) | 22 May 2024 | no single product contract | n/a | N/A, not counted | -23.4% | -33.6% |
 | [NEAR Intents (beta)](https://near.org/blog/introducing-near-intents.html) | 10 November 2024 | `intents.near volume` from 10 November 2024, beta on mainnet | 4.44x | yes | -11.3% | -49.0% |
 
-## 7. What could break it
+## 7. Valuation: how NEAR is priced, and what moves it
+
+**NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
+
+| Asset (basis) | 2026-01 | 2026-03 | 2026-05 | 2026-07 | 2026-09 | 2026-11 |
+|---|---|---|---|---|---|---|
+| **NEAR** (Burns + Intents buybacks designated (DefiLlama)) | 1,274x | 379x | 468x | 294x | 495x | 219x |
+| **NEAR** (Burns + executed buybacks (onchain)) | 1,274x | 1,708x | 1,229x | 402x | 724x | 319x |
+| ETH (DefiLlama holders revenue) | 6,402x | 7,537x | 3,859x | 5,775x | 8,744x | 4,168x |
+| SOL (DefiLlama holders revenue) | 1,994x | 1,810x | 2,260x | 2,219x | 2,622x | 1,702x |
+| SUI (DefiLlama holders revenue) | 4,599x | 4,140x | 6,189x | N/A | N/A | N/A |
+| AVAX (DefiLlama holders revenue) | 977x | 1,373x | 2,661x | 2,674x | 2,516x | 1,056x |
+| TON (DefiLlama holders revenue) | 2,390x | 2,404x | 5,095x | 6,454x | 8,560x | 6,569x |
+| APT (DefiLlama holders revenue) | N/A | N/A | N/A | 263x | 539x | 369x |
+| HYPE (DefiLlama holders revenue) | 9.64x | 13.1x | 27.5x | 21.4x | 27.8x | 20.5x |
+
+**What moves NEAR's 2036 price most.** Base case: Intents grows 20% a year, NEAR keeps its own multiple, today's buyback revenue per dollar of volume and today's burns. Each input is moved on its own; the ranges are published assumptions.
+
+| Input (base case: $16 in 2036) | Low case | Price | High case | Price | High / low |
+|---|---|---|---|---|---|
+| Intents growth, 10 years | 10% a year | $6.89 | 30% a year | $36 | 5.23x |
+| Valuation multiple | 0.5x today's | $8.13 | 1.5x today's | $24 | 3.00x |
+| Buyback revenue per dollar of volume | 0.5x today's | $8.2 | 1.5x today's | $24 | 2.97x |
+| Supply rule | 2.5% issuance (base) | $16 | HSP-029 | $18 | 1.08x |
+| Gas burns | 0x today's | $16 | 5x today's | $17 | 1.04x |
+
+**How much of each rung rests on the multiple alone.** The cash-flow multiple each rung would need under each growth scenario. Compare with NEAR's 212x today, Tron's 102x and Hyperliquid's 19.5x (cash-flow tokens), and the platforms' thousands (section 3). Where the multiple needed is in platform territory, the rung depends on NEAR being re-rated as a platform, not on its cash flow.
+
+| Rung | Low growth (10% a year) | Base growth (20% a year) | High growth (40% a year) |
+|---|---|---|---|
+| $10 | 308x | 131x | 28.1x |
+| $25 | 770x | 326x | 70.3x |
+| $50 | 1,541x | 653x | 141x |
+| $100 | 3,082x | 1,306x | 281x |
+
+## 8. NEAR against the alternatives (opportunity cost)
+
+Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
+
+| Asset | Valued on | Dilution a year | Driver growth needed for 2.8x / 7x / 14x / 28x, a year for ten years | Observed growth, last year | Note |
+|---|---|---|---|---|---|
+| BTC | market cap | 0.924% | market cap 183.3% / 458.1% / 916.3% / 1832.6% of today's total crypto | n/a | none: a monetary asset has no cash flow or on-chain economy to grow; required market cap is compared with today's total crypto market |
+| ETH | stablecoins and DeFi TVL on the chain | 0.817% | 11.8% / 22.5% / 31.3% / 40.7% | -31.1% | Stablecoins -18.6%, DeFi TVL -43.5% |
+| SOL | stablecoins and DeFi TVL on the chain | 1.49% | 12.5% / 23.3% / 32.1% / 41.6% | -24.4% | Stablecoins +2.45%, DeFi TVL -51.2% |
+| SUI | stablecoins and DeFi TVL on the chain | 12.5% | 24.7% / 36.6% / 46.4% / 57.0% | -43.5% | Stablecoins -18.9%, DeFi TVL -68.2% |
+| AVAX | stablecoins and DeFi TVL on the chain | 4.38% | 15.7% / 26.8% / 35.9% / 45.7% | -54.0% | Stablecoins -49.7%, DeFi TVL -58.3% |
+| TON | stablecoins and DeFi TVL on the chain | 14.8% | 27.3% / 39.5% / 49.5% / 60.2% | -45.5% | Stablecoins -30.6%, DeFi TVL -60.4% |
+| APT | stablecoins and DeFi TVL on the chain | 22.6% | 35.9% / 49.0% / 59.7% / 71.1% | -47.2% | Stablecoins -0.955%, DeFi TVL -93.4% |
+| HYPE | holders revenue | 0.242% | 11.1% / 21.8% / 30.5% / 39.9% | -24.5% | Stablecoins +32.8%, DeFi TVL +11.1% |
+| **NEAR** | Intents volume (cash flow); stablecoins and TVL (platform) | 2.16% | 13.2% / 24.1% / 33.0% / 42.6% | +230.1% | Platform route: stablecoins -23%, DeFi TVL +27% over the last year. |
+
+- NEAR's own cash-flow multiple: 219x on designated buybacks and 319x on executed buybacks (latest month-end); it was 1159x in 2025-12.
+- The input that moves NEAR's implied 2036 price most is Intents growth, 10 years (10% a year: $6.89; 30% a year: $36.05; base $16.27).
+- At base growth, $100 would need a cash-flow multiple of 1306x; at high growth 281x. Today: NEAR 212x, Tron 102x, Hyperliquid 20x.
+- For 7x in ten years NEAR's driver must grow 24.1% a year (its own dilution included); Intents volume grew 230% over the last year. Required vs observed, by asset (7x): NEAR 24% vs 230%; HYPE 22% vs -24%; SOL 23% vs -24%; ETH 22% vs -31%; SUI 37% vs -44%; AVAX 27% vs -54%; TON 39% vs -46%; APT 49% vs -47%. One year of observed growth is dominated by the market cycle, and NEAR's driver is a young product growing from a small base while the platforms' drivers are mature chain economies, so the comparison flatters NEAR.
+
+**Risk on common measures.** DefiLlama daily prices; volatility and correlation use returns between consecutive days only; liquidity is a one-day snapshot of trading volume over market cap.
+
+| Asset | Volatility, 1 year | Volatility, 3 years | Max drawdown, 3 years | Price vs 3-year peak | Correlation with BTC, 1 year | Volume / market cap, 24h | Supply still to unlock |
+|---|---|---|---|---|---|---|---|
+| BTC | 39.8% | 47.8% | -53.1% | -40.7% | 1.00 | 1.53% | 1.00x |
+| ETH | 58.0% | 71.0% | -67.5% | -57.4% | 0.87 | 3.36% | 1.00x |
+| SOL | 63.6% | 86.7% | -75.8% | -67.6% | 0.75 | 3.91% | 1.08x |
+| SUI | 91.4% | 115.2% | -87.7% | -84.5% | 0.61 | 7.47% | 2.42x |
+| AVAX | 74.0% | 93.8% | -90.2% | -85.9% | 0.56 | 6.06% | 1.06x |
+| TON | 82.6% | 81.9% | -87.5% | -85.7% | 0.40 | 4.08% | 1.85x |
+| APT | 96.2% | 98.4% | -97.1% | -96.9% | 0.45 | 5.08% | 1.37x |
+| HYPE | 88.1% | 114.6% | -64.3% | -25.9% | 0.39 | 4.71% | 3.97x |
+| **NEAR** | 115.7% | 113.4% | -89.2% | -59.5% | 0.45 | 10.6% | 1.00x |
+
+What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
+
+## 9. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -197,7 +269,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 41.4% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.471% of market cap | **TRIGGERED** |
 
-## 8. Verdict: dream, possibility, or evidence?
+## 10. Verdict: dream, possibility, or evidence?
 
 At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
 
@@ -497,16 +569,142 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | TOK-TON-DILUTION-NET | TON: dilution net of capture, per year | 14.8% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-APT-CIRC-GROWTH | APT: circulating supply growth, trailing year | 22.6% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
 | TOK-APT-FDV-MCAP | APT: fully diluted value / market cap (supply still to unlock) | 1.37x | DERIVED | as of Nov 11, 2026 | CoinGecko |
-| TOK-APT-HOLDER-YIELD | APT: value reaching holders as a share of market cap, 90-day run rate | 0.286% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-APT-HOLDER-YIELD | APT: value reaching holders as a share of market cap, 90-day run rate | 0.287% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-APT-CIRC-GROWTH-EX | APT: circulating supply growth excluding one-day events | 22.6% | DERIVED | as of Nov 11, 2026 | CoinGecko |
 | TOK-APT-DILUTION-NET | APT: dilution net of capture, per year | 22.6% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-HYPE-CIRC-GROWTH | HYPE: circulating supply growth, trailing year | -11.6% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
 | TOK-HYPE-FDV-MCAP | HYPE: fully diluted value / market cap (supply still to unlock) | 3.97x | DERIVED | as of Nov 11, 2026 | CoinGecko |
-| TOK-HYPE-HOLDER-YIELD | HYPE: value reaching holders as a share of market cap, 90-day run rate | 5.11% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-HYPE-HOLDER-YIELD | HYPE: value reaching holders as a share of market cap, 90-day run rate | 5.12% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-HYPE-CIRC-GROWTH-EX | HYPE: circulating supply growth excluding one-day events | 0.242% | DERIVED | as of Nov 11, 2026 | CoinGecko |
 | TOK-HYPE-DILUTION-NET | HYPE: dilution net of capture, per year | 0.242% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-NEAR-CIRC-GROWTH | NEAR: circulating supply growth, trailing year | 2.47% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
 | TOK-NEAR-FDV-MCAP | NEAR: fully diluted value / market cap (supply still to unlock) | 1.00x | DERIVED | as of Nov 11, 2026 | CoinGecko |
-| TOK-NEAR-HOLDER-YIELD | NEAR: value reaching holders as a share of market cap, 90-day run rate | 0.472% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NEAR-HOLDER-YIELD | NEAR: value reaching holders as a share of market cap, 90-day run rate | 0.474% | DERIVED | as of Nov 11, 2026 | Computed here |
 | TOK-NEAR-CIRC-GROWTH-EX | NEAR: circulating supply growth excluding one-day events | 2.47% | DERIVED | as of Nov 11, 2026 | CoinGecko |
 | TOK-NEAR-DILUTION-NET | NEAR: dilution net of capture, per year | 2.16% | DERIVED | as of Nov 11, 2026 | Computed here |
+| VAL-MULT-HIST-NEAR | NEAR: market cap / value to holders, latest month-end (Burns + Intents buybacks designated (DefiLlama)) | 219x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-NEAR-EXEC | NEAR: market cap / value to holders, latest month-end (Burns + executed buybacks (onchain)) | 319x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-ETH | ETH: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 4,168x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-SOL | SOL: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 1,702x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-SUI | SUI: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 7,378x | DERIVED | Dec 1, 2025 to Oct 1, 2026 | Computed here |
+| VAL-MULT-HIST-AVAX | AVAX: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 1,056x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-TON | TON: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 6,569x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-APT | APT: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 369x | DERIVED | Jul 1, 2026 to Nov 1, 2026 | Computed here |
+| VAL-MULT-HIST-HYPE | HYPE: market cap / value to holders, latest month-end (DefiLlama holders revenue) | 20.5x | DERIVED | Dec 1, 2025 to Nov 1, 2026 | Computed here |
+| VAL-SENS-BASE | NEAR implied 2036 price, base case (20% Intents growth, NEAR's own multiple) | $16 | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-SENS-INTENTS-GROWTH-YEARS | Sensitivity: Intents growth, 10 years (10% a year to 30% a year), high / low implied price | 5.23x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-SENS-VALUATION-MULTIPLE | Sensitivity: Valuation multiple (0.5x today's to 1.5x today's), high / low implied price | 3.00x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-SENS-BUYBACK-REVENUE-PER-DOLLAR-OF-VOLUME | Sensitivity: Buyback revenue per dollar of volume (0.5x today's to 1.5x today's), high / low implied price | 2.97x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-SENS-SUPPLY-RULE | Sensitivity: Supply rule (2.5% issuance (base) to HSP-029), high / low implied price | 1.08x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-SENS-GAS-BURNS | Sensitivity: Gas burns (0x today's to 5x today's), high / low implied price | 1.04x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-10-LOW | Cash-flow multiple $10 would need at low Intents growth | 308x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-10-BASE | Cash-flow multiple $10 would need at base Intents growth | 131x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-10-HIGH | Cash-flow multiple $10 would need at high Intents growth | 28.1x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-25-LOW | Cash-flow multiple $25 would need at low Intents growth | 770x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-25-BASE | Cash-flow multiple $25 would need at base Intents growth | 326x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-25-HIGH | Cash-flow multiple $25 would need at high Intents growth | 70.3x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-50-LOW | Cash-flow multiple $50 would need at low Intents growth | 1,541x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-50-BASE | Cash-flow multiple $50 would need at base Intents growth | 653x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-50-HIGH | Cash-flow multiple $50 would need at high Intents growth | 141x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-100-LOW | Cash-flow multiple $100 would need at low Intents growth | 3,082x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-100-BASE | Cash-flow multiple $100 would need at base Intents growth | 1,306x | DERIVED | as of Nov 10, 2026 | Computed here |
+| VAL-MULT-NEEDED-100-HIGH | Cash-flow multiple $100 would need at high Intents growth | 281x | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-OBSERVED | BTC: observed growth of its valuation driver, last year | unavailable | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-2_8X-CAGR | BTC: driver growth needed every year for 2.8x in ten years | unavailable | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-7X-CAGR | BTC: driver growth needed every year for 7x in ten years | unavailable | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-14X-CAGR | BTC: driver growth needed every year for 14x in ten years | unavailable | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-28X-CAGR | BTC: driver growth needed every year for 28x in ten years | unavailable | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-BTC-VOL-1Y | BTC: annualized volatility, last year | 39.8% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-BTC-VOL-3Y | BTC: annualized volatility, last three years | 47.8% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-BTC-MAXDD-3Y | BTC: maximum drawdown, last three years | -53.1% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-BTC-FROM-PEAK | BTC: price today vs its three-year peak | -40.7% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-BTC-CORR-BTC | BTC: correlation of daily returns with BTC, last year | 1.00x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-BTC-LIQUIDITY | BTC: 24-hour trading volume / market cap | 1.53% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-ETH-OBSERVED | ETH: observed growth of its valuation driver, last year | -31.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-ETH-2_8X-CAGR | ETH: driver growth needed every year for 2.8x in ten years | 11.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-ETH-7X-CAGR | ETH: driver growth needed every year for 7x in ten years | 22.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-ETH-14X-CAGR | ETH: driver growth needed every year for 14x in ten years | 31.3% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-ETH-28X-CAGR | ETH: driver growth needed every year for 28x in ten years | 40.7% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-ETH-VOL-1Y | ETH: annualized volatility, last year | 58.0% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-ETH-VOL-3Y | ETH: annualized volatility, last three years | 71.0% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-ETH-MAXDD-3Y | ETH: maximum drawdown, last three years | -67.5% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-ETH-FROM-PEAK | ETH: price today vs its three-year peak | -57.4% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-ETH-CORR-BTC | ETH: correlation of daily returns with BTC, last year | 0.87x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-ETH-LIQUIDITY | ETH: 24-hour trading volume / market cap | 3.36% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-SOL-OBSERVED | SOL: observed growth of its valuation driver, last year | -24.4% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SOL-2_8X-CAGR | SOL: driver growth needed every year for 2.8x in ten years | 12.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SOL-7X-CAGR | SOL: driver growth needed every year for 7x in ten years | 23.3% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SOL-14X-CAGR | SOL: driver growth needed every year for 14x in ten years | 32.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SOL-28X-CAGR | SOL: driver growth needed every year for 28x in ten years | 41.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SOL-VOL-1Y | SOL: annualized volatility, last year | 63.6% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SOL-VOL-3Y | SOL: annualized volatility, last three years | 86.7% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SOL-MAXDD-3Y | SOL: maximum drawdown, last three years | -75.8% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SOL-FROM-PEAK | SOL: price today vs its three-year peak | -67.6% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SOL-CORR-BTC | SOL: correlation of daily returns with BTC, last year | 0.75x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SOL-LIQUIDITY | SOL: 24-hour trading volume / market cap | 3.91% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-SUI-OBSERVED | SUI: observed growth of its valuation driver, last year | -43.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SUI-2_8X-CAGR | SUI: driver growth needed every year for 2.8x in ten years | 24.7% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SUI-7X-CAGR | SUI: driver growth needed every year for 7x in ten years | 36.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SUI-14X-CAGR | SUI: driver growth needed every year for 14x in ten years | 46.4% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SUI-28X-CAGR | SUI: driver growth needed every year for 28x in ten years | 57.0% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-SUI-VOL-1Y | SUI: annualized volatility, last year | 91.4% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SUI-VOL-3Y | SUI: annualized volatility, last three years | 115.2% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SUI-MAXDD-3Y | SUI: maximum drawdown, last three years | -87.7% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SUI-FROM-PEAK | SUI: price today vs its three-year peak | -84.5% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SUI-CORR-BTC | SUI: correlation of daily returns with BTC, last year | 0.61x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-SUI-LIQUIDITY | SUI: 24-hour trading volume / market cap | 7.47% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-AVAX-OBSERVED | AVAX: observed growth of its valuation driver, last year | -54.0% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-AVAX-2_8X-CAGR | AVAX: driver growth needed every year for 2.8x in ten years | 15.7% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-AVAX-7X-CAGR | AVAX: driver growth needed every year for 7x in ten years | 26.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-AVAX-14X-CAGR | AVAX: driver growth needed every year for 14x in ten years | 35.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-AVAX-28X-CAGR | AVAX: driver growth needed every year for 28x in ten years | 45.7% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-AVAX-VOL-1Y | AVAX: annualized volatility, last year | 74.0% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-AVAX-VOL-3Y | AVAX: annualized volatility, last three years | 93.8% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-AVAX-MAXDD-3Y | AVAX: maximum drawdown, last three years | -90.2% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-AVAX-FROM-PEAK | AVAX: price today vs its three-year peak | -85.9% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-AVAX-CORR-BTC | AVAX: correlation of daily returns with BTC, last year | 0.56x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-AVAX-LIQUIDITY | AVAX: 24-hour trading volume / market cap | 6.06% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-TON-OBSERVED | TON: observed growth of its valuation driver, last year | -45.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-TON-2_8X-CAGR | TON: driver growth needed every year for 2.8x in ten years | 27.3% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-TON-7X-CAGR | TON: driver growth needed every year for 7x in ten years | 39.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-TON-14X-CAGR | TON: driver growth needed every year for 14x in ten years | 49.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-TON-28X-CAGR | TON: driver growth needed every year for 28x in ten years | 60.2% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-TON-VOL-1Y | TON: annualized volatility, last year | 82.6% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-TON-VOL-3Y | TON: annualized volatility, last three years | 81.9% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-TON-MAXDD-3Y | TON: maximum drawdown, last three years | -87.5% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-TON-FROM-PEAK | TON: price today vs its three-year peak | -85.7% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-TON-CORR-BTC | TON: correlation of daily returns with BTC, last year | 0.40x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-TON-LIQUIDITY | TON: 24-hour trading volume / market cap | 4.08% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-APT-OBSERVED | APT: observed growth of its valuation driver, last year | -47.2% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-APT-2_8X-CAGR | APT: driver growth needed every year for 2.8x in ten years | 35.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-APT-7X-CAGR | APT: driver growth needed every year for 7x in ten years | 49.0% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-APT-14X-CAGR | APT: driver growth needed every year for 14x in ten years | 59.7% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-APT-28X-CAGR | APT: driver growth needed every year for 28x in ten years | 71.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-APT-VOL-1Y | APT: annualized volatility, last year | 96.2% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-APT-VOL-3Y | APT: annualized volatility, last three years | 98.4% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-APT-MAXDD-3Y | APT: maximum drawdown, last three years | -97.1% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-APT-FROM-PEAK | APT: price today vs its three-year peak | -96.9% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-APT-CORR-BTC | APT: correlation of daily returns with BTC, last year | 0.45x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-APT-LIQUIDITY | APT: 24-hour trading volume / market cap | 5.08% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-HYPE-OBSERVED | HYPE: observed growth of its valuation driver, last year | -24.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-HYPE-2_8X-CAGR | HYPE: driver growth needed every year for 2.8x in ten years | 11.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-HYPE-7X-CAGR | HYPE: driver growth needed every year for 7x in ten years | 21.8% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-HYPE-14X-CAGR | HYPE: driver growth needed every year for 14x in ten years | 30.5% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-HYPE-28X-CAGR | HYPE: driver growth needed every year for 28x in ten years | 39.9% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-HYPE-VOL-1Y | HYPE: annualized volatility, last year | 88.1% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-HYPE-VOL-3Y | HYPE: annualized volatility, last three years | 114.6% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-HYPE-MAXDD-3Y | HYPE: maximum drawdown, last three years | -64.3% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-HYPE-FROM-PEAK | HYPE: price today vs its three-year peak | -25.9% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-HYPE-CORR-BTC | HYPE: correlation of daily returns with BTC, last year | 0.39x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-HYPE-LIQUIDITY | HYPE: 24-hour trading volume / market cap | 4.71% | DERIVED | as of Nov 10, 2026 | CoinGecko |
+| OPP-NEAR-OBSERVED | NEAR: observed growth of its valuation driver, last year | 230.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-NEAR-2_8X-CAGR | NEAR: driver growth needed every year for 2.8x in ten years | 13.2% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-NEAR-7X-CAGR | NEAR: driver growth needed every year for 7x in ten years | 24.1% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-NEAR-14X-CAGR | NEAR: driver growth needed every year for 14x in ten years | 33.0% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-NEAR-28X-CAGR | NEAR: driver growth needed every year for 28x in ten years | 42.6% | DERIVED | as of Nov 10, 2026 | Computed here |
+| OPP-NEAR-VOL-1Y | NEAR: annualized volatility, last year | 115.7% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-NEAR-VOL-3Y | NEAR: annualized volatility, last three years | 113.4% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-NEAR-MAXDD-3Y | NEAR: maximum drawdown, last three years | -89.2% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-NEAR-FROM-PEAK | NEAR: price today vs its three-year peak | -59.5% | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-NEAR-CORR-BTC | NEAR: correlation of daily returns with BTC, last year | 0.45x | DERIVED | as of Nov 10, 2026 | DefiLlama prices |
+| OPP-NEAR-LIQUIDITY | NEAR: 24-hour trading volume / market cap | 10.6% | DERIVED | as of Nov 10, 2026 | CoinGecko |

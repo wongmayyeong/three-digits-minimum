@@ -159,11 +159,11 @@
   "key": "coingecko.universe",
   "source": "coingecko",
   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,sui,avalanche-2,the-open-network,aptos,hyperliquid,near",
-  "sha256": "178e543c6ab27d22faf42126ebbb9ca56ead7e7e91b22a0a49f486aacd3cc6d6",
-  "fetchedAt": "2026-11-12T10:47:55.977Z",
+  "sha256": "dda1e26bc14aa3e84b22d4428dc0744ce7267175a6838c2cb71e481343fdebd9",
+  "fetchedAt": "2026-11-12T11:23:15.529Z",
   "file": "coingecko.universe.json",
   "lastAttempt": {
-   "at": "2026-11-12T10:47:55.979Z",
+   "at": "2026-11-12T11:23:15.531Z",
    "status": "OK",
    "error": null
   }
@@ -177,6 +177,214 @@
   "file": "defillama.chains.json",
   "lastAttempt": {
    "at": "2026-11-12T08:07:12.156Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.apt": {
+  "key": "defillama.chaintvl.apt",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Aptos",
+  "sha256": "7c3f575792ae2995f7f082d60ba39f021039ea33b2ac4750347fd80aca732fb1",
+  "fetchedAt": "2026-11-12T11:23:20.982Z",
+  "file": "defillama.chaintvl.apt.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:20.984Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.avax": {
+  "key": "defillama.chaintvl.avax",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Avalanche",
+  "sha256": "04fc2034837b397db696fd8622ce21fd5859187c4a2297c029724b1c06285052",
+  "fetchedAt": "2026-11-12T11:23:17.467Z",
+  "file": "defillama.chaintvl.avax.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:17.469Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.eth": {
+  "key": "defillama.chaintvl.eth",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Ethereum",
+  "sha256": "007706e45714dc76d023786d572bef3b47cf8013ca7b36434f5e6310a3b7717d",
+  "fetchedAt": "2026-11-12T11:23:15.244Z",
+  "file": "defillama.chaintvl.eth.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:15.257Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.hype": {
+  "key": "defillama.chaintvl.hype",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Hyperliquid%20L1",
+  "sha256": "6a37cd1a73e71cb918b610022c6c7fa19380ad2ed871e285de4876b9e51d76c7",
+  "fetchedAt": "2026-11-12T11:23:22.503Z",
+  "file": "defillama.chaintvl.hype.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:22.507Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.near": {
+  "key": "defillama.chaintvl.near",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Near",
+  "sha256": "d70b77eb22c6bcf5b169c186dd4377aabee0bb88312be663f4a80a45480aa1fd",
+  "fetchedAt": "2026-11-12T11:23:23.974Z",
+  "file": "defillama.chaintvl.near.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:23.978Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.sol": {
+  "key": "defillama.chaintvl.sol",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Solana",
+  "sha256": "756440069c9d618c8ad1b1b5b8403ece93f034c5586c2c2b88103edfffd3b4e7",
+  "fetchedAt": "2026-11-12T11:23:16.050Z",
+  "file": "defillama.chaintvl.sol.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:16.051Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.sui": {
+  "key": "defillama.chaintvl.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/Sui",
+  "sha256": "8f092e45af1d5a53981263ddfbf77f6bb437257f527cb4968a7afd9ca7007808",
+  "fetchedAt": "2026-11-12T11:23:16.757Z",
+  "file": "defillama.chaintvl.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:16.761Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.chaintvl.ton": {
+  "key": "defillama.chaintvl.ton",
+  "source": "defillama",
+  "url": "https://api.llama.fi/v2/historicalChainTvl/TON",
+  "sha256": "678a230ea4ccf248b75b7021cdc5f29996c78d191859e09e5c3126de9cfb571c",
+  "fetchedAt": "2026-11-12T11:23:18.951Z",
+  "file": "defillama.chaintvl.ton.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:18.953Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.aptos.2022-09-01": {
+  "key": "defillama.coins.aptos.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:aptos?start=1661990400&span=400&period=1d",
+  "sha256": "8b9d5bb4bb21b5eca266aababbb5ba932e111835df1935a94895c9a0eed10ba0",
+  "fetchedAt": "2026-11-12T11:23:31.294Z",
+  "file": "defillama.coins.aptos.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:31.297Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.aptos.2023-10-06": {
+  "key": "defillama.coins.aptos.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:aptos?start=1696550400&span=400&period=1d",
+  "sha256": "abf96c0c24a9b4f532d116ee46096228c7203f47608033a7f1e563b2b43cd9d3",
+  "fetchedAt": "2026-11-12T11:23:37.556Z",
+  "file": "defillama.coins.aptos.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:37.562Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.aptos.2024-11-09": {
+  "key": "defillama.coins.aptos.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:aptos?start=1731110400&span=400&period=1d",
+  "sha256": "5376a43404b867f448243e1671f38859747822148a8751efcd533013f1541881",
+  "fetchedAt": "2026-11-12T11:23:44.221Z",
+  "file": "defillama.coins.aptos.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:44.226Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.aptos.2025-12-14": {
+  "key": "defillama.coins.aptos.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:aptos?start=1765670400&span=400&period=1d",
+  "sha256": "eee2415bf98ce21b209a56ebde77a6f7d22c763383b411066fcaea912aa8a9b5",
+  "fetchedAt": "2026-11-12T11:23:51.038Z",
+  "file": "defillama.coins.aptos.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:51.043Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.avalanche-2.2022-09-01": {
+  "key": "defillama.coins.avalanche-2.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:avalanche-2?start=1661990400&span=400&period=1d",
+  "sha256": "dc07777920c6928785921ace3a9d3f8f4fc5ab72c3944c48b908eb0085f5a4df",
+  "fetchedAt": "2026-11-12T11:23:29.399Z",
+  "file": "defillama.coins.avalanche-2.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:29.401Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.avalanche-2.2023-10-06": {
+  "key": "defillama.coins.avalanche-2.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:avalanche-2?start=1696550400&span=400&period=1d",
+  "sha256": "31dd89ba0cb80a44b0842e9da7f8ee54a8e4da961627c34e316ff43b5618233d",
+  "fetchedAt": "2026-11-12T11:23:36.046Z",
+  "file": "defillama.coins.avalanche-2.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:36.048Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.avalanche-2.2024-11-09": {
+  "key": "defillama.coins.avalanche-2.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:avalanche-2?start=1731110400&span=400&period=1d",
+  "sha256": "1b7e19b36ba7ccdd4ad2638ac56ffbe7954a0373bdac3e1754cc5ba0cd820ecd",
+  "fetchedAt": "2026-11-12T11:23:42.430Z",
+  "file": "defillama.coins.avalanche-2.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:42.433Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.avalanche-2.2025-12-14": {
+  "key": "defillama.coins.avalanche-2.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:avalanche-2?start=1765670400&span=400&period=1d",
+  "sha256": "9ac6432aee6c1c6ceb59c77d6bf63a0199990fece4e4bbea81fda035bf6d232e",
+  "fetchedAt": "2026-11-12T11:23:49.614Z",
+  "file": "defillama.coins.avalanche-2.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:49.620Z",
    "status": "OK",
    "error": null
   }
@@ -233,6 +441,110 @@
    "error": null
   }
  },
+ "defillama.coins.ethereum.2022-09-01": {
+  "key": "defillama.coins.ethereum.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:ethereum?start=1661990400&span=400&period=1d",
+  "sha256": "be388ca0b3a07f3a8dbef3861d3e449aa3877751be96f0f9fea499669378b59a",
+  "fetchedAt": "2026-11-12T11:23:27.372Z",
+  "file": "defillama.coins.ethereum.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:27.374Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.ethereum.2023-10-06": {
+  "key": "defillama.coins.ethereum.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:ethereum?start=1696550400&span=400&period=1d",
+  "sha256": "10c8ebe2b0422b4ab89e52bd2b5e50abeb7caf0c24fa4ecda1102f00b2cdc2f8",
+  "fetchedAt": "2026-11-12T11:23:33.331Z",
+  "file": "defillama.coins.ethereum.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:33.335Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.ethereum.2024-11-09": {
+  "key": "defillama.coins.ethereum.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:ethereum?start=1731110400&span=400&period=1d",
+  "sha256": "0464f495aa9c9bc707845f5a5de9faf7dd6a0aea0a2cfead0fbc36d84916c3ae",
+  "fetchedAt": "2026-11-12T11:23:39.713Z",
+  "file": "defillama.coins.ethereum.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:39.715Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.ethereum.2025-12-14": {
+  "key": "defillama.coins.ethereum.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:ethereum?start=1765670400&span=400&period=1d",
+  "sha256": "f5638a11e3d5ddb016073b7d15411c557ade6392c5d2977d65744142d1b7a80f",
+  "fetchedAt": "2026-11-12T11:23:46.727Z",
+  "file": "defillama.coins.ethereum.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:46.730Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.hyperliquid.2022-09-01": {
+  "key": "defillama.coins.hyperliquid.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:hyperliquid?start=1661990400&span=400&period=1d",
+  "sha256": "d9e1c8350499d905dff8fa55d9c977402f3b7b6ef93338e4a951da50c1591801",
+  "fetchedAt": "2026-11-12T11:23:31.895Z",
+  "file": "defillama.coins.hyperliquid.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:31.900Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.hyperliquid.2023-10-06": {
+  "key": "defillama.coins.hyperliquid.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:hyperliquid?start=1696550400&span=400&period=1d",
+  "sha256": "d9e1c8350499d905dff8fa55d9c977402f3b7b6ef93338e4a951da50c1591801",
+  "fetchedAt": "2026-11-12T11:23:38.801Z",
+  "file": "defillama.coins.hyperliquid.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:38.805Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.hyperliquid.2024-11-09": {
+  "key": "defillama.coins.hyperliquid.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:hyperliquid?start=1731110400&span=400&period=1d",
+  "sha256": "cbbd17fe9c11674e0fb397570a9af786bee710ff346a750866f2aacb850cb6d7",
+  "fetchedAt": "2026-11-12T11:23:45.034Z",
+  "file": "defillama.coins.hyperliquid.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:45.037Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.hyperliquid.2025-12-14": {
+  "key": "defillama.coins.hyperliquid.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:hyperliquid?start=1765670400&span=400&period=1d",
+  "sha256": "fa64d9fe1a8237d4a0bea428c629aad9346975b1e291c300f7547d62c46dcf7e",
+  "fetchedAt": "2026-11-12T11:23:52.022Z",
+  "file": "defillama.coins.hyperliquid.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:52.026Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.coins.near.2022-09-01": {
   "key": "defillama.coins.near.2022-09-01",
   "source": "defillama",
@@ -281,6 +593,162 @@
   "file": "defillama.coins.near.2025-12-14.json",
   "lastAttempt": {
    "at": "2026-11-12T08:07:19.188Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.solana.2022-09-01": {
+  "key": "defillama.coins.solana.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:solana?start=1661990400&span=400&period=1d",
+  "sha256": "4d784728eb2ef68e0a8a5644645b91075076aa0e8553187db4157a85b81bdd8f",
+  "fetchedAt": "2026-11-12T11:23:28.042Z",
+  "file": "defillama.coins.solana.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:28.044Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.solana.2023-10-06": {
+  "key": "defillama.coins.solana.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:solana?start=1696550400&span=400&period=1d",
+  "sha256": "386879f59d606f66ad5365897d07c446ed0495f3d11e54134f15cf9aecb5dfb3",
+  "fetchedAt": "2026-11-12T11:23:34.083Z",
+  "file": "defillama.coins.solana.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:34.086Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.solana.2024-11-09": {
+  "key": "defillama.coins.solana.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:solana?start=1731110400&span=400&period=1d",
+  "sha256": "486f70aa0833980659ff0b298a23764d5708261ddf2271ce9ae3f3b1db9ea6e6",
+  "fetchedAt": "2026-11-12T11:23:40.614Z",
+  "file": "defillama.coins.solana.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:40.616Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.solana.2025-12-14": {
+  "key": "defillama.coins.solana.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:solana?start=1765670400&span=400&period=1d",
+  "sha256": "869907bbf24c198334abfc3937cd2f97c8bdb4691745b501057b228342362526",
+  "fetchedAt": "2026-11-12T11:23:47.670Z",
+  "file": "defillama.coins.solana.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:47.674Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.sui.2022-09-01": {
+  "key": "defillama.coins.sui.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:sui?start=1661990400&span=400&period=1d",
+  "sha256": "e53c0d35da899468acbfce9c553cb4c373279ac4b49e1db234df4c4e548c6e8a",
+  "fetchedAt": "2026-11-12T11:23:28.674Z",
+  "file": "defillama.coins.sui.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:28.677Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.sui.2023-10-06": {
+  "key": "defillama.coins.sui.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:sui?start=1696550400&span=400&period=1d",
+  "sha256": "04443bbfd9f94e6e71770b5b6b38aa84ee2c74757df3e8db28dc58446e2d9a89",
+  "fetchedAt": "2026-11-12T11:23:35.356Z",
+  "file": "defillama.coins.sui.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:35.357Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.sui.2024-11-09": {
+  "key": "defillama.coins.sui.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:sui?start=1731110400&span=400&period=1d",
+  "sha256": "8bd1ce99255fd98ebcfae3ad67e44b995bf5aa6df3e5801de39deb5e83aa5eff",
+  "fetchedAt": "2026-11-12T11:23:41.482Z",
+  "file": "defillama.coins.sui.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:41.484Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.sui.2025-12-14": {
+  "key": "defillama.coins.sui.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:sui?start=1765670400&span=400&period=1d",
+  "sha256": "64391beac4fa7d409460c37d240fca6fd9be995d31160200401d7e9708a36c1d",
+  "fetchedAt": "2026-11-12T11:23:48.632Z",
+  "file": "defillama.coins.sui.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:48.634Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.the-open-network.2022-09-01": {
+  "key": "defillama.coins.the-open-network.2022-09-01",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:the-open-network?start=1661990400&span=400&period=1d",
+  "sha256": "24726c9fa15cdb40e314bbfcf85ae08884f2895258ece427ad9a1bdc56196e99",
+  "fetchedAt": "2026-11-12T11:23:30.081Z",
+  "file": "defillama.coins.the-open-network.2022-09-01.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:30.083Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.the-open-network.2023-10-06": {
+  "key": "defillama.coins.the-open-network.2023-10-06",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:the-open-network?start=1696550400&span=400&period=1d",
+  "sha256": "cab33a1a6360bc47faf003eb3a654e1afa2242ad61ad1f61923a65989d84bb3f",
+  "fetchedAt": "2026-11-12T11:23:36.773Z",
+  "file": "defillama.coins.the-open-network.2023-10-06.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:36.775Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.the-open-network.2024-11-09": {
+  "key": "defillama.coins.the-open-network.2024-11-09",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:the-open-network?start=1731110400&span=400&period=1d",
+  "sha256": "15717d0c69f3802c75915593afcffecb09adf7aaaab6a37543a810bb0a318c0e",
+  "fetchedAt": "2026-11-12T11:23:43.313Z",
+  "file": "defillama.coins.the-open-network.2024-11-09.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:43.318Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.coins.the-open-network.2025-12-14": {
+  "key": "defillama.coins.the-open-network.2025-12-14",
+  "source": "defillama",
+  "url": "https://coins.llama.fi/chart/coingecko:the-open-network?start=1765670400&span=400&period=1d",
+  "sha256": "659541ce1fa294d5a26dce3262bbe6be3b6ec6461883ff34e4c81863f10059a2",
+  "fetchedAt": "2026-11-12T11:23:50.340Z",
+  "file": "defillama.coins.the-open-network.2025-12-14.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:50.343Z",
    "status": "OK",
    "error": null
   }
@@ -619,6 +1087,110 @@
   "file": "defillama.revenue.near.json",
   "lastAttempt": {
    "at": "2026-11-12T08:06:58.849Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.apt": {
+  "key": "defillama.stablechart.apt",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Aptos",
+  "sha256": "eb531231f646389862eae12236afd181b4765116e43cc38d9e04501f8f4f8f46",
+  "fetchedAt": "2026-11-12T11:23:22.146Z",
+  "file": "defillama.stablechart.apt.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:22.149Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.avax": {
+  "key": "defillama.stablechart.avax",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Avalanche",
+  "sha256": "1eacc2445877456b30411eaa4b5782eb32845e552b2e672df348c10e271ea8d1",
+  "fetchedAt": "2026-11-12T11:23:18.604Z",
+  "file": "defillama.stablechart.avax.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:18.606Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.eth": {
+  "key": "defillama.stablechart.eth",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Ethereum",
+  "sha256": "c9178ae86aac2731c2965ce925cbef0344cae1f5e8ef787c339bbbc51f6077de",
+  "fetchedAt": "2026-11-12T11:23:15.708Z",
+  "file": "defillama.stablechart.eth.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:15.712Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.hype": {
+  "key": "defillama.stablechart.hype",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Hyperliquid%20L1",
+  "sha256": "de178c8adecb405ef0fa5a6071ee94561f78950da73876bf10ccaccfb2378f44",
+  "fetchedAt": "2026-11-12T11:23:23.616Z",
+  "file": "defillama.stablechart.hype.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:23.618Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.near": {
+  "key": "defillama.stablechart.near",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Near",
+  "sha256": "b135a8957c9d1b5f79cdb2295f3f264a2fbcce9cc5a9ffde4f77aec1c21f58df",
+  "fetchedAt": "2026-11-12T11:23:25.108Z",
+  "file": "defillama.stablechart.near.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:25.110Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.sol": {
+  "key": "defillama.stablechart.sol",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Solana",
+  "sha256": "803e60af3f93302afad31665347de30fdfb4571c05911ba3666c9ba9438183a7",
+  "fetchedAt": "2026-11-12T11:23:16.403Z",
+  "file": "defillama.stablechart.sol.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:16.405Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.sui": {
+  "key": "defillama.stablechart.sui",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/Sui",
+  "sha256": "6ceec32328d7f255ede93e39ec32b0f7c422a48fb7b72700da21e3460354318f",
+  "fetchedAt": "2026-11-12T11:23:17.094Z",
+  "file": "defillama.stablechart.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:17.096Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.stablechart.ton": {
+  "key": "defillama.stablechart.ton",
+  "source": "defillama",
+  "url": "https://stablecoins.llama.fi/stablecoincharts/TON",
+  "sha256": "3d37672ad7473b95ac76ca33eaac74adb64f6aa7f6c126c9a2b1e7cc79bde692",
+  "fetchedAt": "2026-11-12T11:23:20.637Z",
+  "file": "defillama.stablechart.ton.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:23:20.640Z",
    "status": "OK",
    "error": null
   }

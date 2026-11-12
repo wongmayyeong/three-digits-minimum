@@ -67,7 +67,7 @@ export function lastDay(series: DailyPoint[]): string | null {
  */
 export function commonEnd(seriesList: DailyPoint[][], dropPartial = 1): string | null {
   const ends = seriesList.map(lastDay);
-  if (ends.some((e) => e === null)) return null;
+  if (!ends.length || ends.some((e) => e === null)) return null;
   const min = (ends as string[]).sort()[0] as string;
   return addDays(min, -dropPartial);
 }

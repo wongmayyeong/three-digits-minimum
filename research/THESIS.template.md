@@ -88,7 +88,35 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 
 {{EVENT_TABLE}}
 
-## 7. What could break it
+## 7. Valuation: how NEAR is priced, and what moves it
+
+**NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
+
+{{VAL_HISTORY_TABLE}}
+
+**What moves NEAR's 2036 price most.** Base case: Intents grows 20% a year, NEAR keeps its own multiple, today's buyback revenue per dollar of volume and today's burns. Each input is moved on its own; the ranges are published assumptions.
+
+{{VAL_SENSITIVITY_TABLE}}
+
+**How much of each rung rests on the multiple alone.** The cash-flow multiple each rung would need under each growth scenario. Compare with NEAR's {{LAD-MULT-TODAY}} today, Tron's {{LAD-MULT-TRON}} and Hyperliquid's {{LAD-MULT-HYPERLIQUID}} (cash-flow tokens), and the platforms' thousands (section 3). Where the multiple needed is in platform territory, the rung depends on NEAR being re-rated as a platform, not on its cash flow.
+
+{{VAL_NEEDED_TABLE}}
+
+## 8. NEAR against the alternatives (opportunity cost)
+
+Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
+
+{{OPP_TABLE}}
+
+{{VAL_FINDINGS}}
+
+**Risk on common measures.** DefiLlama daily prices; volatility and correlation use returns between consecutive days only; liquidity is a one-day snapshot of trading volume over market cap.
+
+{{RISK_TABLE}}
+
+What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
+
+## 9. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -104,7 +132,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 
 {{TRIGGER_TABLE}}
 
-## 8. Verdict: dream, possibility, or evidence?
+## 10. Verdict: dream, possibility, or evidence?
 
 {{LADDER_HEADLINE}}
 

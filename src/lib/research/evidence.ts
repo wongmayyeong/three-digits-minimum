@@ -17,6 +17,7 @@ import type { EvidenceDraft, EvidenceGroup, SeriesDef, Unit } from './types';
 import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
 import { analyzeLadder, ladderEvidence, type LadderResult } from './ladder';
 import { analyzeTokenomics, tokenomicsEvidence, type TokenomicsResult } from './tokenomics';
+import { analyzeValuation, valuationEvidence, type ValuationResult } from './valuation';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -35,6 +36,7 @@ export interface ResearchDataset {
   thesis: ThesisResult;
   ladder: LadderResult;
   tokenomics: TokenomicsResult;
+  valuation: ValuationResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -443,6 +445,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const tokenomics = analyzeTokenomics(raws, (id) => B.val(id));
   B.items.push(...tokenomicsEvidence(tokenomics, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null }; }));
 
+  // ------------------------------------------------------------ W5 valuation, W6 opportunity cost
+  const valuation = analyzeValuation(raws, (id) => B.val(id), ladder, tokenomics);
+  B.items.push(...valuationEvidence(valuation));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -456,6 +462,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     thesis,
     ladder,
     tokenomics,
+    valuation,
   };
 }
 
