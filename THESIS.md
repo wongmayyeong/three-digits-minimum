@@ -8,7 +8,7 @@
 
 > Educational research, not financial advice. Not a price prediction. "Three digits, minimum." is a line attributed to NEAR co-founder Illia Polosukhin and repeated across the NEAR community; we use it as a hook and test it against data.
 
-**The short answer.** At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
+**The short answer.** At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally. NEAR trades at 223x the revenue of its main product, NEAR Intents, against 7.55x for cross-chain competitors. Holders are diluted by $98.27M a year more than the token verifiably captures.
 
 ---
 
@@ -326,15 +326,37 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
 
-## 12. What could break it
+## 12. Hypotheses tested
 
-| Risk | Effect on the ladder |
-|---|---|
-| Intents growth slows | Every rung depends on compounding volume for ten years |
-| Fee competition | Halving the take rate doubles every volume requirement |
-| The market prices NEAR like other cash-flow tokens | At Tron's multiple every rung needs 2.07x the value to holders |
-| Supply keeps growing at 2.5% | $100 means a larger market cap |
-| Value keeps leaving the NEAR chain | Rules out the platform-premium route (active accounts -76.3% year over year) |
+Each hypothesis was written before the data was read (research/three-digits/SCOPE.md), with the rule that decides it. Any outcome is reported, including those that favour NEAR.
+
+| | Hypothesis | Rule | Reading | Outcome |
+|---|---|---|---|---|
+| H1 | NEAR's value capture is far more concentrated in one product than peers' | SUPPORTED if the largest product's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. | Intents: 86% of NEAR's fees and 93% of its verified capture; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). | **SUPPORTED** |
+| H2 | NEAR is priced closer to a platform than its on-chain economy justifies | SUPPORTED if NEAR's market cap to stablecoins and to DeFi TVL both exceed every platform benchmark; NOT SUPPORTED if both are at or below the benchmark median; otherwise MIXED. | NEAR market cap is 35x its stablecoins and 28x its DeFi TVL; benchmarks: Ethereum 1.9x / 6.1x, BNB Chain 6.6x / 18x, Solana 3.5x / 9.7x, Tron 0.3x / 6.1x. | **SUPPORTED** |
+| H3 | Intents' take rate is above cross-chain peers, so fee pressure matters more than volume | SUPPORTED if Intents' protocol revenue per dollar of volume is above every peer with public volume; NOT SUPPORTED if at or below the peer median; otherwise MIXED. | Intents 4.20 bp; peers THORChain 3.52 bp, Chainflip 5.76 bp, Maya Protocol 1.26 bp, Unit 2.54 bp, LI.FI 1.86 bp (median 2.54 bp). | **MIXED** |
+| H4 | Value is moving off the NEAR chain into cross-chain flows the token only partly captures | SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. | Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%; 60% of designated buybacks executed. Part of the L1 decline may be automated activity ending (H7). | **SUPPORTED** |
+| H5 | NEAR's dilution is a higher return hurdle than peers' | SUPPORTED if NEAR's dilution net of capture is more than 0.5 percentage points above the peer median; NOT SUPPORTED if more than 0.5 points below; otherwise MIXED. | NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted. | **NOT SUPPORTED** |
+| H6 | NEAR needs more growth than some alternatives to deliver the same multiple | Required driver growth for 7x in ten years (own dilution included). SUPPORTED if NEAR's is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED. | NEAR 24.1% a year; peer median 26.8% (ETH 22.5%, SOL 23.3%, SUI 36.6%, AVAX 26.8%, TON 39.5%, APT 49.0%, HYPE 21.8%).  Against the largest alternatives with a growth driver (ETH, SOL, HYPE, AVAX) NEAR needs more growth than 3 of 4. Observed growth is compared in section 11. | **NOT SUPPORTED** |
+| H7 | Most of NEAR's reported activity is automated rather than organic | Signer classification over the last year. | Not tested: needs receipt-level signer data (BigQuery crypto_near_mainnet_us, research/sql/). L1 transactions fell 84% in a year, which is consistent with automated activity ending but does not prove it. | **UNTESTED** |
+| H8 | Intents revenue depends on a few integrators or solvers | Share of volume from the top five integrators and solvers. | Not tested: needs Intents Explorer API (partner JWT) or intents.near event logs (BigQuery). | **UNTESTED** |
+| H9 | Chain Signatures underpins Intents' cross-chain withdrawals, so its value is real but invisible in token capture | Share of Intents withdrawals signed via v1.signer. | Not tested at receipt level. v1.signer runs a 16-participant MPC network with 467,548 transactions in 2026-10, and no signing fee reaches $NEAR. | **UNTESTED** |
+| H10 | NEAR's price is mostly explained by BTC and the market, not its fundamentals | Share of NEAR's daily return variance explained by BTC over the last year (R-squared). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED. | Correlation with BTC 0.45 (R-squared 21%); 0.62 in the 180 days before buybacks began and 0.42 since. ETH's correlation with BTC is 0.87. Daily returns cannot be regressed on Intents growth, which changes slowly; this tests market dependence only. | **NOT SUPPORTED** |
+
+## 13. What could break it, and other risks
+
+| Risk | Effect | Reading today |
+|---|---|---|
+| Intents growth slows | Every rung depends on compounding volume for ten years | 57.8% year over year (latest 30 days); $25 at NEAR's own multiple needs 25.3% a year |
+| Fee competition | Halving buyback revenue per dollar of volume doubles every volume requirement | Intents 0.042% of volume as protocol revenue; Maya and LI.FI earn far less per dollar |
+| The market re-rates NEAR toward its peers | At Tron's multiple every rung needs 2.07x the value to holders; at the cross-chain peer median, Intents revenue supports $155.45M of market cap | NEAR 212x; cross-chain peers 7.55x |
+| Buybacks fall short of the designation | Every capture figure built on DefiLlama's designation overstates what reaches holders | 60.2% executed through the documented route |
+| Supply keeps growing at 2.5% | $100 means a larger market cap; holders are diluted by more than the token captures | Net value to holders -$98.27M a year; HSP-029 approved, pending validator adoption |
+| Value keeps leaving the NEAR chain | Rules out the platform route | L1 transactions -84.0%, active accounts -75.3% year over year |
+| Validator concentration | A third of stake can halt finality | 9 validators hold a third of stake |
+| Chain Signatures operators | Signing depends on a small operator set | 16 MPC participants (threshold in the evidence register) |
+| Integrator and solver concentration | A few partners could carry most of Intents' volume | Not measured (H8) |
+| Regulation | Cross-chain swap services and confidential transfers draw regulatory attention | Not assessed: no source in this pipeline measures it |
 
 **NEAR Intents exploit, 1 October 2026.** An attacker created about $3.8M of unbacked balances (USDT on BNB Chain) through a flaw in the Intents contract's deposit notification function, then withdrew real tokens. Intents paused within about half an hour and halted deposits and withdrawals on 11 networks. Early reports blamed the interaction with the Omni bridge; the team's post-mortem (16 October) places the flaw in the Intents contract itself. The attacker returned the funds on 2 October. The post-mortem says all affected users were compensated, a second flaw in the same function was found by a white-hat on 7 October ($300,000 bounty), the function was removed, and a check of user balances against contract holdings now pauses the contract automatically. These are press and team reports, not verified onchain here. Sources: [Decrypt](https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum), [post-mortem summary (TechFlow)](https://www.techflowpost.com/en-US/newsletter/140312), [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404).
 
@@ -349,15 +371,56 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 41.4% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.471% of market cap | **TRIGGERED** |
 
-## 13. Verdict: dream, possibility, or evidence?
+## 14. Self-challenge
+
+Before any conclusion, each finding was checked against the ways it could be wrong (SCOPE.md W9).
+
+| Check | What was tested | Result |
+|---|---|---|
+| Comparability | Same metric definition, coverage, window and method for every compared series | All multiples now use one metric (DefiLlama holders revenue), one 90-day run rate and one end date; the original thesis mixed a 90-day NEAR figure with one-year peer figures (corrected: NEAR 212x on the run rate, 521x on the trailing year) |
+| Denominators | Shares stated with their denominator | DefiLlama's DEX overview counts prediction markets, launchpads and bridges (including Intents); shares use the spot category only, and Intents' ratio to it is a scale reference, not a market share |
+| Lineage independence | Cross-checks must not share an upstream | DefiLlama's Intents figures and NEAR's revenue dashboard share Dune queries; the executed-buyback check uses FastNEAR transaction data, an independent path, and found 60.2% of the designation executed |
+| Double counting | No flow counted twice | A first dilution comparison subtracted supply growth and added burns again; replaced by dilution net of capture. Volumes from different categories are never added |
+| Sampling and survivorship | Peer sets fixed before results | The comparison universe was fixed in SCOPE.md; cross-chain peers are every protocol in the discovery inventory with data; messaging layers are kept out of the execution median, which makes the comparison stricter for NEAR, not easier |
+| Misleading proxies | Each proxy's limits stated | TVL is in dollars and falls with prices; one year of observed growth is dominated by the market cycle; NEAR's cash-flow driver is a young product growing from a small base |
+| Alternative explanations | Other causes for each finding | The L1 activity decline may be automated or incentive-driven activity ending (H7 untested); the gap between designated and executed buybacks may be lag, retained revenue or execution through the 1Click funds DAO (74.9% counting it) |
+| Threshold sensitivity | Would a verdict flip with a different threshold? | H5 and H6 depend on including small, high-dilution chains in the peer median; against the largest alternatives NEAR's dilution and required growth are higher. The ladder's bands are our judgment and published |
+| Coverage gaps | What could not be measured | Relay, deBridge, Mayan, Across and Stargate volume (paid API); integrator and solver concentration (H8); automated activity (H7); Chain Signatures' role in withdrawals (H9); NEAR AI usage; foundation holdings |
+
+## 15. Verdict: how far can NEAR go, and why choose it or not?
 
 At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
 
-- **What we know:** NEAR Intents is real, growing (57.8% year over year) and already returns $21.66M a year to $NEAR; NEAR is valued at 212x that revenue.
-- **What we assume:** how the market will value NEAR in ten years, how fast the DEX market grows, and that the take rate and supply rules hold.
-- **What would change the view:** Intents falling behind its checkpoints, fee compression, a re-rating toward cash-flow multiples; or, upward, money and users settling on NEAR itself, which would open the platform-premium route.
+**Where NEAR leads and where it trails** (each line is generated by a rule from the data):
 
-No AI writes this verdict. The bands and assumptions are ours, published so anyone can change them in `src/lib/research/ladder.ts` and rebuild.
+Leads:
+
+- Largest cross-chain swap venue with public volume (58.1% of their volume).
+- Highest protocol revenue among the cross-chain protocols compared.
+- No supply left to unlock (fully diluted value equals market cap).
+- Dilution net of capture below the median of the alternatives (2.16% a year).
+- Most traded relative to its size (10.6% of market cap in a day).
+- Less tied to BTC than ETH or SOL (daily correlation), so not only a market beta.
+
+Trails:
+
+- Valued far above its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.
+- Priced at 223x Intents revenue against 7.55x for cross-chain peers.
+- NEAR L1 activity is falling (transactions -84.0% year over year).
+- Most volatile asset in the comparison (115.7% annualized over the last year).
+- Diluted by more than it captures: net value to holders -$98.27M a year.
+- Only 60.2% of designated buybacks executed through the documented route.
+- Value capture concentrated in one product, more than almost every peer chain.
+
+**NEAR's economy.** Almost all of it is one product: NEAR Intents is 86.2% of the fees paid on NEAR and 92.9% of the value verifiably captured by $NEAR ($14.99M a year: executed buybacks plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
+
+**How far NEAR can go.** In the cash-flow framework, $100 in ten years needs a 1,306x multiple at 20% a year Intents growth, or 281x at 40%; cash-flow tokens trade at 19.5x to 102x and cross-chain peers at 7.55x revenue. In the platform framework, $100 needs $47.36B of stablecoins on NEAR at Solana's ratio, 362x today's. The frameworks are never added together. Three digits rests on either decade-long hypergrowth of one product at a multiple the market pays no cash-flow peer today, or on NEAR becoming a platform whose economy does not exist yet.
+
+**Why an investor might choose NEAR, or not.** To prefer NEAR over the alternatives an investor has to believe, in order of how much each moves the outcome: that Intents keeps compounding for a decade (the sensitivity analysis ranks growth first); that the market keeps paying NEAR's own multiple (212x) rather than a cash-flow (102x) or cross-chain (7.55x) one; that revenue per dollar of volume survives competition; and that designated buybacks are executed in full. In NEAR's favour and against it: the lead and trail lines above. On these rules NEAR is a concentrated, high-volatility bet on one cross-chain product. For the same multiple it needs no more growth than the median alternative; section 12 compares it with the largest ones.
+
+**What would prove this wrong.** Upward: Intents sustaining growth above each rung's checkpoint, executed buybacks reaching the designated amount, buyback revenue per dollar of volume holding as volume grows, or stablecoins and DeFi settling on NEAR itself. Downward: Intents growth falling below the $10 path, fee compression, a re-rating toward cross-chain or cash-flow multiples, or a second security incident. The checkpoints (section 6) and triggers (section 13) are re-evaluated on every rebuild.
+
+No AI writes this verdict. Every number comes from code; the rules, bands and assumptions are published so anyone can change them in `src/lib/research/` and rebuild.
 
 ## Data sources, queries and reproduction
 
@@ -527,12 +590,20 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-10-TODAY-CAGR | $10: Intents growth needed every year for ten years (NEAR's multiple today) | 14.2% | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-ETHEREUM-STABLES | $10: stablecoins on NEAR at Ethereum's market cap to stablecoins ratio | $8.87B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-ETHEREUM-TVL | $10: DeFi TVL on NEAR at Ethereum's market cap to TVL ratio | $2.75B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-ETHEREUM-STABLES-MULT | $10: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's | 67.8x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-ETHEREUM-TVL-MULT | $10: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's | 16.7x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-BSC-STABLES | $10: stablecoins on NEAR at BSC's market cap to stablecoins ratio | $2.54B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-BSC-TVL | $10: DeFi TVL on NEAR at BSC's market cap to TVL ratio | $949.57M | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-BSC-STABLES-MULT | $10: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's | 19.4x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-BSC-TVL-MULT | $10: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's | 5.75x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-SOLANA-STABLES | $10: stablecoins on NEAR at Solana's market cap to stablecoins ratio | $4.74B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-SOLANA-TVL | $10: DeFi TVL on NEAR at Solana's market cap to TVL ratio | $1.72B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-SOLANA-STABLES-MULT | $10: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's | 36.2x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-SOLANA-TVL-MULT | $10: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's | 10.4x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-TRON-STABLES | $10: stablecoins on NEAR at Tron's market cap to stablecoins ratio | $52.14B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-10-PLAT-TRON-TVL | $10: DeFi TVL on NEAR at Tron's market cap to TVL ratio | $2.73B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-TRON-STABLES-MULT | $10: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's | 399x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-10-PLAT-TRON-TVL-MULT | $10: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's | 16.5x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-MCAP | Market cap at $25 in ten years (2.5% issuance) | $41.97B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-RANK | $25: rank among today's crypto assets at that market cap (stablecoins excluded) | 6 | DERIVED | as of Nov 10, 2026 | CoinGecko |
 | LAD-25-HYPERLIQUID-VOLUME | $25: Intents annual volume needed (Priced like Hyperliquid) | $5.13T | DERIVED | as of Nov 10, 2026 | Computed here |
@@ -546,12 +617,20 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-25-TODAY-CAGR | $25: Intents growth needed every year for ten years (NEAR's multiple today) | 25.3% | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-ETHEREUM-STABLES | $25: stablecoins on NEAR at Ethereum's market cap to stablecoins ratio | $22.16B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-ETHEREUM-TVL | $25: DeFi TVL on NEAR at Ethereum's market cap to TVL ratio | $6.88B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-ETHEREUM-STABLES-MULT | $25: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's | 169x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-ETHEREUM-TVL-MULT | $25: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's | 41.7x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-BSC-STABLES | $25: stablecoins on NEAR at BSC's market cap to stablecoins ratio | $6.35B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-BSC-TVL | $25: DeFi TVL on NEAR at BSC's market cap to TVL ratio | $2.37B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-BSC-STABLES-MULT | $25: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's | 48.5x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-BSC-TVL-MULT | $25: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's | 14.4x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-SOLANA-STABLES | $25: stablecoins on NEAR at Solana's market cap to stablecoins ratio | $11.84B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-SOLANA-TVL | $25: DeFi TVL on NEAR at Solana's market cap to TVL ratio | $4.31B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-SOLANA-STABLES-MULT | $25: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's | 90.5x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-SOLANA-TVL-MULT | $25: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's | 26.1x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-TRON-STABLES | $25: stablecoins on NEAR at Tron's market cap to stablecoins ratio | $130.36B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-25-PLAT-TRON-TVL | $25: DeFi TVL on NEAR at Tron's market cap to TVL ratio | $6.83B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-TRON-STABLES-MULT | $25: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's | 996x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-25-PLAT-TRON-TVL-MULT | $25: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's | 41.4x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-MCAP | Market cap at $50 in ten years (2.5% issuance) | $83.94B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-RANK | $50: rank among today's crypto assets at that market cap (stablecoins excluded) | 4 | DERIVED | as of Nov 10, 2026 | CoinGecko |
 | LAD-50-HYPERLIQUID-VOLUME | $50: Intents annual volume needed (Priced like Hyperliquid) | $10.26T | DERIVED | as of Nov 10, 2026 | Computed here |
@@ -565,12 +644,20 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-50-TODAY-CAGR | $50: Intents growth needed every year for ten years (NEAR's multiple today) | 34.3% | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-ETHEREUM-STABLES | $50: stablecoins on NEAR at Ethereum's market cap to stablecoins ratio | $44.33B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-ETHEREUM-TVL | $50: DeFi TVL on NEAR at Ethereum's market cap to TVL ratio | $13.77B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-ETHEREUM-STABLES-MULT | $50: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's | 339x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-ETHEREUM-TVL-MULT | $50: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's | 83.4x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-BSC-STABLES | $50: stablecoins on NEAR at BSC's market cap to stablecoins ratio | $12.70B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-BSC-TVL | $50: DeFi TVL on NEAR at BSC's market cap to TVL ratio | $4.75B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-BSC-STABLES-MULT | $50: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's | 97.1x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-BSC-TVL-MULT | $50: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's | 28.8x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-SOLANA-STABLES | $50: stablecoins on NEAR at Solana's market cap to stablecoins ratio | $23.68B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-SOLANA-TVL | $50: DeFi TVL on NEAR at Solana's market cap to TVL ratio | $8.62B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-SOLANA-STABLES-MULT | $50: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's | 181x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-SOLANA-TVL-MULT | $50: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's | 52.2x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-TRON-STABLES | $50: stablecoins on NEAR at Tron's market cap to stablecoins ratio | $260.72B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-50-PLAT-TRON-TVL | $50: DeFi TVL on NEAR at Tron's market cap to TVL ratio | $13.66B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-TRON-STABLES-MULT | $50: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's | 1,993x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-50-PLAT-TRON-TVL-MULT | $50: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's | 82.7x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-MCAP | Market cap at $100 in ten years (2.5% issuance) | $167.88B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-RANK | $100: rank among today's crypto assets at that market cap (stablecoins excluded) | 3 | DERIVED | as of Nov 10, 2026 | CoinGecko |
 | LAD-100-HYPERLIQUID-VOLUME | $100: Intents annual volume needed (Priced like Hyperliquid) | $20.51T | DERIVED | as of Nov 10, 2026 | Computed here |
@@ -584,12 +671,20 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-100-TODAY-CAGR | $100: Intents growth needed every year for ten years (NEAR's multiple today) | 44.0% | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-ETHEREUM-STABLES | $100: stablecoins on NEAR at Ethereum's market cap to stablecoins ratio | $88.65B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-ETHEREUM-TVL | $100: DeFi TVL on NEAR at Ethereum's market cap to TVL ratio | $27.53B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-ETHEREUM-STABLES-MULT | $100: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's | 678x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-ETHEREUM-TVL-MULT | $100: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's | 167x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-BSC-STABLES | $100: stablecoins on NEAR at BSC's market cap to stablecoins ratio | $25.40B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-BSC-TVL | $100: DeFi TVL on NEAR at BSC's market cap to TVL ratio | $9.50B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-BSC-STABLES-MULT | $100: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's | 194x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-BSC-TVL-MULT | $100: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's | 57.5x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-SOLANA-STABLES | $100: stablecoins on NEAR at Solana's market cap to stablecoins ratio | $47.36B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-SOLANA-TVL | $100: DeFi TVL on NEAR at Solana's market cap to TVL ratio | $17.25B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-SOLANA-STABLES-MULT | $100: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's | 362x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-SOLANA-TVL-MULT | $100: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's | 104x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-TRON-STABLES | $100: stablecoins on NEAR at Tron's market cap to stablecoins ratio | $521.44B | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-100-PLAT-TRON-TVL | $100: DeFi TVL on NEAR at Tron's market cap to TVL ratio | $27.31B | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-TRON-STABLES-MULT | $100: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's | 3,985x | DERIVED | as of Nov 10, 2026 | Computed here |
+| LAD-100-PLAT-TRON-TVL-MULT | $100: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's | 165x | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-LOW-HYPERLIQUID | Implied 2036 price: low growth, Priced like Hyperliquid | $0.63 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-LOW-TRON | Implied 2036 price: low growth, Priced like Tron | $3.33 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-LOW-TODAY | Implied 2036 price: low growth, NEAR's multiple today | $6.89 | DERIVED | as of Nov 10, 2026 | Computed here |
@@ -795,6 +890,7 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | ECO-L1-GAS-YOY | NEAR L1 gas fees, 90 days vs a year earlier | -52.0% | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | ECO-INTENTS-VOL-YOY | NEAR Intents volume, 90 days vs a year earlier | 230.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | ECO-SIGNER-PARTICIPANTS | Chain Signatures MPC participants (v1.signer) | 16 | OBSERVED | as of Nov 10, 2026 | NEAR RPC |
+| RISK-VALIDATOR-NAKAMOTO | Validators needed to control a third of NEAR stake | 9 | DERIVED | as of Nov 10, 2026 | NEAR RPC |
 | CC-INTENTS-VENUE-SHARE | NEAR Intents share of volume among cross-chain swap venues with public volume | 58.1% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-PEER-MEDIAN-CAP-REV | Median market cap / protocol revenue, cross-chain execution tokens | 7.55x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
 | CC-PEER-MEDIAN-CAP-HOLDERS | Median market cap / holders revenue, cross-chain execution tokens | 17.0x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
@@ -841,3 +937,13 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | MKT-X402-TRAILING | AI-agent payments (x402), last 365 days | $43.58M | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | MKT-X402-CAGR | AI-agent payments (x402), compound annual growth n/a to 2025 | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | MKT-SPOT-TOP5 | Share of spot DEX volume handled by the five largest protocol families, last year | 52.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |
+| HYP-H1 | H1: NEAR's value capture is far more concentrated in one product than peers' | text | DERIVED | point in time | Computed here |
+| HYP-H2 | H2: NEAR is priced closer to a platform than its on-chain economy justifies | text | DERIVED | point in time | Computed here |
+| HYP-H3 | H3: Intents' take rate is above cross-chain peers, so fee pressure matters more than volume | text | DERIVED | point in time | Computed here |
+| HYP-H4 | H4: Value is moving off the NEAR chain into cross-chain flows the token only partly captures | text | DERIVED | point in time | Computed here |
+| HYP-H5 | H5: NEAR's dilution is a higher return hurdle than peers' | text | DERIVED | point in time | Computed here |
+| HYP-H6 | H6: NEAR needs more growth than some alternatives to deliver the same multiple | text | DERIVED | point in time | Computed here |
+| HYP-H7 | H7: Most of NEAR's reported activity is automated rather than organic | text | DERIVED | point in time | Computed here |
+| HYP-H8 | H8: Intents revenue depends on a few integrators or solvers | text | DERIVED | point in time | Computed here |
+| HYP-H9 | H9: Chain Signatures underpins Intents' cross-chain withdrawals, so its value is real but invisible in token capture | text | DERIVED | point in time | Computed here |
+| HYP-H10 | H10: NEAR's price is mostly explained by BTC and the market, not its fundamentals | text | DERIVED | point in time | Computed here |

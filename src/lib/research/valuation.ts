@@ -73,14 +73,14 @@ function daily(pairs: unknown): DailyPoint[] {
 }
 
 /** Log returns between consecutive calendar days only (a gap breaks the chain; nothing is interpolated). */
-function returns(px: DailyPoint[]): Map<string, number> {
+export function returns(px: DailyPoint[]): Map<string, number> {
   const m = new Map<string, number>();
   for (let i = 1; i < px.length; i++) if (addDays(px[i - 1]![0], 1) === px[i]![0] && px[i - 1]![1] > 0 && px[i]![1] > 0) m.set(px[i]![0], Math.log(px[i]![1] / px[i - 1]![1]));
   return m;
 }
 const stdev = (xs: number[]) => { if (xs.length < 30) return null; const m = xs.reduce((a, b) => a + b, 0) / xs.length; return Math.sqrt(xs.reduce((a, b) => a + (b - m) ** 2, 0) / (xs.length - 1)); };
-function corr(a: Map<string, number>, b: Map<string, number>, from: string): number | null {
-  const ks = [...a.keys()].filter((k) => k >= from && b.has(k));
+export function corr(a: Map<string, number>, b: Map<string, number>, from: string, to = '9999'): number | null {
+  const ks = [...a.keys()].filter((k) => k >= from && k < to && b.has(k));
   if (ks.length < 60) return null;
   const xs = ks.map((k) => a.get(k)!), ys = ks.map((k) => b.get(k)!);
   const mx = xs.reduce((s, v) => s + v, 0) / xs.length, my = ys.reduce((s, v) => s + v, 0) / ys.length;
@@ -242,7 +242,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   return { version: VALUATION_VERSION, windowEnd: END, multiplesOverTime, sensitivity, multipleNeeded, opportunity, findings };
 }
 
-function dedupe(px: DailyPoint[]): DailyPoint[] {
+export function dedupe(px: DailyPoint[]): DailyPoint[] {
   const m = new Map<string, number>();
   for (const [d, v] of px) if (!m.has(d)) m.set(d, v);
   return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]));

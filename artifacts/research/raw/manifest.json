@@ -1468,6 +1468,97 @@
    "error": null
   }
  },
+ "defillama.fees.on.apt": {
+  "key": "defillama.fees.on.apt",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Aptos?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "39878db7ee33b3bf7126c2e12dc96d275ccd81fa27164a7e45ea3258fa1015b0",
+  "fetchedAt": "2026-11-12T11:47:30.126Z",
+  "file": "defillama.fees.on.apt.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:30.129Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.avax": {
+  "key": "defillama.fees.on.avax",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Avalanche?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "950d64e7dc1ebcafed2b6c9c487a1f48e5b9393e7618d42a8607a63c193dbf7e",
+  "fetchedAt": "2026-11-12T11:47:27.495Z",
+  "file": "defillama.fees.on.avax.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:27.506Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.eth": {
+  "key": "defillama.fees.on.eth",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Ethereum?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "c32ef15fd85910a88c7a4e2e02ccd8292f0bb68dc94130b30ae923ce694d088f",
+  "fetchedAt": "2026-11-12T11:47:24.139Z",
+  "file": "defillama.fees.on.eth.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:24.144Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.hype": {
+  "key": "defillama.fees.on.hype",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Hyperliquid%20L1?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "26416461e8a50491c9ff2c0a1aa51cbd1bf5ce31b57560ed63ecc5aaf9d655bb",
+  "fetchedAt": "2026-11-12T11:47:31.283Z",
+  "file": "defillama.fees.on.hype.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:31.286Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.sol": {
+  "key": "defillama.fees.on.sol",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Solana?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "8a11dcf6cac0e43ff08ea0ac40524b93888f13ff2253c00e109cac7b1ea3b2ac",
+  "fetchedAt": "2026-11-12T11:47:24.532Z",
+  "file": "defillama.fees.on.sol.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:24.535Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.sui": {
+  "key": "defillama.fees.on.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/Sui?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "a2e1167803cd980ce88b9d7091ae818bcca74f4a008419908f39cb9ad05a8911",
+  "fetchedAt": "2026-11-12T11:47:25.917Z",
+  "file": "defillama.fees.on.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:25.920Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.fees.on.ton": {
+  "key": "defillama.fees.on.ton",
+  "source": "defillama",
+  "url": "https://api.llama.fi/overview/fees/TON?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "sha256": "f352b9943b1af36f6ee0d09ca5b53b5255401f7876f43ad7c3430b1ec562e6bc",
+  "fetchedAt": "2026-11-12T11:47:28.812Z",
+  "file": "defillama.fees.on.ton.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:47:28.816Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.fees.onnear": {
   "key": "defillama.fees.onnear",
   "source": "defillama",

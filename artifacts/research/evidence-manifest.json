@@ -2614,6 +2614,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-10-PLAT-ETHEREUM-STABLES-MULT",
+  "label": "$10: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 67.75163178896636,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-ETHEREUM-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-ETHEREUM-TVL-MULT",
+  "label": "$10: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 16.684223463191685,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-ETHEREUM-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-10-PLAT-BSC-STABLES",
   "label": "$10: stablecoins on NEAR at BSC's market cap to stablecoins ratio",
   "value": 2539817581.582546,
@@ -2645,6 +2681,42 @@
    "LAD-10-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-BSC-STABLES-MULT",
+  "label": "$10: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 19.41013112435394,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-BSC-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-BSC-TVL-MULT",
+  "label": "$10: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 5.753947089988346,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-BSC-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -2682,6 +2754,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-10-PLAT-SOLANA-STABLES-MULT",
+  "label": "$10: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 36.19650614953502,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-SOLANA-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-SOLANA-TVL-MULT",
+  "label": "$10: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 10.449819267009051,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-SOLANA-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-10-PLAT-TRON-STABLES",
   "label": "$10: stablecoins on NEAR at Tron's market cap to stablecoins ratio",
   "value": 52144240784.366554,
@@ -2713,6 +2821,42 @@
    "LAD-10-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-TRON-STABLES-MULT",
+  "label": "$10: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 398.5036399243243,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-TRON-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-10-PLAT-TRON-TVL-MULT",
+  "label": "$10: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 16.54908086097765,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-10-PLAT-TRON-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -2952,6 +3096,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-25-PLAT-ETHEREUM-STABLES-MULT",
+  "label": "$25: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 169.37907947241592,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-ETHEREUM-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-ETHEREUM-TVL-MULT",
+  "label": "$25: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 41.710558657979206,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-ETHEREUM-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-25-PLAT-BSC-STABLES",
   "label": "$25: stablecoins on NEAR at BSC's market cap to stablecoins ratio",
   "value": 6349543953.956367,
@@ -2983,6 +3163,42 @@
    "LAD-25-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-BSC-STABLES-MULT",
+  "label": "$25: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 48.52532781088485,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-BSC-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-BSC-TVL-MULT",
+  "label": "$25: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 14.384867724970867,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-BSC-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -3020,6 +3236,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-25-PLAT-SOLANA-STABLES-MULT",
+  "label": "$25: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 90.49126537383754,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-SOLANA-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-SOLANA-TVL-MULT",
+  "label": "$25: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 26.124548167522633,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-SOLANA-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-25-PLAT-TRON-STABLES",
   "label": "$25: stablecoins on NEAR at Tron's market cap to stablecoins ratio",
   "value": 130360601960.91638,
@@ -3051,6 +3303,42 @@
    "LAD-25-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-TRON-STABLES-MULT",
+  "label": "$25: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 996.2590998108108,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-TRON-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-25-PLAT-TRON-TVL-MULT",
+  "label": "$25: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 41.37270215244413,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-25-PLAT-TRON-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -3290,6 +3578,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-50-PLAT-ETHEREUM-STABLES-MULT",
+  "label": "$50: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 338.75815894483185,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-ETHEREUM-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-ETHEREUM-TVL-MULT",
+  "label": "$50: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 83.42111731595841,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-ETHEREUM-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-50-PLAT-BSC-STABLES",
   "label": "$50: stablecoins on NEAR at BSC's market cap to stablecoins ratio",
   "value": 12699087907.912733,
@@ -3321,6 +3645,42 @@
    "LAD-50-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-BSC-STABLES-MULT",
+  "label": "$50: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 97.0506556217697,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-BSC-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-BSC-TVL-MULT",
+  "label": "$50: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 28.769735449941734,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-BSC-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -3358,6 +3718,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-50-PLAT-SOLANA-STABLES-MULT",
+  "label": "$50: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 180.98253074767507,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-SOLANA-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-SOLANA-TVL-MULT",
+  "label": "$50: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 52.249096335045266,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-SOLANA-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-50-PLAT-TRON-STABLES",
   "label": "$50: stablecoins on NEAR at Tron's market cap to stablecoins ratio",
   "value": 260721203921.83276,
@@ -3389,6 +3785,42 @@
    "LAD-50-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-TRON-STABLES-MULT",
+  "label": "$50: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 1992.5181996216215,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-TRON-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-50-PLAT-TRON-TVL-MULT",
+  "label": "$50: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 82.74540430488825,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-50-PLAT-TRON-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -3628,6 +4060,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-100-PLAT-ETHEREUM-STABLES-MULT",
+  "label": "$100: stablecoins on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 677.5163178896637,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-ETHEREUM-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-ETHEREUM-TVL-MULT",
+  "label": "$100: DeFi TVL on NEAR needed at Ethereum's ratio, as a multiple of today's",
+  "value": 166.84223463191682,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-ETHEREUM-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-100-PLAT-BSC-STABLES",
   "label": "$100: stablecoins on NEAR at BSC's market cap to stablecoins ratio",
   "value": 25398175815.825466,
@@ -3659,6 +4127,42 @@
    "LAD-100-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-BSC-STABLES-MULT",
+  "label": "$100: stablecoins on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 194.1013112435394,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-BSC-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-BSC-TVL-MULT",
+  "label": "$100: DeFi TVL on NEAR needed at BSC's ratio, as a multiple of today's",
+  "value": 57.53947089988347,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-BSC-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -3696,6 +4200,42 @@
   "notes": null
  },
  {
+  "evidenceId": "LAD-100-PLAT-SOLANA-STABLES-MULT",
+  "label": "$100: stablecoins on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 361.96506149535014,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-SOLANA-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-SOLANA-TVL-MULT",
+  "label": "$100: DeFi TVL on NEAR needed at Solana's ratio, as a multiple of today's",
+  "value": 104.49819267009053,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-SOLANA-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
+  "notes": null
+ },
+ {
   "evidenceId": "LAD-100-PLAT-TRON-STABLES",
   "label": "$100: stablecoins on NEAR at Tron's market cap to stablecoins ratio",
   "value": 521442407843.6655,
@@ -3727,6 +4267,42 @@
    "LAD-100-MCAP"
   ],
   "methodology": "Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-TRON-STABLES-MULT",
+  "label": "$100: stablecoins on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 3985.036399243243,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-TRON-STABLES",
+   "DEFI-STABLES-NEAR"
+  ],
+  "methodology": "Required stablecoins / stablecoins on NEAR today.",
+  "notes": null
+ },
+ {
+  "evidenceId": "LAD-100-PLAT-TRON-TVL-MULT",
+  "label": "$100: DeFi TVL on NEAR needed at Tron's ratio, as a multiple of today's",
+  "value": 165.4908086097765,
+  "unit": "ratio",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "required / today",
+  "inputs": [
+   "LAD-100-PLAT-TRON-TVL",
+   "DEFI-TVL-NEAR"
+  ],
+  "methodology": "Required TVL / DeFi TVL on NEAR today.",
   "notes": null
  },
  {
@@ -7105,6 +7681,21 @@
   "notes": "Signing threshold 11."
  },
  {
+  "evidenceId": "RISK-VALIDATOR-NAKAMOTO",
+  "label": "Validators needed to control a third of NEAR stake",
+  "value": 9,
+  "unit": "count",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "min k: sum(top k) > total / 3",
+  "inputs": [],
+  "methodology": "Current validators sorted by stake; the smallest number whose combined stake exceeds one third (enough to halt finality).",
+  "notes": "Top ten validators hold 36.2% of stake; 354 validators."
+ },
+ {
   "evidenceId": "CC-INTENTS-VENUE-SHARE",
   "label": "NEAR Intents share of volume among cross-chain swap venues with public volume",
   "value": 0.5808907009163305,
@@ -7798,5 +8389,155 @@
   "inputs": [],
   "methodology": "DefiLlama trailing-year volume by protocol, grouped by parent protocol.",
   "notes": "uniswap 23.3%, pancakeswap 13.1%, pump 7.0%, aero-protocol 5.2%, HumidiFi 3.5%"
+ },
+ {
+  "evidenceId": "HYP-H1",
+  "label": "H1: NEAR's value capture is far more concentrated in one product than peers'",
+  "value": 0.8624976510819797,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "SUPPORTED if the largest product's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents: 86% of NEAR's fees and 93% of its verified capture; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%).",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H2",
+  "label": "H2: NEAR is priced closer to a platform than its on-chain economy justifies",
+  "value": 35.15192726548803,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "SUPPORTED if NEAR's market cap to stablecoins and to DeFi TVL both exceed every platform benchmark; NOT SUPPORTED if both are at or below the benchmark median; otherwise MIXED. Reading: NEAR market cap is 35x its stablecoins and 28x its DeFi TVL; benchmarks: Ethereum 1.9x / 6.1x, BNB Chain 6.6x / 18x, Solana 3.5x / 9.7x, Tron 0.3x / 6.1x.",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H3",
+  "label": "H3: Intents' take rate is above cross-chain peers, so fee pressure matters more than volume",
+  "value": 0.00041959678040758057,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "SUPPORTED if Intents' protocol revenue per dollar of volume is above every peer with public volume; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents 4.20 bp; peers THORChain 3.52 bp, Chainflip 5.76 bp, Maya Protocol 1.26 bp, Unit 2.54 bp, LI.FI 1.86 bp (median 2.54 bp).",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H4",
+  "label": "H4: Value is moving off the NEAR chain into cross-chain flows the token only partly captures",
+  "value": 2.3014016869885845,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "SUPPORTED if Intents volume grew while L1 transactions and active accounts both fell (matched 90-day windows); NOT SUPPORTED if L1 activity grew faster than Intents; otherwise MIXED. Reading: Intents volume 230%; L1 transactions -84%, active accounts -75%, gas fees -52%; 60% of designated buybacks executed. Part of the L1 decline may be automated activity ending (H7).",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H5",
+  "label": "H5: NEAR's dilution is a higher return hurdle than peers'",
+  "value": 0.021603919836978142,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "SUPPORTED if NEAR's dilution net of capture is more than 0.5 percentage points above the peer median; NOT SUPPORTED if more than 0.5 points below; otherwise MIXED. Reading: NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted.",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H6",
+  "label": "H6: NEAR needs more growth than some alternatives to deliver the same multiple",
+  "value": 0.24105878926332225,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "Required driver growth for 7x in ten years (own dilution included). SUPPORTED if NEAR's is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED. Reading: NEAR 24.1% a year; peer median 26.8% (ETH 22.5%, SOL 23.3%, SUI 36.6%, AVAX 26.8%, TON 39.5%, APT 49.0%, HYPE 21.8%).  Against the largest alternatives with a growth driver (ETH, SOL, HYPE, AVAX) NEAR needs more growth than 3 of 4. Observed growth is compared in section 11.",
+  "notes": null
+ },
+ {
+  "evidenceId": "HYP-H7",
+  "label": "H7: Most of NEAR's reported activity is automated rather than organic",
+  "value": null,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "Signer classification over the last year. Reading: Not tested: needs receipt-level signer data (BigQuery crypto_near_mainnet_us, research/sql/). L1 transactions fell 84% in a year, which is consistent with automated activity ending but does not prove it.",
+  "notes": "Needs: Google Cloud project for BigQuery."
+ },
+ {
+  "evidenceId": "HYP-H8",
+  "label": "H8: Intents revenue depends on a few integrators or solvers",
+  "value": null,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "Share of volume from the top five integrators and solvers. Reading: Not tested: needs Intents Explorer API (partner JWT) or intents.near event logs (BigQuery).",
+  "notes": "Needs: Intents Explorer API or BigQuery."
+ },
+ {
+  "evidenceId": "HYP-H9",
+  "label": "H9: Chain Signatures underpins Intents' cross-chain withdrawals, so its value is real but invisible in token capture",
+  "value": null,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "Share of Intents withdrawals signed via v1.signer. Reading: Not tested at receipt level. v1.signer runs a 16-participant MPC network with 467,548 transactions in 2026-10, and no signing fee reaches $NEAR.",
+  "notes": "Needs: BigQuery receipts."
+ },
+ {
+  "evidenceId": "HYP-H10",
+  "label": "H10: NEAR's price is mostly explained by BTC and the market, not its fundamentals",
+  "value": 0.20525175467725976,
+  "unit": "text",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": null,
+  "request": null,
+  "transform": "published rule",
+  "inputs": [],
+  "methodology": "Share of NEAR's daily return variance explained by BTC over the last year (R-squared). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED. Reading: Correlation with BTC 0.45 (R-squared 21%); 0.62 in the 180 days before buybacks began and 0.42 since. ETH's correlation with BTC is 0.87. Daily returns cannot be regressed on Intents growth, which changes slowly; this tests market dependence only.",
+  "notes": null
  }
 ]

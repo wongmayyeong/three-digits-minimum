@@ -416,6 +416,10 @@ export function ladderEvidence(l: LadderResult, fetched: (key: string) => { at: 
         inputs: [`${P}-MCAP`], methodology: 'Platform framework: rung market cap / benchmark (market cap / stablecoins on chain). Not a cash flow; never added to the cash-flow framework.', transform: 'MCAP / benchmark ratio' });
       item({ evidenceId: `${P}-PLAT-${B}-TVL`, metricKey: `ladder.${r.price}.platform.${pl.benchmark.toLowerCase()}.tvl`, label: `$${r.price}: DeFi TVL on NEAR at ${pl.benchmark}'s market cap to TVL ratio`, unit: 'USD', value: pl.tvl,
         inputs: [`${P}-MCAP`], methodology: 'Platform framework: rung market cap / benchmark (market cap / DeFi TVL). Not a cash flow.', transform: 'MCAP / benchmark ratio' });
+      item({ evidenceId: `${P}-PLAT-${B}-STABLES-MULT`, metricKey: `ladder.${r.price}.platform.${pl.benchmark.toLowerCase()}.stablecoins_multiple`, label: `$${r.price}: stablecoins on NEAR needed at ${pl.benchmark}'s ratio, as a multiple of today's`, unit: 'ratio', value: pl.stablecoinsMultiple,
+        inputs: [`${P}-PLAT-${B}-STABLES`, 'DEFI-STABLES-NEAR'], methodology: 'Required stablecoins / stablecoins on NEAR today.', transform: 'required / today' });
+      item({ evidenceId: `${P}-PLAT-${B}-TVL-MULT`, metricKey: `ladder.${r.price}.platform.${pl.benchmark.toLowerCase()}.tvl_multiple`, label: `$${r.price}: DeFi TVL on NEAR needed at ${pl.benchmark}'s ratio, as a multiple of today's`, unit: 'ratio', value: pl.tvlMultiple,
+        inputs: [`${P}-PLAT-${B}-TVL`, 'DEFI-TVL-NEAR'], methodology: 'Required TVL / DeFi TVL on NEAR today.', transform: 'required / today' });
     }
   }
   for (const g of l.implied) for (const b of g.byMultiple) {

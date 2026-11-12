@@ -28,6 +28,8 @@ export interface EconomyResult {
   l1: { txnsYoY: number | null; activeYoY: number | null; gasFeesYoY: number | null; txns90: number | null; active90: number | null };
   intentsVolumeYoY: number | null;
   signer: { participants: number | null; threshold: number | null; domains: number | null; latestMonth: string | null; latestTxns: number | null; peakTxns: number | null };
+  /** Validator concentration (W7): validators needed to control a third of stake, and the top ten's share. */
+  validators: { count: number | null; nakamoto33: number | null; top10Share: number | null };
   products: ProductRow[];
   findings: string[];
 }
@@ -72,6 +74,13 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
   const signer = { participants: Number.isFinite(st?.participants) ? st.participants : null, threshold: Number.isFinite(st?.threshold) ? st.threshold : null, domains: Number.isFinite(st?.domains) ? st.domains : null,
     latestMonth: signerEra?.latestMonth ?? null, latestTxns: signerEra?.latest ?? null, peakTxns: signerEra?.peak ?? null };
 
+  // ---- Validator concentration (W7).
+  const stakes: number[] = Array.isArray(body('near-rpc.validators')?.currentStakeYocto) ? body('near-rpc.validators').currentStakeYocto.map((y: string) => Number(BigInt(y) / 10n ** 18n) / 1e6).sort((a: number, b: number) => b - a) : [];
+  const totalStake = stakes.reduce((a, b) => a + b, 0);
+  let cum = 0, nakamoto33: number | null = null;
+  for (let i = 0; i < stakes.length; i++) { cum += stakes[i]!; if (cum > totalStake / 3) { nakamoto33 = i + 1; break; } }
+  const validators = { count: stakes.length || null, nakamoto33, top10Share: totalStake ? stakes.slice(0, 10).reduce((a, b) => a + b, 0) / totalStake : null };
+
   // ---- Product map.
   const iFees = ev('INT-FEES-90D'), iRev = ev('INT-REV-90D');
   const ann = (x: number | null) => (x === null ? null : (x * 365) / 90);
@@ -111,7 +120,7 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
     `${share(captureFromIntents)} of NEAR's verified value capture comes from one product (Intents buybacks); the rest is gas burns.`,
     `Intents volume ${fmtPct(intentsVolumeYoY)} year over year while NEAR L1 transactions changed ${fmtPct(l1.txnsYoY)}, active accounts ${fmtPct(l1.activeYoY)} and gas fees ${fmtPct(l1.gasFeesYoY)} (DeFi TVL on NEAR ${fmtPct(ev('DEFI-TVL-NEAR-YOY'))}): paid growth is in cross-chain execution, not in activity on the NEAR chain. Part of the L1 decline may be automated or incentive-driven activity ending; classifying it needs BigQuery (H7).`,
   ];
-  return { version: ECONOMY_VERSION, windowEnd: END, feesOnNear, intentsFeeShare, captureFromIntents, l1, intentsVolumeYoY, signer, products, findings };
+  return { version: ECONOMY_VERSION, windowEnd: END, feesOnNear, intentsFeeShare, captureFromIntents, l1, intentsVolumeYoY, signer, validators, products, findings };
 }
 
 export function economyEvidence(e: EconomyResult, fetched: (key: string) => { at: string | null; hash: string | null }): EvidenceDraft[] {
@@ -136,6 +145,8 @@ export function economyEvidence(e: EconomyResult, fetched: (key: string) => { at
   const s = fetched('near-rpc.signer-state');
   item({ evidenceId: 'ECO-SIGNER-PARTICIPANTS', metricKey: 'economy.signer.participants', label: 'Chain Signatures MPC participants (v1.signer)', unit: 'count', value: e.signer.participants, observationType: 'OBSERVED', sourceName: 'NEAR RPC', fetchedAt: s.at, rawResponseHash: s.hash,
     sourceUrl: 'https://nearblocks.io/address/v1.signer', validationNotes: e.signer.threshold !== null ? `Signing threshold ${e.signer.threshold}.` : null, methodology: 'v1.signer state(): participants in the running MPC network.', transform: 'count(participants)' });
+  item({ evidenceId: 'RISK-VALIDATOR-NAKAMOTO', metricKey: 'risk.validators.nakamoto33', label: 'Validators needed to control a third of NEAR stake', unit: 'count', value: e.validators.nakamoto33, sourceName: 'NEAR RPC',
+    validationNotes: e.validators.top10Share !== null ? `Top ten validators hold ${(e.validators.top10Share * 100).toFixed(1)}% of stake; ${e.validators.count} validators.` : null, methodology: 'Current validators sorted by stake; the smallest number whose combined stake exceeds one third (enough to halt finality).', transform: 'min k: sum(top k) > total / 3' });
   return out;
 }
 

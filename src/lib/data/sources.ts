@@ -265,6 +265,13 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   reqs.push({ key: 'defillama.bridgeaggs.total', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/bridge-aggregators?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true`,
     project: (j: any) => ({ chart: asArr(j?.totalDataChart).map((x: any) => [Number(x[0]), Number(x[1])]) }) });
   reqs.push({ key: 'defillama.x402.volume', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/dexs/x402?dataType=dailyVolume`, project: llamaSummary });
+  // W8 H1: fees by protocol on every investable chain (concentration of the fee base in its largest protocol).
+  for (const c of CHAIN_ECONOMY.filter((x) => x.label !== 'NEAR')) {
+    reqs.push({
+      key: `defillama.fees.on.${c.label.toLowerCase()}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/${encodeURIComponent(c.chain)}?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,
+      project: (j: any) => asArr(j?.protocols).map((p: any) => ({ name: String(p.name), parent: p.parentProtocol ? String(p.parentProtocol) : null, category: String(p.category ?? ''), fees30d: Number(p.total30d ?? 0) })).filter((p: any) => p.fees30d > 0),
+    });
+  }
   // W3: fees by protocol on the NEAR chain.
   reqs.push({
     key: 'defillama.fees.onnear', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,
