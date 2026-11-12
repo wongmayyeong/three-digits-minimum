@@ -15,10 +15,10 @@ const STATUS: Record<Status, { label: string; cls: string; hint: string }> = {
   UNPROVEN: { label: 'Unproven', cls: 'border-coral/60 text-coral', hint: 'Would have to happen' },
 };
 const BAND: Record<string, { label: string; cls: string }> = {
-  holds: { label: 'Keeps today\'s share', cls: 'text-mint' },
-  gains: { label: 'Wins up to 5x share', cls: 'text-fg' },
-  dominant: { label: 'Wins 5x to 10x share', cls: 'text-amber' },
-  beyond: { label: 'Needs 10x+ share', cls: 'text-coral' },
+  holds: { label: 'Keeps today\'s size', cls: 'text-mint' },
+  gains: { label: 'Grows up to 5x vs DEXs', cls: 'text-fg' },
+  dominant: { label: 'Grows 5x to 10x vs DEXs', cls: 'text-amber' },
+  beyond: { label: 'Needs 10x+ vs DEXs', cls: 'text-coral' },
 };
 
 export function LadderExplorer({ ladder }: { ladder: LadderResult }) {
@@ -56,17 +56,17 @@ export function LadderExplorer({ ladder }: { ladder: LadderResult }) {
               </button>
             ))}
           </div>
-          <p className="mt-2 text-xs text-muted">Market cap divided by the revenue that reaches token holders. {mult.source}.</p>
+          <p className="mt-2 text-xs text-muted">Market cap divided by the value that reaches token holders (burns and buybacks). {mult.source}. Cash-flow framework only; platform valuations are shown separately.</p>
 
           {/* What it takes */}
           <dl className="mt-5 grid gap-px overflow-hidden rounded-[var(--radius-md)] border hairline bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[
               ['Market cap', formatValue(rung.marketCap, 'USD'), `Rank #${rung.rankToday ?? 'n/a'} among today's assets`],
-              ['Revenue to holders needed', `${formatValue(b.requiredCapture, 'USD')}/yr`, `${formatValue(b.captureMultiple, 'ratio')} today's ${formatValue(ladder.inputs.captureToday, 'USD')}`],
+              ['Value to holders needed', `${formatValue(b.requiredCapture, 'USD')}/yr`, `${formatValue(b.captureMultiple, 'ratio')} today's ${formatValue(ladder.inputs.captureToday, 'USD')}; ${formatValue(b.requiredIntentsCapture, 'USD')} of it from Intents`],
               ['Intents volume needed', `${formatValue(b.requiredVolume, 'USD')}/yr`, `${formatValue(b.volumeMultiple, 'ratio')} today's run rate`],
               ['Growth needed', `${b.requiredCagr === null ? 'n/a' : formatValue(b.requiredCagr, 'fraction')} a year`, `For ten years. Momentum today: ${formatValue(ladder.inputs.intentsYoY, 'fraction')} YoY`],
-              ['Share of 2036 DEX market', formatValue(b.dexShare2036, 'fraction'), `Today ${formatValue(ladder.inputs.dexShareToday, 'fraction')}`],
-              ['Verdict for this rung', b.band ? BAND[b.band]!.label : 'n/a', b.shareMultiple === null ? '' : `${formatValue(b.shareMultiple, 'ratio')} today's share of DEX volume`],
+              ['Relative to 2036 spot DEX volume', formatValue(b.dexShare2036, 'fraction'), `Today ${formatValue(ladder.inputs.dexShareToday, 'fraction')} (run rate)`],
+              ['Verdict for this rung', b.band ? BAND[b.band]!.label : 'n/a', b.shareMultiple === null ? '' : `${formatValue(b.shareMultiple, 'ratio')} today's size relative to spot DEX volume`],
             ].map(([k, v, note], i) => (
               <div key={k} className="bg-raised p-4">
                 <dt className="text-xs text-muted">{k}</dt>

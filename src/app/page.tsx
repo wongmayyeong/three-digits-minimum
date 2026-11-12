@@ -78,16 +78,16 @@ export default async function ThesisPage() {
             <section id="ladder" className="mt-16 scroll-mt-20">
               <SectionHeader n={2} title="The ladder" question="How far can NEAR go, and what does each step take?" reason={l.headline} howHref="/methodology#ladder" />
               <LadderExplorer ladder={l} />
-              <h3 className="mb-3 mt-8 text-lg font-[600]">The whole ladder: share of all DEX volume NEAR Intents would need in 2036</h3>
+              <h3 className="mb-3 mt-8 text-lg font-[600]">The whole ladder: Intents volume needed in 2036, relative to spot DEX volume</h3>
               <LadderGrid ladder={l} />
-              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Each cell: the share of the 2036 DEX market (today&apos;s {formatValue(l.inputs.dex365, 'USD')} a year, grown {DEX_GROWTH.base * 100}% a year, an assumption) that Intents would need at today&apos;s take rate of {formatValue(l.inputs.takeRate, 'fraction')} of volume. Intents handles {formatValue(l.inputs.dexShareToday, 'fraction')} today. Valuation multiples are today&apos;s market cap divided by the revenue reaching holders over the last year, applied to NEAR in 2036 as assumptions, not forecasts. The &quot;Solana&quot; column shows how little revenue matters if NEAR earned a platform premium, and what that premium requires is shown in section 04.</p>
+              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Each cell: the Intents volume a rung needs, as a fraction of 2036 spot DEX volume (DefiLlama&apos;s &quot;Dexs&quot; category, {formatValue(l.inputs.spotDexRunRate, 'USD')} a year today, grown {DEX_GROWTH.base * 100}% a year, an assumption). Intents equals {formatValue(l.inputs.dexShareToday, 'fraction')} of spot DEX volume today. It is a scale reference, not a market share: Intents is a cross-chain category. Multiples are market cap divided by the value reaching holders (burns and buybacks), every asset on the same {l.basis.runRateDays}-day run rate ending {formatDate(l.basis.windowEnd)}, applied to NEAR in 2036 as assumptions. Platform valuations are a separate framework (section 04), never mixed into this table.</p>
             </section>
 
             {/* 03 · Where scenarios land */}
             <section id="scenarios" className="mt-16 scroll-mt-20">
-              <SectionHeader n={3} title="Where scenarios land" question="Turn it around: where does each future put the price?" reason={`Base growth at today's premium lands near ${formatValue(l.implied.find((g) => g.growthKey === 'base')?.byMultiple.find((b) => b.multipleKey === 'today')?.price ?? null, 'USD')}; slow growth priced on cash flow lands below today's price. ${l.swing.dominant === 'growth' ? 'Growth moves the outcome more than valuation does' : 'Valuation moves the outcome more than growth does'} (${formatValue(l.swing.acrossGrowth, 'ratio')} spread across growth scenarios, ${formatValue(l.swing.acrossMultiples, 'ratio')} across cash-flow and today's multiples).`} howHref="/methodology#ladder" />
+              <SectionHeader n={3} title="Where scenarios land" question="Turn it around: where does each future put the price?" reason={`Base growth at NEAR's own multiple lands near ${formatValue(l.implied.find((g) => g.growthKey === 'base')?.byMultiple.find((b) => b.multipleKey === 'today')?.price ?? null, 'USD')}; slow growth priced on cash flow lands below today's price. ${l.swing.sentence}`} howHref="/methodology#ladder" />
               <ImpliedMatrix ladder={l} />
-              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Implied 2036 price = Intents volume grown from today&apos;s {formatValue(l.inputs.intentsRunRate, 'USD')} run rate × take rate × valuation multiple ÷ 2036 supply. Green reaches three digits; red is below today&apos;s price. Growth rates are scenarios. Nothing here is a forecast.</p>
+              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Implied 2036 price = (Intents volume grown from today&apos;s {formatValue(l.inputs.intentsRunRate, 'USD')} run rate × buyback revenue per dollar of volume + burns at today&apos;s run rate) × valuation multiple ÷ 2036 supply. Green reaches three digits; red is below today&apos;s price. Growth rates are scenarios. Nothing here is a forecast.</p>
             </section>
 
             {/* 04 · The evidence */}
@@ -95,24 +95,24 @@ export default async function ThesisPage() {
               <SectionHeader n={4} title="The evidence" question="What does today's data actually show?" howHref="/research" />
 
               <h3 className="mb-1 text-lg font-[600]">How the market values crypto assets</h3>
-              <p className="mb-4 max-w-3xl text-sm text-muted">The largest platforms are not priced on revenue at all. Cash-flow tokens are priced on what they pay holders. A three-digit NEAR has to come from one of the two.</p>
+              <p className="mb-4 max-w-3xl text-sm text-muted">Every row uses the same metric, run rate and end date. Platforms trade at thousands of times what reaches holders because they are valued on their on-chain economy; cash-flow tokens are priced on what they pay holders. The two are kept in separate frameworks.</p>
               <ValuationRegimes ladder={l} />
 
               <h3 className="mb-1 mt-10 text-lg font-[600]">Is NEAR Intents on the path?</h3>
               <dl className="mb-4 mt-3 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-3">
                 {[
                   ['Annual volume (90-day run rate)', formatValue(l.inputs.intentsRunRate, 'USD'), `Last 365 days: ${formatValue(l.inputs.intents365, 'USD')}`],
-                  ['Growth, year over year', formatValue(l.inputs.intentsYoY, 'fraction'), `Latest 30 days. $25 at today's premium needs ${formatValue(today(25)?.requiredCagr ?? null, 'fraction')} a year; $100 needs ${formatValue(today(100)?.requiredCagr ?? null, 'fraction')}`],
-                  ['Share of all DEX volume', formatValue(l.inputs.dexShareToday, 'fraction'), `DEX market: ${formatValue(l.inputs.dex365, 'USD')} a year; it grew ${formatValue(l.inputs.dexCagr2021to2025, 'fraction')} a year from 2021 to 2025`],
+                  ['Growth, year over year', formatValue(l.inputs.intentsYoY, 'fraction'), `Latest 30 days. $25 at NEAR's own multiple needs ${formatValue(today(25)?.requiredCagr ?? null, 'fraction')} a year; $100 needs ${formatValue(today(100)?.requiredCagr ?? null, 'fraction')}`],
+                  ['Relative to spot DEX volume', formatValue(l.inputs.dexShareToday, 'fraction'), `Run rate; ${formatValue(l.inputs.dexShareToday365, 'fraction')} over the last 365 days. Spot DEX volume grew ${formatValue(l.inputs.dexCagr2021to2025, 'fraction')} a year from 2021 to 2025`],
                 ].map(([k, v, note]) => (
                   <div key={k} className="bg-surface p-5"><dt className="text-xs text-muted">{k}</dt><dd className="num mt-2 text-2xl text-fg">{v}</dd><dd className="mt-1 text-xs leading-snug text-muted">{note}</dd></div>
                 ))}
               </dl>
-              <p className="mb-3 max-w-3xl text-sm text-fg-2">Checkpoints: the annual volume Intents would need each year, at today&apos;s valuation premium, to stay on each rung&apos;s path. Investors can check these every year.</p>
+              <p className="mb-3 max-w-3xl text-sm text-fg-2">Checkpoints: the annual volume Intents would need each year, at NEAR&apos;s own multiple today, to stay on each rung&apos;s path. Investors can check these every year.</p>
               <CheckpointTable ladder={l} />
 
-              <h3 className="mb-1 mt-10 text-lg font-[600]">Could NEAR earn a platform premium instead?</h3>
-              <p className="mb-4 max-w-3xl text-sm text-muted">Platforms are valued relative to the money that lives on them. For a $100 NEAR to look like these chains, this much would need to live on NEAR:</p>
+              <h3 className="mb-1 mt-10 text-lg font-[600]">Could NEAR be valued as a platform instead?</h3>
+              <p className="mb-4 max-w-3xl text-sm text-muted">A separate framework, never added to the cash-flow ladder. Platforms are valued relative to the money that lives on them. For each rung to look like these chains, this much would need to live on NEAR:</p>
               <PlatformNeeds ladder={l} />
 
               <h3 className="mb-1 mt-10 text-lg font-[600]">Does the token capture value today?</h3>
@@ -138,7 +138,7 @@ export default async function ThesisPage() {
                     {[
                       ['Intents growth slows', 'Every rung depends on compounding volume for ten years', `${formatValue(l.inputs.intentsYoY, 'fraction')} YoY; $100 path needs ${formatValue(today(100)?.requiredCagr ?? null, 'fraction')} a year`],
                       ['Fee competition', 'Halving the take rate doubles every volume requirement', `${formatValue(t.supply.takeRate, 'fraction')}, prior 90 days ${formatValue(t.supply.takeRatePrior, 'fraction')}`],
-                      ['The market prices NEAR on cash flow', 'At Tron\'s multiple every rung is about 2.4x harder', `Today ${formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')}`],
+                      ['The market prices NEAR like other cash-flow tokens', `At Tron's multiple every rung needs ${formatValue((l.multiples.find((m) => m.key === 'today')?.value ?? 0) / (l.multiples.find((m) => m.key === 'tron')?.value ?? Infinity), 'ratio')} the value to holders`, `NEAR ${formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')}; Tron ${formatValue(l.multiples.find((m) => m.key === 'tron')?.value ?? null, 'ratio')}; Hyperliquid ${formatValue(l.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null, 'ratio')}`],
                       ['Supply keeps growing at 2.5%', '$100 means a larger market cap', 'HSP-029 approved, pending validator adoption'],
                       ['Value keeps leaving the NEAR chain', 'Rules out the platform-premium route', `Active accounts ${formatValue(item('ACT-DAA-YOY')?.value ?? null, 'fraction', { signed: true })} YoY; stablecoins on NEAR ${formatValue(l.platform.find((p) => p.chain === 'Near')?.stablecoins ?? null, 'USD')}`],
                     ].map(([a, b, c]) => <tr key={a} className="border-t hairline"><th scope="row" className="px-4 py-3 font-[560]">{a}</th><td className="px-4 py-3 text-fg-2">{b}</td><td className="num px-4 py-3 text-xs text-muted">{c}</td></tr>)}
@@ -148,7 +148,7 @@ export default async function ThesisPage() {
               <aside className="panel mt-4 p-5" aria-labelledby="exploit-h">
                 <p className="eyebrow">Execution risk · reported, not scored</p>
                 <h3 id="exploit-h" className="mt-2 text-lg font-[600]">NEAR Intents exploit, 1 October 2026</h3>
-                <p className="mt-2 text-sm leading-relaxed text-fg-2">NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched. The team pledged full compensation; recovery has not been independently confirmed. Trust is the product for a settlement layer. <a href="https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404" target="_blank" rel="noopener noreferrer" className={link}>The Block</a> · <a href="https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps" target="_blank" rel="noopener noreferrer" className={link}>recovery status</a></p>
+                <p className="mt-2 text-sm leading-relaxed text-fg-2">An attacker created about $3.8M of unbacked balances (USDT on BNB Chain) through a flaw in the Intents contract&apos;s deposit notification function, then withdrew real tokens. Intents paused within about half an hour and halted deposits and withdrawals on 11 networks. The attacker returned the funds on 2 October. The team&apos;s post-mortem (16 October) says all affected users were compensated, a second flaw in the same function was found by a white-hat on 7 October ($300,000 bounty), the function was removed, and a balance check now pauses the contract automatically. Reported by the press and the team; not independently verified onchain here. Trust is the product for a settlement layer. <a href="https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum" target="_blank" rel="noopener noreferrer" className={link}>Decrypt</a> · <a href="https://www.techflowpost.com/en-US/newsletter/140312" target="_blank" rel="noopener noreferrer" className={link}>post-mortem summary</a> · <a href="https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404" target="_blank" rel="noopener noreferrer" className={link}>The Block</a></p>
               </aside>
             </section>
 
@@ -168,13 +168,13 @@ export default async function ThesisPage() {
                     <div key={r.price} className={`panel border p-5 ${tone}`}>
                       <p className="num text-2xl font-[640]">${r.price}</p>
                       <p className="num text-xs text-muted">{formatValue(r.priceMultiple, 'ratio')} · rank #{r.rankToday}</p>
-                      <p className="mt-3 text-sm text-fg-2">Intents needs <span className="num text-fg">{formatValue(b.dexShare2036, 'fraction')}</span> of DEX volume, growing <span className="num text-fg">{formatValue(b.requiredCagr, 'fraction')}</span> a year, and the market keeps today&apos;s premium.</p>
+                      <p className="mt-3 text-sm text-fg-2">Intents volume equal to <span className="num text-fg">{formatValue(b.dexShare2036, 'fraction')}</span> of spot DEX volume, growing <span className="num text-fg">{formatValue(b.requiredCagr, 'fraction')}</span> a year, and the market keeps NEAR&apos;s multiple today.</p>
                     </div>
                   );
                 })}
               </div>
               <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <div className="panel p-5"><p className="eyebrow text-mint">What we know</p><p className="mt-2 text-sm leading-relaxed text-fg-2">Intents is real and growing ({formatValue(l.inputs.intentsYoY, 'fraction')} YoY, {formatValue(l.inputs.dexShareToday, 'fraction')} of DEX volume) and already pays the token {formatValue(l.inputs.captureToday, 'USD')} a year. NEAR is valued at {formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')} that revenue.</p></div>
+                <div className="panel p-5"><p className="eyebrow text-mint">What we know</p><p className="mt-2 text-sm leading-relaxed text-fg-2">Intents is real and growing ({formatValue(l.inputs.intentsYoY, 'fraction')} YoY, {formatValue(l.inputs.dexShareToday, 'fraction')} of spot DEX volume). Gas burns plus Intents revenue designated for buybacks come to {formatValue(l.inputs.captureToday, 'USD')} a year. NEAR is valued at {formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')} that flow; Tron at {formatValue(l.multiples.find((m) => m.key === 'tron')?.value ?? null, 'ratio')} and Hyperliquid at {formatValue(l.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null, 'ratio')} on the same basis.</p></div>
                 <div className="panel p-5"><p className="eyebrow text-amber">What we assume</p><p className="mt-2 text-sm leading-relaxed text-fg-2">How the market will value NEAR in 2036, how fast the DEX market grows ({DEX_GROWTH.base * 100}% a year in the base case), and that the take rate and supply rules hold.</p></div>
                 <div className="panel p-5"><p className="eyebrow text-coral">What would change the view</p><p className="mt-2 text-sm leading-relaxed text-fg-2">Intents falling behind its checkpoints, fee compression, a re-rating toward cash-flow multiples, or, upward, money and users settling on NEAR itself, which would open the platform-premium route.</p></div>
               </div>

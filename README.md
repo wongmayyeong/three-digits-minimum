@@ -20,10 +20,11 @@ Educational research, not financial advice. Not affiliated with the NEAR Foundat
 All figures are regenerated from public data on every refresh; see THESIS.md for the current values and sources.
 
 - **$100 means a different rank, not a bigger pump.** With ten more years of issuance, $100 is a market cap of about $168B: the third most valuable crypto asset today, excluding stablecoins.
-- **Crypto has two valuation regimes.** Ethereum, BNB and Solana trade at 2,000x to 5,600x the revenue that reaches holders (platform premium); Tron and Hyperliquid at 26x to 90x (cash flow). NEAR sits in between at about 220x its burns plus NEAR Intents buybacks.
-- **The ladder.** At today's valuation premium, $25 needs NEAR Intents to win up to 5x its share of DEX volume (about 1% today); $100 needs about 9% of all DEX volume in ten years. Priced like a cash-flow token, $100 needs about 22%.
-- **Reverse view.** Growth scenarios times valuation multiples put the ten-year price anywhere from below today's price to three digits. Intents growth moves the outcome slightly more than the valuation multiple does.
+- **Crypto has two valuation regimes, kept in separate frameworks.** On one basis for every asset (DefiLlama holders revenue, 90-day run rate, same end date), Ethereum, BNB and Solana trade at about 1,600x to 4,300x what reaches holders because they are valued on their on-chain economy; Tron and Hyperliquid at about 20x to 100x (cash flow). NEAR is at about 210x its gas burns plus Intents revenue designated for buybacks (about 520x on the trailing year, which predates buybacks).
+- **The ladder.** At NEAR's own multiple, $25 needs Intents volume to grow up to 5x relative to spot DEX volume (about 1.7% today); $100 needs Intents volume equal to about 11% of spot DEX volume in ten years. Priced like Tron, $100 needs about 22%; priced like Hyperliquid, even $10 needs 5x to 10x.
+- **Reverse view.** Growth scenarios times cash-flow multiples put the ten-year price anywhere from below today's price to about $75. Intents growth and the valuation multiple matter about equally.
 - **Checkpoints.** The yearly Intents volume each rung requires, so the thesis can be checked every year instead of argued once.
+- **Comparability fixes.** DefiLlama's "DEX" overview also counts prediction markets, launchpads and bridges, and lists NEAR Intents as a bridge, so shares use its spot "Dexs" category only. All multiples share one metric, window and end date.
 - **Data quality caught along the way.** NearBlocks returns query-planner estimates instead of counts for busy contracts in older months (marked by a `cost` field). Every month is checked, and estimates are excluded from scoring.
 
 ## How the research works
@@ -82,7 +83,7 @@ API: `GET /api/topics`, `GET /api/topics/:slug/evidence-preview`, `POST /api/deb
 |---|---|---|
 | Lint | `npm run lint` | passes |
 | Types | `npm run typecheck` | passes |
-| Unit and integration tests (real Postgres) | `npm test` | 63 passed |
+| Unit and integration tests (real Postgres) | `npm test` | 68 passed |
 | End-to-end, desktop and mobile | `npm run test:e2e` | 7 passed |
 | Offline rebuild is byte-identical | `npm run research:rebuild` | passes |
 | Real OpenAI debate | | not yet run |

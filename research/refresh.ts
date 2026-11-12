@@ -106,7 +106,11 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
 
   // ---- three-digit ladder
   const l = ds.ladder;
-  const BAND: Record<string, string> = { holds: 'keeps share', gains: 'up to 5x share', dominant: '5x to 10x share', beyond: '10x+ share' };
+  const BAND: Record<string, string> = { holds: 'keeps today\'s size', gains: 'up to 5x', dominant: '5x to 10x', beyond: 'more than 10x' };
+  const mToday = l.multiples.find((m) => m.key === 'today');
+  out = out.replace(/\{\{LADDER_RUN_RATE_DAYS\}\}/g, String(l.basis.runRateDays)).replace(/\{\{LADDER_WINDOW_END\}\}/g, formatDate(l.basis.windowEnd))
+    .replace('{{LADDER_BASIS_NOTE}}', [l.basis.trailingNote, ...l.exclusions].join(' '))
+    .replace('{{LADDER_TRON_HARDER}}', formatValue(mToday?.value != null && l.multiples.find((m) => m.key === 'tron')?.value ? mToday.value / l.multiples.find((m) => m.key === 'tron')!.value! : null, 'ratio'));
   const r100 = l.rungs.find((r) => r.price === 100);
   const cap = (label: string) => l.peers.find((p) => p.label === label)?.marketCap ?? null;
   const ratio = (a: number | null | undefined, b: number | null | undefined) => (a != null && b ? a / b : null);
@@ -118,22 +122,26 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
     `| Rank among crypto assets (stablecoins excluded) | | #${r100?.rankToday ?? 'n/a'} against today's market |`,
     `| Share of all crypto (${formatValue(l.inputs.totalCryptoCap, 'USD')} today) | ${formatValue(ratio(l.inputs.marketCap, l.inputs.totalCryptoCap), 'fraction')} | ${formatValue(r100?.shareOfCryptoToday ?? null, 'fraction')} |`,
     `| Versus Solana / Ethereum today | | ${formatValue(ratio(r100?.marketCap, cap('Solana')), 'ratio')} / ${formatValue(ratio(r100?.marketCap, cap('Ethereum')), 'ratio')} |`].join(NL));
-  out = out.replace('{{REGIMES_TABLE}}', ['| Token | How it is valued | Market cap | Revenue to holders, 1 year | Market cap / revenue |', '|---|---|---|---|---|',
-    ...l.peers.map((p) => `| ${p.label} | ${p.regime === 'platform' ? 'Platform premium' : 'Cash flow'} | ${formatValue(p.marketCap, 'USD')} | ${formatValue(p.holdersRevenue365, 'USD')} | ${formatValue(p.multiple, 'ratio')} |`),
-    `| **NEAR** (burn + Intents buybacks, 90-day run rate) | In between | ${formatValue(l.inputs.marketCap, 'USD')} | ${formatValue(l.inputs.captureToday, 'USD')} | ${formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')} |`].join(NL));
+  out = out.replace('{{REGIMES_TABLE}}', [`| Token | Framework | Market cap | To holders a year (${l.basis.runRateDays}-day run rate) | Multiple | Multiple, trailing year |`, '|---|---|---|---|---|---|',
+    ...l.peers.map((p) => `| ${p.label} | ${p.regime === 'platform' ? 'Platform (on-chain economy)' : 'Cash flow'} | ${formatValue(p.marketCap, 'USD')} | ${formatValue(p.holdersRevenueRunRate, 'USD')} | ${formatValue(p.multiple, 'ratio')} | ${formatValue(p.multiple365, 'ratio')} |`),
+    `| **NEAR** (gas burned + Intents revenue designated for buybacks) | Both tested here | ${formatValue(l.inputs.marketCap, 'USD')} | ${formatValue(l.inputs.captureToday, 'USD')} | ${formatValue(mToday?.value ?? null, 'ratio')} | ${formatValue(mToday?.value365 ?? null, 'ratio')} |`].join(NL));
   out = out.replace('{{LADDER_TABLE}}', [`| Rung (ten years) | ${l.multiples.map((m) => `${m.label} (${formatValue(m.value, 'ratio')})`).join(' | ')} |`, `|---|${l.multiples.map(() => '---').join('|')}|`,
     ...[...l.rungs].reverse().map((r) => `| **$${r.price}** (${formatValue(r.priceMultiple, 'ratio')}, ${formatValue(r.marketCap, 'USD')}, #${r.rankToday}) | ${r.byMultiple.map((b) => `${formatValue(b.dexShare2036, 'fraction')} (${b.band ? BAND[b.band] : 'n/a'})`).join(' | ')} |`)].join(NL));
-  out = out.replace('{{CONDITIONS_TABLE}}', ['| Rung | Revenue to holders needed | Intents volume needed | Growth needed, 10 years | Valuation premium persists | Fee rate holds |', '|---|---|---|---|---|---|',
+  out = out.replace('{{CONDITIONS_TABLE}}', ['| Rung | Value to holders needed | Intents volume needed | Growth needed, 10 years | NEAR keeps its multiple | Buyback revenue per dollar holds |', '|---|---|---|---|---|---|',
     ...l.rungs.map((r) => { const b = r.byMultiple.find((x) => x.multipleKey === 'today')!; return `| $${r.price} | ${formatValue(b.requiredCapture, 'USD')}/yr, ${formatValue(b.captureMultiple, 'ratio')} today (unproven) | ${formatValue(b.requiredVolume, 'USD')}/yr (unproven) | ${formatValue(b.requiredCagr, 'fraction')} a year (unproven; today ${formatValue(l.inputs.intentsYoY, 'fraction')} YoY, observed) | assumed | assumed |`; })].join(NL));
   out = out.replace('{{IMPLIED_TABLE}}', [`| Intents growth to 2036 | ${l.multiples.map((m) => m.label).join(' | ')} |`, `|---|${l.multiples.map(() => '---').join('|')}|`,
     ...l.implied.map((g) => { const s = GROWTH_SCENARIOS.find((x) => x.key === g.growthKey)!; return `| ${s.label}, ${formatValue(s.cagr, 'fraction')} a year | ${g.byMultiple.map((b) => `${formatValue(b.price, 'USD')} (${formatValue(b.multipleOfToday, 'ratio')})`).join(' | ')} |`; })].join(NL));
-  out = out.replace('{{SWING_SENTENCE}}', l.swing.dominant ? `${l.swing.dominant === 'growth' ? 'Growth moves the outcome more than valuation does' : 'Valuation moves the outcome more than growth does'}: prices spread ${formatValue(l.swing.acrossGrowth, 'ratio')} across growth scenarios at today's premium, and ${formatValue(l.swing.acrossMultiples, 'ratio')} across cash-flow and today's multiples at base growth.` : '');
+  out = out.replace('{{SWING_SENTENCE}}', l.swing.sentence);
   const cps = l.checkpoints.filter((c) => c.years.length);
   const yrs = cps[0]?.years.map((y) => y.year) ?? [];
   out = out.replace('{{CHECKPOINT_TABLE}}', [`| Rung | ${yrs.join(' | ')} |`, `|---|${yrs.map(() => '---').join('|')}|`,
     ...[...cps].reverse().map((c) => `| $${c.price} | ${c.years.map((y) => formatValue(y.volume, 'USD')).join(' | ')} |`)].join(NL));
-  out = out.replace('{{PLATFORM_TABLE}}', ['| Valued like | Stablecoins on NEAR needed | vs today | DeFi TVL needed | vs today |', '|---|---|---|---|---|',
-    ...l.platformRequirement.map((p) => `| ${p.benchmark === 'BSC' ? 'BNB Chain' : p.benchmark} | ${formatValue(p.stablecoins, 'USD')} | ${formatValue(p.stablecoinsMultiple, 'ratio')} | ${formatValue(p.tvl, 'USD')} | ${formatValue(p.tvlMultiple, 'ratio')} |`)].join(NL));
+  const platName = (b: string) => (b === 'BSC' ? 'BNB Chain' : b);
+  const nearPlat = l.platform.find((p) => p.chain === 'Near');
+  out = out.replace('{{PLATFORM_TABLE}}', [`| Valued like | On NEAR | Market cap ratio | ${l.rungs.map((r) => '$' + r.price).join(' | ')} |`, `|---|---|---|${l.rungs.map(() => '---').join('|')}|`,
+    ...l.platform.filter((p) => p.chain !== 'Near').flatMap((p) => ([['Stablecoins', 'stablecoins', 'stablecoinsMultiple', p.capToStablecoins], ['DeFi TVL', 'tvl', 'tvlMultiple', p.capToTvl]] as const).map(([metric, f, m, ratioV]) =>
+      `| ${platName(p.chain)} | ${metric} | ${formatValue(ratioV, 'ratio')} | ${l.rungs.map((r) => { const x = r.platform.find((y) => y.benchmark === p.chain); return `${formatValue(x?.[f] ?? null, 'USD')} (${formatValue(x?.[m] ?? null, 'ratio')})`; }).join(' | ')} |`)),
+    `| NEAR today | | | Stablecoins ${formatValue(nearPlat?.stablecoins ?? null, 'USD')}; DeFi TVL ${formatValue(nearPlat?.tvl ?? null, 'USD')} | | | |`].join(NL));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

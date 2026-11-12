@@ -4,7 +4,7 @@ import { Container, ExternalLink } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { ERA_CONTRACTS, SOURCES } from '@/lib/data/sources';
 import { RULES, THESIS_VERSION } from '@/lib/research/thesis';
-import { DEX_GROWTH, GROWTH_SCENARIOS, HORIZON_YEARS, LADDER_VERSION, RUNGS, SHARE_BANDS, SUPPLY_RULES } from '@/lib/research/ladder';
+import { DEX_GROWTH, GROWTH_SCENARIOS, HORIZON_YEARS, LADDER_VERSION, RUNGS, SHARE_BANDS, SUPPLY_RULES, SWING_SIMILAR } from '@/lib/research/ladder';
 import { formatDate, formatValue } from '@/lib/format';
 import { allocationSensitivity, FORMULA_VERSION, SCENARIOS, sensitivity, type SensitivityMatrix } from '@/lib/research/model';
 import { METHODOLOGY_VERSION } from '@/lib/research/evidence';
@@ -72,37 +72,37 @@ export default async function MethodologyPage() {
         <h3 className="mt-8 text-lg font-[600]">Layer A: what each rung takes</h3>
         <pre className="num mt-3 overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-5 text-[0.8125rem] leading-7 text-fg-2">{`supply_2036          = circulating supply grown at the issuance rule, monthly, for ${HORIZON_YEARS} years
 market_cap           = rung price × supply_2036
-revenue_needed       = market_cap ÷ valuation multiple          (revenue reaching holders per year)
-intents_volume       = revenue_needed ÷ (take rate × buyback share)
+value_needed         = market_cap ÷ cash-flow multiple        (burns + buybacks reaching holders per year)
+intents_volume       = (value_needed − burns at today's run rate) ÷ buyback revenue per dollar of volume
 growth_needed        = (intents_volume ÷ today's run rate)^(1/${HORIZON_YEARS}) − 1
-dex_share_2036       = intents_volume ÷ (DEX volume last 365 days × (1 + ${DEX_GROWTH.base * 100}%)^${HORIZON_YEARS})
-share_multiple       = dex_share_2036 ÷ Intents' share of DEX volume today`}</pre>
+dex_share_2036       = intents_volume ÷ (spot DEX run rate × (1 + ${DEX_GROWTH.base * 100}%)^${HORIZON_YEARS})
+share_multiple       = dex_share_2036 ÷ (Intents run rate ÷ spot DEX run rate today)`}</pre>
         <dl className="mt-6 grid gap-3 text-sm md:grid-cols-2">
           {[
-            ['Valuation multiples', `Market cap divided by revenue reaching holders over the last 365 days (DefiLlama holders revenue), read live for each peer: ${l ? l.multiples.map((m) => `${m.label} ${formatValue(m.value, 'ratio')}`).join('; ') : 'unavailable'}. NEAR's own multiple uses annualized burns plus Intents buybacks (90-day run rate). Applied to NEAR in ten years as assumptions, never forecasts.`],
+            ['Valuation multiples (cash-flow framework)', `Market cap divided by the value reaching holders: DefiLlama holders revenue (burns and buybacks) for every asset, the same ${l?.basis.runRateDays ?? 90}-day run rate, windows ending on the same day (${l ? formatDate(l.basis.windowEnd) : 'n/a'}). Read live: ${l ? l.multiples.map((m) => `${m.label} ${formatValue(m.value, 'ratio')} (trailing year ${formatValue(m.value365, 'ratio')})`).join('; ') : 'unavailable'}. NEAR's value is gas burned plus Intents revenue designated for buybacks, the same channels that are projected forward, each with its own driver. ${l?.basis.trailingNote ?? ''} Applied to NEAR in ten years as assumptions, never forecasts.`],
             ['Supply', `${SUPPLY_RULES.cap25.label} is the base case. ${SUPPLY_RULES.hsp029.label} is shown alongside: ${SUPPLY_RULES.hsp029.note}`],
-            ['Take rate and buyback share', 'NEAR-captured revenue per dollar of Intents volume (INT-TAKE-RATE) and the share DefiLlama classifies as buybacks (INT-BUYBACK-SHARE), both over the same 90 days. Held constant: fee competition is the largest single risk, since halving the take rate doubles every volume requirement.'],
-            ['DEX market', `All DEX volume over the last 365 days (DefiLlama, includes some prediction-market venues it lists as DEXs), grown ${DEX_GROWTH.base * 100}% a year in the base case (${DEX_GROWTH.low * 100}% shown as a low case). For reference it grew ${l ? formatValue(l.inputs.dexCagr2021to2025, 'fraction') : 'n/a'} a year from 2021 to 2025.`],
+            ['Buyback revenue per dollar of volume', 'Intents revenue DefiLlama designates for buybacks divided by Intents volume over the same 90 days (LAD-HOLDER-TAKE-RATE; equal to take rate × buyback share). Held constant: fee competition is the largest single risk, since halving it doubles every volume requirement. Designated buybacks are a classification; executed onchain purchases are reconstructed separately.'],
+            ['Spot DEX market', `DefiLlama's DEX overview mixes categories: spot DEXs, prediction markets, bridges (NEAR Intents is listed as a Bridge), launchpads and trading apps. Its per-protocol breakdown is summed per day by category and only the "Dexs" category is used: ${l ? formatValue(l.inputs.spotDexRunRate, 'USD') : 'n/a'} a year (run rate) against ${l ? formatValue(l.inputs.allDexRunRate, 'USD') : 'n/a'} for the whole overview. Grown ${DEX_GROWTH.base * 100}% a year in the base case (${DEX_GROWTH.low * 100}% as a low case); it grew ${l ? formatValue(l.inputs.dexCagr2021to2025, 'fraction') : 'n/a'} a year from 2021 to 2025. Intents' ratio to it is a scale reference, not a market share.`],
             ['Rank', 'The rung market cap against today\'s largest 40 crypto assets (CoinGecko), excluding stablecoins and wrapped or tokenized assets. It compares a future value with today\'s market, so it is a sense of scale, not a forecast rank.'],
-            ['Platform premium', 'Large platforms are valued relative to the economy on the chain. For the Solana-style column, the page also shows the stablecoins and DeFi TVL NEAR would need at Ethereum, BNB Chain, Solana and Tron ratios of market cap to stablecoins and to TVL (DefiLlama).'],
+            ['Platform framework', 'A separate framework, never added to the cash-flow ladder and never used in its tables. Platforms trade at thousands of times the value reaching holders because they are valued on the economy that lives on the chain. For every rung, the page shows the stablecoins and DeFi TVL NEAR would need at the market cap to stablecoins and market cap to TVL ratios of Ethereum, BNB Chain, Solana and Tron (DefiLlama).'],
           ].map(([k, d]) => <div key={k} className="panel p-4"><dt className="font-[600]">{k}</dt><dd className="mt-1 leading-relaxed text-fg-2">{d}</dd></div>)}
         </dl>
 
         <h3 className="mt-8 text-lg font-[600]">Bands: how hard each rung is</h3>
-        <p className="mt-1 text-sm text-muted">Each rung and valuation is placed in a band by how many times today&apos;s share of DEX volume Intents would need in ten years.</p>
+        <p className="mt-1 text-sm text-muted">Each rung and multiple is placed in a band by how many times today&apos;s ratio of Intents volume to spot DEX volume it would need in ten years.</p>
         <ul className="mt-3 grid gap-2 text-sm md:grid-cols-4">
           {SHARE_BANDS.map((b) => <li key={b.key} className="panel p-3"><span className="num text-xs text-faint">{Number.isFinite(b.max) ? `≤ ${b.max}x` : '> 10x'}</span><p className="mt-1 text-fg-2">{b.label}</p></li>)}
         </ul>
 
         <h3 className="mt-8 text-lg font-[600]">Layer B: what we can prove</h3>
         <div className="mt-3 grid gap-3 text-sm md:grid-cols-3">
-          <div className="panel border-mint/40 p-4"><p className="font-[600] text-mint">Observed</p><p className="mt-1 leading-relaxed text-fg-2">In today&apos;s data, with a source and a response hash: for example, the revenue Intents already returns to $NEAR and its year-over-year growth.</p></div>
+          <div className="panel border-mint/40 p-4"><p className="font-[600] text-mint">Observed</p><p className="mt-1 leading-relaxed text-fg-2">In today&apos;s data, with a source and a response hash: for example, gas burned and Intents revenue designated for buybacks, and Intents&apos; year-over-year growth.</p></div>
           <div className="panel border-amber/40 p-4"><p className="font-[600] text-amber">Assumed</p><p className="mt-1 leading-relaxed text-fg-2">A modelling choice we make and publish: the valuation multiple in ten years, the DEX market&apos;s growth, the take rate and the supply rule.</p></div>
           <div className="panel border-coral/40 p-4"><p className="font-[600] text-coral">Unproven</p><p className="mt-1 leading-relaxed text-fg-2">Would have to happen and has no evidence yet: the revenue, volume, growth and market share each rung requires, and a platform-sized economy on NEAR.</p></div>
         </div>
 
         <h3 className="mt-8 text-lg font-[600]">Reverse view and checkpoints</h3>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-fg-2">Implied price in ten years = today&apos;s Intents run rate × (1 + growth)^{HORIZON_YEARS} × take rate × buyback share × valuation multiple ÷ supply in ten years, for {GROWTH_SCENARIOS.map((g) => `${g.label.toLowerCase()} growth (${g.cagr * 100}% a year)`).join(', ')}. These are scenarios, so results can fall below today&apos;s price. Checkpoints are the yearly volumes on each rung&apos;s required growth path at today&apos;s valuation premium, so the thesis can be checked every year. The swing factor compares the spread of implied prices across growth scenarios with the spread across cash-flow and today&apos;s multiples.</p>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-fg-2">Implied price in ten years = (today&apos;s Intents run rate × (1 + growth)^{HORIZON_YEARS} × buyback revenue per dollar of volume + burns at today&apos;s run rate) × cash-flow multiple ÷ supply in ten years, for {GROWTH_SCENARIOS.map((g) => `${g.label.toLowerCase()} growth (${g.cagr * 100}% a year)`).join(', ')}. These are scenarios, so results can fall below today&apos;s price. Checkpoints are the yearly volumes on each rung&apos;s required growth path at NEAR&apos;s own multiple today, so the thesis can be checked every year. The swing factor compares the spread of implied prices across growth scenarios with the spread across the cash-flow multiples; spreads within {SWING_SIMILAR}x of each other are reported as similar.</p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">The headline sentence on the home page is generated from these numbers by code. The bands and growth scenarios are our judgment, set while building the pipeline and published so anyone can change them in <span className="num">src/lib/research/ladder.ts</span> and rebuild.</p>
       </section>
 

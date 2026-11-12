@@ -28,23 +28,25 @@ $100 is not a bigger pump; it is a different rank in crypto. Supply keeps growin
 
 {{REGIMES_TABLE}}
 
-There are two regimes. The largest platforms (Ethereum, BNB, Solana) are not priced on the revenue that reaches holders at all; they carry a **platform premium** for being where money lives. **Cash-flow tokens** (Hyperliquid, Tron) are priced on what they pay holders. A three-digit NEAR has to come from one of the two. The ladder applies each of these multiples to NEAR in ten years. They are assumptions, not forecasts.
+Every row uses the same metric (DefiLlama holders revenue: burns and buybacks), the same {{LADDER_RUN_RATE_DAYS}}-day run rate and the same end date ({{LADDER_WINDOW_END}}). {{LADDER_BASIS_NOTE}}
+
+There are two regimes, and they are kept in **two separate frameworks that are never added together**. **Cash-flow tokens** (Hyperliquid, Tron) are priced on what they pay holders; the ladder in sections 4 and 5 applies their multiples, and NEAR's own, to NEAR in ten years. **Platforms** (Ethereum, BNB, Solana) trade at thousands of times the value reaching holders because they are valued on the economy that lives on the chain; section 6 shows what that economy would have to be on NEAR. Multiples are assumptions, not forecasts.
 
 ## 4. The ladder: what each rung takes
 
-Share of the 2036 DEX market NEAR Intents would need, by rung and valuation. The DEX market is today's {{LAD-DEX-VOL-365D}} a year grown 20% a year (an assumption; it grew {{LAD-DEX-CAGR-2021-2025}} a year from 2021 to 2025). Intents handles {{LAD-INTENTS-DEX-SHARE}} today, at a take rate of {{INT-TAKE-RATE}} of volume.
+Cash-flow framework. Each NEAR channel has its own driver: gas burns are held at today's run rate ({{LAD-NEAR-BURN-RUNRATE}} a year), and the rest must come from Intents buybacks at today's {{LAD-HOLDER-TAKE-RATE}} of volume. Each cell is the Intents volume a rung needs, as a fraction of 2036 **spot** DEX volume: DefiLlama's "Dexs" category only, today {{LAD-SPOT-DEX-RUNRATE}} a year (run rate), grown 20% a year (an assumption; it grew {{LAD-DEX-CAGR-2021-2025}} a year from 2021 to 2025). DefiLlama's full DEX overview ({{LAD-ALL-DEX-RUNRATE}}) also counts prediction markets, launchpads and bridges, including NEAR Intents itself, so it is not used. Intents equals {{LAD-INTENTS-DEX-SHARE}} of spot DEX volume today on the run rate ({{LAD-INTENTS-DEX-SHARE-365D}} over the last 365 days). This is a scale reference, not a market share: Intents is a cross-chain category, and some of its swaps also route through DEXs.
 
 {{LADDER_TABLE}}
 
-Bands: **keeps share** (at most 1.5x today's share), **up to 5x share**, **5x to 10x share**, **10x+ share**. The Solana column shows how little revenue matters if NEAR earned a platform premium; section 6 shows what that premium would require.
+Bands, by how many times today's ratio to spot DEX volume Intents would need: **keeps today's size** (at most 1.5x), **up to 5x**, **5x to 10x**, **more than 10x**.
 
-What would have to be true at each rung (today's valuation premium):
+What would have to be true at each rung (NEAR's own multiple today):
 
 {{CONDITIONS_TABLE}}
 
 ## 5. Where scenarios land
 
-Implied price in ten years = Intents volume grown from today's {{INT-VOL-ANN}} run rate x take rate x valuation multiple / supply in 2036. Growth rates are scenarios; nothing here is a forecast.
+Implied price in ten years = (Intents volume grown from today's {{INT-VOL-ANN}} run rate x buyback revenue per dollar of volume + burns at today's run rate) x cash-flow multiple / supply in 2036. Growth rates are scenarios; nothing here is a forecast.
 
 {{IMPLIED_TABLE}}
 
@@ -52,11 +54,11 @@ Implied price in ten years = Intents volume grown from today's {{INT-VOL-ANN}} r
 
 ## 6. The evidence
 
-**Is NEAR Intents on the path?** Annual volume {{INT-VOL-ANN}} (90-day run rate); {{LAD-INTENTS-YOY}} year over year (latest 30 days); {{LAD-INTENTS-DEX-SHARE}} of all DEX volume. The volume Intents would need each year, at today's valuation premium, for each rung:
+**Is NEAR Intents on the path?** Annual volume {{INT-VOL-ANN}} (90-day run rate); {{LAD-INTENTS-YOY}} year over year (latest 30 days); {{LAD-INTENTS-DEX-SHARE}} of spot DEX volume. Within the cross-chain protocols DefiLlama lists in its DEX overview it is {{LAD-INTENTS-CROSSCHAIN-SHARE}}, but that list misses most cross-chain competitors, so it overstates Intents' position; the full cross-chain comparison is a separate workstream. The volume Intents would need each year, at NEAR's own multiple today, for each rung:
 
 {{CHECKPOINT_TABLE}}
 
-**Could NEAR earn a platform premium instead?** Platforms are valued relative to the money that lives on them. For a $100 NEAR to look like these chains:
+**Could NEAR be valued as a platform instead?** A separate framework, never added to the cash-flow ladder. Platforms are valued relative to the money that lives on them. For each rung to look like these chains, this much would need to live on NEAR (in brackets: times NEAR today):
 
 {{PLATFORM_TABLE}}
 
@@ -88,11 +90,11 @@ Product adoption after each mainnet launch (activity two months after launch, 2x
 |---|---|
 | Intents growth slows | Every rung depends on compounding volume for ten years |
 | Fee competition | Halving the take rate doubles every volume requirement |
-| The market prices NEAR on cash flow | At Tron's multiple every rung is about 2.4x harder |
+| The market prices NEAR like other cash-flow tokens | At Tron's multiple every rung needs {{LADDER_TRON_HARDER}} the value to holders |
 | Supply keeps growing at 2.5% | $100 means a larger market cap |
 | Value keeps leaving the NEAR chain | Rules out the platform-premium route (active accounts {{ACT-DAA-YOY}} year over year) |
 
-**NEAR Intents exploit, 1 October 2026.** NEAR Intents paused deposits and withdrawals on 11 networks after an exploit of about $3.8M, caused by a flaw in how its Omni deposit and withdrawal service interacted with the Intents contract; the flaw was reported as patched and the team pledged full compensation. Recovery has not been independently confirmed. Sources: [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404), [recovery status](https://en.coinotag.com/near-intents-exploit-climbs-to-3-8m-pausing-near-cross-chain-swaps).
+**NEAR Intents exploit, 1 October 2026.** An attacker created about $3.8M of unbacked balances (USDT on BNB Chain) through a flaw in the Intents contract's deposit notification function, then withdrew real tokens. Intents paused within about half an hour and halted deposits and withdrawals on 11 networks. Early reports blamed the interaction with the Omni bridge; the team's post-mortem (16 October) places the flaw in the Intents contract itself. The attacker returned the funds on 2 October. The post-mortem says all affected users were compensated, a second flaw in the same function was found by a white-hat on 7 October ($300,000 bounty), the function was removed, and a check of user balances against contract holdings now pauses the contract automatically. These are press and team reports, not verified onchain here. Sources: [Decrypt](https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum), [post-mortem summary (TechFlow)](https://www.techflowpost.com/en-US/newsletter/140312), [The Block](https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404).
 
 Falsification triggers from the underlying research, evaluated on every rebuild:
 

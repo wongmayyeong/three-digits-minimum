@@ -103,6 +103,9 @@ export const VALUATION_PEERS = [
   { label: 'Hyperliquid', coin: 'hyperliquid', llama: 'hyperliquid', chain: 'Hyperliquid L1', regime: 'cash-flow' },
 ] as const;
 export const PLATFORM_CHAINS: string[] = ['Ethereum', 'BSC', 'Solana', 'Tron', 'Near'];
+/** DefiLlama categories inside its DEX overview. Spot = AMMs and order books; cross-chain = where NEAR Intents is listed. */
+export const DEX_SPOT_CATEGORY = 'Dexs';
+export const DEX_CROSS_CHAIN_CATEGORIES: string[] = ['Bridge', 'Cross Chain Bridge'];
 
 const b64 = (o: unknown) => Buffer.from(JSON.stringify(o)).toString('base64');
 
@@ -191,6 +194,24 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   reqs.push({
     key: 'defillama.dexs.total', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/dexs?excludeTotalDataChart=false&excludeTotalDataChartBreakdown=true`,
     project: (j: any) => ({ chart: asArr(j?.totalDataChart).map((x: any) => [Number(x[0]), Number(x[1])]) }),
+  });
+  // DefiLlama's "DEX" overview mixes categories (spot DEXs, prediction markets, bridges such as NEAR Intents,
+  // launchpads, trading apps). The per-protocol breakdown is summed per day by each protocol's DefiLlama
+  // category, so shares use a denominator with a stated definition (amendment 6, section 7).
+  reqs.push({
+    key: 'defillama.dexs.categories', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=false`,
+    project: (j: any) => {
+      const cat = new Map<string, string>();
+      for (const p of asArr(j?.protocols)) { const c = String(p?.category ?? 'Unknown'); if (p?.name) cat.set(String(p.name), c); if (p?.displayName) cat.set(String(p.displayName), c); }
+      const crossChain = asArr(j?.protocols).filter((p: any) => DEX_CROSS_CHAIN_CATEGORIES.includes(p?.category)).map((p: any) => String(p.name)).sort();
+      const chart = asArr(j?.totalDataChartBreakdown).map((row: any) => {
+        const sums: Record<string, number> = {};
+        for (const [name, v] of Object.entries(row?.[1] ?? {})) { const n = Number(v); if (!Number.isFinite(n)) continue; const c = cat.get(name) ?? 'Unknown'; sums[c] = (sums[c] ?? 0) + n; }
+        for (const k of Object.keys(sums)) sums[k] = Math.round(sums[k]!);
+        return [Number(row?.[0]), sums];
+      });
+      return { crossChainMembers: crossChain, chart };
+    },
   });
   reqs.push({
     key: 'defillama.chains', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/v2/chains`,
