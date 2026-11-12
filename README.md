@@ -24,10 +24,11 @@ All figures are regenerated from public data on every refresh; see THESIS.md for
 - **The ladder.** At NEAR's own multiple, $25 needs Intents volume to grow up to 5x relative to spot DEX volume (about 1.7% today); $100 needs Intents volume equal to about 11% of spot DEX volume in ten years. Priced like Tron, $100 needs about 22%; priced like Hyperliquid, even $10 needs 5x to 10x.
 - **Reverse view.** Growth scenarios times cash-flow multiples put the ten-year price anywhere from below today's price to about $75. Intents growth and the valuation multiple matter about equally.
 - **Checkpoints.** The yearly Intents volume each rung requires, so the thesis can be checked every year instead of argued once.
-- **NEAR's economy is one product.** NEAR Intents is about 86% of all fees paid on NEAR and about 93% of the value verifiably captured by $NEAR. NEAR L1 transactions fell about 84% in a year while Intents volume grew about 230%.
-- **Buybacks, checked onchain.** Reading every transfer into the buyback wallet (FastNEAR) shows about 60% of DefiLlama's designated buybacks executed through the documented route (about 75% counting a 1Click funds DAO). Executed buybacks plus burns are about $15M a year against about $113M of net issuance.
-- **Against cross-chain rivals.** Intents is the largest cross-chain swap venue with public volume and has the highest revenue of 15 protocols compared, but NEAR trades at about 220x Intents revenue while cross-chain execution tokens trade at a median of about 7.5x.
-- **Against the alternatives.** For the same multiple, NEAR needs about as much driver growth as BTC, ETH, SOL, SUI, AVAX, TON, APT and HYPE; it has no supply left to unlock and mid-table dilution, but the highest volatility. Ten hypotheses were tested by published rules: three supported, one mixed, three not supported, three untested (need BigQuery or the Intents Explorer API).
+- **NEAR's economy is one product.** NEAR Intents is about 86% of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and about 93% of the value verifiably captured by $NEAR. NEAR L1 transactions fell about 84% in a year while Intents volume grew about 230%.
+- **Buybacks, checked onchain.** DefiLlama labels all NEAR swept into three revenue wallets as buybacks from 23 February 2026. Reading every flow into and out of those wallets (FastNEAR) reproduces its figure to 99% and shows about 67% reaching the buyback wallet; the rest sits in a front-end fund or came from accounts other than Intents. Bought NEAR is held, not burned: net issuance (2.5% of supply a year) is larger than what the buyback wallet absorbs (0.3%).
+- **Against cross-chain rivals.** Intents is the largest of the cross-chain swap venues with public volume and has the highest revenue of the protocols compared, but NEAR's market cap is about 220x Intents revenue, against 7.5x to 13.5x for small cross-chain peer tokens (a conditional comparison: NEAR's market cap also prices the L1 and its other products).
+- **Against the alternatives.** Under a fixed-valuation model NEAR needs about as much driver growth for the same multiple as the median of BTC, ETH, SOL, SUI, AVAX, TON, APT and HYPE, more than the largest of them, with the highest volatility. Ten hypotheses were tested by published rules (three supported, two mixed, two not supported, three untested), and every correction from two external reviews is in `research/three-digits/AUDIT-LOG.md`.
+- **Verdict.** NEAR offers an interesting but highly conditional investment thesis, not a proven path to $100.
 - **Comparability fixes.** DefiLlama's "DEX" overview also counts prediction markets, launchpads and bridges, and lists NEAR Intents as a bridge, so shares use its spot "Dexs" category only. All multiples share one metric, window and end date.
 - **Data quality caught along the way.** NearBlocks returns query-planner estimates instead of counts for busy contracts in older months (marked by a `cost` field). Every month is checked, and estimates are excluded from scoring.
 
@@ -66,7 +67,7 @@ npm run worker             # background worker (debates, audio, daily refresh)
 npm run dev                # http://localhost:3000
 ```
 
-Pages: `/` (the thesis and price ladder), `/research` (every chart with its query and response hash), `/methodology` (ladder formulas, rules, calculator, AI audit, limitations).
+Pages: `/` (the verdict, the price ladder, six findings, leads and trails, hypotheses), `/research` (every chart with its query and response hash), `/methodology` (formulas, rules, calculator, the audit and limitations).
 
 Without an LLM key, the thesis, research pages and replays work, and starting a debate is disabled with an explanation. For pipeline testing only, `NEBUBE_FIXTURE_LLM=1` enables a templated synthetic LLM; it is refused in production, and its episodes are labelled SYNTHETIC.
 
@@ -87,7 +88,7 @@ API: `GET /api/topics`, `GET /api/topics/:slug/evidence-preview`, `POST /api/deb
 |---|---|---|
 | Lint | `npm run lint` | passes |
 | Types | `npm run typecheck` | passes |
-| Unit and integration tests (real Postgres) | `npm test` | 90 passed |
+| Unit and integration tests (real Postgres) | `npm test` | 96 passed |
 | End-to-end, desktop and mobile | `npm run test:e2e` | 7 passed |
 | Offline rebuild is byte-identical | `npm run research:rebuild` | passes |
 | Real OpenAI debate | | not yet run |

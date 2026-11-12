@@ -28,7 +28,8 @@ test('episode: admin-started debate -> verdict -> report -> replay from stored d
   await expect(page.locator('#tr-h ~ ol > li')).toHaveCount(7);
 
   await page.getByRole('link', { name: 'Read the thesis report' }).click();
-  await expect(page.getByRole('heading', { name: 'Evidence register' })).toBeVisible();
+  // First visit compiles the report route under next dev; allow for it.
+  await expect(page.getByRole('heading', { name: 'Evidence register' })).toBeVisible({ timeout: 60_000 });
 
   await page.goto(url);
   const sideRequests: string[] = [];
@@ -48,10 +49,10 @@ test('thesis page shows the hook, the price ladder and a computed verdict', asyn
   const errors = trackErrors(page);
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1, name: 'Three Digits, Minimum?' })).toBeVisible();
-  for (const id of ['#dream', '#ladder', '#scenarios', '#evidence', '#risks', '#verdict']) await expect(page.locator(id)).toBeAttached();
-  await expect(page.getByRole('heading', { name: /What would \$100 actually mean\?/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /How far can NEAR go/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Dream, possibility, or evidence\?/ })).toBeVisible();
+  for (const id of ['#answer', '#ladder', '#evidence', '#verdict', '#hypotheses']) await expect(page.locator(id)).toBeAttached();
+  await expect(page.getByRole('heading', { name: /not a proven path to \$100/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /What would \$10, \$25, \$50 and \$100 in ten years take\?/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Where does NEAR lead, and where does it trail?/ })).toBeVisible();
   // The ladder explorer recomputes when a rung and a valuation are chosen.
   const ladder = page.locator('#ladder');
   await ladder.getByRole('radio', { name: /\$25/ }).click();

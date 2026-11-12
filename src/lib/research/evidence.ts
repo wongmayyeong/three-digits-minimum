@@ -22,6 +22,7 @@ import { analyzeEconomy, economyEvidence, type EconomyResult } from './economy';
 import { analyzeCrossChain, crossChainEvidence, type CrossChainResult } from './crosschain';
 import { analyzeMarket, marketEvidence, type MarketResult } from './market';
 import { analyzeHypotheses, hypothesesEvidence, type HypothesesResult } from './hypotheses';
+import { buildVerdict, type Verdict } from './verdict';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -46,6 +47,7 @@ export interface ResearchDataset {
   crossChain: CrossChainResult;
   market: MarketResult;
   hypotheses: HypothesesResult;
+  verdict: Verdict;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -496,6 +498,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     crossChain,
     market,
     hypotheses,
+    verdict: buildVerdict({ ladder, tokenomics, valuation, economy, crossChain, hypotheses }),
   };
 }
 

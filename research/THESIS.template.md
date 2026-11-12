@@ -203,7 +203,7 @@ Before any conclusion, each finding was checked against the ways it could be wro
 
 ## 15. Verdict: how far can NEAR go, and why choose it or not?
 
-**Investment verdict.** NEAR presents a high-risk investment case supported by growing cross-chain activity through NEAR Intents, but its current valuation depends on assumptions that remain difficult to verify. Intents generates measurable revenue, while NEAR's native onchain economy remains comparatively small. Much of the token's potential value therefore depends on sustained Intents growth, effective token-value capture, and the market continuing to value NEAR beyond its currently measurable cash flows. Our analysis does not rule out substantial upside, including three-digit prices. However, reaching those levels would require exceptional long-term growth, stronger economic activity, or valuation conditions that are not established by today's data. NEAR offers an interesting but highly conditional investment thesis, not a proven path to $100.
+**Investment verdict.** {{INVESTMENT_VERDICT}}
 
 The evidence behind it, every line generated from the data:
 

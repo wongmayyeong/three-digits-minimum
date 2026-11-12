@@ -25,6 +25,14 @@ export interface TopicPreview {
   modelBase: ReturnType<typeof buildDataset>['modelBase'] | null;
   thesis: ReturnType<typeof buildDataset>['thesis'];
   ladder: ReturnType<typeof buildDataset>['ladder'];
+  tokenomics: ReturnType<typeof buildDataset>['tokenomics'];
+  basis: ReturnType<typeof buildDataset>['basis'];
+  valuation: ReturnType<typeof buildDataset>['valuation'];
+  economy: ReturnType<typeof buildDataset>['economy'];
+  crossChain: ReturnType<typeof buildDataset>['crossChain'];
+  market: ReturnType<typeof buildDataset>['market'];
+  hypotheses: ReturnType<typeof buildDataset>['hypotheses'];
+  verdict: ReturnType<typeof buildDataset>['verdict'];
   feeSensitivity: ReturnType<typeof buildDataset>['feeSensitivity'];
   eraMonthsStored: number;
   eraMonthsTotal: number;
@@ -52,6 +60,14 @@ export async function previewTopic(slug: string, opts: { offline: boolean }): Pr
     modelBase: topic.usesModel ? ds.modelBase : null,
     thesis: ds.thesis,
     ladder: ds.ladder,
+    tokenomics: ds.tokenomics,
+    basis: ds.basis,
+    valuation: ds.valuation,
+    economy: ds.economy,
+    crossChain: ds.crossChain,
+    market: ds.market,
+    hypotheses: ds.hypotheses,
+    verdict: ds.verdict,
     feeSensitivity: ds.feeSensitivity,
     eraMonthsStored: era.filter((o) => o.record && o.key.startsWith('nearblocks.era.')).length,
     eraMonthsTotal: era.filter((o) => o.key.startsWith('nearblocks.era.')).length,

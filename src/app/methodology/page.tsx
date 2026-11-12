@@ -49,7 +49,7 @@ export default async function MethodologyPage() {
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. &quot;Three digits, minimum&quot; is used as a hook: instead of forecasting a price, the price ladder computes what NEAR would have to achieve for $10, $25, $50 and $100 in ten years and labels every condition as observed, assumed or unproven. Bull and Bear argue over the same frozen evidence. Nothing here forecasts prices, rates NEAR as an investment, or gives financial advice.</p>
 
       <nav aria-label="On this page" className="mt-8 flex flex-wrap gap-2 text-sm">
-        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
+        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#economy', 'Economy map'], ['#competition', 'Competition'], ['#valuation', 'Valuation and alternatives'], ['#hypotheses', 'Hypotheses'], ['#verdict', 'Verdict and audit'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
       </nav>
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
@@ -135,6 +135,31 @@ circulating_growth   = CoinGecko market cap ÷ price, last day vs a year earlier
 holder_yield         = holders revenue, 90-day run rate ÷ market cap         (DefiLlama, every asset)
 net_holder_yield     = holder_yield − circulating_growth`}</pre>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">Circulating supply from market cap divided by price is one method for every asset, so it includes unlocks that a protocol issuance rate leaves out. One-day changes above {SUPPLY_JUMP * 100}% are listed as reclassification or unlock events rather than smoothed away. Net holder yield excludes price, so it is a measure of token economics, not a return forecast.</p>
+      </section>
+
+      <section id="economy" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Economy map</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Every NEAR product is investigated on its own and placed in one column: observed activity, verified value capture for $NEAR (NEAR delivered to the buyback wallet, or burns), or speculative opportunity, which is never given a dollar value. The fee base is DefiLlama&apos;s fees overview filtered to the NEAR chain: it includes NEAR Intents&apos; cross-chain swap fees, which are paid on many chains and are not NEAR L1 gas. L1 activity compares matched 90-day windows a year apart (NearBlocks transactions and active accounts, DefiLlama gas fees). Chain Signatures is read from the v1.signer contract&apos;s state over RPC. Near Perps is a front end for Hyperliquid; its builder-code fees accrue to the front end, not to $NEAR.</p>
+      </section>
+
+      <section id="competition" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Competition</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">NEAR Intents is compared with sixteen cross-chain protocols on the same DefiLlama definitions and the same 90 days: volume where an adapter exists, fees, protocol revenue, holders revenue and take rate. Categories are never added together: only swap venues with public volume enter the volume share, so the share is of measured venues, not of all cross-chain execution. Token valuations use execution protocols with a token (swap venues, bridges, solvers); the median is shown with and without tokens under $25M, as a range, because the peer set is small and thinly traded. Valuing Intents revenue at that range is a conditional comparison, not a fair value of NEAR, whose market cap also prices the L1 and its other products.</p>
+      </section>
+
+      <section id="valuation" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Valuation and alternatives</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Two revenue bases are computed side by side and never mixed: DefiLlama&apos;s designated buybacks, and NEAR delivered to the buyback wallet (valued at market prices on delivery days). On each basis the multiple, the take rate and the projected flow use the same definition and the same 90 days, ending on one documented cutoff; peer multiples do not depend on the basis. NEAR&apos;s multiple history only uses windows that fall entirely after the flow began. For the alternatives, each asset is valued with the method that fits it (BTC monetary, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both); the growth needed for the same price multiple holds each valuation ratio fixed and lets each asset&apos;s ownership dilution persist. That is a model result, not evidence about which asset is likely to deliver it. Risk uses daily DefiLlama prices: volatility, drawdown and correlation with BTC on consecutive days only.</p>
+      </section>
+
+      <section id="hypotheses" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Hypotheses</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Ten hypotheses (research/three-digits/SCOPE.md) were written before the data was read, each with the rule that decides it: supported, not supported, mixed, or untested when the data needed is not available. Claims were narrowed after review to what each test measures: H1 tests the concentration of fees attributed to the chain, H2 reports an observed valuation gap, H4 diverging trends, H5 ownership dilution on raw and event-adjusted supply, H6 a fixed-valuation model result, H10 dependence on BTC only. H7 to H9 need BigQuery or the NEAR Intents Explorer API.</p>
+      </section>
+
+      <section id="verdict" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Verdict and audit</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">The investment verdict is fixed prose, finalized after two external review passes. Every lead, trail and characteristic beneath it is generated by a rule from the data in <span className="num">src/lib/research/verdict.ts</span>, so a refresh can never leave a claim the numbers no longer support. Characteristics that can read either way (high turnover, low correlation with BTC) are listed as neither a lead nor a trail. Every correction, its resolution and whether it changed the ladder or the verdict is recorded in <span className="num">research/three-digits/AUDIT-LOG.md</span>.</p>
       </section>
 
       <section id="thesis" className="scroll-mt-20 mt-16 border-t hairline pt-10">

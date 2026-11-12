@@ -30,6 +30,7 @@ import { evaluateTriggers } from '@/lib/research/triggers';
 import type { EvidenceDraft } from '@/lib/research/types';
 import { formatDate, formatPeriod, formatValue } from '@/lib/format';
 import { renderDashboard } from './dashboard';
+import { INVESTMENT_VERDICT } from '@/lib/research/verdict';
 
 const ROOT = join(process.cwd(), 'artifacts', 'research');
 const RAW = join(ROOT, 'raw');
@@ -206,43 +207,13 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   const hy = ds.hypotheses;
   out = out.replace('{{HYP_TABLE}}', ['| | Hypothesis | Rule | Reading | Outcome |', '|---|---|---|---|---|',
     ...hy.results.map((h) => `| ${h.id} | ${h.claim} | ${h.rule} | ${h.reading} | **${h.outcome}** |`)].join(NL));
-  const nearOpp = va.opportunity.find((o) => o.label === 'NEAR');
-  const nearTok = tk.assets.find((a) => a.label === 'NEAR');
-  const liqRank = [...va.opportunity].filter((o) => o.risk.liquidity !== null).sort((p, q) => q.risk.liquidity! - p.risk.liquidity!).findIndex((o) => o.label === 'NEAR') + 1;
-  const volTop = [...va.opportunity].filter((o) => o.risk.vol1y !== null).sort((p, q) => q.risk.vol1y! - p.risk.vol1y!)[0]?.label === 'NEAR';
-  const revRank = [...cc.rows].filter((x) => x.revenueRunRate !== null).sort((p, q) => q.revenueRunRate! - p.revenueRunRate!).findIndex((x) => x.name === 'NEAR Intents') + 1;
-  const hyp = (id: string) => hy.results.find((h) => h.id === id);
-  const leads = [
-    cc.swapVenueShare !== null && cc.swapVenueShare > 0.5 ? `Largest of the ${cc.swapVenues.length} cross-chain swap venues with public volume data (${formatValue(cc.swapVenueShare, 'fraction')} of their volume; several competitors have no public volume).` : null,
-    revRank === 1 ? 'Highest protocol revenue among the cross-chain protocols compared, on DefiLlama\'s adapter definitions, which are not identical across protocols.' : null,
-    nearTok?.fdvToMcap !== null && nearTok?.fdvToMcap !== undefined && nearTok.fdvToMcap <= 1.05 ? `CoinGecko reports NEAR's circulating supply equal to its total supply (FDV / market cap ${formatValue(nearTok.fdvToMcap, 'ratio')}), against up to ${formatValue(Math.max(...tk.assets.map((a) => a.fdvToMcap ?? 0)), 'ratio')} for the alternatives; remaining lockup contracts were not audited onchain, and issuance continues.` : null,
-    hyp('H5')?.outcome === 'NOT SUPPORTED' ? `Ownership dilution below the median of the alternatives (${formatValue(nearTok?.ownershipDilution ?? null, 'fraction')} a year), though above BTC, ETH, SOL and HYPE.` : null,
-  ].filter(Boolean) as string[];
-  // Characteristics that are neither advantages nor disadvantages by themselves (audit item 9).
-  const traits = [
-    liqRank === 1 ? `Highest daily trading volume relative to market cap (${formatValue(nearOpp?.risk.liquidity ?? null, 'fraction')}): deep liquidity, or speculative turnover.` : null,
-    hyp('H10') && hyp('H10')!.value !== null ? `Daily returns are less correlated with BTC than ETH's or SOL's (R-squared ${formatValue(hyp('H10')!.value, 'fraction')}): diversification, or idiosyncratic risk.` : null,
-  ].filter(Boolean) as string[];
-  const trails = [
-    hyp('H2')?.outcome === 'SUPPORTED' ? 'Observed valuation gap to its on-chain economy: market cap is many times its stablecoins and DeFi TVL, against single digits for the largest platforms.' : null,
-    cc.nearCapToIntentsRevenue !== null && cc.peerRange !== null && cc.nearCapToIntentsRevenue > 5 * cc.peerRange[1] ? `Market cap is ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} Intents revenue, against ${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')} for small cross-chain peer tokens (NEAR\'s market cap also prices products those peers do not have).` : null,
-    ds.economy.l1.txnsYoY !== null && ds.economy.l1.txnsYoY < 0 ? `NEAR L1 activity is falling (transactions ${formatValue(ds.economy.l1.txnsYoY, 'fraction', { signed: true })} year over year).` : null,
-    volTop ? `Most volatile asset in the comparison (${formatValue(nearOpp?.risk.vol1y ?? null, 'fraction')} annualized over the last year).` : null,
-    tk.supply.netIssuance !== null && tk.supply.buybackAbsorption !== null && tk.supply.buybackAbsorption < tk.supply.netIssuance ? `Net issuance (${formatValue(tk.supply.netIssuance, 'fraction')} of supply a year) is larger than what buybacks absorb into a held wallet (${formatValue(tk.supply.buybackAbsorption, 'fraction')}).` : null,
-    tk.buybacks.deliveredAllToDesignated !== null && tk.buybacks.deliveredAllToDesignated < 0.9 ? `Of the revenue DefiLlama designates as buybacks, ${formatValue(tk.buybacks.deliveredAllToDesignated, 'fraction')} reached the buyback wallet; the rest sits in the front-end fund or came from accounts other than Intents.` : null,
-    hyp('H1')?.outcome === 'SUPPORTED' ? 'The fees DefiLlama attributes to the NEAR chain are concentrated in one product (Intents\' cross-chain swap fees, not NEAR L1 gas), more than almost every peer chain.' : null,
-  ].filter(Boolean) as string[];
-  const conc = hyp('H1')?.outcome === 'SUPPORTED', h6 = hyp('H6')?.outcome;
-  out = out.replace('{{VERDICT_TRAITS}}', traits.length ? ['Neither lead nor trail by itself:', '', ...traits.map((l) => `- ${l}`)].join(NL) : '');
-  out = out.replace('{{VERDICT_SUMMARY}}', [
-    conc && volTop ? 'On these rules NEAR is a concentrated, high-volatility bet on one cross-chain product.' : conc ? 'On these rules NEAR is a concentrated bet on one cross-chain product.' : '',
-  ].filter(Boolean).join(' '));
-  out = out.replace('{{SHORT_ANSWER}}', [l.headline,
-    cc.nearCapToIntentsRevenue !== null && cc.peerRange !== null ? `NEAR's market cap is ${formatValue(cc.nearCapToIntentsRevenue, 'ratio')} the revenue of its main product, NEAR Intents; small cross-chain peer tokens trade at ${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')} their revenue, though NEAR's market cap also prices the L1 and its other products.` : '',
-    tk.buybacks.deliveredAllToDesignated !== null ? `${formatValue(tk.buybacks.deliveredAllToDesignated, 'fraction')} of the revenue designated as buybacks has reached the buyback wallet, and net issuance (${formatValue(tk.supply.netIssuance, 'fraction')} of supply a year) is larger than what buybacks absorb (${formatValue(tk.supply.buybackAbsorption, 'fraction')}).` : '',
-  ].filter(Boolean).join(' '));
-  out = out.replace('{{VERDICT_LEADS}}', ['Leads:', '', ...leads.map((l) => `- ${l}`)].join(NL));
-  out = out.replace('{{VERDICT_TRAILS}}', ['Trails:', '', ...trails.map((l) => `- ${l}`)].join(NL));
+  const vd = ds.verdict;
+  out = out.replace('{{VERDICT_TRAITS}}', vd.traits.length ? ['Neither lead nor trail by itself:', '', ...vd.traits.map((x) => `- ${x}`)].join(NL) : '');
+  out = out.replace('{{VERDICT_SUMMARY}}', vd.summary);
+  out = out.replace('{{SHORT_ANSWER}}', vd.shortAnswer);
+  out = out.replace('{{VERDICT_LEADS}}', ['Leads:', '', ...vd.leads.map((x) => `- ${x}`)].join(NL));
+  out = out.replace('{{VERDICT_TRAILS}}', ['Trails:', '', ...vd.trails.map((x) => `- ${x}`)].join(NL));
+  out = out.replace('{{INVESTMENT_VERDICT}}', INVESTMENT_VERDICT.join(' '));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

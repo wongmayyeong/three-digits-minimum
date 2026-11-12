@@ -1,21 +1,43 @@
 import Link from 'next/link';
 import { HeroDebate } from '@/components/hero-debate';
-import { CheckpointTable, ImpliedMatrix, LadderGrid, PlatformNeeds, ValuationRegimes } from '@/components/ladder';
+import { LadderGrid } from '@/components/ladder';
 import { LadderExplorer } from '@/components/ladder-explorer';
 import { LibraryRow } from '@/components/library-row';
-import { AsOfLine, EraTable, EventTable, SectionHeader, SupplyStats, TriggerTable } from '@/components/thesis';
+import { AsOfLine, SectionHeader } from '@/components/thesis';
 import { Container, EmptyState, Notice } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { listLibrary, loadDebateView } from '@/lib/debate/view';
 import { formatDate, formatValue } from '@/lib/format';
-import { DEX_GROWTH } from '@/lib/research/ladder';
 import { THESIS_ATTRIBUTION, THESIS_LEDE, THESIS_SUBTITLE, THESIS_TITLE } from '@/lib/research/thesis';
-import { evaluateTriggers } from '@/lib/research/triggers';
+import { INVESTMENT_VERDICT } from '@/lib/research/verdict';
 import { THESIS_TOPIC } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
 
 const link = 'text-fg underline decoration-line-strong underline-offset-2 hover:decoration-mint';
+const OUTCOME: Record<string, string> = { SUPPORTED: 'border-mint/60 text-mint', 'NOT SUPPORTED': 'border-coral/60 text-coral', MIXED: 'border-amber/60 text-amber', UNTESTED: 'border-line-strong text-muted' };
+
+function Stat({ label, value, note }: { label: string; value: string; note: string }) {
+  return (
+    <div className="bg-surface p-5">
+      <dt className="text-xs text-muted">{label}</dt>
+      <dd className="num mt-2 text-3xl text-fg">{value}</dd>
+      <dd className="mt-1 text-xs leading-snug text-muted">{note}</dd>
+    </div>
+  );
+}
+
+function Finding({ title, lines, href }: { title: string; lines: [string, string][]; href: string }) {
+  return (
+    <article className="panel flex flex-col p-5">
+      <h3 className="font-[620]">{title}</h3>
+      <dl className="mt-3 space-y-2 text-sm">
+        {lines.map(([k, v]) => <div key={k} className="flex items-baseline justify-between gap-4 border-t hairline pt-2"><dt className="text-fg-2">{k}</dt><dd className="num shrink-0 text-right text-fg">{v}</dd></div>)}
+      </dl>
+      <Link href={href} className="mt-auto pt-4 text-xs text-muted hover:text-fg">How this is measured →</Link>
+    </article>
+  );
+}
 
 export default async function ThesisPage() {
   const [preview, episodes] = await Promise.all([
@@ -23,13 +45,14 @@ export default async function ThesisPage() {
     listLibrary({ limit: 6 }).catch(() => null),
   ]);
   const latest = episodes?.entries[0] ? await loadDebateView(episodes.entries[0].id).catch(() => null) : null;
-  const t = preview?.thesis ?? null;
   const l = preview?.ladder ?? null;
-  const triggers = preview ? evaluateTriggers(preview.items) : [];
-  const item = (id: string) => preview?.items.find((i) => i.evidenceId === id) ?? null;
   const r100 = l?.rungs.find((r) => r.price === 100) ?? null;
-  const peerCap = (label: string) => l?.peers.find((p) => p.label === label)?.marketCap ?? null;
-  const today = (p: number) => l?.rungs.find((r) => r.price === p)?.byMultiple.find((b) => b.multipleKey === 'today') ?? null;
+  const tk = preview?.tokenomics ?? null, cc = preview?.crossChain ?? null, ec = preview?.economy ?? null, va = preview?.valuation ?? null, hy = preview?.hypotheses ?? null, vd = preview?.verdict ?? null;
+  const mToday = l?.multiples.find((m) => m.key === 'today')?.value ?? null;
+  const need100 = va?.multipleNeeded.find((m) => m.price === 100)?.byGrowth ?? [];
+  const delivered = preview?.basis.find((b) => b.basis === 'delivered') ?? null;
+  const req7 = (label: string) => va?.opportunity.find((o) => o.label === label)?.targets.find((t) => t.k === 7)?.requiredCagr ?? null;
+  const nearRisk = va?.opportunity.find((o) => o.label === 'NEAR')?.risk ?? null;
 
   return (
     <>
@@ -45,143 +68,104 @@ export default async function ThesisPage() {
       <Container className="py-10 md:py-14">
         {preview && <AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} />}
 
-        {!preview || !t || !l || !r100 ? (
-          <div className="mt-14"><Notice tone="warn" title="Research data is not available yet.">No stored source responses were found. Run the research refresh (npm run refresh:now) or wait for the daily refresh.</Notice></div>
+        {!preview || !l || !r100 || !tk || !cc || !ec || !va || !hy || !vd ? (
+          <div className="mt-14"><Notice tone="warn" title="Research data is not available yet.">No stored source responses were found. Run the research refresh (npm run research:refresh) and load the data into the database.</Notice></div>
         ) : (
           <>
-            <section aria-labelledby="intro-h" className="mt-8">
-              <h2 id="intro-h" className="sr-only">What this is</h2>
-              <p className="max-w-3xl text-lg leading-relaxed text-fg md:text-xl">NEAR is a blockchain whose fastest-growing product, NEAR Intents, lets people swap assets across different blockchains in one step. Part of every swap fee is used to buy back $NEAR. &quot;Three digits, minimum&quot; is a bold claim. Instead of predicting a price, we built a ladder: what NEAR would have to achieve for $10, $25, $50 and $100 in ten years, and how much of that the evidence shows today.</p>
-            </section>
-
-            {/* 01 · The dream */}
-            <section id="dream" className="mt-14 scroll-mt-20">
-              <SectionHeader n={1} title="The dream" question="What would $100 actually mean?" reason="Ten years from now, with more NEAR in circulation than today." howHref="/methodology#ladder" />
-              <dl className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  ['Price multiple', formatValue(r100.priceMultiple, 'ratio'), `From ${formatValue(l.inputs.price, 'USD')} today`],
-                  ['Market cap at $100', formatValue(r100.marketCap, 'USD'), `Current 2.5% issuance; ${formatValue(r100.marketCapHsp029, 'USD')} if HSP-029 takes effect`],
-                  ['Rank among crypto assets', `#${r100.rankToday}`, 'Against today\'s market, stablecoins excluded'],
-                  ['Share of all crypto today', formatValue(r100.shareOfCryptoToday, 'fraction'), `NEAR today: ${formatValue(l.inputs.marketCap !== null && l.inputs.totalCryptoCap ? l.inputs.marketCap / l.inputs.totalCryptoCap : null, 'fraction')}`],
-                ].map(([k, v, note]) => (
-                  <div key={k} className="bg-surface p-5">
-                    <dt className="text-xs text-muted">{k}</dt>
-                    <dd className="num mt-2 text-3xl text-fg">{v}</dd>
-                    <dd className="mt-1 text-xs leading-snug text-muted">{note}</dd>
-                  </div>
-                ))}
+            {/* 01 · The answer */}
+            <section id="answer" className="mt-10 scroll-mt-20" aria-labelledby="answer-h">
+              <p className="eyebrow mb-3"><span className="text-mint">01</span> · The answer</p>
+              <h2 id="answer-h" className="display-l max-w-4xl text-balance">Interesting, but highly conditional: not a proven path to $100.</h2>
+              <div className="mt-5 max-w-3xl space-y-3 text-lg leading-relaxed text-fg-2">
+                {INVESTMENT_VERDICT.map((p) => <p key={p}>{p}</p>)}
+              </div>
+              <dl className="mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-2 lg:grid-cols-4">
+                <Stat label="NEAR's economy is one product" value={formatValue(ec.intentsFeeShare, 'fraction')} note="of the fees DefiLlama attributes to NEAR come from NEAR Intents (cross-chain swaps, not L1 gas)" />
+                <Stat label="Valued far above that product" value={formatValue(cc.nearCapToIntentsRevenue, 'ratio')} note={`NEAR market cap / Intents revenue; small cross-chain peer tokens trade at ${cc.peerRange ? `${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')}` : 'n/a'}`} />
+                <Stat label="Buybacks, checked onchain" value={formatValue(tk.buybacks.deliveredAllToDesignated, 'fraction')} note="of the revenue DefiLlama labels as buybacks reached the buyback wallet" />
+                <Stat label="What $100 needs" value={formatValue(need100.find((g) => g.growthKey === 'base')?.multiple ?? null, 'ratio')} note={`cash-flow multiple at 20% a year Intents growth for ten years (${formatValue(need100.find((g) => g.growthKey === 'high')?.multiple ?? null, 'ratio')} at 40%); NEAR is at ${formatValue(mToday, 'ratio')} today`} />
               </dl>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-fg-2">At $100, NEAR would be worth {formatValue(r100.marketCap !== null && peerCap('Solana') ? r100.marketCap / peerCap('Solana')! : null, 'ratio')} Solana and {formatValue(r100.marketCap !== null && peerCap('Ethereum') ? r100.marketCap / peerCap('Ethereum')! : null, 'ratio')} Ethereum at today&apos;s prices. It is not a bigger pump; it is a different rank in crypto.</p>
             </section>
 
             {/* 02 · The ladder */}
             <section id="ladder" className="mt-16 scroll-mt-20">
-              <SectionHeader n={2} title="The ladder" question="How far can NEAR go, and what does each step take?" reason={l.headline} howHref="/methodology#ladder" />
+              <SectionHeader n={2} title="The ladder" question="What would $10, $25, $50 and $100 in ten years take?" reason={l.headline} howHref="/methodology#ladder" />
               <LadderExplorer ladder={l} />
               <h3 className="mb-3 mt-8 text-lg font-[600]">The whole ladder: Intents volume needed in 2036, relative to spot DEX volume</h3>
               <LadderGrid ladder={l} />
-              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Each cell: the Intents volume a rung needs, as a fraction of 2036 spot DEX volume (DefiLlama&apos;s &quot;Dexs&quot; category, {formatValue(l.inputs.spotDexRunRate, 'USD')} a year today, grown {DEX_GROWTH.base * 100}% a year, an assumption). Intents equals {formatValue(l.inputs.dexShareToday, 'fraction')} of spot DEX volume today. It is a scale reference, not a market share: Intents is a cross-chain category. Multiples are market cap divided by the value reaching holders (burns and buybacks), every asset on the same {l.basis.runRateDays}-day run rate ending {formatDate(l.basis.windowEnd)}, applied to NEAR in 2036 as assumptions. Platform valuations are a separate framework (section 04), never mixed into this table.</p>
+              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">At $100, NEAR&apos;s market cap would be {formatValue(r100.marketCap, 'USD')}, rank #{r100.rankToday} in crypto today. Multiples use DefiLlama&apos;s designated buybacks; on NEAR delivered to the buyback wallet, NEAR&apos;s own multiple is {formatValue(delivered?.multipleToday ?? null, 'ratio')} and every rung priced like a cash-flow token needs about half as much volume again. Scenarios, not forecasts.</p>
             </section>
 
-            {/* 03 · Where scenarios land */}
-            <section id="scenarios" className="mt-16 scroll-mt-20">
-              <SectionHeader n={3} title="Where scenarios land" question="Turn it around: where does each future put the price?" reason={`Base growth at NEAR's own multiple lands near ${formatValue(l.implied.find((g) => g.growthKey === 'base')?.byMultiple.find((b) => b.multipleKey === 'today')?.price ?? null, 'USD')}; slow growth priced on cash flow lands below today's price. ${l.swing.sentence}`} howHref="/methodology#ladder" />
-              <ImpliedMatrix ladder={l} />
-              <p className="mt-3 max-w-4xl text-xs leading-relaxed text-muted">Implied 2036 price = (Intents volume grown from today&apos;s {formatValue(l.inputs.intentsRunRate, 'USD')} run rate × buyback revenue per dollar of volume + burns at today&apos;s run rate) × valuation multiple ÷ 2036 supply. Green reaches three digits; red is below today&apos;s price. Growth rates are scenarios. Nothing here is a forecast.</p>
-            </section>
-
-            {/* 04 · The evidence */}
+            {/* 03 · What the evidence shows */}
             <section id="evidence" className="mt-16 scroll-mt-20">
-              <SectionHeader n={4} title="The evidence" question="What does today's data actually show?" howHref="/research" />
-
-              <h3 className="mb-1 text-lg font-[600]">How the market values crypto assets</h3>
-              <p className="mb-4 max-w-3xl text-sm text-muted">Every row uses the same metric, run rate and end date. Platforms trade at thousands of times what reaches holders because they are valued on their on-chain economy; cash-flow tokens are priced on what they pay holders. The two are kept in separate frameworks.</p>
-              <ValuationRegimes ladder={l} />
-
-              <h3 className="mb-1 mt-10 text-lg font-[600]">Is NEAR Intents on the path?</h3>
-              <dl className="mb-4 mt-3 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-3">
-                {[
-                  ['Annual volume (90-day run rate)', formatValue(l.inputs.intentsRunRate, 'USD'), `Last 365 days: ${formatValue(l.inputs.intents365, 'USD')}`],
-                  ['Growth, year over year', formatValue(l.inputs.intentsYoY, 'fraction'), `Latest 30 days. $25 at NEAR's own multiple needs ${formatValue(today(25)?.requiredCagr ?? null, 'fraction')} a year; $100 needs ${formatValue(today(100)?.requiredCagr ?? null, 'fraction')}`],
-                  ['Relative to spot DEX volume', formatValue(l.inputs.dexShareToday, 'fraction'), `Run rate; ${formatValue(l.inputs.dexShareToday365, 'fraction')} over the last 365 days. Spot DEX volume grew ${formatValue(l.inputs.dexCagr2021to2025, 'fraction')} a year from 2021 to 2025`],
-                ].map(([k, v, note]) => (
-                  <div key={k} className="bg-surface p-5"><dt className="text-xs text-muted">{k}</dt><dd className="num mt-2 text-2xl text-fg">{v}</dd><dd className="mt-1 text-xs leading-snug text-muted">{note}</dd></div>
-                ))}
-              </dl>
-              <p className="mb-3 max-w-3xl text-sm text-fg-2">Checkpoints: the annual volume Intents would need each year, at NEAR&apos;s own multiple today, to stay on each rung&apos;s path. Investors can check these every year.</p>
-              <CheckpointTable ladder={l} />
-
-              <h3 className="mb-1 mt-10 text-lg font-[600]">Could NEAR be valued as a platform instead?</h3>
-              <p className="mb-4 max-w-3xl text-sm text-muted">A separate framework, never added to the cash-flow ladder. Platforms are valued relative to the money that lives on them. For each rung to look like these chains, this much would need to live on NEAR:</p>
-              <PlatformNeeds ladder={l} />
-
-              <h3 className="mb-1 mt-10 text-lg font-[600]">Does the token capture value today?</h3>
-              <p className="mb-4 max-w-3xl text-sm text-muted">{t.sections[2]!.reason}</p>
-              <SupplyStats s={t.supply} />
-              <p className="mt-3 max-w-3xl text-xs leading-relaxed text-muted">A buyback is not a burn: bought tokens are held at the buyback wallet. Revenue figures are DefiLlama&apos;s buyback designation; as an onchain cross-check, the wallet holds {formatValue(t.supply.walletNear, 'NEAR')}, {formatValue(t.supply.walletVsDesignated, 'fraction')} of the {formatValue(t.supply.designatedSinceStartUsd, 'USD')} designated since {t.supply.designatedStart ?? 'n/a'}. For buyback revenue to match the value of new supply, Intents would need {formatValue(t.supply.parityVolumeUsd, 'USD')} a year ({formatValue(t.supply.parityMultiple, 'ratio')} today).</p>
-
-              <details className="panel mt-10 p-5">
-                <summary className="cursor-pointer text-lg font-[600]">Track record: did NEAR&apos;s earlier pivots last?</summary>
-                <p className="mt-3 max-w-3xl text-sm text-muted">{t.sections[0]!.reason} {t.sections[1]!.reason} Exact data only: NearBlocks estimates are excluded, and Intents is measured by DefiLlama volume.</p>
-                <div className="mt-4"><EraTable eras={t.eras} /></div>
-                <div className="mt-4"><EventTable events={t.events} /></div>
-              </details>
+              <SectionHeader n={3} title="What the evidence shows" question="Six findings, each checked against independent data" howHref="/research" />
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                <Finding title="NEAR's economy is NEAR Intents" href="/methodology#economy" lines={[
+                  ['Intents share of fees attributed to NEAR', formatValue(ec.intentsFeeShare, 'fraction')],
+                  ['Intents volume, year over year', formatValue(ec.intentsVolumeYoY, 'fraction', { signed: true })],
+                  ['NEAR L1 transactions, year over year', formatValue(ec.l1.txnsYoY, 'fraction', { signed: true })],
+                  ['NEAR AI, Chain Signatures: verified value to $NEAR', 'none'],
+                ]} />
+                <Finding title="Where the buybacks went" href="/methodology#tokenomics" lines={[
+                  ['Designated as buybacks (DefiLlama)', formatValue(tk.buybacks.designatedUsd, 'USD')],
+                  ['Reached the buyback wallet', formatValue(tk.buybacks.deliveredAllToDesignated, 'fraction')],
+                  ['Kept in the front-end fund', formatValue(tk.buybacks.frontendUsd, 'USD')],
+                  ['From accounts other than Intents', formatValue(tk.buybacks.nonIntentsUsd, 'USD')],
+                ]} />
+                <Finding title="Supply keeps growing" href="/methodology#tokenomics" lines={[
+                  ['Net issuance, share of supply a year', formatValue(tk.supply.netIssuance, 'fraction')],
+                  ['Absorbed into the held buyback wallet', formatValue(tk.supply.buybackAbsorption, 'fraction')],
+                  ['Staked', formatValue(tk.staking.stakingRatio, 'fraction')],
+                  ['Non-staker share of supply, per year', formatValue(tk.staking.realYieldNonStaker, 'fraction', { signed: true })],
+                ]} />
+                <Finding title="Leader of a small, cheaply valued market" href="/methodology#competition" lines={[
+                  [`Share of ${cc.swapVenues.length} cross-chain venues with public volume`, formatValue(cc.swapVenueShare, 'fraction')],
+                  ['Intents revenue a year', formatValue(cc.rows.find((r) => r.name === 'NEAR Intents')?.revenueRunRate ?? null, 'USD')],
+                  ['Relay revenue a year (no public volume)', formatValue(cc.rows.find((r) => r.name === 'Relay')?.revenueRunRate ?? null, 'USD')],
+                  ['Cross-chain peer tokens, market cap / revenue', cc.peerRange ? `${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')}` : 'n/a'],
+                ]} />
+                <Finding title="Against the alternatives" href="/methodology#valuation" lines={[
+                  ['Driver growth for 7x in ten years: NEAR', formatValue(req7('NEAR'), 'fraction')],
+                  ['ETH / SOL / HYPE (same model)', `${formatValue(req7('ETH'), 'fraction')} / ${formatValue(req7('SOL'), 'fraction')} / ${formatValue(req7('HYPE'), 'fraction')}`],
+                  ['NEAR volatility, last year', formatValue(nearRisk?.vol1y ?? null, 'fraction')],
+                  ['NEAR max drawdown, three years', formatValue(nearRisk?.maxDrawdown3y ?? null, 'fraction')],
+                ]} />
+                <Finding title="Platform route not yet visible" href="/methodology#ladder" lines={[
+                  ['Stablecoins on NEAR', formatValue(l.platform.find((p) => p.chain === 'Near')?.stablecoins ?? null, 'USD')],
+                  ['Stablecoins $100 needs at Solana\'s ratio', formatValue(r100.platform.find((p) => p.benchmark === 'Solana')?.stablecoins ?? null, 'USD')],
+                  ['DeFi TVL on NEAR', formatValue(l.platform.find((p) => p.chain === 'Near')?.tvl ?? null, 'USD')],
+                  ['DeFi TVL $100 needs at Solana\'s ratio', formatValue(r100.platform.find((p) => p.benchmark === 'Solana')?.tvl ?? null, 'USD')],
+                ]} />
+              </div>
             </section>
 
-            {/* 05 · What could break it */}
-            <section id="risks" className="mt-16 scroll-mt-20">
-              <SectionHeader n={5} title="What could break it" question="What would make every rung harder?" howHref="/methodology#ladder" />
-              <div className="overflow-x-auto rounded-[var(--radius-lg)] border hairline">
-                <table className="w-full min-w-[720px] text-left text-sm">
-                  <thead className="bg-raised text-xs text-muted"><tr><th className="px-4 py-2.5 font-normal">Risk</th><th className="px-4 py-2.5 font-normal">Effect on the ladder</th><th className="px-4 py-2.5 font-normal">Reading today</th></tr></thead>
-                  <tbody>
-                    {[
-                      ['Intents growth slows', 'Every rung depends on compounding volume for ten years', `${formatValue(l.inputs.intentsYoY, 'fraction')} YoY; $100 path needs ${formatValue(today(100)?.requiredCagr ?? null, 'fraction')} a year`],
-                      ['Fee competition', 'Halving the take rate doubles every volume requirement', `${formatValue(t.supply.takeRate, 'fraction')}, prior 90 days ${formatValue(t.supply.takeRatePrior, 'fraction')}`],
-                      ['The market prices NEAR like other cash-flow tokens', `At Tron's multiple every rung needs ${formatValue((l.multiples.find((m) => m.key === 'today')?.value ?? 0) / (l.multiples.find((m) => m.key === 'tron')?.value ?? Infinity), 'ratio')} the value to holders`, `NEAR ${formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')}; Tron ${formatValue(l.multiples.find((m) => m.key === 'tron')?.value ?? null, 'ratio')}; Hyperliquid ${formatValue(l.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null, 'ratio')}`],
-                      ['Supply keeps growing at 2.5%', '$100 means a larger market cap', 'HSP-029 approved, pending validator adoption'],
-                      ['Value keeps leaving the NEAR chain', 'Rules out the platform-premium route', `Active accounts ${formatValue(item('ACT-DAA-YOY')?.value ?? null, 'fraction', { signed: true })} YoY; stablecoins on NEAR ${formatValue(l.platform.find((p) => p.chain === 'Near')?.stablecoins ?? null, 'USD')}`],
-                    ].map(([a, b, c]) => <tr key={a} className="border-t hairline"><th scope="row" className="px-4 py-3 font-[560]">{a}</th><td className="px-4 py-3 text-fg-2">{b}</td><td className="num px-4 py-3 text-xs text-muted">{c}</td></tr>)}
-                  </tbody>
-                </table>
+            {/* 04 · Verdict lines */}
+            <section id="verdict" className="mt-16 scroll-mt-20">
+              <SectionHeader n={4} title="Leads and trails" question="Where does NEAR lead, and where does it trail?" reason={`${vd.summary} Every line is generated by a rule from the data.`} howHref="/methodology#verdict" />
+              <div className="grid gap-3 md:grid-cols-3">
+                {([['Leads', vd.leads, 'text-mint'], ['Trails', vd.trails, 'text-coral'], ['Neither, by itself', vd.traits, 'text-amber']] as const).map(([t, items, cls]) => (
+                  <div key={t} className="panel p-5"><p className={`eyebrow ${cls}`}>{t}</p><ul className="mt-3 space-y-2 text-sm leading-relaxed text-fg-2">{items.map((x) => <li key={x}>{x}</li>)}</ul></div>
+                ))}
               </div>
+            </section>
+
+            {/* 05 · Hypotheses */}
+            <section id="hypotheses" className="mt-16 scroll-mt-20">
+              <SectionHeader n={5} title="Ten hypotheses, tested" question="Written before the data was read, decided by published rules" howHref="/methodology#hypotheses" />
+              <ul className="grid gap-2 md:grid-cols-2">
+                {hy.results.map((h) => (
+                  <li key={h.id} className="panel flex items-start gap-3 p-4 text-sm">
+                    <span className="num w-9 shrink-0 text-muted">{h.id}</span>
+                    <span className="flex-1 leading-snug text-fg-2">{h.claim.split(' (')[0]}</span>
+                    <span className={`chip h-6 shrink-0 px-2 text-[0.6875rem] ${OUTCOME[h.outcome] ?? ''}`}>{h.outcome.toLowerCase()}</span>
+                  </li>
+                ))}
+              </ul>
               <aside className="panel mt-4 p-5" aria-labelledby="exploit-h">
                 <p className="eyebrow">Execution risk · reported, not scored</p>
-                <h3 id="exploit-h" className="mt-2 text-lg font-[600]">NEAR Intents exploit, 1 October 2026</h3>
-                <p className="mt-2 text-sm leading-relaxed text-fg-2">An attacker created about $3.8M of unbacked balances (USDT on BNB Chain) through a flaw in the Intents contract&apos;s deposit notification function, then withdrew real tokens. Intents paused within about half an hour and halted deposits and withdrawals on 11 networks. The attacker returned the funds on 2 October. The team&apos;s post-mortem (16 October) says all affected users were compensated, a second flaw in the same function was found by a white-hat on 7 October ($300,000 bounty), the function was removed, and a balance check now pauses the contract automatically. Reported by the press and the team; not independently verified onchain here. Trust is the product for a settlement layer. <a href="https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum" target="_blank" rel="noopener noreferrer" className={link}>Decrypt</a> · <a href="https://www.techflowpost.com/en-US/newsletter/140312" target="_blank" rel="noopener noreferrer" className={link}>post-mortem summary</a> · <a href="https://theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-promises-full-compensation-417404" target="_blank" rel="noopener noreferrer" className={link}>The Block</a></p>
+                <h3 id="exploit-h" className="mt-2 font-[600]">NEAR Intents exploit, 1 October 2026</h3>
+                <p className="mt-2 text-sm leading-relaxed text-fg-2">About $3.8M of unbacked balances were created through a flaw in the Intents contract&apos;s deposit notification function. The attacker returned the funds on 2 October; the post-mortem reports users compensated, a second flaw fixed and the function removed. <a href="https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum" target="_blank" rel="noopener noreferrer" className={link}>Decrypt</a> · <a href="https://www.techflowpost.com/en-US/newsletter/140312" target="_blank" rel="noopener noreferrer" className={link}>post-mortem summary</a></p>
               </aside>
-            </section>
-
-            {/* Verdict */}
-            <section id="verdict" className="mt-16 scroll-mt-20" aria-labelledby="verdict-h">
-              <header className="mb-6 border-t hairline pt-10">
-                <p className="eyebrow mb-3"><span className="text-mint">06</span> · The verdict</p>
-                <h2 id="verdict-h" className="display-l text-balance">Dream, possibility, or evidence?</h2>
-                <p className="mt-4 max-w-3xl text-lg leading-relaxed text-fg">{l.headline}</p>
-                <p className="mt-2 text-sm text-muted">Computed from the data as of {formatDate(preview.windowEnd)}. No AI writes this verdict.</p>
-              </header>
-              <div className="grid gap-3 md:grid-cols-4">
-                {l.rungs.map((r) => {
-                  const b = r.byMultiple.find((x) => x.multipleKey === 'today')!;
-                  const tone = b.band === 'holds' ? 'border-mint/50' : b.band === 'gains' ? 'border-line-strong' : b.band === 'dominant' ? 'border-amber/50' : 'border-coral/50';
-                  return (
-                    <div key={r.price} className={`panel border p-5 ${tone}`}>
-                      <p className="num text-2xl font-[640]">${r.price}</p>
-                      <p className="num text-xs text-muted">{formatValue(r.priceMultiple, 'ratio')} · rank #{r.rankToday}</p>
-                      <p className="mt-3 text-sm text-fg-2">Intents volume equal to <span className="num text-fg">{formatValue(b.dexShare2036, 'fraction')}</span> of spot DEX volume, growing <span className="num text-fg">{formatValue(b.requiredCagr, 'fraction')}</span> a year, and the market keeps NEAR&apos;s multiple today.</p>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <div className="panel p-5"><p className="eyebrow text-mint">What we know</p><p className="mt-2 text-sm leading-relaxed text-fg-2">Intents is real and growing ({formatValue(l.inputs.intentsYoY, 'fraction')} YoY, {formatValue(l.inputs.dexShareToday, 'fraction')} of spot DEX volume). Gas burns plus Intents revenue designated for buybacks come to {formatValue(l.inputs.captureToday, 'USD')} a year. NEAR is valued at {formatValue(l.multiples.find((m) => m.key === 'today')?.value ?? null, 'ratio')} that flow; Tron at {formatValue(l.multiples.find((m) => m.key === 'tron')?.value ?? null, 'ratio')} and Hyperliquid at {formatValue(l.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null, 'ratio')} on the same basis.</p></div>
-                <div className="panel p-5"><p className="eyebrow text-amber">What we assume</p><p className="mt-2 text-sm leading-relaxed text-fg-2">How the market will value NEAR in 2036, how fast the DEX market grows ({DEX_GROWTH.base * 100}% a year in the base case), and that the take rate and supply rules hold.</p></div>
-                <div className="panel p-5"><p className="eyebrow text-coral">What would change the view</p><p className="mt-2 text-sm leading-relaxed text-fg-2">Intents falling behind its checkpoints, fee compression, a re-rating toward cash-flow multiples, or, upward, money and users settling on NEAR itself, which would open the platform-premium route.</p></div>
-              </div>
-              <details className="mt-8">
-                <summary className="cursor-pointer text-sm text-muted hover:text-fg">Falsification triggers from the underlying research</summary>
-                <div className="mt-3"><TriggerTable triggers={triggers} /></div>
-              </details>
             </section>
 
             <section id="episodes" className="mt-16 scroll-mt-20" aria-labelledby="ep-h">
@@ -189,13 +173,13 @@ export default async function ThesisPage() {
               {episodes?.entries.length ? (
                 <ul className="grid gap-3 md:grid-cols-2">{episodes.entries.map((e) => <LibraryRow key={e.id} e={e} />)}</ul>
               ) : (
-                <EmptyState title="No debate episodes yet.">Each episode is generated from a frozen snapshot and kept permanently, so you can compare how the argument changed as the evidence changed.</EmptyState>
+                <EmptyState title="No debate episodes yet.">Each episode is generated from a frozen snapshot of this research and kept permanently.</EmptyState>
               )}
             </section>
 
             <nav aria-label="Go deeper" className="mt-16 grid gap-3 border-t hairline pt-10 md:grid-cols-2">
               <Link href="/research" className="panel p-5 transition-colors hover:border-line-strong"><p className="eyebrow">Data &amp; queries</p><p className="mt-2 font-[600]">Every chart, the request behind it, and the raw hashes</p></Link>
-              <Link href="/methodology" className="panel p-5 transition-colors hover:border-line-strong"><p className="eyebrow">Methodology</p><p className="mt-2 font-[600]">Ladder formulas, rules, calculator and known limitations</p></Link>
+              <Link href="/methodology" className="panel p-5 transition-colors hover:border-line-strong"><p className="eyebrow">Methodology</p><p className="mt-2 font-[600]">Formulas, rules, the audit and known limitations</p></Link>
             </nav>
           </>
         )}
