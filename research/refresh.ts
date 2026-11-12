@@ -20,7 +20,8 @@ import 'dotenv/config';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fetchAll } from '@/lib/data/fetcher';
-import { buildEraRequests, buildRequestCatalog, sha256, stableStringify } from '@/lib/data/sources';
+import { BUYBACK_KEY, fetchBuybackTransfers } from '@/lib/data/fastnear';
+import { buildBackgroundRequests, buildRequestCatalog, sha256, stableStringify } from '@/lib/data/sources';
 import { evidenceForAgainst } from '@/lib/research/thesis';
 import { fileRawStore } from '@/lib/data/stores';
 import { buildDataset } from '@/lib/research/evidence';
@@ -43,10 +44,12 @@ async function build(offlineMode: boolean) {
   const store = fileRawStore(RAW);
   const outcomes = await fetchAll(buildRequestCatalog(), store, { offline: offlineMode, forceFresh: !offlineMode });
   // Closed months never change, so era history is fetched once and then reused (not forced fresh).
-  const era = await fetchAll(buildEraRequests(), store, { offline: offlineMode });
+  const era = await fetchAll(buildBackgroundRequests(), store, { offline: offlineMode });
   const eraFetched = era.filter((o) => o.status === 'OK' && !o.cacheHit).length;
   console.log(`  era history: ${era.filter((o) => o.record).length}/${era.length} months available (${eraFetched} fetched now)`);
-  const raws = Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record]));
+  const buybacks = await fetchBuybackTransfers(store, { offline: offlineMode });
+  console.log(`  buyback transfers: ${buybacks ? (buybacks.body as { transfers: unknown[] }).transfers.length : 'unavailable'}`);
+  const raws = { ...Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record])), [BUYBACK_KEY]: buybacks };
   const ds = buildDataset(raws);
   const triggers = evaluateTriggers(ds.evidence);
   const manifest = store.manifest();
@@ -142,6 +145,18 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
     ...l.platform.filter((p) => p.chain !== 'Near').flatMap((p) => ([['Stablecoins', 'stablecoins', 'stablecoinsMultiple', p.capToStablecoins], ['DeFi TVL', 'tvl', 'tvlMultiple', p.capToTvl]] as const).map(([metric, f, m, ratioV]) =>
       `| ${platName(p.chain)} | ${metric} | ${formatValue(ratioV, 'ratio')} | ${l.rungs.map((r) => { const x = r.platform.find((y) => y.benchmark === p.chain); return `${formatValue(x?.[f] ?? null, 'USD')} (${formatValue(x?.[m] ?? null, 'ratio')})`; }).join(' | ')} |`)),
     `| NEAR today | | | Stablecoins ${formatValue(nearPlat?.stablecoins ?? null, 'USD')}; DeFi TVL ${formatValue(nearPlat?.tvl ?? null, 'USD')} | | | |`].join(NL));
+  // ---- W4 token economics
+  const tk = ds.tokenomics;
+  const CLS: Record<string, string> = { source: 'Source of value, not captured', label: 'Label, not a transaction', capture: '**Value capture**', redistribution: 'Redistribution (new tokens)', dilution: '**Dilution** (subtracted)', excluded: 'Not $NEAR value' };
+  out = out.replace('{{TOK_TAXONOMY_TABLE}}', ['| Flow | What it is | Per year | Classification |', '|---|---|---|---|',
+    ...tk.taxonomy.map((r) => `| ${r.flow} | ${r.what} | ${r.usdPerYear === null ? 'not summed' : formatValue(r.usdPerYear, 'USD')} | ${CLS[r.cls]} |`),
+    `| **Verified capture minus net issuance** | | **${formatValue(tk.netValueToHoldersUsd, 'USD')}** | Net value to holders |`].join(NL));
+  out = out.replace('{{TOK_FINDINGS}}', tk.findings.map((f) => `- ${f}`).join(NL));
+  out = out.replace('{{TOK_FIRST_RECEIPT}}', tk.buybacks.firstReceipt ?? 'n/a');
+  out = out.replace('{{TOK_BUYBACK_TABLE}}', ['| Month | NEAR bought | Executed (USD) | Designated (USD) | Executed / designated |', '|---|---|---|---|---|',
+    ...tk.buybacks.monthly.map((m) => `| ${m.month} | ${formatValue(m.executedNear, 'NEAR')} | ${formatValue(m.executedUsd, 'USD')} | ${formatValue(m.designatedUsd, 'USD')} | ${formatValue(m.executedUsd !== null && m.designatedUsd ? m.executedUsd / m.designatedUsd : null, 'fraction')} |`)].join(NL));
+  out = out.replace('{{TOK_ASSETS_TABLE}}', ['| Asset | Valued as | Market cap | Supply still to unlock (FDV / cap) | Circulating supply growth, 1 year (as reported) | Excluding one-day events | Held buybacks subtracted | **Dilution net of capture** | Holder yield (context) |', '|---|---|---|---|---|---|---|---|---|',
+    ...[...tk.assets].sort((a, b) => (a.dilutionNetOfCapture ?? 9) - (b.dilutionNetOfCapture ?? 9)).map((a) => `| ${a.label === 'NEAR' ? '**NEAR**' : a.label} | ${a.type} | ${formatValue(a.marketCap, 'USD')} | ${formatValue(a.fdvToMcap, 'ratio')} | ${formatValue(a.circGrowth1y, 'fraction', { signed: true })}${a.jumps.length ? ` (${a.jumps.length} event${a.jumps.length > 1 ? 's' : ''}: ${a.jumps.map((j) => `${j.day} ${formatValue(j.change, 'fraction', { signed: true })}`).join(', ')})` : ''} | ${formatValue(a.circGrowthExEvents, 'fraction', { signed: true })} | ${a.heldBuybackRate ? formatValue(a.heldBuybackRate, 'fraction') : '0'} | **${formatValue(a.dilutionNetOfCapture, 'fraction', { signed: true })}** | ${a.holderYield === null ? (a.type === 'monetary' ? 'none' : 'n/a') : formatValue(a.holderYield, 'fraction')} |`)].join(NL));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

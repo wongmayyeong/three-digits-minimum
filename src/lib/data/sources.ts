@@ -5,7 +5,7 @@
  */
 import { createHash } from 'node:crypto';
 
-export type SourceId = 'coingecko' | 'defillama' | 'nearblocks' | 'near-rpc' | 'intents-explorer' | 'bigquery';
+export type SourceId = 'coingecko' | 'defillama' | 'nearblocks' | 'near-rpc' | 'fastnear' | 'intents-explorer' | 'bigquery';
 
 export interface SourceMeta {
   id: SourceId;
@@ -21,7 +21,7 @@ export interface SourceMeta {
 export const SOURCES: Record<SourceId, SourceMeta> = {
   coingecko: {
     id: 'coingecko', name: 'CoinGecko', kind: 'market data API', baseUrl: 'https://api.coingecko.com/api/v3',
-    docsUrl: 'https://docs.coingecko.com/reference/introduction', requiresCredential: false, minGapMs: 2_500,
+    docsUrl: 'https://docs.coingecko.com/reference/introduction', requiresCredential: false, minGapMs: 6_500,
   },
   defillama: {
     id: 'defillama', name: 'DefiLlama', kind: 'DeFi analytics API', baseUrl: 'https://api.llama.fi',
@@ -34,6 +34,10 @@ export const SOURCES: Record<SourceId, SourceMeta> = {
   'near-rpc': {
     id: 'near-rpc', name: 'NEAR JSON-RPC (FastNEAR)', kind: 'onchain RPC', baseUrl: 'https://free.rpc.fastnear.com',
     docsUrl: 'https://docs.near.org/api/rpc/introduction', requiresCredential: false, minGapMs: 200,
+  },
+  fastnear: {
+    id: 'fastnear', name: 'FastNEAR transactions API', kind: 'NEAR transaction indexer', baseUrl: 'https://tx.main.fastnear.com/v0',
+    docsUrl: 'https://github.com/fastnear/explorer-api', requiresCredential: false, minGapMs: 250,
   },
   'intents-explorer': {
     id: 'intents-explorer', name: 'NEAR Intents Explorer API', kind: 'partner API (JWT)', baseUrl: 'https://explorer.near-intents.org/api/v0',
@@ -103,6 +107,21 @@ export const VALUATION_PEERS = [
   { label: 'Hyperliquid', coin: 'hyperliquid', llama: 'hyperliquid', chain: 'Hyperliquid L1', regime: 'cash-flow' },
 ] as const;
 export const PLATFORM_CHAINS: string[] = ['Ethereum', 'BSC', 'Solana', 'Tron', 'Near'];
+/**
+ * Investable alternatives (SCOPE.md section 3, fixed before results were seen). `llama` is the DefiLlama
+ * holders-revenue slug (burns and buybacks); BTC has none by design (monetary asset).
+ */
+export const INVESTABLE = [
+  { label: 'BTC', coin: 'bitcoin', llama: null, type: 'monetary' },
+  { label: 'ETH', coin: 'ethereum', llama: 'ethereum', type: 'platform' },
+  { label: 'SOL', coin: 'solana', llama: 'solana', type: 'platform' },
+  { label: 'SUI', coin: 'sui', llama: 'sui', type: 'platform' },
+  { label: 'AVAX', coin: 'avalanche-2', llama: 'avalanche', type: 'platform' },
+  { label: 'TON', coin: 'the-open-network', llama: 'ton', type: 'platform' },
+  { label: 'APT', coin: 'aptos', llama: 'aptos', type: 'platform' },
+  { label: 'HYPE', coin: 'hyperliquid', llama: 'hyperliquid', type: 'cash-flow' },
+  { label: 'NEAR', coin: 'near', llama: null, type: 'both' },
+] as const;
 /** DefiLlama categories inside its DEX overview. Spot = AMMs and order books; cross-chain = where NEAR Intents is listed. */
 export const DEX_SPOT_CATEGORY = 'Dexs';
 export const DEX_CROSS_CHAIN_CATEGORIES: string[] = ['Bridge', 'Cross Chain Bridge'];
@@ -188,7 +207,30 @@ export function buildRequestCatalog(): HttpRequestDef[] {
     get url() { return `${cgBase()}/global`; },
     project: (j: any) => ({ totalMarketCapUsd: Number(j?.data?.total_market_cap?.usd), btcDominancePct: Number(j?.data?.market_cap_percentage?.btc) }),
   });
-  for (const slug of VALUATION_PEERS.map((p) => p.llama)) {
+  // Token economics (W4): a year of market caps and prices for every investable alternative (circulating
+  // supply = market cap / price, one method for every asset), and holders revenue where it exists.
+  for (const a of INVESTABLE.filter((x) => x.coin !== 'near')) {
+    reqs.push({
+      key: `coingecko.history.${a.coin}`, source: 'coingecko', ttlMs: 6 * HOUR, headers: cgHeaders,
+      get url() { return `${cgBase()}/coins/${a.coin}/market_chart?vs_currency=usd&days=365&interval=daily`; },
+      project: (j: any) => ({
+        prices: asArr(j?.prices).map((p: any) => [Math.round(Number(p[0]) / 1000), Number(p[1])]),
+        marketCaps: asArr(j?.market_caps).map((p: any) => [Math.round(Number(p[0]) / 1000), Math.round(Number(p[1]))]),
+      }),
+    });
+  }
+  reqs.push({
+    key: 'coingecko.universe', source: 'coingecko', ttlMs: HOUR, headers: cgHeaders,
+    get url() { return `${cgBase()}/coins/markets?vs_currency=usd&ids=${INVESTABLE.map((a) => a.coin).join(',')}`; },
+    project: (a) => asArr(a).map((c: any) => ({
+      id: String(c.id), marketCap: Number(c.market_cap), price: Number(c.current_price), circulating: Number(c.circulating_supply),
+      totalSupply: c.total_supply === null ? null : Number(c.total_supply), maxSupply: c.max_supply === null ? null : Number(c.max_supply),
+      fdv: c.fully_diluted_valuation === null ? null : Number(c.fully_diluted_valuation),
+    })),
+  });
+  const peerSlugs = new Set<string>(VALUATION_PEERS.map((p) => p.llama));
+  for (const a of INVESTABLE) if (a.llama && !peerSlugs.has(a.llama)) peerSlugs.add(a.llama);
+  for (const slug of peerSlugs) {
     reqs.push({ key: `defillama.holders.${slug}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/fees/${slug}?dataType=dailyHoldersRevenue`, project: llamaSummary });
   }
   reqs.push({
@@ -244,6 +286,11 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   })));
   reqs.push(rpc('near-rpc.protocol-config', 'EXPERIMENTAL_protocol_config', { finality: 'final' }, (r) => ({
     protocolVersion: r.protocol_version, maxInflationRate: r.max_inflation_rate, protocolRewardRate: r.protocol_reward_rate,
+  })));
+  reqs.push(rpc('near-rpc.validators', 'validators', [null], (r) => ({
+    epochHeight: Number(r.epoch_height), epochStartHeight: Number(r.epoch_start_height),
+    currentStakeYocto: asArr(r.current_validators).map((v: any) => String(v.stake)),
+    proposals: asArr(r.current_proposals).length, currentCount: asArr(r.current_validators).length,
   })));
   reqs.push(rpc('near-rpc.buyback-wallet', 'query', { request_type: 'view_account', finality: 'final', account_id: BUYBACK_WALLET }, (r) => ({
     account: BUYBACK_WALLET, amountYocto: String(r.amount), lockedYocto: String(r.locked), blockHeight: Number(r.block_height),
@@ -353,6 +400,14 @@ export function buildEraRequests(now = new Date()): HttpRequestDef[] {
     }
   }
   return reqs;
+}
+
+/** The buyback wallet was created on this day (NearBlocks account record); no transfers exist before it. */
+export const BUYBACK_WALLET_CREATED = '2026-03-18';
+
+/** Background requests (era months). Fetched by the scheduled refresh and the research CLI. */
+export function buildBackgroundRequests(now = new Date()): HttpRequestDef[] {
+  return buildEraRequests(now);
 }
 
 export const PRICE_COINS = ['near', 'bitcoin'] as const;

@@ -4,6 +4,7 @@ import { Container, ExternalLink } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { ERA_CONTRACTS, SOURCES } from '@/lib/data/sources';
 import { RULES, THESIS_VERSION } from '@/lib/research/thesis';
+import { SUPPLY_JUMP, TOKENOMICS_VERSION } from '@/lib/research/tokenomics';
 import { DEX_GROWTH, GROWTH_SCENARIOS, HORIZON_YEARS, LADDER_VERSION, RUNGS, SHARE_BANDS, SUPPLY_RULES, SWING_SIMILAR } from '@/lib/research/ladder';
 import { formatDate, formatValue } from '@/lib/format';
 import { allocationSensitivity, FORMULA_VERSION, SCENARIOS, sensitivity, type SensitivityMatrix } from '@/lib/research/model';
@@ -48,7 +49,7 @@ export default async function MethodologyPage() {
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. &quot;Three digits, minimum&quot; is used as a hook: instead of forecasting a price, the price ladder computes what NEAR would have to achieve for $10, $25, $50 and $100 in ten years and labels every condition as observed, assumed or unproven. Bull and Bear argue over the same frozen evidence. Nothing here forecasts prices, rates NEAR as an investment, or gives financial advice.</p>
 
       <nav aria-label="On this page" className="mt-8 flex flex-wrap gap-2 text-sm">
-        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
+        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
       </nav>
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
@@ -104,6 +105,36 @@ share_multiple       = dex_share_2036 ÷ (Intents run rate ÷ spot DEX run rate 
         <h3 className="mt-8 text-lg font-[600]">Reverse view and checkpoints</h3>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-fg-2">Implied price in ten years = (today&apos;s Intents run rate × (1 + growth)^{HORIZON_YEARS} × buyback revenue per dollar of volume + burns at today&apos;s run rate) × cash-flow multiple ÷ supply in ten years, for {GROWTH_SCENARIOS.map((g) => `${g.label.toLowerCase()} growth (${g.cagr * 100}% a year)`).join(', ')}. These are scenarios, so results can fall below today&apos;s price. Checkpoints are the yearly volumes on each rung&apos;s required growth path at NEAR&apos;s own multiple today, so the thesis can be checked every year. The swing factor compares the spread of implied prices across growth scenarios with the spread across the cash-flow multiples; spreads within {SWING_SIMILAR}x of each other are reported as similar.</p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">The headline sentence on the home page is generated from these numbers by code. The bands and growth scenarios are our judgment, set while building the pipeline and published so anyone can change them in <span className="num">src/lib/research/ladder.ts</span> and rebuild.</p>
+      </section>
+
+      <section id="tokenomics" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Token economics</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Every token flow is classified before anything is summed. Version <span className="num">{TOKENOMICS_VERSION}</span>.</p>
+        <div className="mt-6 overflow-x-auto rounded-[var(--radius-lg)] border hairline">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="bg-raised text-xs text-muted"><tr><th className="px-4 py-2.5 font-normal">Flow</th><th className="px-4 py-2.5 font-normal">Counted as</th><th className="px-4 py-2.5 font-normal">Why</th></tr></thead>
+            <tbody>
+              {[
+                ['Intents fees, gas fees', 'Source of value', 'Paid by users; not yet captured by holders.'],
+                ['Revenue designated for buybacks', 'Label only', 'DefiLlama classification (Dune lineage, shared with NEAR\'s revenue dashboard). Not a transaction.'],
+                ['Executed buyback purchases', 'Value capture', 'NEAR received by buybacks.multisignature.near from intents.near, read from every receipt (NearBlocks, one request per day), valued at each day\'s price. Unavailable if any day is missing or truncated.'],
+                ['Burns', 'Value capture', '70% of gas, permanently removed.'],
+                ['Staking emissions', 'Redistribution', 'New tokens paid to stakers come from non-stakers\' share of supply.'],
+                ['Net issuance', 'Dilution, subtracted', 'Realized change in total supply (NearBlocks), net of burns.'],
+                ['Ecosystem app revenue', 'Excluded', 'Accrues to applications, not to $NEAR.'],
+              ].map(([a, b, c]) => <tr key={a} className="border-t hairline"><th scope="row" className="px-4 py-3 font-[560]">{a}</th><td className="px-4 py-3">{b}</td><td className="px-4 py-3 text-fg-2">{c}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <pre className="num mt-6 overflow-x-auto rounded-[var(--radius-md)] border hairline bg-surface p-5 text-[0.8125rem] leading-7 text-fg-2">{`staking_ratio        = sum(current validators' stake) ÷ total supply            (NEAR RPC)
+gross_issuance       = realized net supply growth + burns ÷ market cap
+nominal_yield        = gross_issuance × (1 − protocol_reward_rate) ÷ staking_ratio
+real_yield_staker    = (1 + nominal_yield) ÷ (1 + net supply growth) − 1
+real_yield_holder    = 1 ÷ (1 + net supply growth) − 1                       (does not stake)
+circulating_growth   = CoinGecko market cap ÷ price, last day vs a year earlier  (every asset)
+holder_yield         = holders revenue, 90-day run rate ÷ market cap         (DefiLlama, every asset)
+net_holder_yield     = holder_yield − circulating_growth`}</pre>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">Circulating supply from market cap divided by price is one method for every asset, so it includes unlocks that a protocol issuance rate leaves out. One-day changes above {SUPPLY_JUMP * 100}% are listed as reclassification or unlock events rather than smoothed away. Net holder yield excludes price, so it is a measure of token economics, not a return forecast.</p>
       </section>
 
       <section id="thesis" className="scroll-mt-20 mt-16 border-t hairline pt-10">

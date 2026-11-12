@@ -16,6 +16,7 @@ import { addDays, commonEnd, fromUnixPairs, isoDay, lastDay, pctChange, safeDiv,
 import type { EvidenceDraft, EvidenceGroup, SeriesDef, Unit } from './types';
 import { analyzeThesis, thesisEvidence, type ThesisResult } from './thesis';
 import { analyzeLadder, ladderEvidence, type LadderResult } from './ladder';
+import { analyzeTokenomics, tokenomicsEvidence, type TokenomicsResult } from './tokenomics';
 
 export const METHODOLOGY_VERSION = 'nebube-evidence-1.1.0';
 
@@ -33,6 +34,7 @@ export interface ResearchDataset {
   allocationMatrix: SensitivityMatrix;
   thesis: ThesisResult;
   ladder: LadderResult;
+  tokenomics: TokenomicsResult;
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -437,6 +439,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   const ladder = analyzeLadder(raws, (id) => B.val(id));
   B.items.push(...ladderEvidence(ladder, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null, url: r?.url ?? '' }; }));
 
+  // ------------------------------------------------------------ W4 token economics
+  const tokenomics = analyzeTokenomics(raws, (id) => B.val(id));
+  B.items.push(...tokenomicsEvidence(tokenomics, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null }; }));
+
   return {
     methodologyVersion: METHODOLOGY_VERSION,
     formulaVersion: FORMULA_VERSION,
@@ -449,6 +455,7 @@ export function buildDataset(raws: RawMap): ResearchDataset {
     allocationMatrix: allocationSensitivity(modelBase),
     thesis,
     ladder,
+    tokenomics,
   };
 }
 

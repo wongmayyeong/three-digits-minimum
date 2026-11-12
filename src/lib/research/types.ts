@@ -1,7 +1,7 @@
 export type ObservationType = 'OBSERVED' | 'DERIVED' | 'REPORTED' | 'ASSUMED';
 export type Unit = 'USD' | 'NEAR' | 'count' | 'fraction' | 'ratio' | 'text';
 
-export type EvidenceGroup = 'market' | 'intents' | 'onchain' | 'activity' | 'defi' | 'valuation' | 'peers' | 'model' | 'thesis';
+export type EvidenceGroup = 'market' | 'intents' | 'onchain' | 'activity' | 'defi' | 'valuation' | 'peers' | 'model' | 'thesis' | 'supply';
 
 export interface SeriesDef {
   label: string;

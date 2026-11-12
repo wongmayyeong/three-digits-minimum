@@ -12,6 +12,110 @@
    "error": null
   }
  },
+ "coingecko.history.aptos": {
+  "key": "coingecko.history.aptos",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/aptos/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "2c4ed97256d62bc757c36ad375a6e1d11c134695766f2c35dbd977a66cd537be",
+  "fetchedAt": "2026-11-12T10:47:42.024Z",
+  "file": "coingecko.history.aptos.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:47:42.026Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.avalanche-2": {
+  "key": "coingecko.history.avalanche-2",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/avalanche-2/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "00e7930fda239c33b8fe5e30d291fc7bbddbee652e72ae81377ac9a6264365bc",
+  "fetchedAt": "2026-11-12T10:47:28.197Z",
+  "file": "coingecko.history.avalanche-2.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:47:28.201Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.bitcoin": {
+  "key": "coingecko.history.bitcoin",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "de362675201f7a0904b5197252dc23b0753ed4f52ba8a8c2243f804f854b3438",
+  "fetchedAt": "2026-11-12T08:55:24.374Z",
+  "file": "coingecko.history.bitcoin.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:55:24.376Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.ethereum": {
+  "key": "coingecko.history.ethereum",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "28e0d70e0983a9513c9233c160ed8d00eaa256d71dbf47c99d45ebf8b44aca41",
+  "fetchedAt": "2026-11-12T08:55:31.335Z",
+  "file": "coingecko.history.ethereum.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:55:31.338Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.hyperliquid": {
+  "key": "coingecko.history.hyperliquid",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/hyperliquid/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "fe1314adb1a1920ff53e3a4b9959006fda57d00a8bcc8bde89c9a1befbc28a2f",
+  "fetchedAt": "2026-11-12T10:47:48.882Z",
+  "file": "coingecko.history.hyperliquid.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:47:48.884Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.solana": {
+  "key": "coingecko.history.solana",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/solana/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "764d9916c120047903fcb3bbbc06462f90626cba6781615da6ce0382007e072b",
+  "fetchedAt": "2026-11-12T10:48:02.760Z",
+  "file": "coingecko.history.solana.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:48:02.761Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.sui": {
+  "key": "coingecko.history.sui",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/sui/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "80d648a4853eceed344bdf8c639d2700c5ca76603a857ad4e332eed537a0f124",
+  "fetchedAt": "2026-11-12T10:52:36.715Z",
+  "file": "coingecko.history.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:52:36.717Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.history.the-open-network": {
+  "key": "coingecko.history.the-open-network",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/the-open-network/market_chart?vs_currency=usd&days=365&interval=daily",
+  "sha256": "f79957e3efd36c6fed0efac1b04c8df2ea97485909a279808153ec35359bc825",
+  "fetchedAt": "2026-11-12T10:47:35.147Z",
+  "file": "coingecko.history.the-open-network.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:47:35.149Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "coingecko.markets": {
   "key": "coingecko.markets",
   "source": "coingecko",
@@ -47,6 +151,19 @@
   "file": "coingecko.top.json",
   "lastAttempt": {
    "at": "2026-11-12T08:06:53.951Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "coingecko.universe": {
+  "key": "coingecko.universe",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,sui,avalanche-2,the-open-network,aptos,hyperliquid,near",
+  "sha256": "178e543c6ab27d22faf42126ebbb9ca56ead7e7e91b22a0a49f486aacd3cc6d6",
+  "fetchedAt": "2026-11-12T10:47:55.977Z",
+  "file": "coingecko.universe.json",
+  "lastAttempt": {
+   "at": "2026-11-12T10:47:55.979Z",
    "status": "OK",
    "error": null
   }
@@ -298,15 +415,41 @@
    "error": null
   }
  },
+ "defillama.holders.aptos": {
+  "key": "defillama.holders.aptos",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyHoldersRevenue",
+  "sha256": "b620dc6a23837b777ae476b32cf9e621c424a1cf651dd205105f083650815c3f",
+  "fetchedAt": "2026-11-12T08:54:41.565Z",
+  "file": "defillama.holders.aptos.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:54:41.568Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.holders.avalanche": {
+  "key": "defillama.holders.avalanche",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyHoldersRevenue",
+  "sha256": "a85f98976c9d2642a288b705cb76e97b35c7dfd5ca2a23225f17730beafdba1b",
+  "fetchedAt": "2026-11-12T08:54:38.904Z",
+  "file": "defillama.holders.avalanche.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:54:38.907Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.holders.bsc": {
   "key": "defillama.holders.bsc",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyHoldersRevenue",
   "sha256": "91734e7cda487fc21b9c7beeeb6f5a8f983b9aa02323d6fcbb98729a76f02b99",
-  "fetchedAt": "2026-11-12T08:07:06.273Z",
+  "fetchedAt": "2026-11-12T08:54:35.632Z",
   "file": "defillama.holders.bsc.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:06.277Z",
+   "at": "2026-11-12T08:54:35.635Z",
    "status": "OK",
    "error": null
   }
@@ -315,11 +458,11 @@
   "key": "defillama.holders.ethereum",
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyHoldersRevenue",
-  "sha256": "0f387261d6e72ede4447b2f7bed0f1c58e0c55248d63538d92ccc315297f7185",
-  "fetchedAt": "2026-11-12T08:07:05.928Z",
+  "sha256": "9cae0fd78835a89fe900371768fc16757c2a420d915e83d5f8ffc0bf450341a2",
+  "fetchedAt": "2026-11-12T08:54:35.288Z",
   "file": "defillama.holders.ethereum.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:05.932Z",
+   "at": "2026-11-12T08:54:35.290Z",
    "status": "OK",
    "error": null
   }
@@ -329,10 +472,10 @@
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
   "sha256": "8530072d1e9289ba92dd6fd5805e15583700f2bf8f9f0e66cbab1369a576c2b8",
-  "fetchedAt": "2026-11-12T08:07:07.340Z",
+  "fetchedAt": "2026-11-12T08:54:36.716Z",
   "file": "defillama.holders.hyperliquid.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:07.345Z",
+   "at": "2026-11-12T08:54:36.719Z",
    "status": "OK",
    "error": null
   }
@@ -342,10 +485,36 @@
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyHoldersRevenue",
   "sha256": "de7d4dd01924df168e4649176e61a434022f4185f671343070edf40f8ed38bc0",
-  "fetchedAt": "2026-11-12T08:07:06.618Z",
+  "fetchedAt": "2026-11-12T08:54:35.990Z",
   "file": "defillama.holders.solana.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:06.621Z",
+   "at": "2026-11-12T08:54:35.993Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.holders.sui": {
+  "key": "defillama.holders.sui",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyHoldersRevenue",
+  "sha256": "17b900622d8a1d90826733e21d3a584670cf1b042dc68e83197521b6c6e3269c",
+  "fetchedAt": "2026-11-12T08:54:38.085Z",
+  "file": "defillama.holders.sui.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:54:38.088Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.holders.ton": {
+  "key": "defillama.holders.ton",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/ton?dataType=dailyHoldersRevenue",
+  "sha256": "c792777c24333dfaa59ee24ea6878cf25f6ccb00e131771cf852bfb960bba5d6",
+  "fetchedAt": "2026-11-12T08:54:40.339Z",
+  "file": "defillama.holders.ton.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:54:40.342Z",
    "status": "OK",
    "error": null
   }
@@ -355,10 +524,10 @@
   "source": "defillama",
   "url": "https://api.llama.fi/summary/fees/tron?dataType=dailyHoldersRevenue",
   "sha256": "5707a3c9f59c5f530ef0f28cb2de196ca1e9c73f6f81814a7c48ac879d69ff56",
-  "fetchedAt": "2026-11-12T08:07:06.975Z",
+  "fetchedAt": "2026-11-12T08:54:36.346Z",
   "file": "defillama.holders.tron.json",
   "lastAttempt": {
-   "at": "2026-11-12T08:07:06.981Z",
+   "at": "2026-11-12T08:54:36.348Z",
    "status": "OK",
    "error": null
   }
@@ -532,6 +701,14 @@
    "error": null
   }
  },
+ "fastnear.buybacks": {
+  "key": "fastnear.buybacks",
+  "source": "fastnear",
+  "url": "https://tx.main.fastnear.com/v0/account",
+  "sha256": "21da76b0ad2a4e010e540b6623236c78e9075d19cfa227d1dbf8bb2551eff35e",
+  "fetchedAt": "2026-11-12T10:51:57.787Z",
+  "file": "fastnear.buybacks.json"
+ },
  "near-rpc.block": {
   "key": "near-rpc.block",
   "source": "near-rpc",
@@ -580,6 +757,19 @@
   "file": "near-rpc.protocol-config.json",
   "lastAttempt": {
    "at": "2026-11-12T08:06:48.662Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "near-rpc.validators": {
+  "key": "near-rpc.validators",
+  "source": "near-rpc",
+  "url": "https://free.rpc.fastnear.com",
+  "sha256": "6db9e5248b0049c588247bd60c867c90a887e02d8ed32756b3fc4d38f1fb747a",
+  "fetchedAt": "2026-11-12T08:55:24.453Z",
+  "file": "near-rpc.validators.json",
+  "lastAttempt": {
+   "at": "2026-11-12T08:55:24.455Z",
    "status": "OK",
    "error": null
   }

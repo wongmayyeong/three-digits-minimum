@@ -105,19 +105,57 @@ How fast Intents grows and how the market values NEAR matter about equally: pric
 | Tron | DeFi TVL | 6.15x | $2.73B (16.5x) | $6.83B (41.4x) | $13.66B (82.7x) | $27.31B (165x) |
 | NEAR today | | | Stablecoins $130.85M; DeFi TVL $165.03M | | | |
 
-**Does the token capture value today?**
+**Does the token capture value? (token economics)**
 
-| Measure | Value |
-|---|---|
-| Buyback-designated Intents revenue per year (90-day run rate, DefiLlama classification) | $20.59M |
-| Realized net new supply per year (net of burns) | 2.48% ($113.26M at today's price) |
-| Buyback-designated revenue as a share of realized net new supply | 18.2% |
-| Supply parity: volume needed for buyback revenue to match net new supply | $269.92B (5.50x today) |
-| Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | 0.042% (0.027%) |
-| Tokens held by the buyback wallet | 2.25M NEAR |
-| Circulating market cap | $4.60B |
+Every flow is classified before anything is added up. Only executed buybacks and burns count as value captured by $NEAR; revenue *designated* for buybacks is a label until the purchase happens onchain, staking rewards are paid in new tokens (redistribution from non-stakers), and net issuance is dilution.
 
-A buyback is not a burn: bought tokens are held, and total supply only falls if they are burned. DefiLlama's buyback designation is a classification ($8.06M so far); as an onchain cross-check, the buyback wallet holds 2.25M NEAR, worth 98.1% of the designated amount at today's price.
+| Flow | What it is | Per year | Classification |
+|---|---|---|---|
+| NEAR Intents fees | Gross fees paid by Intents users (protocol and distributor fees) | $76.07M | Source of value, not captured |
+| NEAR gas fees | All transaction fees paid on the NEAR chain | $1.52M | Source of value, not captured |
+| Intents revenue designated for buybacks | DefiLlama's classification of captured revenue as buybacks | $20.75M | Label, not a transaction |
+| Executed buyback purchases | NEAR received by buybacks.multisignature.near from intents.near, valued at each day's price | $13.93M | **Value capture** |
+| Gas burned | 70% of every gas fee, permanently removed | $1.06M | **Value capture** |
+| Staking emissions | New NEAR minted for validators and delegators | $114.93M | Redistribution (new tokens) |
+| Net issuance | Emissions minus burns: the dilution every holder faces | $113.26M | **Dilution** (subtracted) |
+| Ecosystem app revenue (for example RHEA) | Revenue accruing to applications, not to $NEAR | not summed | Not $NEAR value |
+| **Verified capture minus net issuance** | | **-$98.27M** | Net value to holders |
+
+- Executed buybacks: $13.9M a year (90-day run rate) against $20.8M designated. Since designation began, 60.2% of the designated amount arrived through the documented route (intents.near); counting 1csfundsadmin.sputnik-dao.near as well, 74.9%.
+- Verified value capture (executed buybacks + burns) is $15.0M a year; net issuance is $113.3M. Net, holders are diluted by $98.3M a year.
+- Staking: 44% of supply is staked; nominal yield 5.6%, 3.1% after dilution for stakers and -2.4% for non-stakers.
+- Dilution net of capture over the last year (circulating supply growth excluding one-day events, minus held buybacks): NEAR 2.2%, 5 lowest of 9; HYPE 0.2%, ETH 0.8%, BTC 0.9%, SOL 1.5%, NEAR 2.2%, AVAX 4.4%, SUI 12.5%, TON 14.8%, APT 22.6%.
+
+**Executed versus designated buybacks.** The buyback swaps execute inside NEAR Intents, and the NEAR is withdrawn to `buybacks.multisignature.near`. Reading every transfer into that wallet (FastNEAR transaction API, exact yoctoNEAR; NearBlocks' free tier could not page the history) and valuing each day's NEAR at that day's price gives an independent check of DefiLlama's designation, which shares its Dune lineage with NEAR's own revenue dashboard. Since the first purchase on 2026-04-23: 1.74M NEAR bought ($4.86M, average price $2.79) against $8.06M designated, so 60.2% has arrived through the documented route. A second sender, the DAO `1csfundsadmin.sputnik-dao.near`, whose name points to NEAR Intents' 1Click service, sent $1.18M of NEAR, mostly in one transfer in September; it is not documented as a buyback route, so it is shown separately: counting it, 74.9% has been executed. Either way, executed purchases trail the designation, and no executions appear before April although designation began in February. The wallet still holds 99.6% of everything it received: bought NEAR is held, not burned, so total supply does not fall.
+
+| Month | NEAR bought | Executed (USD) | Designated (USD) | Executed / designated |
+|---|---|---|---|---|
+| 2026-02 | 0 NEAR | $0 | $196.8K | 0.000% |
+| 2026-03 | 0 NEAR | $0 | $563.5K | 0.000% |
+| 2026-04 | 34.6K NEAR | $47.5K | $258.7K | 18.4% |
+| 2026-05 | 227.9K NEAR | $415.2K | $619.6K | 67.0% |
+| 2026-06 | 223.9K NEAR | $491.7K | $619.5K | 79.4% |
+| 2026-07 | 180.5K NEAR | $341.4K | $504.9K | 67.6% |
+| 2026-08 | 277.7K NEAR | $488.9K | $723.3K | 67.6% |
+| 2026-09 | 396.8K NEAR | $1.23M | $1.84M | 66.6% |
+| 2026-10 | 297.3K NEAR | $1.45M | $2.19M | 66.2% |
+| 2026-11 | 104.4K NEAR | $396.8K | $544.2K | 72.9% |
+
+**Staking.** 44.4% of supply is staked. Realized gross issuance is 2.50% a year and all of it goes to stakers (the protocol treasury share is zero), so the nominal staking yield is 5.62% before validator commission. After dilution a staker's share of supply grows 3.07% a year, while a non-staker's share changes by -2.42%. Staking protects a holder from dilution; it does not create value.
+
+**The same measures for every alternative.** Circulating supply growth is CoinGecko market cap divided by price, one method for every asset, so it includes unlocks. One-day changes above 5% are reclassifications or one-off recognitions (for example, Hyperliquid's Assistance Fund tokens being recognized as burned), so the comparable column chains daily changes without them. That can also drop a genuine one-day unlock (Solana's 12 March jump is one candidate), so the as-reported column stays next to it. Burns and recognized buybacks already lower circulating supply, so they are not added back as a yield; only NEAR's bought-back tokens, which are held and still counted as circulating, are subtracted. The result, dilution net of capture, is the share of the network a holder who does nothing loses each year to new supply. Holder yield is shown for context only. Price is excluded: this is token economics, not a return forecast.
+
+| Asset | Valued as | Market cap | Supply still to unlock (FDV / cap) | Circulating supply growth, 1 year (as reported) | Excluding one-day events | Held buybacks subtracted | **Dilution net of capture** | Holder yield (context) |
+|---|---|---|---|---|---|---|---|---|
+| HYPE | cash-flow | $17.16B | 3.97x | -11.6% (3 events: 2025-12-24 -12.2%, 2026-05-27 -6.69%, 2026-10-29 +7.62%) | +0.242% | 0 | **+0.242%** | 5.11% |
+| ETH | platform | $250.05B | 1.00x | +0.817% | +0.817% | 0 | **+0.817%** | 0.025% |
+| BTC | monetary | $1.48T | 1.00x | +0.924% | +0.924% | 0 | **+0.924%** | none |
+| SOL | platform | $49.14B | 1.08x | +6.74% (1 event: 2026-03-12 +5.18%) | +1.49% | 0 | **+1.49%** | 0.061% |
+| **NEAR** | both | $4.58B | 1.00x | +2.47% | +2.47% | 0.304% | **+2.16%** | 0.472% |
+| AVAX | platform | $3.81B | 1.06x | +4.38% | +4.38% | 0 | **+4.38%** | 0.096% |
+| SUI | platform | $3.37B | 2.42x | +12.5% | +12.5% | 0 | **+12.5%** | n/a |
+| TON | platform | $3.56B | 1.85x | +14.8% | +14.8% | 0 | **+14.8%** | 0.013% |
+| APT | platform | $490.48M | 1.37x | +22.6% | +22.6% | 0 | **+22.6%** | 0.286% |
 
 **Track record: did NEAR's earlier pivots last?** Each era's representative product against its own peak, exact data only. For busy contracts NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are excluded, which is why v1.signer starts in April 2026 and Intents is measured by DefiLlama volume.
 
@@ -409,3 +447,66 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | LAD-IMPLIED-HIGH-HYPERLIQUID | Implied 2036 price: high growth, Priced like Hyperliquid | $6.93 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-HIGH-TRON | Implied 2036 price: high growth, Priced like Tron | $36 | DERIVED | as of Nov 10, 2026 | Computed here |
 | LAD-IMPLIED-HIGH-TODAY | Implied 2036 price: high growth, NEAR's multiple today | $75 | DERIVED | as of Nov 10, 2026 | Computed here |
+| TOK-EXECUTED-NEAR | NEAR bought back and received by buybacks.multisignature.near since 2026-04-23 | 1.74M NEAR | OBSERVED | Apr 23, 2026 to Nov 11, 2026 | NearBlocks |
+| TOK-EXECUTED-USD | Executed buybacks valued at each day's NEAR price | $4.86M | DERIVED | Apr 23, 2026 to Nov 11, 2026 | Computed here |
+| TOK-DESIGNATED-SINCE | Revenue DefiLlama designates for buybacks, over the same days | $8.06M | OBSERVED | as of Nov 11, 2026 | DefiLlama |
+| TOK-EXECUTED-VS-DESIGNATED | Executed buybacks as a share of designated buybacks | 60.2% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-AFFILIATED-USD | NEAR sent to the wallet by 1csfundsadmin.sputnik-dao.near, valued at each day's price | $1.18M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-EXECUTED-BROAD-VS-DESIGNATED | Executed buybacks including the 1Click funds DAO, as a share of designated | 74.9% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-EXECUTED-RUNRATE | Executed buybacks, 90-day run rate | $13.93M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-DESIGNATED-RUNRATE | Designated buybacks, 90-day run rate (same days) | $20.75M | DERIVED | as of Nov 11, 2026 | DefiLlama |
+| TOK-WALLET-RECONCILE | Buyback wallet balance / NEAR received | 99.6% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-AVG-PURCHASE-PRICE | Average buyback price | $2.79 | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-BUYBACK-PCT-SUPPLY | Executed buybacks per year as a share of total supply | 0.303% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-STAKING-RATIO | Share of NEAR supply staked with active validators | 44.4% | DERIVED | as of Nov 11, 2026 | NEAR RPC |
+| TOK-GROSS-ISSUANCE | Gross issuance, annualized (net supply growth + burns) | 2.50% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-STAKING-NOMINAL | Nominal staking yield (before validator commission) | 5.62% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-STAKING-REAL | Real staking yield after dilution | 3.07% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NONSTAKER-REAL | Change in a non-staker's share of supply per year | -2.42% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-VERIFIED-CAPTURE | Verified value capture per year (executed buybacks + burns) | $14.99M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NET-TO-HOLDERS | Verified value capture minus net issuance, per year | -$98.27M | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-BTC-CIRC-GROWTH | BTC: circulating supply growth, trailing year | 0.924% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-BTC-FDV-MCAP | BTC: fully diluted value / market cap (supply still to unlock) | 1.00x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-BTC-HOLDER-YIELD | BTC: value reaching holders as a share of market cap, 90-day run rate | unavailable | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-BTC-CIRC-GROWTH-EX | BTC: circulating supply growth excluding one-day events | 0.924% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-BTC-DILUTION-NET | BTC: dilution net of capture, per year | 0.924% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-ETH-CIRC-GROWTH | ETH: circulating supply growth, trailing year | 0.817% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-ETH-FDV-MCAP | ETH: fully diluted value / market cap (supply still to unlock) | 1.00x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-ETH-HOLDER-YIELD | ETH: value reaching holders as a share of market cap, 90-day run rate | 0.025% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-ETH-CIRC-GROWTH-EX | ETH: circulating supply growth excluding one-day events | 0.817% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-ETH-DILUTION-NET | ETH: dilution net of capture, per year | 0.817% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-SOL-CIRC-GROWTH | SOL: circulating supply growth, trailing year | 6.74% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-SOL-FDV-MCAP | SOL: fully diluted value / market cap (supply still to unlock) | 1.08x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-SOL-HOLDER-YIELD | SOL: value reaching holders as a share of market cap, 90-day run rate | 0.061% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-SOL-CIRC-GROWTH-EX | SOL: circulating supply growth excluding one-day events | 1.49% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-SOL-DILUTION-NET | SOL: dilution net of capture, per year | 1.49% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-SUI-CIRC-GROWTH | SUI: circulating supply growth, trailing year | 12.5% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-SUI-FDV-MCAP | SUI: fully diluted value / market cap (supply still to unlock) | 2.42x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-SUI-HOLDER-YIELD | SUI: value reaching holders as a share of market cap, 90-day run rate | unavailable | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-SUI-CIRC-GROWTH-EX | SUI: circulating supply growth excluding one-day events | 12.5% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-SUI-DILUTION-NET | SUI: dilution net of capture, per year | 12.5% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-AVAX-CIRC-GROWTH | AVAX: circulating supply growth, trailing year | 4.38% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-AVAX-FDV-MCAP | AVAX: fully diluted value / market cap (supply still to unlock) | 1.06x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-AVAX-HOLDER-YIELD | AVAX: value reaching holders as a share of market cap, 90-day run rate | 0.096% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-AVAX-CIRC-GROWTH-EX | AVAX: circulating supply growth excluding one-day events | 4.38% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-AVAX-DILUTION-NET | AVAX: dilution net of capture, per year | 4.38% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-TON-CIRC-GROWTH | TON: circulating supply growth, trailing year | 14.8% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-TON-FDV-MCAP | TON: fully diluted value / market cap (supply still to unlock) | 1.85x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-TON-HOLDER-YIELD | TON: value reaching holders as a share of market cap, 90-day run rate | 0.013% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-TON-CIRC-GROWTH-EX | TON: circulating supply growth excluding one-day events | 14.8% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-TON-DILUTION-NET | TON: dilution net of capture, per year | 14.8% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-APT-CIRC-GROWTH | APT: circulating supply growth, trailing year | 22.6% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-APT-FDV-MCAP | APT: fully diluted value / market cap (supply still to unlock) | 1.37x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-APT-HOLDER-YIELD | APT: value reaching holders as a share of market cap, 90-day run rate | 0.286% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-APT-CIRC-GROWTH-EX | APT: circulating supply growth excluding one-day events | 22.6% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-APT-DILUTION-NET | APT: dilution net of capture, per year | 22.6% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-HYPE-CIRC-GROWTH | HYPE: circulating supply growth, trailing year | -11.6% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-HYPE-FDV-MCAP | HYPE: fully diluted value / market cap (supply still to unlock) | 3.97x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-HYPE-HOLDER-YIELD | HYPE: value reaching holders as a share of market cap, 90-day run rate | 5.11% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-HYPE-CIRC-GROWTH-EX | HYPE: circulating supply growth excluding one-day events | 0.242% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-HYPE-DILUTION-NET | HYPE: dilution net of capture, per year | 0.242% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NEAR-CIRC-GROWTH | NEAR: circulating supply growth, trailing year | 2.47% | DERIVED | Nov 13, 2025 to Nov 11, 2026 | CoinGecko |
+| TOK-NEAR-FDV-MCAP | NEAR: fully diluted value / market cap (supply still to unlock) | 1.00x | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-NEAR-HOLDER-YIELD | NEAR: value reaching holders as a share of market cap, 90-day run rate | 0.472% | DERIVED | as of Nov 11, 2026 | Computed here |
+| TOK-NEAR-CIRC-GROWTH-EX | NEAR: circulating supply growth excluding one-day events | 2.47% | DERIVED | as of Nov 11, 2026 | CoinGecko |
+| TOK-NEAR-DILUTION-NET | NEAR: dilution net of capture, per year | 2.16% | DERIVED | as of Nov 11, 2026 | Computed here |

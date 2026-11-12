@@ -10,7 +10,8 @@ import { resolveLlm } from '@/lib/ai/provider';
 import { PROMPT_VERSION } from '@/lib/ai/prompts';
 import { voiceStatus } from '@/lib/audio/voices';
 import { fetchAll } from '@/lib/data/fetcher';
-import { buildEraRequests } from '@/lib/data/sources';
+import { buildBackgroundRequests } from '@/lib/data/sources';
+import { fetchBuybackTransfers } from '@/lib/data/fastnear';
 import { dbRawStore } from '@/lib/data/stores';
 import { log } from '@/lib/log';
 import { db } from '@/lib/storage/db';
@@ -32,9 +33,10 @@ export function verdictSignature(t: StoredThesis | null | undefined): string | n
 }
 
 export async function runDailyRefresh(): Promise<{ snapshotId: string; episode: string | null; reason: string }> {
-  const eras = buildEraRequests();
+  const eras = buildBackgroundRequests();
   const store = dbRawStore();
   const eraOut = await fetchAll(eras, store, {});
+  await fetchBuybackTransfers(store, { offline: false });
   const fetched = eraOut.filter((o) => o.status === 'OK' && !o.cacheHit).length;
   log('info', 'era_months', { total: eras.length, fetched, failed: eraOut.filter((o) => o.status !== 'OK').length });
 

@@ -62,19 +62,23 @@ Implied price in ten years = (Intents volume grown from today's {{INT-VOL-ANN}} 
 
 {{PLATFORM_TABLE}}
 
-**Does the token capture value today?**
+**Does the token capture value? (token economics)**
 
-| Measure | Value |
-|---|---|
-| Buyback-designated Intents revenue per year (90-day run rate, DefiLlama classification) | {{SUP-BUYBACK-ANN}} |
-| Realized net new supply per year (net of burns) | {{SUP-NET-NEW-ANN-PCT}} ({{SUP-NET-NEW-ANN-USD}} at today's price) |
-| Buyback-designated revenue as a share of realized net new supply | {{COV-BUYBACK-REALIZED}} |
-| Supply parity: volume needed for buyback revenue to match net new supply | {{SUP-PARITY-VOL}} ({{SUP-PARITY-MULTIPLE}} today) |
-| Take rate: NEAR revenue per dollar of Intents volume (prior 90 days) | {{INT-TAKE-RATE}} ({{INT-TAKE-RATE-PRIOR}}) |
-| Tokens held by the buyback wallet | {{ONC-BUYBACK-WALLET}} |
-| Circulating market cap | {{MKT-NEAR-MCAP}} |
+Every flow is classified before anything is added up. Only executed buybacks and burns count as value captured by $NEAR; revenue *designated* for buybacks is a label until the purchase happens onchain, staking rewards are paid in new tokens (redistribution from non-stakers), and net issuance is dilution.
 
-A buyback is not a burn: bought tokens are held, and total supply only falls if they are burned. DefiLlama's buyback designation is a classification ({{INT-BUYBACK-DESIGNATED-CUM}} so far); as an onchain cross-check, the buyback wallet holds {{ONC-BUYBACK-WALLET}}, worth {{ONC-BUYBACK-WALLET-VS-DESIGNATED}} of the designated amount at today's price.
+{{TOK_TAXONOMY_TABLE}}
+
+{{TOK_FINDINGS}}
+
+**Executed versus designated buybacks.** The buyback swaps execute inside NEAR Intents, and the NEAR is withdrawn to `buybacks.multisignature.near`. Reading every transfer into that wallet (FastNEAR transaction API, exact yoctoNEAR; NearBlocks' free tier could not page the history) and valuing each day's NEAR at that day's price gives an independent check of DefiLlama's designation, which shares its Dune lineage with NEAR's own revenue dashboard. Since the first purchase on {{TOK_FIRST_RECEIPT}}: {{TOK-EXECUTED-NEAR}} bought ({{TOK-EXECUTED-USD}}, average price {{TOK-AVG-PURCHASE-PRICE}}) against {{TOK-DESIGNATED-SINCE}} designated, so {{TOK-EXECUTED-VS-DESIGNATED}} has arrived through the documented route. A second sender, the DAO `1csfundsadmin.sputnik-dao.near`, whose name points to NEAR Intents' 1Click service, sent {{TOK-AFFILIATED-USD}} of NEAR, mostly in one transfer in September; it is not documented as a buyback route, so it is shown separately: counting it, {{TOK-EXECUTED-BROAD-VS-DESIGNATED}} has been executed. Either way, executed purchases trail the designation, and no executions appear before April although designation began in February. The wallet still holds {{TOK-WALLET-RECONCILE}} of everything it received: bought NEAR is held, not burned, so total supply does not fall.
+
+{{TOK_BUYBACK_TABLE}}
+
+**Staking.** {{TOK-STAKING-RATIO}} of supply is staked. Realized gross issuance is {{TOK-GROSS-ISSUANCE}} a year and all of it goes to stakers (the protocol treasury share is zero), so the nominal staking yield is {{TOK-STAKING-NOMINAL}} before validator commission. After dilution a staker's share of supply grows {{TOK-STAKING-REAL}} a year, while a non-staker's share changes by {{TOK-NONSTAKER-REAL}}. Staking protects a holder from dilution; it does not create value.
+
+**The same measures for every alternative.** Circulating supply growth is CoinGecko market cap divided by price, one method for every asset, so it includes unlocks. One-day changes above 5% are reclassifications or one-off recognitions (for example, Hyperliquid's Assistance Fund tokens being recognized as burned), so the comparable column chains daily changes without them. That can also drop a genuine one-day unlock (Solana's 12 March jump is one candidate), so the as-reported column stays next to it. Burns and recognized buybacks already lower circulating supply, so they are not added back as a yield; only NEAR's bought-back tokens, which are held and still counted as circulating, are subtracted. The result, dilution net of capture, is the share of the network a holder who does nothing loses each year to new supply. Holder yield is shown for context only. Price is excluded: this is token economics, not a return forecast.
+
+{{TOK_ASSETS_TABLE}}
 
 **Track record: did NEAR's earlier pivots last?** Each era's representative product against its own peak, exact data only. For busy contracts NearBlocks returns a query-planner estimate instead of a count in older months (its response carries a `cost` field); those months are excluded, which is why v1.signer starts in April 2026 and Intents is measured by DefiLlama volume.
 

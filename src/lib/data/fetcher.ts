@@ -39,13 +39,15 @@ const MAX_BYTES = 25 * 1024 * 1024;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const lastCall = new Map<SourceId, number>();
+/** Tests set NEBUBE_PACING_SCALE=0: providers are unreachable there, so waiting between failed calls proves nothing. */
+const PACING_SCALE = Number.isFinite(Number(process.env.NEBUBE_PACING_SCALE)) && process.env.NEBUBE_PACING_SCALE !== undefined ? Number(process.env.NEBUBE_PACING_SCALE) : 1;
 const queues = new Map<SourceId, Promise<unknown>>();
 
 /** Serializes requests per source and enforces the source's minimum gap. */
 function paced<T>(source: SourceId, fn: () => Promise<T>): Promise<T> {
   const prev = queues.get(source) ?? Promise.resolve();
   const run = prev.catch(() => undefined).then(async () => {
-    const gap = SOURCES[source].minGapMs;
+    const gap = SOURCES[source].minGapMs * PACING_SCALE;
     const wait = (lastCall.get(source) ?? 0) + gap - Date.now();
     if (wait > 0) await sleep(wait);
     try { return await fn(); } finally { lastCall.set(source, Date.now()); }
@@ -130,7 +132,7 @@ export async function fetchOne(def: HttpRequestDef, store: RawStore, opts: Fetch
       lastStatus = e instanceof HttpError ? e.status : null;
       // Client errors other than rate limiting will not succeed on retry.
       if (lastStatus !== null && lastStatus >= 400 && lastStatus < 500 && lastStatus !== 429) break;
-      if (attempt < retries) await sleep(lastStatus === 429 ? 15_000 * (attempt + 1) : 1_500 * 2 ** attempt);
+      if (attempt < retries) await sleep((lastStatus === 429 ? 15_000 * (attempt + 1) : 1_500 * 2 ** attempt) * PACING_SCALE);
     }
   }
   const error = lastErr?.message ?? 'unknown error';

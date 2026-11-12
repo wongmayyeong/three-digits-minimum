@@ -5,7 +5,8 @@
 import { randomBytes } from 'node:crypto';
 import { dbRawStore } from '@/lib/data/stores';
 import { fetchAll, type FetchOutcome } from '@/lib/data/fetcher';
-import { buildEraRequests, buildRequestCatalog, sha256, stableStringify, SOURCES } from '@/lib/data/sources';
+import { buildBackgroundRequests, buildRequestCatalog, sha256, stableStringify, SOURCES } from '@/lib/data/sources';
+import { BUYBACK_KEY, fetchBuybackTransfers } from '@/lib/data/fastnear';
 import { buildDataset, type ResearchDataset } from '@/lib/research/evidence';
 import type { EvidenceDraft, SourceStatusEntry } from '@/lib/research/types';
 import { db } from '@/lib/storage/db';
@@ -45,9 +46,10 @@ export async function createSnapshot(topicSlug: string, opts: CreateSnapshotOpti
   const live = await fetchAll(buildRequestCatalog(), dbRawStore(ref), { forceFresh: opts.forceFresh }, opts.onFetch);
   // Monthly era history is collected by the scheduled refresh; snapshots read the stored months.
   const eraStore = { ...dbRawStore(ref), recordAttempt: undefined };
-  const era = await fetchAll(buildEraRequests(), eraStore, { offline: true });
+  const era = await fetchAll(buildBackgroundRequests(), eraStore, { offline: true });
   const outcomes = live;
-  const raws = Object.fromEntries([...live, ...era].map((o) => [o.key, o.record]));
+  const buybacks = await fetchBuybackTransfers(eraStore, { offline: true });
+  const raws = { ...Object.fromEntries([...live, ...era].map((o) => [o.key, o.record])), [BUYBACK_KEY]: buybacks };
   const ds = buildDataset(raws);
   const items = topicEvidence(ds, topic);
   const scenarios = topic.usesModel ? ds.scenarios : [];

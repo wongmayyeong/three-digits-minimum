@@ -6,6 +6,7 @@ export default defineConfig({
   test: {
     include: ['tests/unit/**/*.test.ts', 'tests/integration/**/*.test.ts'],
     environment: 'node',
+    env: { NEBUBE_PACING_SCALE: '0' },
     testTimeout: 60_000,
     hookTimeout: 60_000,
     fileParallelism: false,

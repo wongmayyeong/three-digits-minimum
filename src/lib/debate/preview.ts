@@ -4,7 +4,8 @@
  * responses older than their TTL are refreshed (still paced and cached).
  */
 import { fetchAll } from '@/lib/data/fetcher';
-import { buildEraRequests, buildRequestCatalog } from '@/lib/data/sources';
+import { buildBackgroundRequests, buildRequestCatalog } from '@/lib/data/sources';
+import { BUYBACK_KEY, fetchBuybackTransfers } from '@/lib/data/fastnear';
 import { dbRawStore } from '@/lib/data/stores';
 import { buildDataset } from '@/lib/research/evidence';
 import type { EvidenceDraft, SourceStatusEntry } from '@/lib/research/types';
@@ -33,8 +34,9 @@ export async function previewTopic(slug: string, opts: { offline: boolean }): Pr
   const topic = getTopic(slug);
   if (!topic) return null;
   const outcomes = await fetchAll(buildRequestCatalog(), { ...dbRawStore(), recordAttempt: opts.offline ? undefined : dbRawStore().recordAttempt }, { offline: opts.offline });
-  const era = await fetchAll(buildEraRequests(), { ...dbRawStore(), recordAttempt: undefined }, { offline: true });
-  const ds = buildDataset(Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record])));
+  const era = await fetchAll(buildBackgroundRequests(), { ...dbRawStore(), recordAttempt: undefined }, { offline: true });
+  const buybacks = await fetchBuybackTransfers(dbRawStore(), { offline: true });
+  const ds = buildDataset({ ...Object.fromEntries([...outcomes, ...era].map((o) => [o.key, o.record])), [BUYBACK_KEY]: buybacks });
   const items = topicEvidence(ds, topic);
   const times = outcomes.map((o) => o.record?.fetchedAt).filter((t): t is string => !!t).sort();
   return {
@@ -51,7 +53,7 @@ export async function previewTopic(slug: string, opts: { offline: boolean }): Pr
     thesis: ds.thesis,
     ladder: ds.ladder,
     feeSensitivity: ds.feeSensitivity,
-    eraMonthsStored: era.filter((o) => o.record).length,
-    eraMonthsTotal: era.length,
+    eraMonthsStored: era.filter((o) => o.record && o.key.startsWith('nearblocks.era.')).length,
+    eraMonthsTotal: era.filter((o) => o.key.startsWith('nearblocks.era.')).length,
   };
 }
