@@ -180,6 +180,11 @@ function renderThesis(templateIn: string, ev: EvidenceDraft[], ds: ReturnType<ty
   out = out.replace('{{ECO_FEES_TABLE}}', ['| Protocol | Category | Fees, 30 days | Share |', '|---|---|---|---|',
     ...ec.feesOnNear.slice(0, 8).map((p) => `| ${p.name} | ${p.category} | ${formatValue(p.fees30d, 'USD')} | ${formatValue(p.share, 'fraction')} |`)].join(NL));
   out = out.replace('{{ECO_FINDINGS}}', ec.findings.map((f) => `- ${f}`).join(NL));
+  // ---- W2 cross-chain competition
+  const cc = ds.crossChain;
+  out = out.replace('{{CC_TABLE}}', ['| Protocol | Role | Volume a year (run rate) | Volume growth, year | Fees a year | Protocol revenue a year | Revenue per $ of volume | To token holders a year | Token | Market cap | Market cap / revenue | Market cap / holders revenue |', '|---|---|---|---|---|---|---|---|---|---|---|---|',
+    ...cc.rows.map((r) => `| ${r.name === 'NEAR Intents' ? '**NEAR Intents**' : r.name} | ${r.role} | ${r.volumeRunRate === null ? 'not tracked' : formatValue(r.volumeRunRate, 'USD')} | ${r.volumeYoY === null ? 'n/a' : formatValue(r.volumeYoY, 'fraction', { signed: true })} | ${r.notes.some((n) => n.includes('swap costs')) ? `${formatValue(r.feesRunRate, 'USD')} (includes swap costs)` : formatValue(r.feesRunRate, 'USD')} | ${formatValue(r.revenueRunRate, 'USD')} | ${r.takeRate === null ? 'n/a' : `${(r.takeRate * 1e4).toFixed(2)} bp`} | ${r.holdersRunRate === null ? 'not tracked' : formatValue(r.holdersRunRate, 'USD')} | ${r.token ?? 'none'} | ${formatValue(r.marketCap, 'USD')} | ${formatValue(r.capToRevenue, 'ratio')} | ${formatValue(r.capToHolders, 'ratio')} |`)].join(NL));
+  out = out.replace('{{CC_FINDINGS}}', cc.findings.map((f) => `- ${f}`).join(NL));
   const register = ev.map((e) => `| ${e.evidenceId} | ${e.label} | ${e.available ? (e.valueText ? 'text' : formatValue(e.value, e.unit)) : 'unavailable'} | ${e.observationType} | ${formatPeriod(e.periodStart, e.periodEnd)} | ${e.sourceName} |`).join('\n');
   out = out.replace('{{EVIDENCE_REGISTER}}', `| ID | Metric | Value | Type | Period | Source |\n|---|---|---|---|---|---|\n${register}`);
   out = out.replace('{{WINDOW_END}}', formatDate(ds.windowEnd)).replace('{{PEER_WINDOW_END}}', formatDate(ds.peerWindowEnd));

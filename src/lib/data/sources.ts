@@ -127,6 +127,29 @@ export const CHAIN_ECONOMY = [
   { label: 'ETH', chain: 'Ethereum' }, { label: 'SOL', chain: 'Solana' }, { label: 'SUI', chain: 'Sui' }, { label: 'AVAX', chain: 'Avalanche' },
   { label: 'TON', chain: 'TON' }, { label: 'APT', chain: 'Aptos' }, { label: 'HYPE', chain: 'Hyperliquid L1' }, { label: 'NEAR', chain: 'Near' },
 ] as const;
+/**
+ * Cross-chain execution (W2): NEAR Intents and its competitors, from the discovery inventory. `volume` names the
+ * DefiLlama overview that tracks the protocol's volume (null: no volume adapter). Roles keep categories apart
+ * (SCOPE section 7): only swap venues enter the volume share; aggregators route through them.
+ */
+export const CROSS_CHAIN = [
+  { name: 'NEAR Intents', slug: 'near-intents', role: 'swap venue', volume: 'dexs', coin: null, feeNote: null },
+  { name: 'THORChain', slug: 'thorchain-dex', role: 'swap venue', volume: 'dexs', coin: 'thorchain', feeNote: null },
+  { name: 'Chainflip', slug: 'chainflip-amm', role: 'swap venue', volume: 'dexs', coin: 'chainflip', feeNote: null },
+  { name: 'Maya Protocol', slug: 'maya-protocol', role: 'swap venue', volume: 'dexs', coin: null, feeNote: null },
+  { name: 'Unit', slug: 'unit', role: 'bridge', volume: 'dexs', coin: null, feeNote: null },
+  { name: 'Relay', slug: 'relay', role: 'bridge and solver', volume: null, coin: null, feeNote: 'DefiLlama counts swap costs in Relay\'s fees, so its fee rate is not comparable.', noHolders: true },
+  { name: 'deBridge (DLN)', slug: 'debridge', role: 'bridge and solver', volume: null, coin: 'debridge', feeNote: null },
+  { name: 'Mayan', slug: 'mayan-dex-aggregator', role: 'bridge and solver', volume: null, coin: null, feeNote: null, noHolders: true },
+  { name: 'Across', slug: 'across', role: 'bridge and solver', volume: null, coin: 'across-protocol', feeNote: null },
+  { name: 'Stargate', slug: 'stargate-v2', role: 'bridge', volume: null, coin: 'stargate-finance', feeNote: null, noHolders: true },
+  { name: 'Symbiosis', slug: 'symbiosis', role: 'bridge', volume: null, coin: 'symbiosis-finance', feeNote: null },
+  { name: 'LI.FI', slug: 'li.fi-bridge-aggregator', role: 'aggregator', volume: 'bridge-aggregators', coin: null, feeNote: null, noHolders: true },
+  { name: 'Rango', slug: 'rango', role: 'aggregator', volume: 'bridge-aggregators', coin: null, feeNote: null, noHolders: true },
+  { name: 'LayerZero', slug: 'layerzero-v2', role: 'messaging', volume: null, coin: 'layerzero', feeNote: null },
+  { name: 'Wormhole', slug: 'wormhole', role: 'messaging', volume: null, coin: 'wormhole', feeNote: null, noHolders: true },
+  { name: 'Axelar', slug: 'axelar', role: 'messaging', volume: null, coin: 'axelar', feeNote: null },
+] as const;
 /** DefiLlama categories inside its DEX overview. Spot = AMMs and order books; cross-chain = where NEAR Intents is listed. */
 export const DEX_SPOT_CATEGORY = 'Dexs';
 export const DEX_CROSS_CHAIN_CATEGORIES: string[] = ['Bridge', 'Cross Chain Bridge'];
@@ -238,6 +261,20 @@ export function buildRequestCatalog(): HttpRequestDef[] {
   reqs.push({
     key: 'defillama.fees.onnear', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,
     project: (j: any) => asArr(j?.protocols).map((p: any) => ({ name: String(p.name), category: String(p.category ?? ''), fees30d: Number(p.total30d ?? 0), fees1y: p.total1y === undefined || p.total1y === null ? null : Number(p.total1y) })),
+  });
+  // W2: cross-chain competitors (volume, fees, revenue, holders revenue) and their tokens.
+  for (const c of CROSS_CHAIN) {
+    if (c.slug === 'near-intents') continue;
+    if (c.volume) reqs.push({ key: `defillama.ccvol.${c.slug}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/${c.volume}/${encodeURIComponent(c.slug)}${c.volume === 'dexs' ? '?dataType=dailyVolume' : ''}`, project: llamaSummary });
+    for (const dt of ['dailyFees', 'dailyRevenue', 'dailyHoldersRevenue'] as const) {
+      if (dt === 'dailyHoldersRevenue' && 'noHolders' in c) continue; // DefiLlama tracks no holders revenue for it
+      reqs.push({ key: `defillama.ccfees.${c.slug}.${dt}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/fees/${encodeURIComponent(c.slug)}?dataType=${dt}`, project: llamaSummary });
+    }
+  }
+  reqs.push({
+    key: 'coingecko.crosschain', source: 'coingecko', ttlMs: HOUR, headers: cgHeaders,
+    get url() { return `${cgBase()}/coins/markets?vs_currency=usd&ids=${CROSS_CHAIN.map((c) => c.coin).filter(Boolean).join(',')}`; },
+    project: (a) => asArr(a).map((c: any) => ({ id: String(c.id), symbol: String(c.symbol), marketCap: Number(c.market_cap), fdv: c.fully_diluted_valuation === null ? null : Number(c.fully_diluted_valuation) })),
   });
   // Platform economy history (W6): stablecoins and DeFi TVL on each investable chain.
   for (const c of CHAIN_ECONOMY) {

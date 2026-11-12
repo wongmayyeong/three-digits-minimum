@@ -1,4 +1,17 @@
 {
+ "coingecko.crosschain": {
+  "key": "coingecko.crosschain",
+  "source": "coingecko",
+  "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=thorchain,chainflip,debridge,across-protocol,stargate-finance,symbiosis-finance,layerzero,wormhole,axelar",
+  "sha256": "bf8555bc174f2ab92b4253b0b1d71272a2e39eb776549e2095bfd7328d040279",
+  "fetchedAt": "2026-11-12T11:38:32.593Z",
+  "file": "coingecko.crosschain.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:32.594Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "coingecko.global": {
   "key": "coingecko.global",
   "source": "coingecko",
@@ -164,6 +177,591 @@
   "file": "coingecko.universe.json",
   "lastAttempt": {
    "at": "2026-11-12T11:23:15.531Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.across.dailyFees": {
+  "key": "defillama.ccfees.across.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/across?dataType=dailyFees",
+  "sha256": "36278b3d67e7b3e62916174d4337a53e71900fee112d71025d0bce901ea5d658",
+  "fetchedAt": "2026-11-12T11:38:57.223Z",
+  "file": "defillama.ccfees.across.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:57.225Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.across.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.across.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/across?dataType=dailyHoldersRevenue",
+  "sha256": "be4211c5f3102ccabb31a1ff4a30a19a98a1ef6cc40be634a37e5c1ab7185307",
+  "fetchedAt": "2026-11-12T11:38:59.891Z",
+  "file": "defillama.ccfees.across.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:59.893Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.across.dailyRevenue": {
+  "key": "defillama.ccfees.across.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/across?dataType=dailyRevenue",
+  "sha256": "7c2d61bfad1f154a4f97b661efeca4b836c57966631d3b67b684a451a4b3f9cf",
+  "fetchedAt": "2026-11-12T11:38:58.575Z",
+  "file": "defillama.ccfees.across.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:58.576Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.axelar.dailyFees": {
+  "key": "defillama.ccfees.axelar.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyFees",
+  "sha256": "9398ac959982c433157d14efc8b9a06d9d0c974426588f53e12098635ad4ec4e",
+  "fetchedAt": "2026-11-12T11:39:21.559Z",
+  "file": "defillama.ccfees.axelar.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:21.561Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.axelar.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.axelar.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyHoldersRevenue",
+  "sha256": "dc74dc576e640a97a6c93fba80b5c531371f00d7749d3dafec752ace3c38b1ed",
+  "fetchedAt": "2026-11-12T11:39:23.088Z",
+  "file": "defillama.ccfees.axelar.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:23.090Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.axelar.dailyRevenue": {
+  "key": "defillama.ccfees.axelar.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyRevenue",
+  "sha256": "dc74dc576e640a97a6c93fba80b5c531371f00d7749d3dafec752ace3c38b1ed",
+  "fetchedAt": "2026-11-12T11:39:22.310Z",
+  "file": "defillama.ccfees.axelar.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:22.312Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.chainflip-amm.dailyFees": {
+  "key": "defillama.ccfees.chainflip-amm.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyFees",
+  "sha256": "5eff0b23589d283dc25cd2235c00519d75345b282d5900827ee432d853cc35ff",
+  "fetchedAt": "2026-11-12T11:38:37.118Z",
+  "file": "defillama.ccfees.chainflip-amm.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:37.119Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.chainflip-amm.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.chainflip-amm.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyHoldersRevenue",
+  "sha256": "daa4c6ccb5909beb5a7d611d36546879aa6fefca42c6dde9b31bf6e3883131b7",
+  "fetchedAt": "2026-11-12T11:38:39.780Z",
+  "file": "defillama.ccfees.chainflip-amm.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:39.782Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.chainflip-amm.dailyRevenue": {
+  "key": "defillama.ccfees.chainflip-amm.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyRevenue",
+  "sha256": "daa4c6ccb5909beb5a7d611d36546879aa6fefca42c6dde9b31bf6e3883131b7",
+  "fetchedAt": "2026-11-12T11:38:38.449Z",
+  "file": "defillama.ccfees.chainflip-amm.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:38.453Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.debridge.dailyFees": {
+  "key": "defillama.ccfees.debridge.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyFees",
+  "sha256": "36d2d89333a37b30e06b4074ae8b9a770670eb92d78b941945a9f75344133f8e",
+  "fetchedAt": "2026-11-12T11:38:51.266Z",
+  "file": "defillama.ccfees.debridge.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:51.270Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.debridge.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.debridge.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyHoldersRevenue",
+  "sha256": "ad960cba2522f61a7200ba65eb4786d0b68eb4c2092dcf94d76cae7795705d17",
+  "fetchedAt": "2026-11-12T11:38:53.567Z",
+  "file": "defillama.ccfees.debridge.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:53.569Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.debridge.dailyRevenue": {
+  "key": "defillama.ccfees.debridge.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyRevenue",
+  "sha256": "36d2d89333a37b30e06b4074ae8b9a770670eb92d78b941945a9f75344133f8e",
+  "fetchedAt": "2026-11-12T11:38:52.812Z",
+  "file": "defillama.ccfees.debridge.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:52.814Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.layerzero-v2.dailyFees": {
+  "key": "defillama.ccfees.layerzero-v2.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/layerzero-v2?dataType=dailyFees",
+  "sha256": "73f8c5329ba3209d3a5ea2ad9637792eb3ce7a5dcda6e52344016a8dac77068d",
+  "fetchedAt": "2026-11-12T11:39:14.990Z",
+  "file": "defillama.ccfees.layerzero-v2.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:14.993Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.layerzero-v2.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.layerzero-v2.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/layerzero-v2?dataType=dailyHoldersRevenue",
+  "sha256": "3651fd79ad7af93ec043ac131c066fea389cbaf27e89fc8ce16efa0f70fd80f1",
+  "fetchedAt": "2026-11-12T11:39:17.518Z",
+  "file": "defillama.ccfees.layerzero-v2.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:17.520Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.layerzero-v2.dailyRevenue": {
+  "key": "defillama.ccfees.layerzero-v2.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/layerzero-v2?dataType=dailyRevenue",
+  "sha256": "3651fd79ad7af93ec043ac131c066fea389cbaf27e89fc8ce16efa0f70fd80f1",
+  "fetchedAt": "2026-11-12T11:39:15.969Z",
+  "file": "defillama.ccfees.layerzero-v2.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:15.971Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.li.fi-bridge-aggregator.dailyFees": {
+  "key": "defillama.ccfees.li.fi-bridge-aggregator.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/li.fi-bridge-aggregator?dataType=dailyFees",
+  "sha256": "a47cce5ca501bfd36188172d7ddfca8f9fd4c5fa4e3f659d15e7b78cd38b828d",
+  "fetchedAt": "2026-11-12T11:39:08.128Z",
+  "file": "defillama.ccfees.li.fi-bridge-aggregator.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:08.130Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.li.fi-bridge-aggregator.dailyRevenue": {
+  "key": "defillama.ccfees.li.fi-bridge-aggregator.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/li.fi-bridge-aggregator?dataType=dailyRevenue",
+  "sha256": "020e526c9587cc0d66b86c037f604102eeb755e3ddb58cb16908b494141366f8",
+  "fetchedAt": "2026-11-12T11:39:08.496Z",
+  "file": "defillama.ccfees.li.fi-bridge-aggregator.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:08.498Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.maya-protocol.dailyFees": {
+  "key": "defillama.ccfees.maya-protocol.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyFees",
+  "sha256": "728e15dadb71cb13c855f28e58ef0b363c002a1ec76eecbc99c2618b505c37e3",
+  "fetchedAt": "2026-11-12T11:38:42.240Z",
+  "file": "defillama.ccfees.maya-protocol.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:42.242Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.maya-protocol.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.maya-protocol.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyHoldersRevenue",
+  "sha256": "380feb9d39b301fe9d21ee15864635813a80200a5ee6bd43421e7e14ab80c756",
+  "fetchedAt": "2026-11-12T11:38:43.932Z",
+  "file": "defillama.ccfees.maya-protocol.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:43.933Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.maya-protocol.dailyRevenue": {
+  "key": "defillama.ccfees.maya-protocol.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyRevenue",
+  "sha256": "380feb9d39b301fe9d21ee15864635813a80200a5ee6bd43421e7e14ab80c756",
+  "fetchedAt": "2026-11-12T11:38:42.783Z",
+  "file": "defillama.ccfees.maya-protocol.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:42.785Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.mayan-dex-aggregator.dailyFees": {
+  "key": "defillama.ccfees.mayan-dex-aggregator.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/mayan-dex-aggregator?dataType=dailyFees",
+  "sha256": "de80587cafed2962da6853bdccdc49a97612b6e7f6e854bb6e0d2d52e3a143b0",
+  "fetchedAt": "2026-11-12T11:38:54.960Z",
+  "file": "defillama.ccfees.mayan-dex-aggregator.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:54.963Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.mayan-dex-aggregator.dailyRevenue": {
+  "key": "defillama.ccfees.mayan-dex-aggregator.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/mayan-dex-aggregator?dataType=dailyRevenue",
+  "sha256": "de80587cafed2962da6853bdccdc49a97612b6e7f6e854bb6e0d2d52e3a143b0",
+  "fetchedAt": "2026-11-12T11:38:56.295Z",
+  "file": "defillama.ccfees.mayan-dex-aggregator.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:56.296Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.rango.dailyFees": {
+  "key": "defillama.ccfees.rango.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/rango?dataType=dailyFees",
+  "sha256": "1c49172794c729b6b37a66dbda2b1556abe0dae5e59aa77ec13019d64e69f5d7",
+  "fetchedAt": "2026-11-12T11:39:11.428Z",
+  "file": "defillama.ccfees.rango.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:11.431Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.rango.dailyRevenue": {
+  "key": "defillama.ccfees.rango.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/rango?dataType=dailyRevenue",
+  "sha256": "dc4832ed7bdf95910a926d9d6a4a2176ac111203b81351d7f0c5e6c86a08ff14",
+  "fetchedAt": "2026-11-12T11:39:12.048Z",
+  "file": "defillama.ccfees.rango.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:12.052Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.relay.dailyFees": {
+  "key": "defillama.ccfees.relay.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/relay?dataType=dailyFees",
+  "sha256": "985aab66fd662a4d5cb998bd570e61248292b7e5dc8f5a8ac30b11da24b928de",
+  "fetchedAt": "2026-11-12T11:38:48.758Z",
+  "file": "defillama.ccfees.relay.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:48.761Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.relay.dailyRevenue": {
+  "key": "defillama.ccfees.relay.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/relay?dataType=dailyRevenue",
+  "sha256": "2182db28618ab677f76e73ccc2f9faaac52ea31c998ee84651f9fde34161bd69",
+  "fetchedAt": "2026-11-12T11:38:49.742Z",
+  "file": "defillama.ccfees.relay.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:49.745Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.stargate-v2.dailyFees": {
+  "key": "defillama.ccfees.stargate-v2.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/stargate-v2?dataType=dailyFees",
+  "sha256": "3d75ac8ab633afa6d66526c5e9e761a7e5130a8175cd72f239eabe6f9ddc3008",
+  "fetchedAt": "2026-11-12T11:39:01.532Z",
+  "file": "defillama.ccfees.stargate-v2.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:01.533Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.stargate-v2.dailyRevenue": {
+  "key": "defillama.ccfees.stargate-v2.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/stargate-v2?dataType=dailyRevenue",
+  "sha256": "11dc672023c48468cce1ac9e6d0b2af6cb163cf973ef2fc85bf81da893c5b8eb",
+  "fetchedAt": "2026-11-12T11:39:02.910Z",
+  "file": "defillama.ccfees.stargate-v2.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:02.912Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.symbiosis.dailyFees": {
+  "key": "defillama.ccfees.symbiosis.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyFees",
+  "sha256": "bce2e96232d1ebd49bab6203fef2d081dcb1f72b94e2f62af3b88df656645227",
+  "fetchedAt": "2026-11-12T11:39:03.916Z",
+  "file": "defillama.ccfees.symbiosis.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:03.919Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.symbiosis.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.symbiosis.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyHoldersRevenue",
+  "sha256": "93da7113958015e0e1a2091bfa741a1ffda28bbd315cca3fec359d078bd373d3",
+  "fetchedAt": "2026-11-12T11:39:06.383Z",
+  "file": "defillama.ccfees.symbiosis.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:06.385Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.symbiosis.dailyRevenue": {
+  "key": "defillama.ccfees.symbiosis.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyRevenue",
+  "sha256": "7adbc43e3b99d0114c12158f4c4598d6d43eb236f70c68322fe4221738f65ab2",
+  "fetchedAt": "2026-11-12T11:39:04.882Z",
+  "file": "defillama.ccfees.symbiosis.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:04.886Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.thorchain-dex.dailyFees": {
+  "key": "defillama.ccfees.thorchain-dex.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyFees",
+  "sha256": "8ff9a6567ec9242cbbd510bae3c873b08a44d6345bed8bfad23f4e16aeac1baa",
+  "fetchedAt": "2026-11-12T11:38:33.085Z",
+  "file": "defillama.ccfees.thorchain-dex.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:33.087Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.thorchain-dex.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.thorchain-dex.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyHoldersRevenue",
+  "sha256": "2762d075292a45cd8bb9b57eff7d427aa26a65cd1734cc90fd06aff142157118",
+  "fetchedAt": "2026-11-12T11:38:35.013Z",
+  "file": "defillama.ccfees.thorchain-dex.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:35.015Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.thorchain-dex.dailyRevenue": {
+  "key": "defillama.ccfees.thorchain-dex.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyRevenue",
+  "sha256": "69cbe7a97894ca028fac822b3df77f949ae64ee7c14a9c64045656a4eade8225",
+  "fetchedAt": "2026-11-12T11:38:34.034Z",
+  "file": "defillama.ccfees.thorchain-dex.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:34.036Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.unit.dailyFees": {
+  "key": "defillama.ccfees.unit.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyFees",
+  "sha256": "73d8c8d58d6addec4725986a9fc9ddf324ad41efd3c5ebb70ccbba3b8ace734d",
+  "fetchedAt": "2026-11-12T11:38:45.853Z",
+  "file": "defillama.ccfees.unit.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:45.855Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.unit.dailyHoldersRevenue": {
+  "key": "defillama.ccfees.unit.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyHoldersRevenue",
+  "sha256": "51b96ac6ccd3820f59e339bb63ddf337ebb8a5826171ce3cd2cbed18a4fb4d6a",
+  "fetchedAt": "2026-11-12T11:38:47.528Z",
+  "file": "defillama.ccfees.unit.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:47.532Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.unit.dailyRevenue": {
+  "key": "defillama.ccfees.unit.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyRevenue",
+  "sha256": "73d8c8d58d6addec4725986a9fc9ddf324ad41efd3c5ebb70ccbba3b8ace734d",
+  "fetchedAt": "2026-11-12T11:38:46.389Z",
+  "file": "defillama.ccfees.unit.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:46.392Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.wormhole.dailyFees": {
+  "key": "defillama.ccfees.wormhole.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyFees",
+  "sha256": "edfdbd1b0174c83bbe45bcb9eaa8ff4352a9204d7bbefa0a5dfd0bbbdb129a30",
+  "fetchedAt": "2026-11-12T11:39:19.012Z",
+  "file": "defillama.ccfees.wormhole.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:19.015Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccfees.wormhole.dailyRevenue": {
+  "key": "defillama.ccfees.wormhole.dailyRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyRevenue",
+  "sha256": "7d671d30adb176c6eef7851efc89af34a1980ed35c956737df51f4c004db3486",
+  "fetchedAt": "2026-11-12T11:39:20.684Z",
+  "file": "defillama.ccfees.wormhole.dailyRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:20.686Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.chainflip-amm": {
+  "key": "defillama.ccvol.chainflip-amm",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/chainflip-amm?dataType=dailyVolume",
+  "sha256": "6ca0243a98ea315a4fa7c56db58f650e39ed45e489028348158e83f685321bc6",
+  "fetchedAt": "2026-11-12T11:38:35.745Z",
+  "file": "defillama.ccvol.chainflip-amm.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:35.747Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.li.fi-bridge-aggregator": {
+  "key": "defillama.ccvol.li.fi-bridge-aggregator",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/bridge-aggregators/li.fi-bridge-aggregator",
+  "sha256": "5052c3d064e4bef08e4ef2edb94237500081142c0c045b2b53b456b1a0586f18",
+  "fetchedAt": "2026-11-12T11:39:48.397Z",
+  "file": "defillama.ccvol.li.fi-bridge-aggregator.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:48.399Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.maya-protocol": {
+  "key": "defillama.ccvol.maya-protocol",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/maya-protocol?dataType=dailyVolume",
+  "sha256": "f3de44dde033a7d972dc81be137cdee63dc40fb1e9bfac2ef9378009f8730d12",
+  "fetchedAt": "2026-11-12T11:38:41.084Z",
+  "file": "defillama.ccvol.maya-protocol.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:41.086Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.rango": {
+  "key": "defillama.ccvol.rango",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/bridge-aggregators/rango",
+  "sha256": "038c69e06196dd274a2b3815b36b17a90b5713ac959765d2d13092da81588599",
+  "fetchedAt": "2026-11-12T11:39:50.200Z",
+  "file": "defillama.ccvol.rango.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:39:50.206Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.thorchain-dex": {
+  "key": "defillama.ccvol.thorchain-dex",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/thorchain-dex?dataType=dailyVolume",
+  "sha256": "d5f137245735ede3d8b1e16fb47289e67fb5ec388457db21e395059bb28c2717",
+  "fetchedAt": "2026-11-12T11:38:32.709Z",
+  "file": "defillama.ccvol.thorchain-dex.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:32.711Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.ccvol.unit": {
+  "key": "defillama.ccvol.unit",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/dexs/unit?dataType=dailyVolume",
+  "sha256": "25453215e6aae7255d1f553f84cddedbf2f4bfbb8b2e27303a4ede3decf1505d",
+  "fetchedAt": "2026-11-12T11:38:44.516Z",
+  "file": "defillama.ccvol.unit.json",
+  "lastAttempt": {
+   "at": "2026-11-12T11:38:44.520Z",
    "status": "OK",
    "error": null
   }

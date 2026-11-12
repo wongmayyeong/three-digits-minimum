@@ -207,7 +207,37 @@ Fees paid on the NEAR chain by protocol, last 30 days (DefiLlama):
 
 This is the central fact for valuing NEAR (priority finding P2): almost all of NEAR's economic activity and almost all of its value capture is one cross-chain product. The NEAR chain itself carries little paid activity. NEAR therefore behaves less like a traditional L1, valued on the economy that lives on it, and more like the token of a cross-chain execution business, valued on what that business returns to holders.
 
-## 8. Valuation: how NEAR is priced, and what moves it
+## 8. Competition: NEAR Intents against cross-chain rivals
+
+If NEAR's value is mostly one cross-chain business, the relevant comparison is that business against its competitors, on the same DefiLlama definitions and the same 90 days. Volume is only available where DefiLlama has a volume adapter; Relay, deBridge, Mayan, Across and Stargate are compared on revenue (their volume would need a paid API, so it is left out rather than estimated). Categories are not added together: only swap venues enter the volume share, and aggregators, which route through those venues and through Intents itself, are listed separately.
+
+| Protocol | Role | Volume a year (run rate) | Volume growth, year | Fees a year | Protocol revenue a year | Revenue per $ of volume | To token holders a year | Token | Market cap | Market cap / revenue | Market cap / holders revenue |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **NEAR Intents** | swap venue | $49.08B | +230.1% | $76.07M | $20.59M | 4.20 bp | $20.59M | NEAR | $4.60B | 223x | 223x |
+| THORChain | swap venue | $25.18B | +68.1% | $32.74M | $8.87M | 3.52 bp | $453.6K | RUNE | $195.32M | 22.0x | 431x |
+| Chainflip | swap venue | $7.88B | +20.7% | $24.72M | $4.54M | 5.76 bp | $4.54M | FLIP | $34.30M | 7.55x | 7.55x |
+| Maya Protocol | swap venue | $2.35B | n/a | $2.95M | $295.2K | 1.26 bp | $295.2K | none | N/A | N/A | N/A |
+| Unit | bridge | $23.99B | n/a | $6.09M | $6.09M | 2.54 bp | $0 | none | N/A | N/A | N/A |
+| Relay | bridge and solver | not tracked | n/a | $1.07B (includes swap costs) | $17.61M | n/a | not tracked | none | N/A | N/A | N/A |
+| deBridge (DLN) | bridge and solver | not tracked | n/a | $6.39M | $6.39M | n/a | $5.07M | DBR | $86.11M | 13.5x | 17.0x |
+| Mayan | bridge and solver | not tracked | n/a | $7.81M | $7.81M | n/a | not tracked | none | N/A | N/A | N/A |
+| Across | bridge and solver | not tracked | n/a | $1.18M | $0 | n/a | $0 | ACX | $30.85M | N/A | N/A |
+| Stargate | bridge | not tracked | n/a | $4.06M | $4.06M | n/a | not tracked | STG | $12.36M | 3.04x | N/A |
+| Symbiosis | bridge | not tracked | n/a | $2.17M | $1.17M | n/a | $0 | SIS | $1.55M | 1.33x | N/A |
+| LI.FI | aggregator | $16.23B | +149.1% | $17.68M | $3.02M | 1.86 bp | not tracked | none | N/A | N/A | N/A |
+| Rango | aggregator | $3.79B | -24.8% | N/A | N/A | n/a | not tracked | none | N/A | N/A | N/A |
+| LayerZero | messaging | not tracked | n/a | $3.57M | $775.0K | n/a | $775.0K | ZRO | $616.59M | 796x | 796x |
+| Wormhole | messaging | not tracked | n/a | $201.4K | $0 | n/a | not tracked | W | $67.48M | N/A | N/A |
+| Axelar | messaging | not tracked | n/a | $55.0K | $0 | n/a | $0 | AXL | $44.30M | N/A | N/A |
+
+- Among cross-chain swap venues with public volume (NEAR Intents, THORChain, Chainflip, Maya Protocol), NEAR Intents handles 58% of volume (run rate). Aggregators and bridges without a volume adapter (Relay, deBridge, Across, Mayan, Stargate) are not in this denominator, so it overstates Intents' share of all cross-chain execution.
+- By revenue, the largest cross-chain protocols are NEAR Intents $20.6M, Relay $17.6M, THORChain $8.9M, Mayan $7.8M a year (run rate).
+- Cross-chain execution tokens trade at a median 7.5x their protocol revenue (RUNE 22x, FLIP 7.5x, DBR 13x, STG 3.0x, SIS 1.3x). NEAR trades at 223x Intents revenue. At the peer median, Intents revenue would support $155.5M of market cap, about $0.12 a token, against $4.6B today: the rest of NEAR's valuation rests on the L1, its other products, or a premium the cross-chain market does not pay its own leaders.
+- On revenue that reaches token holders the gap is smaller: the peer median is 17x (RUNE 431x, FLIP 7.5x, DBR 17x), because some protocols, THORChain above all, pass little revenue to their token; NEAR designates all of Intents' captured revenue for buybacks (about 60% executed onchain so far, section 6). Messaging layers are valued differently again (ZRO 796x).
+
+Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
+
+## 9. Valuation: how NEAR is priced, and what moves it
 
 **NEAR's own multiple over time.** Market cap on each month-end divided by the value reaching holders over the 90 days ending that day, annualized. NEAR is shown on two bases: DefiLlama's buyback designation, and the purchases actually executed onchain (section 6).
 
@@ -242,7 +272,7 @@ This is the central fact for valuing NEAR (priority finding P2): almost all of N
 | $50 | 1,541x | 653x | 141x |
 | $100 | 3,082x | 1,306x | 281x |
 
-## 9. NEAR against the alternatives (opportunity cost)
+## 10. NEAR against the alternatives (opportunity cost)
 
 Every investable alternative under the valuation method that fits it (section 3): BTC as a monetary asset, platforms on their on-chain economy, Hyperliquid on cash flow, NEAR on both. For the same price multiple in ten years, the asset's valuation driver has to grow by the same factor, plus enough to offset its own dilution (assumed to persist). Observed growth is the same driver over the last year. This is a side-by-side map, not a recommendation.
 
@@ -279,7 +309,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 What this does not show: one year of observed growth is dominated by the market cycle (most chains' stablecoins and DeFi TVL fell, and TVL is measured in dollars, so it also falls with prices). NEAR's cash-flow driver is a young product growing from a small base, while the platforms' drivers are mature chain economies. NEAR's platform route, its own on-chain economy, is listed in the table's note column.
 
-## 10. What could break it
+## 11. What could break it
 
 | Risk | Effect on the ladder |
 |---|---|
@@ -302,7 +332,7 @@ Falsification triggers from the underlying research, evaluated on every rebuild:
 | F5 | DeFi deposits on NEAR halve year over year. | `DEFI-TVL-NEAR-YOY < -50%` | 41.4% vs a year earlier | **NOT TRIGGERED** |
 | F6 | Token-level value capture is under 1% of market cap per year. | `VAL-NEAR-VALUE-CAPTURE-ANN / MKT-NEAR-MCAP < 1%` | 0.471% of market cap | **TRIGGERED** |
 
-## 11. Verdict: dream, possibility, or evidence?
+## 12. Verdict: dream, possibility, or evidence?
 
 At NEAR's own valuation multiple today, $25 in ten years needs NEAR Intents to grow up to 5x relative to spot DEX volume; $100 needs Intents volume equal to 10.6% of spot DEX volume (6.2x today's ratio). Priced like Tron, a cash-flow token, $100 needs 21.9%. Intents growth and the valuation multiple matter about equally.
 
@@ -748,3 +778,38 @@ Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1
 | ECO-L1-GAS-YOY | NEAR L1 gas fees, 90 days vs a year earlier | -52.0% | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | ECO-INTENTS-VOL-YOY | NEAR Intents volume, 90 days vs a year earlier | 230.1% | DERIVED | as of Nov 10, 2026 | DefiLlama |
 | ECO-SIGNER-PARTICIPANTS | Chain Signatures MPC participants (v1.signer) | 16 | OBSERVED | as of Nov 10, 2026 | NEAR RPC |
+| CC-INTENTS-VENUE-SHARE | NEAR Intents share of volume among cross-chain swap venues with public volume | 58.1% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-PEER-MEDIAN-CAP-REV | Median market cap / protocol revenue, cross-chain execution tokens | 7.55x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-PEER-MEDIAN-CAP-HOLDERS | Median market cap / holders revenue, cross-chain execution tokens | 17.0x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-CAP-INTENTS-REV | NEAR market cap / Intents protocol revenue | 223x | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-IMPLIED-CAP | Market cap Intents revenue would support at the cross-chain peer median multiple | $155.45M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-IMPLIED-PRICE | NEAR price at the cross-chain peer median multiple on Intents revenue | $0.12 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-INTENTS-REVENUE | NEAR Intents: protocol revenue, 90-day run rate | $20.59M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-INTENTS-VOLUME | NEAR Intents: volume, 90-day run rate | $49.08B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-NEAR-INTENTS-TAKE-RATE | NEAR Intents: protocol revenue per dollar of volume | 0.042% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-THORCHAIN-REVENUE | THORChain: protocol revenue, 90-day run rate | $8.87M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-THORCHAIN-VOLUME | THORChain: volume, 90-day run rate | $25.18B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-THORCHAIN-TAKE-RATE | THORChain: protocol revenue per dollar of volume | 0.035% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-CHAINFLIP-REVENUE | Chainflip: protocol revenue, 90-day run rate | $4.54M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-CHAINFLIP-VOLUME | Chainflip: volume, 90-day run rate | $7.88B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-CHAINFLIP-TAKE-RATE | Chainflip: protocol revenue per dollar of volume | 0.058% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-MAYA-PROTOCOL-REVENUE | Maya Protocol: protocol revenue, 90-day run rate | $295.2K | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-MAYA-PROTOCOL-VOLUME | Maya Protocol: volume, 90-day run rate | $2.35B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-MAYA-PROTOCOL-TAKE-RATE | Maya Protocol: protocol revenue per dollar of volume | 0.013% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-UNIT-REVENUE | Unit: protocol revenue, 90-day run rate | $6.09M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-UNIT-VOLUME | Unit: volume, 90-day run rate | $23.99B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-UNIT-TAKE-RATE | Unit: protocol revenue per dollar of volume | 0.025% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-RELAY-REVENUE | Relay: protocol revenue, 90-day run rate | $17.61M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-DEBRIDGE-DLN-REVENUE | deBridge (DLN): protocol revenue, 90-day run rate | $6.39M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-MAYAN-REVENUE | Mayan: protocol revenue, 90-day run rate | $7.81M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-ACROSS-REVENUE | Across: protocol revenue, 90-day run rate | $0 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-STARGATE-REVENUE | Stargate: protocol revenue, 90-day run rate | $4.06M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-SYMBIOSIS-REVENUE | Symbiosis: protocol revenue, 90-day run rate | $1.17M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-LI-FI-REVENUE | LI.FI: protocol revenue, 90-day run rate | $3.02M | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-LI-FI-VOLUME | LI.FI: volume, 90-day run rate | $16.23B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-LI-FI-TAKE-RATE | LI.FI: protocol revenue per dollar of volume | 0.019% | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-RANGO-REVENUE | Rango: protocol revenue, 90-day run rate | unavailable | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-RANGO-VOLUME | Rango: volume, 90-day run rate | $3.79B | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-LAYERZERO-REVENUE | LayerZero: protocol revenue, 90-day run rate | $775.0K | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-WORMHOLE-REVENUE | Wormhole: protocol revenue, 90-day run rate | $0 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
+| CC-AXELAR-REVENUE | Axelar: protocol revenue, 90-day run rate | $0 | DERIVED | as of Nov 10, 2026 | DefiLlama and CoinGecko |
