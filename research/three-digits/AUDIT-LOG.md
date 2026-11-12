@@ -72,3 +72,36 @@ Delivery and amounts are verified. The swap's input asset and price are not visi
 - What the front-end fund's NEAR will be used for is not disclosed onchain.
 - Why `auroraliqsupport.near` sent NEAR to the front-end fund is not explained.
 - H7 to H9 remain untested.
+
+---
+
+# Second pass: final targeted corrections
+
+Ten further items from the review of the first pass. No new workstream; original evidence, the audit history and both revenue-basis scenarios are kept.
+
+| # | Issue | Resolution | Changes the ladder? | Changes the verdict? |
+|---|---|---|---|---|
+| 1 | "Dilution net of capture" subtracted held buybacks, but tokens in a buyback wallet still exist and do not raise a passive holder's ownership share | Three measures kept apart: net issuance (total supply, 2.48%), **ownership dilution** (circulating supply growth excluding one-day events and as reported; NEAR 2.47%, nothing subtracted) and **treasury absorption** (NEAR moved into the held buyback wallet, 0.30% of supply a year, free float only). Evidence IDs `TOK-*-OWNERSHIP-DILUTION` and `TOK-NEAR-TREASURY-ABSORPTION` replace `TOK-*-DILUTION-NET`. H5 retested on ownership dilution: raw NEAR 2.5% vs peer median 5.6% (not supported); excluding one-day events 2.5% vs 2.9% (within 0.5 points, mixed). **H5 becomes MIXED.** The opportunity-cost model now compounds ownership dilution, so NEAR's required growth for 7x moves from 24.1% to 24.5% a year. | Slightly (opportunity-cost requirements) | Yes: the "dilution below the median" lead is removed |
+| 2 | "Executed" implied verified purchases | Renamed to "delivered to the buyback wallet" across code fields, evidence IDs (`TOK-DELIVERED-*`, `LAD-BASIS-DELIVERED-*`, `VAL-MULT-HIST-NEAR-DELIVERED`), labels, the methodology page, the dashboard, the thesis and the verdict. The average price is now "average NEAR market price on delivery days (not a verified purchase price)". | No | Wording |
+| 3 | The delivered share's valuation and provenance needed stating | The share values the 1Click fund's allocation at initial receipt, not its later transfer value. Provenance: NEAR is fungible, so tokens cannot be traced one by one; 100% of what the fund ever received came from intents.near, so the NEAR it moved is attributed to Intents revenue pro rata. The assumption is stated in the thesis. | No | No |
+| 4 | H1's denominator called "fees paid on NEAR" | Renamed everywhere to "fees DefiLlama attributes to the NEAR chain", stating that Intents' cross-chain swap fees are paid on many chains and are not NEAR L1 gas. Peer totals use the same attribution method; the rule states that the economic meaning differs by chain. Outcome unchanged (SUPPORTED). | No | Wording |
+| 5 | H6 could read as evidence about likely returns | Restated as a fixed-valuation-model result (valuation ratio held, dilution persisting), "not evidence about which asset is more likely to deliver it". Removed from the verdict summary. | No | Yes: summary sentence removed |
+| 6 | H10 implied the unexplained variance reflects fundamentals | Narrowed to BTC dependence only (single-factor R-squared); the unexplained part may be NEAR-specific news, other market factors or noise. Outcome unchanged. | No | No |
+| 7 | "No supply left to unlock" was stronger than the evidence | Replaced with what CoinGecko reports: circulating supply equals total supply (FDV / market cap 1.00), against up to 3.97x for the alternatives; lockup contracts not audited onchain; issuance continues. | No | Lead reworded |
+| 8 | Near Perps missing from the ecosystem map | Added: a perpetuals front end routing to Hyperliquid, earning builder-code fees ($207K in 90 days, DefiLlama "Interface"); $0 holders revenue; volume behind DefiLlama's paid API. No verified token-holder value. | No | No |
+| 9 | 90-day inputs and delivery observations ended on different days | One documented cutoff, the ladder's window end (2026-11-10), for every 90-day valuation input and every delivery observation. The delivered share moves from 67.1% to 67.0%; delivered run rate $13.8M vs designated $20.6M a year. | Negligible | No |
+| 10 | Re-run everything | Thesis regenerated; all tests pass; offline rebuild byte-identical. | | |
+
+## Final verdict
+
+**Investment verdict.**
+- NEAR presents a high-risk investment case supported by growing cross-chain activity through NEAR Intents, but its current valuation depends on assumptions that remain difficult to verify.
+- Intents generates measurable revenue, while NEAR's native onchain economy remains comparatively small. Much of the token's potential value therefore depends on sustained Intents growth, effective token-value capture, and the market continuing to value NEAR beyond its currently measurable cash flows.
+- Our analysis does not rule out substantial upside, including three-digit prices. However, reaching those levels would require exceptional long-term growth, stronger economic activity, or valuation conditions that today's data does not establish.
+- NEAR offers an interesting but highly conditional investment thesis, not a proven path to $100.
+
+**The rule-generated lines behind it, after this pass:**
+- **Leads:** largest of the four cross-chain swap venues with public volume data; highest revenue among cross-chain protocols on DefiLlama's definitions; circulating supply reported equal to total supply.
+- **Trails:** an observed valuation gap to the on-chain economy; market cap at 223x Intents revenue against 7.5x to 13.5x for small cross-chain peer tokens; falling L1 activity; the highest volatility in the comparison; net issuance above treasury absorption; 67% of designated revenue delivered to the buyback wallet; fees concentrated in one product.
+
+The research verdict is final. Next: the website and the debate.

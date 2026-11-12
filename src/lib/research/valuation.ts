@@ -3,7 +3,7 @@
  *
  * W5
  * - Cash-flow multiples month by month over the last year (CoinGecko market cap on the day / DefiLlama holders
- *   revenue, trailing 90 days ending that day). NEAR on two bases: designated buybacks and executed buybacks.
+ *   revenue, trailing 90 days ending that day). NEAR on two bases: designated buybacks and NEAR delivered to the buyback wallet.
  * - Sensitivity: which input moves NEAR's implied 2036 price most (published low and high cases per input).
  * - Multiple needed per rung: the cash-flow multiple each price would need at each growth scenario, so a reader
  *   sees how much of a rung rests on the multiple alone (SCOPE 5C.5).
@@ -99,15 +99,15 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   const mcapSeries = (coin: string) => daily(hist(coin)?.marketCaps);
   const END = ladder.basis.windowEnd;
 
-  // Holders revenue per asset (DefiLlama), NEAR = burns + designated buybacks; NEAR executed = burns + executed.
+  // Holders revenue per asset (DefiLlama), NEAR = burns + designated buybacks; NEAR delivered = burns + NEAR delivered to the buyback wallet.
   const burn = series('defillama.revenue.near');
   const iHold = series('defillama.intents.dailyHoldersRevenue');
-  const execMap = new Map(tok.buybacks.executedDaily);
-  const holders = (label: string, basis: 'designated' | 'executed' = 'designated'): DailyPoint[] => {
+  const delivMap = new Map(tok.buybacks.deliveredDaily);
+  const holders = (label: string, basis: 'designated' | 'delivered' = 'designated'): DailyPoint[] => {
     if (label !== 'NEAR') { const a = INVESTABLE.find((x) => x.label === label); return a?.llama ? series(`defillama.holders.${a.llama}`) : []; }
     const b = new Map(burn);
-    // Executed basis: days with no purchase count as zero, up to the last complete buyback day (unavailable if the reconstruction is).
-    const src = basis === 'designated' ? iHold : execMap.size ? burn.map(([d]) => [d, execMap.get(d) ?? 0] as DailyPoint).filter(([d]) => tok.buybacks.lastDay === null || d <= tok.buybacks.lastDay) : [];
+    // Delivered basis: days with no delivery count as zero, up to the last complete buyback day (unavailable if the reconstruction is).
+    const src = basis === 'designated' ? iHold : delivMap.size ? burn.map(([d]) => [d, delivMap.get(d) ?? 0] as DailyPoint).filter(([d]) => tok.buybacks.lastDay === null || d <= tok.buybacks.lastDay) : [];
     return src.filter(([d]) => b.has(d)).map(([d, v]) => [d, v + b.get(d)!] as DailyPoint);
   };
 
@@ -118,7 +118,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
     for (let i = 11; i >= 0; i--) { const dt = new Date(Date.UTC(Number(END.slice(0, 4)), Number(END.slice(5, 7)) - 1 - i + 1, 0)); const d = dt.toISOString().slice(0, 10); out.push(d > END ? END : d); }
     return out;
   })();
-  const mo = (label: string, coin: string, basis: 'designated' | 'executed', title: string) => {
+  const mo = (label: string, coin: string, basis: 'designated' | 'delivered', title: string) => {
     const caps = new Map(mcapSeries(coin));
     const h = holders(label, basis);
     // NEAR: a month counts only when its whole 90-day window follows the start of the flow being valued (audit item 6):
@@ -133,7 +133,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   };
   const multiplesOverTime = [
     mo('NEAR', 'near', 'designated', 'Burns + designated buybacks (DefiLlama), windows after 23 February 2026 only'),
-    mo('NEAR', 'near', 'executed', 'Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only'),
+    mo('NEAR', 'near', 'delivered', 'Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only'),
     ...INVESTABLE.filter((a) => a.llama).map((a) => mo(a.label, a.coin, 'designated', 'DefiLlama holders revenue')),
   ];
 
@@ -167,7 +167,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
     const u = universe.find((x) => x.id === a.coin);
     const marketCap = u && Number.isFinite(u.marketCap) ? u.marketCap as number : null;
     const tk = tok.assets.find((x) => x.label === a.label);
-    const dil = tk?.dilutionNetOfCapture ?? null;
+    const dil = tk?.ownershipDilution ?? null;
     const dilutionFactor = dil !== null ? Math.pow(1 + dil, HORIZON_YEARS) : null;
     // Platform economy: stablecoins and TVL at END vs a year earlier.
     const ce = CHAIN_ECONOMY.find((c) => c.label === a.label);
@@ -237,7 +237,7 @@ export function analyzeValuation(raws: Record<string, RawRecord | null | undefin
   const mn100 = multipleNeeded.find((m) => m.price === 100);
   const nearDes = multiplesOverTime[0]!.points.filter((p) => p.value !== null), nearExe = multiplesOverTime[1]!.points.filter((p) => p.value !== null);
   const findings = [
-    `NEAR's own cash-flow multiple: ${fmtX(nearDes.at(-1)?.value ?? null)} on designated buybacks and ${fmtX(nearExe.at(-1)?.value ?? null)} on executed buybacks (latest month-end). Only windows that fall entirely after each flow began are shown; earlier months valued pre-buyback treasury revenue and are not comparable.`,
+    `NEAR's own cash-flow multiple: ${fmtX(nearDes.at(-1)?.value ?? null)} on designated buybacks and ${fmtX(nearExe.at(-1)?.value ?? null)} on NEAR delivered to the buyback wallet (latest month-end). Only windows that fall entirely after each flow began are shown; earlier months valued pre-buyback treasury revenue and are not comparable.`,
     sens ? `The input that moves NEAR's implied 2036 price most is ${sens.input} (${sens.lowLabel}: $${sens.low?.toFixed(2)}; ${sens.highLabel}: $${sens.high?.toFixed(2)}; base $${base?.toFixed(2)}).` : '',
     mn100 ? `At base growth, $100 would need a cash-flow multiple of ${fmtX(mn100.byGrowth.find((g) => g.growthKey === 'base')?.multiple ?? null)}; at high growth ${fmtX(mn100.byGrowth.find((g) => g.growthKey === 'high')?.multiple ?? null)}. Today: NEAR ${fmtX(mToday)}, Tron ${fmtX(ladder.multiples.find((m) => m.key === 'tron')?.value ?? null)}, Hyperliquid ${fmtX(ladder.multiples.find((m) => m.key === 'hyperliquid')?.value ?? null)}.` : '',
     near && at7(near)?.requiredCagr !== null ? `For 7x in ten years NEAR's driver must grow ${fmtPct(at7(near)!.requiredCagr ?? null, 1)} a year (its own dilution included); Intents volume grew ${fmtPct(near.observedGrowth)} over the last year. Required vs observed, by asset (7x): ${gaps.map((o) => `${o.label} ${fmtPct(at7(o)!.requiredCagr ?? null, 0)} vs ${fmtPct(o.observedGrowth)}`).join('; ')}. One year of observed growth is dominated by the market cycle, and NEAR's driver is a young product growing from a small base while the platforms' drivers are mature chain economies, so the comparison flatters NEAR.` : '',
@@ -266,7 +266,7 @@ export function valuationEvidence(v: ValuationResult): EvidenceDraft[] {
   for (const m of v.multiplesOverTime) {
     const last = [...m.points].reverse().find((p) => p.value !== null) ?? null;
     const first = m.points.find((p) => p.value !== null) ?? null;
-    const id = `VAL-MULT-HIST-${m.label}${m.basis.includes('delivered to the buyback wallet') ? '-EXEC' : ''}`;
+    const id = `VAL-MULT-HIST-${m.label}${m.basis.includes('delivered to the buyback wallet') ? '-DELIVERED' : ''}`;
     item({ evidenceId: id, metricKey: `valuation.multiple_history.${id.toLowerCase()}`, label: `${m.label}: market cap / value to holders, latest month-end (${m.basis})`, unit: 'ratio', value: last?.value ?? null,
       periodStart: first?.month ?? null, periodEnd: last?.month ?? null, validationNotes: first && last ? `First available month ${first.month}: ${first.value?.toFixed(0)}x.` : null,
       series: { label: `${m.label} multiple`, unit: 'ratio', aggregation: 'month', points: m.points.filter((p) => p.value !== null).map((p) => [p.month, p.value!]) },
@@ -288,7 +288,7 @@ export function valuationEvidence(v: ValuationResult): EvidenceDraft[] {
     item({ evidenceId: `OPP-${A}-OBSERVED`, metricKey: `opportunity.${A.toLowerCase()}.observed_growth`, label: `${A}: observed growth of its valuation driver, last year`, unit: 'fraction', value: o.observedGrowth, methodology: o.observedBasis, transform: 'value_now / value_year_ago - 1' });
     for (const t of o.targets) {
       item({ evidenceId: `OPP-${A}-${String(t.k).replace('.', '_')}X-CAGR`, metricKey: `opportunity.${A.toLowerCase()}.${t.k}x.cagr`, label: `${A}: driver growth needed every year for ${t.k}x in ten years`, unit: 'fraction', value: t.requiredCagr,
-        inputs: [`TOK-${A}-DILUTION-NET`], methodology: `${o.method}. Valuation ratio held at today's level; dilution of ${o.dilutionPerYear === null ? 'n/a' : `${(o.dilutionPerYear * 100).toFixed(2)}%`} a year assumed to persist.`, transform: '(k x (1 + dilution)^10)^(1/10) - 1' });
+        inputs: [`TOK-${A}-OWNERSHIP-DILUTION`], methodology: `${o.method}. Valuation ratio held at today's level; dilution of ${o.dilutionPerYear === null ? 'n/a' : `${(o.dilutionPerYear * 100).toFixed(2)}%`} a year assumed to persist.`, transform: '(k x (1 + dilution)^10)^(1/10) - 1' });
     }
     item({ evidenceId: `OPP-${A}-VOL-1Y`, metricKey: `opportunity.${A.toLowerCase()}.vol_1y`, label: `${A}: annualized volatility, last year`, unit: 'fraction', value: o.risk.vol1y, sourceName: 'DefiLlama prices', methodology: 'Standard deviation of daily log returns between consecutive days x sqrt(365).', transform: 'stdev x sqrt(365)' });
     item({ evidenceId: `OPP-${A}-VOL-3Y`, metricKey: `opportunity.${A.toLowerCase()}.vol_3y`, label: `${A}: annualized volatility, last three years`, unit: 'fraction', value: o.risk.vol3y, sourceName: 'DefiLlama prices', methodology: 'Same, three years (or since listing).', transform: 'stdev x sqrt(365)' });

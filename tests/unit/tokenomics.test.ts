@@ -51,11 +51,11 @@ const b = t.buybacks;
 
 describe('W4 token economics', () => {
   it('separates NEAR delivered to the buyback wallet from moves and from other senders', () => {
-    expect(b.executedNear).toBeCloseTo(100 * days.length, 6);
-    expect(b.executedUsd).toBeCloseTo(200 * days.length, 3);
+    expect(b.deliveredNear).toBeCloseTo(100 * days.length, 6);
+    expect(b.deliveredUsd).toBeCloseTo(200 * days.length, 3);
     expect(b.affiliatedNear).toBeCloseTo(500, 9);
     expect(b.otherSenders).toEqual(['someone.near']);
-    expect(b.avgPurchasePrice).toBeCloseTo(2, 9);
+    expect(b.avgPriceOnDelivery).toBeCloseTo(2, 9);
     expect(b.walletReconciles).toBeCloseTo(1, 9);
   });
 
@@ -64,7 +64,7 @@ describe('W4 token economics', () => {
     expect(b.oneClickInUsd).toBeCloseTo(20 * oneClickDays.length, 3);
     expect(b.nonIntentsUsd).toBeCloseTo(100 + 10, 3);
     // The later 1Click-fund move is not captured revenue again.
-    expect(b.capturedUsd).toBeCloseTo(b.executedUsd! + b.oneClickInUsd! + b.frontendUsd! + b.nonIntentsUsd!, 3);
+    expect(b.capturedUsd).toBeCloseTo(b.deliveredUsd! + b.oneClickInUsd! + b.frontendUsd! + b.nonIntentsUsd!, 3);
     expect(b.frontendBalanceNear).toBeCloseTo(20 * days.length + 50, 6);
     expect(b.oneClickBalanceNear).toBeCloseTo(10 * oneClickDays.length - 500, 6);
   });
@@ -74,11 +74,11 @@ describe('W4 token economics', () => {
     expect(b.designatedUsd).toBeCloseTo(260 * window, 3);
     expect(b.llamaRevenueUsd).toBeCloseTo(260 * window, 3);
     expect(b.reproductionRatio).toBeCloseTo(b.capturedUsd! / (260 * window), 9);
-    expect(b.executedRunRateUsd).toBeCloseTo(200 * 365, 3);
+    expect(b.deliveredRunRateUsd).toBeCloseTo(200 * 365, 3);
     expect(b.designatedRunRateUsd).toBeCloseTo(260 * 365, 3);
     // The moved NEAR is valued when it was captured: share moved x captured value.
     const moved = Math.min(1, 500 / (10 * oneClickDays.length));
-    expect(b.executedBroadToDesignated).toBeCloseTo((b.executedUsd! + b.oneClickInUsd! * moved) / b.designatedUsd!, 9);
+    expect(b.deliveredAllToDesignated).toBeCloseTo((b.deliveredUsd! + b.oneClickInUsd! * moved) / b.designatedUsd!, 9);
   });
 
   it('refuses dollar totals when any day lacks a price', () => {
@@ -87,13 +87,13 @@ describe('W4 token economics', () => {
       'defillama.coins.near.2025-12-14': rec('p', { coin: 'near', prices: allDays.filter((d) => d !== '2026-06-15').map((d) => [ts(d), 2]) }),
       'coingecko.near.history': rec('n', noDay(hist(1e9, 1.025e9))) };
     const g = analyzeTokenomics(gap, (id) => ev[id] ?? null);
-    expect(g.buybacks.executedUsd).toBeNull();
-    expect(g.buybacks.executedRunRateUsd).toBeNull();
+    expect(g.buybacks.deliveredUsd).toBeNull();
+    expect(g.buybacks.deliveredRunRateUsd).toBeNull();
   });
 
   it('never nets flows with different economic effects into one dollar figure', () => {
     expect('netValueToHoldersUsd' in t).toBe(false);
-    expect(t.taxonomy.filter((r) => r.counted).map((r) => r.key)).toEqual(['executed', 'burns']);
+    expect(t.taxonomy.filter((r) => r.counted).map((r) => r.key)).toEqual(['delivered', 'burns']);
     // Burns are reported inside net issuance; buybacks as supply absorbed into a held wallet.
     expect(t.supply.netIssuance).toBe(0.025);
     expect(t.supply.buybackAbsorption).toBeCloseTo((200 * 365) / 2 / 1.2e9, 12);
@@ -112,12 +112,15 @@ describe('W4 token economics', () => {
   it('measures every asset with one method, keeping raw supply changes beside adjusted ones', () => {
     const near = t.assets.find((a) => a.label === 'NEAR')!;
     expect(near.circGrowth1y).toBeGreaterThan(0.02);
-    expect(near.dilutionNetOfCapture).toBeCloseTo(near.circGrowthExEvents! - (200 * 365) / 2e9, 12);
+    // Held buybacks do not reduce ownership dilution; they are reported as treasury absorption.
+    expect(near.ownershipDilution).toBeCloseTo(near.circGrowthExEvents!, 12);
+    expect(near.treasuryAbsorption).toBeCloseTo((200 * 365) / 2e9, 12);
     const hype = t.assets.find((a) => a.label === 'HYPE')!;
     expect(hype.jumps.length).toBe(1);
     expect(hype.circGrowth1y).toBeCloseTo(-0.1, 9); // raw, event included
     expect(hype.circGrowthExEvents).toBeCloseTo(0, 9); // adjusted
-    expect(hype.dilutionNetOfCapture).toBeCloseTo(0, 9);
+    expect(hype.ownershipDilution).toBeCloseTo(0, 9);
+    expect(hype.treasuryAbsorption).toBeNull();
     expect(t.assets.find((a) => a.label === 'BTC')!.holderYield).toBeNull();
   });
 });

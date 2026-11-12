@@ -272,6 +272,8 @@ export function buildRequestCatalog(): HttpRequestDef[] {
       project: (j: any) => asArr(j?.protocols).map((p: any) => ({ name: String(p.name), parent: p.parentProtocol ? String(p.parentProtocol) : null, category: String(p.category ?? ''), fees30d: Number(p.total30d ?? 0) })).filter((p: any) => p.fees30d > 0),
     });
   }
+  // W3: Near Perps (Hyperliquid builder-code front end listed by DefiLlama as an interface).
+  for (const dt of ['dailyFees', 'dailyHoldersRevenue'] as const) reqs.push({ key: `defillama.perps.near.${dt}`, source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/summary/fees/near-perps?dataType=${dt}`, project: llamaSummary });
   // W3: fees by protocol on the NEAR chain.
   reqs.push({
     key: 'defillama.fees.onnear', source: 'defillama', ttlMs: 6 * HOUR, url: `${L}/overview/fees/near?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true`,

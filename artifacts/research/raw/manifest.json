@@ -1767,6 +1767,32 @@
    "error": null
   }
  },
+ "defillama.perps.near.dailyFees": {
+  "key": "defillama.perps.near.dailyFees",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near-perps?dataType=dailyFees",
+  "sha256": "4b7cf9fa7667bf58413c2d7411370f9cbd2eb0424a454c7dc4ee1683eda49442",
+  "fetchedAt": "2026-11-12T15:56:53.449Z",
+  "file": "defillama.perps.near.dailyFees.json",
+  "lastAttempt": {
+   "at": "2026-11-12T15:56:53.451Z",
+   "status": "OK",
+   "error": null
+  }
+ },
+ "defillama.perps.near.dailyHoldersRevenue": {
+  "key": "defillama.perps.near.dailyHoldersRevenue",
+  "source": "defillama",
+  "url": "https://api.llama.fi/summary/fees/near-perps?dataType=dailyHoldersRevenue",
+  "sha256": "aee0e7f35781baebccfc1c08320e594a58178d3021d7367f3a46a529cebd8e08",
+  "fetchedAt": "2026-11-12T15:56:53.810Z",
+  "file": "defillama.perps.near.dailyHoldersRevenue.json",
+  "lastAttempt": {
+   "at": "2026-11-12T15:56:53.814Z",
+   "status": "OK",
+   "error": null
+  }
+ },
  "defillama.protocol.rhea-dex": {
   "key": "defillama.protocol.rhea-dex",
   "source": "defillama",

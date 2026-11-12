@@ -1,10 +1,10 @@
 /**
  * W4: token economics (research/three-digits/SCOPE.md, sections 6 and 8).
  *
- * 1. Value-capture taxonomy for NEAR: every flow classified before anything is summed. Only executed buybacks
+ * 1. Value-capture taxonomy for NEAR: every flow classified before anything is summed. Only NEAR delivered to the buyback wallet
  *    (reconstructed from the buyback wallet's onchain receipts) and burns count as value capture; designated
  *    buybacks are a label, staking emissions are redistribution, net issuance is dilution.
- * 2. Executed vs designated buybacks: NEAR received by buybacks.multisignature.near, valued at each day's price,
+ * 2. Delivered vs designated buybacks: NEAR received by buybacks.multisignature.near, valued at each day's price,
  *    against DefiLlama's buyback designation over the same days.
  * 3. Staking: share of supply staked, nominal yield, and real yield after dilution for stakers and non-stakers.
  * 4. The same comparable measures for every investable alternative: circulating supply growth (CoinGecko market
@@ -43,7 +43,10 @@ export interface FlowRow { key: string; flow: string; what: string; usdPerYear: 
 export interface AssetEconomics {
   label: string; type: string; marketCap: number | null; fdvToMcap: number | null;
   circGrowth1y: number | null; circStart: string | null; circEnd: string | null; jumps: { day: string; change: number }[];
-  circGrowthExEvents: number | null; heldBuybackRate: number | null; dilutionNetOfCapture: number | null;
+  /** Ownership dilution: growth of circulating supply excluding one-day events (a passive holder's share shrinks by this). */
+  circGrowthExEvents: number | null; ownershipDilution: number | null;
+  /** NEAR only: share of supply moved into the held buyback wallet per year. Changes free float, not ownership. */
+  treasuryAbsorption: number | null;
   holdersRunRate: number | null; holderYield: number | null; holderBasis: string;
 }
 export interface TokenomicsResult {
@@ -55,18 +58,20 @@ export interface TokenomicsResult {
     capturedUsd: number | null; capturedFromIntentsUsd: number | null; nonIntentsUsd: number | null; nonIntentsSources: { source: string; usd: number }[];
     llamaRevenueUsd: number | null; reproductionRatio: number | null;
     /** Into the buyback wallet: directly from intents.near (strict), and moved from the 1Click fund. */
-    executedNear: number; executedUsd: number | null; affiliatedNear: number; affiliatedUsd: number | null;
+    deliveredNear: number; deliveredUsd: number | null; affiliatedNear: number; affiliatedUsd: number | null;
     otherSendersNear: number; otherSenders: string[];
     /** Captured revenue kept in the front-end fund (not moved to the buyback wallet). */
     frontendUsd: number | null; frontendBalanceNear: number | null; oneClickBalanceNear: number | null;
-    designatedUsd: number | null; executedToDesignated: number | null; executedBroadToDesignated: number | null;
+    designatedUsd: number | null; deliveredToDesignated: number | null; deliveredAllToDesignated: number | null;
     walletNear: number | null; walletReconciles: number | null;
-    executedRunRateUsd: number | null; designatedRunRateUsd: number | null;
-    monthly: { month: string; executedNear: number; executedUsd: number | null; viaOneClickUsd: number | null; oneClickInUsd: number | null; frontendUsd: number | null; nonIntentsUsd: number | null; designatedUsd: number | null }[];
+    deliveredRunRateUsd: number | null; designatedRunRateUsd: number | null;
+    monthly: { month: string; deliveredNear: number; deliveredUsd: number | null; viaOneClickUsd: number | null; oneClickInUsd: number | null; frontendUsd: number | null; nonIntentsUsd: number | null; designatedUsd: number | null }[];
     oneClickInUsd: number | null;
-    avgPurchasePrice: number | null; pctOfSupplyPerYear: number | null;
-    /** Executed purchases in USD per day (documented route), for valuation over time. */
-    executedDaily: [string, number][];
+    /** Share of all NEAR the 1Click fund ever received that came from intents.near (provenance of what it later moved). */
+    oneClickProvenance: number | null;
+    avgPriceOnDelivery: number | null; pctOfSupplyPerYear: number | null;
+    /** NEAR delivered to the buyback wallet, USD per day at market prices (direct route), for valuation over time. */
+    deliveredDaily: [string, number][];
   };
   staking: { stakedNear: number | null; totalSupply: number | null; stakingRatio: number | null; grossIssuance: number | null; validatorShare: number | null; nominalYield: number | null; realYieldStaker: number | null; realYieldNonStaker: number | null; validators: number | null };
   taxonomy: FlowRow[];
@@ -83,7 +88,8 @@ const day = (t: number) => new Date(t * 1000).toISOString().slice(0, 10);
 const fmtUsd = (v: number | null) => (v === null ? 'n/a' : Math.abs(v) >= 1e9 ? `$${(v / 1e9).toFixed(2)}B` : `$${(v / 1e6).toFixed(1)}M`);
 const fmtPct = (v: number | null, d = 1) => (v === null ? 'n/a' : `${(v * 100).toFixed(d)}%`);
 
-export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefined>, ev: (id: string) => number | null): TokenomicsResult {
+/** `cutoff`: the documented common cutoff (the ladder's window end) for every 90-day input and delivery observation. */
+export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefined>, ev: (id: string) => number | null, cutoff: string | null = null): TokenomicsResult {
   const body = (k: string) => raws[k]?.body as any;
   const series = (k: string) => fromUnixPairs(body(k)?.chart);
   const price = ev('MKT-NEAR-PRICE');
@@ -97,25 +103,27 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
   // ---- Revenue wallets: every NEAR and wNEAR flow into or out of the three wallets (FastNEAR, exact yoctoNEAR).
   const rec = body(BUYBACK_KEY) as RevenueWalletsBody | undefined;
   const fetchedDay = raws[BUYBACK_KEY]?.fetchedAt?.slice(0, 10) ?? null;
-  const lastBuybackDay = fetchedDay ? new Date(Date.parse(`${fetchedDay}T00:00:00Z`) - 86_400_000).toISOString().slice(0, 10) : null;
+  const dayBeforeFetch = fetchedDay ? new Date(Date.parse(`${fetchedDay}T00:00:00Z`) - 86_400_000).toISOString().slice(0, 10) : null;
+  const lastBuybackDay = cutoff && dayBeforeFetch ? (cutoff < dayBeforeFetch ? cutoff : dayBeforeFetch) : dayBeforeFetch;
   const yocto = (y: string) => Number(BigInt(y) / 10n ** 18n) / 1e6;
   const wallets = new Set<string>(rec?.wallets ?? []);
   const flows = (rec?.flows ?? []).filter((f) => f.ok).map((f) => ({ ...f, d: new Date(Number(BigInt(f.ts) / 1_000_000n)).toISOString().slice(0, 10), n: yocto(f.yocto) }))
     .filter((f) => !lastBuybackDay || f.d <= lastBuybackDay); // the partial fetch day is left out
   const usdOf = (d: string, n: number) => { const px = nearPx.get(d); return px === undefined ? NaN : n * px; };
   const inWindow = (d: string) => d >= BUYBACKS_START;
-  let executedNear = 0, executedUsd = 0, affNear = 0, affUsd = 0, otherNear = 0, frontendUsd = 0, oneClickInUsd = 0, oneClickInNear = 0, capturedUsd = 0, capturedIntents = 0;
+  let deliveredNear = 0, deliveredUsd = 0, affNear = 0, affUsd = 0, otherNear = 0, frontendUsd = 0, oneClickInUsd = 0, oneClickInNear = 0, oneClickAllInNear = 0, capturedUsd = 0, capturedIntents = 0;
   const others = new Set<string>();
   const nonIntents = new Map<string, number>();
   const byDay = new Map<string, number>();
-  const mo = new Map<string, { executedNear: number; executedUsd: number; viaOneClickUsd: number; frontendUsd: number; nonIntentsUsd: number; oneClickInUsd: number }>();
-  const m = (d: string) => { const k = d.slice(0, 7); const o = mo.get(k) ?? { executedNear: 0, executedUsd: 0, viaOneClickUsd: 0, frontendUsd: 0, nonIntentsUsd: 0, oneClickInUsd: 0 }; mo.set(k, o); return o; };
+  const mo = new Map<string, { deliveredNear: number; deliveredUsd: number; viaOneClickUsd: number; frontendUsd: number; nonIntentsUsd: number; oneClickInUsd: number }>();
+  const m = (d: string) => { const k = d.slice(0, 7); const o = mo.get(k) ?? { deliveredNear: 0, deliveredUsd: 0, viaOneClickUsd: 0, frontendUsd: 0, nonIntentsUsd: 0, oneClickInUsd: 0 }; mo.set(k, o); return o; };
   let firstReceipt: string | null = null;
   let feBal = 0, ocBal = 0;
   for (const f of flows) {
     const sign = f.dir === 'in' ? 1 : -1;
     if (f.wallet === FRONTEND_FUND) feBal += sign * f.n;
     if (f.wallet === ONECLICK_FUND) ocBal += sign * f.n;
+    if (f.dir === 'in' && f.wallet === ONECLICK_FUND && !wallets.has(f.counterparty)) oneClickAllInNear += f.n; // provenance, all dates
     if (f.dir !== 'in' || !inWindow(f.d)) continue;
     const usd = usdOf(f.d, f.n);
     const external = !wallets.has(f.counterparty);
@@ -127,14 +135,14 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
     if (f.wallet === BUYBACK_WALLET_ID) {
       if (f.counterparty === BUYBACK_ROUTE) {
         if (firstReceipt === null || f.d < (firstReceipt as string)) firstReceipt = f.d;
-        executedNear += f.n; executedUsd += usd; byDay.set(f.d, (byDay.get(f.d) ?? 0) + f.n);
-        m(f.d).executedNear += f.n; m(f.d).executedUsd += usd;
+        deliveredNear += f.n; deliveredUsd += usd; byDay.set(f.d, (byDay.get(f.d) ?? 0) + f.n);
+        m(f.d).deliveredNear += f.n; m(f.d).deliveredUsd += usd;
       } else if (AFFILIATED_SENDERS.includes(f.counterparty)) { affNear += f.n; affUsd += usd; m(f.d).viaOneClickUsd += usd; }
       else { otherNear += f.n; others.add(f.counterparty); }
     } else if (f.wallet === FRONTEND_FUND && f.counterparty === BUYBACK_ROUTE) { frontendUsd += usd; m(f.d).frontendUsd += usd; }
     else if (f.wallet === ONECLICK_FUND && f.counterparty === BUYBACK_ROUTE) { oneClickInUsd += usd; oneClickInNear += f.n; m(f.d).oneClickInUsd += usd; }
   }
-  const priced = Number.isFinite(executedUsd) && Number.isFinite(affUsd) && Number.isFinite(capturedUsd);
+  const priced = Number.isFinite(deliveredUsd) && Number.isFinite(affUsd) && Number.isFinite(capturedUsd);
   const complete = !!rec && priced;
 
   // DefiLlama over identical dates: holders revenue (designated) and revenue (captured).
@@ -145,22 +153,22 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
   const llamaRevenueUsd = sumRange(iRevAll);
   const walletNear = ev('ONC-BUYBACK-WALLET');
 
-  // Run rates over the last 90 days common to the executed series and the designation (identical dates).
-  const execSeries: DailyPoint[] = [];
+  // Run rates over the last 90 days common to the delivered series and the designation (identical dates).
+  const delivSeries: DailyPoint[] = [];
   if (firstReceipt && lastBuybackDay) for (let t = Date.parse(`${firstReceipt}T00:00:00Z`); t <= Date.parse(`${lastBuybackDay}T00:00:00Z`); t += 86_400_000) {
     const d = new Date(t).toISOString().slice(0, 10);
     const v = usdOf(d, byDay.get(d) ?? 0);
-    if (Number.isFinite(v)) execSeries.push([d, v]);
+    if (Number.isFinite(v)) delivSeries.push([d, v]);
   }
-  const END = commonEnd([execSeries, iHold], 0);
-  const execRun = END && complete ? windowAggregate(execSeries, END, RUN).sum : null;
+  const END = cutoff ?? commonEnd([delivSeries, iHold], 0);
+  const delivRun = END && complete ? windowAggregate(delivSeries, END, RUN).sum : null;
   const desRun = END ? windowAggregate(iHold, END, RUN).sum : null;
-  const executedRunRateUsd = execRun !== null ? (execRun * 365) / RUN : null;
+  const deliveredRunRateUsd = delivRun !== null ? (delivRun * 365) / RUN : null;
   const designatedRunRateUsd = desRun !== null ? (desRun * 365) / RUN : null;
   const monthly = [...new Set([...mo.keys(), ...iHold.filter(([d]) => d >= BUYBACKS_START && (!lastBuybackDay || d <= lastBuybackDay)).map(([d]) => d.slice(0, 7))])].sort().map((k) => {
-    const o = mo.get(k) ?? { executedNear: 0, executedUsd: 0, viaOneClickUsd: 0, frontendUsd: 0, nonIntentsUsd: 0, oneClickInUsd: 0 };
+    const o = mo.get(k) ?? { deliveredNear: 0, deliveredUsd: 0, viaOneClickUsd: 0, frontendUsd: 0, nonIntentsUsd: 0, oneClickInUsd: 0 };
     const fin = (x: number) => (Number.isFinite(x) ? x : null);
-    return { month: k, executedNear: o.executedNear, executedUsd: fin(o.executedUsd), viaOneClickUsd: fin(o.viaOneClickUsd), oneClickInUsd: fin(o.oneClickInUsd), frontendUsd: fin(o.frontendUsd), nonIntentsUsd: fin(o.nonIntentsUsd),
+    return { month: k, deliveredNear: o.deliveredNear, deliveredUsd: fin(o.deliveredUsd), viaOneClickUsd: fin(o.viaOneClickUsd), oneClickInUsd: fin(o.oneClickInUsd), frontendUsd: fin(o.frontendUsd), nonIntentsUsd: fin(o.nonIntentsUsd),
       designatedUsd: iHold.filter(([d]) => d.startsWith(k) && d >= BUYBACKS_START && (!lastBuybackDay || d <= lastBuybackDay)).reduce((a, [, v]) => a + v, 0) };
   });
 
@@ -192,18 +200,18 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
     { key: 'ext-intents', flow: 'NEAR Intents fees', what: 'Gross fees paid by Intents users (protocol and distributor fees)', usdPerYear: ann(intFees), cls: 'source', counted: false, evidence: 'INT-FEES-90D' },
     { key: 'ext-gas', flow: 'NEAR gas fees', what: 'All transaction fees paid on the NEAR chain', usdPerYear: ann(gas), cls: 'source', counted: false, evidence: 'FEES-NEAR-CHAIN-90D' },
     { key: 'designated', flow: 'Revenue DefiLlama designates as buybacks', what: 'All NEAR captured into the three revenue wallets since 23 February 2026, relabelled as buybacks', usdPerYear: designatedRunRateUsd, cls: 'label', counted: false, evidence: 'TOK-DESIGNATED-RUNRATE' },
-    { key: 'executed', flow: 'NEAR delivered to the buyback wallet', what: `1Click swap output withdrawn from intents.near to ${BUYBACK_WALLET_ID}, valued at each day's price (swap inputs not visible onchain)`, usdPerYear: executedRunRateUsd, cls: 'capture', counted: true, evidence: 'TOK-EXECUTED-RUNRATE' },
+    { key: 'delivered', flow: 'NEAR delivered to the buyback wallet', what: `1Click swap output withdrawn from intents.near to ${BUYBACK_WALLET_ID}, valued at each day's price (swap inputs not visible onchain)`, usdPerYear: deliveredRunRateUsd, cls: 'capture', counted: true, evidence: 'TOK-DELIVERED-RUNRATE' },
     { key: 'frontend', flow: 'Captured revenue kept in the front-end fund', what: `NEAR swept to ${FRONTEND_FUND}; not moved to the buyback wallet`, usdPerYear: null, cls: 'label', counted: false, evidence: 'TOK-FRONTEND-RETAINED' },
     { key: 'burns', flow: 'Gas burned', what: '70% of every gas fee, permanently removed', usdPerYear: burnsUsd, cls: 'capture', counted: true, evidence: 'LAD-NEAR-BURN-RUNRATE' },
     { key: 'emissions', flow: 'Staking emissions', what: 'New NEAR minted for validators and delegators', usdPerYear: emissionsUsd, cls: 'redistribution', counted: false, evidence: 'TOK-GROSS-ISSUANCE' },
     { key: 'net-issuance', flow: 'Net issuance', what: 'Emissions minus burns: the dilution every holder faces (burns are already inside this figure)', usdPerYear: netIssuanceUsd, cls: 'dilution', counted: false, evidence: 'SUP-NET-NEW-ANN-USD' },
     { key: 'apps', flow: 'Ecosystem app revenue (for example RHEA)', what: 'Revenue accruing to applications, not to $NEAR', usdPerYear: null, cls: 'excluded', counted: false, evidence: 'not summed' },
   ];
-  const verifiedCaptureUsd = executedRunRateUsd !== null && burnsUsd !== null ? executedRunRateUsd + burnsUsd : null;
+  const verifiedCaptureUsd = deliveredRunRateUsd !== null && burnsUsd !== null ? deliveredRunRateUsd + burnsUsd : null;
   // Supply view: each flow as a share of total supply per year. Burns are inside net issuance; bought NEAR is held, so it
   // absorbs supply from the market without removing it. Nothing is netted across these different effects.
   const supply = { grossIssuance, burns: burnRate, netIssuance: netNewPct,
-    buybackAbsorption: executedRunRateUsd !== null && price && totalSupply ? executedRunRateUsd / price / totalSupply : null };
+    buybackAbsorption: deliveredRunRateUsd !== null && price && totalSupply ? deliveredRunRateUsd / price / totalSupply : null };
 
   // ---- Every investable alternative on the same measures.
   const universe: any[] = Array.isArray(body('coingecko.universe')) ? body('coingecko.universe') : [];
@@ -237,29 +245,28 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
     }
     const marketCap = u && Number.isFinite(u.marketCap) ? u.marketCap : null;
     const holderYield = a.llama || a.coin === 'near' ? safeDiv(holdersRunRate, marketCap) : null;
-    // NEAR's bought-back tokens sit in the buyback wallet and still count as circulating (CoinGecko circulating = total
-    // supply), so executed buybacks are subtracted here. Every other asset's capture is a burn or a recognized burn,
-    // which already lowers circulating supply.
-    const heldBuybackRate = a.coin === 'near' && executedRunRateUsd !== null && marketCap ? executedRunRateUsd / marketCap : a.coin === 'near' ? null : 0;
-    const dilutionNetOfCapture = circGrowthExEvents !== null && heldBuybackRate !== null ? circGrowthExEvents - heldBuybackRate : null;
+    // Held buybacks do not reduce supply or raise a passive holder's ownership share (audit item 1): ownership dilution is
+    // supply growth alone. NEAR's buyback wallet is reported separately as treasury absorption (free float only).
+    const ownershipDilution = circGrowthExEvents;
+    const treasuryAbsorption = a.coin === 'near' && deliveredRunRateUsd !== null && marketCap ? deliveredRunRateUsd / marketCap : null;
     return {
       label: a.label, type: a.type, marketCap, fdvToMcap: u && u.fdv && marketCap ? u.fdv / marketCap : null,
       circGrowth1y, circStart: circ[0]?.[0] ?? null, circEnd: circ[circ.length - 1]?.[0] ?? null, jumps,
-      circGrowthExEvents, heldBuybackRate, dilutionNetOfCapture, holdersRunRate, holderYield, holderBasis,
+      circGrowthExEvents, ownershipDilution, treasuryAbsorption, holdersRunRate, holderYield, holderBasis,
     };
   });
 
   // ---- Findings, generated from the numbers.
   const near = assets.find((x) => x.label === 'NEAR');
-  const dRank = [...assets].filter((x) => x.dilutionNetOfCapture !== null).sort((p, q) => p.dilutionNetOfCapture! - q.dilutionNetOfCapture!);
+  const dRank = [...assets].filter((x) => x.ownershipDilution !== null).sort((p, q) => p.ownershipDilution! - q.ownershipDilution!);
   const nonIntentsUsd = [...nonIntents.values()].reduce((a, v) => a + v, 0);
   const findings = [
     `Captured revenue reproduced onchain from the three revenue wallets matches DefiLlama to ${fmtPct(complete ? safeDiv(capturedUsd, llamaRevenueUsd) : null)} over the same dates (FastNEAR vs Dune, independent paths). DefiLlama labels all of it as buybacks from ${BUYBACKS_START}.`,
-    `Of the ${fmtUsd(designatedUsd)} designated since then, ${fmtUsd(complete ? executedUsd : null)} (${fmtPct(complete ? safeDiv(executedUsd, designatedUsd) : null)}) reached the buyback wallet directly from 1Click swaps and ${fmtUsd(complete ? affUsd : null)} more was moved there from the 1Click fund (counting the moved NEAR at its value when captured, ${fmtPct(complete ? safeDiv(executedUsd + oneClickInUsd * Math.min(1, oneClickInNear ? affNear / oneClickInNear : 0), designatedUsd) : null)} of the designation reached the buyback wallet). ${fmtUsd(complete ? frontendUsd : null)} of Intents revenue stayed in the front-end fund, and ${fmtUsd(complete ? nonIntentsUsd : null)} came from accounts other than intents.near (${[...nonIntents.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => k).join(', ')}).`,
-    `Run rate on identical dates: ${fmtUsd(executedRunRateUsd)} a year delivered to the buyback wallet against ${fmtUsd(designatedRunRateUsd)} designated. The swap inputs are not visible onchain without the Intents Explorer API, so delivery is verified, not the purchase price.`,
+    `Of the ${fmtUsd(designatedUsd)} designated since then, ${fmtUsd(complete ? deliveredUsd : null)} (${fmtPct(complete ? safeDiv(deliveredUsd, designatedUsd) : null)}) reached the buyback wallet directly from 1Click swaps and ${fmtUsd(complete ? affUsd : null)} more was moved there from the 1Click fund (valuing the 1Click fund's allocation when the fund received it, not at its later transfer value, ${fmtPct(complete ? safeDiv(deliveredUsd + oneClickInUsd * Math.min(1, oneClickInNear ? affNear / oneClickInNear : 0), designatedUsd) : null)} of the designation reached the buyback wallet). ${fmtUsd(complete ? frontendUsd : null)} of Intents revenue stayed in the front-end fund, and ${fmtUsd(complete ? nonIntentsUsd : null)} came from accounts other than intents.near (${[...nonIntents.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => k).join(', ')}).`,
+    `Run rate on identical dates: ${fmtUsd(deliveredRunRateUsd)} a year delivered to the buyback wallet against ${fmtUsd(designatedRunRateUsd)} designated. The swap inputs are not visible onchain without the Intents Explorer API, so delivery is verified, not the purchase price.`,
     `Supply view, per year as a share of total supply: gross issuance ${fmtPct(grossIssuance, 2)}, burns ${fmtPct(burnRate, 3)} (inside net issuance), net issuance ${fmtPct(netNewPct, 2)}; buybacks absorb ${fmtPct(supply.buybackAbsorption, 2)} into a held wallet without removing it. These are different effects and are not netted into one dollar figure.`,
     `Staking: ${fmtPct(stakingRatio, 0)} of supply is staked; nominal yield ${fmtPct(nominalYield)}, ${fmtPct(realYieldStaker)} after dilution for stakers and ${fmtPct(realYieldNonStaker)} for non-stakers.`,
-    near && near.dilutionNetOfCapture !== null ? `Dilution net of capture over the last year (circulating supply growth excluding one-day events, minus held buybacks): NEAR ${fmtPct(near.dilutionNetOfCapture)}, ${dRank.findIndex((x) => x.label === 'NEAR') + 1} lowest of ${dRank.length}; ${dRank.map((x) => `${x.label} ${fmtPct(x.dilutionNetOfCapture)}`).join(', ')}. As-reported supply changes, including one-day events, are shown alongside.` : 'Dilution net of capture unavailable.',
+    near && near.ownershipDilution !== null ? `Ownership dilution over the last year (circulating supply growth excluding one-day events; held buybacks do not reduce it): NEAR ${fmtPct(near.ownershipDilution)}, ${dRank.findIndex((x) => x.label === 'NEAR') + 1} lowest of ${dRank.length}; ${dRank.map((x) => `${x.label} ${fmtPct(x.ownershipDilution)}`).join(', ')}. As-reported changes, including one-day events, are shown alongside; NEAR's buyback wallet absorbs ${fmtPct(near.treasuryAbsorption, 2)} of supply a year from free float.` : 'Ownership dilution unavailable.',
   ];
 
   return {
@@ -269,16 +276,16 @@ export function analyzeTokenomics(raws: Record<string, RawRecord | null | undefi
       capturedUsd: complete ? capturedUsd : null, capturedFromIntentsUsd: complete ? capturedIntents : null, nonIntentsUsd: complete ? nonIntentsUsd : null,
       nonIntentsSources: [...nonIntents.entries()].map(([source, usd]) => ({ source, usd })).sort((a, b) => b.usd - a.usd),
       llamaRevenueUsd, reproductionRatio: complete ? safeDiv(capturedUsd, llamaRevenueUsd) : null,
-      executedNear, executedUsd: complete ? executedUsd : null, affiliatedNear: affNear, affiliatedUsd: complete ? affUsd : null,
+      deliveredNear, deliveredUsd: complete ? deliveredUsd : null, affiliatedNear: affNear, affiliatedUsd: complete ? affUsd : null,
       otherSendersNear: otherNear, otherSenders: [...others].sort(),
-      frontendUsd: complete ? frontendUsd : null, oneClickInUsd: complete ? oneClickInUsd : null, frontendBalanceNear: rec ? feBal : null, oneClickBalanceNear: rec ? ocBal : null,
-      designatedUsd, executedToDesignated: complete ? safeDiv(executedUsd, designatedUsd) : null, // Revenue that reached the buyback wallet, valued when it was captured: direct deliveries, plus the share of the
+      frontendUsd: complete ? frontendUsd : null, oneClickInUsd: complete ? oneClickInUsd : null, oneClickProvenance: rec ? safeDiv(flows.filter((f) => f.wallet === ONECLICK_FUND && f.dir === 'in' && f.counterparty === BUYBACK_ROUTE).reduce((a, f) => a + f.n, 0), oneClickAllInNear) : null, frontendBalanceNear: rec ? feBal : null, oneClickBalanceNear: rec ? ocBal : null,
+      designatedUsd, deliveredToDesignated: complete ? safeDiv(deliveredUsd, designatedUsd) : null, // Revenue that reached the buyback wallet, valued when it was captured: direct deliveries, plus the share of the
       // 1Click fund's captured NEAR that was later moved to the wallet.
-      executedBroadToDesignated: complete ? safeDiv(executedUsd + oneClickInUsd * Math.min(1, oneClickInNear ? affNear / oneClickInNear : 0), designatedUsd) : null,
-      walletNear, walletReconciles: safeDiv(walletNear, executedNear + affNear + otherNear),
-      executedRunRateUsd, designatedRunRateUsd, monthly, avgPurchasePrice: complete ? safeDiv(executedUsd, executedNear) : null,
+      deliveredAllToDesignated: complete ? safeDiv(deliveredUsd + oneClickInUsd * Math.min(1, oneClickInNear ? affNear / oneClickInNear : 0), designatedUsd) : null,
+      walletNear, walletReconciles: safeDiv(walletNear, deliveredNear + affNear + otherNear),
+      deliveredRunRateUsd, designatedRunRateUsd, monthly, avgPriceOnDelivery: complete ? safeDiv(deliveredUsd, deliveredNear) : null,
       pctOfSupplyPerYear: supply.buybackAbsorption,
-      executedDaily: complete ? execSeries.map(([d, v]) => [d, Math.round(v * 100) / 100] as [string, number]) : [],
+      deliveredDaily: complete ? delivSeries.map(([d, v]) => [d, Math.round(v * 100) / 100] as [string, number]) : [],
     },
     staking: { stakedNear, totalSupply, stakingRatio, grossIssuance, validatorShare, nominalYield, realYieldStaker, realYieldNonStaker, validators: Number.isFinite(v?.currentCount) ? v.currentCount : null },
     taxonomy, verifiedCaptureUsd, netIssuanceUsd, supply, assets, findings,
@@ -306,29 +313,29 @@ export function tokenomicsEvidence(t: TokenomicsResult, fetched: (key: string) =
     validationNotes: b.nonIntentsSources.map((x) => `${x.source} $${(x.usd / 1e3).toFixed(0)}K`).join(', ') || null, methodology: 'Counted as revenue (and as buybacks) by DefiLlama\'s method, but not shown to come from Intents.', transform: 'sum' });
   item({ evidenceId: 'TOK-FRONTEND-RETAINED', metricKey: 'tokenomics.frontend.retained', label: 'Intents revenue swept to the front-end fund since buybacks began (not moved to the buyback wallet)', unit: 'USD', value: b.frontendUsd, ...fastnear, observationType: 'OBSERVED',
     validationNotes: b.frontendBalanceNear !== null ? `Front-end fund NEAR from all reconstructed flows: ${b.frontendBalanceNear.toFixed(0)}.` : null, methodology: `Inflows to ${FRONTEND_FUND} from intents.near. DefiLlama counts these as buybacks; they are held in a DAO fund, not in the buyback wallet.`, transform: 'sum(inflow_d x price_d)' });
-  item({ evidenceId: 'TOK-EXECUTED-NEAR', metricKey: 'tokenomics.executed_buybacks.near', label: `NEAR delivered to ${BUYBACK_WALLET_ID} by 1Click swaps since ${b.firstReceipt ?? 'n/a'}`, unit: 'NEAR', value: b.executedNear,
+  item({ evidenceId: 'TOK-DELIVERED-NEAR', metricKey: 'tokenomics.delivered.near', label: `NEAR delivered to ${BUYBACK_WALLET_ID} by 1Click swaps since ${b.firstReceipt ?? 'n/a'}`, unit: 'NEAR', value: b.deliveredNear,
     observationType: 'OBSERVED', ...fastnear, periodStart: b.firstReceipt, periodEnd: b.lastDay,
     methodology: 'NEAR withdrawn from intents.near to the buyback wallet: the output of 1Click swaps routed to the wallet through one-time intermediate accounts. Delivery is verified onchain; the swap inputs and prices are not visible without the Intents Explorer API.', transform: 'sum(transfers)' });
-  item({ evidenceId: 'TOK-EXECUTED-USD', metricKey: 'tokenomics.executed_buybacks.usd', label: 'NEAR delivered to the buyback wallet, valued at each day\'s price', unit: 'USD', value: b.executedUsd, inputs: ['TOK-EXECUTED-NEAR'],
+  item({ evidenceId: 'TOK-DELIVERED-USD', metricKey: 'tokenomics.delivered.usd', label: 'NEAR delivered to the buyback wallet, valued at each day\'s price', unit: 'USD', value: b.deliveredUsd, inputs: ['TOK-DELIVERED-NEAR'],
     periodStart: b.firstReceipt, periodEnd: b.lastDay, methodology: 'Each day\'s NEAR times that day\'s price (CoinGecko daily, DefiLlama fallback). Unavailable if any day lacks a price.', transform: 'sum(NEAR_d x price_d)' });
   item({ evidenceId: 'TOK-DESIGNATED-SINCE', metricKey: 'tokenomics.designated.since_start', label: `Revenue DefiLlama designates as buybacks, ${b.windowStart} to ${b.lastDay ?? 'n/a'}`, unit: 'USD', value: b.designatedUsd, sourceName: 'DefiLlama',
     observationType: 'OBSERVED', fetchedAt: fetched('defillama.intents.dailyHoldersRevenue').at, rawResponseHash: fetched('defillama.intents.dailyHoldersRevenue').hash, periodStart: b.windowStart, periodEnd: b.lastDay,
     methodology: 'Sum of NEAR Intents holders revenue over exactly the same dates as the onchain measures.', transform: 'sum(daily holders revenue)' });
-  item({ evidenceId: 'TOK-EXECUTED-VS-DESIGNATED', metricKey: 'tokenomics.executed_vs_designated', label: 'Delivered directly to the buyback wallet, as a share of designated buybacks (same dates)', unit: 'fraction', value: b.executedToDesignated,
-    inputs: ['TOK-EXECUTED-USD', 'TOK-DESIGNATED-SINCE'], periodStart: b.windowStart, periodEnd: b.lastDay, methodology: 'The rest of the designation is NEAR moved later from the 1Click fund, NEAR kept in the front-end fund, and inflows from other accounts (see the reconciliation table).', transform: 'TOK-EXECUTED-USD / TOK-DESIGNATED-SINCE' });
+  item({ evidenceId: 'TOK-DELIVERED-VS-DESIGNATED', metricKey: 'tokenomics.delivered_vs_designated', label: 'Delivered directly to the buyback wallet, as a share of designated buybacks (same dates)', unit: 'fraction', value: b.deliveredToDesignated,
+    inputs: ['TOK-DELIVERED-USD', 'TOK-DESIGNATED-SINCE'], periodStart: b.windowStart, periodEnd: b.lastDay, methodology: 'The rest of the designation is NEAR moved later from the 1Click fund, NEAR kept in the front-end fund, and inflows from other accounts (see the reconciliation table).', transform: 'TOK-DELIVERED-USD / TOK-DESIGNATED-SINCE' });
   item({ evidenceId: 'TOK-AFFILIATED-USD', metricKey: 'tokenomics.affiliated_transfers.usd', label: `NEAR moved to the buyback wallet from ${ONECLICK_FUND}, valued at each day's price`, unit: 'USD', value: b.affiliatedUsd, confidence: 'medium',
     methodology: `Captured revenue swept to the 1Click fund (from intents.near) and later moved to the buyback wallet. DefiLlama counts it once, when it reached the fund. ${b.affiliatedNear.toFixed(0)} NEAR.`, transform: 'sum(NEAR_d x price_d)' });
-  item({ evidenceId: 'TOK-EXECUTED-BROAD-VS-DESIGNATED', metricKey: 'tokenomics.executed_broad_vs_designated', label: 'All NEAR that reached the buyback wallet (direct and via the 1Click fund), as a share of designated', unit: 'fraction', value: b.executedBroadToDesignated, inputs: ['TOK-EXECUTED-USD', 'TOK-AFFILIATED-USD', 'TOK-DESIGNATED-SINCE'],
+  item({ evidenceId: 'TOK-DELIVERED-ALL-VS-DESIGNATED', metricKey: 'tokenomics.delivered_all_vs_designated', label: 'All NEAR that reached the buyback wallet (direct and via the 1Click fund), as a share of designated', unit: 'fraction', value: b.deliveredAllToDesignated, inputs: ['TOK-DELIVERED-USD', 'TOK-AFFILIATED-USD', 'TOK-DESIGNATED-SINCE'],
     methodology: 'Designated revenue that ended up in the buyback wallet, same dates, each part valued when it was captured: direct deliveries plus the share of the 1Click fund\'s captured NEAR later moved to the wallet.', transform: '(direct + 1Click fund inflows x share moved) / designated' });
-  item({ evidenceId: 'TOK-EXECUTED-RUNRATE', metricKey: 'tokenomics.executed.run_rate', label: `Executed buybacks, ${RUN}-day run rate`, unit: 'USD', value: b.executedRunRateUsd, inputs: ['TOK-EXECUTED-USD'],
-    methodology: `Executed purchases over the last ${RUN} complete days common to both series, annualized.`, transform: `sum ${RUN}d x 365/${RUN}` });
+  item({ evidenceId: 'TOK-DELIVERED-RUNRATE', metricKey: 'tokenomics.delivered.run_rate', label: `NEAR delivered to the buyback wallet, ${RUN}-day run rate (market prices on delivery days)`, unit: 'USD', value: b.deliveredRunRateUsd, inputs: ['TOK-DELIVERED-USD'],
+    methodology: `Deliveries over the last ${RUN} complete days ending on the common cutoff, valued at market prices on the delivery days (not verified purchase prices), annualized.`, transform: `sum ${RUN}d x 365/${RUN}` });
   item({ evidenceId: 'TOK-DESIGNATED-RUNRATE', metricKey: 'tokenomics.designated.run_rate', label: `Designated buybacks, ${RUN}-day run rate (same days)`, unit: 'USD', value: b.designatedRunRateUsd, sourceName: 'DefiLlama',
-    methodology: 'Same window as the executed run rate.', transform: `sum ${RUN}d x 365/${RUN}` });
-  item({ evidenceId: 'TOK-WALLET-RECONCILE', metricKey: 'tokenomics.wallet_reconcile', label: 'Buyback wallet balance / NEAR received', unit: 'fraction', value: b.walletReconciles, inputs: ['ONC-BUYBACK-WALLET', 'TOK-EXECUTED-NEAR'],
+    methodology: 'Same window as the delivered run rate.', transform: `sum ${RUN}d x 365/${RUN}` });
+  item({ evidenceId: 'TOK-WALLET-RECONCILE', metricKey: 'tokenomics.wallet_reconcile', label: 'Buyback wallet balance / NEAR received', unit: 'fraction', value: b.walletReconciles, inputs: ['ONC-BUYBACK-WALLET', 'TOK-DELIVERED-NEAR'],
     methodology: 'Close to 100% means the wallet has kept what it received (bought-back NEAR is held, not burned or sold).', transform: 'ONC-BUYBACK-WALLET / NEAR received' });
-  item({ evidenceId: 'TOK-AVG-PURCHASE-PRICE', metricKey: 'tokenomics.avg_purchase_price', label: 'Average buyback price', unit: 'USD', value: b.avgPurchasePrice, inputs: ['TOK-EXECUTED-USD', 'TOK-EXECUTED-NEAR'],
-    methodology: 'Value-weighted average daily price of executed purchases.', transform: 'TOK-EXECUTED-USD / TOK-EXECUTED-NEAR' });
-  item({ evidenceId: 'TOK-BUYBACK-PCT-SUPPLY', metricKey: 'tokenomics.buyback_pct_supply', label: 'Executed buybacks per year as a share of total supply', unit: 'fraction', value: b.pctOfSupplyPerYear, inputs: ['TOK-EXECUTED-RUNRATE', 'ONC-TOTAL-SUPPLY'],
+  item({ evidenceId: 'TOK-AVG-PRICE-ON-DELIVERY', metricKey: 'tokenomics.avg_price_on_delivery', label: 'Average NEAR market price on delivery days (not a verified purchase price)', unit: 'USD', value: b.avgPriceOnDelivery, inputs: ['TOK-DELIVERED-USD', 'TOK-DELIVERED-NEAR'],
+    methodology: 'Value-weighted average of the daily market price on the days NEAR was delivered. The swaps\' actual execution prices are not visible onchain.', transform: 'TOK-DELIVERED-USD / TOK-DELIVERED-NEAR' });
+  item({ evidenceId: 'TOK-BUYBACK-PCT-SUPPLY', metricKey: 'tokenomics.buyback_pct_supply', label: 'NEAR delivered to the buyback wallet per year as a share of total supply', unit: 'fraction', value: b.pctOfSupplyPerYear, inputs: ['TOK-DELIVERED-RUNRATE', 'ONC-TOTAL-SUPPLY'],
     methodology: 'Run rate at today\'s price; compare with net issuance.', transform: 'run rate / price / total supply' });
   const s = t.staking;
   item({ evidenceId: 'TOK-STAKING-RATIO', metricKey: 'tokenomics.staking_ratio', label: 'Share of NEAR supply staked with active validators', unit: 'fraction', value: s.stakingRatio, observationType: 'DERIVED', sourceName: 'NEAR RPC',
@@ -342,9 +349,9 @@ export function tokenomicsEvidence(t: TokenomicsResult, fetched: (key: string) =
     methodology: 'Growth of a staker\'s share of supply: staking rewards are mostly redistribution from non-stakers, not new value.', transform: '(1 + nominal) / (1 + net growth) - 1' });
   item({ evidenceId: 'TOK-NONSTAKER-REAL', metricKey: 'tokenomics.nonstaker.real', label: 'Change in a non-staker\'s share of supply per year', unit: 'fraction', value: s.realYieldNonStaker, inputs: ['SUP-NET-NEW-ANN-PCT'],
     methodology: 'Dilution borne by holders who do not stake.', transform: '1 / (1 + net growth) - 1' });
-  item({ evidenceId: 'TOK-VERIFIED-CAPTURE', metricKey: 'tokenomics.verified_capture', label: 'Verified value capture per year (NEAR delivered to the buyback wallet + burns)', unit: 'USD', value: t.verifiedCaptureUsd, inputs: ['TOK-EXECUTED-RUNRATE', 'LAD-NEAR-BURN-RUNRATE'],
+  item({ evidenceId: 'TOK-VERIFIED-CAPTURE', metricKey: 'tokenomics.verified_capture', label: 'Verified value capture per year (NEAR delivered to the buyback wallet + burns)', unit: 'USD', value: t.verifiedCaptureUsd, inputs: ['TOK-DELIVERED-RUNRATE', 'LAD-NEAR-BURN-RUNRATE'],
     methodology: 'A gross measure of what reaches $NEAR. It is not netted against issuance: burns are already inside net issuance, and held buybacks absorb rather than remove supply.', transform: 'delivered + burns' });
-  item({ evidenceId: 'TOK-BUYBACK-ABSORPTION', metricKey: 'tokenomics.supply.buyback_absorption', label: 'NEAR delivered to the buyback wallet per year, as a share of total supply', unit: 'fraction', value: t.supply.buybackAbsorption, inputs: ['TOK-EXECUTED-RUNRATE', 'ONC-TOTAL-SUPPLY'],
+  item({ evidenceId: 'TOK-BUYBACK-ABSORPTION', metricKey: 'tokenomics.supply.buyback_absorption', label: 'NEAR delivered to the buyback wallet per year, as a share of total supply', unit: 'fraction', value: t.supply.buybackAbsorption, inputs: ['TOK-DELIVERED-RUNRATE', 'ONC-TOTAL-SUPPLY'],
     methodology: 'Held, not burned: it absorbs supply from the market without removing it. Compare with net issuance (SUP-NET-NEW-ANN-PCT), which already includes burns; the two are not netted.', transform: 'run rate / price / total supply' });
   for (const a of t.assets) {
     const A = a.label;
@@ -355,8 +362,10 @@ export function tokenomicsEvidence(t: TokenomicsResult, fetched: (key: string) =
     item({ evidenceId: `TOK-${A}-HOLDER-YIELD`, metricKey: `tokenomics.${A.toLowerCase()}.holder_yield`, label: `${A}: value reaching holders as a share of market cap, ${RUN}-day run rate`, unit: 'fraction', value: a.holderYield, methodology: a.holderBasis, transform: 'holders revenue run rate / market cap' });
     item({ evidenceId: `TOK-${A}-CIRC-GROWTH-EX`, metricKey: `tokenomics.${A.toLowerCase()}.circ_growth_ex_events`, label: `${A}: circulating supply growth excluding one-day events`, unit: 'fraction', value: a.circGrowthExEvents, sourceName: 'CoinGecko',
       inputs: [`TOK-${A}-CIRC-GROWTH`], methodology: `Daily changes chained, skipping days that moved more than ${SUPPLY_JUMP * 100}% (reclassifications, one-off recognitions). The flow of new supply.`, transform: 'product(daily ratio, non-event days) - 1' });
-    item({ evidenceId: `TOK-${A}-DILUTION-NET`, metricKey: `tokenomics.${A.toLowerCase()}.dilution_net_of_capture`, label: `${A}: dilution net of capture, per year`, unit: 'fraction', value: a.dilutionNetOfCapture,
-      inputs: [`TOK-${A}-CIRC-GROWTH-EX`], methodology: a.label === 'NEAR' ? 'Circulating supply growth minus executed buybacks as a share of market cap: NEAR\'s bought-back tokens are held and still counted as circulating.' : 'Circulating supply growth: this asset\'s burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.', transform: a.label === 'NEAR' ? 'growth ex events - executed buybacks / market cap' : 'growth ex events' });
+    item({ evidenceId: `TOK-${A}-OWNERSHIP-DILUTION`, metricKey: `tokenomics.${A.toLowerCase()}.ownership_dilution`, label: `${A}: ownership dilution per year (circulating supply growth excluding one-day events)`, unit: 'fraction', value: a.ownershipDilution,
+      inputs: [`TOK-${A}-CIRC-GROWTH-EX`], methodology: 'How much a passive holder\'s share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.', transform: 'growth ex events' });
+    if (a.treasuryAbsorption !== null) item({ evidenceId: `TOK-${A}-TREASURY-ABSORPTION`, metricKey: `tokenomics.${A.toLowerCase()}.treasury_absorption`, label: `${A}: share of supply moved into the held buyback wallet per year`, unit: 'fraction', value: a.treasuryAbsorption,
+      inputs: ['TOK-DELIVERED-RUNRATE'], methodology: 'Changes free float, not total supply or a passive holder\'s ownership share.', transform: 'delivered run rate / market cap' });
   }
   return out;
 }

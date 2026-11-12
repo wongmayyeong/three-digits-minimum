@@ -115,11 +115,11 @@ describe('three-digit price ladder', () => {
   });
 });
 
-describe('revenue-basis scenarios (designated vs executed)', () => {
+describe('revenue-basis scenarios (designated vs delivered)', () => {
   const daily = (usdPerDay: number) => days(usdPerDay, 400, 9).map(([t, v]) => [new Date(Number(t) * 1000).toISOString().slice(0, 10), Number(v)] as [string, number]);
   const designatedPerDay = (4e10 * 0.0004) / 365;
 
-  it('reduces to the designated basis when executed equals designated', () => {
+  it('reduces to the designated basis when delivered equals designated', () => {
     const [d, e] = basisScenarios(l, daily(designatedPerDay));
     expect(e!.multipleToday).toBeCloseTo(d!.multipleToday!, 6);
     expect(e!.holderTakeRate).toBeCloseTo(d!.holderTakeRate!, 12);
@@ -132,7 +132,7 @@ describe('revenue-basis scenarios (designated vs executed)', () => {
     for (const s of [d!, e!]) expect(s.multipleToday! * s.captureToday!).toBeCloseTo(5e9, 0);
     expect(e!.holderTakeRate).toBeCloseTo(d!.holderTakeRate! / 2, 12);
     expect(e!.multipleToday!).toBeGreaterThan(d!.multipleToday!);
-    // The designated basis is exactly the main ladder; the executed basis never borrows its take rate.
+    // The designated basis is exactly the main ladder; the delivered basis never borrows its take rate.
     expect(d!.holderTakeRate).toBeCloseTo(l.inputs.holderTakeRate!, 12);
     expect(d!.multipleToday).toBeCloseTo(l.multiples.find((m) => m.key === 'today')!.value!, 9);
     // At a basis-free peer multiple, half the buyback revenue per dollar needs about twice the volume.

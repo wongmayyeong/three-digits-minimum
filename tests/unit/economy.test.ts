@@ -16,7 +16,7 @@ const raws: Record<string, RawRecord> = {
   'defillama.intents.volume': rec('v', { chart: days.map((d) => [ts(d), yearAgo(d) ? 1e6 : 3e6]) }),
   'near-rpc.signer-state': rec('s', { participants: 16, threshold: 11, domains: 8 }),
 };
-const tok = { buybacks: { executedRunRateUsd: 9e6 }, taxonomy: [{ key: 'burns', usdPerYear: 1e6 }], staking: { stakingRatio: 0.44, validators: 300, nominalYield: 0.056 } } as unknown as TokenomicsResult;
+const tok = { buybacks: { deliveredRunRateUsd: 9e6 }, taxonomy: [{ key: 'burns', usdPerYear: 1e6 }], staking: { stakingRatio: 0.44, validators: 300, nominalYield: 0.056 } } as unknown as TokenomicsResult;
 const thesis = { eras: [{ id: 'signer', latestMonth: '2026-10', latest: 1000, peak: 2000 }] } as unknown as ThesisResult;
 const e = analyzeEconomy(raws, () => null, tok, thesis);
 

@@ -451,9 +451,10 @@ export function buildDataset(raws: RawMap): ResearchDataset {
   B.items.push(...ladderEvidence(ladder, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null, url: r?.url ?? '' }; }));
 
   // ------------------------------------------------------------ W4 token economics
-  const tokenomics = analyzeTokenomics(raws, (id) => B.val(id));
+  // One documented cutoff for every 90-day valuation input and delivery observation (the ladder's window end).
+  const tokenomics = analyzeTokenomics(raws, (id) => B.val(id), ladder.basis.windowEnd);
   B.items.push(...tokenomicsEvidence(tokenomics, (key) => { const r = B.rec(key); return { at: r?.fetchedAt ?? null, hash: r?.sha256 ?? null }; }));
-  const basis = basisScenarios(ladder, tokenomics.buybacks.executedDaily);
+  const basis = basisScenarios(ladder, tokenomics.buybacks.deliveredDaily);
   B.items.push(...basisEvidence(basis, ladder.basis.windowEnd));
 
   // ------------------------------------------------------------ W5 valuation, W6 opportunity cost

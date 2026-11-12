@@ -260,7 +260,7 @@ export function analyzeLadder(raws: Record<string, RawRecord | null | undefined>
         const dexShare2036 = safeDiv(requiredVolume, dex2036Base);
         const shareMultiple = safeDiv(dexShare2036, dexShareToday);
         const conditions: Condition[] = [
-          { text: `$NEAR holders receive ${fmtUsd(captureToday)} a year today: ${fmtUsd(burnRunRate)} of gas burned plus ${fmtUsd(intentsHolderRunRate)} of Intents revenue designated for buybacks`, status: 'OBSERVED', detail: `DefiLlama holders revenue, ${RUN_RATE_DAYS}-day run rate ending ${END ?? 'n/a'}. Designated buybacks are a classification; executed onchain purchases are reconstructed separately.` },
+          { text: `$NEAR holders receive ${fmtUsd(captureToday)} a year today: ${fmtUsd(burnRunRate)} of gas burned plus ${fmtUsd(intentsHolderRunRate)} of Intents revenue designated for buybacks`, status: 'OBSERVED', detail: `DefiLlama holders revenue, ${RUN_RATE_DAYS}-day run rate ending ${END ?? 'n/a'}. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6).` },
           { text: `The market values that flow at ${fmtX(m.value)} in 2036 (${m.label})`, status: 'ASSUMED', detail: `${m.source}. Multiples move with sentiment; ${m.key === 'today' ? 'this is NEAR\'s own multiple today, assumed to persist' : 'this is another token\'s multiple today on the same basis, applied to NEAR'}.` },
           { text: `Value reaching holders grows to ${fmtUsd(requiredCapture)} a year (${fmtX(safeDiv(requiredCapture, captureToday))} today)`, status: 'UNPROVEN', detail: `Burns are held at today's run rate (${fmtUsd(burn2036)}); the remaining ${fmtUsd(requiredIntentsCapture)} must come from Intents buybacks.` },
           { text: `Intents volume reaches ${fmtUsd(requiredVolume)} a year, ${fmtPct(requiredCagr, 0)} growth a year for ten years`, status: 'UNPROVEN', detail: `Today: ${fmtUsd(intentsRunRate)} run rate; ${fmtPct(intentsYoY, 0)} year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not.` },
@@ -372,7 +372,7 @@ export function ladderEvidence(l: LadderResult, fetched: (key: string) => { at: 
     inputs: ['LAD-SPOT-DEX-365D'], methodology: 'Calendar-year spot DEX volume, 2025 versus 2021, annualized over four years.', transform: '(2025 / 2021)^(1/4) - 1' });
   item({ evidenceId: 'LAD-NEAR-CAPTURE-RUNRATE', metricKey: 'ladder.near_capture_run_rate', label: `NEAR value reaching holders, ${R}-day run rate (gas burned + Intents revenue designated for buybacks)`, unit: 'USD', value: l.inputs.captureToday,
     ...llama('defillama.intents.dailyHoldersRevenue'), sourceUrl: 'https://defillama.com/protocol/near-intents', inputs: ['LAD-NEAR-BURN-RUNRATE', 'LAD-INTENTS-HOLDER-RUNRATE'],
-    methodology: 'DefiLlama holders revenue for the NEAR chain (70% of gas, burned) plus NEAR Intents (revenue designated for NEAR buybacks), the same metric used for every peer. Designated, not yet reconciled with executed onchain purchases.', transform: `(burn + Intents holders revenue, ${R} days) x 365 / ${R}` });
+    methodology: 'DefiLlama holders revenue for the NEAR chain (70% of gas, burned) plus NEAR Intents (revenue designated for NEAR buybacks), the same metric used for every peer. Designated; the delivered basis is computed separately.', transform: `(burn + Intents holders revenue, ${R} days) x 365 / ${R}` });
   item({ evidenceId: 'LAD-NEAR-BURN-RUNRATE', metricKey: 'ladder.near_burn_run_rate', label: `NEAR gas burned, ${R}-day run rate`, unit: 'USD', value: l.inputs.burnRunRate, ...llama('defillama.revenue.near'),
     sourceUrl: 'https://defillama.com/chain/Near', methodology: '70% of every NEAR gas fee is burned (DefiLlama revenue and holders revenue for the NEAR chain are identical).', transform: `sum ${R} days x 365 / ${R}` });
   item({ evidenceId: 'LAD-INTENTS-HOLDER-RUNRATE', metricKey: 'ladder.intents_holder_run_rate', label: `Intents revenue designated for NEAR buybacks, ${R}-day run rate`, unit: 'USD', value: l.inputs.intentsHolderRunRate, ...llama('defillama.intents.dailyHoldersRevenue'),
@@ -431,20 +431,20 @@ export function ladderEvidence(l: LadderResult, fetched: (key: string) => { at: 
 
 /**
  * Revenue-basis scenarios (audit item 4). The ladder's main tables use DefiLlama's designated buybacks. This repeats
- * the key results on the executed basis (NEAR actually delivered to the buyback wallet), with the multiple, the take
+ * the key results on the delivered basis (NEAR delivered to the buyback wallet, at market prices on delivery days), with the multiple, the take
  * rate and the projected flow all on the same basis and the same dates. The two bases are never mixed.
  */
 export interface BasisScenario {
-  basis: 'designated' | 'executed';
+  basis: 'designated' | 'delivered';
   intentsHolderRunRate: number | null; captureToday: number | null; multipleToday: number | null; holderTakeRate: number | null;
   rungs: { price: number; byMultiple: { multipleKey: string; multiple: number | null; requiredVolume: number | null; dexShare2036: number | null; requiredCagr: number | null }[] }[];
   impliedBase: { multipleKey: string; multiple: number | null; price: number | null }[];
 }
-export function basisScenarios(l: LadderResult, executedDaily: [string, number][]): BasisScenario[] {
+export function basisScenarios(l: LadderResult, deliveredDaily: [string, number][]): BasisScenario[] {
   const I = l.inputs;
   const END = l.basis.windowEnd;
-  const execSum = END && executedDaily.length ? windowAggregate(executedDaily, END, RUN_RATE_DAYS).sum : null;
-  const execRunRate = execSum === null ? null : (execSum * 365) / RUN_RATE_DAYS;
+  const delivSum = END && deliveredDaily.length ? windowAggregate(deliveredDaily, END, RUN_RATE_DAYS).sum : null;
+  const delivRunRate = delivSum === null ? null : (delivSum * 365) / RUN_RATE_DAYS;
   const build = (basis: BasisScenario['basis'], holderRunRate: number | null): BasisScenario => {
     const captureToday = holderRunRate !== null && I.burnRunRate !== null ? holderRunRate + I.burnRunRate : null;
     const multipleToday = safeDiv(I.marketCap, captureToday);
@@ -466,7 +466,7 @@ export function basisScenarios(l: LadderResult, executedDaily: [string, number][
       price: v2036 !== null && holderTakeRate !== null && I.burnRunRate !== null && m.value && I.supply2036 ? ((v2036 * holderTakeRate + I.burnRunRate) * m.value) / I.supply2036 : null }));
     return { basis, intentsHolderRunRate: holderRunRate, captureToday, multipleToday, holderTakeRate, rungs, impliedBase };
   };
-  return [build('designated', I.intentsHolderRunRate), build('executed', execRunRate)];
+  return [build('designated', I.intentsHolderRunRate), build('delivered', delivRunRate)];
 }
 
 export function basisEvidence(sc: BasisScenario[], periodEnd: string | null): EvidenceDraft[] {
@@ -479,7 +479,7 @@ export function basisEvidence(sc: BasisScenario[], periodEnd: string | null): Ev
   for (const s of sc) {
     const B = s.basis.toUpperCase();
     const def = s.basis === 'designated' ? 'DefiLlama designated buybacks (all captured revenue since 23 February 2026)' : 'NEAR delivered to the buyback wallet by 1Click swaps (onchain, FastNEAR)';
-    push(`LAD-BASIS-${B}-MULT`, `NEAR's own multiple, ${s.basis} basis (market cap / (burns + ${s.basis} buybacks), 90-day run rate)`, 'ratio', s.multipleToday, `${def}; same 90 days as every other ladder input.`, 'market cap / (burns + buybacks)', s.basis === 'executed' ? ['TOK-EXECUTED-RUNRATE'] : ['LAD-INTENTS-HOLDER-RUNRATE']);
+    push(`LAD-BASIS-${B}-MULT`, `NEAR's own multiple, ${s.basis} basis (market cap / (burns + ${s.basis} buybacks), 90-day run rate)`, 'ratio', s.multipleToday, `${def}; same 90 days as every other ladder input.`, 'market cap / (burns + buybacks)', s.basis === 'delivered' ? ['TOK-DELIVERED-RUNRATE'] : ['LAD-INTENTS-HOLDER-RUNRATE']);
     push(`LAD-BASIS-${B}-TAKE`, `Buyback revenue per dollar of Intents volume, ${s.basis} basis`, 'fraction', s.holderTakeRate, `${def} / Intents volume, same 90 days.`, 'buybacks / volume');
     for (const r of s.rungs) for (const b of r.byMultiple) {
       push(`LAD-BASIS-${B}-${r.price}-${b.multipleKey.toUpperCase()}-SHARE`, `$${r.price}, ${s.basis} basis, ${b.multipleKey === 'today' ? 'NEAR\'s own multiple' : `priced like ${b.multipleKey}`}: Intents volume relative to 2036 spot DEX volume`, 'fraction', b.dexShare2036,

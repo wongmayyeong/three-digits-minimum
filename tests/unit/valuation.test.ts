@@ -31,8 +31,8 @@ const ladder = {
   multiples: [{ key: 'today', value: 200 }, { key: 'tron', value: 100 }, { key: 'hyperliquid', value: 20 }],
 } as unknown as LadderResult;
 const tok = {
-  buybacks: { executedDaily: [], firstReceipt: null, lastDay: '2026-11-10' },
-  assets: [{ label: 'NEAR', dilutionNetOfCapture: 0.02, fdvToMcap: 1 }, { label: 'HYPE', dilutionNetOfCapture: 0, fdvToMcap: 4 }, { label: 'BTC', dilutionNetOfCapture: 0.01, fdvToMcap: 1 }],
+  buybacks: { deliveredDaily: [], firstReceipt: null, lastDay: '2026-11-10' },
+  assets: [{ label: 'NEAR', ownershipDilution: 0.02, fdvToMcap: 1 }, { label: 'HYPE', ownershipDilution: 0, fdvToMcap: 4 }, { label: 'BTC', ownershipDilution: 0.01, fdvToMcap: 1 }],
 } as unknown as TokenomicsResult;
 const v = analyzeValuation(raws, () => null, ladder, tok);
 

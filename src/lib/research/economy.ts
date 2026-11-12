@@ -36,7 +36,7 @@ export interface EconomyResult {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const addDays = (d: string, n: number) => new Date(Date.parse(`${d}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
-const fmtUsd = (v: number | null) => (v === null ? 'n/a' : Math.abs(v) >= 1e9 ? `$${(v / 1e9).toFixed(1)}B` : Math.abs(v) >= 1e6 ? `$${(v / 1e6).toFixed(1)}M` : `$${(v / 1e3).toFixed(0)}K`);
+const fmtUsd = (v: number | null) => (v === null ? 'n/a' : Math.abs(v) >= 1e9 ? `$${(v / 1e9).toFixed(1)}B` : Math.abs(v) >= 1e6 ? `$${(v / 1e6).toFixed(1)}M` : Math.abs(v) >= 1e3 ? `$${(v / 1e3).toFixed(0)}K` : `$${v.toFixed(0)}`);
 const fmtPct = (v: number | null, d = 0) => (v === null ? 'n/a' : `${v > 0 ? '+' : ''}${(v * 100).toFixed(d)}%`);
 const share = (v: number | null, d = 0) => (v === null ? 'n/a' : `${(v * 100).toFixed(d)}%`);
 
@@ -51,8 +51,8 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
     .filter((p) => p.fees30d > 0).sort((a, b) => b.fees30d - a.fees30d);
   const intentsFeeShare = feesOnNear.find((p) => p.name === 'NEAR Intents')?.share ?? null;
 
-  // ---- H1: share of verified capture from Intents (executed buybacks vs burns).
-  const exec = tok.buybacks.executedRunRateUsd;
+  // ---- H1: share of verified capture from Intents (NEAR delivered to the buyback wallet vs burns).
+  const exec = tok.buybacks.deliveredRunRateUsd;
   const burns = tok.taxonomy.find((r) => r.key === 'burns')?.usdPerYear ?? null;
   const captureFromIntents = exec !== null && burns !== null ? safeDiv(exec, exec + burns) : null;
 
@@ -85,11 +85,13 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
   const iFees = ev('INT-FEES-90D'), iRev = ev('INT-REV-90D');
   const ann = (x: number | null) => (x === null ? null : (x * 365) / 90);
   const rhea = feesOnNear.filter((p) => /rhea/i.test(p.name)).reduce((a, p) => a + p.fees30d, 0);
+  const sum90 = (k: string) => { const s = series(k); const e = commonEnd([s], 1); return e ? windowAggregate(s, e, 90).sum : null; };
+  const perpsFees = sum90('defillama.perps.near.dailyFees'), perpsHolders = sum90('defillama.perps.near.dailyHoldersRevenue');
   const s = tok.staking;
   const products: ProductRow[] = [
     { key: 'intents', product: 'NEAR Intents and near.com', column: 'VERIFIED',
-      activity: `${fmtUsd(ev('INT-VOL-ANN'))} volume a year (run rate), ${fmtPct(intentsVolumeYoY)} year over year; ${fmtUsd(ann(iFees))} fees, ${fmtUsd(ann(iRev))} captured by NEAR; ${share(intentsFeeShare)} of all fees on the NEAR chain`,
-      capture: `Executed buybacks ${fmtUsd(exec)} a year (onchain), held in the buyback wallet`, captureUsd: exec,
+      activity: `${fmtUsd(ev('INT-VOL-ANN'))} volume a year (run rate), ${fmtPct(intentsVolumeYoY)} year over year; ${fmtUsd(ann(iFees))} fees, ${fmtUsd(ann(iRev))} captured by NEAR; ${share(intentsFeeShare)} of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas)`,
+      capture: `NEAR delivered to the buyback wallet ${fmtUsd(exec)} a year (onchain, at market prices on delivery days), held`, captureUsd: exec,
       speculative: 'Confidential swaps, new chains and distribution partners; integrator and solver concentration is untested without the Intents Explorer API or BigQuery', sources: 'DefiLlama (Dune lineage), FastNEAR' },
     { key: 'l1', product: 'NEAR L1 (gas, accounts, transactions)', column: 'VERIFIED',
       activity: `${Math.round(l1.txns90 ?? 0).toLocaleString('en-US')} transactions and ${Math.round(l1.active90 ?? 0).toLocaleString('en-US')} active accounts a day (90-day mean); transactions ${fmtPct(l1.txnsYoY)}, active accounts ${fmtPct(l1.activeYoY)}, gas fees ${fmtPct(l1.gasFeesYoY)} year over year`,
@@ -107,6 +109,10 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
       activity: `${fmtUsd(ev('DEFI-TVL-NEAR'))} DeFi TVL (${fmtPct(ev('DEFI-TVL-NEAR-YOY'))} year over year), ${fmtUsd(ev('DEFI-STABLES-NEAR'))} stablecoins; RHEA ${fmtUsd(rhea)} fees in 30 days`,
       capture: 'None: app revenue accrues to the applications, not to $NEAR (gas from their use is in L1 burns)', captureUsd: null,
       speculative: 'A larger on-chain economy is the route to a platform valuation (section 3)', sources: 'DefiLlama' },
+    { key: 'perps', product: 'Near Perps', column: 'OBSERVED',
+      activity: `A perpetuals front end that routes trades to Hyperliquid and earns its builder-code fees: ${fmtUsd(perpsFees)} in the last 90 days (DefiLlama "Interface" category; volume is behind DefiLlama's paid API)`,
+      capture: `None verified: DefiLlama records ${fmtUsd(perpsHolders)} of holders revenue; the fees accrue to the front end, and the trades settle on Hyperliquid, not NEAR`, captureUsd: null,
+      speculative: 'A NEAR-branded distribution channel for a non-NEAR venue', sources: 'DefiLlama (near-perps)' },
     { key: 'ai', product: 'NEAR AI', column: 'SPECULATIVE',
       activity: 'No public usage, revenue or onchain settlement dataset found', capture: 'None', captureUsd: null,
       speculative: 'AI agents that pay with or settle on NEAR; no measurable evidence yet, so no dollar value is assigned', sources: 'Announcements only (REPORTED)' },
@@ -116,7 +122,7 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
   ];
 
   const findings = [
-    `NEAR Intents is ${share(intentsFeeShare)} of all fees paid on the NEAR chain over the last 30 days; the largest native app family, RHEA, is ${share(total30 ? rhea / total30 : null)}, and NEAR's own gas ${share(feesOnNear.find((p) => p.category === 'Chain')?.share ?? null)}.`,
+    `NEAR Intents is ${share(intentsFeeShare)} of the fees DefiLlama attributes to the NEAR chain over the last 30 days (its cross-chain swap fees are paid on many chains; they are not NEAR L1 gas); the largest native app family, RHEA, is ${share(total30 ? rhea / total30 : null)}, and NEAR's own gas ${share(feesOnNear.find((p) => p.category === 'Chain')?.share ?? null)}.`,
     `${share(captureFromIntents)} of NEAR's verified value capture comes from one product (Intents buybacks); the rest is gas burns.`,
     `Intents volume ${fmtPct(intentsVolumeYoY)} year over year while NEAR L1 transactions changed ${fmtPct(l1.txnsYoY)}, active accounts ${fmtPct(l1.activeYoY)} and gas fees ${fmtPct(l1.gasFeesYoY)} (DeFi TVL on NEAR ${fmtPct(ev('DEFI-TVL-NEAR-YOY'))}): paid growth is in cross-chain execution, not in activity on the NEAR chain. Part of the L1 decline may be automated or incentive-driven activity ending; classifying it needs BigQuery (H7).`,
   ];
@@ -134,10 +140,10 @@ export function economyEvidence(e: EconomyResult, fetched: (key: string) => { at
     });
   };
   const f = fetched('defillama.fees.onnear');
-  item({ evidenceId: 'ECO-INTENTS-FEE-SHARE', metricKey: 'economy.intents_fee_share', label: 'NEAR Intents share of all fees on the NEAR chain, last 30 days', unit: 'fraction', value: e.intentsFeeShare, observationType: 'DERIVED', sourceName: 'DefiLlama',
+  item({ evidenceId: 'ECO-INTENTS-FEE-SHARE', metricKey: 'economy.intents_fee_share', label: 'NEAR Intents share of the fees DefiLlama attributes to the NEAR chain, last 30 days (not NEAR L1 gas)', unit: 'fraction', value: e.intentsFeeShare, observationType: 'DERIVED', sourceName: 'DefiLlama',
     sourceUrl: 'https://defillama.com/fees/chain/near', fetchedAt: f.at, rawResponseHash: f.hash, methodology: `DefiLlama fees overview filtered to the NEAR chain (${e.feesOnNear.length} protocols with fees).`, transform: 'Intents fees / all fees' });
-  item({ evidenceId: 'ECO-CAPTURE-FROM-INTENTS', metricKey: 'economy.capture_from_intents', label: 'Share of verified value capture from Intents buybacks (H1)', unit: 'fraction', value: e.captureFromIntents, inputs: ['TOK-EXECUTED-RUNRATE', 'LAD-NEAR-BURN-RUNRATE'],
-    methodology: 'Executed buybacks / (executed buybacks + burns), run rates.', transform: 'executed / (executed + burns)' });
+  item({ evidenceId: 'ECO-CAPTURE-FROM-INTENTS', metricKey: 'economy.capture_from_intents', label: 'Share of verified value capture from Intents buybacks (H1)', unit: 'fraction', value: e.captureFromIntents, inputs: ['TOK-DELIVERED-RUNRATE', 'LAD-NEAR-BURN-RUNRATE'],
+    methodology: 'NEAR delivered to the buyback wallet / (delivered + burns), run rates.', transform: 'delivered / (delivered + burns)' });
   item({ evidenceId: 'ECO-L1-TXNS-YOY', metricKey: 'economy.l1.txns_yoy', label: 'NEAR L1 transactions, 90 days vs a year earlier', unit: 'fraction', value: e.l1.txnsYoY, sourceName: 'NearBlocks', methodology: 'Daily transactions summed over matched 90-day windows.', transform: 'sum90 / sum90 a year earlier - 1' });
   item({ evidenceId: 'ECO-L1-ACTIVE-YOY', metricKey: 'economy.l1.active_yoy', label: 'NEAR L1 daily active accounts, 90 days vs a year earlier', unit: 'fraction', value: e.l1.activeYoY, sourceName: 'NearBlocks', methodology: 'Daily active accounts summed over matched 90-day windows.', transform: 'sum90 / sum90 a year earlier - 1' });
   item({ evidenceId: 'ECO-L1-GAS-YOY', metricKey: 'economy.l1.gas_yoy', label: 'NEAR L1 gas fees, 90 days vs a year earlier', unit: 'fraction', value: e.l1.gasFeesYoY, sourceName: 'DefiLlama', methodology: 'Matched 90-day windows.', transform: 'sum90 / sum90 a year earlier - 1' });

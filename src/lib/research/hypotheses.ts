@@ -42,9 +42,9 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
   if (nearTop !== null) feeConcentration.push({ chain: 'NEAR', top: 'NEAR Intents', share: nearTop });
   feeConcentration.sort((p, q) => q.share - p.share);
   const peerMed = median(feeConcentration.filter((f) => f.chain !== 'NEAR').map((f) => f.share));
-  out.push({ id: 'H1', claim: 'NEAR\'s fee base is far more concentrated in one product than peers\' (restated from "value capture": comparable value-capture data by product does not exist for peers)',
-    rule: 'Protocol fees on each chain (DefiLlama, 30 days). SUPPORTED if the largest protocol\'s share of NEAR\'s fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED.',
-    reading: `Intents: ${pct(nearTop)} of fees paid on NEAR; peer median largest-protocol share ${pct(peerMed)} (${feeConcentration.map((f) => `${f.chain} ${pct(f.share)}`).join(', ')}). Separately, and not compared with peers: ${pct(d.eco.captureFromIntents)} of NEAR's verified value capture comes from Intents.`,
+  out.push({ id: 'H1', claim: 'The fees DefiLlama attributes to the NEAR chain are far more concentrated in one product than peers\' (restated from "value capture": comparable value-capture data by product does not exist for peers)',
+    rule: 'Denominator: fees DefiLlama attributes to each chain (every protocol it lists on that chain, 30 days). For NEAR this includes NEAR Intents\' cross-chain swap fees, which are paid on many chains and are not NEAR L1 gas; peers\' totals are built the same way, so the attribution method is comparable but the economic meaning differs by chain. SUPPORTED if the largest protocol\'s share of NEAR\'s fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED.',
+    reading: `Intents: ${pct(nearTop)} of fees DefiLlama attributes to NEAR; peer median largest-protocol share ${pct(peerMed)} (${feeConcentration.map((f) => `${f.chain} ${pct(f.share)}`).join(', ')}). Separately, and not compared with peers: ${pct(d.eco.captureFromIntents)} of NEAR's verified value capture comes from Intents.`,
     outcome: nearTop === null || peerMed === null ? 'UNTESTED' : nearTop >= 0.5 && nearTop >= 1.5 * peerMed ? 'SUPPORTED' : nearTop <= peerMed ? 'NOT SUPPORTED' : 'MIXED', value: nearTop, needs: null });
 
   // H2: priced closer to a platform than its on-chain economy justifies.
@@ -76,9 +76,9 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
     outcome: iy === null || l1.txnsYoY === null || l1.activeYoY === null ? 'UNTESTED' : iy > 0 && l1.txnsYoY < 0 && l1.activeYoY < 0 ? 'SUPPORTED' : (l1.txnsYoY > iy && l1.activeYoY > iy) ? 'NOT SUPPORTED' : 'MIXED', value: iy, needs: null });
 
   // H5: NEAR's dilution is a higher hurdle than peers'.
-  const dil = d.tok.assets.filter((a) => a.dilutionNetOfCapture !== null);
-  const nd = dil.find((a) => a.label === 'NEAR')?.dilutionNetOfCapture ?? null;
-  const md = median(dil.filter((a) => a.label !== 'NEAR').map((a) => a.dilutionNetOfCapture!));
+  const dil = d.tok.assets.filter((a) => a.ownershipDilution !== null);
+  const nd = dil.find((a) => a.label === 'NEAR')?.ownershipDilution ?? null;
+  const md = median(dil.filter((a) => a.label !== 'NEAR').map((a) => a.ownershipDilution!));
   // Raw view (audit item 10): circulating supply growth as reported, one-day events included, nothing subtracted.
   const raw = d.tok.assets.filter((a) => a.circGrowth1y !== null);
   const nr0 = raw.find((a) => a.label === 'NEAR')?.circGrowth1y ?? null;
@@ -86,15 +86,15 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
   const verdict5 = (n: number | null, m: number | null): Outcome => (n === null || m === null ? 'UNTESTED' : n - m > 0.005 ? 'SUPPORTED' : m - n > 0.005 ? 'NOT SUPPORTED' : 'MIXED');
   const o5a = verdict5(nd, md), o5b = verdict5(nr0, mr0);
   out.push({ id: 'H5', claim: 'NEAR\'s dilution is a higher return hurdle than peers\'',
-    rule: 'Tested twice: on dilution net of capture (one-day events excluded, held buybacks subtracted) and on raw circulating supply growth. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED.',
-    reading: `Raw: NEAR ${pct(nr0, 1)} vs peer median ${pct(mr0, 1)} (${o5b}). Adjusted: NEAR ${pct(nd, 1)} a year; peer median ${pct(md, 1)} (${dil.filter((a) => a.label !== 'NEAR').map((a) => `${a.label} ${pct(a.dilutionNetOfCapture, 1)}`).join(', ')}). ${(() => { const big = [...dil].filter((a) => a.label !== 'NEAR' && a.marketCap !== null).sort((p, q) => q.marketCap! - p.marketCap!).slice(0, 4); const above = big.filter((a) => nd !== null && nd > a.dilutionNetOfCapture!).length; return big.length ? ` The median is pulled up by small, high-dilution chains: against the four largest alternatives (${big.map((a) => a.label).join(', ')}) NEAR's dilution is higher than ${above} of ${big.length}.` : ''; })()} HSP-029 would lower NEAR's issuance if adopted.`,
+    rule: 'Tested twice on ownership dilution (how much a passive holder\'s share of supply shrinks): circulating supply growth excluding one-day events, and as reported. Held buybacks are not subtracted: they change free float, not ownership. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED.',
+    reading: `Raw: NEAR ${pct(nr0, 1)} vs peer median ${pct(mr0, 1)} (${o5b}). Excluding one-day events: NEAR ${pct(nd, 1)} a year; peer median ${pct(md, 1)} (${dil.filter((a) => a.label !== 'NEAR').map((a) => `${a.label} ${pct(a.ownershipDilution, 1)}`).join(', ')}). ${(() => { const big = [...dil].filter((a) => a.label !== 'NEAR' && a.marketCap !== null).sort((p, q) => q.marketCap! - p.marketCap!).slice(0, 4); const above = big.filter((a) => nd !== null && nd > a.ownershipDilution!).length; return big.length ? ` The median is pulled up by small, high-dilution chains: against the four largest alternatives (${big.map((a) => a.label).join(', ')}) NEAR's ownership dilution is higher than ${above} of ${big.length}.` : ''; })()} HSP-029 would lower NEAR's issuance if adopted.`,
     outcome: o5a === o5b ? o5a : o5a === 'UNTESTED' ? o5b : o5b === 'UNTESTED' ? o5a : 'MIXED', value: nd, needs: null });
 
   // H6: NEAR needs more growth than alternatives for the same multiple.
   const req = d.val.opportunity.map((o) => ({ label: o.label, r: o.targets.find((t) => t.k === 7)?.requiredCagr ?? null })).filter((o) => o.r !== null);
   const nr = req.find((o) => o.label === 'NEAR')?.r ?? null, mr = median(req.filter((o) => o.label !== 'NEAR').map((o) => o.r!));
-  out.push({ id: 'H6', claim: 'NEAR needs more growth than some alternatives to deliver the same multiple',
-    rule: 'Required driver growth for 7x in ten years (own dilution included). SUPPORTED if NEAR\'s is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED.',
+  out.push({ id: 'H6', claim: 'Under a fixed-valuation model, NEAR needs more driver growth than the alternatives for the same price multiple (a model result, not evidence about which asset is more likely to deliver it)',
+    rule: 'Required driver growth for 7x in ten years with each asset\'s valuation ratio held at today\'s level and its ownership dilution persisting. SUPPORTED if NEAR\'s is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED.',
     reading: `NEAR ${pct(nr, 1)} a year; peer median ${pct(mr, 1)} (${req.filter((o) => o.label !== 'NEAR').map((o) => `${o.label} ${pct(o.r, 1)}`).join(', ')}). ${(() => { const big = d.val.opportunity.filter((o) => o.label !== 'NEAR' && o.marketCap !== null && o.targets.find((t) => t.k === 7)?.requiredCagr != null).sort((p, q) => q.marketCap! - p.marketCap!).slice(0, 4); const above = big.filter((o) => nr !== null && nr > o.targets.find((t) => t.k === 7)!.requiredCagr!).length; return big.length ? ` Against the largest alternatives with a growth driver (${big.map((o) => o.label).join(', ')}) NEAR needs more growth than ${above} of ${big.length}.` : ''; })()} Observed growth is compared in section 11.`,
     outcome: nr === null || mr === null ? 'UNTESTED' : nr - mr > 0.01 ? 'SUPPORTED' : mr - nr > 0.01 ? 'NOT SUPPORTED' : 'MIXED', value: nr, needs: null });
 
@@ -111,9 +111,9 @@ export function analyzeHypotheses(raws: Record<string, RawRecord | null | undefi
   const c1 = lastDay ? corr(rn, rb, yearAgo) : null;
   const pre = corr(rn, rb, new Date(Date.parse(`${BUYBACKS_START}T00:00:00Z`) - 180 * 86_400_000).toISOString().slice(0, 10), BUYBACKS_START), post = corr(rn, rb, BUYBACKS_START);
   const r2 = c1 === null ? null : c1 * c1;
-  out.push({ id: 'H10', claim: 'NEAR\'s price is mostly explained by BTC and the market, not its fundamentals',
-    rule: 'Share of NEAR\'s daily return variance explained by BTC over the last year (R-squared). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED.',
-    reading: `Correlation with BTC ${c1 === null ? 'n/a' : c1.toFixed(2)} (R-squared ${pct(r2)}); ${pre === null ? 'n/a' : pre.toFixed(2)} in the 180 days before buybacks began and ${post === null ? 'n/a' : post.toFixed(2)} since. ETH's correlation with BTC is ${d.val.opportunity.find((o) => o.label === 'ETH')?.risk.corrBtc1y?.toFixed(2) ?? 'n/a'}. Daily returns cannot be regressed on Intents growth, which changes slowly; this tests market dependence only.`,
+  out.push({ id: 'H10', claim: 'BTC\'s daily returns explain most of NEAR\'s daily return variance (narrowed: this tests BTC dependence only, not what drives the rest)',
+    rule: 'Share of NEAR\'s daily return variance explained by BTC over the last year (R-squared, single-factor). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED.',
+    reading: `Correlation with BTC ${c1 === null ? 'n/a' : c1.toFixed(2)} (R-squared ${pct(r2)}); ${pre === null ? 'n/a' : pre.toFixed(2)} in the 180 days before buybacks began and ${post === null ? 'n/a' : post.toFixed(2)} since. ETH's correlation with BTC is ${d.val.opportunity.find((o) => o.label === 'ETH')?.risk.corrBtc1y?.toFixed(2) ?? 'n/a'}. The unexplained part is not attributed to fundamentals: it can be NEAR-specific news, other market factors or noise.`,
     outcome: r2 === null ? 'UNTESTED' : r2 >= 0.5 ? 'SUPPORTED' : r2 < 0.25 ? 'NOT SUPPORTED' : 'MIXED', value: r2, needs: null });
 
   return { version: HYPOTHESES_VERSION, results: out, feeConcentration };

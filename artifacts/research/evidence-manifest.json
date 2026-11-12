@@ -1872,7 +1872,7 @@
   "request": null,
   "transform": "sum(daily holders revenue)",
   "inputs": [],
-  "methodology": "Sum of DefiLlama dailyHoldersRevenue for NEAR Intents from its first non-zero day. This is revenue designated for buybacks by DefiLlama's classification, not verified executed purchases.",
+  "methodology": "Sum of DefiLlama dailyHoldersRevenue for NEAR Intents from its first non-zero day. This is revenue designated for buybacks by DefiLlama's classification, not verified deliveries to the buyback wallet.",
   "notes": null
  },
  {
@@ -1891,7 +1891,7 @@
    "MKT-NEAR-PRICE",
    "INT-BUYBACK-DESIGNATED-CUM"
   ],
-  "methodology": "Onchain cross-check of executed buybacks. The wallet balance (buybacks.multisignature.near) is what has actually been bought and is still held. Valued at today's price, not purchase prices, and it can include transfers, so it is a sanity check, not a reconciliation of individual trades.",
+  "methodology": "Onchain cross-check of NEAR delivered to the buyback wallet. The wallet balance (buybacks.multisignature.near) is what has actually been bought and is still held. Valued at today's price, not purchase prices, and it can include transfers, so it is a sanity check, not a reconciliation of individual trades.",
   "notes": null
  },
  {
@@ -2099,7 +2099,7 @@
    "LAD-NEAR-BURN-RUNRATE",
    "LAD-INTENTS-HOLDER-RUNRATE"
   ],
-  "methodology": "DefiLlama holders revenue for the NEAR chain (70% of gas, burned) plus NEAR Intents (revenue designated for NEAR buybacks), the same metric used for every peer. Designated, not yet reconciled with executed onchain purchases.",
+  "methodology": "DefiLlama holders revenue for the NEAR chain (70% of gas, burned) plus NEAR Intents (revenue designated for NEAR buybacks), the same metric used for every peer. Designated; the delivered basis is computed separately.",
   "notes": null
  },
  {
@@ -4497,12 +4497,12 @@
  {
   "evidenceId": "TOK-CAPTURED-REPRODUCED",
   "label": "Captured revenue reproduced onchain since 2026-02-23 (inflows to the three revenue wallets)",
-  "value": 7987827.373054007,
+  "value": 7940024.737068064,
   "unit": "USD",
   "type": "OBSERVED",
   "available": true,
   "periodStart": "2026-02-23",
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "fastnear.revenue-wallets",
    "url": "https://tx.main.fastnear.com/v0/account",
@@ -4517,12 +4517,12 @@
  {
   "evidenceId": "TOK-REPRODUCTION-RATIO",
   "label": "Reproduced captured revenue / DefiLlama revenue, same dates",
-  "value": 0.9911106229550892,
+  "value": 0.991105132150203,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "reproduced / DefiLlama revenue",
   "inputs": [
@@ -4539,7 +4539,7 @@
   "type": "OBSERVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "fastnear.revenue-wallets",
    "url": "https://tx.main.fastnear.com/v0/account",
@@ -4554,12 +4554,12 @@
  {
   "evidenceId": "TOK-FRONTEND-RETAINED",
   "label": "Intents revenue swept to the front-end fund since buybacks began (not moved to the buyback wallet)",
-  "value": 2142388.8097279165,
+  "value": 2128562.959793086,
   "unit": "USD",
   "type": "OBSERVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "fastnear.revenue-wallets",
    "url": "https://tx.main.fastnear.com/v0/account",
@@ -4569,17 +4569,17 @@
   "transform": "sum(inflow_d x price_d)",
   "inputs": [],
   "methodology": "Inflows to fefundsadmin.sputnik-dao.near from intents.near. DefiLlama counts these as buybacks; they are held in a DAO fund, not in the buyback wallet.",
-  "notes": "Front-end fund NEAR from all reconstructed flows: 2003854."
+  "notes": "Front-end fund NEAR from all reconstructed flows: 1999997."
  },
  {
-  "evidenceId": "TOK-EXECUTED-NEAR",
+  "evidenceId": "TOK-DELIVERED-NEAR",
   "label": "NEAR delivered to buybacks.multisignature.near by 1Click swaps since 2026-04-23",
-  "value": 1743002.280077005,
+  "value": 1733522.5097790048,
   "unit": "NEAR",
   "type": "OBSERVED",
   "available": true,
   "periodStart": "2026-04-23",
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "fastnear.revenue-wallets",
    "url": "https://tx.main.fastnear.com/v0/account",
@@ -4592,31 +4592,31 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-EXECUTED-USD",
+  "evidenceId": "TOK-DELIVERED-USD",
   "label": "NEAR delivered to the buyback wallet, valued at each day's price",
-  "value": 4855575.715518844,
+  "value": 4821598.929467729,
   "unit": "USD",
   "type": "DERIVED",
   "available": true,
   "periodStart": "2026-04-23",
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "sum(NEAR_d x price_d)",
   "inputs": [
-   "TOK-EXECUTED-NEAR"
+   "TOK-DELIVERED-NEAR"
   ],
   "methodology": "Each day's NEAR times that day's price (CoinGecko daily, DefiLlama fallback). Unavailable if any day lacks a price.",
   "notes": null
  },
  {
   "evidenceId": "TOK-DESIGNATED-SINCE",
-  "label": "Revenue DefiLlama designates as buybacks, 2026-02-23 to 2026-11-11",
-  "value": 8059471.05,
+  "label": "Revenue DefiLlama designates as buybacks, 2026-02-23 to 2026-11-10",
+  "value": 8011284.05,
   "unit": "USD",
   "type": "OBSERVED",
   "available": true,
   "periodStart": "2026-02-23",
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "defillama.intents.dailyHoldersRevenue",
    "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
@@ -4629,18 +4629,18 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-EXECUTED-VS-DESIGNATED",
+  "evidenceId": "TOK-DELIVERED-VS-DESIGNATED",
   "label": "Delivered directly to the buyback wallet, as a share of designated buybacks (same dates)",
-  "value": 0.6024682867393443,
+  "value": 0.6018509516545889,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": "2026-02-23",
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
-  "transform": "TOK-EXECUTED-USD / TOK-DESIGNATED-SINCE",
+  "transform": "TOK-DELIVERED-USD / TOK-DESIGNATED-SINCE",
   "inputs": [
-   "TOK-EXECUTED-USD",
+   "TOK-DELIVERED-USD",
    "TOK-DESIGNATED-SINCE"
   ],
   "methodology": "The rest of the designation is NEAR moved later from the 1Click fund, NEAR kept in the front-end fund, and inflows from other accounts (see the reconciliation table).",
@@ -4654,7 +4654,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "sum(NEAR_d x price_d)",
   "inputs": [],
@@ -4662,18 +4662,18 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-EXECUTED-BROAD-VS-DESIGNATED",
+  "evidenceId": "TOK-DELIVERED-ALL-VS-DESIGNATED",
   "label": "All NEAR that reached the buyback wallet (direct and via the 1Click fund), as a share of designated",
-  "value": 0.6706960990821995,
+  "value": 0.6704891468490377,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "(direct + 1Click fund inflows x share moved) / designated",
   "inputs": [
-   "TOK-EXECUTED-USD",
+   "TOK-DELIVERED-USD",
    "TOK-AFFILIATED-USD",
    "TOK-DESIGNATED-SINCE"
   ],
@@ -4681,86 +4681,86 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-EXECUTED-RUNRATE",
-  "label": "Executed buybacks, 90-day run rate",
-  "value": 13926788.913136236,
+  "evidenceId": "TOK-DELIVERED-RUNRATE",
+  "label": "NEAR delivered to the buyback wallet, 90-day run rate (market prices on delivery days)",
+  "value": 13816575.694385847,
   "unit": "USD",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "sum 90d x 365/90",
   "inputs": [
-   "TOK-EXECUTED-USD"
+   "TOK-DELIVERED-USD"
   ],
-  "methodology": "Executed purchases over the last 90 complete days common to both series, annualized.",
+  "methodology": "Deliveries over the last 90 complete days ending on the common cutoff, valued at market prices on the delivery days (not verified purchase prices), annualized.",
   "notes": null
  },
  {
   "evidenceId": "TOK-DESIGNATED-RUNRATE",
   "label": "Designated buybacks, 90-day run rate (same days)",
-  "value": 20751795.166666668,
+  "value": 20592525.388888888,
   "unit": "USD",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "sum 90d x 365/90",
   "inputs": [],
-  "methodology": "Same window as the executed run rate.",
+  "methodology": "Same window as the delivered run rate.",
   "notes": null
  },
  {
   "evidenceId": "TOK-WALLET-RECONCILE",
   "label": "Buyback wallet balance / NEAR received",
-  "value": 0.9957895189064685,
+  "value": 0.9999805140261381,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "ONC-BUYBACK-WALLET / NEAR received",
   "inputs": [
    "ONC-BUYBACK-WALLET",
-   "TOK-EXECUTED-NEAR"
+   "TOK-DELIVERED-NEAR"
   ],
   "methodology": "Close to 100% means the wallet has kept what it received (bought-back NEAR is held, not burned or sold).",
   "notes": null
  },
  {
-  "evidenceId": "TOK-AVG-PURCHASE-PRICE",
-  "label": "Average buyback price",
-  "value": 2.785754081345394,
+  "evidenceId": "TOK-AVG-PRICE-ON-DELIVERY",
+  "label": "Average NEAR market price on delivery days (not a verified purchase price)",
+  "value": 2.7813881286620283,
   "unit": "USD",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
-  "transform": "TOK-EXECUTED-USD / TOK-EXECUTED-NEAR",
+  "transform": "TOK-DELIVERED-USD / TOK-DELIVERED-NEAR",
   "inputs": [
-   "TOK-EXECUTED-USD",
-   "TOK-EXECUTED-NEAR"
+   "TOK-DELIVERED-USD",
+   "TOK-DELIVERED-NEAR"
   ],
-  "methodology": "Value-weighted average daily price of executed purchases.",
+  "methodology": "Value-weighted average of the daily market price on the days NEAR was delivered. The swaps' actual execution prices are not visible onchain.",
   "notes": null
  },
  {
   "evidenceId": "TOK-BUYBACK-PCT-SUPPLY",
-  "label": "Executed buybacks per year as a share of total supply",
-  "value": 0.0030253528397518195,
+  "label": "NEAR delivered to the buyback wallet per year as a share of total supply",
+  "value": 0.003001410933515977,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "run rate / price / total supply",
   "inputs": [
-   "TOK-EXECUTED-RUNRATE",
+   "TOK-DELIVERED-RUNRATE",
    "ONC-TOTAL-SUPPLY"
   ],
   "methodology": "Run rate at today's price; compare with net issuance.",
@@ -4774,7 +4774,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": {
    "key": "near-rpc.validators",
    "url": "https://free.rpc.fastnear.com",
@@ -4796,7 +4796,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "net growth + burns / market cap",
   "inputs": [
@@ -4814,7 +4814,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "issuance x validator share / staking ratio",
   "inputs": [
@@ -4832,7 +4832,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "(1 + nominal) / (1 + net growth) - 1",
   "inputs": [
@@ -4850,7 +4850,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "1 / (1 + net growth) - 1",
   "inputs": [
@@ -4862,16 +4862,16 @@
  {
   "evidenceId": "TOK-VERIFIED-CAPTURE",
   "label": "Verified value capture per year (NEAR delivered to the buyback wallet + burns)",
-  "value": 14989478.302025124,
+  "value": 14879265.083274737,
   "unit": "USD",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "delivered + burns",
   "inputs": [
-   "TOK-EXECUTED-RUNRATE",
+   "TOK-DELIVERED-RUNRATE",
    "LAD-NEAR-BURN-RUNRATE"
   ],
   "methodology": "A gross measure of what reaches $NEAR. It is not netted against issuance: burns are already inside net issuance, and held buybacks absorb rather than remove supply.",
@@ -4880,16 +4880,16 @@
  {
   "evidenceId": "TOK-BUYBACK-ABSORPTION",
   "label": "NEAR delivered to the buyback wallet per year, as a share of total supply",
-  "value": 0.0030253528397518195,
+  "value": 0.003001410933515977,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "run rate / price / total supply",
   "inputs": [
-   "TOK-EXECUTED-RUNRATE",
+   "TOK-DELIVERED-RUNRATE",
    "ONC-TOTAL-SUPPLY"
   ],
   "methodology": "Held, not burned: it absorbs supply from the market without removing it. Compare with net issuance (SUP-NET-NEW-ANN-PCT), which already includes burns; the two are not netted.",
@@ -4918,7 +4918,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -4933,7 +4933,7 @@
   "type": "DERIVED",
   "available": false,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -4948,7 +4948,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -4958,20 +4958,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-BTC-DILUTION-NET",
-  "label": "BTC: dilution net of capture, per year",
+  "evidenceId": "TOK-BTC-OWNERSHIP-DILUTION",
+  "label": "BTC: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.009243009562071025,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-BTC-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -4997,7 +4997,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5012,7 +5012,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5027,7 +5027,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5037,20 +5037,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-ETH-DILUTION-NET",
-  "label": "ETH: dilution net of capture, per year",
+  "evidenceId": "TOK-ETH-OWNERSHIP-DILUTION",
+  "label": "ETH: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.008170683881148166,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-ETH-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5076,7 +5076,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5091,7 +5091,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5106,7 +5106,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5116,20 +5116,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-SOL-DILUTION-NET",
-  "label": "SOL: dilution net of capture, per year",
+  "evidenceId": "TOK-SOL-OWNERSHIP-DILUTION",
+  "label": "SOL: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.014877687650743043,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-SOL-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5155,7 +5155,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5170,7 +5170,7 @@
   "type": "DERIVED",
   "available": false,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5185,7 +5185,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5195,20 +5195,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-SUI-DILUTION-NET",
-  "label": "SUI: dilution net of capture, per year",
+  "evidenceId": "TOK-SUI-OWNERSHIP-DILUTION",
+  "label": "SUI: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.12479415773351699,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-SUI-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5234,7 +5234,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5249,7 +5249,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5264,7 +5264,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5274,20 +5274,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-AVAX-DILUTION-NET",
-  "label": "AVAX: dilution net of capture, per year",
+  "evidenceId": "TOK-AVAX-OWNERSHIP-DILUTION",
+  "label": "AVAX: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.043778711800582126,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-AVAX-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5313,7 +5313,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5328,7 +5328,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5343,7 +5343,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5353,20 +5353,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-TON-DILUTION-NET",
-  "label": "TON: dilution net of capture, per year",
+  "evidenceId": "TOK-TON-OWNERSHIP-DILUTION",
+  "label": "TON: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.1481404810996647,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-TON-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5392,7 +5392,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5407,7 +5407,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5422,7 +5422,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5432,20 +5432,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-APT-DILUTION-NET",
-  "label": "APT: dilution net of capture, per year",
+  "evidenceId": "TOK-APT-OWNERSHIP-DILUTION",
+  "label": "APT: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.22623915513759152,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-APT-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5471,7 +5471,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5486,7 +5486,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5501,7 +5501,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5511,20 +5511,20 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-HYPE-DILUTION-NET",
-  "label": "HYPE: dilution net of capture, per year",
+  "evidenceId": "TOK-HYPE-OWNERSHIP-DILUTION",
+  "label": "HYPE: ownership dilution per year (circulating supply growth excluding one-day events)",
   "value": 0.0024180113621321553,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "growth ex events",
   "inputs": [
    "TOK-HYPE-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth: this asset's burns or recognized buybacks already lower circulating supply, so nothing is subtracted again.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
   "notes": null
  },
  {
@@ -5550,7 +5550,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "FDV / market cap",
   "inputs": [],
@@ -5565,7 +5565,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "holders revenue run rate / market cap",
   "inputs": [],
@@ -5580,7 +5580,7 @@
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
   "transform": "product(daily ratio, non-event days) - 1",
   "inputs": [
@@ -5590,20 +5590,37 @@
   "notes": null
  },
  {
-  "evidenceId": "TOK-NEAR-DILUTION-NET",
-  "label": "NEAR: dilution net of capture, per year",
-  "value": 0.021603919836978142,
+  "evidenceId": "TOK-NEAR-OWNERSHIP-DILUTION",
+  "label": "NEAR: ownership dilution per year (circulating supply growth excluding one-day events)",
+  "value": 0.02465406416492044,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
-  "periodEnd": "2026-11-11",
+  "periodEnd": "2026-11-10",
   "request": null,
-  "transform": "growth ex events - executed buybacks / market cap",
+  "transform": "growth ex events",
   "inputs": [
    "TOK-NEAR-CIRC-GROWTH-EX"
   ],
-  "methodology": "Circulating supply growth minus executed buybacks as a share of market cap: NEAR's bought-back tokens are held and still counted as circulating.",
+  "methodology": "How much a passive holder's share of supply shrinks. Burns and recognized burns already lower supply; held buybacks do not, so nothing is subtracted for them.",
+  "notes": null
+ },
+ {
+  "evidenceId": "TOK-NEAR-TREASURY-ABSORPTION",
+  "label": "NEAR: share of supply moved into the held buyback wallet per year",
+  "value": 0.0030260062279012572,
+  "unit": "fraction",
+  "type": "DERIVED",
+  "available": true,
+  "periodStart": null,
+  "periodEnd": "2026-11-10",
+  "request": null,
+  "transform": "delivered run rate / market cap",
+  "inputs": [
+   "TOK-DELIVERED-RUNRATE"
+  ],
+  "methodology": "Changes free float, not total supply or a passive holder's ownership share.",
   "notes": null
  },
  {
@@ -5888,8 +5905,8 @@
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-MULT",
-  "label": "NEAR's own multiple, executed basis (market cap / (burns + executed buybacks), 90-day run rate)",
+  "evidenceId": "LAD-BASIS-DELIVERED-MULT",
+  "label": "NEAR's own multiple, delivered basis (market cap / (burns + delivered buybacks), 90-day run rate)",
   "value": 309.1303986205259,
   "unit": "ratio",
   "type": "DERIVED",
@@ -5899,14 +5916,14 @@
   "request": null,
   "transform": "market cap / (burns + buybacks)",
   "inputs": [
-   "TOK-EXECUTED-RUNRATE"
+   "TOK-DELIVERED-RUNRATE"
   ],
   "methodology": "NEAR delivered to the buyback wallet by 1Click swaps (onchain, FastNEAR); same 90 days as every other ladder input.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-TAKE",
-  "label": "Buyback revenue per dollar of Intents volume, executed basis",
+  "evidenceId": "LAD-BASIS-DELIVERED-TAKE",
+  "label": "Buyback revenue per dollar of Intents volume, delivered basis",
   "value": 0.0002815288846868553,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5920,8 +5937,8 @@
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-10-HYPERLIQUID-SHARE",
-  "label": "$10, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-10-HYPERLIQUID-SHARE",
+  "label": "$10, delivered basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
   "value": 0.17140639376367572,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5931,14 +5948,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-10-TRON-SHARE",
-  "label": "$10, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-10-TRON-SHARE",
+  "label": "$10, delivered basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
   "value": 0.03245048925965952,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5948,14 +5965,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-10-TODAY-SHARE",
-  "label": "$10, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-10-TODAY-SHARE",
+  "label": "$10, delivered basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
   "value": 0.010615097235895276,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5965,14 +5982,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-25-HYPERLIQUID-SHARE",
-  "label": "$25, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-25-HYPERLIQUID-SHARE",
+  "label": "$25, delivered basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
   "value": 0.42883377995265176,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5982,14 +5999,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-25-TRON-SHARE",
-  "label": "$25, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-25-TRON-SHARE",
+  "label": "$25, delivered basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
   "value": 0.08144401869261118,
   "unit": "fraction",
   "type": "DERIVED",
@@ -5999,14 +6016,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-25-TODAY-SHARE",
-  "label": "$25, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-25-TODAY-SHARE",
+  "label": "$25, delivered basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
   "value": 0.02685553863320056,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6016,14 +6033,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-50-HYPERLIQUID-SHARE",
-  "label": "$50, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-50-HYPERLIQUID-SHARE",
+  "label": "$50, delivered basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
   "value": 0.8578794236009449,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6033,14 +6050,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-50-TRON-SHARE",
-  "label": "$50, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-50-TRON-SHARE",
+  "label": "$50, delivered basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
   "value": 0.16309990108086397,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6050,14 +6067,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-50-TODAY-SHARE",
-  "label": "$50, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-50-TODAY-SHARE",
+  "label": "$50, delivered basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
   "value": 0.053922940962042705,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6067,14 +6084,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-100-HYPERLIQUID-SHARE",
-  "label": "$100, executed basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-100-HYPERLIQUID-SHARE",
+  "label": "$100, delivered basis, priced like hyperliquid: Intents volume relative to 2036 spot DEX volume",
   "value": 1.7159707108975315,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6084,14 +6101,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-100-TRON-SHARE",
-  "label": "$100, executed basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-100-TRON-SHARE",
+  "label": "$100, delivered basis, priced like tron: Intents volume relative to 2036 spot DEX volume",
   "value": 0.3264116658573695,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6101,14 +6118,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-100-TODAY-SHARE",
-  "label": "$100, executed basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
+  "evidenceId": "LAD-BASIS-DELIVERED-100-TODAY-SHARE",
+  "label": "$100, delivered basis, NEAR's own multiple: Intents volume relative to 2036 spot DEX volume",
   "value": 0.108057745619727,
   "unit": "fraction",
   "type": "DERIVED",
@@ -6118,14 +6135,14 @@
   "request": null,
   "transform": "(MCAP / multiple - burns) / take rate / 2036 spot DEX",
   "inputs": [
-   "LAD-BASIS-EXECUTED-TAKE"
+   "LAD-BASIS-DELIVERED-TAKE"
   ],
-  "methodology": "Multiple and take rate both on the executed basis.",
+  "methodology": "Multiple and take rate both on the delivered basis.",
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-HYPERLIQUID",
-  "label": "Implied 2036 price at 20% growth, executed basis, priced like hyperliquid",
+  "evidenceId": "LAD-BASIS-DELIVERED-IMPLIED-HYPERLIQUID",
+  "label": "Implied 2036 price at 20% growth, delivered basis, priced like hyperliquid",
   "value": 1.0061464340625892,
   "unit": "USD",
   "type": "DERIVED",
@@ -6139,8 +6156,8 @@
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-TRON",
-  "label": "Implied 2036 price at 20% growth, executed basis, priced like tron",
+  "evidenceId": "LAD-BASIS-DELIVERED-IMPLIED-TRON",
+  "label": "Implied 2036 price at 20% growth, delivered basis, priced like tron",
   "value": 5.286609265383699,
   "unit": "USD",
   "type": "DERIVED",
@@ -6154,8 +6171,8 @@
   "notes": null
  },
  {
-  "evidenceId": "LAD-BASIS-EXECUTED-IMPLIED-TODAY",
-  "label": "Implied 2036 price at 20% growth, executed basis, NEAR's own multiple",
+  "evidenceId": "LAD-BASIS-DELIVERED-IMPLIED-TODAY",
+  "label": "Implied 2036 price at 20% growth, delivered basis, NEAR's own multiple",
   "value": 15.948436394534674,
   "unit": "USD",
   "type": "DERIVED",
@@ -6184,7 +6201,7 @@
   "notes": "First available month 2026-05: 468x."
  },
  {
-  "evidenceId": "VAL-MULT-HIST-NEAR-EXEC",
+  "evidenceId": "VAL-MULT-HIST-NEAR-DELIVERED",
   "label": "NEAR: market cap / value to holders, latest month-end (Burns + NEAR delivered to the buyback wallet (onchain), windows after the first delivery only)",
   "value": 319.37441151117594,
   "unit": "ratio",
@@ -6676,7 +6693,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-BTC-DILUTION-NET"
+   "TOK-BTC-OWNERSHIP-DILUTION"
   ],
   "methodology": "Monetary: market cap relative to total crypto. Valuation ratio held at today's level; dilution of 0.92% a year assumed to persist.",
   "notes": null
@@ -6693,7 +6710,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-BTC-DILUTION-NET"
+   "TOK-BTC-OWNERSHIP-DILUTION"
   ],
   "methodology": "Monetary: market cap relative to total crypto. Valuation ratio held at today's level; dilution of 0.92% a year assumed to persist.",
   "notes": null
@@ -6710,7 +6727,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-BTC-DILUTION-NET"
+   "TOK-BTC-OWNERSHIP-DILUTION"
   ],
   "methodology": "Monetary: market cap relative to total crypto. Valuation ratio held at today's level; dilution of 0.92% a year assumed to persist.",
   "notes": null
@@ -6727,7 +6744,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-BTC-DILUTION-NET"
+   "TOK-BTC-OWNERSHIP-DILUTION"
   ],
   "methodology": "Monetary: market cap relative to total crypto. Valuation ratio held at today's level; dilution of 0.92% a year assumed to persist.",
   "notes": null
@@ -6849,7 +6866,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-ETH-DILUTION-NET"
+   "TOK-ETH-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 0.82% a year assumed to persist.",
   "notes": null
@@ -6866,7 +6883,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-ETH-DILUTION-NET"
+   "TOK-ETH-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 0.82% a year assumed to persist.",
   "notes": null
@@ -6883,7 +6900,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-ETH-DILUTION-NET"
+   "TOK-ETH-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 0.82% a year assumed to persist.",
   "notes": null
@@ -6900,7 +6917,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-ETH-DILUTION-NET"
+   "TOK-ETH-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 0.82% a year assumed to persist.",
   "notes": null
@@ -7022,7 +7039,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SOL-DILUTION-NET"
+   "TOK-SOL-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 1.49% a year assumed to persist.",
   "notes": null
@@ -7039,7 +7056,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SOL-DILUTION-NET"
+   "TOK-SOL-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 1.49% a year assumed to persist.",
   "notes": null
@@ -7056,7 +7073,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SOL-DILUTION-NET"
+   "TOK-SOL-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 1.49% a year assumed to persist.",
   "notes": null
@@ -7073,7 +7090,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SOL-DILUTION-NET"
+   "TOK-SOL-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 1.49% a year assumed to persist.",
   "notes": null
@@ -7195,7 +7212,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SUI-DILUTION-NET"
+   "TOK-SUI-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 12.48% a year assumed to persist.",
   "notes": null
@@ -7212,7 +7229,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SUI-DILUTION-NET"
+   "TOK-SUI-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 12.48% a year assumed to persist.",
   "notes": null
@@ -7229,7 +7246,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SUI-DILUTION-NET"
+   "TOK-SUI-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 12.48% a year assumed to persist.",
   "notes": null
@@ -7246,7 +7263,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-SUI-DILUTION-NET"
+   "TOK-SUI-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 12.48% a year assumed to persist.",
   "notes": null
@@ -7368,7 +7385,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-AVAX-DILUTION-NET"
+   "TOK-AVAX-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 4.38% a year assumed to persist.",
   "notes": null
@@ -7385,7 +7402,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-AVAX-DILUTION-NET"
+   "TOK-AVAX-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 4.38% a year assumed to persist.",
   "notes": null
@@ -7402,7 +7419,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-AVAX-DILUTION-NET"
+   "TOK-AVAX-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 4.38% a year assumed to persist.",
   "notes": null
@@ -7419,7 +7436,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-AVAX-DILUTION-NET"
+   "TOK-AVAX-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 4.38% a year assumed to persist.",
   "notes": null
@@ -7541,7 +7558,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-TON-DILUTION-NET"
+   "TOK-TON-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 14.81% a year assumed to persist.",
   "notes": null
@@ -7558,7 +7575,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-TON-DILUTION-NET"
+   "TOK-TON-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 14.81% a year assumed to persist.",
   "notes": null
@@ -7575,7 +7592,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-TON-DILUTION-NET"
+   "TOK-TON-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 14.81% a year assumed to persist.",
   "notes": null
@@ -7592,7 +7609,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-TON-DILUTION-NET"
+   "TOK-TON-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 14.81% a year assumed to persist.",
   "notes": null
@@ -7714,7 +7731,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-APT-DILUTION-NET"
+   "TOK-APT-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 22.62% a year assumed to persist.",
   "notes": null
@@ -7731,7 +7748,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-APT-DILUTION-NET"
+   "TOK-APT-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 22.62% a year assumed to persist.",
   "notes": null
@@ -7748,7 +7765,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-APT-DILUTION-NET"
+   "TOK-APT-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 22.62% a year assumed to persist.",
   "notes": null
@@ -7765,7 +7782,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-APT-DILUTION-NET"
+   "TOK-APT-OWNERSHIP-DILUTION"
   ],
   "methodology": "Platform: market cap / on-chain economy. Valuation ratio held at today's level; dilution of 22.62% a year assumed to persist.",
   "notes": null
@@ -7887,7 +7904,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-HYPE-DILUTION-NET"
+   "TOK-HYPE-OWNERSHIP-DILUTION"
   ],
   "methodology": "Cash flow: market cap / value to holders. Valuation ratio held at today's level; dilution of 0.24% a year assumed to persist.",
   "notes": null
@@ -7904,7 +7921,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-HYPE-DILUTION-NET"
+   "TOK-HYPE-OWNERSHIP-DILUTION"
   ],
   "methodology": "Cash flow: market cap / value to holders. Valuation ratio held at today's level; dilution of 0.24% a year assumed to persist.",
   "notes": null
@@ -7921,7 +7938,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-HYPE-DILUTION-NET"
+   "TOK-HYPE-OWNERSHIP-DILUTION"
   ],
   "methodology": "Cash flow: market cap / value to holders. Valuation ratio held at today's level; dilution of 0.24% a year assumed to persist.",
   "notes": null
@@ -7938,7 +7955,7 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-HYPE-DILUTION-NET"
+   "TOK-HYPE-OWNERSHIP-DILUTION"
   ],
   "methodology": "Cash flow: market cap / value to holders. Valuation ratio held at today's level; dilution of 0.24% a year assumed to persist.",
   "notes": null
@@ -8051,7 +8068,7 @@
  {
   "evidenceId": "OPP-NEAR-2_8X-CAGR",
   "label": "NEAR: driver growth needed every year for 2.8x in ten years",
-  "value": 0.1323960707486891,
+  "value": 0.1357770008578152,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
@@ -8060,15 +8077,15 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-NEAR-DILUTION-NET"
+   "TOK-NEAR-OWNERSHIP-DILUTION"
   ],
-  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.16% a year assumed to persist.",
+  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.47% a year assumed to persist.",
   "notes": null
  },
  {
   "evidenceId": "OPP-NEAR-7X-CAGR",
   "label": "NEAR: driver growth needed every year for 7x in ten years",
-  "value": 0.24105878926332225,
+  "value": 0.24476414742925257,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
@@ -8077,15 +8094,15 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-NEAR-DILUTION-NET"
+   "TOK-NEAR-OWNERSHIP-DILUTION"
   ],
-  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.16% a year assumed to persist.",
+  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.47% a year assumed to persist.",
   "notes": null
  },
  {
   "evidenceId": "OPP-NEAR-14X-CAGR",
   "label": "NEAR: driver growth needed every year for 14x in ten years",
-  "value": 0.33013387577985065,
+  "value": 0.3341051803312869,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
@@ -8094,15 +8111,15 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-NEAR-DILUTION-NET"
+   "TOK-NEAR-OWNERSHIP-DILUTION"
   ],
-  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.16% a year assumed to persist.",
+  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.47% a year assumed to persist.",
   "notes": null
  },
  {
   "evidenceId": "OPP-NEAR-28X-CAGR",
   "label": "NEAR: driver growth needed every year for 28x in ten years",
-  "value": 0.4256021896813902,
+  "value": 0.42985852851126927,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
@@ -8111,9 +8128,9 @@
   "request": null,
   "transform": "(k x (1 + dilution)^10)^(1/10) - 1",
   "inputs": [
-   "TOK-NEAR-DILUTION-NET"
+   "TOK-NEAR-OWNERSHIP-DILUTION"
   ],
-  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.16% a year assumed to persist.",
+  "methodology": "Both tested: cash flow (Intents buybacks) and platform (on-chain economy). Valuation ratio held at today's level; dilution of 2.47% a year assumed to persist.",
   "notes": null
  },
  {
@@ -8208,7 +8225,7 @@
  },
  {
   "evidenceId": "ECO-INTENTS-FEE-SHARE",
-  "label": "NEAR Intents share of all fees on the NEAR chain, last 30 days",
+  "label": "NEAR Intents share of the fees DefiLlama attributes to the NEAR chain, last 30 days (not NEAR L1 gas)",
   "value": 0.8624976510819797,
   "unit": "fraction",
   "type": "DERIVED",
@@ -8229,19 +8246,19 @@
  {
   "evidenceId": "ECO-CAPTURE-FROM-INTENTS",
   "label": "Share of verified value capture from Intents buybacks (H1)",
-  "value": 0.9291043112057266,
+  "value": 0.9285791749161441,
   "unit": "fraction",
   "type": "DERIVED",
   "available": true,
   "periodStart": null,
   "periodEnd": "2026-11-10",
   "request": null,
-  "transform": "executed / (executed + burns)",
+  "transform": "delivered / (delivered + burns)",
   "inputs": [
-   "TOK-EXECUTED-RUNRATE",
+   "TOK-DELIVERED-RUNRATE",
    "LAD-NEAR-BURN-RUNRATE"
   ],
-  "methodology": "Executed buybacks / (executed buybacks + burns), run rates.",
+  "methodology": "NEAR delivered to the buyback wallet / (delivered + burns), run rates.",
   "notes": null
  },
  {
@@ -9051,7 +9068,7 @@
  },
  {
   "evidenceId": "HYP-H1",
-  "label": "H1: NEAR's fee base is far more concentrated in one product than peers' (restated from \"value capture\": comparable value-capture data by product does not exist for peers)",
+  "label": "H1: The fees DefiLlama attributes to the NEAR chain are far more concentrated in one product than peers' (restated from \"value capture\": comparable value-capture data by product does not exist for peers)",
   "value": 0.8624976510819797,
   "unit": "text",
   "type": "DERIVED",
@@ -9061,7 +9078,7 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "Protocol fees on each chain (DefiLlama, 30 days). SUPPORTED if the largest protocol's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents: 86% of fees paid on NEAR; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). Separately, and not compared with peers: 93% of NEAR's verified value capture comes from Intents.",
+  "methodology": "Denominator: fees DefiLlama attributes to each chain (every protocol it lists on that chain, 30 days). For NEAR this includes NEAR Intents' cross-chain swap fees, which are paid on many chains and are not NEAR L1 gas; peers' totals are built the same way, so the attribution method is comparable but the economic meaning differs by chain. SUPPORTED if the largest protocol's share of NEAR's fees is at least 50% and at least 1.5x the peer median; NOT SUPPORTED if at or below the peer median; otherwise MIXED. Reading: Intents: 86% of fees DefiLlama attributes to NEAR; peer median largest-protocol share 39% (TON 90%, NEAR 86%, APT 49%, HYPE 48%, SOL 39%, SUI 25%, AVAX 17%, ETH 13%). Separately, and not compared with peers: 93% of NEAR's verified value capture comes from Intents.",
   "notes": null
  },
  {
@@ -9112,7 +9129,7 @@
  {
   "evidenceId": "HYP-H5",
   "label": "H5: NEAR's dilution is a higher return hurdle than peers'",
-  "value": 0.021603919836978142,
+  "value": 0.02465406416492044,
   "unit": "text",
   "type": "DERIVED",
   "available": true,
@@ -9121,13 +9138,13 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "Tested twice: on dilution net of capture (one-day events excluded, held buybacks subtracted) and on raw circulating supply growth. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED. Reading: Raw: NEAR 2.5% vs peer median 5.6% (NOT SUPPORTED). Adjusted: NEAR 2.2% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted.",
+  "methodology": "Tested twice on ownership dilution (how much a passive holder's share of supply shrinks): circulating supply growth excluding one-day events, and as reported. Held buybacks are not subtracted: they change free float, not ownership. Each: SUPPORTED if NEAR is more than 0.5 points above the peer median, NOT SUPPORTED if more than 0.5 points below, otherwise MIXED. If the two disagree, MIXED. Reading: Raw: NEAR 2.5% vs peer median 5.6% (NOT SUPPORTED). Excluding one-day events: NEAR 2.5% a year; peer median 2.9% (BTC 0.9%, ETH 0.8%, SOL 1.5%, SUI 12.5%, AVAX 4.4%, TON 14.8%, APT 22.6%, HYPE 0.2%).  The median is pulled up by small, high-dilution chains: against the four largest alternatives (BTC, ETH, SOL, HYPE) NEAR's ownership dilution is higher than 4 of 4. HSP-029 would lower NEAR's issuance if adopted.",
   "notes": null
  },
  {
   "evidenceId": "HYP-H6",
-  "label": "H6: NEAR needs more growth than some alternatives to deliver the same multiple",
-  "value": 0.24105878926332225,
+  "label": "H6: Under a fixed-valuation model, NEAR needs more driver growth than the alternatives for the same price multiple (a model result, not evidence about which asset is more likely to deliver it)",
+  "value": 0.24476414742925257,
   "unit": "text",
   "type": "DERIVED",
   "available": true,
@@ -9136,7 +9153,7 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "Required driver growth for 7x in ten years (own dilution included). SUPPORTED if NEAR's is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED. Reading: NEAR 24.1% a year; peer median 26.8% (ETH 22.5%, SOL 23.3%, SUI 36.6%, AVAX 26.8%, TON 39.5%, APT 49.0%, HYPE 21.8%).  Against the largest alternatives with a growth driver (ETH, SOL, HYPE, AVAX) NEAR needs more growth than 3 of 4. Observed growth is compared in section 11.",
+  "methodology": "Required driver growth for 7x in ten years with each asset's valuation ratio held at today's level and its ownership dilution persisting. SUPPORTED if NEAR's is more than 1 point above the peer median; NOT SUPPORTED if more than 1 point below; otherwise MIXED. Reading: NEAR 24.5% a year; peer median 26.8% (ETH 22.5%, SOL 23.3%, SUI 36.6%, AVAX 26.8%, TON 39.5%, APT 49.0%, HYPE 21.8%).  Against the largest alternatives with a growth driver (ETH, SOL, HYPE, AVAX) NEAR needs more growth than 3 of 4. Observed growth is compared in section 11.",
   "notes": null
  },
  {
@@ -9186,7 +9203,7 @@
  },
  {
   "evidenceId": "HYP-H10",
-  "label": "H10: NEAR's price is mostly explained by BTC and the market, not its fundamentals",
+  "label": "H10: BTC's daily returns explain most of NEAR's daily return variance (narrowed: this tests BTC dependence only, not what drives the rest)",
   "value": 0.20525175467725976,
   "unit": "text",
   "type": "DERIVED",
@@ -9196,7 +9213,7 @@
   "request": null,
   "transform": "published rule",
   "inputs": [],
-  "methodology": "Share of NEAR's daily return variance explained by BTC over the last year (R-squared). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED. Reading: Correlation with BTC 0.45 (R-squared 21%); 0.62 in the 180 days before buybacks began and 0.42 since. ETH's correlation with BTC is 0.87. Daily returns cannot be regressed on Intents growth, which changes slowly; this tests market dependence only.",
+  "methodology": "Share of NEAR's daily return variance explained by BTC over the last year (R-squared, single-factor). SUPPORTED if at least 50%; NOT SUPPORTED if below 25%; otherwise MIXED. Reading: Correlation with BTC 0.45 (R-squared 21%); 0.62 in the 180 days before buybacks began and 0.42 since. ETH's correlation with BTC is 0.87. The unexplained part is not attributed to fundamentals: it can be NEAR-specific news, other market factors or noise.",
   "notes": null
  }
 ]
