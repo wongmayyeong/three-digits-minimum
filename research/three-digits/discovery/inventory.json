@@ -1,0 +1,4142 @@
+{
+ "generatedAt": "2026-11-12T08:22:33.634Z",
+ "assets": [
+  {
+   "label": "BTC",
+   "coin": "bitcoin",
+   "chain": "Bitcoin",
+   "type": "monetary",
+   "coingecko": {
+    "price": 73529,
+    "marketCap": 1478734867961,
+    "fdv": 1478734867961,
+    "circulating": 20110993,
+    "totalSupply": 20110993,
+    "maxSupply": 21000000
+   },
+   "fees": {
+    "name": "Bitcoin",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users",
+     "Revenue": "Burned coins"
+    },
+    "first": "2011-01-31",
+    "last": "2026-11-10",
+    "days": 5763,
+    "sum90": 20254722,
+    "sum365": 78646156
+   },
+   "revenue": {
+    "name": "Bitcoin",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users",
+     "Revenue": "Burned coins"
+    },
+    "first": "2011-02-01",
+    "last": "2026-11-10",
+    "days": 232,
+    "sum90": 0,
+    "sum365": null
+   },
+   "holdersRevenue": null,
+   "dexVolume": null,
+   "tvl": 3866098095.635669,
+   "stablecoins": null
+  },
+  {
+   "label": "ETH",
+   "coin": "ethereum",
+   "chain": "Ethereum",
+   "type": "platform",
+   "coingecko": {
+    "price": 2048.22,
+    "marketCap": 250314011475,
+    "fdv": 250314011475,
+    "circulating": 122212724.4774798,
+    "totalSupply": 122212724.4774798,
+    "maxSupply": null
+   },
+   "fees": {
+    "name": "Ethereum",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Total ETH gas fees (base fees + priority fees) plus blob fees (post-EIP-4844, type-3 blob-carrying transactions) paid by users",
+     "Revenue": "Amount of ETH burned — base fees plus blob fees (both are permanently burned, accruing to no proposer)",
+     "HoldersRevenue": "Amount of ETH burned — base fees plus blob fees"
+    },
+    "first": "2015-08-07",
+    "last": "2026-11-11",
+    "days": 4115,
+    "sum90": 49963142,
+    "sum365": 175499130
+   },
+   "revenue": {
+    "name": "Ethereum",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Total ETH gas fees (base fees + priority fees) plus blob fees (post-EIP-4844, type-3 blob-carrying transactions) paid by users",
+     "Revenue": "Amount of ETH burned — base fees plus blob fees (both are permanently burned, accruing to no proposer)",
+     "HoldersRevenue": "Amount of ETH burned — base fees plus blob fees"
+    },
+    "first": "2015-08-07",
+    "last": "2026-11-11",
+    "days": 4115,
+    "sum90": 15431252,
+    "sum365": 47903553
+   },
+   "holdersRevenue": {
+    "name": "Ethereum",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Total ETH gas fees (base fees + priority fees) plus blob fees (post-EIP-4844, type-3 blob-carrying transactions) paid by users",
+     "Revenue": "Amount of ETH burned — base fees plus blob fees (both are permanently burned, accruing to no proposer)",
+     "HoldersRevenue": "Amount of ETH burned — base fees plus blob fees"
+    },
+    "first": "2015-08-07",
+    "last": "2026-11-11",
+    "days": 4115,
+    "sum90": 15431252,
+    "sum365": 47903553
+   },
+   "dexVolume": null,
+   "tvl": 41090469563.88337,
+   "stablecoins": 132218068455.47456
+  },
+  {
+   "label": "SOL",
+   "coin": "solana",
+   "chain": "Solana",
+   "type": "platform",
+   "coingecko": {
+    "price": 82.89,
+    "marketCap": 49023458518,
+    "fdv": 52834209801,
+    "circulating": 591457008.1253791,
+    "totalSupply": 637432865.8199632,
+    "maxSupply": null
+   },
+   "fees": {
+    "name": "Solana",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Transaction base fees paid by users",
+     "HoldersRevenue": "Transaction base fees paid by users were burned"
+    },
+    "first": "2021-01-17",
+    "last": "2026-11-10",
+    "days": 2124,
+    "sum90": 67737467,
+    "sum365": 231392824
+   },
+   "revenue": {
+    "name": "Solana",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Transaction base fees paid by users",
+     "HoldersRevenue": "Transaction base fees paid by users were burned"
+    },
+    "first": "2021-01-17",
+    "last": "2026-11-10",
+    "days": 2124,
+    "sum90": 7415287,
+    "sum365": 25364502
+   },
+   "holdersRevenue": {
+    "name": "Solana",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Transaction base fees paid by users",
+     "HoldersRevenue": "Transaction base fees paid by users were burned"
+    },
+    "first": "2021-01-17",
+    "last": "2026-11-10",
+    "days": 2124,
+    "sum90": 7415287,
+    "sum365": 25364502
+   },
+   "dexVolume": null,
+   "tvl": 5040077835.929407,
+   "stablecoins": 13818700072.209517
+  },
+  {
+   "label": "SUI",
+   "coin": "sui",
+   "chain": "Sui",
+   "type": "platform",
+   "coingecko": {
+    "price": 0.813367,
+    "marketCap": 3366124161,
+    "fdv": 8132613549,
+    "circulating": 4139043544.1303763,
+    "totalSupply": 10000000000,
+    "maxSupply": 10000000000
+   },
+   "fees": {
+    "name": "Sui",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Sui network",
+     "Revenue": "Includes non refundable storage fees that are burnt",
+     "HoldersRevenue": "Includes non refundable storage fees that are burnt"
+    },
+    "first": "2024-07-01",
+    "last": "2026-11-11",
+    "days": 861,
+    "sum90": 423800,
+    "sum365": 2564992
+   },
+   "revenue": {
+    "name": "Sui",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Sui network",
+     "Revenue": "Includes non refundable storage fees that are burnt",
+     "HoldersRevenue": "Includes non refundable storage fees that are burnt"
+    },
+    "first": "2024-07-01",
+    "last": "2026-11-11",
+    "days": 861,
+    "sum90": 116363.59000000001,
+    "sum365": 629738.5900000002
+   },
+   "holdersRevenue": {
+    "name": "Sui",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Sui network",
+     "Revenue": "Includes non refundable storage fees that are burnt",
+     "HoldersRevenue": "Includes non refundable storage fees that are burnt"
+    },
+    "first": "2024-07-01",
+    "last": "2026-11-11",
+    "days": 861,
+    "sum90": 116363.59000000001,
+    "sum365": 629738.5900000002
+   },
+   "dexVolume": null,
+   "tvl": 412335748.3069203,
+   "stablecoins": 535777633.90634775
+  },
+  {
+   "label": "AVAX",
+   "coin": "avalanche-2",
+   "chain": "Avalanche",
+   "type": "platform",
+   "coingecko": {
+    "price": 8.63,
+    "marketCap": 3845975824,
+    "fdv": 4061638279,
+    "circulating": 445864781.0863835,
+    "totalSupply": 470866574.6091854,
+    "maxSupply": 720000000
+   },
+   "fees": {
+    "name": "Avalanche",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of AVAX transaction fees that were burned",
+     "HoldersRevenue": "Amount of AVAX transaction fees that were burned"
+    },
+    "first": "2022-11-08",
+    "last": "2026-11-11",
+    "days": 1465,
+    "sum90": 913867,
+    "sum365": 2666266
+   },
+   "revenue": {
+    "name": "Avalanche",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of AVAX transaction fees that were burned",
+     "HoldersRevenue": "Amount of AVAX transaction fees that were burned"
+    },
+    "first": "2022-11-08",
+    "last": "2026-11-11",
+    "days": 1465,
+    "sum90": 913867,
+    "sum365": 2666266
+   },
+   "holdersRevenue": {
+    "name": "Avalanche",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of AVAX transaction fees that were burned",
+     "HoldersRevenue": "Amount of AVAX transaction fees that were burned"
+    },
+    "first": "2022-11-23",
+    "last": "2026-11-11",
+    "days": 1369,
+    "sum90": 913867,
+    "sum365": 2666266
+   },
+   "dexVolume": null,
+   "tvl": 615116188.8170756,
+   "stablecoins": 857630107.222302
+  },
+  {
+   "label": "TON",
+   "coin": "the-open-network",
+   "chain": "TON",
+   "type": "platform",
+   "coingecko": {
+    "price": 1.2,
+    "marketCap": 3427923727,
+    "fdv": 6341140561,
+    "circulating": 2855558967.2469983,
+    "totalSupply": 5282352302.269445,
+    "maxSupply": null
+   },
+   "fees": {
+    "name": "TON",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 50% TON transaction fees that were burned",
+     "HoldersRevenue": "Amount of 50% TON transaction fees that were burned"
+    },
+    "first": "2024-09-24",
+    "last": "2026-11-10",
+    "days": 778,
+    "sum90": 222286,
+    "sum365": 1776441
+   },
+   "revenue": {
+    "name": "TON",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 50% TON transaction fees that were burned",
+     "HoldersRevenue": "Amount of 50% TON transaction fees that were burned"
+    },
+    "first": "2024-09-24",
+    "last": "2026-11-10",
+    "days": 778,
+    "sum90": 111148,
+    "sum365": 888222
+   },
+   "holdersRevenue": {
+    "name": "TON",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 50% TON transaction fees that were burned",
+     "HoldersRevenue": "Amount of 50% TON transaction fees that were burned"
+    },
+    "first": "2024-09-24",
+    "last": "2026-11-10",
+    "days": 778,
+    "sum90": 111148,
+    "sum365": 888222
+   },
+   "dexVolume": null,
+   "tvl": 45212320.84789791,
+   "stablecoins": 585810585.1961708
+  },
+  {
+   "label": "APT",
+   "coin": "aptos",
+   "chain": "Aptos",
+   "type": "platform",
+   "coingecko": {
+    "price": 0.556027,
+    "marketCap": 491762672,
+    "fdv": 673671658,
+    "circulating": 884334838.0515449,
+    "totalSupply": 1211461035.7428408,
+    "maxSupply": 2100000000
+   },
+   "fees": {
+    "name": "Aptos",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Aptos network",
+     "Revenue": "All the transaction fees paid are burnt",
+     "HoldersRevenue": "All the transaction fees paid are burned"
+    },
+    "first": "2022-10-18",
+    "last": "2026-11-11",
+    "days": 1486,
+    "sum90": 347539,
+    "sum365": 1223298
+   },
+   "revenue": {
+    "name": "Aptos",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Aptos network",
+     "Revenue": "All the transaction fees paid are burnt",
+     "HoldersRevenue": "All the transaction fees paid are burned"
+    },
+    "first": "2026-04-27",
+    "last": "2026-11-11",
+    "days": 199,
+    "sum90": 347539,
+    "sum365": null
+   },
+   "holdersRevenue": {
+    "name": "Aptos",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users for executing transactions on the Aptos network",
+     "Revenue": "All the transaction fees paid are burnt",
+     "HoldersRevenue": "All the transaction fees paid are burned"
+    },
+    "first": "2026-04-27",
+    "last": "2026-11-11",
+    "days": 199,
+    "sum90": 347539,
+    "sum365": null
+   },
+   "dexVolume": null,
+   "tvl": 39727473.333617434,
+   "stablecoins": 774245007.5894511
+  },
+  {
+   "label": "HYPE",
+   "coin": "hyperliquid",
+   "chain": "Hyperliquid L1",
+   "type": "cash-flow",
+   "coingecko": {
+    "price": 71.33,
+    "marketCap": 17076725546,
+    "fdv": 67872579046,
+    "circulating": 239406814.37414145,
+    "totalSupply": 951538272.9141414,
+    "maxSupply": 1000000000
+   },
+   "fees": {
+    "name": "Hyperliquid",
+    "category": null,
+    "methodology": null,
+    "first": "2024-12-23",
+    "last": "2026-11-10",
+    "days": 684,
+    "sum90": 270985382.4,
+    "sum365": 895261659.6899998
+   },
+   "revenue": {
+    "name": "Hyperliquid",
+    "category": null,
+    "methodology": null,
+    "first": "2024-12-23",
+    "last": "2026-11-10",
+    "days": 684,
+    "sum90": 216140673,
+    "sum365": 681050671
+   },
+   "holdersRevenue": {
+    "name": "Hyperliquid",
+    "category": null,
+    "methodology": null,
+    "first": "2024-12-23",
+    "last": "2026-11-10",
+    "days": 684,
+    "sum90": 216140673,
+    "sum365": 681050671
+   },
+   "dexVolume": {
+    "name": "Hyperliquid",
+    "category": null,
+    "methodology": null,
+    "first": "2024-09-19",
+    "last": "2026-11-10",
+    "days": 783,
+    "sum90": 13858457552,
+    "sum365": 55037318087
+   },
+   "tvl": 2311409988.565888,
+   "stablecoins": 6400306679.329082
+  },
+  {
+   "label": "NEAR",
+   "coin": "near",
+   "chain": "Near",
+   "type": "both",
+   "coingecko": {
+    "price": 3.49,
+    "marketCap": 4576385227,
+    "fdv": 4576385290,
+    "circulating": 1311473230,
+    "totalSupply": 1311473248,
+    "maxSupply": null
+   },
+   "fees": {
+    "name": "Near",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "All transaction (gas) fees paid by users on the NEAR blockchain, fetched from Allium.",
+     "Revenue": "70% of every gas fee is permanently burned, reducing NEAR supply. The other 30% is paid to contract developers, so only 70% is protocol revenue.",
+     "HoldersRevenue": "Burned gas fees (70%) accrue to all NEAR holders through reduced circulating supply.",
+     "SupplySideRevenue": "The remaining 30% of each gas fee is rebated to the developer of the smart contract being called."
+    },
+    "first": "2020-10-14",
+    "last": "2026-11-10",
+    "days": 2219,
+    "sum90": 374337,
+    "sum365": 1164678
+   },
+   "revenue": {
+    "name": "Near",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "All transaction (gas) fees paid by users on the NEAR blockchain, fetched from Allium.",
+     "Revenue": "70% of every gas fee is permanently burned, reducing NEAR supply. The other 30% is paid to contract developers, so only 70% is protocol revenue.",
+     "HoldersRevenue": "Burned gas fees (70%) accrue to all NEAR holders through reduced circulating supply.",
+     "SupplySideRevenue": "The remaining 30% of each gas fee is rebated to the developer of the smart contract being called."
+    },
+    "first": "2020-10-14",
+    "last": "2026-11-10",
+    "days": 2219,
+    "sum90": 262033,
+    "sum365": 815871
+   },
+   "holdersRevenue": {
+    "name": "Near",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "All transaction (gas) fees paid by users on the NEAR blockchain, fetched from Allium.",
+     "Revenue": "70% of every gas fee is permanently burned, reducing NEAR supply. The other 30% is paid to contract developers, so only 70% is protocol revenue.",
+     "HoldersRevenue": "Burned gas fees (70%) accrue to all NEAR holders through reduced circulating supply.",
+     "SupplySideRevenue": "The remaining 30% of each gas fee is rebated to the developer of the smart contract being called."
+    },
+    "first": "2020-10-14",
+    "last": "2026-11-10",
+    "days": 2218,
+    "sum90": 262033,
+    "sum365": 813888
+   },
+   "dexVolume": null,
+   "tvl": 165028531.17949417,
+   "stablecoins": 130854761.40146655
+  },
+  {
+   "label": "TRX",
+   "coin": "tron",
+   "chain": "Tron",
+   "type": "cash-flow",
+   "coingecko": {
+    "price": 0.316795,
+    "marketCap": 30111137985,
+    "fdv": 30111544590,
+    "circulating": 95035564708.50351,
+    "totalSupply": 95036848019.75558,
+    "maxSupply": null
+   },
+   "fees": {
+    "name": "Tron",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users.",
+     "Revenue": "Amount of TRX fees were burned.",
+     "HoldersRevenue": "Amount of TRX fees were burned."
+    },
+    "first": "2020-02-15",
+    "last": "2026-11-10",
+    "days": 2461,
+    "sum90": 72442430,
+    "sum365": 333292629
+   },
+   "revenue": {
+    "name": "Tron",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users.",
+     "Revenue": "Amount of TRX fees were burned.",
+     "HoldersRevenue": "Amount of TRX fees were burned."
+    },
+    "first": "2020-02-15",
+    "last": "2026-11-10",
+    "days": 2461,
+    "sum90": 72442430,
+    "sum365": 333292629
+   },
+   "holdersRevenue": {
+    "name": "Tron",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users.",
+     "Revenue": "Amount of TRX fees were burned.",
+     "HoldersRevenue": "Amount of TRX fees were burned."
+    },
+    "first": "2022-11-23",
+    "last": "2026-11-10",
+    "days": 1368,
+    "sum90": 72442430,
+    "sum365": 333292629
+   },
+   "dexVolume": null,
+   "tvl": 4897551472.473182,
+   "stablecoins": 93515585543.18803
+  },
+  {
+   "label": "BNB",
+   "coin": "binancecoin",
+   "chain": "BSC",
+   "type": "platform",
+   "coingecko": {
+    "price": 673.07,
+    "marketCap": 88515017663,
+    "fdv": 88515017663,
+    "circulating": 131510772.57,
+    "totalSupply": 131510772.57,
+    "maxSupply": 200000000
+   },
+   "fees": {
+    "name": "BSC",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 10% BNB transaction fees that were burned",
+     "HoldersRevenue": "Amount of 10% BNB transaction fees that were burned"
+    },
+    "first": "2020-08-30",
+    "last": "2026-11-10",
+    "days": 2264,
+    "sum90": 50517016,
+    "sum365": 159712021
+   },
+   "revenue": {
+    "name": "BSC",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 10% BNB transaction fees that were burned",
+     "HoldersRevenue": "Amount of 10% BNB transaction fees that were burned"
+    },
+    "first": "2020-08-30",
+    "last": "2026-11-10",
+    "days": 2264,
+    "sum90": 5051700,
+    "sum365": 15971201
+   },
+   "holdersRevenue": {
+    "name": "BSC",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Transaction fees paid by users",
+     "Revenue": "Amount of 10% BNB transaction fees that were burned",
+     "HoldersRevenue": "Amount of 10% BNB transaction fees that were burned"
+    },
+    "first": "2025-06-04",
+    "last": "2026-11-10",
+    "days": 525,
+    "sum90": 5051700,
+    "sum365": 15971201
+   },
+   "dexVolume": null,
+   "tvl": 5011689483.137156,
+   "stablecoins": 12880471215.092138
+  }
+ ],
+ "referenceChains": [
+  {
+   "chain": "Base",
+   "fees": {
+    "name": "Base",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users",
+     "Revenue": "Burned coins"
+    },
+    "first": "2023-06-24",
+    "last": "2026-11-10",
+    "days": 1236,
+    "sum90": 10687750,
+    "sum365": 47851031
+   },
+   "dexVolume": null,
+   "tvl": 5759559550.688711,
+   "stablecoins": 5257422264.430046
+  },
+  {
+   "chain": "Arbitrum",
+   "fees": {
+    "name": "Arbitrum",
+    "category": "Chain",
+    "methodology": {
+     "UserFees": "Gas fees paid by users",
+     "Fees": "Gas fees paid by users",
+     "Revenue": "Burned coins"
+    },
+    "first": "2021-08-10",
+    "last": "2026-11-10",
+    "days": 1884,
+    "sum90": 1661597,
+    "sum365": 7261830
+   },
+   "dexVolume": null,
+   "tvl": 1382838062.0945485,
+   "stablecoins": 3610354369.096271
+  }
+ ],
+ "crossChain": [
+  {
+   "name": "NEAR Intents",
+   "listedIn": [
+    {
+     "name": "Nearpad",
+     "category": "Dexs",
+     "total1y": 85668.92
+    },
+    {
+     "name": "NEAR Intents",
+     "category": "Bridge",
+     "total1y": 32917718103
+    }
+   ],
+   "volumeDex": {
+    "slug": "near-intents",
+    "name": "NEAR Intents",
+    "category": "Bridge",
+    "methodology": {},
+    "first": "2024-12-10",
+    "last": "2026-11-10",
+    "days": 701,
+    "sum90": 12101162919,
+    "sum365": 32910846701
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "near-intents",
+    "name": "NEAR Intents",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators.",
+     "Revenue": "NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded.",
+     "ProtocolRevenue": "Captured revenue held by the treasury before the 2026-02-23 buyback program.",
+     "HoldersRevenue": "Since 2026-02-23, NEAR's captured Intents revenue is used to buy back $NEAR on the open market (not burned), returning value to holders.",
+     "SupplySideRevenue": "Gross fees minus NEAR's captured revenue - the affiliate fees kept by solvers and third-party distribution channels (e.g. SwapKit)."
+    },
+    "first": "2025-05-10",
+    "last": "2026-11-10",
+    "days": 550,
+    "sum90": 18757458,
+    "sum365": 54026265
+   },
+   "revenue": {
+    "slug": "near-intents",
+    "name": "NEAR Intents",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators.",
+     "Revenue": "NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded.",
+     "ProtocolRevenue": "Captured revenue held by the treasury before the 2026-02-23 buyback program.",
+     "HoldersRevenue": "Since 2026-02-23, NEAR's captured Intents revenue is used to buy back $NEAR on the open market (not burned), returning value to holders.",
+     "SupplySideRevenue": "Gross fees minus NEAR's captured revenue - the affiliate fees kept by solvers and third-party distribution channels (e.g. SwapKit)."
+    },
+    "first": "2025-05-10",
+    "last": "2026-11-10",
+    "days": 550,
+    "sum90": 5077609,
+    "sum365": 9358304.05
+   },
+   "holdersRevenue": {
+    "slug": "near-intents",
+    "name": "NEAR Intents",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Gross fees charged on NEAR Intents swaps - the protocol fee plus the affiliate (distribution) fee each frontend collects, summed across all integrators.",
+     "Revenue": "NEAR's net captured revenue, measured as NEAR/wNEAR swept into its revenue wallets (reconciles with revenue.near.org and the on-chain buyback). Split by destination wallet into front-end affiliate revenue and Other. Transfers between those wallets are excluded.",
+     "ProtocolRevenue": "Captured revenue held by the treasury before the 2026-02-23 buyback program.",
+     "HoldersRevenue": "Since 2026-02-23, NEAR's captured Intents revenue is used to buy back $NEAR on the open market (not burned), returning value to holders.",
+     "SupplySideRevenue": "Gross fees minus NEAR's captured revenue - the affiliate fees kept by solvers and third-party distribution channels (e.g. SwapKit)."
+    },
+    "first": "2025-05-10",
+    "last": "2026-11-10",
+    "days": 550,
+    "sum90": 5077609,
+    "sum365": 8011284.05
+   }
+  },
+  {
+   "name": "THORChain",
+   "listedIn": [
+    {
+     "name": "THORChain DEX",
+     "category": "Dexs",
+     "total1y": 14609043037
+    }
+   ],
+   "volumeDex": {
+    "slug": "thorchain-dex",
+    "name": "THORChain DEX",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "Swap fees paid by users",
+     "Fees": "Swap fees paid by users",
+     "Revenue": "Percentage of swap fees going to treasury and/or token holders",
+     "ProtocolRevenue": "Percentage of swap fees going to treasury",
+     "HoldersRevenue": "Money going to governance token holders",
+     "SupplySideRevenue": "Liquidity providers revenue",
+     "Volume": "Total USD value of swaps executed through THORChain's liquidity pools, sourced from THORChain Midgard. Every swap routes through native RUNE and settles on the THORChain L1, so volume is reported on the THORChain chain. Daily RUNE-denominated swap volume is converted to USD using that day's RUNE price."
+    },
+    "first": "2021-04-12",
+    "last": "2026-11-10",
+    "days": 2039,
+    "sum90": 6207607896,
+    "sum365": 14448324957
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "thorchain-dex",
+    "name": "THORChain DEX",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "All swap, outbound and affiliate fees paid by users when swapping through THORChain (slashing is paid by nodes, not users).",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on each chain's THORChain pools, gross outbound fees and slashing fees paid into the Reserve, and affiliate fees charged by interfaces/wallets (affiliate fees are attributed to the THORChain native chain). RUNE block-reward emissions and the native tx fee (counted in the THORChain chain fees adapter) are excluded.",
+     "Revenue": "The share of swap fees burned as RUNE (1% since 2026-09-12, 5% before) - value to all RUNE holders - plus protocol-kept income (outbound fees net of the gas reimbursed to nodes, slashing fees, developer fund, marketing fund and the 20% directed into protocol-owned liquidity). The node-bonder share of swap fees is treated as a security cost and the LP, affiliate and TCY shares as supplier payments, so none of those count as revenue.",
+     "ProtocolRevenue": "Income kept by the protocol: outbound fees net of the gas reimbursed to nodes, slashing fees paid into the Reserve, plus the 5% developer fund, 5% marketing fund and 20% protocol-owned liquidity taken from swap fees.",
+     "HoldersRevenue": "Value to RUNE holders: the share of swap fees burned as RUNE (1% since 2026-09-12, 5% before), permanently removed from supply - the only component that accrues to every RUNE holder.",
+     "SupplySideRevenue": "Value paid to suppliers: the node-operator (RUNE bonder) share of swap fees set by the Incentive Pendulum (a security cost), the liquidity-provider share of swap fees (LP side of the Incentive Pendulum), affiliate fees passed through to integrators, the 10% of swap fees paid to TCY stakers, and the outbound gas costs reimbursed from the Reserve to nodes."
+    },
+    "first": "2021-04-11",
+    "last": "2026-11-10",
+    "days": 2040,
+    "sum90": 8073989,
+    "sum365": 21511008
+   },
+   "revenue": {
+    "slug": "thorchain-dex",
+    "name": "THORChain DEX",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "All swap, outbound and affiliate fees paid by users when swapping through THORChain (slashing is paid by nodes, not users).",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on each chain's THORChain pools, gross outbound fees and slashing fees paid into the Reserve, and affiliate fees charged by interfaces/wallets (affiliate fees are attributed to the THORChain native chain). RUNE block-reward emissions and the native tx fee (counted in the THORChain chain fees adapter) are excluded.",
+     "Revenue": "The share of swap fees burned as RUNE (1% since 2026-09-12, 5% before) - value to all RUNE holders - plus protocol-kept income (outbound fees net of the gas reimbursed to nodes, slashing fees, developer fund, marketing fund and the 20% directed into protocol-owned liquidity). The node-bonder share of swap fees is treated as a security cost and the LP, affiliate and TCY shares as supplier payments, so none of those count as revenue.",
+     "ProtocolRevenue": "Income kept by the protocol: outbound fees net of the gas reimbursed to nodes, slashing fees paid into the Reserve, plus the 5% developer fund, 5% marketing fund and 20% protocol-owned liquidity taken from swap fees.",
+     "HoldersRevenue": "Value to RUNE holders: the share of swap fees burned as RUNE (1% since 2026-09-12, 5% before), permanently removed from supply - the only component that accrues to every RUNE holder.",
+     "SupplySideRevenue": "Value paid to suppliers: the node-operator (RUNE bonder) share of swap fees set by the Incentive Pendulum (a security cost), the liquidity-provider share of swap fees (LP side of the Incentive Pendulum), affiliate fees passed through to integrators, the 10% of swap fees paid to TCY stakers, and the outbound gas costs reimbursed from the Reserve to nodes."
+    },
+    "first": "2021-04-11",
+    "last": "2026-11-10",
+    "days": 2040,
+    "sum90": 2186377.73,
+    "sum365": 3824298.7299999995
+   },
+   "holdersRevenue": {
+    "slug": "thorchain-dex",
+    "name": "THORChain DEX",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "All swap, outbound and affiliate fees paid by users when swapping through THORChain (slashing is paid by nodes, not users).",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on each chain's THORChain pools, gross outbound fees and slashing fees paid into the Reserve, and affiliate fees charged by interfaces/wallets (affiliate fees are attributed to the THORChain native chain). RUNE block-reward emissions and the native tx fee (counted in the THORChain chain fees adapter) are excluded.",
+     "Revenue": "The share of swap fees burned as RUNE (1% since 2026-09-12, 5% before) - value to all RUNE holders - plus protocol-kept income (outbound fees net of the gas reimbursed to nodes, slashing fees, developer fund, marketing fund and the 20% directed into protocol-owned liquidity). The node-bonder share of swap fees is treated as a security cost and the LP, affiliate and TCY shares as supplier payments, so none of those count as revenue.",
+     "ProtocolRevenue": "Income kept by the protocol: outbound fees net of the gas reimbursed to nodes, slashing fees paid into the Reserve, plus the 5% developer fund, 5% marketing fund and 20% protocol-owned liquidity taken from swap fees.",
+     "HoldersRevenue": "Value to RUNE holders: the share of swap fees burned as RUNE (1% since 2026-09-12, 5% before), permanently removed from supply - the only component that accrues to every RUNE holder.",
+     "SupplySideRevenue": "Value paid to suppliers: the node-operator (RUNE bonder) share of swap fees set by the Incentive Pendulum (a security cost), the liquidity-provider share of swap fees (LP side of the Incentive Pendulum), affiliate fees passed through to integrators, the 10% of swap fees paid to TCY stakers, and the outbound gas costs reimbursed from the Reserve to nodes."
+    },
+    "first": "2021-04-12",
+    "last": "2026-11-10",
+    "days": 2039,
+    "sum90": 111857.09,
+    "sum365": 567271.0900000001
+   }
+  },
+  {
+   "name": "Chainflip",
+   "listedIn": [
+    {
+     "name": "Chainflip AMM",
+     "category": "Dexs",
+     "total1y": 5603790559
+    }
+   ],
+   "volumeDex": {
+    "slug": "chainflip-amm",
+    "name": "Chainflip AMM",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "Swap fees paid by users",
+     "Fees": "Swap fees paid by users",
+     "Revenue": "Percentage of swap fees going to treasury and/or token holders",
+     "ProtocolRevenue": "Percentage of swap fees going to treasury",
+     "HoldersRevenue": "Money going to governance token holders",
+     "SupplySideRevenue": "Liquidity providers revenue",
+     "Volume": "Cumulative USD value of swaps executed on the chainflip protocol"
+    },
+    "first": "2024-06-01",
+    "last": "2026-11-11",
+    "days": 894,
+    "sum90": 1972494043,
+    "sum365": 5603790559
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "chainflip-amm",
+    "name": "Chainflip AMM",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "Ingress, Egress, and Broker fees paid by the user per swap",
+     "Fees": "Includes Swap, Broker, Ingress, Egress and Network Fees for Buy/Burn Mechanism",
+     "Revenue": "Fees collected from burning $FLIP. This is a fixed percentage of swap value.",
+     "ProtocolRevenue": "Protocol keeps no fees, network fees are entirely used to buy and burn $FLIP.",
+     "HoldersRevenue": "Fees collected from burning $FLIP.",
+     "SupplySideRevenue": "Fees collected by the LPs + Broker, Ingress and Egress fees"
+    },
+    "first": "2024-01-04",
+    "last": "2026-11-11",
+    "days": 1043,
+    "sum90": 6180966,
+    "sum365": 15553450
+   },
+   "revenue": {
+    "slug": "chainflip-amm",
+    "name": "Chainflip AMM",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "Ingress, Egress, and Broker fees paid by the user per swap",
+     "Fees": "Includes Swap, Broker, Ingress, Egress and Network Fees for Buy/Burn Mechanism",
+     "Revenue": "Fees collected from burning $FLIP. This is a fixed percentage of swap value.",
+     "ProtocolRevenue": "Protocol keeps no fees, network fees are entirely used to buy and burn $FLIP.",
+     "HoldersRevenue": "Fees collected from burning $FLIP.",
+     "SupplySideRevenue": "Fees collected by the LPs + Broker, Ingress and Egress fees"
+    },
+    "first": "2024-01-04",
+    "last": "2026-11-11",
+    "days": 1043,
+    "sum90": 1135808,
+    "sum365": 3252730
+   },
+   "holdersRevenue": {
+    "slug": "chainflip-amm",
+    "name": "Chainflip AMM",
+    "category": "Dexs",
+    "methodology": {
+     "UserFees": "Ingress, Egress, and Broker fees paid by the user per swap",
+     "Fees": "Includes Swap, Broker, Ingress, Egress and Network Fees for Buy/Burn Mechanism",
+     "Revenue": "Fees collected from burning $FLIP. This is a fixed percentage of swap value.",
+     "ProtocolRevenue": "Protocol keeps no fees, network fees are entirely used to buy and burn $FLIP.",
+     "HoldersRevenue": "Fees collected from burning $FLIP.",
+     "SupplySideRevenue": "Fees collected by the LPs + Broker, Ingress and Egress fees"
+    },
+    "first": "2024-01-04",
+    "last": "2026-11-11",
+    "days": 1043,
+    "sum90": 1135808,
+    "sum365": 3252730
+   }
+  },
+  {
+   "name": "Maya Protocol",
+   "listedIn": [
+    {
+     "name": "Maya Protocol",
+     "category": "Cross Chain Bridge",
+     "total1y": 1311346212
+    }
+   ],
+   "volumeDex": {
+    "slug": "maya-protocol",
+    "name": "Maya Protocol",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Volume": "Total USD value of swaps executed through MAYAChain's liquidity pools, sourced from MAYAChain Midgard. Every swap routes through native CACAO and settles on the MAYAChain L1, so volume is reported on the MAYAChain chain. Daily CACAO-denominated swap volume is converted to USD using that day's CACAO price.",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on MAYAChain's pools, sourced from MAYAChain Midgard and converted from CACAO to USD at that day's CACAO price.",
+     "UserFees": "Slip-based liquidity (swap) fees paid by users when swapping through MAYAChain.",
+     "Revenue": "10% of swap fees accrue to $MAYA holders.",
+     "ProtocolRevenue": "Protocol does not accrue revenue.",
+     "HoldersRevenue": "10% of swap fees accrue to $MAYA holders.",
+     "SupplySideRevenue": "90% of swap fees accrue to MAYAChain liquidity providers."
+    },
+    "first": "2025-08-18",
+    "last": "2026-11-10",
+    "days": 450,
+    "sum90": 579185171,
+    "sum365": 1314923121
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "maya-protocol",
+    "name": "Maya Protocol",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Volume": "Total USD value of swaps executed through MAYAChain's liquidity pools, sourced from MAYAChain Midgard. Every swap routes through native CACAO and settles on the MAYAChain L1, so volume is reported on the MAYAChain chain. Daily CACAO-denominated swap volume is converted to USD using that day's CACAO price.",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on MAYAChain's pools, sourced from MAYAChain Midgard and converted from CACAO to USD at that day's CACAO price.",
+     "UserFees": "Slip-based liquidity (swap) fees paid by users when swapping through MAYAChain.",
+     "Revenue": "10% of swap fees accrue to $MAYA holders.",
+     "ProtocolRevenue": "Protocol does not accrue revenue.",
+     "HoldersRevenue": "10% of swap fees accrue to $MAYA holders.",
+     "SupplySideRevenue": "90% of swap fees accrue to MAYAChain liquidity providers."
+    },
+    "first": "2025-08-18",
+    "last": "2026-11-10",
+    "days": 450,
+    "sum90": 727919,
+    "sum365": 1427478
+   },
+   "revenue": {
+    "slug": "maya-protocol",
+    "name": "Maya Protocol",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Volume": "Total USD value of swaps executed through MAYAChain's liquidity pools, sourced from MAYAChain Midgard. Every swap routes through native CACAO and settles on the MAYAChain L1, so volume is reported on the MAYAChain chain. Daily CACAO-denominated swap volume is converted to USD using that day's CACAO price.",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on MAYAChain's pools, sourced from MAYAChain Midgard and converted from CACAO to USD at that day's CACAO price.",
+     "UserFees": "Slip-based liquidity (swap) fees paid by users when swapping through MAYAChain.",
+     "Revenue": "10% of swap fees accrue to $MAYA holders.",
+     "ProtocolRevenue": "Protocol does not accrue revenue.",
+     "HoldersRevenue": "10% of swap fees accrue to $MAYA holders.",
+     "SupplySideRevenue": "90% of swap fees accrue to MAYAChain liquidity providers."
+    },
+    "first": "2025-08-18",
+    "last": "2026-11-10",
+    "days": 450,
+    "sum90": 72792.25,
+    "sum365": 142752.38
+   },
+   "holdersRevenue": {
+    "slug": "maya-protocol",
+    "name": "Maya Protocol",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Volume": "Total USD value of swaps executed through MAYAChain's liquidity pools, sourced from MAYAChain Midgard. Every swap routes through native CACAO and settles on the MAYAChain L1, so volume is reported on the MAYAChain chain. Daily CACAO-denominated swap volume is converted to USD using that day's CACAO price.",
+     "Fees": "Slip-based liquidity (swap) fees paid by users on MAYAChain's pools, sourced from MAYAChain Midgard and converted from CACAO to USD at that day's CACAO price.",
+     "UserFees": "Slip-based liquidity (swap) fees paid by users when swapping through MAYAChain.",
+     "Revenue": "10% of swap fees accrue to $MAYA holders.",
+     "ProtocolRevenue": "Protocol does not accrue revenue.",
+     "HoldersRevenue": "10% of swap fees accrue to $MAYA holders.",
+     "SupplySideRevenue": "90% of swap fees accrue to MAYAChain liquidity providers."
+    },
+    "first": "2025-08-18",
+    "last": "2026-11-10",
+    "days": 450,
+    "sum90": 72792.25,
+    "sum365": 142752.38
+   }
+  },
+  {
+   "name": "deBridge (DLN)",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "debridge",
+    "name": "deBridge",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "All fees paid by users for swap and bridge tokens via deBridge.",
+     "Revenue": "Fees are distributed to deBridge protocol.",
+     "ProtocolRevenue": "Fee goes to protocol treasury from 20th june 2025.",
+     "HoldersRevenue": "Protocol revenue is used for buyback(started from 20th june 2025)."
+    },
+    "first": "2023-04-01",
+    "last": "2026-11-10",
+    "days": 1320,
+    "sum90": 1576564,
+    "sum365": 6506867
+   },
+   "revenue": {
+    "slug": "debridge",
+    "name": "deBridge",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "All fees paid by users for swap and bridge tokens via deBridge.",
+     "Revenue": "Fees are distributed to deBridge protocol.",
+     "ProtocolRevenue": "Fee goes to protocol treasury from 20th june 2025.",
+     "HoldersRevenue": "Protocol revenue is used for buyback(started from 20th june 2025)."
+    },
+    "first": "2023-04-01",
+    "last": "2026-11-10",
+    "days": 1320,
+    "sum90": 1576564,
+    "sum365": 6506867
+   },
+   "holdersRevenue": {
+    "slug": "debridge",
+    "name": "deBridge",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "All fees paid by users for swap and bridge tokens via deBridge.",
+     "Revenue": "Fees are distributed to deBridge protocol.",
+     "ProtocolRevenue": "Fee goes to protocol treasury from 20th june 2025.",
+     "HoldersRevenue": "Protocol revenue is used for buyback(started from 20th june 2025)."
+    },
+    "first": "2024-08-31",
+    "last": "2026-11-10",
+    "days": 802,
+    "sum90": 1250902,
+    "sum365": 6206144
+   }
+  },
+  {
+   "name": "Relay",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "relay",
+    "name": "Relay",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Platform fees, integrator app fees and swap costs paid by users on Relay bridges and swaps, excluding execution costs (network gas).",
+     "SupplySideRevenue": "App fees paid to the integrators that add them, and swap costs paid to liquidity providers. Excludes the integrator revenue share of the platform fee, which Relay does not disclose.",
+     "Revenue": "Platform fees. This is an upper bound: Relay pays qualifying integrators an undisclosed 0-67% revenue share out of it.",
+     "ProtocolRevenue": "Platform fees kept by Relay. This is an upper bound: Relay pays qualifying integrators an undisclosed 0-67% revenue share out of it."
+    },
+    "first": "2026-04-24",
+    "last": "2026-11-11",
+    "days": 202,
+    "sum90": 261907389,
+    "sum365": null
+   },
+   "revenue": {
+    "slug": "relay",
+    "name": "Relay",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Platform fees, integrator app fees and swap costs paid by users on Relay bridges and swaps, excluding execution costs (network gas).",
+     "SupplySideRevenue": "App fees paid to the integrators that add them, and swap costs paid to liquidity providers. Excludes the integrator revenue share of the platform fee, which Relay does not disclose.",
+     "Revenue": "Platform fees. This is an upper bound: Relay pays qualifying integrators an undisclosed 0-67% revenue share out of it.",
+     "ProtocolRevenue": "Platform fees kept by Relay. This is an upper bound: Relay pays qualifying integrators an undisclosed 0-67% revenue share out of it."
+    },
+    "first": "2026-04-24",
+    "last": "2026-11-11",
+    "days": 202,
+    "sum90": 4338508,
+    "sum365": null
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Across",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "across",
+    "name": "Across",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users for bridge txs.",
+     "Revenue": "Protocol revenue is 0.",
+     "ProtocolRevenue": "Across takes 0% fees paid by users.",
+     "SupplySideRevenue": "Total fees paid by users are distributed to liquidity providers and relayers."
+    },
+    "first": "2023-05-01",
+    "last": "2026-11-11",
+    "days": 1291,
+    "sum90": 291894,
+    "sum365": 537904
+   },
+   "revenue": {
+    "slug": "across",
+    "name": "Across",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users for bridge txs.",
+     "Revenue": "Protocol revenue is 0.",
+     "ProtocolRevenue": "Across takes 0% fees paid by users.",
+     "SupplySideRevenue": "Total fees paid by users are distributed to liquidity providers and relayers."
+    },
+    "first": "2023-12-31",
+    "last": "2026-11-11",
+    "days": 1046,
+    "sum90": 0,
+    "sum365": 0
+   },
+   "holdersRevenue": {
+    "slug": "across",
+    "name": "Across",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users for bridge txs.",
+     "Revenue": "Protocol revenue is 0.",
+     "ProtocolRevenue": "Across takes 0% fees paid by users.",
+     "SupplySideRevenue": "Total fees paid by users are distributed to liquidity providers and relayers."
+    },
+    "first": "2026-03-03",
+    "last": "2026-11-11",
+    "days": 254,
+    "sum90": 0,
+    "sum365": null
+   }
+  },
+  {
+   "name": "LI.FI",
+   "listedIn": [
+    {
+     "name": "LI.FI Bridge Aggregator",
+     "category": "Bridge Aggregator",
+     "total1y": 7220416171
+    }
+   ],
+   "volumeDex": null,
+   "volumeAggregator": {
+    "slug": "li.fi-bridge-aggregator",
+    "name": "LI.FI Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {},
+    "first": "2024-12-31",
+    "last": "2026-11-11",
+    "days": 679,
+    "sum90": 4029204546,
+    "sum365": 7220416171
+   },
+   "fees": {
+    "slug": "li.fi-bridge-aggregator",
+    "name": "LI.FI Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "All fees paid by users on LI.FI bridges, including integrator fees.",
+     "Revenue": "Share of fees kept by LI.FI.",
+     "ProtocolRevenue": "Share of fees kept by LI.FI.",
+     "SupplySideRevenue": "Share of fees paid to integrators, including Jumper since 2026-08-07."
+    },
+    "first": "2024-08-01",
+    "last": "2026-11-11",
+    "days": 833,
+    "sum90": 4323367.07,
+    "sum365": 11358685.17
+   },
+   "revenue": {
+    "slug": "li.fi-bridge-aggregator",
+    "name": "LI.FI Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "All fees paid by users on LI.FI bridges, including integrator fees.",
+     "Revenue": "Share of fees kept by LI.FI.",
+     "ProtocolRevenue": "Share of fees kept by LI.FI.",
+     "SupplySideRevenue": "Share of fees paid to integrators, including Jumper since 2026-08-07."
+    },
+    "first": "2024-08-01",
+    "last": "2026-11-11",
+    "days": 833,
+    "sum90": 738560.05,
+    "sum365": 2045533.1500000001
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Jumper",
+   "listedIn": [
+    {
+     "name": "Jumper Bridge Aggregator",
+     "category": "Bridge Aggregator",
+     "total1y": 8983775829
+    }
+   ],
+   "volumeDex": null,
+   "volumeAggregator": {
+    "slug": "jumper-bridge-aggregator",
+    "name": "Jumper Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {},
+    "first": "2023-11-18",
+    "last": "2026-11-11",
+    "days": 1090,
+    "sum90": 2388886380,
+    "sum365": 8983775829
+   },
+   "fees": {
+    "slug": "jumper-bridge-aggregator",
+    "name": "Jumper Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Jumper platform fees (0-5 bps depending on the assets) paid by users on bridges.",
+     "Revenue": "All platform fees are kept by Jumper.",
+     "ProtocolRevenue": "All platform fees are kept by Jumper."
+    },
+    "first": "2026-08-21",
+    "last": "2026-11-11",
+    "days": 80,
+    "sum90": 41109.729999999996,
+    "sum365": null
+   },
+   "revenue": {
+    "slug": "jumper-bridge-aggregator",
+    "name": "Jumper Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Jumper platform fees (0-5 bps depending on the assets) paid by users on bridges.",
+     "Revenue": "All platform fees are kept by Jumper.",
+     "ProtocolRevenue": "All platform fees are kept by Jumper."
+    },
+    "first": "2026-08-21",
+    "last": "2026-11-11",
+    "days": 80,
+    "sum90": 41109.729999999996,
+    "sum365": null
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Mayan",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "mayan-dex-aggregator",
+    "name": "Mayan DEX Aggregator",
+    "category": "DEX Aggregator",
+    "methodology": {
+     "Fees": "Fees are 10 basis points (0.1%) of the outbound bridge volume through Mayan WH Swap on each chain. Only source chain transactions pay fees.",
+     "Revenue": "Fees are 10 basis points (0.1%) of the outbound bridge volume through Mayan WH Swap on each chain. Only source chain transactions pay fees."
+    },
+    "first": "2025-03-20",
+    "last": "2026-11-11",
+    "days": 602,
+    "sum90": 1929307,
+    "sum365": 6716519
+   },
+   "revenue": {
+    "slug": "mayan-dex-aggregator",
+    "name": "Mayan DEX Aggregator",
+    "category": "DEX Aggregator",
+    "methodology": {
+     "Fees": "Fees are 10 basis points (0.1%) of the outbound bridge volume through Mayan WH Swap on each chain. Only source chain transactions pay fees.",
+     "Revenue": "Fees are 10 basis points (0.1%) of the outbound bridge volume through Mayan WH Swap on each chain. Only source chain transactions pay fees."
+    },
+    "first": "2025-03-20",
+    "last": "2026-11-11",
+    "days": 602,
+    "sum90": 1929307,
+    "sum365": 6716519
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Wormhole",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "wormhole",
+    "name": "Portal",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users or Protocols for using Wormhole Relayers, Executions, CCTP and Cross chain message fees.",
+     "Revenue": "Wormhole makes no revenue.",
+     "SupplySideRevenue": "All execution fees are collected by Relayers."
+    },
+    "first": "2025-05-05",
+    "last": "2026-11-10",
+    "days": 555,
+    "sum90": 49650,
+    "sum365": 327257
+   },
+   "revenue": {
+    "slug": "wormhole",
+    "name": "Portal",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users or Protocols for using Wormhole Relayers, Executions, CCTP and Cross chain message fees.",
+     "Revenue": "Wormhole makes no revenue.",
+     "SupplySideRevenue": "All execution fees are collected by Relayers."
+    },
+    "first": "2025-05-05",
+    "last": "2026-11-10",
+    "days": 555,
+    "sum90": 0,
+    "sum365": 0
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Axelar",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "axelar",
+    "name": "Axelar",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total gas fees paid by users (excluding gas refunds)",
+     "Revenue": "Axelar doesn't collect any fee"
+    },
+    "first": "2024-12-26",
+    "last": "2026-11-11",
+    "days": 686,
+    "sum90": 13446.950000000004,
+    "sum365": 54708.12000000001
+   },
+   "revenue": {
+    "slug": "axelar",
+    "name": "Axelar",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total gas fees paid by users (excluding gas refunds)",
+     "Revenue": "Axelar doesn't collect any fee"
+    },
+    "first": "2024-12-26",
+    "last": "2026-11-11",
+    "days": 686,
+    "sum90": 0,
+    "sum365": 0
+   },
+   "holdersRevenue": {
+    "slug": "axelar",
+    "name": "Axelar",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total gas fees paid by users (excluding gas refunds)",
+     "Revenue": "Axelar doesn't collect any fee"
+    },
+    "first": "2024-12-26",
+    "last": "2026-11-11",
+    "days": 686,
+    "sum90": 0,
+    "sum365": 0
+   }
+  },
+  {
+   "name": "Stargate",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "stargate-v2",
+    "name": "Stargate V2",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "All fees paid by users while using Stargate bridge.",
+     "Revenue": "Total bridge fees paid by users"
+    },
+    "first": "2024-05-30",
+    "last": "2026-11-11",
+    "days": 896,
+    "sum90": 1000874,
+    "sum365": 2251721
+   },
+   "revenue": {
+    "slug": "stargate-v2",
+    "name": "Stargate V2",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "All fees paid by users while using Stargate bridge.",
+     "Revenue": "Total bridge fees paid by users"
+    },
+    "first": "2025-11-03",
+    "last": "2026-11-11",
+    "days": 271,
+    "sum90": 1000874,
+    "sum365": null
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Socket / Bungee",
+   "listedIn": [
+    {
+     "name": "SOCKET Protocol",
+     "category": "Bridge Aggregator",
+     "total1y": 5172437559
+    }
+   ],
+   "volumeDex": null,
+   "volumeAggregator": {
+    "slug": "socket-protocol",
+    "name": "SOCKET Protocol",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "BridgeVolume": "From 2026-06-11 (router launch): token inflows into Socket Protocol's OpenRouter and AllowanceHolder routers — native value plus ERC20 transfers in, taking the single largest token per transaction as the routed amount; mirrors the socketprotocol/socket-data dashboard and counts both bridge and swap routing. Before 2026-06-11: deposits and withdrawals through the Socket Liquidity Layer SuperToken vaults, summed from on-chain vault events."
+    },
+    "first": "2024-09-23",
+    "last": "2026-11-10",
+    "days": 779,
+    "sum90": 3043571212,
+    "sum365": 5125572296
+   },
+   "fees": {
+    "slug": "socket-protocol",
+    "name": "SOCKET Protocol",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Total fees paid by users for bridging tokens.",
+     "Revenue": "Total fees paid are distributed to SOCKET inetrgations.",
+     "ProtocolRevenue": "SOCKET takes 0 fees."
+    },
+    "first": "2025-01-30",
+    "last": "2026-11-11",
+    "days": 649,
+    "sum90": 56268.33,
+    "sum365": 809619.48
+   },
+   "revenue": {
+    "slug": "socket-protocol",
+    "name": "SOCKET Protocol",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Total fees paid by users for bridging tokens.",
+     "Revenue": "Total fees paid are distributed to SOCKET inetrgations.",
+     "ProtocolRevenue": "SOCKET takes 0 fees."
+    },
+    "first": "2025-05-17",
+    "last": "2026-11-11",
+    "days": 542,
+    "sum90": 56268.33,
+    "sum365": 809619.48
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Symbiosis",
+   "listedIn": [],
+   "volumeDex": null,
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "symbiosis",
+    "name": "Symbiosis",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Partner fees charged on swaps routed through symbiosis, octopool swap fees on the symbiosis chain, and the stableBridgingFee deducted on every cross chain transfer.",
+     "Revenue": "The symbiosis share of partner fees, the octopool fee share sent to the protocol fee receiver, and the whole bridging fee, which is paid to the bridge contract.",
+     "ProtocolRevenue": "The symbiosis share of the octopool fee share and the whole bridging fee.",
+     "SupplySideRevenue": "Partner fees claimed by the partner that routed the swap, and the octopool fee share that stays with the liquidity providers."
+    },
+    "first": "2025-08-15",
+    "last": "2026-11-11",
+    "days": 454,
+    "sum90": 534403,
+    "sum365": 604221.5800000001
+   },
+   "revenue": {
+    "slug": "symbiosis",
+    "name": "Symbiosis",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Partner fees charged on swaps routed through symbiosis, octopool swap fees on the symbiosis chain, and the stableBridgingFee deducted on every cross chain transfer.",
+     "Revenue": "The symbiosis share of partner fees, the octopool fee share sent to the protocol fee receiver, and the whole bridging fee, which is paid to the bridge contract.",
+     "ProtocolRevenue": "The symbiosis share of the octopool fee share and the whole bridging fee.",
+     "SupplySideRevenue": "Partner fees claimed by the partner that routed the swap, and the octopool fee share that stays with the liquidity providers."
+    },
+    "first": "2025-08-15",
+    "last": "2026-11-11",
+    "days": 454,
+    "sum90": 288559,
+    "sum365": 349208.99
+   },
+   "holdersRevenue": {
+    "slug": "symbiosis",
+    "name": "Symbiosis",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Partner fees charged on swaps routed through symbiosis, octopool swap fees on the symbiosis chain, and the stableBridgingFee deducted on every cross chain transfer.",
+     "Revenue": "The symbiosis share of partner fees, the octopool fee share sent to the protocol fee receiver, and the whole bridging fee, which is paid to the bridge contract.",
+     "ProtocolRevenue": "The symbiosis share of the octopool fee share and the whole bridging fee.",
+     "SupplySideRevenue": "Partner fees claimed by the partner that routed the swap, and the octopool fee share that stays with the liquidity providers."
+    },
+    "first": "2025-08-15",
+    "last": "2026-11-11",
+    "days": 454,
+    "sum90": 0,
+    "sum365": 0
+   }
+  },
+  {
+   "name": "Unit",
+   "listedIn": [
+    {
+     "name": "Unit",
+     "category": "Bridge",
+     "total1y": 7698080306
+    },
+    {
+     "name": "Unitflow Finance V3",
+     "category": "Dexs",
+     "total1y": 48370.16
+    },
+    {
+     "name": "CommunityV3",
+     "category": "Dexs",
+     "total1y": 34324081.75
+    }
+   ],
+   "volumeDex": {
+    "slug": "unit",
+    "name": "Unit",
+    "category": "Bridge",
+    "methodology": {
+     "Volume": "Hyperliquid spot trading volume from tokens were deployed by Unit protocol.",
+     "Fees": "Trading fees from spot token volume where Hyperunit is the deployer of the token, excluding builder code fees.",
+     "Revenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "ProtocolRevenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "HoldersRevenue": "No Token Holders Revenue."
+    },
+    "first": "2025-08-07",
+    "last": "2026-11-10",
+    "days": 142,
+    "sum90": 5914714093,
+    "sum365": null
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "unit",
+    "name": "Unit",
+    "category": "Bridge",
+    "methodology": {
+     "Volume": "Hyperliquid spot trading volume from tokens were deployed by Unit protocol.",
+     "Fees": "Trading fees from spot token volume where Hyperunit is the deployer of the token, excluding builder code fees.",
+     "Revenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "ProtocolRevenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "HoldersRevenue": "No Token Holders Revenue."
+    },
+    "first": "2025-04-01",
+    "last": "2026-11-10",
+    "days": 589,
+    "sum90": 1501458,
+    "sum365": 5611599
+   },
+   "revenue": {
+    "slug": "unit",
+    "name": "Unit",
+    "category": "Bridge",
+    "methodology": {
+     "Volume": "Hyperliquid spot trading volume from tokens were deployed by Unit protocol.",
+     "Fees": "Trading fees from spot token volume where Hyperunit is the deployer of the token, excluding builder code fees.",
+     "Revenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "ProtocolRevenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "HoldersRevenue": "No Token Holders Revenue."
+    },
+    "first": "2025-04-01",
+    "last": "2026-11-10",
+    "days": 589,
+    "sum90": 1501458,
+    "sum365": 5611599
+   },
+   "holdersRevenue": {
+    "slug": "unit",
+    "name": "Unit",
+    "category": "Bridge",
+    "methodology": {
+     "Volume": "Hyperliquid spot trading volume from tokens were deployed by Unit protocol.",
+     "Fees": "Trading fees from spot token volume where Hyperunit is the deployer of the token, excluding builder code fees.",
+     "Revenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "ProtocolRevenue": "Trading fees from spot token volume where Hyperunit is the deployer of the token.",
+     "HoldersRevenue": "No Token Holders Revenue."
+    },
+    "first": "2025-04-01",
+    "last": "2026-11-10",
+    "days": 589,
+    "sum90": 0,
+    "sum365": 0
+   }
+  },
+  {
+   "name": "Rango",
+   "listedIn": [
+    {
+     "name": "Rango",
+     "category": "Bridge Aggregator",
+     "total1y": 3471638135
+    }
+   ],
+   "volumeDex": null,
+   "volumeAggregator": {
+    "slug": "rango",
+    "name": "Rango",
+    "category": "Bridge Aggregator",
+    "methodology": {},
+    "first": "2024-09-29",
+    "last": "2026-11-10",
+    "days": 773,
+    "sum90": 935203932,
+    "sum365": 3482002518
+   },
+   "fees": {
+    "slug": "rango",
+    "name": "Rango",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Platform fees, affiliate fees and destination executor fees charged by Rango on swaps and cross-chain transfers. On Solana, where there is no fee event to split, net inflows to the fee collector are attributed to affiliate fees to match the dominant fee share on EVM.",
+     "Revenue": "Platform fees collected by Rango.",
+     "ProtocolRevenue": "Platform fees collected by Rango.",
+     "SupplySideRevenue": "Affiliate fees paid to integrators that route transactions, and destination executor fees paid to executors that complete transfers on the destination chain."
+    },
+    "first": "2026-08-04",
+    "last": "2026-11-11",
+    "days": 96,
+    "sum90": 3233954,
+    "sum365": null
+   },
+   "revenue": {
+    "slug": "rango",
+    "name": "Rango",
+    "category": "Bridge Aggregator",
+    "methodology": {
+     "Fees": "Platform fees, affiliate fees and destination executor fees charged by Rango on swaps and cross-chain transfers. On Solana, where there is no fee event to split, net inflows to the fee collector are attributed to affiliate fees to match the dominant fee share on EVM.",
+     "Revenue": "Platform fees collected by Rango.",
+     "ProtocolRevenue": "Platform fees collected by Rango.",
+     "SupplySideRevenue": "Affiliate fees paid to integrators that route transactions, and destination executor fees paid to executors that complete transfers on the destination chain."
+    },
+    "first": "2026-08-04",
+    "last": "2026-11-11",
+    "days": 96,
+    "sum90": 55327.51,
+    "sum365": null
+   },
+   "holdersRevenue": null
+  },
+  {
+   "name": "Garden",
+   "listedIn": [
+    {
+     "name": "Garden",
+     "category": "Cross Chain Bridge",
+     "total1y": 299564.81999999995
+    }
+   ],
+   "volumeDex": {
+    "slug": "garden",
+    "name": "Garden",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Swap fees paid by users",
+     "UserFees": "Swap fees paid by users",
+     "Revenue": "77% of swap fees go to the protocol treasury",
+     "ProtocolRevenue": "77% of swap fees go to the protocol treasury",
+     "SupplySideRevenue": "23% of swap fees go to solvers"
+    },
+    "first": "2023-08-24",
+    "last": "2026-11-11",
+    "days": 1055,
+    "sum90": 0,
+    "sum365": 299564.81999999995
+   },
+   "volumeAggregator": null,
+   "fees": {
+    "slug": "garden",
+    "name": "Garden",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Swap fees paid by users",
+     "UserFees": "Swap fees paid by users",
+     "Revenue": "77% of swap fees go to the protocol treasury",
+     "ProtocolRevenue": "77% of swap fees go to the protocol treasury",
+     "SupplySideRevenue": "23% of swap fees go to solvers"
+    },
+    "first": "2023-09-13",
+    "last": "2026-11-11",
+    "days": 1152,
+    "sum90": 2183.93,
+    "sum365": 433312.9300000002
+   },
+   "revenue": {
+    "slug": "garden",
+    "name": "Garden",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Swap fees paid by users",
+     "UserFees": "Swap fees paid by users",
+     "Revenue": "77% of swap fees go to the protocol treasury",
+     "ProtocolRevenue": "77% of swap fees go to the protocol treasury",
+     "SupplySideRevenue": "23% of swap fees go to solvers"
+    },
+    "first": "2023-09-13",
+    "last": "2026-11-11",
+    "days": 1152,
+    "sum90": 1677.52,
+    "sum365": 335664.51999999996
+   },
+   "holdersRevenue": {
+    "slug": "garden",
+    "name": "Garden",
+    "category": "Cross Chain Bridge",
+    "methodology": {
+     "Fees": "Swap fees paid by users",
+     "UserFees": "Swap fees paid by users",
+     "Revenue": "77% of swap fees go to the protocol treasury",
+     "ProtocolRevenue": "77% of swap fees go to the protocol treasury",
+     "SupplySideRevenue": "23% of swap fees go to solvers"
+    },
+    "first": "2025-08-08",
+    "last": "2026-11-11",
+    "days": 457,
+    "sum90": 0,
+    "sum365": 0
+   }
+  }
+ ],
+ "signing": [
+  {
+   "name": "LayerZero",
+   "fees": {
+    "slug": "layerzero-v2",
+    "name": "LayerZero V2",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Native token fees paid by users for cross-chain messaging, summed from ExecutorFeePaid and DVNFeePaid events on SendUln302 (V2 default) and SendUln301 (V1-compat through V2 endpoints) across supported chains.",
+     "Revenue": "ZRO buybacks funded by Stargate ecosystem allocation routed to LayerZero Foundation. LayerZero takes a 0% protocol take rate on messaging fees.",
+     "ProtocolRevenue": "LayerZero takes a 0% protocol take rate on messaging fees.",
+     "HoldersRevenue": "ZRO buybacks distributed to ZRO holders.",
+     "SupplySideRevenue": "Approximately 100% of messaging fees flow to DVNs and Executors that secure and deliver cross-chain messages."
+    },
+    "first": "2024-02-01",
+    "last": "2026-11-11",
+    "days": 991,
+    "sum90": 888400,
+    "sum365": 2016477.78
+   },
+   "revenue": {
+    "slug": "layerzero-v2",
+    "name": "LayerZero V2",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Native token fees paid by users for cross-chain messaging, summed from ExecutorFeePaid and DVNFeePaid events on SendUln302 (V2 default) and SendUln301 (V1-compat through V2 endpoints) across supported chains.",
+     "Revenue": "ZRO buybacks funded by Stargate ecosystem allocation routed to LayerZero Foundation. LayerZero takes a 0% protocol take rate on messaging fees.",
+     "ProtocolRevenue": "LayerZero takes a 0% protocol take rate on messaging fees.",
+     "HoldersRevenue": "ZRO buybacks distributed to ZRO holders.",
+     "SupplySideRevenue": "Approximately 100% of messaging fees flow to DVNs and Executors that secure and deliver cross-chain messages."
+    },
+    "first": "2024-02-01",
+    "last": "2026-11-11",
+    "days": 991,
+    "sum90": 191090,
+    "sum365": 3391192
+   }
+  },
+  {
+   "name": "Wormhole",
+   "fees": {
+    "slug": "wormhole",
+    "name": "Portal",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users or Protocols for using Wormhole Relayers, Executions, CCTP and Cross chain message fees.",
+     "Revenue": "Wormhole makes no revenue.",
+     "SupplySideRevenue": "All execution fees are collected by Relayers."
+    },
+    "first": "2025-05-05",
+    "last": "2026-11-10",
+    "days": 555,
+    "sum90": 49650,
+    "sum365": 327257
+   },
+   "revenue": {
+    "slug": "wormhole",
+    "name": "Portal",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total fees paid by users or Protocols for using Wormhole Relayers, Executions, CCTP and Cross chain message fees.",
+     "Revenue": "Wormhole makes no revenue.",
+     "SupplySideRevenue": "All execution fees are collected by Relayers."
+    },
+    "first": "2025-05-05",
+    "last": "2026-11-10",
+    "days": 555,
+    "sum90": 0,
+    "sum365": 0
+   }
+  },
+  {
+   "name": "Axelar",
+   "fees": {
+    "slug": "axelar",
+    "name": "Axelar",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total gas fees paid by users (excluding gas refunds)",
+     "Revenue": "Axelar doesn't collect any fee"
+    },
+    "first": "2024-12-26",
+    "last": "2026-11-11",
+    "days": 686,
+    "sum90": 13446.950000000004,
+    "sum365": 54708.12000000001
+   },
+   "revenue": {
+    "slug": "axelar",
+    "name": "Axelar",
+    "category": "Bridge",
+    "methodology": {
+     "Fees": "Total gas fees paid by users (excluding gas refunds)",
+     "Revenue": "Axelar doesn't collect any fee"
+    },
+    "first": "2024-12-26",
+    "last": "2026-11-11",
+    "days": 686,
+    "sum90": 0,
+    "sum365": 0
+   }
+  },
+  {
+   "name": "Lit Protocol",
+   "fees": null,
+   "revenue": null
+  },
+  {
+   "name": "Particle Network",
+   "fees": null,
+   "revenue": null
+  },
+  {
+   "name": "Squid",
+   "fees": null,
+   "revenue": null
+  }
+ ],
+ "ai": [
+  {
+   "name": "Bittensor",
+   "marketCap": 2519726864,
+   "fees": null,
+   "revenue": null,
+   "volume": null
+  },
+  {
+   "name": "Virtuals Protocol",
+   "marketCap": 344585144,
+   "fees": {
+    "slug": "virtuals-protocol",
+    "name": "Virtuals Protocol",
+    "category": "AI Agents",
+    "methodology": {
+     "Fees": "Fees paid to Virtuals Protocol: the 1% trading tax on agent tokens, plus the bonding-curve tax and agent launch fees of the original launch model. The agent-token tax is measured where it is paid out (Base and Robinhood tax managers, the Solana distributor) or where it accrues before being split (Arc tax vault, Ethereum tax wallet).",
+     "Revenue": "The part kept by the Virtuals treasury: all bonding-curve tax and launch fees of the original launch model, and its share of the agent-token trading tax (about 20% from December 2024 to March 2025, 30% since April 2025).",
+     "ProtocolRevenue": "The part kept by the Virtuals treasury: all bonding-curve tax and launch fees of the original launch model, and its share of the agent-token trading tax (about 20% from December 2024 to March 2025, 30% since April 2025).",
+     "SupplySideRevenue": "The part of the agent-token trading tax paid to agents: to each agent's creator (70% since April 2025), and from December 2024 to March 2025 mostly to the agent's own treasury."
+    },
+    "first": "2024-10-16",
+    "last": "2026-11-11",
+    "days": 757,
+    "sum90": 1322958,
+    "sum365": 10068751
+   },
+   "revenue": {
+    "slug": "virtuals-protocol",
+    "name": "Virtuals Protocol",
+    "category": "AI Agents",
+    "methodology": {
+     "Fees": "Fees paid to Virtuals Protocol: the 1% trading tax on agent tokens, plus the bonding-curve tax and agent launch fees of the original launch model. The agent-token tax is measured where it is paid out (Base and Robinhood tax managers, the Solana distributor) or where it accrues before being split (Arc tax vault, Ethereum tax wallet).",
+     "Revenue": "The part kept by the Virtuals treasury: all bonding-curve tax and launch fees of the original launch model, and its share of the agent-token trading tax (about 20% from December 2024 to March 2025, 30% since April 2025).",
+     "ProtocolRevenue": "The part kept by the Virtuals treasury: all bonding-curve tax and launch fees of the original launch model, and its share of the agent-token trading tax (about 20% from December 2024 to March 2025, 30% since April 2025).",
+     "SupplySideRevenue": "The part of the agent-token trading tax paid to agents: to each agent's creator (70% since April 2025), and from December 2024 to March 2025 mostly to the agent's own treasury."
+    },
+    "first": "2024-10-16",
+    "last": "2026-11-11",
+    "days": 757,
+    "sum90": 400658,
+    "sum365": 3134005
+   },
+   "volume": {
+    "slug": "virtuals-protocol",
+    "name": "Virtuals Protocol",
+    "category": "AI Agents",
+    "methodology": {
+     "Volume": "Bonding-curve trading volume on Virtual Protocol's own venue: the VIRTUAL leg of each trade, priced to USD. Post-graduation trades are excluded as they occur on third-party DEXs already counted elsewhere. On Base, Robinhood and Arc the bonding pairs come from the Virtual Protocol factory and bonding contracts' pair-creation events (VIRTUAL-quoted pairs only on Arc), and volume is read from each pair's Swap events. On Solana both bonding venues are counted: Virtual Protocol's own program from 2025-02, whose pools are found from the tax paid in each swap because that program is not decoded, and its Meteora Dynamic Bonding Curve from 2026-08-21, whose pools come from the VIRTUAL-quoted DBC configs, net of the launch fee."
+    },
+    "first": "2026-07-15",
+    "last": "2026-11-10",
+    "days": 119,
+    "sum90": 9286249,
+    "sum365": null
+   }
+  },
+  {
+   "name": "Olas",
+   "marketCap": 13526485,
+   "fees": null,
+   "revenue": null,
+   "volume": null
+  },
+  {
+   "name": "Fetch.ai / ASI",
+   "marketCap": 341513669,
+   "fees": null,
+   "revenue": null,
+   "volume": null
+  },
+  {
+   "name": "ElizaOS (ai16z)",
+   "marketCap": 306679,
+   "fees": null,
+   "revenue": null,
+   "volume": null
+  },
+  {
+   "name": "x402",
+   "marketCap": null,
+   "fees": null,
+   "revenue": null,
+   "volume": {
+    "slug": "x402",
+    "name": "x402",
+    "category": "Payments",
+    "methodology": {},
+    "first": "2025-05-16",
+    "last": "2026-11-10",
+    "days": 544,
+    "sum90": 17624508,
+    "sum365": 43584007
+   }
+  }
+ ],
+ "listings": {
+  "dexOverviewCategories": {
+   "Dexs": {
+    "protocols": 1094,
+    "total1y": 2898844241796.4917
+   },
+   "Payments": {
+    "protocols": 12,
+    "total1y": 6361722873.420001
+   },
+   "Yield": {
+    "protocols": 15,
+    "total1y": 10051958035.4
+   },
+   "NFT Marketplace": {
+    "protocols": 13,
+    "total1y": 66673746.95999999
+   },
+   "Farm": {
+    "protocols": 1,
+    "total1y": 10736826
+   },
+   "Algo-Stables": {
+    "protocols": 2,
+    "total1y": 15800654925.600002
+   },
+   "Options": {
+    "protocols": 1,
+    "total1y": 139253.73999999996
+   },
+   "Prediction Market": {
+    "protocols": 55,
+    "total1y": 175299168426.68997
+   },
+   "Bridge": {
+    "protocols": 6,
+    "total1y": 40965133299.75
+   },
+   "Synthetics": {
+    "protocols": 1,
+    "total1y": 0
+   },
+   "DEX Aggregator": {
+    "protocols": 8,
+    "total1y": 6666264021.46
+   },
+   "Derivatives": {
+    "protocols": 31,
+    "total1y": 2508050854.68
+   },
+   "Services": {
+    "protocols": 2,
+    "total1y": 3150181.48
+   },
+   "RWA": {
+    "protocols": 5,
+    "total1y": 9383483105
+   },
+   "Telegram Bot": {
+    "protocols": 15,
+    "total1y": 2723586754.7
+   },
+   "SoFi": {
+    "protocols": 6,
+    "total1y": 1871823.37
+   },
+   "Cross Chain Bridge": {
+    "protocols": 4,
+    "total1y": 1319236964.75
+   },
+   "Lending": {
+    "protocols": 5,
+    "total1y": 150956426.61999997
+   },
+   "Launchpad": {
+    "protocols": 115,
+    "total1y": 46061165533.59002
+   },
+   "OTC Marketplace": {
+    "protocols": 4,
+    "total1y": 3512781495
+   },
+   "Trading App": {
+    "protocols": 13,
+    "total1y": 45255739121.5
+   },
+   "NFT Launchpad": {
+    "protocols": 1,
+    "total1y": 219549
+   },
+   "NftFi": {
+    "protocols": 2,
+    "total1y": 11489146
+   },
+   "CDP": {
+    "protocols": 1,
+    "total1y": 0
+   },
+   "AI Agents": {
+    "protocols": 3,
+    "total1y": 80237489.55
+   },
+   "Gaming": {
+    "protocols": 4,
+    "total1y": 112640854.99
+   },
+   "Luck Games": {
+    "protocols": 14,
+    "total1y": 107106352.72
+   },
+   "Physical TCG": {
+    "protocols": 20,
+    "total1y": 1996408832.25
+   },
+   "Basis Trading": {
+    "protocols": 1,
+    "total1y": 38325978
+   },
+   "Crypto Card Issuer": {
+    "protocols": 20,
+    "total1y": 6993534980.35
+   },
+   "Leveraged Farming": {
+    "protocols": 1,
+    "total1y": 681137745
+   },
+   "Interface": {
+    "protocols": 141,
+    "total1y": 7164957533.31
+   },
+   "Yield Lottery": {
+    "protocols": 1,
+    "total1y": 214.92
+   },
+   "Yield Aggregator": {
+    "protocols": 1,
+    "total1y": 309580304
+   },
+   "Gamified Mining": {
+    "protocols": 4,
+    "total1y": 57296230.7
+   },
+   "Portfolio Tracker": {
+    "protocols": 1,
+    "total1y": 92626.73
+   },
+   "Liquidity Automation": {
+    "protocols": 2,
+    "total1y": 818272746.88
+   },
+   "NFT Lending": {
+    "protocols": 1,
+    "total1y": 31
+   }
+  },
+  "bridgeAggregators": [
+   {
+    "name": "Jumper Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 8983775829,
+    "total30d": 662094845
+   },
+   {
+    "name": "LI.FI Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 7220416171,
+    "total30d": 1537031189
+   },
+   {
+    "name": "Silentswap",
+    "category": "Bridge Aggregators",
+    "total1y": 5983245499,
+    "total30d": 695526657
+   },
+   {
+    "name": "SOCKET Protocol",
+    "category": "Bridge Aggregator",
+    "total1y": 5172437559,
+    "total30d": 861553811
+   },
+   {
+    "name": "Bitget Wallet X",
+    "category": "DEX Aggregator",
+    "total1y": 4054226972,
+    "total30d": 538652885
+   },
+   {
+    "name": "Rango",
+    "category": "Bridge Aggregator",
+    "total1y": 3471638135,
+    "total30d": 126265918
+   },
+   {
+    "name": "OpenSea Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 3335420880,
+    "total30d": 42183284
+   },
+   {
+    "name": "0x Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 2857998123,
+    "total30d": 1380684698
+   },
+   {
+    "name": "Bungee Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 2373229048,
+    "total30d": 22782113
+   },
+   {
+    "name": "Rubic",
+    "category": "DEX Aggregator",
+    "total1y": 351940683,
+    "total30d": 32516200
+   },
+   {
+    "name": "Stableflow",
+    "category": "Bridge Aggregator",
+    "total1y": 147959800,
+    "total30d": 20798064
+   },
+   {
+    "name": "Orbiter Finance",
+    "category": "Bridge",
+    "total1y": 142470464,
+    "total30d": 0
+   },
+   {
+    "name": "Bridged Finance",
+    "category": "Bridge Aggregator",
+    "total1y": 76779828,
+    "total30d": 10188908
+   },
+   {
+    "name": "DZap",
+    "category": "DEX Aggregator",
+    "total1y": 43196479,
+    "total30d": 1856794
+   },
+   {
+    "name": "Gas.zip",
+    "category": "Bridge Aggregators",
+    "total1y": 30076998.839999992,
+    "total30d": 337893.9799999999
+   },
+   {
+    "name": "Squid",
+    "category": "Bridge Aggregator",
+    "total1y": 27290371,
+    "total30d": 5659675
+   },
+   {
+    "name": "Allbridge Next",
+    "category": "Bridge Aggregator",
+    "total1y": 16192373.52,
+    "total30d": 1416213.08
+   },
+   {
+    "name": "BIM Aggregator",
+    "category": "DEX Aggregator",
+    "total1y": 6604829.65,
+    "total30d": 373948
+   },
+   {
+    "name": "Brotocol",
+    "category": "Bridge Aggregator",
+    "total1y": 5041748.61,
+    "total30d": 4.99
+   },
+   {
+    "name": "Gate Swap Bridge Aggregator",
+    "category": "Bridge Aggregators",
+    "total1y": 4051390.02,
+    "total30d": 345532
+   },
+   {
+    "name": "Novaswap Crosschain",
+    "category": "Bridge Aggregators",
+    "total1y": 2180772,
+    "total30d": null
+   },
+   {
+    "name": "THORSwap",
+    "category": "DEX Aggregator",
+    "total1y": 1764747,
+    "total30d": 1764747
+   },
+   {
+    "name": "LilSwap Bridge Aggregator",
+    "category": "DEX Aggregator",
+    "total1y": 953393.9299999999,
+    "total30d": 725867
+   },
+   {
+    "name": "WheelX.fi Bridge Aggregator",
+    "category": "Bridge Aggregators",
+    "total1y": 802737.89,
+    "total30d": 15418.47
+   },
+   {
+    "name": "Pheasant Network",
+    "category": "Cross Chain Bridge",
+    "total1y": 429594,
+    "total30d": 352453
+   },
+   {
+    "name": "HyperDex Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 322942.41000000003,
+    "total30d": 172006
+   },
+   {
+    "name": "SuperSwap Ink Bridge Aggregator",
+    "category": "Bridge Aggregators",
+    "total1y": 248480.12,
+    "total30d": 6980.389999999999
+   },
+   {
+    "name": "Lunar Finance Bridge Aggregator",
+    "category": "Bridge Aggregators",
+    "total1y": 145329.21,
+    "total30d": 2378.1000000000004
+   },
+   {
+    "name": "LCX Liberty DEX Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 102203.93000000001,
+    "total30d": 91669.44
+   },
+   {
+    "name": "Scrooge Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 44501,
+    "total30d": 43693
+   },
+   {
+    "name": "Swing",
+    "category": "DEX Aggregator",
+    "total1y": 38221,
+    "total30d": null
+   },
+   {
+    "name": "BabyDoge Bridge",
+    "category": "Bridge",
+    "total1y": 25496.91,
+    "total30d": 0
+   },
+   {
+    "name": "Blazpay Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 19253.520000000008,
+    "total30d": 3699.8399999999997
+   },
+   {
+    "name": "Soheil.fi Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 7676.329999999999,
+    "total30d": 6252.089999999999
+   },
+   {
+    "name": "Cherum Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 1463.1600000000003,
+    "total30d": 349.76
+   },
+   {
+    "name": "Gensuki Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 490.52,
+    "total30d": 364.46
+   },
+   {
+    "name": "AssetClaw",
+    "category": "Bridge Aggregator",
+    "total1y": 152.98,
+    "total30d": 152.98
+   },
+   {
+    "name": "Confluence",
+    "category": "Bridge Aggregator",
+    "total1y": 51.83,
+    "total30d": 1.6
+   },
+   {
+    "name": "Ditto Bridge",
+    "category": "Bridge Aggregator",
+    "total1y": 39.62,
+    "total30d": 0
+   },
+   {
+    "name": "XY Finance",
+    "category": "Cross Chain Bridge",
+    "total1y": 0,
+    "total30d": 0
+   },
+   {
+    "name": "TeleSwap TON",
+    "category": "Bridge Aggregator",
+    "total1y": null,
+    "total30d": null
+   },
+   {
+    "name": "Byzanlink Bridge Aggregator",
+    "category": "Bridge Aggregator",
+    "total1y": 0,
+    "total30d": 0
+   }
+  ],
+  "feesOverviewCount": 3198
+ },
+ "attempts": [
+  {
+   "url": "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+   "note": "DEX overview listing",
+   "status": 200,
+   "ok": true,
+   "ms": 261,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/overview/bridge-aggregators?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+   "note": "bridge-aggregator overview listing",
+   "status": 200,
+   "ok": true,
+   "ms": 74,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/overview/fees?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+   "note": "fees overview listing",
+   "status": 200,
+   "ok": true,
+   "ms": 218,
+   "error": null
+  },
+  {
+   "url": "https://bridges.llama.fi/bridges?includeChains=false",
+   "note": "DefiLlama bridges API (bridge volume by protocol)",
+   "status": 402,
+   "ok": false,
+   "ms": 75,
+   "error": "Upgrade to the paid API plan at https://defillama.com/subscription"
+  },
+  {
+   "url": "https://api.llama.fi/v2/chains",
+   "note": "chain TVL listing",
+   "status": 200,
+   "ok": true,
+   "ms": 39,
+   "error": null
+  },
+  {
+   "url": "https://stablecoins.llama.fi/stablecoinchains",
+   "note": "stablecoins by chain",
+   "status": 200,
+   "ok": true,
+   "ms": 142,
+   "error": null
+  },
+  {
+   "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,sui,avalanche-2,the-open-network,aptos,hyperliquid,near,tron,binancecoin,bittensor,virtual-protocol,autonolas,fetch-ai,ai16z",
+   "note": "CoinGecko markets for the universe",
+   "status": 200,
+   "ok": true,
+   "ms": 398,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bitcoin?dataType=dailyFees",
+   "note": "fees bitcoin dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 65,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bitcoin?dataType=dailyRevenue",
+   "note": "fees bitcoin dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 52,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bitcoin?dataType=dailyHoldersRevenue",
+   "note": "fees bitcoin dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 814,
+   "error": "Fees for bitcoin not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/bitcoin",
+   "note": "dexs bitcoin",
+   "status": 400,
+   "ok": false,
+   "ms": 849,
+   "error": "Dexs for bitcoin not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyFees",
+   "note": "fees ethereum dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 53,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyRevenue",
+   "note": "fees ethereum dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 41,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ethereum?dataType=dailyHoldersRevenue",
+   "note": "fees ethereum dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 48,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/ethereum",
+   "note": "dexs ethereum",
+   "status": 400,
+   "ok": false,
+   "ms": 263,
+   "error": "Dexs for ethereum not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyFees",
+   "note": "fees solana dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 41,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyRevenue",
+   "note": "fees solana dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 44,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/solana?dataType=dailyHoldersRevenue",
+   "note": "fees solana dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 77,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/solana",
+   "note": "dexs solana",
+   "status": 400,
+   "ok": false,
+   "ms": 247,
+   "error": "Dexs for solana not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyFees",
+   "note": "fees sui dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 44,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyRevenue",
+   "note": "fees sui dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 429,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/sui?dataType=dailyHoldersRevenue",
+   "note": "fees sui dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 445,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/sui",
+   "note": "dexs sui",
+   "status": 400,
+   "ok": false,
+   "ms": 853,
+   "error": "Dexs for sui not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyFees",
+   "note": "fees avalanche dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 46,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyRevenue",
+   "note": "fees avalanche dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 47,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/avalanche?dataType=dailyHoldersRevenue",
+   "note": "fees avalanche dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1043,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/avalanche",
+   "note": "dexs avalanche",
+   "status": 400,
+   "ok": false,
+   "ms": 263,
+   "error": "Dexs for avalanche not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ton?dataType=dailyFees",
+   "note": "fees ton dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 49,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ton?dataType=dailyRevenue",
+   "note": "fees ton dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 59,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ton?dataType=dailyHoldersRevenue",
+   "note": "fees ton dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 242,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/ton",
+   "note": "dexs ton",
+   "status": 400,
+   "ok": false,
+   "ms": 838,
+   "error": "Dexs for ton not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyFees",
+   "note": "fees aptos dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 44,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyRevenue",
+   "note": "fees aptos dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 41,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/aptos?dataType=dailyHoldersRevenue",
+   "note": "fees aptos dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 267,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/aptos",
+   "note": "dexs aptos",
+   "status": 400,
+   "ok": false,
+   "ms": 238,
+   "error": "Dexs for aptos not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyFees",
+   "note": "fees hyperliquid dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 48,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyRevenue",
+   "note": "fees hyperliquid dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 51,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/hyperliquid?dataType=dailyHoldersRevenue",
+   "note": "fees hyperliquid dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 40,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/hyperliquid",
+   "note": "dexs hyperliquid",
+   "status": 200,
+   "ok": true,
+   "ms": 40,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyFees",
+   "note": "fees near dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 53,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue",
+   "note": "fees near dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 49,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near?dataType=dailyHoldersRevenue",
+   "note": "fees near dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 46,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/near",
+   "note": "dexs near",
+   "status": 400,
+   "ok": false,
+   "ms": 247,
+   "error": "Dexs for near not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/tron?dataType=dailyFees",
+   "note": "fees tron dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 59,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/tron?dataType=dailyRevenue",
+   "note": "fees tron dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 63,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/tron?dataType=dailyHoldersRevenue",
+   "note": "fees tron dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 48,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/tron",
+   "note": "dexs tron",
+   "status": 400,
+   "ok": false,
+   "ms": 820,
+   "error": "Dexs for tron not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyFees",
+   "note": "fees bsc dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 58,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyRevenue",
+   "note": "fees bsc dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 52,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bsc?dataType=dailyHoldersRevenue",
+   "note": "fees bsc dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 49,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/bsc",
+   "note": "dexs bsc",
+   "status": 400,
+   "ok": false,
+   "ms": 239,
+   "error": "Dexs for bsc not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/base?dataType=dailyFees",
+   "note": "fees base dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 42,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/base",
+   "note": "dexs base",
+   "status": 400,
+   "ok": false,
+   "ms": 251,
+   "error": "Dexs for base not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/arbitrum?dataType=dailyFees",
+   "note": "fees arbitrum dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 51,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/arbitrum",
+   "note": "dexs arbitrum",
+   "status": 400,
+   "ok": false,
+   "ms": 242,
+   "error": "Dexs for arbitrum not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/near-intents",
+   "note": "dexs near-intents",
+   "status": 200,
+   "ok": true,
+   "ms": 38,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/near-intents",
+   "note": "bridge-aggregators near-intents",
+   "status": 400,
+   "ok": false,
+   "ms": 822,
+   "error": "Bridge-aggregators for near-intents not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees",
+   "note": "fees near-intents dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 41,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
+   "note": "fees near-intents dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 50,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
+   "note": "fees near-intents dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 252,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/thorchain-dex",
+   "note": "dexs thorchain-dex",
+   "status": 200,
+   "ok": true,
+   "ms": 559,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/thorchain-dex",
+   "note": "bridge-aggregators thorchain-dex",
+   "status": 400,
+   "ok": false,
+   "ms": 225,
+   "error": "Bridge-aggregators for thorchain-dex not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/thorchain",
+   "note": "bridge-aggregators thorchain",
+   "status": 400,
+   "ok": false,
+   "ms": 239,
+   "error": "Bridge-aggregators for thorchain not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyFees",
+   "note": "fees thorchain-dex dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 54,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyRevenue",
+   "note": "fees thorchain-dex dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 50,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyHoldersRevenue",
+   "note": "fees thorchain-dex dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 636,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/chainflip-amm",
+   "note": "dexs chainflip-amm",
+   "status": 200,
+   "ok": true,
+   "ms": 1015,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/chainflip-amm",
+   "note": "bridge-aggregators chainflip-amm",
+   "status": 400,
+   "ok": false,
+   "ms": 823,
+   "error": "Bridge-aggregators for chainflip-amm not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/chainflip",
+   "note": "bridge-aggregators chainflip",
+   "status": 400,
+   "ok": false,
+   "ms": 805,
+   "error": "Bridge-aggregators for chainflip not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyFees",
+   "note": "fees chainflip-amm dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 1004,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyRevenue",
+   "note": "fees chainflip-amm dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 428,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyHoldersRevenue",
+   "note": "fees chainflip-amm dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1003,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/maya-protocol",
+   "note": "dexs maya-protocol",
+   "status": 200,
+   "ok": true,
+   "ms": 241,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/maya-protocol",
+   "note": "bridge-aggregators maya-protocol",
+   "status": 400,
+   "ok": false,
+   "ms": 832,
+   "error": "Bridge-aggregators for maya-protocol not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyFees",
+   "note": "fees maya-protocol dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 246,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyRevenue",
+   "note": "fees maya-protocol dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 863,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyHoldersRevenue",
+   "note": "fees maya-protocol dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 239,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/debridge",
+   "note": "dexs debridge",
+   "status": 400,
+   "ok": false,
+   "ms": 236,
+   "error": "Dexs for debridge not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/dln",
+   "note": "dexs dln",
+   "status": 400,
+   "ok": false,
+   "ms": 241,
+   "error": "Dexs for dln not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/debridge",
+   "note": "bridge-aggregators debridge",
+   "status": 400,
+   "ok": false,
+   "ms": 871,
+   "error": "Bridge-aggregators for debridge not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/dln",
+   "note": "bridge-aggregators dln",
+   "status": 400,
+   "ok": false,
+   "ms": 289,
+   "error": "Bridge-aggregators for dln not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyFees",
+   "note": "fees debridge dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 651,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyRevenue",
+   "note": "fees debridge dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 2395,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/debridge?dataType=dailyHoldersRevenue",
+   "note": "fees debridge dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1026,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/relay",
+   "note": "dexs relay",
+   "status": 400,
+   "ok": false,
+   "ms": 891,
+   "error": "Dexs for relay not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/relay-protocol",
+   "note": "dexs relay-protocol",
+   "status": 400,
+   "ok": false,
+   "ms": 465,
+   "error": "Dexs for relay-protocol not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/relay-bridge",
+   "note": "dexs relay-bridge",
+   "status": 400,
+   "ok": false,
+   "ms": 816,
+   "error": "Dexs for relay-bridge not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/relay",
+   "note": "bridge-aggregators relay",
+   "status": 400,
+   "ok": false,
+   "ms": 802,
+   "error": "Bridge-aggregators for relay not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/relay-protocol",
+   "note": "bridge-aggregators relay-protocol",
+   "status": 400,
+   "ok": false,
+   "ms": 243,
+   "error": "Bridge-aggregators for relay-protocol not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/relay-bridge",
+   "note": "bridge-aggregators relay-bridge",
+   "status": 400,
+   "ok": false,
+   "ms": 255,
+   "error": "Bridge-aggregators for relay-bridge not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/relay?dataType=dailyFees",
+   "note": "fees relay dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 641,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/relay?dataType=dailyRevenue",
+   "note": "fees relay dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1421,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/relay?dataType=dailyHoldersRevenue",
+   "note": "fees relay dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 824,
+   "error": "Fees for relay not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/relay-protocol?dataType=dailyHoldersRevenue",
+   "note": "fees relay-protocol dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 232,
+   "error": "Fees for relay-protocol not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/relay-bridge?dataType=dailyHoldersRevenue",
+   "note": "fees relay-bridge dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 822,
+   "error": "Fees for relay-bridge not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/across",
+   "note": "dexs across",
+   "status": 400,
+   "ok": false,
+   "ms": 242,
+   "error": "Dexs for across not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/across",
+   "note": "bridge-aggregators across",
+   "status": 400,
+   "ok": false,
+   "ms": 254,
+   "error": "Bridge-aggregators for across not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/across?dataType=dailyFees",
+   "note": "fees across dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 73,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/across?dataType=dailyRevenue",
+   "note": "fees across dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 53,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/across?dataType=dailyHoldersRevenue",
+   "note": "fees across dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 425,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/li.fi-bridge-aggregator",
+   "note": "dexs li.fi-bridge-aggregator",
+   "status": 400,
+   "ok": false,
+   "ms": 863,
+   "error": "Dexs for li.fi-bridge-aggregator not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/lifi",
+   "note": "dexs lifi",
+   "status": 400,
+   "ok": false,
+   "ms": 1493,
+   "error": "Dexs for lifi not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/li.fi",
+   "note": "dexs li.fi",
+   "status": 400,
+   "ok": false,
+   "ms": 817,
+   "error": "Dexs for li.fi not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/li.fi-bridge-aggregator",
+   "note": "bridge-aggregators li.fi-bridge-aggregator",
+   "status": 200,
+   "ok": true,
+   "ms": 1057,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/li.fi-bridge-aggregator?dataType=dailyFees",
+   "note": "fees li.fi-bridge-aggregator dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 851,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/li.fi-bridge-aggregator?dataType=dailyRevenue",
+   "note": "fees li.fi-bridge-aggregator dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1422,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/li.fi-bridge-aggregator?dataType=dailyHoldersRevenue",
+   "note": "fees li.fi-bridge-aggregator dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 848,
+   "error": "Fees for li.fi-bridge-aggregator not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/lifi?dataType=dailyHoldersRevenue",
+   "note": "fees lifi dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 809,
+   "error": "Fees for lifi not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/li.fi?dataType=dailyHoldersRevenue",
+   "note": "fees li.fi dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 232,
+   "error": "Fees for li.fi not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/jumper-bridge-aggregator",
+   "note": "dexs jumper-bridge-aggregator",
+   "status": 400,
+   "ok": false,
+   "ms": 231,
+   "error": "Dexs for jumper-bridge-aggregator not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/jumper-bridge-aggregator",
+   "note": "bridge-aggregators jumper-bridge-aggregator",
+   "status": 200,
+   "ok": true,
+   "ms": 1968,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/jumper-bridge-aggregator?dataType=dailyFees",
+   "note": "fees jumper-bridge-aggregator dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 788,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/jumper-bridge-aggregator?dataType=dailyRevenue",
+   "note": "fees jumper-bridge-aggregator dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 492,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/jumper-bridge-aggregator?dataType=dailyHoldersRevenue",
+   "note": "fees jumper-bridge-aggregator dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 224,
+   "error": "Fees for jumper-bridge-aggregator not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/mayan-bridge",
+   "note": "dexs mayan-bridge",
+   "status": 400,
+   "ok": false,
+   "ms": 245,
+   "error": "Dexs for mayan-bridge not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/mayan-dex-aggregator",
+   "note": "dexs mayan-dex-aggregator",
+   "status": 400,
+   "ok": false,
+   "ms": 233,
+   "error": "Dexs for mayan-dex-aggregator not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/mayan",
+   "note": "dexs mayan",
+   "status": 400,
+   "ok": false,
+   "ms": 876,
+   "error": "Dexs for mayan not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/mayan-bridge",
+   "note": "bridge-aggregators mayan-bridge",
+   "status": 400,
+   "ok": false,
+   "ms": 233,
+   "error": "Bridge-aggregators for mayan-bridge not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/mayan-dex-aggregator",
+   "note": "bridge-aggregators mayan-dex-aggregator",
+   "status": 400,
+   "ok": false,
+   "ms": 823,
+   "error": "Bridge-aggregators for mayan-dex-aggregator not found, please visit /overview/bridge-aggregators to see available protoc"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/mayan",
+   "note": "bridge-aggregators mayan",
+   "status": 400,
+   "ok": false,
+   "ms": 246,
+   "error": "Bridge-aggregators for mayan not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-bridge?dataType=dailyFees",
+   "note": "fees mayan-bridge dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 237,
+   "error": "Fees for mayan-bridge not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-dex-aggregator?dataType=dailyFees",
+   "note": "fees mayan-dex-aggregator dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 1057,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-bridge?dataType=dailyRevenue",
+   "note": "fees mayan-bridge dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 284,
+   "error": "Fees for mayan-bridge not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-dex-aggregator?dataType=dailyRevenue",
+   "note": "fees mayan-dex-aggregator dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1087,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-bridge?dataType=dailyHoldersRevenue",
+   "note": "fees mayan-bridge dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 832,
+   "error": "Fees for mayan-bridge not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan-dex-aggregator?dataType=dailyHoldersRevenue",
+   "note": "fees mayan-dex-aggregator dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 5817,
+   "error": "Fees for mayan-dex-aggregator not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/mayan?dataType=dailyHoldersRevenue",
+   "note": "fees mayan dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 232,
+   "error": "Fees for mayan not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/wormhole",
+   "note": "dexs wormhole",
+   "status": 400,
+   "ok": false,
+   "ms": 852,
+   "error": "Dexs for wormhole not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/portal",
+   "note": "dexs portal",
+   "status": 400,
+   "ok": false,
+   "ms": 247,
+   "error": "Dexs for portal not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/wormhole",
+   "note": "bridge-aggregators wormhole",
+   "status": 400,
+   "ok": false,
+   "ms": 279,
+   "error": "Bridge-aggregators for wormhole not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/portal",
+   "note": "bridge-aggregators portal",
+   "status": 400,
+   "ok": false,
+   "ms": 926,
+   "error": "Bridge-aggregators for portal not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyFees",
+   "note": "fees wormhole dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 1189,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyRevenue",
+   "note": "fees wormhole dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1064,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyHoldersRevenue",
+   "note": "fees wormhole dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 472,
+   "error": "Fees for wormhole not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/portal?dataType=dailyHoldersRevenue",
+   "note": "fees portal dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 235,
+   "error": "Fees for portal not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/axelar",
+   "note": "dexs axelar",
+   "status": 400,
+   "ok": false,
+   "ms": 797,
+   "error": "Dexs for axelar not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/axelar-cross-chain",
+   "note": "dexs axelar-cross-chain",
+   "status": 400,
+   "ok": false,
+   "ms": 1604,
+   "error": "Dexs for axelar-cross-chain not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/axelar",
+   "note": "bridge-aggregators axelar",
+   "status": 400,
+   "ok": false,
+   "ms": 245,
+   "error": "Bridge-aggregators for axelar not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/axelar-cross-chain",
+   "note": "bridge-aggregators axelar-cross-chain",
+   "status": 400,
+   "ok": false,
+   "ms": 889,
+   "error": "Bridge-aggregators for axelar-cross-chain not found, please visit /overview/bridge-aggregators to see available protocol"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyFees",
+   "note": "fees axelar dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 46,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyRevenue",
+   "note": "fees axelar dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 44,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyHoldersRevenue",
+   "note": "fees axelar dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 445,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/stargate-v2",
+   "note": "dexs stargate-v2",
+   "status": 400,
+   "ok": false,
+   "ms": 223,
+   "error": "Dexs for stargate-v2 not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/stargate",
+   "note": "dexs stargate",
+   "status": 400,
+   "ok": false,
+   "ms": 246,
+   "error": "Dexs for stargate not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/stargate-v2",
+   "note": "bridge-aggregators stargate-v2",
+   "status": 400,
+   "ok": false,
+   "ms": 858,
+   "error": "Bridge-aggregators for stargate-v2 not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/stargate",
+   "note": "bridge-aggregators stargate",
+   "status": 400,
+   "ok": false,
+   "ms": 309,
+   "error": "Bridge-aggregators for stargate not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/stargate-v2?dataType=dailyFees",
+   "note": "fees stargate-v2 dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 54,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/stargate-v2?dataType=dailyRevenue",
+   "note": "fees stargate-v2 dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 36,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/stargate-v2?dataType=dailyHoldersRevenue",
+   "note": "fees stargate-v2 dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 237,
+   "error": "Fees for stargate-v2 not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/stargate?dataType=dailyHoldersRevenue",
+   "note": "fees stargate dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 816,
+   "error": "Fees for stargate not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/socket-protocol",
+   "note": "dexs socket-protocol",
+   "status": 400,
+   "ok": false,
+   "ms": 239,
+   "error": "Dexs for socket-protocol not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/bungee-bridge-aggregator",
+   "note": "dexs bungee-bridge-aggregator",
+   "status": 400,
+   "ok": false,
+   "ms": 805,
+   "error": "Dexs for bungee-bridge-aggregator not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/socket-protocol",
+   "note": "bridge-aggregators socket-protocol",
+   "status": 200,
+   "ok": true,
+   "ms": 619,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/socket-protocol?dataType=dailyFees",
+   "note": "fees socket-protocol dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 1191,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/socket-protocol?dataType=dailyRevenue",
+   "note": "fees socket-protocol dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 460,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/socket-protocol?dataType=dailyHoldersRevenue",
+   "note": "fees socket-protocol dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 799,
+   "error": "Fees for socket-protocol not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bungee-bridge-aggregator?dataType=dailyHoldersRevenue",
+   "note": "fees bungee-bridge-aggregator dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 247,
+   "error": "Fees for bungee-bridge-aggregator not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/symbiosis",
+   "note": "dexs symbiosis",
+   "status": 400,
+   "ok": false,
+   "ms": 848,
+   "error": "Dexs for symbiosis not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/symbiosis",
+   "note": "bridge-aggregators symbiosis",
+   "status": 400,
+   "ok": false,
+   "ms": 862,
+   "error": "Bridge-aggregators for symbiosis not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyFees",
+   "note": "fees symbiosis dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 658,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyRevenue",
+   "note": "fees symbiosis dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 793,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/symbiosis?dataType=dailyHoldersRevenue",
+   "note": "fees symbiosis dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 638,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/unit",
+   "note": "dexs unit",
+   "status": 200,
+   "ok": true,
+   "ms": 830,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/unit",
+   "note": "bridge-aggregators unit",
+   "status": 400,
+   "ok": false,
+   "ms": 821,
+   "error": "Bridge-aggregators for unit not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyFees",
+   "note": "fees unit dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 241,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyRevenue",
+   "note": "fees unit dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 254,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/unit?dataType=dailyHoldersRevenue",
+   "note": "fees unit dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 824,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/rango",
+   "note": "dexs rango",
+   "status": 400,
+   "ok": false,
+   "ms": 813,
+   "error": "Dexs for rango not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/rango",
+   "note": "bridge-aggregators rango",
+   "status": 200,
+   "ok": true,
+   "ms": 9624,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/rango?dataType=dailyFees",
+   "note": "fees rango dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 1125,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/rango?dataType=dailyRevenue",
+   "note": "fees rango dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1033,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/rango?dataType=dailyHoldersRevenue",
+   "note": "fees rango dailyHoldersRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 828,
+   "error": "Fees for rango not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/garden",
+   "note": "dexs garden",
+   "status": 200,
+   "ok": true,
+   "ms": 467,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/bridge-aggregators/garden",
+   "note": "bridge-aggregators garden",
+   "status": 400,
+   "ok": false,
+   "ms": 938,
+   "error": "Bridge-aggregators for garden not found, please visit /overview/bridge-aggregators to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/garden?dataType=dailyFees",
+   "note": "fees garden dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 2102,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/garden?dataType=dailyRevenue",
+   "note": "fees garden dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1096,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/garden?dataType=dailyHoldersRevenue",
+   "note": "fees garden dailyHoldersRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 1836,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/layerzero-v2?dataType=dailyFees",
+   "note": "fees layerzero-v2 dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 82,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/layerzero-v2?dataType=dailyRevenue",
+   "note": "fees layerzero-v2 dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 54,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyFees",
+   "note": "fees wormhole dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 53,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/wormhole?dataType=dailyRevenue",
+   "note": "fees wormhole dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 51,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyFees",
+   "note": "fees axelar dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 42,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/axelar?dataType=dailyRevenue",
+   "note": "fees axelar dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 45,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/lit-protocol?dataType=dailyFees",
+   "note": "fees lit-protocol dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 851,
+   "error": "Fees for lit-protocol not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/lit-protocol?dataType=dailyRevenue",
+   "note": "fees lit-protocol dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 831,
+   "error": "Fees for lit-protocol not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/particle-network?dataType=dailyFees",
+   "note": "fees particle-network dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 1052,
+   "error": "Fees for particle-network not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/particle-network?dataType=dailyRevenue",
+   "note": "fees particle-network dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 879,
+   "error": "Fees for particle-network not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/squid?dataType=dailyFees",
+   "note": "fees squid dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 233,
+   "error": "Fees for squid not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/squid?dataType=dailyRevenue",
+   "note": "fees squid dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 238,
+   "error": "Fees for squid not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bittensor?dataType=dailyFees",
+   "note": "fees bittensor dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 64,
+   "error": "Fees for bittensor not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bittensor-dtao?dataType=dailyFees",
+   "note": "fees bittensor-dtao dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 835,
+   "error": "Fees for bittensor-dtao not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bittensor?dataType=dailyRevenue",
+   "note": "fees bittensor dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 29,
+   "error": "Fees for bittensor not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/bittensor-dtao?dataType=dailyRevenue",
+   "note": "fees bittensor-dtao dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 800,
+   "error": "Fees for bittensor-dtao not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/bittensor",
+   "note": "dexs bittensor",
+   "status": 400,
+   "ok": false,
+   "ms": 895,
+   "error": "Dexs for bittensor not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/bittensor-dtao",
+   "note": "dexs bittensor-dtao",
+   "status": 400,
+   "ok": false,
+   "ms": 932,
+   "error": "Dexs for bittensor-dtao not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/virtuals-protocol?dataType=dailyFees",
+   "note": "fees virtuals-protocol dailyFees",
+   "status": 200,
+   "ok": true,
+   "ms": 34,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/virtuals-protocol?dataType=dailyRevenue",
+   "note": "fees virtuals-protocol dailyRevenue",
+   "status": 200,
+   "ok": true,
+   "ms": 44,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/virtuals-protocol",
+   "note": "dexs virtuals-protocol",
+   "status": 200,
+   "ok": true,
+   "ms": 255,
+   "error": null
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/olas?dataType=dailyFees",
+   "note": "fees olas dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 470,
+   "error": "Fees for olas not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/autonolas?dataType=dailyFees",
+   "note": "fees autonolas dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 4405,
+   "error": "Fees for autonolas not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/olas?dataType=dailyRevenue",
+   "note": "fees olas dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 833,
+   "error": "Fees for olas not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/autonolas?dataType=dailyRevenue",
+   "note": "fees autonolas dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 811,
+   "error": "Fees for autonolas not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/olas",
+   "note": "dexs olas",
+   "status": 400,
+   "ok": false,
+   "ms": 821,
+   "error": "Dexs for olas not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/autonolas",
+   "note": "dexs autonolas",
+   "status": 400,
+   "ok": false,
+   "ms": 229,
+   "error": "Dexs for autonolas not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/fetch-ai?dataType=dailyFees",
+   "note": "fees fetch-ai dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 251,
+   "error": "Fees for fetch-ai not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/fetch-ai?dataType=dailyRevenue",
+   "note": "fees fetch-ai dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 240,
+   "error": "Fees for fetch-ai not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/fetch-ai",
+   "note": "dexs fetch-ai",
+   "status": 400,
+   "ok": false,
+   "ms": 226,
+   "error": "Dexs for fetch-ai not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/elizaos?dataType=dailyFees",
+   "note": "fees elizaos dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 819,
+   "error": "Fees for elizaos not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ai16z?dataType=dailyFees",
+   "note": "fees ai16z dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 855,
+   "error": "Fees for ai16z not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/elizaos?dataType=dailyRevenue",
+   "note": "fees elizaos dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 230,
+   "error": "Fees for elizaos not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/ai16z?dataType=dailyRevenue",
+   "note": "fees ai16z dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 846,
+   "error": "Fees for ai16z not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/elizaos",
+   "note": "dexs elizaos",
+   "status": 400,
+   "ok": false,
+   "ms": 233,
+   "error": "Dexs for elizaos not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/ai16z",
+   "note": "dexs ai16z",
+   "status": 400,
+   "ok": false,
+   "ms": 880,
+   "error": "Dexs for ai16z not found, please visit /overview/dexs to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/x402?dataType=dailyFees",
+   "note": "fees x402 dailyFees",
+   "status": 400,
+   "ok": false,
+   "ms": 824,
+   "error": "Fees for x402 not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/fees/x402?dataType=dailyRevenue",
+   "note": "fees x402 dailyRevenue",
+   "status": 400,
+   "ok": false,
+   "ms": 249,
+   "error": "Fees for x402 not found, please visit /overview/fees to see available protocols"
+  },
+  {
+   "url": "https://api.llama.fi/summary/dexs/x402",
+   "note": "dexs x402",
+   "status": 200,
+   "ok": true,
+   "ms": 1012,
+   "error": null
+  }
+ ]
+}
