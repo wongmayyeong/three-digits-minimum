@@ -3,7 +3,7 @@
 /*
  * Design tokens. Mint #00ec97, coral #ff7966 and warm white #f2f1e9 follow near.org's published palette; the
  * near-black surfaces, faint dot grid, grain and light display weights follow near.org's visual language
- * (inspected 2026-11-13). Independent project: no NEAR marks are used.
+ * (inspected 2026-11-13). Independent project; the only NEAR mark is the "N" on the hero orb.
  */
 @theme {
   --color-bg: #030504;
@@ -238,6 +238,29 @@
   animation-delay: var(--delay, 0s);
 }
 
+/* Hero staircase: light climbing the steps, orbit ring, satellite, rising particles. */
+@keyframes nb-climb {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.55; }
+  22% { opacity: 0; }
+}
+.nb-climb {
+  opacity: 0;
+  animation: nb-climb 3.2s ease-out infinite;
+  animation-delay: var(--delay, 0s);
+  mix-blend-mode: screen;
+}
+@keyframes nb-spin { to { transform: rotate(360deg); } }
+.nb-orbit { animation: nb-spin 22s linear infinite; }
+@keyframes nb-sat { to { offset-distance: 100%; } }
+.nb-sat { offset-distance: 0%; offset-rotate: 0deg; animation: nb-sat 7s linear infinite; }
+@keyframes nb-particle {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: var(--o, 0.6); }
+  100% { transform: translateY(-120px); opacity: 0; }
+}
+.nb-particle { animation: nb-particle var(--d, 9s) linear infinite; animation-delay: var(--delay, 0s); }
+
 /* Four-point star field: slow opacity breathing only (cheap, compositor-friendly). */
 @keyframes nb-breathe {
   0%, 100% { opacity: var(--o-lo, 0.15); transform: scale(0.9); }
@@ -269,7 +292,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nb-star, .nb-blink, .nb-live-dot, .nb-float, .nb-rise {
+  .nb-star, .nb-blink, .nb-live-dot, .nb-float, .nb-rise, .nb-climb, .nb-orbit, .nb-sat, .nb-particle {
     animation: none !important;
   }
   *, *::before, *::after {
