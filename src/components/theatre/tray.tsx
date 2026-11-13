@@ -36,7 +36,7 @@ export function EvidenceCard({ e, tone }: { e: EvidenceView; tone: 'mint' | 'cor
       )}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t hairline pt-2.5 text-xs">
         <span className="num text-faint">{e.evidenceId}</span>
-        <ExternalLink href={e.sourceUrl} className="text-xs">{e.sourceName}</ExternalLink>
+        <ExternalLink href={e.sourceUrl} className="text-xs" newTab>{e.sourceName}</ExternalLink>
       </div>
       <details className="mt-1 text-xs text-muted">
         <summary className="cursor-pointer py-1 text-fg-2">Method and provenance</summary>

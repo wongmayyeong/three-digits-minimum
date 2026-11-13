@@ -76,22 +76,24 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
     return () => { document.body.style.overflow = prev; };
   }, []);
 
-  // True full screen where the browser allows it (opened by a click). Leaving full screen (Esc, which browsers
-  // keep for themselves) closes the show; closing the show leaves full screen.
+  // True full screen where the browser allows it (opened by a click). Leaving full screen (Esc, or opening a
+  // source in a new tab) keeps the show playing as a full-page overlay; Back or Esc then closes it, and closing
+  // the show leaves full screen.
   useEffect(() => {
     const el = rootRef.current;
-    let entered = false;
-    const onChange = () => {
-      if (document.fullscreenElement === el) entered = true;
-      else if (entered) onClose();
-    };
-    document.addEventListener('fullscreenchange', onChange);
     if (el && document.fullscreenEnabled && !document.fullscreenElement) el.requestFullscreen({ navigationUI: 'hide' }).catch(() => { /* overlay only */ });
     return () => {
-      document.removeEventListener('fullscreenchange', onChange);
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     };
-  }, [onClose]);
+  }, []);
+
+  // Every link inside the show opens in a new tab, so following a source never ends the debate.
+  const onLinkClick = (e: React.MouseEvent) => {
+    const a = (e.target as HTMLElement).closest('a');
+    if (!a || !a.href || a.target === '_blank') return;
+    e.preventDefault();
+    window.open(a.href, '_blank', 'noopener,noreferrer');
+  };
 
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === ' ' || e.key === 'k') { e.preventDefault(); pb.toggle(); }
@@ -106,7 +108,7 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
   const panelKey = pb.seg?.kind === 'intro' ? 'intro' : `${turn?.id}-${side}`;
 
   return (
-    <motion.div ref={rootRef} role="dialog" aria-modal="true" aria-label="Debate" onKeyDown={onKey}
+    <motion.div ref={rootRef} role="dialog" aria-modal="true" aria-label="Debate" onKeyDown={onKey} onClickCapture={onLinkClick}
       className="fixed inset-0 z-[60] flex flex-col bg-black text-fg outline-none"
       initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
       <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden">

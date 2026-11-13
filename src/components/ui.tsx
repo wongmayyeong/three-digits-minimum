@@ -47,9 +47,10 @@ export function Notice({ tone = 'neutral', title, children }: { tone?: 'neutral'
   );
 }
 
-export function ExternalLink({ href, children, className = '' }: { href: string; children: React.ReactNode; className?: string }) {
+/** A source link. External URLs always open a new tab; site pages do too when `newTab` is set (e.g. inside the debate). */
+export function ExternalLink({ href, children, className = '', newTab = false }: { href: string; children: React.ReactNode; className?: string; newTab?: boolean }) {
   const internal = href.startsWith('/');
-  if (internal) return <Link href={href} className={`link ${className}`}>{children}</Link>;
+  if (internal && !newTab) return <Link href={href} className={`link ${className}`}>{children}</Link>;
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={`link ${className}`}>
       {children}
