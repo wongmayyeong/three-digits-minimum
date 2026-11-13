@@ -96,6 +96,10 @@ API: `GET /api/topics`, `GET /api/topics/:slug/evidence-preview`, `POST /api/deb
 
 See `.env.example` for every variable. License: MIT.
 
+## Project history
+
+The project began as **NEBUBE**, an evidence-first AI debate arena for several NEAR theses. It was then narrowed to a single thesis ("Is NEAR Building the Future or Following the Hype?"), and finally rebranded as **Three Digits, Minimum?**: an investment thesis with a price ladder, audited research and the AI debate as one way into it. Internal identifiers (the `NEBUBE_*` environment variables, package and database names, methodology version tags) keep the original name so existing configurations keep working.
+
 ## Credits and AI disclosure
 
 - Character sprites (Bull, Bear, owl Judge) and the debate studio background were generated with ChatGPT image generation from the prompts in [design/prompts.md](design/prompts.md), then sliced and processed by `scripts/slice-sprites.ts` and `scripts/process-assets.ts`. The logo mark was supplied by the author and processed by `scripts/process-logo.ts`. Source images are in `design/source/`.

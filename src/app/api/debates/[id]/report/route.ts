@@ -15,7 +15,7 @@ export const GET = handler('debates.report', async (req: Request, ctx: { params:
   const r = buildReport(v);
   if (!r) return apiError('not_found', 'Report unavailable.', 404);
   if (new URL(req.url).searchParams.get('format') === 'md') {
-    return new Response(reportMarkdown(r), { headers: { 'content-type': 'text/markdown; charset=utf-8', 'content-disposition': `attachment; filename="nebube-${id}.md"` } });
+    return new Response(reportMarkdown(r), { headers: { 'content-type': 'text/markdown; charset=utf-8', 'content-disposition': `attachment; filename="three-digits-debate-${id}.md"` } });
   }
   return NextResponse.json(r);
 });
