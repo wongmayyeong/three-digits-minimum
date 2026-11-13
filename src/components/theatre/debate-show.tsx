@@ -87,12 +87,17 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
     };
   }, []);
 
-  // Every link inside the show opens in a new tab, so following a source never ends the debate.
+  // Every link inside the show opens in one small pop-up window on the right of the screen (reused for later
+  // links), so a source can be checked while the debate keeps playing behind it. Phones open a tab instead.
   const onLinkClick = (e: React.MouseEvent) => {
     const a = (e.target as HTMLElement).closest('a');
-    if (!a || !a.href || a.target === '_blank') return;
+    if (!a || !a.href || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
-    window.open(a.href, '_blank', 'noopener,noreferrer');
+    const sw = window.screen.availWidth, sh = window.screen.availHeight;
+    const w = Math.round(Math.min(980, sw * 0.48)), h = Math.round(Math.min(820, sh * 0.8));
+    const left = Math.round(((window.screen as Screen & { availLeft?: number }).availLeft ?? 0) + sw - w - 24);
+    const top = Math.round(((window.screen as Screen & { availTop?: number }).availTop ?? 0) + (sh - h) / 2);
+    window.open(a.href, 'thesis-source', `popup=yes,width=${w},height=${h},left=${left},top=${top},noopener,noreferrer`);
   };
 
   const onKey = (e: React.KeyboardEvent) => {
