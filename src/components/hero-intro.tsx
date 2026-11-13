@@ -115,7 +115,7 @@ export function HeroIntro({ title, subtitle, asOf }: { title: string; subtitle: 
     <section aria-label="Thesis" className="relative overflow-hidden border-b hairline">
       <div aria-hidden="true" className="nb-hero-grid pointer-events-none absolute inset-0 opacity-50" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-1/2 h-[46rem] w-[46rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(0_236_151/0.16),transparent_62%)]" />
-      <div className="relative mx-auto grid min-h-[min(86dvh,780px)] max-w-[1320px] items-center gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:py-20">
+      <div className="relative mx-auto grid min-h-[min(86dvh,780px)] max-w-[1320px] items-center gap-6 px-4 pb-24 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:pb-28 lg:pt-10">
         <div>
           <p className="nb-in eyebrow mb-6 text-mint" style={{ ['--delay' as string]: '0.05s' }}>An evidence-based NEAR investment thesis</p>
           <h1 style={{ ['--delay' as string]: '0.15s' }} className="nb-in display-xl text-balance [font-size:clamp(3rem,7vw,6rem)]">{title}</h1>
