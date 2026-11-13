@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Calculator } from '@/components/calculator';
+import { SectionNav } from '@/components/section-nav';
 import { Container, ExternalLink } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { ERA_CONTRACTS, SOURCES } from '@/lib/data/sources';
@@ -48,9 +49,7 @@ export default async function MethodologyPage() {
       <h1 className="display-l text-balance">How the thesis is tested.</h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. &quot;Three digits, minimum&quot; is used as a hook: instead of forecasting a price, the price ladder computes what NEAR would have to achieve for $10, $25, $50 and $100 in ten years and labels every condition as observed, assumed or unproven. Bull and Bear argue over the same frozen evidence. Nothing here forecasts prices, rates NEAR as an investment, or gives financial advice.</p>
 
-      <nav aria-label="On this page" className="mt-8 flex flex-wrap gap-2 text-sm">
-        {[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#economy', 'Economy map'], ['#competition', 'Competition'], ['#valuation', 'Valuation and alternatives'], ['#hypotheses', 'Hypotheses'], ['#verdict', 'Verdict and audit'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']].map(([h, l]) => <a key={h} href={h} className="chip h-8 px-3 hover:text-fg">{l}</a>)}
-      </nav>
+      <SectionNav items={[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#economy', 'Economy map'], ['#competition', 'Competition'], ['#valuation', 'Valuation and alternatives'], ['#hypotheses', 'Hypotheses'], ['#verdict', 'Verdict and audit'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']]} />
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
         <h2 className="display-m">Principles</h2>

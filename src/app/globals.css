@@ -1,19 +1,19 @@
 @import 'tailwindcss';
 
 /*
- * NEBUBE design tokens. See BRANDING.md.
- * Mint #00ec97, coral #ff7966 and warm white #f2f1e9 are taken from near.org's published CSS
- * (--color-green, --color-red, --color-white-subtle). Surfaces are NEBUBE product choices.
+ * Design tokens. Mint #00ec97, coral #ff7966 and warm white #f2f1e9 follow near.org's published palette; the
+ * near-black surfaces, faint dot grid, grain and light display weights follow near.org's visual language
+ * (inspected 2026-11-13). Independent project: no NEAR marks are used.
  */
 @theme {
-  --color-bg: #060a08;
-  --color-surface: #0c1210;
-  --color-raised: #121a16;
-  --color-raised-2: #18221d;
-  --color-fg: #f2f1e9;
-  --color-fg-2: #c9cdc5;
-  --color-muted: #949f98;
-  --color-faint: #66706a;
+  --color-bg: #030504;
+  --color-surface: #0a0f0d;
+  --color-raised: #111814;
+  --color-raised-2: #18211c;
+  --color-fg: #f4f3ec;
+  --color-fg-2: #d4d8d0;
+  --color-muted: #a2aca5;
+  --color-faint: #6f7a73;
   --color-line: rgb(255 255 255 / 0.09);
   --color-line-strong: rgb(255 255 255 / 0.16);
   --color-mint: #00ec97;
@@ -48,6 +48,8 @@
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
     font-feature-settings: 'ss01', 'cv11';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -70,21 +72,21 @@
   .display-xl {
     font-size: clamp(2.75rem, 7.2vw, 5.75rem);
     line-height: 0.98;
-    letter-spacing: -0.035em;
-    font-weight: 520;
-    font-stretch: 104%;
+    letter-spacing: -0.04em;
+    font-weight: 420;
+    font-stretch: 100%;
   }
   .display-l {
     font-size: clamp(2.1rem, 4.6vw, 3.5rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    font-weight: 520;
+    line-height: 1.06;
+    letter-spacing: -0.032em;
+    font-weight: 440;
   }
   .display-m {
-    font-size: clamp(1.6rem, 3vw, 2.25rem);
-    line-height: 1.1;
-    letter-spacing: -0.022em;
-    font-weight: 540;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    line-height: 1.14;
+    letter-spacing: -0.024em;
+    font-weight: 460;
   }
   .eyebrow {
     font-family: var(--font-mono);
@@ -103,9 +105,27 @@
     border-color: var(--color-line);
   }
   .panel {
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
+  }
+  /* Comfortable reading: a measured line length, generous leading, paragraph rhythm. */
+  .prose-read {
+    max-width: 68ch;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-fg-2);
+  }
+  .prose-read > * + * {
+    margin-top: 1em;
+  }
+  .lead {
+    font-size: clamp(1.125rem, 1.6vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--color-fg-2);
+  }
+  .section-gap {
+    margin-top: clamp(5rem, 9vw, 8rem);
   }
   .btn {
     display: inline-flex;
@@ -165,6 +185,59 @@
   }
 }
 
+/*
+ * Site backdrop: a faint dot grid that fades out toward the edges, and fine grain. Fixed behind all content,
+ * low enough in contrast never to compete with text.
+ */
+.nb-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgb(0 236 151 / 0.07), transparent 70%),
+    radial-gradient(50rem 36rem at -10% 110%, rgb(0 236 151 / 0.04), transparent 70%);
+}
+.nb-backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(0 236 151 / 0.16) 1px, transparent 1.2px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 75% 60% at 50% 30%, #000 0%, transparent 85%);
+  opacity: 0.35;
+}
+.nb-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Hero: denser dot grid and a soft mint bloom. */
+.nb-hero-grid {
+  background-image: radial-gradient(rgb(0 236 151 / 0.32) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 70% at 70% 45%, #000 10%, transparent 75%);
+}
+@keyframes nb-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.nb-float {
+  animation: nb-float 7s ease-in-out infinite;
+}
+@keyframes nb-rise {
+  from { transform: scaleY(0.2); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+.nb-rise {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: nb-rise 1.1s var(--ease-out-quint) both;
+  animation-delay: var(--delay, 0s);
+}
+
 /* Four-point star field: slow opacity breathing only (cheap, compositor-friendly). */
 @keyframes nb-breathe {
   0%, 100% { opacity: var(--o-lo, 0.15); transform: scale(0.9); }
@@ -196,7 +269,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nb-star, .nb-blink, .nb-live-dot {
+  .nb-star, .nb-blink, .nb-live-dot, .nb-float, .nb-rise {
     animation: none !important;
   }
   *, *::before, *::after {
@@ -207,6 +280,7 @@
 
 @media print {
   html, body { background: #fff !important; color: #111 !important; }
+  .nb-backdrop { display: none !important; }
   .no-print { display: none !important; }
   .panel { background: #fff !important; border-color: #ccc !important; }
   a { color: #111 !important; }

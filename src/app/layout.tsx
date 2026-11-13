@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#060a08',
+  themeColor: '#030504',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -33,7 +33,8 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-dvh">
+      <body className="relative isolate min-h-dvh">
+        <div aria-hidden="true" className="nb-backdrop" />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-50 focus:rounded-sm focus:bg-mint focus:px-3 focus:py-2 focus:text-mint-ink">Skip to content</a>
         <MotionProvider>
           <SiteHeader />

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { HeroDebate } from '@/components/hero-debate';
+import { DebateBand } from '@/components/debate-band';
+import { HeroIntro } from '@/components/hero-intro';
 import { LadderGrid } from '@/components/ladder';
 import { LadderExplorer } from '@/components/ladder-explorer';
 import { LibraryRow } from '@/components/library-row';
@@ -56,39 +57,49 @@ export default async function ThesisPage() {
 
   return (
     <>
-      <HeroDebate
-        episode={latest && latest.status === 'COMPLETE' ? latest : null}
-        title={THESIS_TITLE}
-        subtitle={THESIS_SUBTITLE}
-        attribution={THESIS_ATTRIBUTION}
-        lede={THESIS_LEDE}
-        asOf={preview?.windowEnd ? formatDate(preview.windowEnd) : null}
-      />
+      <HeroIntro title={THESIS_TITLE} subtitle={THESIS_SUBTITLE} asOf={preview?.windowEnd ? formatDate(preview.windowEnd) : null} />
 
-      <Container className="py-10 md:py-14">
-        {preview && <AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} />}
+      {/* Context: the claim being tested, moved out of the hero so the hero stays clean. */}
+      <Container className="pt-16 md:pt-24">
+        <section aria-labelledby="claim-h" className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div>
+            <p className="eyebrow mb-4">The claim</p>
+            <blockquote id="claim-h" className="display-m text-balance text-fg">&ldquo;Three digits, minimum.&rdquo;</blockquote>
+            <p className="mt-4 text-sm italic text-muted">{THESIS_ATTRIBUTION}</p>
+          </div>
+          <div className="prose-read">
+            <p>{THESIS_LEDE}</p>
+            <p>NEAR is a blockchain whose fastest-growing product, NEAR Intents, lets people swap assets across different blockchains in one step. That product is where almost all of NEAR&apos;s measurable economy sits today.</p>
+          </div>
+        </section>
+        {preview && <div className="mt-12"><AsOfLine newest={preview.newestSourceAt} windowEnd={preview.windowEnd} /></div>}
 
         {!preview || !l || !r100 || !tk || !cc || !ec || !va || !hy || !vd ? (
           <div className="mt-14"><Notice tone="warn" title="Research data is not available yet.">No stored source responses were found. Run the research refresh (npm run research:refresh) and load the data into the database.</Notice></div>
         ) : (
-          <>
-            {/* 01 · The answer */}
-            <section id="answer" className="mt-10 scroll-mt-20" aria-labelledby="answer-h">
+            <section id="answer" className="section-gap scroll-mt-20" aria-labelledby="answer-h">
               <p className="eyebrow mb-3"><span className="text-mint">01</span> · The answer</p>
               <h2 id="answer-h" className="display-l max-w-4xl text-balance">Interesting, but highly conditional: not a proven path to $100.</h2>
-              <div className="mt-5 max-w-3xl space-y-3 text-lg leading-relaxed text-fg-2">
+              <div className="prose-read mt-6">
                 {INVESTMENT_VERDICT.map((p) => <p key={p}>{p}</p>)}
               </div>
-              <dl className="mt-8 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="mt-10 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line sm:grid-cols-2 lg:grid-cols-4">
                 <Stat label="NEAR's economy is one product" value={formatValue(ec.intentsFeeShare, 'fraction')} note="of the fees DefiLlama attributes to NEAR come from NEAR Intents (cross-chain swaps, not L1 gas)" />
                 <Stat label="Valued far above that product" value={formatValue(cc.nearCapToIntentsRevenue, 'ratio')} note={`NEAR market cap / Intents revenue; small cross-chain peer tokens trade at ${cc.peerRange ? `${formatValue(cc.peerRange[0], 'ratio')} to ${formatValue(cc.peerRange[1], 'ratio')}` : 'n/a'}`} />
                 <Stat label="Buybacks, checked onchain" value={formatValue(tk.buybacks.deliveredAllToDesignated, 'fraction')} note="of the revenue DefiLlama labels as buybacks reached the buyback wallet" />
                 <Stat label="What $100 needs" value={formatValue(need100.find((g) => g.growthKey === 'base')?.multiple ?? null, 'ratio')} note={`cash-flow multiple at 20% a year Intents growth for ten years (${formatValue(need100.find((g) => g.growthKey === 'high')?.multiple ?? null, 'ratio')} at 40%); NEAR is at ${formatValue(mToday, 'ratio')} today`} />
               </dl>
             </section>
+        )}
+      </Container>
 
+      <DebateBand episode={latest && latest.status === 'COMPLETE' ? latest : null} />
+
+      <Container className="pb-10 md:pb-14">
+        {preview && l && r100 && tk && cc && ec && va && hy && vd && (
+          <>
             {/* 02 · The ladder */}
-            <section id="ladder" className="mt-16 scroll-mt-20">
+            <section id="ladder" className="section-gap scroll-mt-20">
               <SectionHeader n={2} title="The ladder" question="What would $10, $25, $50 and $100 in ten years take?" reason={l.headline} howHref="/methodology#ladder" />
               <LadderExplorer ladder={l} />
               <h3 className="mb-3 mt-8 text-lg font-[600]">The whole ladder: Intents volume needed in 2036, relative to spot DEX volume</h3>
@@ -97,7 +108,7 @@ export default async function ThesisPage() {
             </section>
 
             {/* 03 · What the evidence shows */}
-            <section id="evidence" className="mt-16 scroll-mt-20">
+            <section id="evidence" className="section-gap scroll-mt-20">
               <SectionHeader n={3} title="What the evidence shows" question="Six findings, each checked against independent data" howHref="/research" />
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 <Finding title="NEAR's economy is NEAR Intents" href="/methodology#economy" lines={[
@@ -140,7 +151,7 @@ export default async function ThesisPage() {
             </section>
 
             {/* 04 · Verdict lines */}
-            <section id="verdict" className="mt-16 scroll-mt-20">
+            <section id="verdict" className="section-gap scroll-mt-20">
               <SectionHeader n={4} title="Leads and trails" question="Where does NEAR lead, and where does it trail?" reason={`${vd.summary} Every line is generated by a rule from the data.`} howHref="/methodology#verdict" />
               <div className="grid gap-3 md:grid-cols-3">
                 {([['Leads', vd.leads, 'text-mint'], ['Trails', vd.trails, 'text-coral'], ['Neither, by itself', vd.traits, 'text-amber']] as const).map(([t, items, cls]) => (
@@ -150,7 +161,7 @@ export default async function ThesisPage() {
             </section>
 
             {/* 05 · Hypotheses */}
-            <section id="hypotheses" className="mt-16 scroll-mt-20">
+            <section id="hypotheses" className="section-gap scroll-mt-20">
               <SectionHeader n={5} title="Ten hypotheses, tested" question="Written before the data was read, decided by published rules" howHref="/methodology#hypotheses" />
               <ul className="grid gap-2 md:grid-cols-2">
                 {hy.results.map((h) => (
@@ -168,7 +179,7 @@ export default async function ThesisPage() {
               </aside>
             </section>
 
-            <section id="episodes" className="mt-16 scroll-mt-20" aria-labelledby="ep-h">
+            <section id="episodes" className="section-gap scroll-mt-20" aria-labelledby="ep-h">
               <h2 id="ep-h" className="mb-4 border-t hairline pt-10 text-lg font-[600]">Debate episodes</h2>
               {episodes?.entries.length ? (
                 <ul className="grid gap-3 md:grid-cols-2">{episodes.entries.map((e) => <LibraryRow key={e.id} e={e} />)}</ul>
