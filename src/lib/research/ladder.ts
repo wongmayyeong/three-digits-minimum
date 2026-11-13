@@ -19,7 +19,7 @@ import { DEX_CROSS_CHAIN_CATEGORIES, DEX_SPOT_CATEGORY, PLATFORM_CHAINS, VALUATI
 import { commonEnd, fromUnixPairs, safeDiv, windowAggregate, type DailyPoint } from './series';
 import type { EvidenceDraft } from './types';
 
-export const LADDER_VERSION = 'three-digits-2.0.0';
+export const LADDER_VERSION = 'three-digits-2.0.1';
 export const RUNGS = [10, 25, 50, 100] as const;
 export const HORIZON_YEARS = 10;
 /** Comparison windows (complete days ending on the common end date). The run rate is the primary basis. */
@@ -35,7 +35,7 @@ export const SUPPLY_RULES = {
 /** Intents volume growth scenarios to 2036 (assumptions, labelled as such everywhere). */
 export const GROWTH_SCENARIOS = [
   { key: 'low', label: 'Low', cagr: 0.10, note: 'Intents grows 10% a year and loses share of a growing DEX market.' },
-  { key: 'base', label: 'Base', cagr: 0.20, note: 'Intents grows 20% a year, in line with the base-case DEX market.' },
+  { key: 'base', label: 'Middle', cagr: 0.20, note: 'Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome.' },
   { key: 'high', label: 'High', cagr: 0.40, note: 'Intents grows 40% a year and keeps winning share for ten years.' },
 ] as const;
 /** Spot DEX market growth to 2036 (assumption); base also anchors the share calculation. */
@@ -260,11 +260,11 @@ export function analyzeLadder(raws: Record<string, RawRecord | null | undefined>
         const dexShare2036 = safeDiv(requiredVolume, dex2036Base);
         const shareMultiple = safeDiv(dexShare2036, dexShareToday);
         const conditions: Condition[] = [
-          { text: `$NEAR holders receive ${fmtUsd(captureToday)} a year today: ${fmtUsd(burnRunRate)} of gas burned plus ${fmtUsd(intentsHolderRunRate)} of Intents revenue designated for buybacks`, status: 'OBSERVED', detail: `DefiLlama holders revenue, ${RUN_RATE_DAYS}-day run rate ending ${END ?? 'n/a'}. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6).` },
-          { text: `The market values that flow at ${fmtX(m.value)} in 2036 (${m.label})`, status: 'ASSUMED', detail: `${m.source}. Multiples move with sentiment; ${m.key === 'today' ? 'this is NEAR\'s own multiple today, assumed to persist' : 'this is another token\'s multiple today on the same basis, applied to NEAR'}.` },
+          { text: `Value attributed to $NEAR holders today: ${fmtUsd(captureToday)} a year, ${fmtUsd(burnRunRate)} of gas burned plus ${fmtUsd(intentsHolderRunRate)} of Intents revenue designated for buybacks`, status: 'OBSERVED', detail: `DefiLlama holders revenue, ${RUN_RATE_DAYS}-day run rate ending ${END ?? 'n/a'}. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under "Where the buybacks went".` },
+          { text: `The market values that flow at ${fmtX(m.value)} in 2036 (${m.label})`, status: 'ASSUMED', detail: `${m.source}. Multiples move with sentiment; ${m.key === 'today' ? 'this is NEAR\'s own multiple today: current market pricing assumed to persist, not an independently established fair value' : 'this is another token\'s multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one'}.` },
           { text: `Value reaching holders grows to ${fmtUsd(requiredCapture)} a year (${fmtX(safeDiv(requiredCapture, captureToday))} today)`, status: 'UNPROVEN', detail: `Burns are held at today's run rate (${fmtUsd(burn2036)}); the remaining ${fmtUsd(requiredIntentsCapture)} must come from Intents buybacks.` },
           { text: `Intents volume reaches ${fmtUsd(requiredVolume)} a year, ${fmtPct(requiredCagr, 0)} growth a year for ten years`, status: 'UNPROVEN', detail: `Today: ${fmtUsd(intentsRunRate)} run rate; ${fmtPct(intentsYoY, 0)} year over year (latest 30 days vs a year earlier). Momentum is observed; ten years of it is not.` },
-          { text: `Intents volume equals ${fmtPct(dexShare2036)} of spot DEX volume in 2036 (today ${fmtPct(dexShareToday, 2)})`, status: 'UNPROVEN', detail: `Spot DEX volume (DefiLlama "Dexs" category) grown ${DEX_GROWTH.base * 100}% a year to ${fmtUsd(dex2036Base)}; 2021 to 2025 it grew ${fmtPct(dexCagr2021to2025, 0)} a year. A scale reference: Intents is a cross-chain category, not a DEX.` },
+          { text: `Intents volume equals ${fmtPct(dexShare2036)} of spot DEX volume in 2036 (today ${fmtPct(dexShareToday, 2)})`, status: 'UNPROVEN', detail: `Spot DEX volume (DefiLlama "Dexs" category) grown ${DEX_GROWTH.base * 100}% a year to ${fmtUsd(dex2036Base)}; 2021 to 2025 it grew ${fmtPct(dexCagr2021to2025, 0)} a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX.` },
           { text: `NEAR keeps ${fmtPct(holderTakeRate, 3)} of every dollar of volume for buybacks`, status: 'ASSUMED', detail: `Intents holders revenue / volume, same ${RUN_RATE_DAYS} days. Fee competition halving it doubles every volume requirement.` },
         ];
         return {
@@ -294,7 +294,7 @@ export function analyzeLadder(raws: Record<string, RawRecord | null | undefined>
   const dominant = acrossMultiples === null || acrossGrowth === null ? null
     : Math.max(acrossMultiples, acrossGrowth) / Math.min(acrossMultiples, acrossGrowth) < SWING_SIMILAR ? 'similar' as const
     : acrossMultiples > acrossGrowth ? 'valuation' as const : 'growth' as const;
-  const spread = `prices spread ${fmtX(acrossGrowth)} across growth scenarios at NEAR's own multiple, and ${fmtX(acrossMultiples)} across the cash-flow multiples at base growth`;
+  const spread = `prices spread ${fmtX(acrossGrowth)} across growth scenarios at NEAR's own multiple, and ${fmtX(acrossMultiples)} across the cash-flow multiples at 20% growth`;
   const sentence = dominant === 'similar' ? `How fast Intents grows and how the market values NEAR matter about equally: ${spread}.`
     : dominant === 'growth' ? `How fast Intents grows moves the answer more than how the market values NEAR: ${spread}.`
     : dominant === 'valuation' ? `How the market values NEAR moves the answer more than how fast Intents grows: ${spread}.` : '';

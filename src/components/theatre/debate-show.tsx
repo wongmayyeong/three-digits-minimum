@@ -23,7 +23,7 @@ import { usePlayback, type Segment } from './use-playback';
  */
 const INTRO_STEPS: { role: Role | null; until: number; caption: string }[] = [
   { role: 'bull', until: 2, caption: 'Bull argues three digits is reachable in ten years.' },
-  { role: 'bear', until: 4, caption: 'Bear argues $100 is no minimum, and the evidence points lower.' },
+  { role: 'bear', until: 4, caption: 'Bear challenges the $100 minimum claim.' },
   { role: 'judge', until: 6, caption: 'The Judge scores the arguments and checks every figure.' },
   { role: null, until: 9, caption: 'Same frozen evidence for both sides. Nothing new can be fetched mid-debate.' },
 ];
@@ -264,7 +264,7 @@ function introCast(role: Role, t: number): StageCast {
 
 const CARD: Record<Role, { side: string; name: string; lead: string; claim: string; note: string; color: string; place: 'left' | 'right' }> = {
   bull: { side: 'Affirmative', name: 'Bull', lead: 'Argues', claim: 'Three digits is reachable', note: 'Must show Intents growth and revenue can carry NEAR up the price ladder.', color: '#00ec97', place: 'right' },
-  bear: { side: 'Negative', name: 'Bear', lead: 'Argues', claim: '$100 is no minimum', note: 'Must show weak value capture, dilution and the valuation premium hold NEAR lower.', color: '#ff7966', place: 'left' },
+  bear: { side: 'Negative', name: 'Bear', lead: 'Challenges', claim: 'the $100 minimum claim', note: 'Must show weak value capture, dilution and the valuation premium hold NEAR lower.', color: '#ff7966', place: 'left' },
   judge: { side: 'The bench', name: 'Judge', lead: 'Scores', claim: 'Argument quality', note: 'Not investment merit. Every figure is checked against the evidence.', color: '#f3d27a', place: 'right' },
 };
 

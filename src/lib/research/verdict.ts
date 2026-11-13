@@ -12,6 +12,12 @@ import type { LadderResult } from './ladder';
 import type { TokenomicsResult } from './tokenomics';
 import type { ValuationResult } from './valuation';
 
+/**
+ * When the author last reviewed the fixed verdict prose, and the data window it was reviewed against. If the stored data
+ * moves past this window, the site flags the prose as due for review instead of silently presenting it as current.
+ */
+export const VERDICT_REVIEW = { reviewedOn: '2026-11-14', windowEnd: '2026-11-10' } as const;
+
 export const INVESTMENT_VERDICT = [
   'NEAR presents a high-risk investment case supported by growing cross-chain activity through NEAR Intents, but its current valuation depends on assumptions that remain difficult to verify.',
   'Intents generates measurable revenue, while NEAR\'s native onchain economy remains comparatively small. Much of the token\'s potential value therefore depends on sustained Intents growth, effective token-value capture, and the market continuing to value NEAR beyond its currently measurable cash flows.',

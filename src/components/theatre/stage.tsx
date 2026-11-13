@@ -114,7 +114,7 @@ export function StudioScene({ cast, judgeScene = false, zoom = false, centered =
         </svg>
 
         <PodiumSign x={295} y={652} title="Reachable" caption="Three digits" color="#00ec97" dir="up" active={cast.active === 'bull'} />
-        <PodiumSign x={1377} y={652} title="No minimum" caption="Three digits" color="#ff7966" dir="down" active={cast.active === 'bear'} />
+        <PodiumSign x={1377} y={652} title="Challenged" caption="$100 minimum" color="#ff7966" dir="down" active={cast.active === 'bear'} />
         <JudgePlaque x={837} y={637} active={cast.active === 'judge'} />
       </motion.div>
       {children}
@@ -126,7 +126,7 @@ export function StudioScene({ cast, judgeScene = false, zoom = false, centered =
 const u = (n: number) => `${((n * 100) / W).toFixed(3)}cqw`;
 const chamfer = (c: string) => `polygon(${c} 0, calc(100% - ${c}) 0, 100% ${c}, 100% calc(100% - ${c}), calc(100% - ${c}) 100%, ${c} 100%, 0 calc(100% - ${c}), 0 ${c})`;
 
-/** Pixel arrow (7x7 grid): up for the Bull case (three digits reachable), down for the Bear case (no minimum). */
+/** Pixel arrow (7x7 grid): up for the Bull case (three digits reachable), down for the Bear case (challenges the $100 minimum claim). */
 function PixelArrow({ dir, color }: { dir: 'up' | 'down'; color: string }) {
   return (
     <svg viewBox="0 0 7 7" style={{ width: u(17), height: u(17), transform: dir === 'down' ? 'rotate(180deg)' : undefined }} shapeRendering="crispEdges" aria-hidden="true">

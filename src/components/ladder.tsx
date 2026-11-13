@@ -47,7 +47,7 @@ export function ImpliedMatrix({ ladder }: { ladder: LadderResult }) {
         <thead className="bg-raised text-xs text-muted">
           <tr>
             <th scope="col" className="px-4 py-2.5 font-normal">Intents growth to 2036</th>
-            {ladder.multiples.map((m) => <th key={m.key} scope="col" className="px-4 py-2.5 text-right font-normal">{m.label}</th>)}
+            {ladder.multiples.map((m) => <th key={m.key} scope="col" className="px-4 py-2.5 text-right font-normal">{m.label} <span className="num text-faint">{formatValue(m.value, 'ratio')}</span><br /><span className="text-faint">{m.key === 'today' ? 'today\'s pricing persists' : 'reference scenario'}</span></th>)}
           </tr>
         </thead>
         <tbody>

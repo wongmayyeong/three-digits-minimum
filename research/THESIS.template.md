@@ -124,7 +124,7 @@ If NEAR's value is mostly one cross-chain business, the relevant comparison is t
 
 {{CC_FINDINGS}}
 
-Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
+Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 8 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
 
 ## 10. Valuation: how NEAR is priced, and what moves it
 
@@ -217,7 +217,7 @@ The evidence behind it, every line generated from the data:
 
 {{VERDICT_TRAITS}}
 
-**NEAR's economy.** Almost all of it is one product: NEAR Intents is {{ECO-INTENTS-FEE-SHARE}} of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and {{ECO-CAPTURE-FROM-INTENTS}} of the value verifiably captured by $NEAR ({{TOK-VERIFIED-CAPTURE}} a year: NEAR delivered to the buyback wallet plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
+**NEAR's economy.** The measured fees and value capture are concentrated in one product: NEAR Intents is {{ECO-INTENTS-FEE-SHARE}} of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and {{ECO-CAPTURE-FROM-INTENTS}} of the value verifiably captured by $NEAR ({{TOK-VERIFIED-CAPTURE}} a year: NEAR delivered to the buyback wallet plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
 
 **How far NEAR can go.** In the cash-flow framework, $100 in ten years needs a {{VAL-MULT-NEEDED-100-BASE}} multiple at 20% a year Intents growth, or {{VAL-MULT-NEEDED-100-HIGH}} at 40%; cash-flow tokens trade at {{LAD-MULT-HYPERLIQUID}} to {{LAD-MULT-TRON}} and small cross-chain peer tokens at {{CC-PEER-MEDIAN-CAP-REV}} to {{CC-PEER-MEDIAN-CAP-REV-LIQUID}} revenue (NEAR's market cap also prices products those peers do not have). In the platform framework, $100 needs {{LAD-100-PLAT-SOLANA-STABLES}} of stablecoins on NEAR at Solana's ratio, {{LAD-100-PLAT-SOLANA-STABLES-MULT}} today's. The frameworks are never added together. Three digits rests on either decade-long hypergrowth of one product at a multiple the market pays no cash-flow peer today, or on NEAR becoming a platform whose economy does not exist yet.
 

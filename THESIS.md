@@ -75,10 +75,10 @@ Implied price in ten years = (Intents volume grown from today's $49.08B run rate
 | Intents growth to 2036 | Priced like Hyperliquid | Priced like Tron | NEAR's multiple today |
 |---|---|---|---|
 | Low, 10.0% a year | $0.63 (0.18x) | $3.33 (0.95x) | $6.89 (1.96x) |
-| Base, 20.0% a year | $1.49 (0.43x) | $7.85 (2.24x) | $16 (4.63x) |
+| Middle, 20.0% a year | $1.49 (0.43x) | $7.85 (2.24x) | $16 (4.63x) |
 | High, 40.0% a year | $6.93 (1.97x) | $36 (10.4x) | $75 (21.5x) |
 
-How fast Intents grows and how the market values NEAR matter about equally: prices spread 11x across growth scenarios at NEAR's own multiple, and 11x across the cash-flow multiples at base growth.
+How fast Intents grows and how the market values NEAR matter about equally: prices spread 11x across growth scenarios at NEAR's own multiple, and 11x across the cash-flow multiples at 20% growth.
 
 ## 6. The evidence
 
@@ -234,7 +234,7 @@ Fees paid on the NEAR chain by protocol, last 30 days (DefiLlama):
 | Veax CLMM | Dexs | $6.46 | 0.000% |
 
 - NEAR Intents is 86% of the fees DefiLlama attributes to the NEAR chain over the last 30 days (its cross-chain swap fees are paid on many chains; they are not NEAR L1 gas); the largest native app family, RHEA, is 12%, and NEAR's own gas 2%.
-- 93% of NEAR's verified value capture comes from one product (Intents buybacks); the rest is gas burns.
+- 93% of the value capture we could verify for $NEAR comes from one product (Intents buybacks); the rest is gas burns. This describes the measured fee and capture data, not everything that happens on NEAR.
 - Intents volume +230% year over year while NEAR L1 transactions changed -84%, active accounts -75% and gas fees -52% (DeFi TVL on NEAR +41%): paid growth is in cross-chain execution, not in activity on the NEAR chain. Part of the L1 decline may be automated or incentive-driven activity ending; classifying it needs BigQuery (H7).
 
 This is the central fact for valuing NEAR (priority finding P2): almost all of NEAR's economic activity and almost all of its value capture is one cross-chain product. The NEAR chain itself carries little paid activity. NEAR therefore behaves less like a traditional L1, valued on the economy that lives on it, and more like the token of a cross-chain execution business, valued on what that business returns to holders.
@@ -268,7 +268,7 @@ If NEAR's value is mostly one cross-chain business, the relevant comparison is t
 - Conditional, not a fair value: if NEAR were valued only on Intents revenue at the peer range, Intents would account for $155.5M to $277.3M of market cap against $4.6B today. NEAR's market cap also prices the L1, staking, Chain Signatures and other products; this comparison does not value them.
 - On revenue that reaches token holders the gap is smaller: the peer median is 17x (RUNE 431x, FLIP 7.5x, DBR 17x), because some protocols, THORChain above all, pass little revenue to their token. Messaging layers are valued differently again (ZRO 796x).
 
-Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 7 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
+Two readings follow, and the data cannot choose between them. Either the market prices NEAR for more than Intents (the L1, Chain Signatures, NEAR AI, optionality), which the economy map in section 8 does not find in today's activity or value capture. Or NEAR carries a premium over every cross-chain competitor that its cash flow does not yet justify. Either way, Intents' revenue alone does not explain NEAR's market cap.
 
 ## 10. Valuation: how NEAR is priced, and what moves it
 
@@ -305,7 +305,7 @@ Two readings follow, and the data cannot choose between them. Either the market 
 
 **How much of each rung rests on the multiple alone.** The cash-flow multiple each rung would need under each growth scenario. Compare with NEAR's 212x today, Tron's 102x and Hyperliquid's 19.5x (cash-flow tokens), and the platforms' thousands (section 3). Where the multiple needed is in platform territory, the rung depends on NEAR being re-rated as a platform, not on its cash flow.
 
-| Rung | Low growth (10% a year) | Base growth (20% a year) | High growth (40% a year) |
+| Rung | Low growth (10% a year) | Middle growth (20% a year) | High growth (40% a year) |
 |---|---|---|---|
 | $10 | 308x | 131x | 28.1x |
 | $25 | 770x | 326x | 70.3x |
@@ -330,7 +330,7 @@ Every investable alternative under the valuation method that fits it (section 3)
 
 - NEAR's own cash-flow multiple: 219x on designated buybacks and 319x on NEAR delivered to the buyback wallet (latest month-end). Only windows that fall entirely after each flow began are shown; earlier months valued pre-buyback treasury revenue and are not comparable.
 - The input that moves NEAR's implied 2036 price most is Intents growth, 10 years (10% a year: $6.89; 30% a year: $36.05; base $16.27).
-- At base growth, $100 would need a cash-flow multiple of 1306x; at high growth 281x. Today: NEAR 212x, Tron 102x, Hyperliquid 20x.
+- At 20% a year growth, $100 would need a cash-flow multiple of 1306x; at high growth 281x. Today: NEAR 212x, Tron 102x, Hyperliquid 20x.
 - For 7x in ten years NEAR's driver must grow 24.5% a year (its own dilution included); Intents volume grew 230% over the last year. Required vs observed, by asset (7x): NEAR 24% vs 230%; HYPE 22% vs -24%; SOL 23% vs -24%; ETH 22% vs -31%; SUI 37% vs -44%; AVAX 27% vs -54%; TON 39% vs -46%; APT 49% vs -47%. One year of observed growth is dominated by the market cycle, and NEAR's driver is a young product growing from a small base while the platforms' drivers are mature chain economies, so the comparison flatters NEAR.
 
 **Risk on common measures.** DefiLlama daily prices; volatility and correlation use returns between consecutive days only; liquidity is a one-day snapshot of trading volume over market cap.
@@ -441,7 +441,7 @@ Neither lead nor trail by itself:
 - Highest daily trading volume relative to market cap (10.6%): deep liquidity, or speculative turnover.
 - Daily returns are less correlated with BTC than ETH's or SOL's (R-squared 20.5%): diversification, or idiosyncratic risk.
 
-**NEAR's economy.** Almost all of it is one product: NEAR Intents is 86.2% of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and 92.9% of the value verifiably captured by $NEAR ($14.88M a year: NEAR delivered to the buyback wallet plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
+**NEAR's economy.** The measured fees and value capture are concentrated in one product: NEAR Intents is 86.2% of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and 92.9% of the value verifiably captured by $NEAR ($14.88M a year: NEAR delivered to the buyback wallet plus burns). Chain Signatures, NEAR AI and ecosystem apps capture nothing for $NEAR that can be verified today; they are listed as possible upside and given no dollar value.
 
 **How far NEAR can go.** In the cash-flow framework, $100 in ten years needs a 1,306x multiple at 20% a year Intents growth, or 281x at 40%; cash-flow tokens trade at 19.5x to 102x and small cross-chain peer tokens at 7.55x to 13.5x revenue (NEAR's market cap also prices products those peers do not have). In the platform framework, $100 needs $47.36B of stablecoins on NEAR at Solana's ratio, 362x today's. The frameworks are never added together. Three digits rests on either decade-long hypergrowth of one product at a multiple the market pays no cash-flow peer today, or on NEAR becoming a platform whose economy does not exist yet.
 

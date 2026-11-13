@@ -6281,7 +6281,7 @@
    "label": "Implied 2036 price: base growth, Priced like Hyperliquid",
    "unit": "USD",
    "value": 1.4935282713483256,
-   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
    "transform": "(run rate x (1+g)^10 x holder take rate + burns) x multiple / supply 2036",
    "available": true,
    "hasSeries": false
@@ -6311,7 +6311,7 @@
    "label": "Implied 2036 price: base growth, Priced like Tron",
    "unit": "USD",
    "value": 7.847466462253934,
-   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
    "transform": "(run rate x (1+g)^10 x holder take rate + burns) x multiple / supply 2036",
    "available": true,
    "hasSeries": false
@@ -6341,7 +6341,7 @@
    "label": "Implied 2036 price: base growth, NEAR's multiple today",
    "unit": "USD",
    "value": 16.26632157585381,
-   "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+   "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
    "transform": "(run rate x (1+g)^10 x holder take rate + burns) x multiple / supply 2036",
    "available": true,
    "hasSeries": false
@@ -14698,7 +14698,7 @@
   "verdictReason": "Sections 1 and 3 decide the verdict; Section 2 sets confidence. 1 of 2 era products keep at least 25% of their peak monthly activity. Buyback-designated Intents revenue equals 18.2% of the value of realized net new supply; the take rate is rising. Product adoption followed 1 of 2 measurable pivots within two months of mainnet launch. Not measurable, so not counted: Chain Signatures, User-Owned AI."
  },
  "ladder": {
-  "version": "three-digits-2.0.0",
+  "version": "three-digits-2.0.1",
   "asOf": "2026-11-10",
   "basis": {
    "windowEnd": "2026-11-10",
@@ -14945,14 +14945,14 @@
       "band": "dominant",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 20x in 2036 (Priced like Hyperliquid)",
         "status": "ASSUMED",
-        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $860.8M a year (40x today)",
@@ -14967,7 +14967,7 @@
        {
         "text": "Intents volume equals 11.5% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -14991,14 +14991,14 @@
       "band": "holds",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 102x in 2036 (Priced like Tron)",
         "status": "ASSUMED",
-        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $163.8M a year (7.6x today)",
@@ -15013,7 +15013,7 @@
        {
         "text": "Intents volume equals 2.2% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15037,14 +15037,14 @@
       "band": "holds",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 212x in 2036 (NEAR's multiple today)",
         "status": "ASSUMED",
-        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today: current market pricing assumed to persist, not an independently established fair value."
        },
        {
         "text": "Value reaching holders grows to $79.0M a year (3.6x today)",
@@ -15059,7 +15059,7 @@
        {
         "text": "Intents volume equals 1.0% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15123,14 +15123,14 @@
       "band": "beyond",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 20x in 2036 (Priced like Hyperliquid)",
         "status": "ASSUMED",
-        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $2.2B a year (99x today)",
@@ -15145,7 +15145,7 @@
        {
         "text": "Intents volume equals 28.8% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15169,14 +15169,14 @@
       "band": "gains",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 102x in 2036 (Priced like Tron)",
         "status": "ASSUMED",
-        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $409.6M a year (19x today)",
@@ -15191,7 +15191,7 @@
        {
         "text": "Intents volume equals 5.5% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15215,14 +15215,14 @@
       "band": "gains",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 212x in 2036 (NEAR's multiple today)",
         "status": "ASSUMED",
-        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today: current market pricing assumed to persist, not an independently established fair value."
        },
        {
         "text": "Value reaching holders grows to $197.6M a year (9.1x today)",
@@ -15237,7 +15237,7 @@
        {
         "text": "Intents volume equals 2.6% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15301,14 +15301,14 @@
       "band": "beyond",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 20x in 2036 (Priced like Hyperliquid)",
         "status": "ASSUMED",
-        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $4.3B a year (199x today)",
@@ -15323,7 +15323,7 @@
        {
         "text": "Intents volume equals 57.6% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15347,14 +15347,14 @@
       "band": "dominant",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 102x in 2036 (Priced like Tron)",
         "status": "ASSUMED",
-        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $819.2M a year (38x today)",
@@ -15369,7 +15369,7 @@
        {
         "text": "Intents volume equals 10.9% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15393,14 +15393,14 @@
       "band": "gains",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 212x in 2036 (NEAR's multiple today)",
         "status": "ASSUMED",
-        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today: current market pricing assumed to persist, not an independently established fair value."
        },
        {
         "text": "Value reaching holders grows to $395.2M a year (18x today)",
@@ -15415,7 +15415,7 @@
        {
         "text": "Intents volume equals 5.3% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15479,14 +15479,14 @@
       "band": "beyond",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 20x in 2036 (Priced like Hyperliquid)",
         "status": "ASSUMED",
-        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Hyperliquid market cap / holders revenue, 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $8.6B a year (398x today)",
@@ -15501,7 +15501,7 @@
        {
         "text": "Intents volume equals 115.1% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15525,14 +15525,14 @@
       "band": "beyond",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 102x in 2036 (Priced like Tron)",
         "status": "ASSUMED",
-        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR."
+        "detail": "Tron market cap / holders revenue (TRX burned), 90-day run rate. Multiples move with sentiment; this is another token's multiple today on the same basis, applied to NEAR as a reference scenario; it is a different business, not an equivalent one."
        },
        {
         "text": "Value reaching holders grows to $1.6B a year (76x today)",
@@ -15547,7 +15547,7 @@
        {
         "text": "Intents volume equals 21.9% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15571,14 +15571,14 @@
       "band": "dominant",
       "conditions": [
        {
-        "text": "$NEAR holders receive $21.7M a year today: $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
+        "text": "Value attributed to $NEAR holders today: $21.7M a year, $1.1M of gas burned plus $20.6M of Intents revenue designated for buybacks",
         "status": "OBSERVED",
-        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification; NEAR delivered to the buyback wallet is reconstructed separately (section 6)."
+        "detail": "DefiLlama holders revenue, 90-day run rate ending 2026-11-10. Designated buybacks are a classification, not a transfer: less NEAR has actually reached the buyback wallet, and held tokens are not burned. The delivered basis is shown beside the scenarios and under \"Where the buybacks went\"."
        },
        {
         "text": "The market values that flow at 212x in 2036 (NEAR's multiple today)",
         "status": "ASSUMED",
-        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today, assumed to persist."
+        "detail": "NEAR market cap / (gas burned + Intents revenue designated for buybacks), 90-day run rate. Multiples move with sentiment; this is NEAR's own multiple today: current market pricing assumed to persist, not an independently established fair value."
        },
        {
         "text": "Value reaching holders grows to $790.4M a year (36x today)",
@@ -15593,7 +15593,7 @@
        {
         "text": "Intents volume equals 10.6% of spot DEX volume in 2036 (today 1.71%)",
         "status": "UNPROVEN",
-        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale reference: Intents is a cross-chain category, not a DEX."
+        "detail": "Spot DEX volume (DefiLlama \"Dexs\" category) grown 20% a year to $17.82T; 2021 to 2025 it grew 26% a year. A scale comparison, not a market share or a ceiling: Intents is a cross-chain category, not a DEX."
        },
        {
         "text": "NEAR keeps 0.042% of every dollar of volume for buybacks",
@@ -15857,7 +15857,7 @@
    "acrossMultiples": 10.891204329978246,
    "acrossGrowth": 10.953972995215818,
    "dominant": "similar",
-   "sentence": "How fast Intents grows and how the market values NEAR matter about equally: prices spread 11x across growth scenarios at NEAR's own multiple, and 11x across the cash-flow multiples at base growth."
+   "sentence": "How fast Intents grows and how the market values NEAR matter about equally: prices spread 11x across growth scenarios at NEAR's own multiple, and 11x across the cash-flow multiples at 20% growth."
   },
   "exclusions": [
    "NEAR's trailing-year multiple is shown but not used: its 365-day window starts 2025-11-11, before Intents buybacks began on 2026-02-23, so it mixes two mechanisms."

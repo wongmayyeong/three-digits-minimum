@@ -11,7 +11,7 @@ npm install
 npm run research:rebuild   # offline, no database or API key; verifies byte-identical output
 ```
 
-The web app presents the same research live, opened by an AI Bull vs Bear debate in which every citation and spoken number is checked by code against a frozen evidence snapshot.
+The web app presents the same research live, opened by an AI Bull vs Bear debate in which every citation and spoken number is checked by code against a frozen evidence snapshot (a consistency check, not proof that an argument is right).
 
 Educational research, not financial advice. Not affiliated with the NEAR Foundation.
 
@@ -22,9 +22,9 @@ All figures are regenerated from public data on every refresh; see THESIS.md for
 - **$100 means a different rank, not a bigger pump.** With ten more years of issuance, $100 is a market cap of about $168B: the third most valuable crypto asset today, excluding stablecoins.
 - **Crypto has two valuation regimes, kept in separate frameworks.** On one basis for every asset (DefiLlama holders revenue, 90-day run rate, same end date), Ethereum, BNB and Solana trade at about 1,600x to 4,300x what reaches holders because they are valued on their on-chain economy; Tron and Hyperliquid at about 20x to 100x (cash flow). NEAR is at about 210x its gas burns plus Intents revenue designated for buybacks (about 520x on the trailing year, which predates buybacks).
 - **The ladder.** At NEAR's own multiple, $25 needs Intents volume to grow up to 5x relative to spot DEX volume (about 1.7% today); $100 needs Intents volume equal to about 11% of spot DEX volume in ten years. Priced like Tron, $100 needs about 22%; priced like Hyperliquid, even $10 needs 5x to 10x.
-- **Reverse view.** Growth scenarios times cash-flow multiples put the ten-year price anywhere from below today's price to about $75. Intents growth and the valuation multiple matter about equally.
+- **Reverse view.** Growth scenarios times cash-flow multiples put the ten-year price anywhere from below today's price to about $75 (shown on the home page beside the ladder, with the delivered-basis row). Illustrative scenarios, not forecasts; "middle" growth is not an expected outcome. Holding NEAR's own multiple fixed makes the answer mostly Intents growth adjusted for supply growth, so the designated and delivered bases nearly agree there and only diverge at Tron's or Hyperliquid's multiple, which are reference scenarios rather than equivalent businesses.
 - **Checkpoints.** The yearly Intents volume each rung requires, so the thesis can be checked every year instead of argued once.
-- **NEAR's economy is one product.** NEAR Intents is about 86% of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and about 93% of the value verifiably captured by $NEAR. NEAR L1 transactions fell about 84% in a year while Intents volume grew about 230%.
+- **Measured fees concentrate in one product.** NEAR Intents is about 86% of the fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas) and about 93% of the value verifiably captured by $NEAR. NEAR L1 transactions fell about 84% in a year while Intents volume grew about 230%.
 - **Buybacks, checked onchain.** DefiLlama labels all NEAR swept into three revenue wallets as buybacks from 23 February 2026. Reading every flow into and out of those wallets (FastNEAR) reproduces its figure to 99% and shows about 67% reaching the buyback wallet; the rest sits in a front-end fund or came from accounts other than Intents. Bought NEAR is held, not burned: net issuance (2.5% of supply a year) is larger than what the buyback wallet absorbs (0.3%).
 - **Against cross-chain rivals.** Intents is the largest of the cross-chain swap venues with public volume and has the highest revenue of the protocols compared, but NEAR's market cap is about 220x Intents revenue, against 7.5x to 13.5x for small cross-chain peer tokens (a conditional comparison: NEAR's market cap also prices the L1 and its other products).
 - **Against the alternatives.** Under a fixed-valuation model NEAR needs about as much driver growth for the same multiple as the median of BTC, ETH, SOL, SUI, AVAX, TON, APT and HYPE, more than the largest of them, with the highest volatility. Ten hypotheses were tested by published rules (three supported, two mixed, two not supported, three untested), and every correction from two external reviews is in `research/three-digits/AUDIT-LOG.md`.
@@ -45,6 +45,16 @@ All figures are regenerated from public data on every refresh; see THESIS.md for
 The first exploration of the ladder, with its inputs, is kept in `research/three-digits/`.
 
 ## Reproduce
+
+The site's Methodology page has a "Reproduce this research" section (`/methodology#reproduce`) with the snapshot's cutoff, retrieval times, model versions, the deployed commit, download links and spot-check values. From a fresh clone, no API keys or database are needed:
+
+```bash
+npm ci
+npm run research:rebuild           # exits 1 with "Offline rebuild differs" if any output changes
+git status --short artifacts THESIS.md   # prints nothing when the rebuild is byte-identical
+```
+
+Response hashes show that a rebuild uses the files that were fetched; they do not show that the source data or its interpretation is right. Integrator concentration (Intents Explorer, partner token) and retention cohorts (BigQuery) need credentials and are not part of the snapshot. The live site recomputes from the newest responses stored in its database, so it can be slightly newer than the committed snapshot.
 
 ```bash
 npm run research:refresh   # fetch live sources, rebuild artifacts/research/* and THESIS.md

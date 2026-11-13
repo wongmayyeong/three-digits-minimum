@@ -177,5 +177,5 @@ export function TriggerTable({ triggers }: { triggers: TriggerResult[] }) {
 }
 
 export function AsOfLine({ newest, windowEnd }: { newest: string | null; windowEnd: string | null }) {
-  return <p className="text-sm text-muted">Data refreshed daily from public sources{newest ? `; latest stored response ${formatDate(newest)}` : ''}{windowEnd ? `; 90-day window ends ${formatDate(windowEnd)}` : ''}.</p>;
+  return <p className="text-sm text-muted">Research snapshot from public sources{newest ? `; latest stored response ${formatDate(newest)}` : ''}{windowEnd ? `; 90-day window ends ${formatDate(windowEnd)}` : ''}.</p>;
 }

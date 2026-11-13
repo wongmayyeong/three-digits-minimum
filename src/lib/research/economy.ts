@@ -123,7 +123,7 @@ export function analyzeEconomy(raws: Record<string, RawRecord | null | undefined
 
   const findings = [
     `NEAR Intents is ${share(intentsFeeShare)} of the fees DefiLlama attributes to the NEAR chain over the last 30 days (its cross-chain swap fees are paid on many chains; they are not NEAR L1 gas); the largest native app family, RHEA, is ${share(total30 ? rhea / total30 : null)}, and NEAR's own gas ${share(feesOnNear.find((p) => p.category === 'Chain')?.share ?? null)}.`,
-    `${share(captureFromIntents)} of NEAR's verified value capture comes from one product (Intents buybacks); the rest is gas burns.`,
+    `${share(captureFromIntents)} of the value capture we could verify for $NEAR comes from one product (Intents buybacks); the rest is gas burns. This describes the measured fee and capture data, not everything that happens on NEAR.`,
     `Intents volume ${fmtPct(intentsVolumeYoY)} year over year while NEAR L1 transactions changed ${fmtPct(l1.txnsYoY)}, active accounts ${fmtPct(l1.activeYoY)} and gas fees ${fmtPct(l1.gasFeesYoY)} (DeFi TVL on NEAR ${fmtPct(ev('DEFI-TVL-NEAR-YOY'))}): paid growth is in cross-chain execution, not in activity on the NEAR chain. Part of the L1 decline may be automated or incentive-driven activity ending; classifying it needs BigQuery (H7).`,
   ];
   return { version: ECONOMY_VERSION, windowEnd: END, feesOnNear, intentsFeeShare, captureFromIntents, l1, intentsVolumeYoY, signer, validators, products, findings };

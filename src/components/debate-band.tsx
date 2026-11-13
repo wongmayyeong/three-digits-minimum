@@ -44,7 +44,7 @@ export function DebateBand({ episode }: { episode: DebateView | null }) {
         <div className="relative mx-auto flex min-h-[min(78dvh,680px)] max-w-3xl flex-col items-center justify-center px-4 py-20 text-center">
           <p className="eyebrow mb-4 text-mint">The debate</p>
           <h2 id="debate-h" className="display-l text-balance">Bull versus Bear, on the same evidence</h2>
-          <p className="lead mt-5 max-w-2xl">Bull argues for three digits. Bear argues how far the evidence really goes. Both cite one frozen snapshot of this research, every number is checked by code, and a Judge scores the arguments, not the investment.</p>
+          <p className="lead mt-5 max-w-2xl">Bull argues for three digits. Bear argues how far the evidence really goes. Both cite one frozen snapshot of this research. Code checks every cited number against that snapshot, which catches wrong numbers but cannot prove an argument right. A Judge scores the arguments, not the investment.</p>
           <div className="mt-9">
             {episode ? (
               <button type="button" className="btn btn-primary h-12 px-7 text-base" onClick={() => setOpen(true)} disabled={open}>

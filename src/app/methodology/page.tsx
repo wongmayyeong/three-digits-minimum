@@ -10,9 +10,11 @@ import { DEX_GROWTH, GROWTH_SCENARIOS, HORIZON_YEARS, LADDER_VERSION, RUNGS, SHA
 import { formatDate, formatValue } from '@/lib/format';
 import { allocationSensitivity, FORMULA_VERSION, SCENARIOS, sensitivity, type SensitivityMatrix } from '@/lib/research/model';
 import { METHODOLOGY_VERSION } from '@/lib/research/evidence';
+import { loadPublishedSnapshot } from '@/lib/research/published';
 import { PROMPT_VERSION } from '@/lib/ai/prompts';
 
 export const dynamic = 'force-dynamic';
+const REPO_URL = 'https://github.com/wongmayyeong/three-digits-minimum';
 export const metadata: Metadata = { title: 'Methodology and model', description: 'How the price ladder is built, how evidence snapshots are frozen, how the buyback model works, and how AI arguments are audited and scored.' };
 
 function Matrix({ m, title }: { m: SensitivityMatrix; title: string }) {
@@ -42,6 +44,9 @@ export default async function MethodologyPage() {
   const fee = base ? sensitivity(base) : null;
   const alloc = base ? allocationSensitivity(base) : null;
   const l = preview?.ladder ?? null;
+  const commit = process.env.RAILWAY_GIT_COMMIT_SHA ?? process.env.VERCEL_GIT_COMMIT_SHA ?? null;
+  const pub = await loadPublishedSnapshot();
+  const utc = (t: string | null | undefined) => (t ? `${formatDate(t)}, ${t.slice(11, 16)} UTC` : 'N/A');
 
   return (
     <Container className="max-w-[1100px] py-12 md:py-16">
@@ -49,7 +54,7 @@ export default async function MethodologyPage() {
       <h1 className="display-l text-balance">How the thesis is tested.</h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-fg-2">This is an educational research project. &quot;Three digits, minimum&quot; is used as a hook: instead of forecasting a price, the price ladder computes what NEAR would have to achieve for $10, $25, $50 and $100 in ten years and labels every condition as observed, assumed or unproven. Bull and Bear argue over the same frozen evidence. Nothing here forecasts prices, rates NEAR as an investment, or gives financial advice.</p>
 
-      <SectionNav items={[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#economy', 'Economy map'], ['#competition', 'Competition'], ['#valuation', 'Valuation and alternatives'], ['#hypotheses', 'Hypotheses'], ['#verdict', 'Verdict and audit'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#limits', 'Limitations']]} />
+      <SectionNav items={[['#principles', 'Principles'], ['#ladder', 'The price ladder'], ['#tokenomics', 'Token economics'], ['#economy', 'Economy map'], ['#competition', 'Competition'], ['#valuation', 'Valuation and alternatives'], ['#hypotheses', 'Hypotheses'], ['#verdict', 'Verdict and audit'], ['#thesis', 'Evidence rules'], ['#model', 'The model'], ['#calculator', 'Calculator'], ['#ai', 'AI and audit'], ['#scoring', 'Scoring'], ['#sources', 'Data sources'], ['#reproduce', 'Reproduce'], ['#limits', 'Limitations']]} />
 
       <section id="principles" className="scroll-mt-20 border-t hairline pt-10 mt-12">
         <h2 className="display-m">Principles</h2>
@@ -278,6 +283,46 @@ required_take_rate        = (y × M) ÷ V      (reverse)`}</pre>
           ))}
         </ul>
         <p className="mt-4 text-sm text-muted">Evidence methodology <span className="num">{METHODOLOGY_VERSION}</span>. The full request catalog lives in <span className="num">src/lib/data/sources.ts</span>; nothing else in the code chooses a URL.</p>
+      </section>
+
+      <section id="reproduce" className="scroll-mt-20 mt-16 border-t hairline pt-10">
+        <h2 className="display-m">Reproduce this research</h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-fg-2">Every number on this site is computed by code from stored source responses. The published snapshot (THESIS.md and canonical.json) and the responses behind it are in the public repository, so anyone can rebuild it offline, with no API keys, no live APIs and no AI model. The live pages recompute from the newest responses stored for the site, so where those are newer, a number here can differ slightly from the published snapshot.</p>
+        <dl className="mt-6 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border hairline bg-line text-sm sm:grid-cols-2">
+          {([
+            ['Repository', <ExternalLink key="r" href={REPO_URL} newTab>{REPO_URL.replace('https://', '')}</ExternalLink>],
+            ['Published snapshot: observation cutoff', pub?.windowEnd ? `90-day window ends ${formatDate(pub.windowEnd)}` : 'N/A'],
+            ['Published snapshot: responses retrieved', pub ? `${pub.responses} responses, ${utc(pub.firstFetchedAt)} to ${utc(pub.lastFetchedAt)}` : 'N/A'],
+            ['This site\'s data', preview ? `window ends ${preview.windowEnd ? formatDate(preview.windowEnd) : 'N/A'}; newest stored response ${utc(preview.newestSourceAt)}` : 'N/A'],
+            ['Model versions', `evidence ${METHODOLOGY_VERSION} · ladder ${LADDER_VERSION} · tokenomics ${TOKENOMICS_VERSION} · thesis ${THESIS_VERSION}`],
+            ['This site was built from commit', commit ? <ExternalLink key="c" href={`${REPO_URL}/commit/${commit}`} newTab>{commit.slice(0, 7)}</ExternalLink> : 'not recorded in this environment'],
+            ['Debate prompts (not needed to rebuild)', PROMPT_VERSION],
+          ] as [string, React.ReactNode][]).map(([k, v]) => (
+            <div key={k} className="bg-surface p-4"><dt className="text-xs text-muted">{k}</dt><dd className="num mt-1 break-words text-fg">{v}</dd></div>
+          ))}
+        </dl>
+
+        <h3 className="mt-8 text-lg font-[600]">Download the data</h3>
+        <ul className="mt-3 space-y-2 text-sm text-fg-2">
+          <li><ExternalLink href={`${REPO_URL}/tree/main/artifacts/research/raw`} newTab>Raw responses</ExternalLink>: every public API response the snapshot was built from, one JSON file per request.</li>
+          <li><ExternalLink href={`${REPO_URL}/blob/main/artifacts/research/raw/manifest.json`} newTab>Request manifest</ExternalLink>: for each response, the request URL, the source, the retrieval time and its SHA-256 hash.</li>
+          <li><ExternalLink href={`${REPO_URL}/blob/main/artifacts/research/evidence-manifest.json`} newTab>Evidence manifest</ExternalLink>: every evidence item with its value, period, transformation, inputs and the request it came from.</li>
+          <li><ExternalLink href={`${REPO_URL}/blob/main/artifacts/research/canonical.json`} newTab>canonical.json</ExternalLink> (every published number) and <ExternalLink href={`${REPO_URL}/blob/main/THESIS.md`} newTab>THESIS.md</ExternalLink> (the written thesis, generated from it).</li>
+        </ul>
+
+        <h3 className="mt-8 text-lg font-[600]">Rebuild it offline</h3>
+        <pre className="mt-3 overflow-x-auto rounded-[var(--radius-md)] border hairline bg-raised p-4 text-xs leading-relaxed text-fg"><code>{`git clone ${REPO_URL}.git
+cd three-digits-minimum
+npm ci
+npm run research:rebuild
+git status --short artifacts THESIS.md`}</code></pre>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-fg-2"><span className="text-fg">It worked if</span> the rebuild exits without &ldquo;Offline rebuild differs from committed output&rdquo;, and the last command prints nothing: every output was rebuilt byte for byte. Spot checks in the published snapshot: NEAR&apos;s own multiple is {formatValue(pub?.ownMultiple ?? null, 'ratio')}, and 20% a year Intents growth at that multiple implies {formatValue(pub?.middleAtOwnMultiple ?? null, 'USD')} in 2036 (canonical.json, <span className="num">ladder.multiples</span> and <span className="num">ladder.implied</span>).</p>
+
+        <h3 className="mt-8 text-lg font-[600]">What needs credentials, and what a hash proves</h3>
+        <ul className="mt-3 space-y-2 text-sm leading-relaxed text-fg-2">
+          <li>Not part of the snapshot, so not needed to rebuild: integrator concentration (NEAR Intents Explorer, partner token) and retention cohorts (BigQuery, your own Google Cloud project). <span className="num">npm run research:refresh</span> fetches fresh data and works without keys, at lower rate limits.</li>
+          <li>A response hash proves the file you rebuild from is the one that was fetched. It does not prove the source data is right, or that our reading of it is.</li>
+        </ul>
       </section>
 
       <section id="limits" className="scroll-mt-20 mt-16 border-t hairline pt-10">

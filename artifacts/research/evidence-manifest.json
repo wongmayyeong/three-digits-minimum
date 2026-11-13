@@ -4386,7 +4386,7 @@
    "LAD-SUPPLY-2036",
    "LAD-MULT-HYPERLIQUID"
   ],
-  "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+  "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
   "notes": null
  },
  {
@@ -4407,7 +4407,7 @@
    "LAD-SUPPLY-2036",
    "LAD-MULT-TRON"
   ],
-  "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+  "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
   "notes": null
  },
  {
@@ -4428,7 +4428,7 @@
    "LAD-SUPPLY-2036",
    "LAD-MULT-TODAY"
   ],
-  "methodology": "Intents grows 20% a year, in line with the base-case DEX market. Scenario, not a forecast.",
+  "methodology": "Intents grows 20% a year, in step with the assumed DEX market growth. A middle scenario, not an expected outcome. Scenario, not a forecast.",
   "notes": null
  },
  {

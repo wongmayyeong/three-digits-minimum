@@ -10,7 +10,7 @@ import { chartSentence } from '@/lib/research/caption';
 import { TOPICS } from '@/lib/topics/topics';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Research dashboard', description: 'Every chart in the thesis with the exact query behind it, refreshed from public NEAR data sources.' };
+export const metadata: Metadata = { title: 'Research dashboard', description: 'Every chart in the thesis with the exact query behind it, from public NEAR data sources.' };
 
 function sqlFiles(): { name: string; sql: string }[] {
   try {

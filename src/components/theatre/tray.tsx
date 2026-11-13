@@ -13,7 +13,7 @@ export function ClaimStatus({ status }: { status: string }) {
     unsupported: 'border-[rgb(255_121_102/0.55)] text-coral',
     assumption: 'border-[rgb(245_196_81/0.45)] text-amber',
   };
-  const label: Record<string, string> = { supported: 'Citations verified', unsupported: 'Unsupported', assumption: 'Assumption' };
+  const label: Record<string, string> = { supported: 'Citation matches evidence', unsupported: 'Unsupported', assumption: 'Assumption' };
   return <span className={`chip ${map[status] ?? ''}`}>{label[status] ?? status}</span>;
 }
 
