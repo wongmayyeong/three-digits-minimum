@@ -12,7 +12,9 @@ const STEPS = [
   { price: 50, h: 166 },
   { price: 100, h: 246 },
 ];
-const W = 640, H = 600, OX = 214, OY = 470, S = 84; // canvas, iso origin, step footprint
+const OX = 214, OY = 470, S = 84; // iso origin, step footprint
+/** Visible canvas, cropped to the art (steps, tags, orb and halo); the floor grid and glow bleed past it. */
+const VIEW = '92 64 526 520';
 const C30 = Math.cos(Math.PI / 6), S30 = 0.5;
 /** Isometric projection: x to the lower right, y to the lower left, z up. */
 const P = (x: number, y: number, z: number): [number, number] => [OX + (x - y) * C30, OY + (x + y) * S30 - z];
@@ -40,7 +42,7 @@ function Staircase() {
   const orb: [number, number] = [last.labelAt[0], last.labelAt[1] - 100];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full overflow-visible" role="img" aria-label="An isometric glass staircase rising from $10 to $100, with a glowing NEAR orb above the top step">
+    <svg viewBox={VIEW} className="h-auto w-full overflow-visible" role="img" aria-label="An isometric glass staircase rising from $10 to $100, with a glowing NEAR orb above the top step">
       <defs>
         <linearGradient id="hx-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#b8ffe4" /><stop offset="0.45" stopColor="#3ff8b6" /><stop offset="1" stopColor="#00c27c" /></linearGradient>
         <linearGradient id="hx-left" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#00d98a" stopOpacity="0.95" /><stop offset="1" stopColor="#023d29" stopOpacity="0.9" /></linearGradient>
@@ -115,7 +117,7 @@ export function HeroIntro({ title, subtitle, asOf }: { title: string; subtitle: 
     <section aria-label="Thesis" className="relative overflow-hidden border-b hairline">
       <div aria-hidden="true" className="nb-hero-grid pointer-events-none absolute inset-0 opacity-50" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-1/2 h-[46rem] w-[46rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(0_236_151/0.16),transparent_62%)]" />
-      <div className="relative mx-auto grid min-h-[min(86dvh,780px)] max-w-[1320px] items-center gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:py-20">
+      <div className="relative mx-auto grid min-h-[min(86dvh,780px)] max-w-[1320px] items-center gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:py-20">
         <div>
           <p className="nb-in eyebrow mb-6 text-mint" style={{ ['--delay' as string]: '0.05s' }}>An evidence-based NEAR investment thesis</p>
           <h1 style={{ ['--delay' as string]: '0.15s' }} className="nb-in display-xl text-balance [font-size:clamp(3rem,7vw,6rem)]">{title}</h1>
@@ -126,7 +128,7 @@ export function HeroIntro({ title, subtitle, asOf }: { title: string; subtitle: 
           </div>
           {asOf && <p className="nb-in mt-8 text-xs text-muted" style={{ ['--delay' as string]: '0.62s' }}>Data through {asOf} · Not financial advice · Not affiliated with the NEAR Foundation</p>}
         </div>
-        <div className="nb-in-art mx-auto w-full max-w-[620px]" style={{ ['--delay' as string]: '0.2s' }}>
+        <div className="nb-in-art mx-auto w-full max-w-[560px] lg:max-w-[780px]" style={{ ['--delay' as string]: '0.2s' }}>
           <Staircase />
         </div>
       </div>
