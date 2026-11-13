@@ -17,7 +17,7 @@ FROM node:24-slim AS run
 WORKDIR /app
 ENV NODE_ENV=production
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates openssl && rm -rf /var/lib/apt/lists/*
-COPY --from=build /app ./
+COPY --from=build --chown=node:node /app ./
 USER node
 EXPOSE 3000
 CMD ["sh", "-c", "npx prisma migrate deploy && npx next start -p ${PORT:-3000}"]
