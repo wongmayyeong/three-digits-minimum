@@ -47,6 +47,28 @@ export const JudgeOutputSchema = z.object({
 });
 export type JudgeOutput = z.infer<typeof JudgeOutputSchema>;
 
+/**
+ * Trims a verdict's list lengths and note lengths to the display limits before validation. Strict JSON Schema
+ * cannot cap array sizes, and an over-long list is not a reason to throw away an otherwise valid verdict.
+ * Scores, the winner and the speech are never altered.
+ */
+export function clampJudgeOutput(raw: unknown): unknown {
+  if (!raw || typeof raw !== 'object') return raw;
+  const j = { ...(raw as Record<string, unknown>) };
+  const cut = (v: unknown, n: number) => (typeof v === 'string' && v.length > n ? `${v.slice(0, n - 1).trimEnd()}…` : v);
+  const list = <T>(v: unknown, n: number, map: (x: T) => T = (x) => x) => (Array.isArray(v) ? (v as T[]).slice(0, n).map(map) : v);
+  j.decisiveEvidenceIds = list(j.decisiveEvidenceIds, 6);
+  j.unsupportedClaims = list<Record<string, unknown>>(j.unsupportedClaims, 12, (u) => ({ ...u, reason: cut(u?.reason, 300) }));
+  j.inputChallenges = list<Record<string, unknown>>(j.inputChallenges, 6, (c) => ({ ...c, challenge: cut(c?.challenge, 400) }));
+  j.whatWouldChangeMyMind = list<unknown>(j.whatWouldChangeMyMind, 5, (w) => cut(w, 300));
+  if (j.scoreNotes && typeof j.scoreNotes === 'object') {
+    const n = j.scoreNotes as Record<string, unknown>;
+    j.scoreNotes = { ...n, bull: cut(n.bull, 500), bear: cut(n.bear, 500) };
+  }
+  j.verdictRationale = cut(j.verdictRationale, 1500);
+  return j;
+}
+
 // ---------------------------------------------------------------- JSON Schemas (strict mode)
 
 const str = { type: 'string' } as const;
@@ -90,10 +112,10 @@ export const JudgeJsonSchema = obj({
   scores: obj({ bull: scoreJson, bear: scoreJson }),
   scoreNotes: obj({ bull: str, bear: str }),
   winner: { type: 'string', enum: ['bull', 'bear', 'inconclusive'] },
-  decisiveEvidenceIds: strArr,
-  unsupportedClaims: { type: 'array', items: obj({ claimId: str, reason: str }) },
-  inputChallenges: { type: 'array', items: obj({ input: { type: 'string', enum: [...MODEL_INPUT_KEYS] }, challenge: str }) },
-  verdictRationale: str,
-  whatWouldChangeMyMind: strArr,
+  decisiveEvidenceIds: { ...strArr, description: 'At most 6 evidence IDs.' },
+  unsupportedClaims: { type: 'array', description: 'At most 12.', items: obj({ claimId: str, reason: { type: 'string', description: 'At most 300 characters.' } }) },
+  inputChallenges: { type: 'array', description: 'At most 6.', items: obj({ input: { type: 'string', enum: [...MODEL_INPUT_KEYS] }, challenge: { type: 'string', description: 'At most 400 characters.' } }) },
+  verdictRationale: { type: 'string', description: 'At most 1500 characters.' },
+  whatWouldChangeMyMind: { ...strArr, description: '2 to 4 items, each at most 300 characters.' },
   confidenceLabel: { type: 'string', enum: ['low', 'moderate', 'high'] },
 });

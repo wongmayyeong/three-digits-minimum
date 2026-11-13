@@ -7,7 +7,7 @@ import { sha256 } from '@/lib/data/sources';
 import { FixtureProvider, type FixtureContext } from '@/lib/ai/fixture';
 import { buildJudgePrompt, buildTurnPrompt, evidenceForPrompt, PROMPT_VERSION, type PriorTurn, type PromptEvidence, type PromptModel } from '@/lib/ai/prompts';
 import { LlmError, resolveLlm, type LlmProvider } from '@/lib/ai/provider';
-import { JudgeJsonSchema, JudgeOutputSchema, TurnJsonSchema, TurnOutputSchema } from '@/lib/ai/schemas';
+import { JudgeJsonSchema, JudgeOutputSchema, clampJudgeOutput, TurnJsonSchema, TurnOutputSchema } from '@/lib/ai/schemas';
 import { finalizeScores, speakable, verifyTurn, type SnapshotIndexItem, type TurnAudit, type VerifiedClaim } from '@/lib/ai/verify';
 import { db } from '@/lib/storage/db';
 import { getTopic } from '@/lib/topics/topics';
@@ -224,7 +224,7 @@ async function runJudge(sessionId: string) {
   const context: FixtureContext = { kind: 'judge', actor: 'judge', phase: 'JUDGING', evidence, opponentClaimIds: [], allClaimIds };
   const out = await callWithRetry(sessionId, provider, 'judge', async () => {
     const r = await provider.generate({ system, user, schemaName: 'judge_verdict', jsonSchema: JudgeJsonSchema, maxOutputTokens: Number(process.env.LLM_MAX_OUTPUT_TOKENS_JUDGE ?? 4000), context });
-    const parsed = JudgeOutputSchema.safeParse(r.json);
+    const parsed = JudgeOutputSchema.safeParse(clampJudgeOutput(r.json));
     if (!parsed.success) throw new LlmError(`Verdict failed schema validation: ${parsed.error.issues.slice(0, 3).map((i) => `${i.path.join('.')} ${i.message}`).join('; ')}`, true);
     return { parsed: parsed.data, usage: { inputTokens: r.inputTokens, outputTokens: r.outputTokens, model: r.model } };
   });

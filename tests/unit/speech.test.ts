@@ -20,3 +20,17 @@ describe('mp3Duration', () => {
     expect(mp3Duration(Buffer.concat(Array.from({ length: 50 }, () => frame)))).toBeCloseTo(1.2, 5);
   });
 });
+
+describe('clampJudgeOutput', () => {
+  it('trims over-long lists and notes so a valid verdict still parses', async () => {
+    const { clampJudgeOutput, JudgeOutputSchema } = await import('@/lib/ai/schemas');
+    const s = { evidenceAccuracy: 30, methodology: 15, rebuttals: 15, risks: 8, transparency: 8 };
+    const raw = { speech: 'Verdict.', scores: { bull: s, bear: s }, scoreNotes: { bull: 'x', bear: 'y' }, winner: 'bear', decisiveEvidenceIds: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+      unsupportedClaims: [{ claimId: 'BO-1', reason: 'r'.repeat(400) }], inputChallenges: [], verdictRationale: 'Because.', whatWouldChangeMyMind: ['More deliveries.'], confidenceLabel: 'moderate' };
+    expect(JudgeOutputSchema.safeParse(raw).success).toBe(false);
+    const out = JudgeOutputSchema.parse(clampJudgeOutput(raw));
+    expect(out.decisiveEvidenceIds).toHaveLength(6);
+    expect(out.unsupportedClaims[0]!.reason.length).toBeLessThanOrEqual(300);
+    expect(out.winner).toBe('bear');
+  });
+});
