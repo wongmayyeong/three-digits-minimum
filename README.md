@@ -91,7 +91,7 @@ API: `GET /api/topics`, `GET /api/topics/:slug/evidence-preview`, `POST /api/deb
 | Unit and integration tests (real Postgres) | `npm test` | 96 passed |
 | End-to-end, desktop and mobile | `npm run test:e2e` | 7 passed |
 | Offline rebuild is byte-identical | `npm run research:rebuild` | passes |
-| Real OpenAI debate | | not yet run |
+| Real OpenAI debate (gpt-6.1-sol) | `POST /api/debates` | run 2026-11-13: complete, every turn audited, Bear 93 vs Bull 88 |
 | ElevenLabs voices | | adapter tested with a mocked provider |
 
 See `.env.example` for every variable. License: MIT.
