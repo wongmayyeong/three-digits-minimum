@@ -2,7 +2,7 @@
   "name": "three-digits-minimum",
   "version": "0.1.0",
   "private": true,
-  "description": "NEBUBE: an evidence-first AI debate arena for NEAR investment theses. Judged on the evidence, not the conviction.",
+  "description": "Three Digits, Minimum? An evidence-based NEAR investment thesis with a price ladder, audited research and an AI Bull vs Bear debate.",
   "license": "MIT",
   "type": "module",
   "engines": {

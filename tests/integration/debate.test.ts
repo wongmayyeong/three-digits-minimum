@@ -1,6 +1,6 @@
 /**
  * Integration tests against a real PostgreSQL database (TEST_DATABASE_URL, default: the
- * local embedded server's nebube_test database). No network: provider responses are
+ * local embedded server's thesis_test database). No network: provider responses are
  * seeded from the committed artifacts/research/raw snapshot, and the LLM is the local
  * synthetic fixture.
  */
@@ -9,9 +9,9 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 
-const TEST_DB = process.env.TEST_DATABASE_URL ?? 'postgresql://nebube:nebube-local@localhost:54339/nebube_test';
+const TEST_DB = process.env.TEST_DATABASE_URL ?? 'postgresql://thesis:thesis-local@localhost:54339/thesis_test';
 process.env.DATABASE_URL = TEST_DB;
-process.env.NEBUBE_FIXTURE_LLM = '1';
+process.env.THESIS_FIXTURE_LLM = '1';
 delete process.env.OPENAI_API_KEY;
 delete process.env.LLM_API_KEY;
 delete process.env.ELEVENLABS_API_KEY;

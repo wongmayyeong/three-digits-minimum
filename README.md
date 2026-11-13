@@ -69,7 +69,7 @@ npm run dev                # http://localhost:3000
 
 Pages: `/` (the verdict, the price ladder, six findings, leads and trails, hypotheses), `/research` (every chart with its query and response hash), `/methodology` (formulas, rules, calculator, the audit and limitations).
 
-Without an LLM key, the thesis, research pages and replays work, and starting a debate is disabled with an explanation. For pipeline testing only, `NEBUBE_FIXTURE_LLM=1` enables a templated synthetic LLM; it is refused in production, and its episodes are labelled SYNTHETIC.
+Without an LLM key, the thesis, research pages and replays work, and starting a debate is disabled with an explanation. For pipeline testing only, `THESIS_FIXTURE_LLM=1` enables a templated synthetic LLM; it is refused in production, and its episodes are labelled SYNTHETIC.
 
 ## The debate
 
@@ -98,7 +98,7 @@ See `.env.example` for every variable. License: MIT.
 
 ## Project history
 
-The project began as **NEBUBE**, an evidence-first AI debate arena for several NEAR theses. It was then narrowed to a single thesis ("Is NEAR Building the Future or Following the Hype?"), and finally rebranded as **Three Digits, Minimum?**: an investment thesis with a price ladder, audited research and the AI debate as one way into it. Internal identifiers (the `NEBUBE_*` environment variables, package and database names, methodology version tags) keep the original name so existing configurations keep working.
+The project began as **NEBUBE**, an evidence-first AI debate arena for several NEAR theses. It was then narrowed to a single thesis ("Is NEAR Building the Future or Following the Hype?"), and finally rebranded as **Three Digits, Minimum?**: an investment thesis with a price ladder, audited research and the AI debate as one way into it. Every identifier in the code, configuration and data now uses the new name; only these older commit messages mention NEBUBE.
 
 ## Credits and AI disclosure
 

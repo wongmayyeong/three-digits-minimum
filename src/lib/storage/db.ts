@@ -1,7 +1,7 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@/generated/prisma/client';
 
-const globalForPrisma = globalThis as unknown as { __nebubePrisma?: PrismaClient };
+const globalForPrisma = globalThis as unknown as { __thesisPrisma?: PrismaClient };
 
 function create(): PrismaClient {
   const url = process.env.DATABASE_URL;
@@ -11,6 +11,6 @@ function create(): PrismaClient {
 
 /** Lazily created singleton, so importing this module never connects at build time. */
 export function db(): PrismaClient {
-  if (!globalForPrisma.__nebubePrisma) globalForPrisma.__nebubePrisma = create();
-  return globalForPrisma.__nebubePrisma;
+  if (!globalForPrisma.__thesisPrisma) globalForPrisma.__thesisPrisma = create();
+  return globalForPrisma.__thesisPrisma;
 }

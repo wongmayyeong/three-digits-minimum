@@ -1,5 +1,5 @@
 {
- "methodologyVersion": "nebube-evidence-1.1.0",
+ "methodologyVersion": "three-digits-evidence-1.1.0",
  "formulaVersion": "nvabe-1.0.0",
  "windowEnd": "2026-11-10",
  "peerWindowEnd": "2026-11-10",
@@ -14150,7 +14150,7 @@
   }
  ],
  "thesis": {
-  "version": "nebube-thesis-1.1.0",
+  "version": "three-digits-thesis-1.1.0",
   "eras": [
    {
     "id": "social",

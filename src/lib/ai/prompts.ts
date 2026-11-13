@@ -10,7 +10,7 @@ import { formatValue, formatPeriod } from '@/lib/format';
 import type { TopicDef } from '@/lib/topics/topics';
 import type { DebatePhase, PhaseDef } from '@/lib/debate/phases';
 
-export const PROMPT_VERSION = 'nebube-prompts-1.2.0';
+export const PROMPT_VERSION = 'three-digits-prompts-1.2.0';
 
 export interface PromptEvidence {
   id: string;

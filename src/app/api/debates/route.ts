@@ -10,7 +10,7 @@ import { THESIS_TOPIC } from '@/lib/topics/topics';
 export const dynamic = 'force-dynamic';
 
 /**
- * POST /api/debates (admin only, Authorization: Bearer NEBUBE_ADMIN_TOKEN).
+ * POST /api/debates (admin only, Authorization: Bearer THESIS_ADMIN_TOKEN).
  * Freezes a fresh snapshot and starts a new debate episode. Episodes are otherwise created by
  * the daily refresh when the verdict changes, so visitors never trigger AI spend.
  */

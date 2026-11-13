@@ -247,7 +247,7 @@ No database or API key is needed for either command. Outputs: `artifacts/researc
 | BigQuery `crypto_near_mainnet_us` | SQL in `research/sql/`, optional, needs your Google Cloud project |
 | NEAR Intents Explorer API | Optional, partner JWT; integrator concentration ({{INT-EXPLORER-TOP5-SHARE}}) |
 
-Methodology versions: ladder `three-digits-1.0.0`, evidence `nebube-evidence-1.1.0`, model `nvabe-1.0.0`, evidence rules `nebube-thesis-1.1.0`.
+Methodology versions: ladder `three-digits-2.0.0`, evidence `three-digits-evidence-1.1.0`, model `nvabe-1.0.0`, evidence rules `three-digits-thesis-1.1.0`.
 
 ## Appendix: evidence register
 

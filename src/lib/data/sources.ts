@@ -1,5 +1,5 @@
 /**
- * Declarative catalog of every external request NEBUBE makes. Nothing outside this file
+ * Declarative catalog of every external request the project makes. Nothing outside this file
  * chooses a URL, so the full set of data dependencies (and the SSRF surface) is auditable
  * in one place. User input never reaches a URL: topics select request keys from this list.
  */
@@ -159,7 +159,7 @@ const b64 = (o: unknown) => Buffer.from(JSON.stringify(o)).toString('base64');
 function rpc(key: string, method: string, params: unknown, project: (r: any) => unknown): HttpRequestDef {
   return {
     key, source: 'near-rpc', url: SOURCES['near-rpc'].baseUrl, method: 'POST', ttlMs: 10 * MIN,
-    body: { jsonrpc: '2.0', id: 'nebube', method, params },
+    body: { jsonrpc: '2.0', id: 'three-digits', method, params },
     project: (j: any) => {
       if (j?.error) throw new Error(`RPC error: ${JSON.stringify(j.error).slice(0, 200)}`);
       return project(j?.result);

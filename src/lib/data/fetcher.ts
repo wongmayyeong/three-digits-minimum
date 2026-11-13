@@ -39,8 +39,8 @@ const MAX_BYTES = 25 * 1024 * 1024;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const lastCall = new Map<SourceId, number>();
-/** Tests set NEBUBE_PACING_SCALE=0: providers are unreachable there, so waiting between failed calls proves nothing. */
-const PACING_SCALE = Number.isFinite(Number(process.env.NEBUBE_PACING_SCALE)) && process.env.NEBUBE_PACING_SCALE !== undefined ? Number(process.env.NEBUBE_PACING_SCALE) : 1;
+/** Tests set THESIS_PACING_SCALE=0: providers are unreachable there, so waiting between failed calls proves nothing. */
+const PACING_SCALE = Number.isFinite(Number(process.env.THESIS_PACING_SCALE)) && process.env.THESIS_PACING_SCALE !== undefined ? Number(process.env.THESIS_PACING_SCALE) : 1;
 const queues = new Map<SourceId, Promise<unknown>>();
 
 /** Serializes requests per source and enforces the source's minimum gap. */

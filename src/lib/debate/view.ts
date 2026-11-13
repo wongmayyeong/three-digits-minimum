@@ -238,7 +238,7 @@ export async function listLibrary(opts: { topic?: string; winner?: string; from?
   const limit = Math.min(50, Math.max(1, opts.limit ?? 20));
   const where = {
     // Synthetic test episodes are listed only in local dev, or with an explicit temporary demo opt-in.
-    ...(process.env.NEBUBE_SHOW_SYNTHETIC === '1' && (process.env.NODE_ENV !== 'production' || process.env.NEBUBE_DEMO_SYNTHETIC === '1') ? {} : { isPublic: true, synthetic: false }),
+    ...(process.env.THESIS_SHOW_SYNTHETIC === '1' && (process.env.NODE_ENV !== 'production' || process.env.THESIS_DEMO_SYNTHETIC === '1') ? {} : { isPublic: true, synthetic: false }),
     status: 'COMPLETE' as const,
     topicSlug: { in: TOPICS.map((t) => t.slug) as string[] },
     ...(opts.winner && ['bull', 'bear', 'inconclusive'].includes(opts.winner) ? { verdict: { winner: opts.winner } } : {}),

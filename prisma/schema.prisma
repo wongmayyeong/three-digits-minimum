@@ -1,4 +1,4 @@
-// NEBUBE persistence model.
+// Three Digits, Minimum? persistence model.
 // Snapshots, evidence, turns, verdicts and replay events are append-only once written:
 // application code never updates a frozen snapshot or a completed debate's turns.
 

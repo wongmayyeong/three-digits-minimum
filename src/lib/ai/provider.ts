@@ -177,7 +177,7 @@ export function resolveLlm(): { provider: LlmProvider | null; status: ProviderSt
     const p = new ChatCompletionsProvider(compatKey, process.env.LLM_MODEL, compatBase);
     return { provider: p, status: { configured: true, provider: p.id, model: process.env.LLM_MODEL, reason: null } };
   }
-  if (process.env.NEBUBE_FIXTURE_LLM === '1' && process.env.NODE_ENV !== 'production') {
+  if (process.env.THESIS_FIXTURE_LLM === '1' && process.env.NODE_ENV !== 'production') {
     // Lazy import keeps the fixture out of the production code path entirely.
     return { provider: null, status: { configured: true, provider: 'fixture', model: 'synthetic-fixture', reason: 'Synthetic fixture provider (local testing only).' } };
   }

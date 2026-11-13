@@ -68,7 +68,7 @@ test('API validation and health without secrets', async ({ request }) => {
   expect(topics.topics).toHaveLength(1);
   const health = await request.get('/api/health');
   const text = await health.text();
-  expect(text).not.toMatch(/sk-|nebube-local|postgresql:\/\/|e2e-admin-token/);
+  expect(text).not.toMatch(/sk-|thesis-local|postgresql:\/\/|e2e-admin-token/);
   expect(JSON.parse(text).checks.database).toBe('ok');
   expect((await request.get('/library', { maxRedirects: 0 })).status()).toBeGreaterThanOrEqual(300);
 });

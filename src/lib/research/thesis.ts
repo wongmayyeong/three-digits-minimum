@@ -15,7 +15,7 @@ import { addDays, DAY_MS, fromUnixPairs, isoDay, pctChange, safeDiv, valueOn, wi
 import type { EvidenceDraft } from './types';
 import { formatValue } from '@/lib/format';
 
-export const THESIS_VERSION = 'nebube-thesis-1.1.0';
+export const THESIS_VERSION = 'three-digits-thesis-1.1.0';
 
 export const THESIS_TITLE = 'Three Digits, Minimum?';
 export const THESIS_SUBTITLE = 'How far can NEAR really go?';

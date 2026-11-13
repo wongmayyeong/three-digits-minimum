@@ -7,7 +7,7 @@ import './globals.css';
 import { SiteFooter, SiteHeader } from '@/components/brand';
 import { MotionProvider } from '@/components/motion-provider';
 
-const base = process.env.NEBUBE_PUBLIC_URL || 'http://localhost:3000';
+const base = process.env.THESIS_PUBLIC_URL || 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(base),

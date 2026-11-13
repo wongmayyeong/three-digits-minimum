@@ -28,6 +28,6 @@ export async function rateLimit(key: string, limit: number, windowMs: number): P
 export function clientKeyFrom(headers: Headers): string {
   const fwd = headers.get('x-forwarded-for')?.split(',')[0]?.trim();
   const ip = fwd || headers.get('x-real-ip') || 'unknown';
-  const salt = process.env.CLIENT_HASH_SALT || 'nebube-dev-salt';
+  const salt = process.env.CLIENT_HASH_SALT || 'three-digits-dev-salt';
   return createHash('sha256').update(`${salt}:${ip}`).digest('hex').slice(0, 32);
 }

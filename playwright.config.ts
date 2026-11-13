@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const TEST_DB = process.env.TEST_DATABASE_URL ?? 'postgresql://nebube:nebube-local@localhost:54339/nebube_test';
-const env = { DATABASE_URL: TEST_DB, NEBUBE_FIXTURE_LLM: '1', NEBUBE_ADMIN_TOKEN: 'e2e-admin-token-0123456789abcdef', NEBUBE_SHOW_SYNTHETIC: '1', DISABLE_DAILY_REFRESH: '1', NEXT_DIST_DIR: '.next-e2e', RATE_LIMIT_DEBATES_PER_HOUR: '50', OPENAI_API_KEY: '', ELEVENLABS_API_KEY: '' };
+const TEST_DB = process.env.TEST_DATABASE_URL ?? 'postgresql://thesis:thesis-local@localhost:54339/thesis_test';
+const env = { DATABASE_URL: TEST_DB, THESIS_FIXTURE_LLM: '1', THESIS_ADMIN_TOKEN: 'e2e-admin-token-0123456789abcdef', THESIS_SHOW_SYNTHETIC: '1', DISABLE_DAILY_REFRESH: '1', NEXT_DIST_DIR: '.next-e2e', RATE_LIMIT_DEBATES_PER_HOUR: '50', OPENAI_API_KEY: '', ELEVENLABS_API_KEY: '' };
 
 /**
  * End-to-end tests run against a dev server and a worker on the test database, using the

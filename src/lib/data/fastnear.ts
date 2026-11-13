@@ -30,7 +30,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function post(path: string, body: unknown, attempt = 0): Promise<any> {
   await sleep(GAP_MS);
   const res = await fetch(`${FASTNEAR_TX}/${path}`, {
-    method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json', 'user-agent': 'nebube-research' },
+    method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json', 'user-agent': 'three-digits-research' },
     body: JSON.stringify(body), signal: AbortSignal.timeout(60_000),
   });
   if ((res.status === 429 || res.status >= 500) && attempt < 4) { await sleep(3_000 * (attempt + 1)); return post(path, body, attempt + 1); }

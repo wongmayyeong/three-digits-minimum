@@ -1,4 +1,4 @@
-# NEBUBE todo
+# Three Digits, Minimum? todo
 
 ## Keys and configuration
 - [ ] Add `OPENAI_API_KEY` to `.env` (optionally set `OPENAI_MODEL`), then restart the worker and web server
@@ -24,7 +24,7 @@
 - [ ] Run `npm run research:refresh` close to submission so THESIS.md has fresh numbers
 
 ## Hackathon submission (deadline 2026-11-14 23:59 UTC)
-- [ ] Decide which project to submit, NEBUBE or NEAR Thesis Lab (one submission per repository)
+- [x] Decide which project to submit: Three Digits, Minimum? (one submission per repository)
 - [ ] Re-read https://nearhackathon.com/HACKATHON.md for rule changes
 - [ ] Deploy a hosted demo (recommended; keep it up until at least 2026-11-18)
 - [ ] Make the repository public on GitHub

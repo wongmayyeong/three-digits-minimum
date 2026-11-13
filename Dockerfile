@@ -1,7 +1,7 @@
 # One image, two processes: the web app and the worker (choose with the command).
-#   docker build -t nebube .
-#   docker run --env-file .env -p 3000:3000 nebube                 # web
-#   docker run --env-file .env nebube npm run worker               # worker
+#   docker build -t three-digits .
+#   docker run --env-file .env -p 3000:3000 three-digits                 # web
+#   docker run --env-file .env three-digits npm run worker               # worker
 FROM node:24-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
