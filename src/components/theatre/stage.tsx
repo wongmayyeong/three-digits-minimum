@@ -113,8 +113,8 @@ export function StudioScene({ cast, judgeScene = false, zoom = false, centered =
           <motion.rect x="0" y="0" width={W} height={H} fill="#060a08" clipPath="url(#nb-foreground)" initial={false} animate={{ opacity: judgeScene ? 0.36 : 0.06 }} transition={{ duration: reduce ? 0 : 0.6 }} />
         </svg>
 
-        <PodiumSign x={295} y={652} title="Building" caption="Affirmative" color="#00ec97" dir="up" active={cast.active === 'bull'} />
-        <PodiumSign x={1377} y={652} title="Hype" caption="Negative" color="#ff7966" dir="down" active={cast.active === 'bear'} />
+        <PodiumSign x={295} y={652} title="Reachable" caption="Three digits" color="#00ec97" dir="up" active={cast.active === 'bull'} />
+        <PodiumSign x={1377} y={652} title="No minimum" caption="Three digits" color="#ff7966" dir="down" active={cast.active === 'bear'} />
         <JudgePlaque x={837} y={637} active={cast.active === 'judge'} />
       </motion.div>
       {children}
@@ -126,7 +126,7 @@ export function StudioScene({ cast, judgeScene = false, zoom = false, centered =
 const u = (n: number) => `${((n * 100) / W).toFixed(3)}cqw`;
 const chamfer = (c: string) => `polygon(${c} 0, calc(100% - ${c}) 0, 100% ${c}, 100% calc(100% - ${c}), calc(100% - ${c}) 100%, ${c} 100%, 0 calc(100% - ${c}), 0 ${c})`;
 
-/** Pixel arrow (7x7 grid): up for the building case, down for the hype case. */
+/** Pixel arrow (7x7 grid): up for the Bull case (three digits reachable), down for the Bear case (no minimum). */
 function PixelArrow({ dir, color }: { dir: 'up' | 'down'; color: string }) {
   return (
     <svg viewBox="0 0 7 7" style={{ width: u(17), height: u(17), transform: dir === 'down' ? 'rotate(180deg)' : undefined }} shapeRendering="crispEdges" aria-hidden="true">
@@ -135,7 +135,7 @@ function PixelArrow({ dir, color }: { dir: 'up' | 'down'; color: string }) {
   );
 }
 
-/** Lit sign on a side podium's front panel: the side (Affirmative / Negative) over the case it argues. */
+/** Lit sign on a side podium's front panel: the question over the case that side argues. */
 function PodiumSign({ x, y, title, caption, color, dir, active }: { x: number; y: number; title: string; caption: string; color: string; dir: 'up' | 'down'; active: boolean }) {
   const reduce = useReducedMotion();
   const clip = chamfer(u(9));
@@ -155,7 +155,7 @@ function PodiumSign({ x, y, title, caption, color, dir, active }: { x: number; y
         </span>
         <span className="relative flex items-center transition-opacity duration-300" style={{ gap: u(10), opacity: active ? 1 : 0.82 }}>
           <PixelArrow dir={dir} color={color} />
-          <span className="font-[700] uppercase leading-none" style={{ fontFamily: 'var(--font-pixel)', fontSize: u(30), letterSpacing: '0.06em', color, textShadow: `0 0 ${u(active ? 12 : 6)} ${color}, 0 ${u(3)} 0 #000` }}>{title}</span>
+          <span className="font-[700] uppercase leading-none" style={{ fontFamily: 'var(--font-pixel)', fontSize: u(Math.min(30, 200 / title.length)), letterSpacing: '0.04em', color, textShadow: `0 0 ${u(active ? 12 : 6)} ${color}, 0 ${u(3)} 0 #000` }}>{title}</span>
         </span>
       </div>
     </div>

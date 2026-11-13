@@ -1,11 +1,13 @@
 /**
  * OpenAI text-to-speech: POST /v1/audio/speech with a built-in voice and a delivery instruction.
  * The request text is the canonical, already-validated speechText; the instruction shapes only tone and pace.
- * OpenAI returns no timestamps, so captions follow the audio clock proportionally; the duration is measured from
- * the MP3 frames themselves, so playback advances exactly when the speech ends.
+ * OpenAI returns no timestamps, so the clip is transcribed once with word timestamps and aligned to the script
+ * (word-timing.ts); captions and mouths then follow the real speech. If that fails, captions fall back to
+ * proportional timing. The duration is measured from the MP3 frames, so playback advances when the speech ends.
  */
 import { SpeechError, type SpeechResult } from './elevenlabs';
 import type { VoiceDirection } from './voices';
+import { alignWords, transcribeWords } from './word-timing';
 
 export async function synthesizeOpenAI(text: string, voice: VoiceDirection, opts: { apiKey: string; model: string; timeoutMs?: number }): Promise<SpeechResult> {
   let res: Response;
@@ -29,7 +31,18 @@ export async function synthesizeOpenAI(text: string, voice: VoiceDirection, opts
   if (!audio.length) throw new SpeechError('OpenAI returned no audio', true);
   const durationSec = mp3Duration(audio);
   if (!durationSec) throw new SpeechError('OpenAI returned audio whose length could not be measured', true);
-  return { audio, mimeType: 'audio/mpeg', durationSec, alignment: null, alignmentKind: 'none', model: opts.model, voiceId: voice.openai.voice };
+  const timing = await timeSpeech(text, audio, durationSec, opts.apiKey);
+  return { audio, mimeType: 'audio/mpeg', durationSec, alignment: timing?.alignment ?? null, alignmentKind: timing ? 'character' : 'none', model: opts.model, voiceId: voice.openai.voice };
+}
+
+/** Word-timed caption alignment for a clip, or null if transcription fails or matches too little of the script. */
+export async function timeSpeech(text: string, audio: Buffer, durationSec: number, apiKey: string) {
+  try {
+    const words = await transcribeWords(audio, { apiKey, prompt: text });
+    return alignWords(text, words, durationSec);
+  } catch {
+    return null;
+  }
 }
 
 const BITRATES: Record<string, number[]> = {

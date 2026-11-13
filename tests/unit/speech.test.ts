@@ -34,3 +34,27 @@ describe('clampJudgeOutput', () => {
     expect(out.winner).toBe('bear');
   });
 });
+
+describe('alignWords', () => {
+  it('times each script character from transcribed words, interpolating words the transcript renders differently', async () => {
+    const { alignWords } = await import('@/lib/audio/word-timing');
+    const text = 'Bear, look at $20.58 million over ninety-day windows.';
+    const words = [
+      { word: 'Bear', start: 0.0, end: 0.4 }, { word: 'look', start: 0.6, end: 0.9 }, { word: 'at', start: 0.9, end: 1.0 },
+      { word: '$20.58', start: 1.1, end: 1.9 }, { word: 'million', start: 1.9, end: 2.3 }, { word: 'over', start: 2.4, end: 2.6 },
+      { word: '90-day', start: 2.6, end: 3.2 }, { word: 'windows', start: 3.3, end: 3.9 },
+    ];
+    const r = alignWords(text, words, 4.2)!;
+    expect(r.alignment.chars.join('')).toBe(text);
+    expect(r.alignment.starts).toHaveLength(text.length);
+    expect(r.alignment.starts[text.indexOf('million')]).toBeCloseTo(1.9, 5);
+    const nd = r.alignment.starts[text.indexOf('ninety')]!;
+    expect(nd).toBeGreaterThanOrEqual(2.6 - 1e-9);
+    expect(nd).toBeLessThan(3.3);
+    for (let i = 1; i < text.length; i++) expect(r.alignment.starts[i]!).toBeGreaterThanOrEqual(r.alignment.starts[i - 1]!);
+  });
+  it('gives up when the transcript does not match the script', async () => {
+    const { alignWords } = await import('@/lib/audio/word-timing');
+    expect(alignWords('One two three four.', [{ word: 'banana', start: 0, end: 1 }], 1)).toBeNull();
+  });
+});
