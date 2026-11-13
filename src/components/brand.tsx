@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { NavLinks } from './nav-links';
 
 /** Concave four-point star (the evidence spark). */
 export function starPath(cx: number, cy: number, r: number, pinch = 0.18): string {
@@ -21,12 +22,6 @@ export function Wordmark({ className = '' }: { className?: string }) {
   );
 }
 
-const NAV = [
-  { href: '/', label: 'Thesis' },
-  { href: '/research', label: 'Data & Queries' },
-  { href: '/methodology', label: 'Methodology' },
-];
-
 export function SiteHeader() {
   return (
     <header className="no-print sticky top-0 z-40 border-b hairline bg-[color-mix(in_srgb,var(--color-bg)_86%,transparent)] backdrop-blur-md">
@@ -34,13 +29,7 @@ export function SiteHeader() {
         <Link href="/" aria-label="Three Digits, Minimum? Home" className="shrink-0 rounded-sm">
           <Wordmark />
         </Link>
-        <nav aria-label="Primary" className="-mr-2 flex items-center overflow-x-auto">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="whitespace-nowrap rounded-sm px-2.5 py-2 text-sm text-fg-2 transition-colors hover:text-fg sm:px-3">
-              {n.label}
-            </Link>
-          ))}
-        </nav>
+        <NavLinks />
       </div>
     </header>
   );
@@ -58,7 +47,7 @@ export function SiteFooter() {
           <p className="eyebrow">Research</p>
           <ul className="space-y-1.5">
             <li><Link className="hover:text-fg" href="/">The thesis and verdict</Link></li>
-            <li><Link className="hover:text-fg" href="/#episodes">Debate episodes</Link></li>
+            <li><Link className="hover:text-fg" href="/#debate">The debate</Link></li>
             <li><Link className="hover:text-fg" href="/research">Data and queries</Link></li>
             <li><Link className="hover:text-fg" href="/methodology">Methodology and model</Link></li>
           </ul>

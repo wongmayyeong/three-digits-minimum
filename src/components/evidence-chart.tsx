@@ -4,9 +4,12 @@
  * Single-series time-series chart for one evidence item. One series = no legend box; the
  * title names it. 2px line, 10% area wash, hairline grid, crosshair tooltip with unit,
  * window, provider and method. A data table is always available beneath.
+ * When the chart scrolls into view the line draws itself left to right, then the latest point pulses; reduced
+ * motion shows the finished chart at once.
  */
-import { useId, useState } from 'react';
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { useEffect, useId, useRef, useState } from 'react';
+import { useReducedMotion } from 'motion/react';
+import { Area, AreaChart, CartesianGrid, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { formatDate, formatValue } from '@/lib/format';
 
 export interface ChartSeries {
@@ -31,13 +34,25 @@ export function EvidenceChart({ series, source, method, tone = 'mint', height = 
 }) {
   const id = useId().replace(/:/g, '');
   const [showTable, setShowTable] = useState(false);
+  const reduce = !!useReducedMotion();
+  const box = useRef<HTMLDivElement | null>(null);
+  const [seen, setSeen] = useState(false);
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => {
+    const el = box.current;
+    if (!el || seen) return;
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [seen]);
+  const animate = seen && !reduce;
   const color = tone === 'coral' ? '#ff7966' : tone === 'neutral' ? '#c9cdc5' : '#00ec97';
   const data = series.points.map(([d, v]) => ({ d, v }));
   const last = data[data.length - 1];
   if (!data.length) return <p className="text-sm text-muted">No series data in this snapshot.</p>;
   return (
     <figure className="w-full">
-      <div style={{ height }} className="w-full" role="img" aria-label={`${series.label}: ${data.length} points from ${formatDate(data[0]!.d)} to ${formatDate(last!.d)}, latest ${formatValue(last!.v, series.unit)}. Source ${source}.`}>
+      <div ref={box} style={{ height }} className={`w-full transition-[opacity,transform] duration-700 ease-out ${seen || reduce ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'}`} role="img" aria-label={`${series.label}: ${data.length} points from ${formatDate(data[0]!.d)} to ${formatDate(last!.d)}, latest ${formatValue(last!.v, series.unit)}. Source ${source}.`}>
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 8, right: compact ? 4 : 8, bottom: 0, left: compact ? -12 : 0 }}>
             <defs>
@@ -64,8 +79,18 @@ export function EvidenceChart({ series, source, method, tone = 'mint', height = 
                 );
               }}
             />
-            <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#g${id})`} isAnimationActive={false} dot={false}
-              activeDot={{ r: 4, fill: color, stroke: '#0c1210', strokeWidth: 2 }} />
+            {(seen || reduce) && (
+              <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#g${id})`} isAnimationActive={animate} animationDuration={1500} animationEasing="ease-out"
+                onAnimationEnd={() => setDrawn(true)} dot={false} activeDot={{ r: 4, fill: color, stroke: '#0c1210', strokeWidth: 2 }} />
+            )}
+            {highlightLast && last && (drawn || reduce) && (
+              <ReferenceDot x={last.d} y={last.v} ifOverflow="visible" shape={(p: { cx?: number; cy?: number }) => (
+                <g>
+                  <circle cx={p.cx} cy={p.cy} r={9} fill={color} className="nb-ping" style={{ transformOrigin: `${p.cx}px ${p.cy}px` }} />
+                  <circle cx={p.cx} cy={p.cy} r={3.5} fill={color} stroke="#0c1210" strokeWidth={1.5} />
+                </g>
+              )} />
+            )}
           </AreaChart>
         </ResponsiveContainer>
       </div>

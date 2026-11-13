@@ -3,9 +3,8 @@ import { DebateBand } from '@/components/debate-band';
 import { HeroIntro } from '@/components/hero-intro';
 import { LadderGrid } from '@/components/ladder';
 import { LadderExplorer } from '@/components/ladder-explorer';
-import { LibraryRow } from '@/components/library-row';
 import { AsOfLine, SectionHeader } from '@/components/thesis';
-import { Container, EmptyState, Notice } from '@/components/ui';
+import { Container, Notice } from '@/components/ui';
 import { previewTopic } from '@/lib/debate/preview';
 import { listLibrary, loadDebateView } from '@/lib/debate/view';
 import { formatDate, formatValue } from '@/lib/format';
@@ -45,7 +44,8 @@ export default async function ThesisPage() {
     previewTopic(THESIS_TOPIC.slug, { offline: true }).catch(() => null),
     listLibrary({ limit: 6 }).catch(() => null),
   ]);
-  const latest = episodes?.entries[0] ? await loadDebateView(episodes.entries[0].id).catch(() => null) : null;
+  const done = episodes?.entries.find((e) => e.status === 'COMPLETE');
+  const latest = done ? await loadDebateView(done.id).catch(() => null) : null;
   const l = preview?.ladder ?? null;
   const r100 = l?.rungs.find((r) => r.price === 100) ?? null;
   const tk = preview?.tokenomics ?? null, cc = preview?.crossChain ?? null, ec = preview?.economy ?? null, va = preview?.valuation ?? null, hy = preview?.hypotheses ?? null, vd = preview?.verdict ?? null;
@@ -177,15 +177,6 @@ export default async function ThesisPage() {
                 <h3 id="exploit-h" className="mt-2 font-[600]">NEAR Intents exploit, 1 October 2026</h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg-2">About $3.8M of unbacked balances were created through a flaw in the Intents contract&apos;s deposit notification function. The attacker returned the funds on 2 October; the post-mortem reports users compensated, a second flaw fixed and the function removed. <a href="https://decrypt.co/380014/near-intents-recovers-3-8-million-after-48-hour-ultimatum" target="_blank" rel="noopener noreferrer" className={link}>Decrypt</a> · <a href="https://www.techflowpost.com/en-US/newsletter/140312" target="_blank" rel="noopener noreferrer" className={link}>post-mortem summary</a></p>
               </aside>
-            </section>
-
-            <section id="episodes" className="section-gap scroll-mt-20" aria-labelledby="ep-h">
-              <h2 id="ep-h" className="mb-4 border-t hairline pt-10 text-lg font-[600]">Debate episodes</h2>
-              {episodes?.entries.length ? (
-                <ul className="grid gap-3 md:grid-cols-2">{episodes.entries.map((e) => <LibraryRow key={e.id} e={e} />)}</ul>
-              ) : (
-                <EmptyState title="No debate episodes yet.">Each episode is generated from a frozen snapshot of this research and kept permanently.</EmptyState>
-              )}
             </section>
 
             <nav aria-label="Go deeper" className="mt-16 grid gap-3 border-t hairline pt-10 md:grid-cols-2">

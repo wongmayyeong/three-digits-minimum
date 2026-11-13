@@ -22,10 +22,10 @@ import { usePlayback, type Segment } from './use-playback';
  * whole studio for the evidence reveal. Times are seconds into the intro segment.
  */
 const INTRO_STEPS: { role: Role | null; until: number; caption: string }[] = [
-  { role: 'bull', until: 3.8, caption: 'On the affirmative, Bull argues that NEAR is building the future.' },
-  { role: 'bear', until: 7.6, caption: 'On the negative, Bear argues that NEAR is following the hype.' },
-  { role: 'judge', until: 11.4, caption: 'The Judge scores argument quality and checks every figure against the evidence.' },
-  { role: null, until: 17, caption: 'Both sides receive the same frozen evidence. Neither can fetch anything new during the debate.' },
+  { role: 'bull', until: 2, caption: 'Bull argues NEAR is building the future.' },
+  { role: 'bear', until: 4, caption: 'Bear argues NEAR is following the hype.' },
+  { role: 'judge', until: 6, caption: 'The Judge scores the arguments and checks every figure.' },
+  { role: null, until: 9, caption: 'Same frozen evidence for both sides. Nothing new can be fetched mid-debate.' },
 ];
 const INTRO_TOTAL = INTRO_STEPS[INTRO_STEPS.length - 1]!.until;
 
@@ -34,6 +34,7 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
   const topic = getTopic(view.topicSlug)!;
   const [captionsOn, setCaptionsOn] = useState(true);
   const closeRef = useRef<HTMLButtonElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
   // Rendered only after a click, so reading the viewport here cannot cause a hydration mismatch.
   const [narrow] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches);
 
@@ -75,6 +76,23 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
     return () => { document.body.style.overflow = prev; };
   }, []);
 
+  // True full screen where the browser allows it (opened by a click). Leaving full screen (Esc, which browsers
+  // keep for themselves) closes the show; closing the show leaves full screen.
+  useEffect(() => {
+    const el = rootRef.current;
+    let entered = false;
+    const onChange = () => {
+      if (document.fullscreenElement === el) entered = true;
+      else if (entered) onClose();
+    };
+    document.addEventListener('fullscreenchange', onChange);
+    if (el && document.fullscreenEnabled && !document.fullscreenElement) el.requestFullscreen({ navigationUI: 'hide' }).catch(() => { /* overlay only */ });
+    return () => {
+      document.removeEventListener('fullscreenchange', onChange);
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    };
+  }, [onClose]);
+
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === ' ' || e.key === 'k') { e.preventDefault(); pb.toggle(); }
     else if (e.key === 'ArrowRight') { e.preventDefault(); pb.go(pb.index + 1, pb.playing); }
@@ -88,7 +106,7 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
   const panelKey = pb.seg?.kind === 'intro' ? 'intro' : `${turn?.id}-${side}`;
 
   return (
-    <motion.div role="dialog" aria-modal="true" aria-label="Debate" onKeyDown={onKey}
+    <motion.div ref={rootRef} role="dialog" aria-modal="true" aria-label="Debate" onKeyDown={onKey}
       className="fixed inset-0 z-[60] flex flex-col bg-black text-fg outline-none"
       initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
       <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden">
@@ -97,7 +115,11 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
         </div>
 
         <div className="absolute inset-x-0 top-0 flex items-center justify-between gap-3 bg-gradient-to-b from-black/80 to-transparent px-4 pb-8 pt-4 sm:px-6">
-          <div className="flex flex-wrap items-center gap-2">
+          <button ref={closeRef} type="button" onClick={onClose} className="inline-flex h-10 shrink-0 items-center gap-2 rounded-[var(--radius-sm)] border border-line-strong bg-black/60 px-3.5 text-sm backdrop-blur-sm hover:bg-white/10" aria-label="Back to the page (Esc)">
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            Back
+          </button>
+          <div className="flex flex-wrap items-center justify-end gap-2">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span key={turn?.phase ?? (step?.role ? 'meet' : 'intro')} className="chip border-line-strong bg-black/60 text-fg" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
                 {turn ? ROUND[turn.phase] ?? turn.phase : step?.role ? 'Introductions' : 'Evidence reveal'}
@@ -106,10 +128,6 @@ export function DebateShow({ view, onClose }: { view: DebateView; onClose: () =>
             <span className="chip bg-black/60">AI-generated debate</span>
             {view.synthetic && <span className="chip border-amber text-amber">Synthetic test run</span>}
           </div>
-          <button ref={closeRef} type="button" onClick={onClose} className="inline-flex h-10 items-center gap-2 rounded-[var(--radius-sm)] border border-line-strong bg-black/60 px-3 text-sm hover:bg-white/5" aria-label="Close the debate (Esc)">
-            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.6" /></svg>
-            Close
-          </button>
         </div>
 
         <AnimatePresence mode="wait">
@@ -233,7 +251,7 @@ function introCast(role: Role, t: number): StageCast {
     states: { bull: role === 'bull' ? 'idle' : 'listening', bear: role === 'bear' ? 'idle' : 'listening', judge: role === 'judge' ? 'idle' : 'listening' },
     mouths: { bull: 'closed', bear: 'closed', judge: 'closed' },
     look,
-    gestures: { [role]: t > 1.3 && t < 2.6 ? 'agree' : null },
+    gestures: { [role]: t > 0.5 && t < 1.6 ? 'agree' : null },
   };
 }
 
@@ -252,14 +270,14 @@ function IntroCard({ role, reduce }: { role: Role; reduce: boolean }) {
       <motion.div className="relative overflow-hidden rounded-[var(--radius-lg)] border bg-[rgb(6_10_8/0.86)] p-5 backdrop-blur-md md:p-7"
         style={{ borderColor: `${c.color}66`, boxShadow: `0 0 60px -20px ${c.color}` }}
         initial={reduce ? false : { opacity: 0, x: from }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: from / 2 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
         <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ background: c.color }} />
         <p className="font-mono text-xs font-[600] uppercase tracking-[0.32em]" style={{ color: c.color }}>{c.side}</p>
         <p className="mt-2 text-[2.5rem] font-[700] uppercase leading-none md:text-[3.5rem]" style={{ fontFamily: 'var(--font-pixel)', color: c.color, textShadow: `0 0 18px ${c.color}80, 0 3px 0 #000` }}>{c.name}</p>
-        <motion.p className="mt-4 text-lg leading-snug text-fg-2 md:text-2xl" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduce ? 0 : 0.35, duration: 0.4 }}>
+        <motion.p className="mt-4 text-lg leading-snug text-fg-2 md:text-2xl" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduce ? 0 : 0.12, duration: 0.3 }}>
           {c.lead} <span className="font-[680] text-fg">{c.claim}</span>
         </motion.p>
-        <motion.p className="mt-2 text-sm leading-relaxed text-muted md:text-base" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: reduce ? 0 : 0.7, duration: 0.4 }}>{c.note}</motion.p>
+        <motion.p className="mt-2 text-sm leading-relaxed text-muted md:text-base" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: reduce ? 0 : 0.25, duration: 0.3 }}>{c.note}</motion.p>
       </motion.div>
     </div>
   );

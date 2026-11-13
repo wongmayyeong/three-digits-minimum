@@ -202,10 +202,10 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgb(0 236 151 / 0.16) 1px, transparent 1.2px);
+  background-image: radial-gradient(rgb(0 236 151 / 0.22) 1px, transparent 1.3px);
   background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 75% 60% at 50% 30%, #000 0%, transparent 85%);
-  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 35%, #000 0%, rgb(0 0 0 / 0.55) 60%, transparent 95%);
+  opacity: 0.6;
 }
 .nb-backdrop::after {
   content: '';
@@ -238,6 +238,14 @@
   animation-delay: var(--delay, 0s);
 }
 
+/* Charts: the latest point pings. */
+@keyframes nb-ping { 0% { transform: scale(0.4); opacity: 0.55; } 80%, 100% { transform: scale(1.6); opacity: 0; } }
+.nb-ping { animation: nb-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+/* Hero load-in: each piece fades up in turn (hero only). */
+@keyframes nb-in { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+.nb-in { animation: nb-in 0.9s var(--ease-out-quint) both; animation-delay: var(--delay, 0s); }
+@keyframes nb-in-art { from { opacity: 0; transform: translateY(28px) scale(0.96); } to { opacity: 1; transform: none; } }
+.nb-in-art { animation: nb-in-art 1.2s var(--ease-out-quint) both; animation-delay: var(--delay, 0s); }
 /* Hero staircase: light climbing the steps, orbit ring, satellite, rising particles. */
 @keyframes nb-climb {
   0%, 100% { opacity: 0; }
@@ -292,7 +300,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nb-star, .nb-blink, .nb-live-dot, .nb-float, .nb-rise, .nb-climb, .nb-orbit, .nb-sat, .nb-particle {
+  .nb-star, .nb-blink, .nb-live-dot, .nb-float, .nb-rise, .nb-climb, .nb-orbit, .nb-sat, .nb-particle, .nb-ping, .nb-in, .nb-in-art {
     animation: none !important;
   }
   *, *::before, *::after {

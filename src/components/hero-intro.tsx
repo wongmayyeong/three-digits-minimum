@@ -67,7 +67,7 @@ function Staircase() {
 
       {/* Steps, far to near */}
       {[...steps].reverse().map((s) => (
-        <g key={s.price} className="nb-rise" style={{ ['--delay' as string]: `${0.1 + s.i * 0.12}s` }}>
+        <g key={s.price} className="nb-rise" style={{ ['--delay' as string]: `${0.6 + s.i * 0.14}s` }}>
           <polygon points={s.left} fill="url(#hx-left)" stroke="#9dffd8" strokeOpacity="0.35" strokeWidth="1" />
           <polygon points={s.right} fill="url(#hx-right)" stroke="#9dffd8" strokeOpacity="0.25" strokeWidth="1" />
           <polygon points={s.top} fill="url(#hx-top)" stroke="#e6fff5" strokeOpacity="0.7" strokeWidth="1" />
@@ -117,16 +117,16 @@ export function HeroIntro({ title, subtitle, asOf }: { title: string; subtitle: 
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-1/2 h-[46rem] w-[46rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(0_236_151/0.16),transparent_62%)]" />
       <div className="relative mx-auto grid min-h-[min(86dvh,780px)] max-w-[1320px] items-center gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:py-20">
         <div>
-          <p className="eyebrow mb-6 text-mint">An evidence-based NEAR investment thesis</p>
-          <h1 className="display-xl text-balance [font-size:clamp(3rem,7vw,6rem)]">{title}</h1>
-          <p className="mt-6 max-w-xl text-xl leading-snug text-fg-2 md:text-2xl">{subtitle}</p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <p className="nb-in eyebrow mb-6 text-mint" style={{ ['--delay' as string]: '0.05s' }}>An evidence-based NEAR investment thesis</p>
+          <h1 style={{ ['--delay' as string]: '0.15s' }} className="nb-in display-xl text-balance [font-size:clamp(3rem,7vw,6rem)]">{title}</h1>
+          <p style={{ ['--delay' as string]: '0.32s' }} className="nb-in mt-6 max-w-xl text-xl leading-snug text-fg-2 md:text-2xl">{subtitle}</p>
+          <div className="nb-in mt-10 flex flex-wrap gap-3" style={{ ['--delay' as string]: '0.48s' }}>
             <a href="#answer" className="btn btn-primary h-12 px-6 text-base">Read the verdict</a>
             <a href="#ladder" className="btn btn-ghost h-12 px-6 text-base">Explore the ladder</a>
           </div>
-          {asOf && <p className="mt-8 text-xs text-muted">Data through {asOf} · Not financial advice · Not affiliated with the NEAR Foundation</p>}
+          {asOf && <p className="nb-in mt-8 text-xs text-muted" style={{ ['--delay' as string]: '0.62s' }}>Data through {asOf} · Not financial advice · Not affiliated with the NEAR Foundation</p>}
         </div>
-        <div className="mx-auto w-full max-w-[620px]">
+        <div className="nb-in-art mx-auto w-full max-w-[620px]" style={{ ['--delay' as string]: '0.2s' }}>
           <Staircase />
         </div>
       </div>

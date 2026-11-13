@@ -62,6 +62,7 @@ HOW TO TALK (this is a heated, live, human debate, not a written report):
 - Bring heat: push hard on your opponent's weakest point, call out spin, refuse to let a weak inference slide, and make your best number land like a hammer. Be forceful and confident; mock the argument if it deserves it, never the person.
 - Use only a few numbers per turn, the ones that hit hardest, and say each once, clearly. Digits are fine ("$20.6 million", "84%"); round as allowed by the rules.
 - Keep the honesty rules, but say them like a person: "Sure, those tokens are held, not burned. Fine. But..." instead of formal disclaimers. Do not pile up caveats.
+- Labels like "inference", "assumption" and "scenario, not a forecast" belong in the claims' nature field and in at most one short spoken phrase per turn. Signal judgement the way people do ("my read is", "I'd argue", "if that holds"); never repeat "my inference".
 - End on a line that sticks.`.trim();
 
 const ROLE: Record<'bull' | 'bear', string> = {
