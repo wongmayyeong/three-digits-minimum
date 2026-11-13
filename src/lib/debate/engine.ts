@@ -8,7 +8,7 @@ import { FixtureProvider, type FixtureContext } from '@/lib/ai/fixture';
 import { buildJudgePrompt, buildTurnPrompt, evidenceForPrompt, PROMPT_VERSION, type PriorTurn, type PromptEvidence, type PromptModel } from '@/lib/ai/prompts';
 import { LlmError, resolveLlm, type LlmProvider } from '@/lib/ai/provider';
 import { JudgeJsonSchema, JudgeOutputSchema, TurnJsonSchema, TurnOutputSchema } from '@/lib/ai/schemas';
-import { finalizeScores, verifyTurn, type SnapshotIndexItem, type TurnAudit, type VerifiedClaim } from '@/lib/ai/verify';
+import { finalizeScores, speakable, verifyTurn, type SnapshotIndexItem, type TurnAudit, type VerifiedClaim } from '@/lib/ai/verify';
 import { db } from '@/lib/storage/db';
 import { getTopic } from '@/lib/topics/topics';
 import { emit } from './events';
@@ -228,7 +228,7 @@ async function runJudge(sessionId: string) {
     if (!parsed.success) throw new LlmError(`Verdict failed schema validation: ${parsed.error.issues.slice(0, 3).map((i) => `${i.path.join('.')} ${i.message}`).join('; ')}`, true);
     return { parsed: parsed.data, usage: { inputTokens: r.inputTokens, outputTokens: r.outputTokens, model: r.model } };
   });
-  const j = out.parsed;
+  const j = { ...out.parsed, speech: speakable(out.parsed.speech) };
   const final = finalizeScores(j.scores, j.winner, audits);
   // Server-detected unsupported claims are always listed, whatever the Judge said.
   const serverUnsupported = audits.flatMap((a) => a.claims.filter((c) => c.status === 'unsupported').map((c) => ({ claimId: c.id, reason: `Server audit: ${c.problems.join('; ')}`, source: 'server' })));
@@ -262,8 +262,8 @@ async function runJudge(sessionId: string) {
 }
 
 export function splitSentences(text: string): string[] {
-  const parts = text.replace(/\s+/g, ' ').trim().match(/[^.!?]+(?:[.!?]+(?=\s|$)|$)/g) ?? [text];
-  return parts.map((p) => p.trim()).filter(Boolean);
+  // Split only at sentence-ending punctuation followed by a space, so decimals such as 0.042% stay whole.
+  return text.replace(/\s+/g, ' ').trim().split(/(?<=[.!?]["”’)]?)\s+(?=["“‘(]?[A-Z0-9$])/).map((p) => p.trim()).filter(Boolean);
 }
 
 /** Records a step failure: PARTIAL if any turn exists, otherwise FAILED. */

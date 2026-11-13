@@ -8,6 +8,7 @@ import { putObject } from '@/lib/storage/assets';
 import { emit } from '@/lib/debate/events';
 import { recordUsage } from '@/lib/debate/budget';
 import { synthesizeElevenLabs, SpeechError } from './elevenlabs';
+import { synthesizeOpenAI } from './openai-tts';
 import { VOICES, voiceIdFor, voiceStatus, type Role } from './voices';
 
 export async function processAudioJob(turnId: string): Promise<'ready' | 'unavailable' | 'skipped'> {
@@ -24,27 +25,33 @@ export async function processAudioJob(turnId: string): Promise<'ready' | 'unavai
   if (sha256(turn.speechText) !== turn.textHash) throw new SpeechError('Transcript hash mismatch; refusing to synthesize altered text.', false);
   const role = turn.actor as Role;
   const voice = VOICES[role];
-  const voiceId = voiceIdFor(role)!;
+  const provider = status.provider as 'elevenlabs' | 'openai';
+  const voiceId = provider === 'openai' ? voice.openai.voice : voiceIdFor(role)!;
   const model = status.model!;
-  const cacheKey = sha256(stableStringify({ provider: 'elevenlabs', model, voiceId, settings: voice.settings, textHash: turn.textHash }));
+  const settings = provider === 'openai' ? voice.openai : voice.settings;
+  const cacheKey = sha256(stableStringify({ provider, model, voiceId, settings, textHash: turn.textHash }));
+  const usageProvider = { id: provider, pricing: { inputPerM: 0, outputPerM: 0 } };
+  // gpt-4o-mini-tts is billed per audio minute (about $0.015); per 1k characters that is roughly $0.012.
+  const perK = Number(process.env.TTS_PRICE_PER_1K_CHARS ?? (provider === 'openai' ? 0.012 : 0.1));
 
   let asset = await db().audioAsset.findUnique({ where: { cacheKey } });
   if (!asset) {
     let result;
     try {
-      result = await synthesizeElevenLabs(turn.speechText, voice, voiceId, { apiKey: process.env.ELEVENLABS_API_KEY!, model });
+      result = provider === 'openai'
+        ? await synthesizeOpenAI(turn.speechText, voice, { apiKey: process.env.OPENAI_API_KEY!, model })
+        : await synthesizeElevenLabs(turn.speechText, voice, voiceId, { apiKey: process.env.ELEVENLABS_API_KEY!, model });
     } catch (e) {
-      await recordUsage({ sessionId: turn.sessionId, provider: { id: 'elevenlabs', pricing: { inputPerM: 0, outputPerM: 0 } }, kind: 'tts', model, inputTokens: 0, outputTokens: 0, characters: 0, usdOverride: 0, success: false });
+      await recordUsage({ sessionId: turn.sessionId, provider: usageProvider, kind: 'tts', model, inputTokens: 0, outputTokens: 0, characters: 0, usdOverride: 0, success: false });
       throw e;
     }
-    const perK = Number(process.env.TTS_PRICE_PER_1K_CHARS ?? 0.1);
-    await recordUsage({ sessionId: turn.sessionId, provider: { id: 'elevenlabs', pricing: { inputPerM: 0, outputPerM: 0 } }, kind: 'tts', model, inputTokens: 0, outputTokens: 0, characters: turn.speechText.length, usdOverride: (turn.speechText.length / 1000) * perK, success: true });
+    await recordUsage({ sessionId: turn.sessionId, provider: usageProvider, kind: 'tts', model, inputTokens: 0, outputTokens: 0, characters: turn.speechText.length, usdOverride: (turn.speechText.length / 1000) * perK, success: true });
     const stored = await putObject(`audio/${cacheKey}.mp3`, result.audio, result.mimeType);
     asset = await db().audioAsset.upsert({
       where: { cacheKey },
       update: {},
       create: {
-        cacheKey, provider: 'elevenlabs', model, voiceId, role, mimeType: result.mimeType, durationSec: result.durationSec,
+        cacheKey, provider, model, voiceId, role, mimeType: result.mimeType, durationSec: result.durationSec,
         alignment: (result.alignment ?? {}) as object, alignmentKind: result.alignmentKind, transcriptHash: turn.textHash,
         storageDriver: stored.driver, storageKey: stored.key, data: stored.inline ? new Uint8Array(stored.inline) : null, sizeBytes: result.audio.length,
       },

@@ -129,6 +129,20 @@ export function allowedConstants(items: SnapshotIndexItem[]): number[] {
   return [...set];
 }
 
+// Evidence IDs (INT-VOL-90D) and claim IDs (XO-1) are for the record, not for the ear.
+const ID_RE = '[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+';
+const CITATION_RE = new RegExp(String.raw`\s*[\[(]\s*(?:${ID_RE})(?:\s*[,;/&]\s*(?:${ID_RE}))*\s*[\])]`, 'g');
+
+/** Spoken text without bracketed citations or claim codes, which the model sometimes writes despite instructions. */
+export function speakable(text: string): string {
+  return text
+    .replace(CITATION_RE, '')
+    .replace(/\b(?:[BX][ORC]|J)-\d+\b/g, 'point')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
 export function verifyTurn(
   out: TurnOutput,
   ctx: { snapshot: SnapshotIndexItem[]; metricKeyOf: (id: string) => string | null; claimPrefix: string; opponentClaimIds: string[]; minWords: number; maxWords: number; requiresRebuttal: boolean },
@@ -178,7 +192,7 @@ export function verifyTurn(
     };
   });
 
-  const beats = out.beats.map((b) => ({ text: b.text.trim(), claimId: b.claimId && idMap.has(b.claimId) ? idMap.get(b.claimId)! : null })).filter((b) => b.text);
+  const beats = out.beats.map((b) => ({ text: speakable(b.text), claimId: b.claimId && idMap.has(b.claimId) ? idMap.get(b.claimId)! : null })).filter((b) => b.text);
   const speechText = beats.map((b) => b.text).join(' ');
   const words = wordCount(speechText);
 
