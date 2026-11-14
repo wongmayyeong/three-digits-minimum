@@ -12,7 +12,7 @@ Model versions in the committed snapshot: ladder `three-digits-2.0.1`, evidence 
 
 **Design.** A conditional, requirements-based analysis, not a forecast:
 
-1. **Layer A (requirements).** For each rung ($10, $25, $50, $100 in 2036), compute the market cap, value reaching holders, NEAR Intents volume and growth rate it implies under each valuation multiple.
+1. **Layer A (requirements).** For each rung ($10, $25, $50, $100 in 2036), compute the market cap, value attributed to holders, NEAR Intents volume and growth rate it implies under each valuation multiple.
 2. **Layer B (evidence status).** Label every condition OBSERVED (in today's data), ASSUMED (a modelling choice) or UNPROVEN (would have to happen; no evidence yet).
 3. **Reverse view.** Under fixed growth scenarios and multiples, compute the implied 2036 price.
 4. **Supporting workstreams.** Token economics (W4), economy map (W3), cross-chain competition (W2), market sizing (W1), valuation and opportunity cost (W5, W6), hypotheses (W8) and self-challenge (W9), as scoped in [research/three-digits/SCOPE.md](../research/three-digits/SCOPE.md).
@@ -44,6 +44,15 @@ Model versions in the committed snapshot: ladder `three-digits-2.0.1`, evidence 
 
 L1 activity uses matched 90-day windows a year apart (`ECO-L1-TXNS-YOY`, `ECO-L1-ACTIVE-YOY`).
 
+NEAR DeFi TVL growth is computed in two places from the same DefiLlama series (`/v2/historicalChainTvl/Near`), each a single-day comparison:
+
+| Where | Definition | Snapshot value |
+|---|---|---|
+| `DEFI-TVL-NEAR-YOY` (economy map, trigger F5; `evidence.ts`) | Latest daily value at retrieval (2026-11-12, an incomplete day, $165.0M) vs 2025-11-12 ($116.7M) | +41.4% |
+| Opportunity table, NEAR platform route (`valuation.ts`) | Flow-window end 2026-11-10 ($170.3M) vs 2025-11-10 ($134.0M) | +27.1% |
+
+The gap comes from the end dates, not from an arithmetic error: DefiLlama's daily NEAR TVL moved between $117M and $195M within 8–13 November 2025. The first measure also uses an incomplete latest day, which departs from the common-end-date rule above; see [LIMITATIONS.md §13](LIMITATIONS.md#13-historical-trend-extrapolation).
+
 - **Point-in-time values.** Price, market cap and circulating supply come from CoinGecko at retrieval time (12 November 2026 in the snapshot), not on the window end date. This is a known mismatch of up to two days (see [LIMITATIONS.md](LIMITATIONS.md#1-dataset-coverage-and-freshness)).
 
 ## 4. Source selection and hierarchy
@@ -59,17 +68,20 @@ Comparisons use the same provider and metric definition for every asset (for exa
 | Term | Definition | Implementation |
 |---|---|---|
 | Intents volume | DefiLlama `near-intents` daily volume | `defillama.intents.volume` |
-| Gross fees (f) | Intents fees ÷ volume, same 90 days | `INT-FEE-RATE` |
-| Captured revenue | NEAR and wNEAR swept into the three revenue wallets (DefiLlama "revenue") | `defillama.intents.dailyRevenue` |
-| Designated buybacks | DefiLlama "holders revenue" for Intents: all captured revenue from 23 Feb 2026 | `defillama.intents.dailyHoldersRevenue` |
+| Protocol fees | Gross fees paid by Intents users (protocol and distributor fees), DefiLlama | `defillama.intents.dailyFees` |
+| Gross fee rate (f) | Intents fees ÷ volume, same 90 days | `INT-FEE-RATE` |
+| Protocol revenue (captured revenue) | NEAR and wNEAR swept into the three revenue wallets (DefiLlama "revenue") | `defillama.intents.dailyRevenue` |
+| Designated buybacks | DefiLlama "holders revenue" for Intents: all captured revenue from 23 Feb 2026. A classification, not a transaction and not verified tokenholder income | `defillama.intents.dailyHoldersRevenue` |
 | Buyback revenue per dollar of volume | Designated buybacks ÷ volume, same 90 days | `LAD-HOLDER-TAKE-RATE` |
 | Burns | DefiLlama NEAR chain revenue: 70% of gas, burned | `defillama.revenue.near` |
-| Value to holders (designated basis) | Burns + designated buybacks, 90-day run rate | `LAD-NEAR-CAPTURE-RUNRATE` |
+| Value attributed to holders (designated basis) | Burns + designated buybacks, 90-day run rate; on the delivered basis, burns + delivered NEAR | `LAD-NEAR-CAPTURE-RUNRATE` |
 | Delivered | NEAR received by `buybacks.multisignature.near` from `intents.near` or the 1Click fund, valued at the day's price | `TOK-DELIVERED-*` |
 | Verified capture | Delivered (run rate) + burns | `TOK-VERIFIED-CAPTURE` |
+| Verified executed purchases | Open-market purchases with known swap inputs and prices | Not measured: needs the Intents Explorer API |
+| Intents share of NEAR-chain fees | Intents fees ÷ all protocol fees DefiLlama attributes to the NEAR chain, 30 days. Mostly cross-chain swap fees paid on many chains, not NEAR L1 gas | `ECO-INTENTS-FEE-SHARE` |
 | Net issuance | Annualized realized change in total supply (NearBlocks), net of burns | `SUP-NET-NEW-ANN-PCT` |
 | Spot DEX volume | DefiLlama DEX overview, "Dexs" category only, summed per day | `LAD-SPOT-DEX-RUNRATE` |
-| Cash-flow multiple | Market cap ÷ value to holders (90-day run rate) | `LAD-MULT-*` |
+| Cash-flow multiple | Market cap ÷ value attributed to holders (90-day run rate) | `LAD-MULT-*` |
 
 ## 6. Onchain wallet reconstruction methodology
 

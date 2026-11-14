@@ -8,6 +8,20 @@ NEAR HACKATHON 2026 · Investment Thesis track · MIT license
 
 > Independent, educational research. Not financial advice, not a price prediction, not a recommendation to buy or sell NEAR. Not affiliated with the NEAR Foundation.
 
+### At a glance
+
+**Question.** Can NEAR reach $100, and what economic conditions would need to be true to justify that valuation?
+
+**Verdict.** NEAR offers an interesting but highly conditional investment thesis, not a proven path to $100. The evidence does not justify calling $100 a *minimum*.
+
+**Three strongest findings** (committed snapshot, 90 days to 10 Nov 2026):
+
+1. **$100 needs a decade of hypergrowth.** At NEAR's current valuation multiple (212x), $100 in 2036 needs NEAR Intents volume to grow 44.0% a year for ten years; at 20% a year the same model implies about $16.
+2. **Protocol growth is not tokenholder value.** Intents volume grew 230.1% year over year, but of the $8.01M of revenue DefiLlama designates for buybacks, 67.0% was traced onchain to the buyback wallet, where it is held, not burned. Net issuance (2.48% of supply a year) exceeds what that wallet absorbs (0.30%).
+3. **Measured value is concentrated in one product.** NEAR Intents is 86.2% of the protocol fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not NEAR L1 gas), while NEAR trades at 223x Intents revenue against 7.55x–13.5x for cross-chain peer tokens.
+
+**Try it:** [threedigits.xyz](https://threedigits.xyz/) · **Watch:** [demo video](https://x.com/noxbuildsdegen/status/2121542034888819149) · **Rebuild:** `npm ci && npm run research:rebuild`
+
 ---
 
 ## 1. Project overview
@@ -82,7 +96,7 @@ The investment verdict carries no numeric confidence score. The supporting track
 | | Strongest evidence |
 |---|---|
 | **Bull case** | Intents volume grew 230.1% year over year (matched 90-day windows); its revenue is reproduced onchain to 99.1% of DefiLlama's figure; Intents leads the cross-chain swap venues with public volume (58.1%); NEAR is verifiably reaching the buyback wallet ($13.8M a year) |
-| **Bear case** | One product is 86.2% of measured fees; NEAR trades at 223x Intents revenue vs 7.55x–13.5x for cross-chain peers; only 67.0% of designated buybacks reached the buyback wallet, and it is held, not burned; net issuance (2.48% a year) exceeds buyback absorption (0.30%); L1 transactions fell 84.0% |
+| **Bear case** | One product is 86.2% of the protocol fees DefiLlama attributes to the NEAR chain (cross-chain swap fees, not L1 gas); NEAR trades at 223x Intents revenue vs 7.55x–13.5x for cross-chain peers; only 67.0% of designated buybacks reached the buyback wallet, and it is held, not burned; net issuance (2.48% a year) exceeds buyback absorption (0.30%); L1 transactions fell 84.0% |
 | **Unresolved** | Integrator and solver concentration (H8); automated vs organic L1 activity (H7); Chain Signatures' role in Intents (H9); volume of rivals that publish none (Relay, deBridge, Mayan) |
 | **Would change the verdict** | Up: Intents growth above each rung's yearly checkpoint, deliveries reaching the designation, held NEAR burned, stablecoins and DeFi settling on NEAR. Down: fee compression, a re-rating toward cash-flow peers, a widening designated-to-delivered gap, another security incident |
 
@@ -97,14 +111,14 @@ Window: 90 days ending 2026-11-10 unless stated. Evidence IDs resolve in [`artif
 | Intents volume, run rate | $49.08B a year | 90 days | DefiLlama `near-intents` | DERIVED | `INT-VOL-ANN`; annualized, not a forecast |
 | Intents volume growth | +230.1% / +57.8% | 90 days / 30 days vs a year earlier | DefiLlama | DERIVED | `ECO-INTENTS-VOL-YOY`, `LAD-INTENTS-YOY`; growth depends heavily on the window chosen |
 | NEAR L1 transactions | −84.0% | 90 days vs a year earlier | NearBlocks | DERIVED | `ECO-L1-TXNS-YOY`; part may be automated activity ending (H7, untested) |
-| Intents share of NEAR-chain fees | 86.2% | 30 days | DefiLlama fees overview | DERIVED | `ECO-INTENTS-FEE-SHARE`; Intents fees are cross-chain swap fees, not L1 gas |
+| Intents share of protocol fees DefiLlama attributes to the NEAR chain | 86.2% | 30 days | DefiLlama fees overview | DERIVED | `ECO-INTENTS-FEE-SHARE`; mostly cross-chain swap fees paid on many chains, **not NEAR L1 gas** (NEAR's own gas is 2.0% of the same total) |
 | Captured revenue, reproduced onchain | $7.94M vs DefiLlama $8.01M (99.1%) | 23 Feb–10 Nov 2026 | FastNEAR vs DefiLlama (Dune) | DERIVED | `TOK-REPRODUCTION-RATIO`; independent paths agree |
 | Revenue **designated** for buybacks | $8.01M | 23 Feb–10 Nov 2026 | DefiLlama holders revenue | OBSERVED | `TOK-DESIGNATED-SINCE`; a label applied by date, not a transaction |
 | NEAR **delivered** to the buyback wallet | 67.0% of designated | same | FastNEAR | DERIVED | `TOK-DELIVERED-ALL-VS-DESIGNATED`; valued at market prices on delivery days |
 | **Verified market purchases** | not verified | | | | Swap inputs and prices need the Intents Explorer API; deliveries are verified, purchases are not |
 | Kept in the front-end fund | $2.13M | 23 Feb–10 Nov 2026 | FastNEAR | OBSERVED | `TOK-FRONTEND-RETAINED`; captured revenue, not a buyback |
 | Burned | 0% of delivered NEAR | snapshot | NEAR RPC | DERIVED | `TOK-WALLET-RECONCILE`: the wallet holds 100.0% of what it received |
-| NEAR multiple (market cap / value to holders) | 212x (309x delivered basis) | 90-day run rate | CoinGecko, DefiLlama | DERIVED | `LAD-MULT-TODAY`; Tron 102x, Hyperliquid 19.5x on the same basis |
+| NEAR multiple (market cap / (burns + designated buybacks)) | 212x (309x on burns + delivered NEAR) | 90-day run rate | CoinGecko, DefiLlama | DERIVED | `LAD-MULT-TODAY`; Tron 102x, Hyperliquid 19.5x on the same basis |
 | Market cap / Intents revenue | 223x | 90-day run rate | CoinGecko, DefiLlama | DERIVED | `CC-NEAR-CAP-INTENTS-REV`; peers 7.55x–13.5x; NEAR's cap also prices the L1 |
 | Growth $100 needs at today's multiple | 44.0% a year for 10 years | to 2036 | model | DERIVED from ASSUMED inputs | `LAD-100-TODAY-CAGR`; holds today's multiple and take rate |
 | Implied 2036 price at 20% growth | $16 (today's multiple), $7.85 (Tron's) | to 2036 | model | SPECULATIVE scenario | `LAD-IMPLIED-BASE-TODAY`; illustrative, not a forecast |
@@ -142,7 +156,7 @@ The user journey on [threedigits.xyz](https://threedigits.xyz/):
 
 NEAR is an unusually instructive investment problem, not a convenient chain to build on:
 
-- **One cross-chain product drives the token.** NEAR Intents settles swaps across many chains, yet it accounts for most of what DefiLlama attributes to the NEAR chain. NEAR may need to be valued like a cross-chain execution business rather than a traditional L1.
+- **One cross-chain product drives the token.** NEAR Intents settles swaps across many chains, yet its cross-chain swap fees are 86.2% of the protocol fees DefiLlama attributes to the NEAR chain, against 2.0% for NEAR's own L1 gas. NEAR may need to be valued like a cross-chain execution business rather than a traditional L1.
 - **The Intents–token link is new and checkable.** Since 23 February 2026 Intents revenue is designated for $NEAR buybacks. That creates a measurable path from usage to tokenholders, and a measurable gap between the label and what arrives.
 - **L1 activity and Intents diverge.** L1 transactions fell 84% while Intents volume grew 230%, which tests whether NEAR's base layer still matters for its valuation.
 - **Supply dynamics are live.** 2.5% maximum issuance, 70% of gas burned, a held (not burned) buyback wallet, and HSP-029 pending validator adoption.

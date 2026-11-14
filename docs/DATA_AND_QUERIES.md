@@ -81,7 +81,8 @@ The exact URL of every stored response is in [`artifacts/research/raw/manifest.j
 | Net issuance | NearBlocks | `nearblocks.charts` (total supply) | 90 days | `SUP-NET-NEW-ANN-PCT` | Realized, net of burns |
 | Staking ratio, validators | NEAR RPC | `near-rpc.validators`, `near-rpc.block` | Current epoch | `TOK-STAKING-RATIO`, `RISK-VALIDATOR-NAKAMOTO` | One epoch |
 | L1 activity | NearBlocks, DefiLlama | `nearblocks.charts`, `defillama.fees.near` | 90d vs a year earlier | `ECO-L1-TXNS-YOY`, `ECO-L1-ACTIVE-YOY`, `ECO-L1-GAS-YOY` | Automated activity not separated (H7) |
-| Fees on NEAR by protocol | DefiLlama | `defillama.fees.onnear` | 30 days | `ECO-INTENTS-FEE-SHARE` | Intents fees are paid on many chains |
+| Fees on NEAR by protocol | DefiLlama | `defillama.fees.onnear` | 30 days | `ECO-INTENTS-FEE-SHARE` | Share of protocol fees DefiLlama attributes to the NEAR chain; Intents fees are cross-chain swap fees paid on many chains, not NEAR L1 gas |
+| NEAR DeFi TVL and growth | DefiLlama | `defillama.tvl.near` → `evidence.ts`; `defillama.chaintvl.near` → `valuation.ts` | Latest day (2026-11-12) vs a year earlier; window end (2026-11-10) vs a year earlier | `DEFI-TVL-NEAR`, `DEFI-TVL-NEAR-YOY` (+41.4%); opportunity table (+27.1%) | Same endpoint fetched twice; single-day comparisons on a noisy series ([METHODOLOGY.md §3](METHODOLOGY.md#3-time-window-alignment)) |
 | Cross-chain comparison | DefiLlama, CoinGecko | `defillama.ccfees.*`, `defillama.ccvol.*`, `coingecko.crosschain` → `crosschain.ts` | 90 days | `CC-*` | Several rivals publish no volume |
 | Era durability | NearBlocks, DefiLlama | `nearblocks.era.*` → `thesis.ts` | Calendar months | `ERA-*` | Estimated months excluded |
 | Chain Signatures | NEAR RPC | `near-rpc.signer-state` | Retrieval time | `ECO-SIGNER-PARTICIPANTS` | No fee data |

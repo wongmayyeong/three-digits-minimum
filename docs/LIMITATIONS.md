@@ -7,7 +7,7 @@ What this research does not know, and why it matters. Each item states what is k
 ## 1. Dataset coverage and freshness
 
 - **Known.** The committed snapshot holds 262 responses retrieved 8–12 November 2026; flow metrics end on 10 November 2026. Price and market cap are CoinGecko values at retrieval (12 November, $3.51), up to two days after the flow window ends.
-- **Uncertain.** How far the numbers have moved since. The live site recomputes from responses stored later (newest 13 November 2026, 04:13 UTC) with the same window end, so it shows slightly different figures, for example price $3.34, NEAR's multiple 202x instead of 212x, $100 growth requirement 44.7% instead of 44.0%, implied 2036 price at 20% growth $15 instead of $16, delivered share 67.1% instead of 67.0%. The hosted site runs without the background worker, so it does not refresh daily.
+- **Uncertain.** How far the numbers have moved since. The live site recomputes from responses stored later (newest 13 November 2026, 04:13 UTC) with the same window end, so it shows slightly different figures, for example price $3.34, NEAR's multiple 202x instead of 212x, $100 growth requirement 44.7% instead of 44.0%, implied 2036 price at 20% growth $15 instead of $16, delivered share 67.1% instead of 67.0%. The hackathon demo video was recorded from the live site and shows those live figures (44.7%, about $15, 67.1%); +230.1% and −84.0% are the same in both. The hosted site runs without the background worker, so it does not refresh daily.
 - **Why it matters.** Multiples and requirements move with price. A 5% price move changes every requirement on the ladder.
 - **Resolves it.** `npm run research:refresh` for a current snapshot; the committed snapshot remains the reproducible reference. The site's `/methodology#reproduce` section shows both dates side by side.
 
@@ -93,7 +93,8 @@ What this research does not know, and why it matters. Each item states what is k
 - **Known.** Intents growth reads +230.1% (90 days vs a year earlier), +57.8% (30 days vs a year earlier) or +84.1% (90 days vs the prior 90 days), depending on the window. The weekly chart on `/research` shows the latest week roughly flat against the same week a year earlier.
 - **Uncertain.** Which, if any, is a sustainable rate. Intents is young and growing from a small base; one year of data is dominated by the market cycle.
 - **Why it matters.** Extrapolating any one of these windows would overstate or understate the case.
-- **Resolves it.** More years of data; the thesis compares requirements with momentum but never extrapolates momentum.
+- **Also:** NEAR DeFi TVL growth reads +41.4% in the economy map and +27.1% in the opportunity table. Both use the same DefiLlama series; the first compares the latest, incomplete day at retrieval (12 Nov 2026) with 12 Nov 2025, the second the window end (10 Nov 2026) with 10 Nov 2025. The series swung between $117M and $195M within a week around the year-earlier dates, so any single-day comparison is fragile. Using the incomplete latest day also departs from the project's common-end-date rule. Neither figure feeds the ladder or the verdict; the +41.4% feeds trigger F5 (DeFi TVL halving), which is not triggered on either figure.
+- **Resolves it.** More years of data; for TVL, a multi-day average on matched end dates. The thesis compares requirements with momentum but never extrapolates momentum.
 
 ## 14. Unverified hypotheses
 
